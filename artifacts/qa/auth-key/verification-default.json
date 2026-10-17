@@ -1,0 +1,10 @@
+{
+  "inputKind": "existing-catalogue-sketch",
+  "realProviderRequested": true,
+  "httpStatus": 200,
+  "authenticationVerified": true,
+  "recognizedObjectPresent": true,
+  "source": "api",
+  "errorCode": null,
+  "latencyMs": 1506
+}

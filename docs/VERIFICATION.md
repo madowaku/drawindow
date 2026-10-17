@@ -65,11 +65,45 @@ booleans only. Actual local Worker checks returned204 for trusted preflight and
 was made by those checks. See `recognition-preflight.json` and
 `docs/GEMINI_LOCAL_SETUP.md`.
 
-The existing local value did not look like a configured Google API key; private
-replacement was requested. Genuine LIVE five-exchange recognition,12human
+The original setup check incorrectly rejected a stored `AQ.` Auth Key because it
+accepted only the old `AIza` family. The follow-up below supersedes that format
+assessment; no replacement key was needed. Genuine LIVE five-exchange recognition,12human
 freehand samples, actual iframe CORS, Android touch comfort and the3–5minute
 unassisted naive-player study are **pending**. No live-ready, recognition-quality,
 human-comfort or fun claim is made by the DEMO checks.
+
+### Auth Key follow-up — 2026-10-17 JST
+
+Scope is limited to the setup/check/verification commands, authentication tests,
+and this documentation. Game source, artwork, animation, model selection and
+Worker production code are unchanged. The existing `x-goog-api-key` transport
+already supports opaque Auth Keys and required no rewrite.
+
+- `npm test`: **97 passed /14 files**, including the existing77-test baseline.
+- `npm run test:auth`: **6 passed**. Actual masked PowerShell input is replaced
+  only in the test harness; it verifies short/long Auth Key fixtures, legacy and
+  future opaque fixtures, preservation of other settings, unsafe-character
+  rejection, Git exclusion and no credential echo. Worker tests verify exact
+  header forwarding, no URL/Bearer duplication, and sanitizing401 error bodies.
+- `npm run build`: TypeScript/Vite passed.
+- `npm run check:gemini`: Git ignored, key present and safe to store/send; it
+  deliberately does not claim authentication from the local string.
+- Real diagnostic image requests: initial old Worker8787 returned504 after
+  **9167ms**; a fresh Worker8788 returned**200 /1760ms**, and the normal8787
+  Worker was restarted and returned**200 /1506ms**. Both successes returned
+  `source: api` and a validated nonempty recognition noun. There was no retry
+  loop, provider substitution, key re-entry or cloud deployment.
+
+Input was the same existing catalogue sketch, rendered white/black at512×512.
+The expected label was excluded from requests. This is real provider transport/
+authentication evidence, not new human hand-drawn quality evidence. Safe receipt:
+`artifacts/qa/auth-key/verification-default.json`. Temporary port8788 is stopped;
+the normal Worker8787 remains available for the existing Vite proxy.
+
+The key was not printed, changed, committed or embedded into the frontend.
+Masked input, `.dev.vars*` Git exclusion and zeroing the unmanaged input buffer
+remain in place. No additional game screenshots are needed for this auth-only
+change; the DAY/NIGHT visual evidence above remains the character-integration gate.
 
 ## Historical v0.2 evidence
 

@@ -3,11 +3,21 @@
 ## v0.3 local connection status
 
 The actual game character integration passed its P0 DEMO gate (96 tests, build,
-three viewport sizes × DAY/NIGHT). A configured genuine key is still required
-for P1 provider tests. Private entry is available via `npm run setup:gemini`;
-`npm run check:gemini` reports only booleans. See
-[safe local setup](GEMINI_LOCAL_SETUP.md). The current local value failed the
-Google-key format check; its content was neither printed nor committed.
+three viewport sizes × DAY/NIGHT). The authentication follow-up passes97 core/
+Worker tests,6 setup/diagnostic tests and build. The previous `AIza`-only setup
+check incorrectly rejected the already stored `AQ.` Auth Key. That restriction
+has been removed; prefix and length are not authentication checks. Masked entry,
+Git exclusion and safe dotenv/header characters remain enforced. See
+[safe local setup](GEMINI_LOCAL_SETUP.md).
+
+Real image requests through a fresh local Worker succeeded with the stored key:
+HTTP200, `source: api`, a valid recognized noun,1760ms on diagnostic port8788
+and1506ms after restarting the normal port8787. The initial stale port8787
+request timed out after9167ms; this did not establish an authentication failure.
+The input was one existing catalogue sketch rendered to a neutral PNG, with no
+expected label sent. This establishes local provider access, not a human drawing
+benchmark or a completed live five-exchange session. Only allowlisted status
+fields are recorded in `artifacts/qa/auth-key/`; no key or provider body is logged.
 
 Actual local Worker trusted OPTIONS returned204, and an untrusted-Origin POST
 was rejected403 before any provider call. These do not establish provider
@@ -19,7 +29,7 @@ The existing model `gemini-3.5-flash-lite` remains the configured choice; the
 was rechecked2026-10-17 for image input and structured output. No new provider
 abstraction or model upgrade was necessary.
 
-The shipped default is **DEMO**. Its mock returns predetermined words based on round number, independently of the drawing. It exists to demonstrate five exchanges and the final reveal; demo link counts are illustrative and never a comparable score. No provider credentials were available during implementation, no live recognition benchmark has been run, and the implementation must not be advertised as validated AI recognition yet.
+The shipped default is **DEMO**. Its mock returns predetermined words based on round number, independently of the drawing. It exists to demonstrate five exchanges and the final reveal; demo link counts are illustrative and never a comparable score. The limited provider connection checks do not constitute a live recognition benchmark, and the implementation must not be advertised as validated drawing recognition yet.
 
 ## Configuring the optional live API
 
@@ -82,7 +92,7 @@ Prepare at least 12 **real hand-drawn** neutral images, including recognizable s
    next-word selections, no midgame word/answer disclosure, final five intended
    labels and nine scored adjacency links. Exercise DAY and NIGHT parity and
    bounded failure recovery. A mock, random result, template fixture or partial
-   session cannot pass this gate. This work has not passed it because no API was
-   configured; the user explicitly chose completion of the local DEMO first.
+   session cannot pass this gate. This work has not passed it: the authentication
+   follow-up checks one catalogue fixture, not a genuine player session.
 
 Current evidence: automated core/adapter/Worker tests exercise simulated HTTP responses and deterministic state transitions. They do not establish provider access, real sketch quality, actual latency, itch iframe compatibility, physical touch comfort or enjoyment.

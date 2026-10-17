@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-17",
+  "inputKind": "existing-catalogue-sketch",
+  "expectedLabelSent": false,
+  "humanBenchmark": false,
+  "requests": [
+    { "workerPort": 8787, "context": "initial-worker", "httpStatus": 504, "latencyMs": 9167, "source": "api", "errorCode": "timeout", "authenticationVerified": false },
+    { "workerPort": 8788, "context": "fresh-normal-local-worker", "httpStatus": 200, "latencyMs": 1760, "source": "api", "recognizedObjectPresent": true, "authenticationVerified": true },
+    { "workerPort": 8787, "context": "restarted-normal-local-worker", "httpStatus": 200, "latencyMs": 1506, "source": "api", "recognizedObjectPresent": true, "authenticationVerified": true }
+  ],
+  "credentialContentsRecorded": false,
+  "workerProductionCodeChanged": false,
+  "modelChanged": false,
+  "cloudDeployment": false
+}

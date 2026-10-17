@@ -9,6 +9,30 @@ const providerResponse = (guess: unknown = 'cat') => Response.json({ candidates:
 afterEach(() => vi.useRealTimers());
 
 describe('recognition worker security and genuine-provider boundary', () => {
+  it('forwards opaque auth keys unchanged in exactly one header without leaking them', async () => {
+    const fixtures = ['AQ.' + 'fixture', 'AQ.' + 'fixture'.repeat(40), 'AIza' + 'fixture'.repeat(8)];
+    for (const key of fixtures) {
+      let headerMatches = false;
+      let hasAlternateCredential = false;
+      const worker = createWorker({ fetch: async (url, init) => {
+        const sentHeaders = new Headers(init?.headers);
+        headerMatches = sentHeaders.get('x-goog-api-key') === key;
+        hasAlternateCredential = sentHeaders.has('Authorization') || new URL(String(url)).searchParams.has('key');
+        return providerResponse('cat');
+      } });
+      const response = await worker.fetch(request(), { ...env, GEMINI_API_KEY: key });
+      expect(headerMatches).toBe(true);
+      expect(hasAlternateCredential).toBe(false);
+      expect(response.status).toBe(200);
+      expect((await response.text()).includes(key)).toBe(false);
+
+      const failedWorker = createWorker({ fetch: async () => Response.json({ error:{ message:key } }, { status:401 }) });
+      const failure = await failedWorker.fetch(request(), { ...env, GEMINI_API_KEY: key });
+      expect(failure.status).toBe(503);
+      expect((await failure.text()).includes(key)).toBe(false);
+    }
+  });
+
   it('sends the neutral PNG to Gemini and returns only its validated genuine guess', async () => {
     let sent: Record<string, unknown> = {};
     const worker = createWorker({ fetch: async (url, init) => {

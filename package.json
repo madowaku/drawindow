@@ -12,7 +12,9 @@
     "package:itch": "node scripts/package-demo.mjs",
     "dev:api": "wrangler dev --port 8787",
     "setup:gemini": "powershell -NoProfile -File scripts/setup-gemini.ps1",
-    "check:gemini": "node scripts/check-gemini-setup.mjs"
+    "check:gemini": "node scripts/check-gemini-setup.mjs",
+    "verify:gemini": "node scripts/verify-gemini.mjs",
+    "test:auth": "node --test scripts/gemini-auth.test.mjs"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",

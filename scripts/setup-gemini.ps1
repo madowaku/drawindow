@@ -12,8 +12,10 @@ $secureValue = Read-Host 'Gemini API key' -AsSecureString
 $secretPointer = [IntPtr]::Zero
 try {
   $secretPointer = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($secureValue)
-  $keyValue = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($secretPointer).Trim()
-  if ($keyValue -notmatch '^AIza[A-Za-z0-9_-]{30,}$') { throw 'This does not look like a Google API key. Nothing was saved.' }
+  $keyValue = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($secretPointer)
+  # Credentials are opaque. Prefix and length cannot establish authentication.
+  if ([string]::IsNullOrWhiteSpace($keyValue)) { throw 'Enter a non-empty key. Nothing was saved.' }
+  if ($keyValue -match '[^\x21-\x7e]|["\\]') { throw 'The key must be one line without whitespace, control characters, quotes or backslashes. Nothing was saved.' }
   $secretText = if (Test-Path -LiteralPath $secretPath) { [IO.File]::ReadAllText($secretPath) } else { '' }
   $keyLine = 'GEMINI_API_KEY="' + $keyValue + '"'
   if ([regex]::IsMatch($secretText, '(?m)^\s*(?:export\s+)?GEMINI_API_KEY\s*=')) {
@@ -22,9 +24,11 @@ try {
     $secretText = $secretText.TrimEnd() + [Environment]::NewLine + $keyLine + [Environment]::NewLine
   }
   [IO.File]::WriteAllText($secretPath, $secretText, [Text.UTF8Encoding]::new($false))
-  Write-Host 'Saved locally. The key was not printed. Restart the local API worker to load it.'
+  Write-Host 'Saved locally; authentication has not yet been verified. The key was not printed.'
+  Write-Host 'Restart the local API worker, then run npm run verify:gemini for one real image-recognition request.'
 } finally {
   $keyValue = $null
+  $keyLine = $null
   $secretText = $null
   if ($secretPointer -ne [IntPtr]::Zero) { [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($secretPointer) }
   $secureValue.Dispose()
