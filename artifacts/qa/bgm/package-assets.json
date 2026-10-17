@@ -1,0 +1,19 @@
+{
+  "tracks": [
+    {
+      "id": "title",
+      "packedHashMatchesManifest": true
+    },
+    {
+      "id": "day",
+      "packedHashMatchesManifest": true
+    },
+    {
+      "id": "night",
+      "packedHashMatchesManifest": true
+    }
+  ],
+  "standaloneAudioFiles": false,
+  "creditsPresent": true,
+  "extractedByteParity": true
+}

@@ -1,8 +1,8 @@
 {
   "filename": "DRAWINDOW-v0.3-itch.zip",
-  "sha256": "3331436253d6eee1920bcf2301a07a681d9dfd08896e17ab0c88d35f227e00ff",
-  "bytes": 1509746,
-  "entries": 36,
+  "sha256": "e89d19bb2390f38ce6c44482c7da3c7c1d2509c7e88c2aaa090a438ef5bd75eb",
+  "bytes": 10871092,
+  "entries": 39,
   "rootIndex": true,
   "extractedByteParity": true,
   "scope": "Static frontend; default DEMO. No deployed API or live benchmark claimed."

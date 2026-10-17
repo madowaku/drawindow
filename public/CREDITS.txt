@@ -31,5 +31,20 @@ Cormorant Garamond - The Cormorant Project Authors.
 SIL Open Font License 1.1. Full licenses are in licenses/.
 Icons: Phosphor Icons, MIT. https://phosphoricons.com/
 
+Background music, supplied by the user from OpenTracks (formerly DOVA-SYNDROME):
+Title: "物語の幕を" by のる / Noru
+https://opentracks.com/bgm/detail/15353
+DAY: "Coral Ambience" by ハヤシユウ / Hayashi Yuu
+https://opentracks.com/bgm/detail/20419
+NIGHT: "おやすみの時間" by 蒲鉾さちこ / Kamaboko Sachiko
+https://opentracks.com/bgm/detail/22683
+License: https://opentracks.com/help/articles/license/
+Terms: https://opentracks.com/help/articles/terms/
+Used as background music in the game; not released as standalone audio assets.
+Full-length128kbps stereo derivatives are stored in game-specific containers.
+Original source files remain outside this distribution. Music is not AI generated
+or used for AI training. Runtime gain/fades only; no rearrangement or trimming.
+Source and derivative SHA-256 hashes are in assets/bgm-manifest.json in source.
+
 DEMO is explicitly simulated and performs no image recognition.
-No audio recording is used; optional quiet sounds are synthesized locally.
+Optional breath/glass sounds are synthesized locally. Audio starts muted.

@@ -7,9 +7,11 @@ import { girlSketches } from './data/sketches';
 import { WindowCanvas } from './components/WindowCanvas';
 import { SketchThumbnail } from './components/SketchThumbnail';
 import { CharacterScene, characterArt } from './components/CharacterScene';
+import { MusicCredits } from './components/MusicCredits';
 import { CHARACTER_FRAMES } from './lib/character';
 import { renderDrawingDataUrl } from './lib/strokes';
-import { playSound } from './lib/audio';
+import { musicForScene } from './lib/music';
+import { useGameAudio } from './lib/useGameAudio';
 import { createApiRecognizer, createDemoRecognizer, createRecognitionRunner } from './services/recognizer';
 
 function savedMode(): Mode {
@@ -30,7 +32,7 @@ function useReducedMotion() {
 export default function App() {
   const liveApiConfigured = Boolean(import.meta.env.VITE_RECOGNITION_URL?.trim()) || import.meta.env.VITE_ENABLE_LIVE_API === 'true';
   const [state, dispatch] = useReducer(gameReducer, undefined, () => createInitialState(savedMode()));
-  const [sound, setSound] = useState(false);
+  const { sound, toggleSound, playSound } = useGameAudio(musicForScene(state.phase, state.mode));
   const [info, setInfo] = useState(false);
   const [leave, setLeave] = useState(false);
   const [sessionChoice, setSessionChoice] = useState<SessionKind>('demo');
@@ -68,7 +70,7 @@ export default function App() {
       else if (state.phase === 'results') playSound('finish');
     }
     phaseRef.current = state.phase;
-  }, [state.phase, sound]);
+  }, [state.phase, sound, playSound]);
 
   useEffect(() => {
     for (const name of [...CHARACTER_FRAMES, 'room-day', 'room-night']) {
@@ -92,7 +94,7 @@ export default function App() {
       <button className="wordmark" onClick={() => active ? setLeave(true) : dispatch({ type: 'RETURN_TO_TITLE' })} aria-label="DRAWINDOW home">DRA<span>W</span>INDOW<span className="wordmark-period">.</span></button>
       <div className="topbar-right">
         {active && <span className="mode-label">{state.mode === 'day' ? <Sun size={15} /> : <Moon size={15} />}{state.mode.toUpperCase()}</span>}
-        <button className="icon-button" aria-label={sound ? 'Mute sound' : 'Enable sound'} aria-pressed={sound} onClick={() => { setSound(!sound); if (!sound) playSound('turn'); }}>{sound ? <SpeakerHigh size={20} /> : <SpeakerSlash size={20} />}</button>
+        <button className="icon-button" aria-label={sound ? 'Mute sound' : 'Enable sound'} aria-pressed={sound} onClick={toggleSound}>{sound ? <SpeakerHigh size={20} /> : <SpeakerSlash size={20} />}</button>
         <button className="icon-button" aria-label="How to play and credits" onClick={() => setInfo(true)}><Info size={20} /></button>
       </div>
     </header>
@@ -162,6 +164,6 @@ export default function App() {
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
         else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
       }
-    }}><button autoFocus className="icon-button close-dialog" aria-label="Close dialog" onClick={() => { setInfo(false); setLeave(false); }}><X size={22} /></button>{leave ? <><p className="eyebrow">TAKE YOUR TIME</p><h2 id="dialog-title">Close this window?</h2><p>This unfinished chain will be lost.</p><button className="primary" onClick={() => { setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>RETURN TO TITLE</button><button className="text-button" onClick={() => setLeave(false)}>Keep drawing</button></> : <><p className="eyebrow">DRAWINDOW · v0.3</p><h2 id="dialog-title">A conversation without words.</h2><p>Look at her drawing. Think of its English name. Draw something beginning with its last letter.</p><p>Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.</p><p><strong>DAY & NIGHT</strong> change only the mood. There is no timer.</p><p><strong>DEMO</strong> uses simulated interpretations, not image recognition. Live API sends a neutral drawing image to a configured server; the character is never included.</p><div className="credits"><p>Character: OpenAI ImageGen, based on the supplied character references.<br />Doodles: Quick, Draw! / Google, CC BY 4.0; original rare-letter sketches. Fonts: DM Sans & Cormorant Garamond, OFL.</p><a href="https://github.com/googlecreativelab/quickdraw-dataset" target="_blank" rel="noreferrer">Quick, Draw! dataset & attribution</a></div></>}</section></div>}
+    }}><button autoFocus className="icon-button close-dialog" aria-label="Close dialog" onClick={() => { setInfo(false); setLeave(false); }}><X size={22} /></button>{leave ? <><p className="eyebrow">TAKE YOUR TIME</p><h2 id="dialog-title">Close this window?</h2><p>This unfinished chain will be lost.</p><button className="primary" onClick={() => { setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>RETURN TO TITLE</button><button className="text-button" onClick={() => setLeave(false)}>Keep drawing</button></> : <><p className="eyebrow">DRAWINDOW · v0.3</p><h2 id="dialog-title">A conversation without words.</h2><p>Look at her drawing. Think of its English name. Draw something beginning with its last letter.</p><p>Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.</p><p><strong>DAY & NIGHT</strong> change only the mood. There is no timer.</p><p><strong>DEMO</strong> uses simulated interpretations, not image recognition. Live API sends a neutral drawing image to a configured server; the character is never included.</p><div className="credits"><p>Character: OpenAI ImageGen, based on the supplied character references.<br />Doodles: Quick, Draw! / Google, CC BY 4.0; original rare-letter sketches. Fonts: DM Sans & Cormorant Garamond, OFL.</p><MusicCredits /><a href="https://github.com/googlecreativelab/quickdraw-dataset" target="_blank" rel="noreferrer">Quick, Draw! dataset & attribution</a></div></>}</section></div>}
   </main>;
 }

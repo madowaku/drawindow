@@ -85,5 +85,39 @@ The original recognized flag does not establish this game's API recognition.
 
 DM Sans and Cormorant Garamond are self-hosted through Fontsource, Latin subsets,
 with complete OFL texts. Phosphor Icons use the bundled MIT licence. Quiet
-optional audio is synthesized locally, muted by default. Frost is the requested
+breath/glass effects are synthesized locally; audio is muted by default. Frost is the requested
 interactive Canvas2D compositing layer, not a raster character substitute.
+
+## User-selected background music — 2026-10-17
+
+| Scene | Recording | Composer | Official source |
+| --- | --- | --- | --- |
+| Title, either theme | 物語の幕を | のる | https://opentracks.com/bgm/detail/15353 |
+| DAY session/review/results | Coral Ambience | ハヤシユウ | https://opentracks.com/bgm/detail/20419 |
+| NIGHT session/review/results | おやすみの時間 | 蒲鉾さちこ | https://opentracks.com/bgm/detail/22683 |
+
+The three MP3s were supplied locally by the user. The official track pages,
+composer profiles, [sound license](https://opentracks.com/help/articles/license/)
+and [terms](https://opentracks.com/help/articles/terms/) were checked. The DAY
+page was verified in the actual browser when the text fetch failed. Game BGM
+use and technical conversion/fades are covered by the published conditions;
+standalone music distribution and AI training are excluded. No author was
+contacted and no new rights are asserted.
+
+`assets/bgm-manifest.json` records original hashes/bytes, source/profile URLs,
+full-length128kbps stereo derivatives and game-container hashes. Reproduce with
+`node scripts/prepare-bgm.mjs <local-source-folder>` using installed FFmpeg.
+Metadata/cover art are stripped; the music is not rearranged, trimmed or AI
+processed. Original MP3 files stay in the user's Downloads, outside the published
+source. `src/assets/music/*.bin` contains a DRAWBGM1 header and byte-transformed
+MP3 derivative. This game container is not DRM; it avoids distributing directly
+playable standalone audio files. Playback restores a temporary in-memory Blob,
+which is released on replacement/disposal. Credits ship in-game and in CREDITS.
+
+The recordings total9.42MB in the game, fetched one at a time only after sound
+is enabled. A single native media player keeps long decoded PCM out of the JS
+heap. Title-to-session changes fade out/in; review, results and restart retain
+the session recording. The same source loops at its natural end (title/DAY are
+not advertised as seamless loops). Music and synthesized effects have separate
+gain paths under the existing sound toggle. Tab hide/page exit pause playback;
+late loads cannot start after mute, hide or disposal.

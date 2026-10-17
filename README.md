@@ -28,6 +28,10 @@ Mouse/touch draw in the outlined square. CLEAR and UNDO are available. With the
 drawing square focused, arrow keys move the pen, hold Space while using arrows
 to draw, or press Enter for a dot. Controls also work with keyboard focus.
 Sound starts muted. DAY/NIGHT changes presentation only; there is no timer.
+Use the speaker button for BGM and quiet effects: title "物語の幕を" / のる,
+DAY "Coral Ambience" / ハヤシユウ, NIGHT "おやすみの時間" / 蒲鉾さちこ.
+Starting a game fades from the title track into the chosen mode's recording.
+Music pauses while the tab is hidden and resumes when you return.
 The chosen mode is stored locally when browser storage is available.
 
 The unconfigured title offers only DEMO; it does not invite a broken live API.

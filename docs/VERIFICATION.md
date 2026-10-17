@@ -2,7 +2,9 @@
 
 ## Current v0.3 result
 
-P0 DEMO integration passed. **96 tests / 14 files**, TypeScript/Vite production
+Latest music integration passes **110 tests /16 files**, TypeScript/Vite build,
+package byte parity and actual Chromium title/DAY/NIGHT audio checks. Details
+are in the BGM follow-up below. The original P0 checkpoint passed **96 tests /14 files**, TypeScript/Vite production
 build, static packaging and extracted-byte parity passed. Exactly five girl and
 five player entries, nine links, five DAY breaths and five NIGHT refog phases
 were observed. The previous77-test/seven-pose version was first re-run and
@@ -104,6 +106,45 @@ The key was not printed, changed, committed or embedded into the frontend.
 Masked input, `.dev.vars*` Git exclusion and zeroing the unmanaged input buffer
 remain in place. No additional game screenshots are needed for this auth-only
 change; the DAY/NIGHT visual evidence above remains the character-integration gate.
+
+### User-selected BGM follow-up — 2026-10-17 JST
+
+Title:「物語の幕を」/のる; DAY:「Coral Ambience」/ハヤシユウ;
+NIGHT:「おやすみの時間」/蒲鉾さちこ. The supplied originals, source/profile
+URLs, technical conversion and byte hashes are recorded in `assets/bgm-manifest.json`.
+Credits are present in the info dialog and shipped CREDITS.txt. See ASSETS.md.
+
+- **110 tests /16 files pass**, retaining the previous97 tests. Thirteen new
+  tests cover track selection, admitted byte parity, mute/hidden/dispose races,
+  stale loads, cancellation during fades, single-player ownership and optional
+  audio failure recovery. TypeScript check and Vite/package build pass.
+- Actual Chromium checks at390×844 DAY and1280×720 NIGHT pass against both the
+  development server and the production package build. Native MP3 decoding,
+  advancing playback time, nonzero audio signal and one running player/context
+  were observed. The title song stays the same when its visual theme changes.
+- Start changes to the selected DAY/NIGHT song. Five exchanges, review, results
+  and another-window restart keep the same media source. Title return changes
+  back to the title song. Ten cards/nine links and no early disclosure pass.
+- Initial mute fetches no recording. Explicit enable, immediate mute, resume,
+  credits links and no horizontal overflow pass. Native end-to-start rollover
+  was exercised for all3 recordings in the production browser. Pagehide/
+  pageshow events were simulated and produced native pause/suspend/resume.
+  Unit tests separately cover hidden-state behavior and late-load cancellation.
+- No page, console or HTTP error was returned. Listening balance on physical
+  speakers/headphones, actual OS backgrounding and iOS/Android audio policy
+  remain untested; headless signal/progress checks are not human listening.
+
+Browser receipts/screenshots: `artifacts/qa/bgm/browser-audio.json` and
+`artifacts/qa/bgm/production/`. Repeatable driver: `scripts/qa-bgm.mjs`, using
+the existing cached Playwright1.59.1 and installed Chromium; no new dependency.
+The source game/character rules, Gemini authentication and main branch are not
+changed by this music addition.
+
+The updated `DRAWINDOW-v0.3-itch.zip` is**10,871,092bytes /39 entries**;
+SHA-256 `e89d19bb2390f38ce6c44482c7da3c7c1d2509c7e88c2aaa090a438ef5bd75eb`.
+All extracted bytes match the built input. The3 game music containers have the
+manifest's exact hashes; no directly playable MP3, original recording, secret
+or environment file ships. Original user MP3s remain unchanged outside Git.
 
 ## Historical v0.2 evidence
 
