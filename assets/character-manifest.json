@@ -1,0 +1,38 @@
+{
+  "provider": "OpenAI built-in ImageGen",
+  "source": "assets/source/character-atlas.png",
+  "sourceSha256": "100870cdd82bfa468579340f7fb1ab722603a2eafefe83aaa9fe3906d160e5af",
+  "processing": "Exact equal-grid extraction, WebP quality 91; no retouching",
+  "files": [
+    {
+      "filename": "public/art/day-neutral.webp",
+      "sha256": "e2dadf99a30f935ece302ca8998c43ac5651ee626210c28019e8df5bba45efa9",
+      "bytes": 75618
+    },
+    {
+      "filename": "public/art/day-thinking.webp",
+      "sha256": "a8727155d27d3eb554301efbfdaaedf61fbd6e9ed9203dcf80d4675ff85d2640",
+      "bytes": 71822
+    },
+    {
+      "filename": "public/art/day-smiling.webp",
+      "sha256": "34954ef442142e4b1873be7a791edd10e5e70133c1dd9870a2b69bd993bfd8e2",
+      "bytes": 68848
+    },
+    {
+      "filename": "public/art/night-neutral.webp",
+      "sha256": "073f06b8b20d8c07fdf0fe9b296f4ad4b3980718e9360532ed0a787d719ae460",
+      "bytes": 70684
+    },
+    {
+      "filename": "public/art/night-thinking.webp",
+      "sha256": "e0cb6177779d06b52281878cf1d043e1b10c252a430c87005004fdf86f40600c",
+      "bytes": 68058
+    },
+    {
+      "filename": "public/art/night-smiling.webp",
+      "sha256": "bec3dc215a9a100d7b7a1c0d27f6eee4992b515600a547be5cf64ef0486e4467",
+      "bytes": 67186
+    }
+  ]
+}

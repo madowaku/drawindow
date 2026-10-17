@@ -1,0 +1,14 @@
+name = "drawindow-api"
+main = "worker/index.ts"
+compatibility_date = "2026-10-17"
+
+# Set GEMINI_API_KEY with `npx wrangler secret put GEMINI_API_KEY`.
+# Set exact permitted origins before deploying, including the actual itch iframe origin.
+[vars]
+ALLOWED_ORIGINS = "http://localhost:5173,http://127.0.0.1:5173"
+GEMINI_MODEL = "gemini-3.5-flash-lite"
+
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1061702"
+simple = { limit = 12, period = 60 }

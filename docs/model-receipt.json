@@ -1,0 +1,11 @@
+{
+  "verifiedOn": "2026-10-17",
+  "evidence": "Local Codex session metadata: direct subagent session_meta parent_thread_id + agent_path, then turn_context model and effort. Conversation contents are not copied.",
+  "parent": { "model": "gpt-6.1-sol", "effort": "xhigh", "role": "integration and final verification" },
+  "agents": [
+    { "task": "astra_review", "model": "gpt-6-astra", "effort": "low", "sessionId": "01a147e4-6a26-7671-b678-ecbb78856279", "work": "initial experience review and final screenshot review" },
+    { "task": "sol_lead", "model": "gpt-6.1-sol", "effort": "xhigh", "sessionId": "01a147e4-23b6-7fd3-b267-092658214f1c", "work": "contracts, state, score, recognition adapters, Worker, tests and technical review" },
+    { "task": "luna_canvas", "model": "gpt-6-luna", "effort": "max", "sessionId": "01a147e6-7b28-73f1-9b51-71548d2449d0", "work": "drawing, fog, playback, sketch catalogue, focused tests and glass presentation fix" }
+  ],
+  "fallbacks": []
+}

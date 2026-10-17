@@ -1,0 +1,238 @@
+{
+  "dataset": "The Quick, Draw! Dataset",
+  "creator": "Google Creative Lab",
+  "attribution": "Contains selected drawings from The Quick, Draw! Dataset by Google Creative Lab.",
+  "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "dataset_url": "https://github.com/googlecreativelab/quickdraw-dataset",
+  "data_format": "Simplified NDJSON; source paths are reduced to normalized coordinates and playback timestamps are synthesized by DRAWINDOW.",
+  "samples": [
+    {
+      "id": "qd-apple-6510060014403584",
+      "word": "apple",
+      "key_id": "6510060014403584",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/apple.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-banana-5564467330940928",
+      "word": "banana",
+      "key_id": "5564467330940928",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/banana.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-cat-6661137368088576",
+      "word": "cat",
+      "key_id": "6661137368088576",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/cat.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-dog-6317447978156032",
+      "word": "dog",
+      "key_id": "6317447978156032",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/dog.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-elephant-4709154050539520",
+      "word": "elephant",
+      "key_id": "4709154050539520",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/elephant.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-fish-5422743342284800",
+      "word": "fish",
+      "key_id": "5422743342284800",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/fish.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-guitar-4660123291090944",
+      "word": "guitar",
+      "key_id": "4660123291090944",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/guitar.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-house-5076612330553344",
+      "word": "house",
+      "key_id": "5076612330553344",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/house.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-ice-cream-5465068667928576",
+      "word": "ice cream",
+      "key_id": "5465068667928576",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/ice%20cream.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-jacket-5309134591229952",
+      "word": "jacket",
+      "key_id": "5309134591229952",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/jacket.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-key-5094706637701120",
+      "word": "key",
+      "key_id": "5094706637701120",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/key.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-lion-4555635679035392",
+      "word": "lion",
+      "key_id": "4555635679035392",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/lion.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-moon-6677376316473344",
+      "word": "moon",
+      "key_id": "6677376316473344",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/moon.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-nose-5519533043351552",
+      "word": "nose",
+      "key_id": "5519533043351552",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/nose.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-owl-5322965052817408",
+      "word": "owl",
+      "key_id": "5322965052817408",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/owl.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-pizza-5109588850376704",
+      "word": "pizza",
+      "key_id": "5109588850376704",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/pizza.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-rabbit-5034139143110656",
+      "word": "rabbit",
+      "key_id": "5034139143110656",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/rabbit.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-snake-6434015181537280",
+      "word": "snake",
+      "key_id": "6434015181537280",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/snake.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-tree-4896539229028352",
+      "word": "tree",
+      "key_id": "4896539229028352",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/tree.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-umbrella-4980311861493760",
+      "word": "umbrella",
+      "key_id": "4980311861493760",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/umbrella.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-van-5262917039554560",
+      "word": "van",
+      "key_id": "5262917039554560",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/van.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-watermelon-4799638206939136",
+      "word": "watermelon",
+      "key_id": "4799638206939136",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/watermelon.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    },
+    {
+      "id": "qd-zebra-6484098010841088",
+      "word": "zebra",
+      "key_id": "6484098010841088",
+      "source_url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/zebra.ndjson",
+      "license": "CC BY 4.0",
+      "recognized": true,
+      "selection": "Selected from the first 262144-byte HTTP range of the category NDJSON file."
+    }
+  ],
+  "originals": [
+    {
+      "id": "girl-queen-original",
+      "word": "queen",
+      "source": "DRAWINDOW original hand-authored stroke paths",
+      "key_id": null
+    },
+    {
+      "id": "girl-xylophone-original",
+      "word": "xylophone",
+      "source": "DRAWINDOW original hand-authored stroke paths",
+      "key_id": null
+    },
+    {
+      "id": "girl-yarn-original",
+      "word": "yarn",
+      "source": "DRAWINDOW original hand-authored stroke paths",
+      "key_id": null
+    }
+  ]
+}

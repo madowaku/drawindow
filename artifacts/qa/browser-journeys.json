@@ -1,0 +1,116 @@
+{
+  "day360": [
+    {
+      "inputs": 0,
+      "overflow": false,
+      "phase": "girl_breath",
+      "round": "EXCHANGE03 / 05"
+    },
+    {
+      "inputs": 0,
+      "overflow": false,
+      "phase": "girl_breath",
+      "round": "EXCHANGE04 / 05"
+    },
+    {
+      "inputs": 0,
+      "overflow": false,
+      "phase": "girl_breath",
+      "round": "EXCHANGE05 / 05"
+    },
+    {
+      "inputs": 5,
+      "overflow": true,
+      "phase": "review_intents"
+    }
+  ],
+  "night720": [
+    {
+      "inputs": 0,
+      "mode": "night",
+      "overflowX": false,
+      "overflowY": false,
+      "phase": "girl_breath",
+      "viewport": [
+        720,
+        1280
+      ]
+    },
+    {
+      "inputs": 0,
+      "mode": "night",
+      "overflowX": false,
+      "overflowY": false,
+      "phase": "girl_breath",
+      "viewport": [
+        720,
+        1280
+      ]
+    },
+    {
+      "inputs": 0,
+      "mode": "night",
+      "overflowX": false,
+      "overflowY": false,
+      "phase": "girl_breath",
+      "viewport": [
+        720,
+        1280
+      ]
+    },
+    {
+      "inputs": 5,
+      "mode": "night",
+      "overflowX": false,
+      "overflowY": null,
+      "phase": "review_intents",
+      "viewport": [
+        720,
+        1280
+      ]
+    }
+  ],
+  "dayDesktop": [
+    {
+      "mode": "day",
+      "overflowX": false,
+      "overflowY": false,
+      "phase": "girl_breath",
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "mode": "day",
+      "overflowX": false,
+      "overflowY": false,
+      "phase": "girl_breath",
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "mode": "day",
+      "overflowX": false,
+      "overflowY": false,
+      "phase": "girl_breath",
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "mode": "day",
+      "overflowX": false,
+      "overflowY": null,
+      "phase": "review_intents",
+      "viewport": [
+        1280,
+        720
+      ]
+    }
+  ],
+  "scope": "DOM browser viewport tests, not physical device touch or genuine image recognition"
+}

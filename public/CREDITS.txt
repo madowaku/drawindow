@@ -1,0 +1,30 @@
+DRAWINDOW v0.2
+
+Character scene and expressions:
+OpenAI built-in ImageGen, generated 2026-10-17 from the user-supplied daylight
+reference. The final scene is generated illustration. Source atlas, prompt,
+processing steps and SHA-256 hashes are retained in the source project.
+No third-party character artwork was downloaded or traced.
+
+Girl's drawing templates:
+Contains 23 selected drawings from The Quick, Draw! Dataset, made available
+by Google, Inc. / Google Creative Lab under Creative Commons Attribution 4.0
+International (CC BY 4.0).
+Dataset: https://github.com/googlecreativelab/quickdraw-dataset
+License: https://creativecommons.org/licenses/by/4.0/
+Changes: source vector coordinates normalized to 0..1, cropped to a square
+playback region; synthetic timestamps added for pen-stroke replay.
+Individual original drawing IDs and exact source category URLs are retained
+in src/data/sketch-provenance.json in the source project.
+Queen, xylophone and yarn are original DRAWINDOW stroke templates.
+Dataset recognition tags are historical source metadata, not evidence about
+this game's recognition API.
+
+Fonts:
+DM Sans - The DM Sans Project Authors.
+Cormorant Garamond - The Cormorant Project Authors.
+SIL Open Font License 1.1. Full licenses are in licenses/.
+Icons: Phosphor Icons, MIT. https://phosphoricons.com/
+
+DEMO is explicitly simulated and performs no image recognition.
+No audio recording is used; optional quiet sounds are synthesized locally.
