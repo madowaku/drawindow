@@ -28,6 +28,7 @@ function useReducedMotion() {
 }
 
 export default function App() {
+  const liveApiConfigured = Boolean(import.meta.env.VITE_RECOGNITION_URL?.trim()) || import.meta.env.VITE_ENABLE_LIVE_API === 'true';
   const [state, dispatch] = useReducer(gameReducer, undefined, () => createInitialState(savedMode()));
   const [sound, setSound] = useState(false);
   const [info, setInfo] = useState(false);
@@ -106,7 +107,7 @@ export default function App() {
         <div className="title-start">{modeButtons}
           <button className="primary start-button" onClick={start}>{sessionChoice === 'demo' ? 'PLAY DEMO' : 'START GAME'}<ArrowRight size={20} /></button>
           <p className="session-note">{sessionChoice === 'demo' ? 'DEMO · Simulated interpretations. No comparable score.' : 'LIVE API · Drawings are sent to the configured recognizer.'}</p>
-          <button className="text-button connection-toggle" onClick={() => setSessionChoice(sessionChoice === 'demo' ? 'api' : 'demo')}>{sessionChoice === 'demo' ? 'Have a recognizer connected? Use live API' : 'Return to local demo'}</button>
+          {liveApiConfigured && <button className="text-button connection-toggle" onClick={() => setSessionChoice(sessionChoice === 'demo' ? 'api' : 'demo')}>{sessionChoice === 'demo' ? 'Have a recognizer connected? Use live API' : 'Return to local demo'}</button>}
         </div>
         <p className="edition">FIVE EXCHANGES. ONE MISTED WINDOW.</p>
       </div>

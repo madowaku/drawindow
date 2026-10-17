@@ -14,10 +14,12 @@ vi.mock('./components/SketchThumbnail', () => ({ SketchThumbnail: ({ label }: { 
 
 beforeEach(() => {
   localStorage.clear();
+  vi.stubEnv('VITE_RECOGNITION_URL', '');
+  vi.stubEnv('VITE_ENABLE_LIVE_API', 'false');
   window.scrollTo = vi.fn();
   Object.defineProperty(window, 'matchMedia', { writable: true, value: () => ({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() }) });
 });
-afterEach(cleanup);
+afterEach(() => { cleanup(); vi.unstubAllEnvs(); });
 
 async function finishFive() {
   fireEvent.click(screen.getByRole('button', { name: /PLAY DEMO/ }));
@@ -36,6 +38,21 @@ async function finishFive() {
 }
 
 describe('integrated UI journey with controlled presentation callbacks', () => {
+  it('offers the local demo alone until a real API endpoint is configured', () => {
+    render(<App />);
+    expect(screen.getByRole('button', { name: /PLAY DEMO/ })).toBeTruthy();
+    expect(screen.queryByRole('button', { name: /Use live API/ })).toBeNull();
+    expect(screen.getByText(/Simulated interpretations/)).toBeTruthy();
+  });
+
+  it('preserves the optional recognizer integration after endpoint configuration', () => {
+    vi.stubEnv('VITE_RECOGNITION_URL', 'https://recognizer.example/api/recognize');
+    render(<App />);
+    fireEvent.click(screen.getByRole('button', { name: /Use live API/ }));
+    expect(screen.getByRole('button', { name: /START GAME/ })).toBeTruthy();
+    expect(screen.getByText(/LIVE API/)).toBeTruthy();
+  });
+
   it('finishes five exchanges without answer leaks, preserves raw label editing, reveals nine links and restarts', async () => {
     render(<App />);
     await finishFive();

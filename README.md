@@ -22,6 +22,7 @@ to draw, or press Enter for a dot. Controls also work with keyboard focus.
 Sound starts muted. DAY/NIGHT changes presentation only; there is no timer.
 The chosen mode is stored locally when browser storage is available.
 
+The unconfigured title offers only DEMO; it does not invite a broken live API.
 DEMO interpretations are a fixed disclosed simulation, independent of the
 picture. They are never labelled as real image recognition or a comparable
 score. The fifth drawing goes directly to review without an API dependency.
@@ -53,8 +54,17 @@ required before calling this validated live recognition.
 For local API development put the provider key in ignored `.dev.vars`, then
 run `npm run dev:api` alongside Vite. Never put secrets in `VITE_` variables.
 The current default is `gemini-3.5-flash-lite`, configurable on the Worker.
-`VITE_RECOGNITION_URL` optionally points to a separate Worker. A missing key
+`VITE_RECOGNITION_URL` optionally points to a separate Worker and reveals the
+live-mode choice. `VITE_ENABLE_LIVE_API=true` enables the same-origin choice for
+local integration testing. The `DrawingRecognizer` interface remains the
+exchange point for a Gemini or future Jev adapter. A missing key
 returns a real failure; it never becomes a mock without the user's DEMO choice.
+
+After connecting an API, run a complete five-exchange session in live mode using
+actual freehand player drawings. Verify genuine API interpretations privately
+select each next girl sketch by their last letter, then name the player's five
+intentions and inspect all nine links. This is a separate mandatory acceptance
+gate; the completed DEMO does not substitute for it.
 
 On restricted Windows profiles, Wrangler's local log/registry paths can be
 placed under the project before starting local development:

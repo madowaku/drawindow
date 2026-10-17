@@ -1,0 +1,31 @@
+{
+  "journey": [
+    {
+      "inputs": 0,
+      "phase": "girl_breath"
+    },
+    {
+      "inputs": 0,
+      "phase": "girl_breath"
+    },
+    {
+      "inputs": 0,
+      "phase": "girl_breath"
+    },
+    {
+      "inputs": 0,
+      "phase": "girl_breath"
+    },
+    {
+      "inputs": 5,
+      "phase": "review_intents"
+    }
+  ],
+  "result": {
+    "cards": 10,
+    "disclosure": "DEMO — simulated interpretations. This result is not score-comparable.",
+    "links": 9,
+    "phase": "results",
+    "score": "DEMO LINKS6 / 99 of 9 possible links knownBEST CHAIN3 linksConsecutive connected links"
+  }
+}

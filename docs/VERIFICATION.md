@@ -16,7 +16,9 @@ public deployment, push or jam submission during this work.
   initial whole build was correctly not reported as successful.
 - Integration: 59 → 65 → 67 tests passed as canvas/component/UI tests landed.
 - API 503 retry regression: initially reproduced, then 68 tests passed.
-- Breath-origin coverage: 69 tests passed. Final post-visual-fix run: **69/69 in
+- Breath-origin coverage: 69 tests passed. User-confirmed DEMO-first gate adds two
+  UI tests: unconfigured release exposes DEMO only; configured endpoint preserves
+  the optional recognizer integration. Final run: **71/71 in
   10 files** with `npm test`; **TypeScript + Vite production build passed**.
 - `wrangler types worker/bindings.d.ts` and `wrangler deploy --dry-run` passed.
   No files were uploaded by dry run. Local Wrangler log/registry paths were
@@ -61,18 +63,21 @@ screenshots are under `artifacts/qa/`, with the visual comparison in
 
 ## Package evidence
 
-`npm run package:itch` produced a 745,728-byte ZIP with 24 entries, root
+`npm run package:itch` produced a 745,674-byte ZIP with 24 entries, root
 `index.html`, relative asset paths, credits and licences. SHA-256:
-`39a9ff4e0b38d5cd851965d31a17b690564b9bf25b1be8c0c4614333ae330511`.
+`4d96f8ecc63e09cc587334f335edc475032db365fc7e0a2a68527e50d4dd5979`.
 Every unzipped byte matches the built input; no environment file/secret is in
 the archive. Full receipt: `artifacts/release/package-receipt.json`.
 
 The ZIP was extracted to a task-owned folder and served on a plain local static
 HTTP server. An initial loopback-only server could not be reached by the browser;
 binding the test helper to the same interface as Vite resolved it. On
-`http://localhost:5175/`, the actual archive loaded character/font assets, accepted
-a drawing and advanced to GIRL-2 in default DEMO with no returned browser errors
-or overflow. This is a package smoke test, not an actual itch.io iframe test.
+`http://localhost:5175/`, the final actual archive completed all five exchanges
+without an API, showed five naming fields only at the end, then revealed ten
+cards and nine links (6/9, BEST CHAIN 3) with explicit simulation disclosure.
+Final browser console returned no warnings/errors. Evidence:
+`artifacts/qa/archive-full-journey.json`, `archive-full-results.jpg`. This is a
+local static-package test, not an actual itch.io iframe test.
 
 ## Models actually used
 
@@ -95,6 +100,12 @@ needed for the Canvas2D specification.
    assess plausible interpretation, latency and failure recovery.
 3. Verify the real itch.io iframe origin/CORS, mobile touch device and audio
    comfort. Do not advertise validated live AI recognition until these pass.
+4. After API connection, complete a genuine live-mode five-exchange session
+   using freehand drawings, real private interpretations and all nine final
+   intended-word links. The user explicitly deferred this gate until after the
+   DEMO; fixed mock results cannot satisfy it. `DrawingRecognizer` remains the
+   stable integration boundary. Gemini is implemented; a future Jev adapter can
+   implement that interface once its actual API contract is selected/verified.
 
 There is no outstanding known blocker for the labelled local DEMO. The public
 live-recognition acceptance gate is open. The working local preview is kept on

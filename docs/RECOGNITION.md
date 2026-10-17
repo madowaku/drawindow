@@ -6,6 +6,11 @@ The shipped default is **DEMO**. Its mock returns predetermined words based on r
 
 The browser sends `POST /api/recognize` by default. A separately hosted backend can be selected with `createApiRecognizer({ endpoint: 'https://your-worker.example/api/recognize' })`; the app's `VITE_RECOGNITION_URL` build setting supplies this URL. `VITE_` variables are public. Never put a provider key in them.
 
+Until an endpoint is configured, the title offers DEMO alone. Setting a nonempty
+`VITE_RECOGNITION_URL` reveals the optional live-mode choice; for a local
+same-origin Worker, `VITE_ENABLE_LIVE_API=true` explicitly reveals it instead.
+This does not change the `DrawingRecognizer` interface or simulate a provider.
+
 The module entry point is `worker/index.ts`. Required Worker bindings:
 
 | Binding | Value |
@@ -51,5 +56,14 @@ Prepare at least 12 **real hand-drawn** neutral images, including recognizable s
 3. Review whether the guess is a plausible interpretation independently of exact intended-word agreement. Record both assessments; do not invent numeric confidence.
 4. Exercise timeout, 429, missing secret, invalid JSON, no matching template and iframe CORS failures. Confirm retry, redraw and explicit demo work without losing the drawing or revealing a word during play.
 5. Report sample count, per-sample results, latency range and unresolved failures. Keep the demo default until the owner accepts the actual results and configures quota.
+
+6. Mandatory live-mode game gate after connection: play all five exchanges with
+   actual freehand player drawings through the genuine configured recognizer.
+   Verify exactly five girl/five player entries, four real interpretation-driven
+   next-word selections, no midgame word/answer disclosure, final five intended
+   labels and nine scored adjacency links. Exercise DAY and NIGHT parity and
+   bounded failure recovery. A mock, random result, template fixture or partial
+   session cannot pass this gate. This work has not passed it because no API was
+   configured; the user explicitly chose completion of the local DEMO first.
 
 Current evidence: automated core/adapter/Worker tests exercise simulated HTTP responses and deterministic state transitions. They do not establish provider access, real sketch quality, actual latency, itch iframe compatibility, physical touch comfort or enjoyment.

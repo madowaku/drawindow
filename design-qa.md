@@ -4,6 +4,9 @@ final result: passed
 
 Scope: the explicitly labelled local DEMO and its responsive interface. This is
 not acceptance of real recognition quality or the public jam deployment.
+The user's final DEMO-first instruction is applied: no live-mode switch appears
+until an endpoint (or explicit local integration flag) is configured. The final
+title was recaptured, and the final ZIP completed five exchanges in the browser.
 
 ## Visual truth and comparison evidence
 
@@ -17,7 +20,7 @@ not acceptance of real recognition quality or the public jam deployment.
   `360-day-draw-guide-final.jpg`, `360-day-player-final.jpg`.
 - Additional browser views: `720-night-holding.jpg`, `720-night-results.jpg`,
   `desktop-day-holding.jpg`, `desktop-day-results.jpg`, `360-api-error.jpg`,
-  `archive-browser-smoke.jpg`.
+  `archive-browser-smoke.jpg`, `archive-full-results.jpg`.
 - Actual combined comparison opened and inspected:
   `artifacts/qa/reference-character-game.png`, 1101×800. Left: full reference
   contained into 400×800; middle: generated day character contained into 341×800;
