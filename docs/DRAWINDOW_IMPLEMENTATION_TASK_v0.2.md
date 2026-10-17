@@ -169,4 +169,3 @@ P2: WebMCP, extra characters, hundreds of words, fancy water droplets, matchmaki
 4. Open defects and mitigations
 5. Run/deploy instructions
 6. Commit hashes / PR links, if created (never invent)
-
