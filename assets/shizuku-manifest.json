@@ -1,0 +1,160 @@
+{
+  "character": "Shizuku",
+  "version": "0.2",
+  "provider": "OpenAI built-in ImageGen; user-supplied identity references",
+  "processing": "Exact equal-grid extraction; one shared 384x512 bottom-center anchor; alpha preserved; WebP 94 character / 90 room. Same character textures for DAY/NIGHT; lighting in CSS.",
+  "sources": [
+    {
+      "filename": "assets/source/shizuku-v02/expression-atlas.png",
+      "sha256": "23d7c05534956bc6aabe3f4f4a0fd1d0ed5608f620b158c6bf60996cc5d92337"
+    },
+    {
+      "filename": "assets/source/shizuku-v02/room-atlas.png",
+      "sha256": "50b7251bf9fd4e99597bf542f946701d51585a8bdec4d462e793d964422c6ff7"
+    },
+    {
+      "filename": "assets/source/shizuku-v02/approved-neutral.png",
+      "sha256": "231695fe6e74200adadcaacd54e9b6fd9c61a7c992d5a5848326fda61f1bbc3a"
+    },
+    {
+      "filename": "assets/source/shizuku-v02/expression-reference.png",
+      "sha256": "d550b19a765a68ee657ff92542c9c1bc47cf67c5d51aead006eeea3498f87c7b"
+    },
+    {
+      "filename": "assets/source/shizuku-v02/pointing-reference.png",
+      "sha256": "9936b25f16c218b64812540c2d375146a70bc6022c1d1e92c2e8f90069b8d705"
+    },
+    {
+      "filename": "assets/source/shizuku-v02/day-reference.png",
+      "sha256": "34d6d2f0f49a372505a6261507e2bc14787e9eb592fad922a576c20ededa5bef"
+    },
+    {
+      "filename": "assets/source/shizuku-v02/night-reference.png",
+      "sha256": "cb06c0ab341faaed2e9c4d587aae201cbbade0b04b093ec31cdfdc85722f8c8c"
+    }
+  ],
+  "files": [
+    {
+      "filename": "public/art/shizuku/neutral.webp",
+      "expression": "neutral",
+      "sourceRect": {
+        "left": 0,
+        "top": 0,
+        "width": 384,
+        "height": 512
+      },
+      "width": 384,
+      "height": 512,
+      "sha256": "5b6148a7cd556b77caab373b54aaefa9d5ede166962032d3cbf79ed474a83ed7",
+      "bytes": 72198
+    },
+    {
+      "filename": "public/art/shizuku/thinking.webp",
+      "expression": "thinking",
+      "sourceRect": {
+        "left": 384,
+        "top": 0,
+        "width": 384,
+        "height": 512
+      },
+      "width": 384,
+      "height": 512,
+      "sha256": "65ffbfc5e446de7e88ea37b1b787d161c77c92da204d5ac20dad2886f89ddffd",
+      "bytes": 68770
+    },
+    {
+      "filename": "public/art/shizuku/smile.webp",
+      "expression": "smile",
+      "sourceRect": {
+        "left": 768,
+        "top": 0,
+        "width": 384,
+        "height": 512
+      },
+      "width": 384,
+      "height": 512,
+      "sha256": "b278c278fe4607e33d0cdac06157e4938923dc8a36f9086e5b0c2f9ccf6ddb82",
+      "bytes": 74356
+    },
+    {
+      "filename": "public/art/shizuku/shy.webp",
+      "expression": "shy",
+      "sourceRect": {
+        "left": 1152,
+        "top": 0,
+        "width": 384,
+        "height": 512
+      },
+      "width": 384,
+      "height": 512,
+      "sha256": "ea3a44d0359232b07c007de52e78973a1008eb58c37b4c06b68004924fe480ed",
+      "bytes": 69388
+    },
+    {
+      "filename": "public/art/shizuku/breath.webp",
+      "expression": "breath",
+      "sourceRect": {
+        "left": 0,
+        "top": 512,
+        "width": 384,
+        "height": 512
+      },
+      "width": 384,
+      "height": 512,
+      "sha256": "918503aa0ace17ff6f06ed34b516e634dab66374d4cc1861421ae517cf457eb9",
+      "bytes": 73124
+    },
+    {
+      "filename": "public/art/shizuku/curious.webp",
+      "expression": "curious",
+      "sourceRect": {
+        "left": 384,
+        "top": 512,
+        "width": 384,
+        "height": 512
+      },
+      "width": 384,
+      "height": 512,
+      "sha256": "40be7fc7fd75f473430ad94a84ea076c043ccb6e81d3fff2dc8a6a3ddb963fd9",
+      "bytes": 79126
+    },
+    {
+      "filename": "public/art/shizuku/drawing.webp",
+      "expression": "drawing",
+      "sourceRect": {
+        "left": 768,
+        "top": 512,
+        "width": 384,
+        "height": 512
+      },
+      "width": 384,
+      "height": 512,
+      "sha256": "54ffbf02a4ae3aeec00a35fc0bc8b29ac53469a03300348d19d7b8939bf0952d",
+      "bytes": 78572
+    },
+    {
+      "filename": "public/art/shizuku/blink.webp",
+      "expression": "blink",
+      "sourceRect": {
+        "left": 1152,
+        "top": 512,
+        "width": 384,
+        "height": 512
+      },
+      "width": 384,
+      "height": 512,
+      "sha256": "782f995f84227071237bc058f943675585c750ff5a8d6f1422be7322f3afd015",
+      "bytes": 73048
+    },
+    {
+      "filename": "public/art/shizuku/room-day.webp",
+      "sha256": "6d4021863ac62b007dc924c932dcc1d937c668e0d35b710bfa2917523c7abbef",
+      "bytes": 90796
+    },
+    {
+      "filename": "public/art/shizuku/room-night.webp",
+      "sha256": "a5676810327d9f061065359c71cfff6738be57e69a1f71dc029b7f22053e78a5",
+      "bytes": 77012
+    }
+  ]
+}

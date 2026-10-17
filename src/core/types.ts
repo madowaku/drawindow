@@ -1,7 +1,7 @@
 /** Shared contract. Core state is deterministic; presentation must not reveal words in play. */
 export type Mode = 'day' | 'night';
 export type SessionKind = 'api' | 'demo';
-export type GirlExpression = 'neutral' | 'thinking' | 'smiling';
+export type GirlExpression = 'neutral' | 'thinking' | 'smile' | 'shy' | 'breath' | 'curious';
 
 export type GamePhase =
   | 'title'

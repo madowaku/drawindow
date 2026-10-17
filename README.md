@@ -1,6 +1,11 @@
 # DRAWINDOW v0.2
 
 A quiet five-exchange picture shiritori game through a misted window.
+The character now follows [Shizuku Character Sheet v0.2](docs/CHARACTER_SHIZUKU_v0.2.md):
+six expressions, a drawing pose, subtle state-driven movement and separate glass.
+DAY/NIGHT share the same character textures. Her name is not shown during play.
+The separate production review page is `/?character-preview`; it lets you inspect
+all expressions, lighting and motion without playing a full session.
 **Current deliverable: a complete, explicitly labelled local DEMO, plus an
 implemented optional recognition Worker. Real API quality has not been validated.**
 

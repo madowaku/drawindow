@@ -1,0 +1,12 @@
+.character-preview__layout { max-width:1120px; margin:auto; display:grid; grid-template-columns:1fr 1fr; gap:7%; padding:48px 0; align-items:center; }
+.character-preview h1 { font-family:Georgia,'Yu Mincho',serif; font-size:38px; margin-bottom:18px; }
+.character-preview__copy > p { font-size:13px; line-height:1.9; }
+.character-preview__tagline { color:var(--muted); }
+.character-preview__window { position:relative; container-type:inline-size; height:min(70dvh,660px); min-height:380px; overflow:hidden; border:6px solid var(--panel); outline:1px solid var(--line); }
+.character-preview__poses { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:18px 0; }
+.character-preview__poses button { padding:12px 8px; font-size:10px; letter-spacing:.02em; }
+.character-preview__poses button[aria-pressed=true] { background:var(--soft); border-color:var(--accent); }
+.character-preview__copy > .character-preview__note { font-size:11px; color:var(--muted); margin:16px 0 0; }
+.character-preview__caption { font-size:12px; line-height:1.8; margin:18px 0; color:var(--muted); }
+.character-preview[data-motion=true] .character-scene[data-running=true] .character-scene__breathing { animation:character-breathe 5.8s ease-in-out infinite!important; }
+@media(max-width:700px) { .character-preview__layout { display:flex; flex-direction:column-reverse; gap:20px; padding:22px 0; }.character-preview__layout>div { width:100%; }.character-preview__window { height:40dvh; min-height:260px; }.character-preview h1 { font-size:28px; }.character-preview .topbar .eyebrow { margin:0; font-size:8px; } }

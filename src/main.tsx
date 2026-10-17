@@ -8,4 +8,8 @@ import '@fontsource/cormorant-garamond/latin-500-italic.css';
 import App from './App';
 import './styles/app.css';
 
-createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);
+const Page = new URLSearchParams(window.location.search).has('character-preview')
+  ? React.lazy(() => import('./components/CharacterPreview').then(module => ({ default: module.CharacterPreview })))
+  : App;
+
+createRoot(document.getElementById('root')!).render(<React.StrictMode><React.Suspense fallback={<p>Loading…</p>}><Page /></React.Suspense></React.StrictMode>);

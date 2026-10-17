@@ -1,10 +1,15 @@
 DRAWINDOW v0.2
 
-Character scene and expressions:
-OpenAI built-in ImageGen, generated 2026-10-17 from the user-supplied daylight
-reference. The final scene is generated illustration. Source atlas, prompt,
-processing steps and SHA-256 hashes are retained in the source project.
-No third-party character artwork was downloaded or traced.
+Character art and separate room backgrounds:
+OpenAI built-in ImageGen, generated/edited 2026-10-17 from the user-supplied
+character and DAY/NIGHT references, following Character Sheet v0.2.
+Portrait expressions share one size and anchor. The same portraits are used
+in both lighting modes. Glass, breath and doodles are separate game layers.
+Animation uses browser-native Web Animations API and CSS, with reduced-motion
+support. No Live2D model or third-party animation service is included.
+Source atlases, supplied references, prompts, processing and SHA-256 hashes
+are retained in the source project. No independent ownership of the supplied
+references is asserted.
 
 Girl's drawing templates:
 Contains 23 selected drawings from The Quick, Draw! Dataset, made available

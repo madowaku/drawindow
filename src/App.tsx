@@ -2,15 +2,15 @@ import { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, ArrowCounterClockwise, Check, Eraser, Info, Moon, SpeakerHigh, SpeakerSlash, Sun, X } from '@phosphor-icons/react';
 import { createInitialState, gameReducer, selectCanFinishDrawing, selectPlayerEntries, selectVisibleStrokes } from './core/gameMachine';
 import { calculateScore } from './core/score';
-import type { GirlExpression, Mode, SessionKind } from './core/types';
+import type { Mode, SessionKind } from './core/types';
 import { girlSketches } from './data/sketches';
 import { WindowCanvas } from './components/WindowCanvas';
 import { SketchThumbnail } from './components/SketchThumbnail';
+import { CharacterScene, characterArt } from './components/CharacterScene';
+import { CHARACTER_FRAMES } from './lib/character';
 import { renderDrawingDataUrl } from './lib/strokes';
 import { playSound } from './lib/audio';
 import { createApiRecognizer, createDemoRecognizer, createRecognitionRunner } from './services/recognizer';
-
-const art = (mode: Mode, expression: GirlExpression = 'neutral') => `${import.meta.env.BASE_URL}art/${mode}-${expression}.webp`;
 
 function savedMode(): Mode {
   try { return localStorage.getItem('drawindow-mode') === 'night' ? 'night' : 'day'; } catch { return 'day'; }
@@ -44,7 +44,6 @@ export default function App() {
   const active = !['title', 'review_intents', 'results'].includes(state.phase);
   const players = selectPlayerEntries(state);
   const score = calculateScore(state.entries, state.sessionKind);
-  const expression: GirlExpression = state.phase === 'recognizing' || state.phase === 'recognition_error' ? 'thinking' : state.phase === 'girl_holding' || state.phase === 'results' ? 'smiling' : 'neutral';
 
   useEffect(() => {
     try { localStorage.setItem('drawindow-mode', state.mode); } catch { /* Private browser storage is optional. */ }
@@ -72,8 +71,8 @@ export default function App() {
   }, [state.phase, sound]);
 
   useEffect(() => {
-    for (const mode of ['day', 'night'] as Mode[]) for (const face of ['neutral', 'thinking', 'smiling'] as GirlExpression[]) {
-      const preload = new Image(); preload.src = art(mode, face);
+    for (const name of [...CHARACTER_FRAMES, 'room-day', 'room-night']) {
+      const preload = new Image(); preload.src = characterArt(name);
     }
   }, []);
 
@@ -111,14 +110,13 @@ export default function App() {
         </div>
         <p className="edition">FIVE EXCHANGES. ONE MISTED WINDOW.</p>
       </div>
-      <div className="title-art"><img src={art(state.mode, 'smiling')} alt="A girl waiting on the other side of a misted window" /><div className="art-caption"><span>on the other side</span><span>{state.mode === 'day' ? 'a quiet afternoon' : 'a light still on'}</span></div></div>
+      <div className="title-art" role="img" aria-label="A girl waiting on the other side of a misted window"><CharacterScene mode={state.mode} phase="title" reducedMotion={reducedMotion} /><div className="title-art__glass" /><div className="art-caption"><span>on the other side</span><span>{state.mode === 'day' ? 'a quiet afternoon' : 'a light still on'}</span></div></div>
     </section>}
 
     {active && <section className="play-layout" aria-label="Picture word chain">
       <div className="play-heading"><div><p className="eyebrow">ACROSS THE GLASS</p><h1>{state.phase === 'player_drawing' ? 'Your little reply.' : state.phase === 'recognizing' ? 'A moment to wonder.' : state.phase === 'recognition_error' ? 'A little interruption.' : 'What do you see?'}</h1></div><div className="round-label"><span>EXCHANGE</span><strong>{String(state.round).padStart(2, '0')}<small> / 05</small></strong></div></div>
       <div className={`window-surface phase-${state.phase}`}>
-        <img className="girl-scene" src={art(state.mode, expression)} alt="" draggable={false} />
-        <WindowCanvas mode={state.mode} phase={state.phase} strokes={selectVisibleStrokes(state)} onStrokesChange={strokes => dispatch({ type: 'STROKES_CHANGED', strokes })} onBreathDone={() => dispatch({ type: 'BREATH_DONE' })} onPlaybackDone={() => dispatch({ type: 'PLAYBACK_DONE' })} reducedMotion={reducedMotion} expression={expression} />
+        <WindowCanvas mode={state.mode} phase={state.phase} strokes={selectVisibleStrokes(state)} onStrokesChange={strokes => dispatch({ type: 'STROKES_CHANGED', strokes })} onBreathDone={() => dispatch({ type: 'BREATH_DONE' })} onPlaybackDone={() => dispatch({ type: 'PLAYBACK_DONE' })} reducedMotion={reducedMotion} />
         <div className="glass-corner-label">{['player_drawing', 'recognizing', 'recognition_error'].includes(state.phase) ? 'your side' : 'her side'}</div>
         {state.sessionKind === 'demo' && <span className="demo-badge">DEMO</span>}
       </div>
@@ -162,6 +160,6 @@ export default function App() {
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
         else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
       }
-    }}><button autoFocus className="icon-button close-dialog" aria-label="Close dialog" onClick={() => { setInfo(false); setLeave(false); }}><X size={22} /></button>{leave ? <><p className="eyebrow">TAKE YOUR TIME</p><h2 id="dialog-title">Close this window?</h2><p>This unfinished chain will be lost.</p><button className="primary" onClick={() => { setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>RETURN TO TITLE</button><button className="text-button" onClick={() => setLeave(false)}>Keep drawing</button></> : <><p className="eyebrow">DRAWINDOW · v0.2</p><h2 id="dialog-title">A conversation without words.</h2><p>Look at her drawing. Think of its English name. Draw something beginning with its last letter.</p><p>Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.</p><p><strong>DAY & NIGHT</strong> change only the mood. There is no timer.</p><p><strong>DEMO</strong> uses simulated interpretations, not image recognition. Live API sends a neutral drawing image to a configured server; the character is never included.</p><div className="credits"><p>Character: OpenAI ImageGen, based on the supplied reference.<br />Doodles: Quick, Draw! / Google, CC BY 4.0; original rare-letter sketches. Fonts: DM Sans & Cormorant Garamond, OFL.</p><a href="https://github.com/googlecreativelab/quickdraw-dataset" target="_blank" rel="noreferrer">Quick, Draw! dataset & attribution</a></div></>}</section></div>}
+    }}><button autoFocus className="icon-button close-dialog" aria-label="Close dialog" onClick={() => { setInfo(false); setLeave(false); }}><X size={22} /></button>{leave ? <><p className="eyebrow">TAKE YOUR TIME</p><h2 id="dialog-title">Close this window?</h2><p>This unfinished chain will be lost.</p><button className="primary" onClick={() => { setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>RETURN TO TITLE</button><button className="text-button" onClick={() => setLeave(false)}>Keep drawing</button></> : <><p className="eyebrow">DRAWINDOW · v0.2</p><h2 id="dialog-title">A conversation without words.</h2><p>Look at her drawing. Think of its English name. Draw something beginning with its last letter.</p><p>Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.</p><p><strong>DAY & NIGHT</strong> change only the mood. There is no timer.</p><p><strong>DEMO</strong> uses simulated interpretations, not image recognition. Live API sends a neutral drawing image to a configured server; the character is never included.</p><div className="credits"><p>Character: OpenAI ImageGen, based on the supplied character references.<br />Doodles: Quick, Draw! / Google, CC BY 4.0; original rare-letter sketches. Fonts: DM Sans & Cormorant Garamond, OFL.</p><a href="https://github.com/googlecreativelab/quickdraw-dataset" target="_blank" rel="noreferrer">Quick, Draw! dataset & attribution</a></div></>}</section></div>}
   </main>;
 }

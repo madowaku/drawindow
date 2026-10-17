@@ -1,4 +1,5 @@
 .window-canvas {
+  container-type: inline-size;
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -6,6 +7,9 @@
   pointer-events: none;
   background: transparent;
 }
+
+.window-canvas__spiral { position:absolute; bottom:14px; right:15px; width:25px; height:25px; opacity:.46; pointer-events:none; }
+.window-canvas__spiral path { fill:none; stroke:#edf5f1; stroke-width:1.4; stroke-linecap:round; }
 
 .window-canvas__fog,
 .window-canvas__drawing {

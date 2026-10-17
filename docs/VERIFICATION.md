@@ -1,5 +1,50 @@
 # DRAWINDOW v0.2 verification — 2026-10-17 JST
 
+## Current character update: Shizuku v0.2
+
+The character update passes **77 tests in 12 files**, TypeScript/Vite build,
+source/output SHA-256 verification and ZIP extracted-byte parity. Commands:
+`npm test`, `npm run build`, `npm run package:itch`, `git diff --check`.
+Tests added for conversational acting, monotonic replay with a short hesitation,
+shared DAY/NIGHT textures, no player-visible name, pose timers, reduced-motion
+cancellation and hidden-document motion lifecycle. The mouth/fog mapping now
+uses the same shared portrait rectangle as the character's CSS.
+
+Actual browser checks of this update:
+
+- 360×800 DAY: five exchanges with keyboard dots, five naming fields, ten cards
+  and nine links. Curious expression during each player's turn; smile after her
+  drawing. No overflow or missing images.
+- 1280×900 NIGHT: title and holding screenshots, five exchanges, ten cards and
+  nine links. Empty intentions remain unknown. No missing images or console
+  warnings/errors returned.
+- Separate `/?character-preview`: all six expressions and DRAWING selected
+  successfully, with no missing images; DAY/NIGHT controls preserve one portrait
+  set. 390×844 portrait layout checked for overflow and readable artwork.
+- The host browser reports reduced motion, so ordinary game play respected it.
+  The explicit production-preview motion toggle enabled actual browser motion:
+  BREATH native transform reached scale 1.018 / y -3px / rotation 0.2deg; two
+  consecutive breathing transform samples differed. Stopping preview motion
+  returned both transforms to `none`. Normal-speed whole-game timing has helper
+  and lifecycle tests; a physical device animation test is not claimed.
+
+Screenshots: `artifacts/qa/shizuku-*`. Structured journey/motion evidence:
+`artifacts/qa/shizuku-browser-journeys.json`. Alpha was inspected by compositing
+the atlas over blue (`shizuku-atlas-on-blue.png`). The pins, neck ribbon, sleeves
+and fingertips are consistent at game scale; no fog/background is baked into
+the portrait textures. Sprite poses do not constitute a skeletal/Live2D rig,
+and the pointing fingertip does not track every replay coordinate.
+
+Updated ZIP: **1,508,310 bytes / 36 entries**, SHA-256
+`d4d79f6a9952c487668720c3746f08b7ac2bb89cd19f947edbd3bba48e86d9a4`.
+Root index, relative assets and exact extracted-byte parity pass. The ZIP was
+rebuilt; the old archive's browser journey below is historical and is not
+claimed as a second archive browser run for these new bytes. No deployment,
+genuine recognition call, physical touch test or audio listening was part of
+this character update.
+
+## Initial game evidence (before the character update)
+
 ## Result and scope
 
 The default explicitly labelled DEMO completes five exchanges (ten archived

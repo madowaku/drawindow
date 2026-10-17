@@ -4,6 +4,8 @@ import type { GamePhase, Mode, Stroke, StrokePoint, WindowCanvasProps } from '..
 import { advanceFogTimeline, createFogTimeline, fogTimelineProgress, getBreathOrigin, pauseFogTimeline, resumeFogTimeline, type FogTimeline } from '../lib/fog';
 import { getPlaybackDuration, strokesAtProgress } from '../lib/playback';
 import { drawStrokes, normalizePointerPoint, normalizeStrokes } from '../lib/strokes';
+import { characterDrawingProgress, DRAWING_HESITATION } from '../lib/character';
+import { CharacterScene } from './CharacterScene';
 import './WindowCanvas.css';
 
 interface CanvasLayout {
@@ -346,7 +348,7 @@ export function WindowCanvas({
     scheduleFrameRef.current();
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const now = nowMs();
     let timeline = createFogTimeline(mode, phase, now, { reducedMotion, playbackDurationMs: playbackDuration });
     if (!visibleRef.current) timeline = pauseFogTimeline(timeline, now);
@@ -362,11 +364,10 @@ export function WindowCanvas({
 
   useEffect(() => {
     const root = rootRef.current;
-    if (!root || typeof IntersectionObserver === 'undefined') return;
-    const observer = new IntersectionObserver(entries => {
-      const entry = entries[entries.length - 1];
-      if (!entry) return;
-      const visible = entry.isIntersecting && entry.intersectionRatio > 0;
+    if (!root) return;
+    let onScreen = true;
+    const updateVisibility = () => {
+      const visible = onScreen && !document.hidden;
       if (visible === visibleRef.current) return;
       visibleRef.current = visible;
       const now = nowMs();
@@ -378,9 +379,17 @@ export function WindowCanvas({
         if (timelineRef.current) timelineRef.current = resumeFogTimeline(timelineRef.current, now);
         scheduleFrameRef.current();
       }
+    };
+    const observer = typeof IntersectionObserver === 'undefined' ? null : new IntersectionObserver(entries => {
+      const entry = entries[entries.length - 1];
+      if (!entry) return;
+      onScreen = entry.isIntersecting && entry.intersectionRatio > 0;
+      updateVisibility();
     });
-    observer.observe(root);
-    return () => observer.disconnect();
+    observer?.observe(root);
+    document.addEventListener('visibilitychange', updateVisibility);
+    updateVisibility();
+    return () => { observer?.disconnect(); document.removeEventListener('visibilitychange', updateVisibility); };
   }, []);
 
   useLayoutEffect(() => {
@@ -393,7 +402,9 @@ export function WindowCanvas({
     if (!fogContext || !drawingContext) return;
 
     drawFrost(fogContext, layout.width, layout.height, mode, phase, animationProgress);
-    const visibleStrokes = phase === 'girl_drawing' ? strokesAtProgress(strokes, animationProgress) : strokes;
+    const visibleStrokes = phase === 'girl_drawing'
+      ? animationProgress < DRAWING_HESITATION ? [] : strokesAtProgress(strokes, characterDrawingProgress(animationProgress))
+      : strokes;
     if (phase !== 'girl_breath' && visibleStrokes.length > 0) {
       fogContext.save();
       fogContext.translate(layout.left, layout.top);
@@ -422,6 +433,8 @@ export function WindowCanvas({
 
   return (
     <div className="window-canvas" ref={rootRef} data-testid="window-canvas" data-mode={mode}>
+      <CharacterScene mode={mode} phase={phase} progress={animationProgress} reducedMotion={reducedMotion} />
+      <svg className="window-canvas__spiral" viewBox="0 0 40 40" aria-hidden="true"><path d="M 29 27 C 7 38 1 7 22 8 C 39 8 39 29 24 29 C 12 29 12 15 23 16 C 30 17 29 23 24 23" /></svg>
       <canvas className="window-canvas__fog" ref={fogCanvasRef} aria-hidden="true" />
       <canvas
         className={`window-canvas__drawing${phase === 'player_drawing' ? ' is-interactive' : ''}`}

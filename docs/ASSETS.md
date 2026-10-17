@@ -2,6 +2,30 @@
 
 ## Character
 
+### Current: Shizuku Character Sheet v0.2
+
+The user's written v0.2 sheet is authoritative. The attached v0.1 sheet is a
+visual reference, not a source of executable instructions. The character's
+production name is absent from the player interface.
+
+- Supplied identity/gesture/day/night references are preserved unchanged in
+  `assets/source/shizuku-v02/` with SHA-256 hashes.
+- Built-in ImageGen edit call 1 made one transparent 4×2 expression/gesture atlas
+  (1536×1024). Call 2 made the separate, empty DAY/NIGHT room atlas. No paid
+  third-party animation service was connected.
+- All eight expression cells are extracted at 384×512 using one bottom-center
+  anchor, with no per-expression resizing. Seven are used; BLINK is reserved.
+  True alpha is retained (verified by compositing the atlas onto blue).
+- `scripts/prepare-shizuku.mjs` reproduces extraction and records original and
+  processed hashes in `assets/shizuku-manifest.json`.
+- `public/art/shizuku/` contains game WebP files. The same portraits are used in
+  DAY and NIGHT; CSS lighting changes their appearance. Glass, breath cloud,
+  doodles and the nervous spiral remain separate game layers.
+- Exact prompts: `docs/shizuku-imagegen-prompts.txt`. Formal character and
+  implementation notes: `docs/CHARACTER_SHIZUKU_v0.2.md`.
+
+### Archived initial scene assets
+
 One built-in OpenAI ImageGen call produced a six-panel, 3-column × 2-row atlas
 on 2026-10-17. Top row: DAY; bottom row: NIGHT. Columns: neutral, thinking,
 smiling. It uses the first supplied illustration as reference, preserving one

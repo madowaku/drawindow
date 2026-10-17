@@ -1,5 +1,35 @@
 # DRAWINDOW v0.2 visual QA
 
+## Current Shizuku Character Sheet v0.2 update
+
+Passed local visual/interaction review for the new character presentation.
+The initial scene-only character described below is retained as historical
+evidence. The current game uses transparent shared portraits, a separate room
+plate and separate fog/drawing layers. The user's written v0.2 character rules
+override conflicting details on the older reference sheet.
+
+Actual images inspected: `shizuku-atlas-on-blue.png`,
+`shizuku-360-day-holding.png`, `shizuku-360-day-curious.png`,
+`shizuku-desktop-night-title.png`, `shizuku-desktop-night-holding.png`,
+`shizuku-preview-day-breath.png`, `shizuku-preview-night-drawing.png` and
+`shizuku-preview-mobile.png` in `artifacts/qa/`.
+
+The first mobile crop left too much space above her head; the shared portrait
+rectangle was enlarged and its mouth/fog origin updated together. The resulting
+crop retains crossed pins, soft eyes, crooked ribbon and sleeve/fingertip cues.
+DAY/NIGHT use identical sprite files with light/color changes. Drawings remain
+in front of the character as marks on the same glass. Keyboard focus retains
+the accessible drawing square; pointer ink retires the empty-state boundary.
+
+All six expressions and drawing pose are selectable in the separate production
+review page; her name is absent from play. Actual CSS breathing and native
+forward lean were checked through that page's explicit motion toggle. Reduced
+motion remains respected in the game. Seven poses/360px play/390px review/
+1280px desktop had no missing assets or horizontal overflow. No skeletal rig,
+physical-device comfort, audio or recognition-quality acceptance is claimed.
+
+## Initial visual QA (historical)
+
 final result: passed
 
 Scope: the explicitly labelled local DEMO and its responsive interface. This is

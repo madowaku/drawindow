@@ -1,20 +1,14 @@
 import type { GamePhase, Mode } from '../core/types';
 import { clampPlaybackDuration, DEFAULT_SKETCH_PLAYBACK_MS } from './playback';
+import { characterPortraitRect } from './character';
 
-const GIRL_ART_WIDTH = 341;
-const GIRL_ART_HEIGHT = 768;
-const GIRL_MOUTH_X = 0.6;
-const GIRL_MOUTH_Y = 0.4;
-
-/** Maps the girl's mouth through the same cover crop as the portrait scene. */
+/** Maps the BREATH sprite's lips through the same bottom-center portrait as CSS. */
 export function getBreathOrigin(width: number, height: number): { x: number; y: number } {
   const safeWidth = Math.max(0, Number.isFinite(width) ? width : 0);
   const safeHeight = Math.max(0, Number.isFinite(height) ? height : 0);
-  const scale = Math.max(safeWidth / GIRL_ART_WIDTH, safeHeight / GIRL_ART_HEIGHT);
-  const renderedWidth = GIRL_ART_WIDTH * scale;
-  const renderedHeight = GIRL_ART_HEIGHT * scale;
-  const originX = GIRL_ART_WIDTH * scale * GIRL_MOUTH_X - (renderedWidth - safeWidth) * 0.5;
-  const originY = GIRL_ART_HEIGHT * scale * GIRL_MOUTH_Y - (renderedHeight - safeHeight) * 0.3;
+  const rect = characterPortraitRect(safeWidth, safeHeight);
+  const originX = rect.left + rect.width * 0.55;
+  const originY = rect.top + rect.height * 0.49;
 
   return {
     x: Math.min(safeWidth, Math.max(0, originX)),
