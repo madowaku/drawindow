@@ -1,8 +1,11 @@
-# DRAWINDOW v0.2
+# DRAWINDOW v0.3
 
 A quiet five-exchange picture shiritori game through a misted window.
 The character now follows [Shizuku Character Sheet v0.2](docs/CHARACTER_SHIZUKU_v0.2.md):
 six expressions, a drawing pose, subtle state-driven movement and separate glass.
+The five-exchange game uses a deterministic phase/round reaction selector and a
+small contact cursor that follows the exact visible stroke interpolation. This
+is pose-based illustration, with articulated hand rigging deferred.
 DAY/NIGHT share the same character textures. Her name is not shown during play.
 The separate production review page is `/?character-preview`; it lets you inspect
 all expressions, lighting and motion without playing a full session.
@@ -40,9 +43,12 @@ npm run build
 npm run package:itch
 ```
 
-The ZIP is written to `artifacts/release/DRAWINDOW-v0.2-itch.zip`, with root
+The ZIP is written to `artifacts/release/DRAWINDOW-v0.3-itch.zip`, with root
 `index.html`, relative asset paths, credits and licenses. Its receipt records
 SHA-256 and round-trip extracted-byte parity. The source atlas is excluded.
+Packaging rebuilds the static frontend with live-integration flags disabled,
+so an existing local API test setting cannot expose an unconfigured live option
+in the standalone DEMO ZIP. The protected v0.2 ZIP is retained separately.
 
 For itch.io choose an HTML game, upload the ZIP, enable play in browser and
 mobile friendly sizing. Use a responsive portrait container; 360×800 and
@@ -55,6 +61,10 @@ does not deploy a server. No jam submission or public deployment was performed.
 See [docs/RECOGNITION.md](docs/RECOGNITION.md) for secret binding, exact allowed
 origins, rate limits, iframe/CORS verification and the 12-real-drawing benchmark
 required before calling this validated live recognition.
+For private local key entry, use `npm run setup:gemini`; it writes only the
+Git-ignored `.dev.vars` file with masked terminal input. `npm run check:gemini`
+reports configuration booleans without printing the key. See
+[safe setup instructions](docs/GEMINI_LOCAL_SETUP.md).
 
 For local API development put the provider key in ignored `.dev.vars`, then
 run `npm run dev:api` alongside Vite. Never put secrets in `VITE_` variables.

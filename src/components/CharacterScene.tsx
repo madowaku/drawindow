@@ -1,26 +1,46 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type SyntheticEvent } from 'react';
 import type { GamePhase, Mode } from '../core/types';
-import { CHARACTER_FRAMES, characterFrame, type CharacterFrame } from '../lib/character';
+import { SHIZUKU_POSES, characterArt, type ShizukuPose } from '../data/shizukuPoses';
+import { CHARACTER_FRAMES, getShizukuReaction, type CharacterFrame } from '../lib/character';
 import './CharacterScene.css';
 
-export const characterArt = (name: string) => `${import.meta.env.BASE_URL}art/shizuku/${name}.webp`;
+export { characterArt } from '../data/shizukuPoses';
 
-interface Props { mode: Mode; phase: GamePhase; progress?: number; reducedMotion: boolean; frameOverride?: CharacterFrame }
+interface Props {
+  mode: Mode;
+  phase: GamePhase;
+  progress?: number;
+  reducedMotion: boolean;
+  frameOverride?: CharacterFrame;
+  round?: number;
+}
 
-/** Pose sprites + native browser animation. Glass and ink live outside this component. */
-export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride }: Props) {
+function recoverPoseImage(event: SyntheticEvent<HTMLImageElement>, fallbackId: ShizukuPose['fallback']): void {
+  const image = event.currentTarget;
+  if (image.dataset.fallbackApplied === 'true' || fallbackId === 'hide') {
+    image.hidden = true;
+    return;
+  }
+
+  const fallback = SHIZUKU_POSES[fallbackId];
+  image.dataset.fallbackApplied = 'true';
+  image.style.setProperty('--pose-eye-x', `${fallback.anchor.x * 100}%`);
+  image.style.setProperty('--pose-eye-y', `${fallback.anchor.y * 100}%`);
+  image.src = fallback.src;
+}
+
+function hideFailedRoom(event: SyntheticEvent<HTMLImageElement>): void {
+  // The room is decorative; hiding a failed image avoids a browser broken-image icon.
+  event.currentTarget.hidden = true;
+}
+
+/** Pose sprites + browser-native phase gestures. Glass and ink live outside this component. */
+export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1 }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const gestureRef = useRef<HTMLDivElement>(null);
-  const [settled, setSettled] = useState(false);
   const [running, setRunning] = useState(true);
-  const frame = frameOverride ?? characterFrame(phase, progress, settled || reducedMotion);
-
-  useEffect(() => {
-    setSettled(false);
-    if (phase !== 'girl_holding' || reducedMotion) return;
-    const timer = window.setTimeout(() => setSettled(true), 760);
-    return () => window.clearTimeout(timer);
-  }, [phase, reducedMotion]);
+  const reaction = getShizukuReaction({ phase, mode, round, reducedMotion, progress });
+  const frame = frameOverride ?? reaction.pose;
 
   useEffect(() => {
     let onScreen = true;
@@ -37,21 +57,64 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
 
   useEffect(() => {
     const target = gestureRef.current;
-    if (reducedMotion || !target?.animate || !running) return;
-    // One finite gesture per phase, independent of the game clock and callbacks.
-    const leaning = phase === 'girl_breath' || phase === 'player_drawing';
+    if (reducedMotion || !target?.animate || !running || reaction.durationMs <= 0) return;
+    // One finite gesture per phase. Its timing is presentation-only and never advances the game.
+    const tilt = reaction.motion === 'watch' ? '-0.25' : '0';
+    const scale = reaction.motion === 'breath' && mode === 'day' ? '1.018' : '1';
     const animation = target.animate([
-      { transform: 'translateY(2px) rotate(-0.25deg) scale(1)' },
-      { transform: `translateY(${leaning ? '-3px' : '0px'}) rotate(${phase === 'recognizing' ? '-0.6' : '0.2'}deg) scale(${leaning ? '1.018' : '1'})` },
-    ], { duration: mode === 'night' ? 1000 : 760, easing: 'ease-out', fill: 'both' });
+      { transform: 'translateY(0px) rotate(0deg) scale(1)' },
+      { transform: `translateY(-${reaction.leanPx}px) rotate(${tilt}deg) scale(${scale})` },
+    ], { duration: reaction.durationMs, easing: 'ease-out', fill: 'both' });
     return () => animation.cancel();
-  }, [phase, mode, reducedMotion, running]);
+  }, [mode, phase, reducedMotion, running, reaction.durationMs, reaction.leanPx, reaction.motion]);
 
-  return <div className="character-scene" ref={rootRef} aria-hidden="true" data-mode={mode} data-pose={frame} data-running={running && !reducedMotion} data-testid="character-scene">
-    <img className="character-scene__room" src={characterArt(`room-${mode}`)} alt="" draggable={false} />
-    <div className="character-scene__portrait"><div className="character-scene__gesture" ref={gestureRef}><div className="character-scene__breathing">
-      {CHARACTER_FRAMES.filter(name => name !== 'blink').map(name => <img key={name} className="character-scene__sprite" src={characterArt(name)} data-active={name === frame} alt="" draggable={false} decoding="async" />)}
-    </div></div></div>
+  const poseStyles = (pose: ShizukuPose): CSSProperties => ({
+    '--pose-eye-x': `${pose.anchor.x * 100}%`,
+    '--pose-eye-y': `${pose.anchor.y * 100}%`,
+  } as CSSProperties);
+
+  return <div
+    className="character-scene"
+    ref={rootRef}
+    aria-hidden="true"
+    data-mode={mode}
+    data-pose={frame}
+    data-motion={reaction.motion}
+    data-running={running && !reducedMotion}
+    data-reduced-motion={reducedMotion}
+    data-blink-enabled={phase === 'title' && !reducedMotion}
+    data-testid="character-scene"
+  >
+    <img className="character-scene__room" src={characterArt(`room-${mode}`)} alt="" draggable={false} onError={hideFailedRoom} />
+    <div className="character-scene__portrait">
+      <div className="character-scene__gesture" ref={gestureRef}>
+        <div className="character-scene__breathing">
+          {CHARACTER_FRAMES.filter(name => name !== 'blink').map(name => {
+            const pose = SHIZUKU_POSES[name];
+            return <img
+              key={name}
+              className="character-scene__sprite"
+              src={pose.src}
+              style={poseStyles(pose)}
+              data-active={name === frame}
+              alt=""
+              draggable={false}
+              decoding="async"
+              onError={event => recoverPoseImage(event, pose.fallback)}
+            />;
+          })}
+          <img
+            className="character-scene__blink"
+            src={characterArt('blink')}
+            style={poseStyles(SHIZUKU_POSES.neutral)}
+            alt=""
+            draggable={false}
+            decoding="async"
+            onError={event => recoverPoseImage(event, 'neutral')}
+          />
+        </div>
+      </div>
+    </div>
     <div className="character-scene__light" />
   </div>;
 }

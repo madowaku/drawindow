@@ -44,6 +44,28 @@ describe('five silent exchanges', () => {
     expect(gameReducer(state, { type: 'CLEAR' })).toBe(state);
     expect(gameReducer(state, { type: 'SET_INTENT', entryId: state.entries[1].id, word: 'cat' })).toBe(state);
   });
+  it('runs five daytime breaths and keeps every completed girl drawing until the player advances', () => {
+    let state = start('day');
+    let breaths = 0;
+    for (let round = 1; round <= 5; round++) {
+      expect(state).toMatchObject({ phase: 'girl_breath', round });
+      breaths++;
+      state = gameReducer(state, { type: 'BREATH_DONE' });
+      expect(gameReducer(state, { type: 'BREATH_DONE' })).toBe(state);
+      state = gameReducer(state, { type: 'PLAYBACK_DONE' });
+      const held = selectVisibleStrokes(state);
+      expect(held).toEqual(state.entries[state.entries.length - 1].strokes);
+      expect(held.length).toBeGreaterThan(0);
+      expect(gameReducer(state, { type: 'PLAYBACK_DONE' })).toBe(state);
+      expect(gameReducer(state, { type: 'CLEAR' })).toBe(state);
+      expect(selectVisibleStrokes(state)).toBe(held);
+      state = done(gameReducer(state, { type: 'YOUR_TURN' }));
+      if (round < 5) state = succeed(state);
+    }
+    expect(breaths).toBe(5);
+    expect(state.phase).toBe('review_intents');
+    expect(state.entries).toHaveLength(10);
+  });
   it('rejects stale/double responses and never selects a falsely matched girl', () => {
     const state = done(toDraw(start()));
     expect(gameReducer(state, { type: 'RECOGNITION_RESOLVED', requestId: 'stale', result: { guess: 'cat', source: 'api' } })).toBe(state);

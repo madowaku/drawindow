@@ -1,11 +1,12 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent, KeyboardEvent as ReactKeyboardEvent } from 'react';
 import type { GamePhase, Mode, Stroke, StrokePoint, WindowCanvasProps } from '../core/types';
-import { advanceFogTimeline, createFogTimeline, fogTimelineProgress, getBreathOrigin, pauseFogTimeline, resumeFogTimeline, type FogTimeline } from '../lib/fog';
-import { getPlaybackDuration, strokesAtProgress } from '../lib/playback';
+import { advanceFogTimeline, createFogTimeline, fogTimelineProgress, getBreathOrigin, isTimedCanvasPhase, pauseFogTimeline, resumeFogTimeline, type FogTimeline } from '../lib/fog';
+import { getPlaybackDuration, getPlaybackTip, strokesAtProgress } from '../lib/playback';
 import { drawStrokes, normalizePointerPoint, normalizeStrokes } from '../lib/strokes';
 import { characterDrawingProgress, DRAWING_HESITATION } from '../lib/character';
 import { CharacterScene } from './CharacterScene';
+import { StrokeTipOverlay } from './StrokeTipOverlay';
 import './WindowCanvas.css';
 
 interface CanvasLayout {
@@ -124,6 +125,7 @@ function configureCanvas(canvas: HTMLCanvasElement, width: number, height: numbe
 export function WindowCanvas({
   mode,
   phase,
+  round = 1,
   strokes,
   onStrokesChange,
   onBreathDone,
@@ -140,6 +142,7 @@ export function WindowCanvas({
   const layoutRef = useRef<CanvasLayout>({ width: 0, height: 0, size: 0, left: 0, top: 0, dpr: 1 });
   const frameRef = useRef<number | null>(null);
   const timelineRef = useRef<FogTimeline | null>(null);
+  const completedTransitionRef = useRef<string | null>(null);
   const visibleRef = useRef(true);
   const scheduleFrameRef = useRef<() => void>(() => undefined);
   const tickFrameRef = useRef<FrameRequestCallback>(() => undefined);
@@ -151,6 +154,7 @@ export function WindowCanvas({
   const timestampOffsetRef = useRef(0);
   const [layout, setLayout] = useState<CanvasLayout>(layoutRef.current);
   const [animationProgress, setAnimationProgress] = useState(1);
+  const [canvasVisible, setCanvasVisible] = useState(true);
 
   strokesRef.current = strokes;
   onStrokesChangeRef.current = onStrokesChange;
@@ -330,7 +334,8 @@ export function WindowCanvas({
   }, [phase]);
 
   scheduleFrameRef.current = () => {
-    if (frameRef.current !== null || !visibleRef.current) return;
+    const timeline = timelineRef.current;
+    if (frameRef.current !== null || !visibleRef.current || !timeline || timeline.completed || !isTimedCanvasPhase(timeline.phase)) return;
     frameRef.current = requestFrame(tickFrameRef.current);
   };
   tickFrameRef.current = now => {
@@ -341,6 +346,9 @@ export function WindowCanvas({
     timelineRef.current = result.timeline;
     setAnimationProgress(result.progress);
     if (result.completedNow) {
+      const transition = `${mode}:${timeline.phase}:${round}`;
+      if (completedTransitionRef.current === transition) return;
+      completedTransitionRef.current = transition;
       if (timeline.phase === 'girl_breath') onBreathDoneRef.current();
       if (timeline.phase === 'girl_drawing') onPlaybackDoneRef.current();
       return;
@@ -351,6 +359,9 @@ export function WindowCanvas({
   useLayoutEffect(() => {
     const now = nowMs();
     let timeline = createFogTimeline(mode, phase, now, { reducedMotion, playbackDurationMs: playbackDuration });
+    if (completedTransitionRef.current === `${mode}:${phase}:${round}`) {
+      timeline = { ...timeline, elapsedMs: timeline.durationMs, startedAt: null, completed: true };
+    }
     if (!visibleRef.current) timeline = pauseFogTimeline(timeline, now);
     timelineRef.current = timeline;
     setAnimationProgress(fogTimelineProgress(timeline, now));
@@ -360,7 +371,7 @@ export function WindowCanvas({
       frameRef.current = null;
       if (timelineRef.current?.phase === phase) timelineRef.current = null;
     };
-  }, [mode, phase, reducedMotion, playbackDuration]);
+  }, [mode, phase, round, reducedMotion, playbackDuration]);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -370,6 +381,7 @@ export function WindowCanvas({
       const visible = onScreen && !document.hidden;
       if (visible === visibleRef.current) return;
       visibleRef.current = visible;
+      setCanvasVisible(visible);
       const now = nowMs();
       if (!visible) {
         if (timelineRef.current) timelineRef.current = pauseFogTimeline(timelineRef.current, now);
@@ -430,10 +442,15 @@ export function WindowCanvas({
     left: `${layout.left}px`,
     bottom: '0px',
   } : undefined;
+  // The cursor and the ink use the identical eased playback position and square.
+  // Keep this local to the canvas so animation never drives the App reducer.
+  const playbackTip = phase === 'girl_drawing' && animationProgress >= DRAWING_HESITATION
+    ? getPlaybackTip(strokes, characterDrawingProgress(animationProgress))
+    : null;
 
   return (
-    <div className="window-canvas" ref={rootRef} data-testid="window-canvas" data-mode={mode}>
-      <CharacterScene mode={mode} phase={phase} progress={animationProgress} reducedMotion={reducedMotion} />
+    <div className="window-canvas" ref={rootRef} data-testid="window-canvas" data-mode={mode} data-running={canvasVisible && !reducedMotion}>
+      <CharacterScene mode={mode} phase={phase} round={round} progress={animationProgress} reducedMotion={reducedMotion} />
       <svg className="window-canvas__spiral" viewBox="0 0 40 40" aria-hidden="true"><path d="M 29 27 C 7 38 1 7 22 8 C 39 8 39 29 24 29 C 12 29 12 15 23 16 C 30 17 29 23 24 23" /></svg>
       <canvas className="window-canvas__fog" ref={fogCanvasRef} aria-hidden="true" />
       <canvas
@@ -459,6 +476,7 @@ export function WindowCanvas({
         onKeyUp={handleKeyUp}
         onBlur={handleBlur}
       />
+      <StrokeTipOverlay tip={playbackTip} layout={layout} reducedMotion={reducedMotion} visible={canvasVisible && phase === 'girl_drawing'} />
       {phase === 'player_drawing' && strokes.length === 0 && drawingStyle && (
         <div className="window-canvas__prompt" style={drawingStyle} aria-hidden="true" data-testid="window-drawing-hint">
           <span>DRAW HERE</span>

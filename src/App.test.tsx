@@ -5,7 +5,7 @@ import App from './App';
 import { girlSketches } from './data/sketches';
 import type { WindowCanvasProps } from './core/types';
 
-vi.mock('./components/WindowCanvas', () => ({ WindowCanvas: (props: WindowCanvasProps) => <div>
+vi.mock('./components/WindowCanvas', () => ({ WindowCanvas: (props: WindowCanvasProps) => <div data-testid="canvas-contract" data-round={props.round}>
   {props.phase === 'girl_breath' && <button onClick={props.onBreathDone}>Test complete breath</button>}
   {props.phase === 'girl_drawing' && <button onClick={props.onPlaybackDone}>Test complete playback</button>}
   {props.phase === 'player_drawing' && <button onClick={() => props.onStrokesChange([{ id: 'test', points: [{ x: .2, y: .2, t: 0 }, { x: .6, y: .6, t: 100 }] }])}>Test draw</button>}
@@ -25,6 +25,7 @@ async function finishFive() {
   fireEvent.click(screen.getByRole('button', { name: /PLAY DEMO/ }));
   for (let round = 0; round < 5; round++) {
     await waitFor(() => expect(document.querySelector('main')?.getAttribute('data-phase')).toBe('girl_breath'));
+    expect(screen.getByTestId('canvas-contract').getAttribute('data-round')).toBe(String(round + 1));
     fireEvent.click(screen.getByRole('button', { name: 'Test complete breath' }));
     fireEvent.click(screen.getByRole('button', { name: 'Test complete playback' }));
     expect(screen.queryByRole('textbox')).toBeNull();
@@ -56,6 +57,7 @@ describe('integrated UI journey with controlled presentation callbacks', () => {
   it('finishes five exchanges without answer leaks, preserves raw label editing, reveals nine links and restarts', async () => {
     render(<App />);
     await finishFive();
+    expect(screen.getByTestId('review-character').querySelector('[data-pose]')?.getAttribute('data-pose')).toBe('neutral');
     const labels = screen.getAllByRole('textbox') as HTMLInputElement[];
     fireEvent.change(labels[0], { target: { value: 'ice ' } });
     expect(labels[0].value).toBe('ice ');
@@ -63,6 +65,7 @@ describe('integrated UI journey with controlled presentation callbacks', () => {
     expect(labels[0].value).toBe('ice cream');
     ['tree', 'egg', 'goat', 'rain'].forEach((word, i) => fireEvent.change(labels[i + 1], { target: { value: word } }));
     fireEvent.click(screen.getByRole('button', { name: /REVEAL OUR CHAIN/ }));
+    expect(['smile', 'shy']).toContain(screen.getByTestId('results-character').querySelector('[data-pose]')?.getAttribute('data-pose'));
     expect(document.querySelectorAll('.result-drawing')).toHaveLength(10);
     expect(document.querySelectorAll('.chain-link')).toHaveLength(9);
     expect(screen.getByText('9 of 9 possible links known')).toBeTruthy();

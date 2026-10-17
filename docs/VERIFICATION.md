@@ -1,4 +1,77 @@
-# DRAWINDOW v0.2 verification — 2026-10-17 JST
+# DRAWINDOW v0.3 verification — 2026-10-17 JST
+
+## Current v0.3 result
+
+P0 DEMO integration passed. **96 tests / 14 files**, TypeScript/Vite production
+build, static packaging and extracted-byte parity passed. Exactly five girl and
+five player entries, nine links, five DAY breaths and five NIGHT refog phases
+were observed. The previous77-test/seven-pose version was first re-run and
+protected at commit `9ec815b9d0dd9f7f28098ec754c14e0717210001` on branch
+`codex/shizuku-v03`, with a separate patch/file/hash backup. GitHub main was
+independently checked at `5a5430cd9ac91cd1c87c2adebf3b49a538fdc099`; no older
+remote file was used to overwrite local work.
+
+Requested model routing was verified from execution metadata: Sol6.1/XHigh
+integration/design, Luna6/Max reactions/playback tip, Astra6/Low short screenshot
+review. See `model-receipt-v03.json`. Astra found no P0/P1 issue in five actual
+mobile/tablet screenshots; that is not human playtest or motion-quality proof.
+
+### Actual automated browser checks
+
+Playwright-core1.59.1 from the existing local cache drove installed headless
+Chromium. This did not add a dependency or change OS motion settings.
+
+| CSS viewport | DAY and NIGHT evidence |
+| --- | --- |
+| 360×800, DPR2 | Both normal-motion five-exchange journeys passed; contact cursor, mouse/touch-event input, undo/clear, retained ink, five labels,10cards/9links. |
+| 720×1280 | Both normal-motion journeys passed the same checks. |
+| 1280×720 | Both normal-motion journeys passed, including no vertical/horizontal play scrolling and reachable actions. |
+
+The contact marker uses the exact same interpolated/eased point as visible ink,
+with the same drawing-square left/top/size transform. Focused tests cover
+begin/middle/end, pen lifts, resize and HiDPI-independent CSS coordinates. It
+does not move the portrait across the stroke path and does not alter stroke
+coordinates. The fixed-art hand is not an articulated rig; that remains deferred.
+An inline no-hit guard hardens the overlay even before stylesheet readiness.
+Held ink was pixel-compared after1050ms in each journey. No missing images,
+early labels/interpretation/score elements or browser errors were found.
+
+A360px reduced-motion browser check passed with no moving contact cursor and
+no character motion. Tests additionally cover normal650ms DAY/280ms NIGHT
+timelines, tab hide/resume, motion changes, resize and unmount; completion fires
+once and static phases do not create an endless animation-frame loop.
+
+Structured evidence: `artifacts/qa/v03/browser-journeys.json`. Screenshots include
+`360-day-drawing.png`, `360-night-drawing.png`, `720-day-player.png`,
+`1280-night-holding.png` and the matching breath/holding/player/results states.
+The source browser script is `scripts/qa-v03.mjs`; it uses simulated mouse/touch
+inputs, not physical Android or human hand-drawn quality evidence.
+
+### Package and recognition status
+
+`npm run package:itch` rebuilt a standalone DEMO with local live flags disabled,
+then wrote `DRAWINDOW-v0.3-itch.zip`: **1,509,746bytes,36entries**. SHA-256:
+`3331436253d6eee1920bcf2301a07a681d9dfd08896e17ab0c88d35f227e00ff`.
+Root index, relative assets and extracted-byte parity pass. The old v0.2 ZIP
+remains intact. The actual extracted archive was served at localhost5176 and
+completed normal-motion DAY/NIGHT five-exchange checks at360×800; evidence is
+under `artifacts/qa/v03/archive/`. This is not the real itch.io iframe.
+
+P1 preparation: the existing genuine Gemini adapter and Worker remain in place;
+official model/image support was rechecked. A masked `npm run setup:gemini`
+command stores a key only in ignored `.dev.vars`; `npm run check:gemini` prints
+booleans only. Actual local Worker checks returned204 for trusted preflight and
+403 without an allow-origin header for an untrusted origin. No provider call
+was made by those checks. See `recognition-preflight.json` and
+`docs/GEMINI_LOCAL_SETUP.md`.
+
+The existing local value did not look like a configured Google API key; private
+replacement was requested. Genuine LIVE five-exchange recognition,12human
+freehand samples, actual iframe CORS, Android touch comfort and the3–5minute
+unassisted naive-player study are **pending**. No live-ready, recognition-quality,
+human-comfort or fun claim is made by the DEMO checks.
+
+## Historical v0.2 evidence
 
 ## Current character update: Shizuku v0.2
 

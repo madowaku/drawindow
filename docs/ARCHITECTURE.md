@@ -24,9 +24,15 @@ No concurrent package/configuration or core edits. Ask the lead before changing 
 
 On review, `SET_INTENT { entryId, word }` updates only player entries. Empty/invalid labels become unknown; `SHOW_RESULTS` computes the reveal. `RETURN_TO_TITLE` preserves mode and session counter. `SET_MODE` works on title only. A new `START` increments the session counter, so a previous session's result cannot match a new request.
 
-Canvas props are exactly `WindowCanvasProps`: `{ mode, phase, strokes, onStrokesChange, onBreathDone, onPlaybackDone, reducedMotion, expression? }`. `selectVisibleStrokes` supplies the current girl template during playback/holding and the player's preserved drawing during input/recognition/error. Breath returns a blank surface. Every girl turn runs `girl_breath`: DAY uses a visible breath, NIGHT may implement a short refog. Animation callbacks must clean up on phase change/unmount and run once, including reduced-motion mode. Held and active drawings do not dissipate.
+Canvas props are `WindowCanvasProps`: `{ mode, phase, round?, strokes, onStrokesChange, onBreathDone, onPlaybackDone, reducedMotion, expression? }`. The round number is for deterministic cosmetic variation only. `selectVisibleStrokes` supplies the current girl template during playback/holding and the player's preserved drawing during input/recognition/error. Breath returns a blank surface. Every girl turn runs `girl_breath`: DAY uses a 650ms visible breath, NIGHT uses a 280ms refog. Animation callbacks clean up on phase change/unmount and run once per phase/round, including when the motion preference changes. Held and active drawings do not dissipate. Returning from a hidden tab cannot start a timer in a static phase.
 
 During active phases the app must not render intended words, guessed words, alternatives, template IDs, revealing image labels, or answer hints. Neutral canvas/accessibility copy such as “Drawing on the window” is safe. Word data is available only for orchestration and final review/reveal.
+
+## Shizuku presentation and stroke contact
+
+`src/data/shizukuPoses.ts` registers the seven existing poses with stable eye anchors, drawing contact metadata, relative asset paths and a neutral fallback. `getShizukuReaction({ phase, mode, round, reducedMotion, progress })` in `src/lib/character.ts` is a pure presentation selector. It never receives target words, recognition results, confidence or score. `CharacterScene` uses the same phase and local canvas progress; review and results use small decorative portraits outside the form and controls.
+
+The portrait remains behind frost and ink. During girl playback a separate decorative `StrokeTipOverlay` receives `getPlaybackTip(strokes, characterDrawingProgress(progress))` and the canvas's exact CSS square `{ left, top, size }`. The tip shares stroke interpolation, hides on pen lifts and completion, and is disabled for reduced motion or hidden content. It cannot intercept input or alter strokes. This is a contact cursor; precise articulated hand motion from a full-body sprite remains deferred. Playback state stays inside `WindowCanvas`, so points do not rerender the application or dispatch reducer events. The only timed game transitions remain `BREATH_DONE` and `PLAYBACK_DONE`.
 
 ## Recognition boundary and failure recovery
 

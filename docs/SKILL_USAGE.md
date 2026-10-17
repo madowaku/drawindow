@@ -1,5 +1,20 @@
 # Skill scope and execution
 
+## v0.3 requested model routing
+
+Applied `dispatching-parallel-agents` for disjoint ownership and
+`hiro-frontend-qa` for responsive verification. Sol6.1/XHigh owned integration
+and design, Luna6/Max owned the typed poses/reactions and stroke-contact overlay,
+Astra6/Low performed the brief read-only screenshot review. Actual direct-child
+`turn_context` model/effort metadata was checked; see `model-receipt-v03.json`.
+Wrangler skill and the existing Wrangler configuration guide local API setup;
+no cloud deployment or secret upload is part of this change.
+
+The user-requested Playwright smoke checks used the already installed cached
+`playwright-core`1.59.1 and Chromium, with explicit normal/reduced motion. No new
+runtime dependency or permanent browser setting was added. Browser mouse/touch
+automation is separately reported from human drawing/device/playtest evidence.
+
 ## Character v0.2 update (2026-10-17)
 
 The user's explicit request to find and use a 2D character-animation plugin or

@@ -1,5 +1,28 @@
 # DRAWINDOW v0.2 visual QA
 
+## v0.3 current game integration
+
+P0 visual review passed. The newest local77-test/seven-pose base was preserved
+before integration; no source illustration was regenerated or overwritten.
+Reactions now derive only from phase/mode/round/motion preference. During play
+they cannot see score, intended noun, model guess or correctness. Front-facing
+eye anchors share one registered target. Title blink is cosmetic only.
+
+Actual mobile/tablet screenshots in `artifacts/qa/v03/` show crisp held/player
+ink above the character and fog, readable actions and distinct day/night mood.
+Astra6/Low inspected five screenshots and found no P0/P1 blocker. The small
+girl-side contact cursor identifies the current line endpoint; its underlying
+normal-motion interpolation and lift/end hiding also have automated browser
+and unit evidence. Accurate articulated hand/finger motion is deferred.
+
+All six combinations of360×800/720×1280/1280×720 and DAY/NIGHT completed five
+exchanges without play scrolling, missing images or browser errors. Review and
+results intentionally scroll and include a small decorative neutral/closing
+portrait. No result words or correctness cue appear during the five exchanges.
+Device comfort, unassisted comprehension and fun remain human playtest gates.
+
+The sections below describe the earlier v0.2 implementation and are historical.
+
 ## Current Shizuku Character Sheet v0.2 update
 
 Passed local visual/interaction review for the new character presentation.

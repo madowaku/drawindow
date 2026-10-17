@@ -38,6 +38,28 @@ function props(overrides: Partial<WindowCanvasProps> = {}): WindowCanvasProps {
   };
 }
 
+function installFrameClock() {
+  let currentTime = 0;
+  let nextId = 0;
+  const pending = new Map<number, FrameRequestCallback>();
+  vi.spyOn(performance, 'now').mockImplementation(() => currentTime);
+  vi.stubGlobal('requestAnimationFrame', vi.fn((callback: FrameRequestCallback) => {
+    const id = ++nextId;
+    pending.set(id, callback);
+    return id;
+  }));
+  vi.stubGlobal('cancelAnimationFrame', vi.fn((id: number) => pending.delete(id)));
+  return {
+    pending,
+    at(time: number) {
+      currentTime = time;
+      const frame = [...pending.entries()];
+      pending.clear();
+      act(() => frame.forEach(([, callback]) => callback(time)));
+    },
+  };
+}
+
 let originalContext: PropertyDescriptor | undefined;
 let originalCapture: PropertyDescriptor | undefined;
 let originalHasCapture: PropertyDescriptor | undefined;
@@ -141,5 +163,95 @@ describe('WindowCanvas input', () => {
     act(() => callbacks.shift()?.(16));
     expect(onBreathDone).toHaveBeenCalledTimes(1);
     expect(callbacks).toHaveLength(0);
+  });
+
+  it.each([{ mode: 'day', duration: 650 }, { mode: 'night', duration: 280 }] as const)('pauses normal $mode refog and completes once after resume, resize, and motion preference changes', ({ mode, duration }) => {
+    const clock = installFrameClock();
+    const hidden = vi.spyOn(document, 'hidden', 'get').mockReturnValue(false);
+    const onBreathDone = vi.fn();
+    const initial = props({ mode, phase: 'girl_breath', round: 2, onBreathDone });
+    const { rerender, unmount } = render(<WindowCanvas {...initial} />);
+    clock.at(100);
+    expect(onBreathDone).not.toHaveBeenCalled();
+    hidden.mockReturnValue(true);
+    act(() => document.dispatchEvent(new Event('visibilitychange')));
+    expect(clock.pending.size).toBe(0);
+    clock.at(20_000);
+    expect(onBreathDone).not.toHaveBeenCalled();
+    hidden.mockReturnValue(false);
+    act(() => document.dispatchEvent(new Event('visibilitychange')));
+    clock.at(20_000 + duration - 101);
+    expect(onBreathDone).not.toHaveBeenCalled();
+    clock.at(20_000 + duration - 100);
+    expect(onBreathDone).toHaveBeenCalledTimes(1);
+    expect(clock.pending.size).toBe(0);
+    act(() => window.dispatchEvent(new Event('resize')));
+    rerender(<WindowCanvas {...initial} reducedMotion />);
+    expect(clock.pending.size).toBe(0);
+    expect(onBreathDone).toHaveBeenCalledTimes(1);
+    unmount();
+    expect(clock.pending.size).toBe(0);
+  });
+
+  it.each(['girl_holding', 'player_drawing', 'recognizing', 'recognition_error'] as const)('keeps %s ink and does not start a timer after visibility changes', phase => {
+    const clock = installFrameClock();
+    const hidden = vi.spyOn(document, 'hidden', 'get').mockReturnValue(false);
+    const initial = props({ phase, strokes: [{ id: 'kept', points: [{ x: 0.3, y: 0.6, t: 0 }] }] });
+    render(<WindowCanvas {...initial} />);
+    expect(clock.pending.size).toBe(0);
+    hidden.mockReturnValue(true);
+    act(() => document.dispatchEvent(new Event('visibilitychange')));
+    hidden.mockReturnValue(false);
+    act(() => document.dispatchEvent(new Event('visibilitychange')));
+    clock.at(100_000);
+    expect(clock.pending.size).toBe(0);
+    expect(screen.getByTestId('window-drawing-canvas').getAttribute('data-has-strokes')).toBe('true');
+    expect(initial.onBreathDone).not.toHaveBeenCalled();
+    expect(initial.onPlaybackDone).not.toHaveBeenCalled();
+  });
+
+  it('cancels unfinished playback on unmount', () => {
+    const clock = installFrameClock();
+    const onPlaybackDone = vi.fn();
+    const { unmount } = render(<WindowCanvas {...props({ phase: 'girl_drawing', onPlaybackDone })} />);
+    expect(clock.pending.size).toBe(1);
+    unmount();
+    expect(clock.pending.size).toBe(0);
+    clock.at(2000);
+    expect(onPlaybackDone).not.toHaveBeenCalled();
+  });
+
+  it('uses the visible ink endpoint and the resized square for the girl contact cursor, hiding it on lifts and completion', () => {
+    const clock = installFrameClock();
+    let width = 320;
+    let height = 440;
+    vi.mocked(HTMLElement.prototype.getBoundingClientRect).mockImplementation(() => box(10, 20, width, height));
+    const strokes: Stroke[] = [
+      { id: 'first', points: [{ x: 0.1, y: 0.2, t: 0 }, { x: 0.5, y: 0.6, t: 400 }] },
+      { id: 'second', points: [{ x: 0.8, y: 0.3, t: 600 }, { x: 0.8, y: 0.9, t: 1000 }] },
+    ];
+    const onPlaybackDone = vi.fn();
+    render(<WindowCanvas {...props({ phase: 'girl_drawing', strokes, onPlaybackDone })} />);
+    expect(screen.queryByTestId('stroke-tip-overlay')).toBeNull();
+    // After the shared 14% hesitation, 31.2% of wall time exposes 20% of the ink.
+    clock.at(312);
+    let tip = screen.getByTestId('stroke-tip-overlay');
+    expect(parseFloat(tip.style.left)).toBeCloseTo(96);
+    expect(parseFloat(tip.style.top)).toBeCloseTo(248);
+    expect(tip.getAttribute('aria-hidden')).toBe('true');
+    width = 400;
+    height = 500;
+    act(() => window.dispatchEvent(new Event('resize')));
+    tip = screen.getByTestId('stroke-tip-overlay');
+    expect(parseFloat(tip.style.left)).toBeCloseTo(120);
+    expect(parseFloat(tip.style.top)).toBeCloseTo(260);
+    clock.at(570); // Ink time 500ms lies between the two recorded gestures.
+    expect(screen.queryByTestId('stroke-tip-overlay')).toBeNull();
+    clock.at(700);
+    expect(parseFloat(screen.getByTestId('stroke-tip-overlay').style.left)).toBeCloseTo(320);
+    clock.at(1000);
+    expect(screen.queryByTestId('stroke-tip-overlay')).toBeNull();
+    expect(onPlaybackDone).toHaveBeenCalledTimes(1);
+    expect(clock.pending.size).toBe(0);
   });
 });

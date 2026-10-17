@@ -1,5 +1,20 @@
 # Asset provenance
 
+## v0.3 in-game integration
+
+The seven existing transparent character WebPs are preserved byte-for-byte;
+no new character generation or paid animation provider was used. A typed
+manifest in `src/data/shizukuPoses.ts` records source path, measured eye anchor,
+fallback and the drawing pose's fingertip source anchor (128,256 / 384,512).
+Front-facing poses are translated toward one shared eye target; oriented poses
+use a short180ms transition. All seven source/processed hashes were rechecked.
+The reserved existing blink sprite is used as a rare title-only cosmetic blink.
+
+The small stroke-contact glow and sleeve cue are CSS decoration. Its center is
+the exact interpolated playback tip, mapped through the same drawing square;
+it disappears in pen lifts, at completion and with reduced motion. It is not a
+skeletal finger/hand rig. No stroke coordinates or inference image are changed.
+
 ## Character
 
 ### Current: Shizuku Character Sheet v0.2

@@ -1,5 +1,24 @@
 # Recognition setup and honest release status
 
+## v0.3 local connection status
+
+The actual game character integration passed its P0 DEMO gate (96 tests, build,
+three viewport sizes × DAY/NIGHT). A configured genuine key is still required
+for P1 provider tests. Private entry is available via `npm run setup:gemini`;
+`npm run check:gemini` reports only booleans. See
+[safe local setup](GEMINI_LOCAL_SETUP.md). The current local value failed the
+Google-key format check; its content was neither printed nor committed.
+
+Actual local Worker trusted OPTIONS returned204, and an untrusted-Origin POST
+was rejected403 before any provider call. These do not establish provider
+access or the actual itch iframe's CORS. Genuine LIVE/12human-doodle/Android/
+naive-player gates remain open. There is no deployment or provider substitution.
+
+The existing model `gemini-3.5-flash-lite` remains the configured choice; the
+[official stable model page](https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite)
+was rechecked2026-10-17 for image input and structured output. No new provider
+abstraction or model upgrade was necessary.
+
 The shipped default is **DEMO**. Its mock returns predetermined words based on round number, independently of the drawing. It exists to demonstrate five exchanges and the final reveal; demo link counts are illustrative and never a comparable score. No provider credentials were available during implementation, no live recognition benchmark has been run, and the implementation must not be advertised as validated AI recognition yet.
 
 ## Configuring the optional live API

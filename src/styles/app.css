@@ -78,6 +78,7 @@ h1,h2,.tagline { font-family:'Cormorant Garamond', Georgia, serif; font-weight:4
 .error-actions .primary,.error-actions .secondary { padding:10px 15px; min-height:44px; }
 .error-actions small { display:block; margin-top:8px; color:var(--muted); }
 .review-layout,.results-layout { max-width:740px; margin:auto; padding:42px 0 60px; }
+.session-portrait { container-type:inline-size; position:relative; width:104px; height:112px; margin:0 auto 22px; overflow:hidden; border:3px solid var(--panel); outline:1px solid var(--line); border-radius:52px 52px 4px 4px; pointer-events:none; }
 .section-intro { text-align:center; }
 .section-intro h1 { font-size:48px; line-height:1.05; margin-bottom:18px; letter-spacing:-.025em; }
 .section-intro > p:last-child { color:var(--muted); font-size:13px; line-height:1.7; margin-bottom:30px; }

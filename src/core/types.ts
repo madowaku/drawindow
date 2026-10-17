@@ -38,6 +38,8 @@ export interface GirlSketch {
 export interface WindowCanvasProps {
   mode: Mode;
   phase: GamePhase;
+  /** Cosmetic acting variation only; never target words or recognition output. */
+  round?: number;
   strokes: readonly Stroke[];
   onStrokesChange: (strokes: readonly Stroke[]) => void;
   onBreathDone: () => void;
