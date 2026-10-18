@@ -25,7 +25,7 @@ function doodle(id: string, word: string, readability: 'safe' | 'soft', paths: r
     strokes: createTimedStrokes(fullId, paths, 1200) };
 }
 
-/** A Japanese-first expansion: 40 drawable nouns, no change to English A–Z art. */
+/** A Japanese-first expansion: 41 drawable nouns, no change to English A–Z art. */
 export const japaneseDoodlePack: readonly GirlSketch[] = [
   // Sound coverage: previously missing え・せ・そ・ち・て・ぬ・ひ・ま・み・む・め・る・わ.
   doodle('enpitsu', 'えんぴつ', 'safe', [
@@ -283,4 +283,12 @@ export const japaneseDoodlePack: readonly GirlSketch[] = [
     line([.18,.30],[.50,.56],[.82,.30]),
     line([.18,.75],[.42,.51]), line([.82,.75],[.58,.51]),
   ]),
+  doodle('reizouko', 'れいぞうこ', 'soft', [
+    // Two-door refrigerator, inset door seals, distinct handles and feet.
+    rect(.27,.14,.73,.85), rect(.31,.19,.69,.81),
+    line([.31,.49],[.69,.49]), line([.62,.35],[.62,.45]),
+    line([.62,.54],[.62,.71]),
+    line([.34,.86],[.34,.92]), line([.65,.86],[.65,.92]),
+  ]),
+
 ];
