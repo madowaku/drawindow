@@ -76,7 +76,12 @@ describe('Japanese drawable-word expansion', () => {
     let state: GameState = gameReducer(createInitialState('day', 'ja'), { type: 'START', mode: 'day', sessionKind: 'api', sketches });
     expect(state.entries[0]?.intendedWord).toBe('かさ');
     for (const [round, guess] of ['ねぎ', 'てがみ', 'くじら', 'はな', 'さかな'].entries()) {
-      for (const type of ['BREATH_DONE', 'PLAYBACK_DONE', 'YOUR_TURN'] as const) state = gameReducer(state, { type });
+      for (const type of ['BREATH_DONE', 'PLAYBACK_DONE'] as const) state = gameReducer(state, { type });
+      if (state.phase === 'girl_notice') {
+        for (const phase of ['girl_notice','girl_flustered'] as const) state = gameReducer(state, {type:'GIRL_OOPS_BEAT_DONE',sessionId:state.sessionId,round:state.round,phase});
+        for (const type of ['BREATH_DONE','PLAYBACK_DONE'] as const) state = gameReducer(state,{type});
+      }
+      state = gameReducer(state,{type:'YOUR_TURN'});
       state = gameReducer(state, { type: 'STROKES_CHANGED', strokes: dummy });
       state = gameReducer(state, { type: 'DONE' });
       if (round < 4) {

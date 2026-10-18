@@ -206,3 +206,4 @@ h1,h2,.tagline { font-family:'Cormorant Garamond', Georgia, serif; font-weight:4
 html[lang="ja"] .app { font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
 html[lang="ja"] .wordmark, html[lang="ja"] .title-copy h1 { font-family:"Cormorant Garamond",serif; }
 html[lang="ja"] .title-rules, html[lang="ja"] .turn-status { line-height:1.85; }
+.girl-oops { display:block; margin-bottom:4px; font-family:var(--font-display,serif); font-size:22px; line-height:1.35; }

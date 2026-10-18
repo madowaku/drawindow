@@ -9,6 +9,8 @@ export type GamePhase =
   | 'girl_breath'
   | 'girl_drawing'
   | 'girl_holding'
+  | 'girl_notice'
+  | 'girl_flustered'
   | 'player_drawing'
   | 'recognizing'
   | 'recognition_error'
@@ -54,6 +56,8 @@ export interface DoodleCandidate extends GirlSketch {
 }
 
 export interface WindowCanvasProps {
+  /** Withdrawn girl drawing fades under the new breath, never player ink. */
+  previousStrokes?: readonly Stroke[];
   mode: Mode;
   phase: GamePhase;
   /** Cosmetic acting variation only; never target words or recognition output. */
@@ -133,6 +137,8 @@ export interface DrawingEntry {
   intendedWord: string | null;
   recognition: RecognitionResult | null;
   templateId?: string;
+  /** Withdrawn before the player turn; retained for an honest local record. */
+  falseStart?: GirlSketch;
   comparable: boolean;
   nonComparableReason?: NonComparableReason;
 }
@@ -151,6 +157,8 @@ export interface GameState {
   recognitionRequest: RecognitionRequest | null;
   error: GameError | null;
   recognitionAttempt: number;
+  girlCorrection?: GirlSketch | null;
+  girlSlipUsed?: boolean;
 }
 
 export type GameEvent =
@@ -160,6 +168,7 @@ export type GameEvent =
   | { type: 'BREATH_DONE' }
   | { type: 'PLAYBACK_DONE' }
   | { type: 'YOUR_TURN' }
+  | { type: 'GIRL_OOPS_BEAT_DONE'; sessionId: number; round: number; phase: 'girl_notice' | 'girl_flustered' }
   | { type: 'STROKES_CHANGED'; strokes: readonly Stroke[] }
   | { type: 'CLEAR' }
   | { type: 'UNDO' }

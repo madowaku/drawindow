@@ -68,10 +68,16 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
     // A finite beat on pose/phase entry, not on every stroke sample or UI render.
     const tilt = reaction.motion === 'watch' ? '-0.25' : '0';
     const scale = reaction.motion === 'watch' ? (mode === 'day' ? '1.006' : '1.003') : reaction.motion === 'breath' && mode === 'day' ? '1.018' : '1';
-    const animation = target.animate([
+    const frames = reaction.motion === 'fluster' ? [
+      { transform: 'translateX(0px) rotate(0deg)' },
+      { transform: 'translateX(-2px) rotate(-1deg)', offset: .25 },
+      { transform: 'translateX(2px) rotate(.7deg)', offset: .55 },
+      { transform: 'translateX(0px) rotate(-.4deg)' },
+    ] : [
       { transform: 'translateY(0px) rotate(0deg) scale(1)' },
       { transform: `translateY(-${reaction.leanPx}px) rotate(${tilt}deg) scale(${scale})` },
-    ], { duration: reaction.durationMs, easing: 'ease-out', fill: 'both' });
+    ];
+    const animation = target.animate(frames, { duration: reaction.durationMs, easing: 'ease-out', fill: 'both' });
     animationRef.current = animation;
     if (!runningRef.current) animation.pause();
     return () => { animation.cancel(); animationRef.current = null; };

@@ -1,5 +1,5 @@
 import type { DrawingEntry, GameError, GameEvent, GameState, GirlSketch, Language, RecognitionErrorCode, RecognitionRequest, RecognitionResult, Stroke, StrokePoint } from './types';
-import { lastLetter, normalizeWord, selectGirlSketch, selectJapaneseFreshSketch } from './words';
+import { lastLetter, normalizeWord, selectGirlSketch, selectJapaneseFreshSketch, selectJapaneseSlip } from './words';
 
 const MAX_ATTEMPTS = 3; // Original request plus two deliberate retries.
 
@@ -46,7 +46,7 @@ export function selectPlayerEntries(state: GameState): DrawingEntry[] {
 }
 
 export function selectVisibleStrokes(state: GameState): readonly Stroke[] {
-  if (state.phase === 'girl_drawing' || state.phase === 'girl_holding') return state.entries.at(-1)?.strokes ?? [];
+  if (['girl_drawing', 'girl_holding', 'girl_notice', 'girl_flustered'].includes(state.phase)) return state.entries.at(-1)?.strokes ?? [];
   if (['player_drawing', 'recognizing', 'recognition_error'].includes(state.phase)) return state.activeStrokes;
   return [];
 }
@@ -67,7 +67,18 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
       return { ...next, entries: [girlEntry(next, first, 1)] };
     }
     case 'BREATH_DONE': return state.phase === 'girl_breath' ? { ...state, phase: 'girl_drawing' } : state;
-    case 'PLAYBACK_DONE': return state.phase === 'girl_drawing' ? { ...state, phase: 'girl_holding' } : state;
+    case 'PLAYBACK_DONE': return state.phase === 'girl_drawing'
+      ? { ...state, phase: state.girlCorrection ? 'girl_notice' : 'girl_holding' } : state;
+    case 'GIRL_OOPS_BEAT_DONE': {
+      if (event.sessionId !== state.sessionId || event.round !== state.round || event.phase !== state.phase || !state.girlCorrection) return state;
+      if (state.phase === 'girl_notice') return { ...state, phase: 'girl_flustered' };
+      if (state.phase !== 'girl_flustered') return state;
+      const previous = state.entries.at(-1)!;
+      const correction = girlEntry(state, state.girlCorrection, state.round, previous.chainRestart);
+      const falseStart = state.sketches.find(sketch => sketch.id === previous.templateId);
+      return { ...state, phase: 'girl_breath', girlCorrection: null,
+        entries: [...state.entries.slice(0, -1), { ...correction, falseStart }] };
+    }
     case 'YOUR_TURN': return state.phase === 'girl_holding' ? { ...state, phase: 'player_drawing', activeStrokes: [], error: null } : state;
     case 'STROKES_CHANGED': return state.phase === 'player_drawing' && validStrokes(event.strokes) ? { ...state, activeStrokes: copyStrokes(event.strokes) } : state;
     case 'CLEAR': return state.phase === 'player_drawing' ? { ...state, activeStrokes: [] } : state;
@@ -92,11 +103,17 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
       // easy-to-continue drawing, without claiming the broken link as connected.
       const sketch = chainRestart
         ? selectJapaneseFreshSketch(state.sketches, usedIds)
-        : selectGirlSketch(state.sketches, tail, usedIds, state.language, state.mode);
+        : selectGirlSketch(state.language === 'ja' ? state.sketches.filter(candidate => lastLetter(candidate.word, 'ja') !== 'ん') : state.sketches, tail, usedIds, state.language, state.mode);
       if (!sketch) return errorState(state, 'uncovered_letter', result);
       const entries = state.entries.map(entry => entry.id === state.recognitionRequest?.playerEntryId ? { ...entry, recognition: result } : entry);
       const round = state.round + 1;
-      return { ...state, entries: [...entries, girlEntry(state, sketch, round, chainRestart)], round, phase: 'girl_breath', activeStrokes: [], recognitionRequest: null, error: null };
+      // One eligible slip in a rotating three-round slot; never the starter or
+      // a response to the player's terminal-ん restart. Require a safe redraw.
+      const slip = state.language === 'ja' && !state.girlSlipUsed && !chainRestart &&
+        (state.sessionId + round) % 3 === 0 && lastLetter(sketch.word, 'ja') !== 'ん' &&
+        (!sketch.readability || sketch.readability === 'safe')
+        ? selectJapaneseSlip(state.sketches, tail, usedIds) : null;
+      return { ...state, entries: [...entries, girlEntry(state, slip ?? sketch, round, chainRestart)], girlCorrection: slip ? sketch : null, girlSlipUsed: state.girlSlipUsed || Boolean(slip), round, phase: 'girl_breath', activeStrokes: [], recognitionRequest: null, error: null };
     }
     case 'RETRY_RECOGNITION': {
       if (state.phase !== 'recognition_error' || !state.error?.retryable || !state.recognitionRequest) return state;

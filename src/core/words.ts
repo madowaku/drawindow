@@ -125,3 +125,12 @@ export function selectJapaneseFreshSketch(sketches: readonly GirlSketch[], usedT
     easyEndings.has(lastLetter(sketch.word, 'ja') ?? ''));
   return candidates.find(sketch => !usedTemplateIds.includes(sketch.id)) ?? candidates[0] ?? null;
 }
+
+/** A deliberate, occasional character slip. Only readable art with a genuinely
+ * matching starting sound can be drawn; the recognizer's guess never changes. */
+export function selectJapaneseSlip(sketches: readonly GirlSketch[], start: string, usedIds: readonly string[]): GirlSketch | null {
+  return sketches.filter(sketch => (!sketch.readability || sketch.readability === 'safe') &&
+    lastLetter(sketch.word, 'ja') === 'ん' && !usedIds.includes(sketch.id) &&
+    chainLettersMatch(start, firstLetter(sketch.word, 'ja'), 'ja'))
+    .sort((a,b) => Number(firstLetter(b.word, 'ja') === start) - Number(firstLetter(a.word, 'ja') === start))[0] ?? null;
+}

@@ -129,6 +129,7 @@ export function WindowCanvas({
   phase,
   round = 1,
   strokes,
+  previousStrokes,
   onStrokesChange,
   onBreathDone,
   onPlaybackDone,
@@ -443,6 +444,12 @@ export function WindowCanvas({
     }
 
     drawingContext.clearRect(0, 0, layout.size, layout.size);
+    if (phase === 'girl_breath' && previousStrokes?.length) {
+      drawingContext.save();
+      drawingContext.globalAlpha = 1 - eased(animationProgress);
+      drawStrokes(drawingContext, previousStrokes, layout.size, layout.size, { color: '#152a32', widthScale: .96 });
+      drawingContext.restore();
+    }
     if (phase !== 'girl_breath' && phase !== 'title' && visibleStrokes.length > 0) {
       if (tactile) drawWetEdges(drawingContext, visibleStrokes, layout.size, mode);
       else drawStrokes(drawingContext, visibleStrokes, layout.size, layout.size, {
@@ -452,7 +459,7 @@ export function WindowCanvas({
         edgeWidthScale: 0.002,
       });
     }
-  }, [layout, mode, phase, strokes, animationProgress, variant, glassStyle]);
+  }, [layout, mode, phase, strokes, previousStrokes, animationProgress, variant, glassStyle]);
 
   const drawingStyle = layout.size > 0 ? {
     width: `${layout.size}px`,
@@ -470,7 +477,7 @@ export function WindowCanvas({
 
   return (
     <div className="window-canvas" ref={rootRef} data-testid="window-canvas" data-mode={mode} data-variant={variant} data-glass-style={glassStyle} data-running={canvasVisible && !reducedMotion}>
-      {variant === 'glass' && <CharacterScene mode={mode} phase={phase} round={round} progress={animationProgress} reducedMotion={reducedMotion} hasPlayerMarks={phase === 'player_drawing' && strokes.some(stroke => stroke.points.length > 0)} />}
+      {variant === 'glass' && <CharacterScene frameOverride={phase === 'girl_breath' && previousStrokes?.length ? 'breath' : undefined} mode={mode} phase={phase} round={round} progress={animationProgress} reducedMotion={reducedMotion} hasPlayerMarks={phase === 'player_drawing' && strokes.some(stroke => stroke.points.length > 0)} />}
       <svg className="window-canvas__spiral" viewBox="0 0 40 40" aria-hidden="true"><path d="M 29 27 C 7 38 1 7 22 8 C 39 8 39 29 24 29 C 12 29 12 15 23 16 C 30 17 29 23 24 23" /></svg>
       <canvas className="window-canvas__fog" ref={fogCanvasRef} aria-hidden="true" />
       <canvas
