@@ -73,7 +73,7 @@ export function selectGirlSketch(
   const exact = playable.filter(sketch => firstLetter(sketch.word, language) === letter);
   const relaxed = playable.filter(sketch => chainLettersMatch(letter, firstLetter(sketch.word, language), language));
   const safe = (items: readonly GirlSketch[]) => items.filter(sketch => !sketch.readability || sketch.readability === 'safe');
-  const pool = safe(exact).length ? safe(exact) : exact.length ? exact : safe(relaxed).length ? safe(relaxed) : relaxed;
+  const pool = safe(exact).length ? safe(exact) : safe(relaxed).length ? safe(relaxed) : exact.length ? exact : relaxed;
   const byId = new Map(sketches.map(sketch => [sketch.id, normalizeWord(sketch.word, language)]));
   const recentWords = usedTemplateIds.map(id => byId.get(id));
   return [...pool].sort((a, b) =>
