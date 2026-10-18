@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { createInitialState, gameReducer } from './gameMachine';
 import { calculateScore } from './score';
-import { firstLetter, lastLetter, normalizeWord, selectGirlSketch } from './words';
+import { chainLettersMatch, firstLetter, lastLetter, normalizeWord, selectGirlSketch } from './words';
 import { girlSketches } from '../data/sketches';
-import { japaneseLabelByEnglish, localizeGirlSketches } from '../data/japaneseSketches';
+import { easyJapaneseStarters, japaneseLabelByEnglish, localizeGirlSketches, withJapaneseStarter } from '../data/japaneseSketches';
 import type { DrawingEntry, Stroke } from './types';
 
 const strokes: Stroke[] = [{ id: 'a', points: [{ x: .1, y: .1, t: 0 }, { x: .8, y: .8, t: 100 }] }];
@@ -50,6 +50,41 @@ describe('Japanese word boundaries', () => {
     expect(result).toMatchObject({ connectedCount: 8, knownPairCount: 9, bestChain: 6, perfect: false });
     expect(result.links[6].status).toBe('broken');
   });
+  it('accepts voiced and semi-voiced kana without loosening English rules', () => {
+    expect(chainLettersMatch('ご', 'こ', 'ja')).toBe(true);
+    expect(chainLettersMatch('ぎ', 'き', 'ja')).toBe(true);
+    expect(chainLettersMatch('ぱ', 'は', 'ja')).toBe(true);
+    expect(chainLettersMatch('ぷ', 'ぶ', 'ja')).toBe(true);
+    expect(chainLettersMatch('ご', 'か', 'ja')).toBe(false);
+    expect(chainLettersMatch('g', 'k', 'en')).toBe(false);
+    expect(chainLettersMatch('g', 'g', 'en')).toBe(true);
+    const localized = localizeGirlSketches(girlSketches, 'ja');
+    expect(firstLetter(selectGirlSketch(localized, 'ご', [], 'ja')?.word, 'ja')).toBe('こ');
+    expect(firstLetter(selectGirlSketch(localized, 'ぎ', [], 'ja')?.word, 'ja')).toBe('き');
+  });
+  it('rotates Japanese DAY and NIGHT starters through easy final sounds', () => {
+    const localized = localizeGirlSketches(girlSketches, 'ja');
+    expect(easyJapaneseStarters.day.length).toBeGreaterThan(3);
+    expect(withJapaneseStarter(localized, 'day', 0)[0].word).toBe('ねこ');
+    expect(withJapaneseStarter(localized, 'day', 1)[0].word).toBe('はな');
+    expect(withJapaneseStarter(localized, 'night', 0)[0].word).toBe('つき');
+    expect(withJapaneseStarter(localized, 'night', 1)[0].word).toBe('ほし');
+    expect(withJapaneseStarter(localized, 'day', 2)[0].word).toBe('すいか');
+    expect(withJapaneseStarter(localized, 'day', 0)).toHaveLength(localized.length);
+    expect(localized[0].word).toBe('りんご');
+  });
+  it('scores ご→こ and ぎ→き as connected in Japanese only', () => {
+    const entries: DrawingEntry[] = ['りんご', 'こま', 'まくら', 'らいおん', 'ねぎ', 'きのこ', 'こあら', 'らっぱ', 'はな', 'なす']
+      .map((intendedWord, index) => ({
+        id: String(index), actor: index % 2 ? 'player' : 'girl',
+        round: Math.floor(index / 2) + 1, strokes: [], intendedWord, recognition: null, comparable: true,
+      }));
+    const score = calculateScore(entries, 'api', 'ja');
+    expect(score.links[0].status).toBe('connected');
+    expect(score.links[4].status).toBe('connected');
+    expect(score.links[3].status).toBe('broken');
+    expect(score.links[7].status).toBe('connected');
+  });
   it('continues after the recognized object ends in ん with a fresh honest link', () => {
     const sketches = localizeGirlSketches(girlSketches, 'ja');
     let state = gameReducer(createInitialState('day', 'ja'), { type: 'START', mode: 'day', sessionKind: 'api', sketches });
@@ -61,6 +96,7 @@ describe('Japanese word boundaries', () => {
     expect(state.phase).toBe('girl_breath');
     expect(state.round).toBe(2);
     expect(state.entries.at(-1)?.chainRestart).toBe(true);
-    expect(state.entries.at(-1)?.intendedWord).toBe('りんご');
+    expect(state.entries.at(-1)?.intendedWord).not.toBe('りんご');
+    expect(state.entries.at(-1)?.intendedWord).not.toBeNull();
   });
 });
