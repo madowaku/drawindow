@@ -260,5 +260,89 @@ function polishedClassic(original: GirlSketch, index: number): GirlSketch {
 /** v0.6.1: candidate Shizuku hand-drawn variant of the 16 classics.
  * Approved legacy pictures and 41 original Japanese doodles remain unchanged.
  */
-export const japaneseClassicDoodles: readonly GirlSketch[] =
+export const japaneseClassicV02: readonly GirlSketch[] =
   japaneseClassicBefore.map(polishedClassic);
+
+/** Shape corrections, not extra decoration. Keep v02 intact for blind review.
+ * Authored vector candidates; SOFT stays SOFT until human review. */
+const revisedShapes: Readonly<Record<string, readonly Path[]>> = {
+  'ごりら': [
+    // Low crown, small ears, heavy shoulders and knuckles; no monkey tail.
+    line([.34,.38],[.32,.25],[.39,.15],[.53,.13],[.64,.21],[.67,.38]),
+    line([.33,.28],[.28,.27],[.27,.34],[.33,.36]),
+    line([.66,.28],[.71,.29],[.70,.36],[.66,.36]),
+    line([.35,.29],[.43,.27],[.49,.30],[.56,.27],[.63,.30]),
+    dot(.41,.33,.013), dot(.58,.33,.013),
+    ellipse(.50,.43,.135,.09), line([.47,.405],[.50,.39],[.54,.41]),
+    line([.45,.47],[.51,.48],[.56,.465]),
+    line([.33,.39],[.23,.43],[.16,.59],[.13,.79],[.20,.84],[.29,.82],[.33,.61]),
+    line([.66,.39],[.77,.45],[.85,.64],[.87,.80],[.80,.85],[.71,.82],[.67,.61]),
+    line([.35,.53],[.39,.67],[.58,.69],[.65,.54]),
+    line([.33,.68],[.34,.87],[.28,.90],[.44,.91],[.47,.77]),
+    line([.55,.77],[.58,.90],[.72,.89],[.66,.85],[.67,.69]),
+    line([.18,.78],[.19,.83]), line([.80,.79],[.79,.84]),
+  ],
+  'ちくわ': [
+    // One open cut end, parallel tube edges and a ragged grilled middle band.
+    ellipse(.34,.73,.135,.10), ellipse(.34,.73,.054,.041),
+    line([.22,.69],[.48,.23],[.54,.19],[.65,.20],[.72,.27],[.46,.77]),
+    line([.35,.46],[.39,.48],[.40,.52],[.45,.52],[.49,.57],[.57,.57]),
+    line([.43,.32],[.47,.35],[.51,.34],[.54,.39],[.60,.38],[.64,.43]),
+    line([.43,.40],[.46,.44]), line([.50,.43],[.53,.47]),
+    line([.50,.27],[.53,.24],[.61,.25]),
+  ],
+  'せみ': [
+    // Broad head, eyes at the sides, roof-folded wings instead of butterfly wings.
+    line([.34,.28],[.37,.22],[.61,.23],[.66,.30],[.61,.39],[.39,.38],[.34,.28]),
+    ellipse(.34,.28,.035,.04), ellipse(.66,.29,.034,.041),
+    line([.40,.40],[.38,.52],[.48,.58],[.61,.51],[.60,.40],[.40,.40]),
+    line([.39,.43],[.29,.63],[.30,.85],[.38,.88],[.49,.58]),
+    line([.61,.43],[.72,.64],[.69,.87],[.61,.89],[.50,.58]),
+    line([.43,.67],[.44,.79],[.50,.85],[.57,.79],[.57,.68]),
+    line([.44,.73],[.57,.73]), line([.46,.78],[.55,.78]),
+    line([.38,.51],[.34,.74],[.38,.70],[.43,.61]),
+    line([.62,.52],[.66,.76],[.61,.71],[.57,.62]),
+    line([.38,.43],[.26,.39],[.22,.32]), line([.62,.44],[.75,.40],[.79,.34]),
+    line([.34,.55],[.23,.56],[.18,.65]), line([.66,.56],[.78,.57],[.82,.65]),
+    line([.32,.68],[.24,.74],[.22,.82]), line([.70,.69],[.77,.75],[.79,.82]),
+  ],
+  'ねぎ': [
+    // Long narrow white shaft, hollow pointed leaves, tiny roots; no bulb.
+    line([.42,.84],[.44,.51],[.34,.18],[.39,.13],[.49,.44],[.51,.10],[.56,.12],
+      [.55,.47],[.69,.17],[.74,.20],[.57,.55],[.54,.85],[.42,.84]),
+    line([.45,.56],[.50,.61],[.56,.55]),
+    line([.44,.85],[.40,.91]), line([.48,.85],[.48,.94]),
+    line([.52,.85],[.57,.92]),
+  ],
+  'すずめ': [
+    // Compact body, short conical beak, cap boundary and one cheek patch.
+    line([.24,.60],[.27,.43],[.43,.38],[.47,.26],[.59,.21],[.70,.25],
+      [.75,.36],[.71,.49],[.72,.60],[.64,.73],[.47,.78],[.32,.73],[.24,.60]),
+    line([.74,.35],[.83,.39],[.74,.43]), dot(.67,.33,.014),
+    line([.48,.29],[.55,.32],[.64,.29],[.71,.30]),
+    ellipse(.63,.43,.028,.033), line([.60,.48],[.65,.53],[.71,.49]),
+    line([.43,.43],[.56,.51],[.53,.65],[.34,.63],[.43,.43]),
+    line([.38,.53],[.48,.57]),
+    line([.27,.61],[.12,.59],[.16,.71],[.33,.72]),
+    line([.44,.77],[.43,.87],[.36,.88]), line([.59,.76],[.61,.86],[.68,.85]),
+  ],
+  'あさがお': [
+    // Side-facing flared trumpet, small throat, winding stem and heart leaf.
+    line([.27,.22],[.35,.16],[.54,.17],[.64,.25],[.62,.37],[.52,.44],
+      [.34,.42],[.24,.33],[.27,.22]),
+    line([.25,.34],[.33,.53],[.47,.63],[.56,.53],[.64,.27]),
+    ellipse(.44,.30,.045,.035),
+    line([.28,.23],[.40,.28]), line([.55,.19],[.47,.28]),
+    line([.59,.37],[.48,.32]), line([.35,.40],[.41,.33]),
+    line([.47,.63],[.48,.76],[.45,.87],[.52,.92],[.61,.88],[.60,.82],[.55,.83]),
+    line([.48,.75],[.60,.67],[.63,.60],[.72,.62],[.78,.73],[.65,.81],[.60,.67]),
+    line([.61,.69],[.73,.73]),
+  ],
+};
+
+export const japaneseClassicDoodles: readonly GirlSketch[] = japaneseClassicV02.map((sketch, index) => {
+  const paths = revisedShapes[sketch.word];
+  if (!paths) return sketch;
+  const id = sketch.id.replace(/-v02$/, '-v03');
+  return { ...sketch, id, strokes: createTimedStrokes(id, shizukuLineFeel(paths, index + 1), 1200) };
+});
