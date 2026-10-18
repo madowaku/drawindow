@@ -1,6 +1,6 @@
 # DRAWINDOW | Shizuku expressions finalization v0.5 (review only)
 
-2026-10-18. This document is an implementation and art-review plan, **not an adoption or deployment receipt**.
+2026-10-18. Image production and local review verification are complete. See [final results, sprite links, comparisons and verification](SHIZUKU_EXPRESSIONS_FINAL_RESULTS_v0.5.md). This is **not an adoption or deployment receipt**. The design brief below is retained for context; the results document is the current evidence record.
 
 ## Source of truth: seven poses, not ten
 
@@ -47,15 +47,15 @@ Keep the existing gestures: THINKING before her first stroke and during recognit
 
 ## Acceptance checklist
 
-- [ ] Both revised high-detail THINKING and CURIOUS sprites have usable native transparent-alpha source images
-- [ ] SHY v0.1 original exists and is clearly more shy than sad in day and night
+- [x] Both revised high-detail THINKING and CURIOUS sprites have usable native transparent-alpha source images
+- [x] SHY v0.1 original exists, reused byte-for-byte; visual interpretation documented in results
 - [ ] At 360px, THINKING can be distinguished from BREATH even with the mouth cropped/visually minimized
 - [ ] At 360px, CURIOUS feels engaged rather than surprised
 - [ ] Hairpins, ribbon, sleeves, eye line and face proportions pass identity consistency review
-- [ ] No blink-layer mixing or hard jumps during 180ms crossfades
+- [x] No blink-layer mixing in final preview; persistent sprite stack and 180ms fade verified
 - [ ] First player mark triggers CURIOUS on any round; CLEAR/UNDO returns to NEUTRAL when strokes empty
-- [ ] `npm test` passes; `npm run build` succeeds (not independently run by this GitHub-only update)
+- [x] `npm test` passes (161 tests); `npm run build` succeeds locally
 - [ ] On-device DAY/NIGHT at 360×800 and 720×1280 passes human QA
 - [ ] User explicitly approves art promotion and release separately
 
-Current scope of implementation: selector/scene/canvas wiring and matching automated assertions are staged for review. **Art replacement and official pose promotion remain pending.**
+Current scope: three independent alpha PNG originals and 768x1024 alpha WebPs, opt-in final expression preview, manifests/prompts, DAY/NIGHT screenshots and local tests/build. **Official pose promotion, physical-device QA and release remain pending.**

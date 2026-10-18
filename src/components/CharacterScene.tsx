@@ -15,7 +15,7 @@ interface Props {
   frameOverride?: CharacterFrame;
   round?: number;
   hasPlayerMarks?: boolean;
-  artSet?: 'current' | 'candidate';
+  artSet?: 'current' | 'candidate' | 'final';
 }
 
 function recoverPoseImage(event: SyntheticEvent<HTMLImageElement>, fallbackId: ShizukuPose['fallback']): void {
@@ -96,7 +96,7 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
       <div className="character-scene__gesture" ref={gestureRef}>
         <div className="character-scene__breathing">
           {CHARACTER_FRAMES.filter(name => name !== 'blink').map(name => {
-            const pose = artSet === 'candidate' ? reviewPose(name) : SHIZUKU_POSES[name];
+            const pose = artSet !== 'current' ? reviewPose(name, artSet === 'final') : SHIZUKU_POSES[name];
             return <img
               key={name}
               className="character-scene__sprite"

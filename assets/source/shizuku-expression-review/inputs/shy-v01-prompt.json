@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-18",
+  "provider": "OpenAI built-in ImageGen",
+  "status": "Unapproved review only",
+  "editTarget": "assets/source/shizuku-v04/shy.png",
+  "identityReference": "assets/source/shizuku-v04/canonical-neutral.png",
+  "output": "assets/source/shizuku-v04/shy-refinement-v01.png",
+  "prompt": "Use case: identity-preserve. DRAWINDOW SHY micro revision v0.1. Image 1 shy.png is the EDIT TARGET (the existing unapproved SHY candidate). Image 2 canonical-neutral.png is identity reference only. Make only THREE tiny localized edits to image 1: (1) move the gaze slightly farther downward and subtly away from the viewer, keeping the same eyes, face shape, eyelid placement and head angle, so she avoids eye contact shyly; (2) make the tiny CLOSED mouth slightly hesitant and bashful, a very subtle uneven tentative lip line, not sad/pouting/upset and not a smile of success; (3) tighten the visible fingertips pinching/grasping the sleeve edge just a little, with small natural cloth tension at the pinch points. Do not add hands or fingers; keep anatomy natural, preserve existing hand locations and overall sleeve outlines. Communicate quiet embarrassment through gaze, mouth and fingertips, never stronger cheek blush or broad gestures. Keep EXACT same head size, head tilt, body proportions, face structure, iris colors, hair strands/silhouette, crossed silver hairpins, blue hair ribbon, neck bow, collar, ivory cardigan, button count/placement, shoulders, waist-up crop, watercolor pencil linework and colors as image 1. No leaning, no zoom, no silhouette redesign. Only the three local features may change. Keep original blush amount unchanged. Same native 1086x1448 portrait PNG canvas with genuine transparent alpha, translucent hair edges. No background, fog, lighting change, glass, text, frame, checkerboard, atlas. One edited sprite only; preserve all existing approved files."
+}
