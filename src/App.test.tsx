@@ -144,3 +144,23 @@ describe('Japanese UI playthrough', () => {
     expect(document.querySelector('main')?.getAttribute('data-language')).toBe('ja');
   });
 });
+
+describe('Japanese starter variety', () => {
+  it('does not begin with an apple, rotates openings, and persists across page reload', () => {
+    let current: GameState | undefined;
+    render(<App onStateChange={state => { current = state; }} />);
+    fireEvent.click(screen.getByRole('button', { name: '日本語' }));
+    fireEvent.click(screen.getByRole('button', { name: /デモで遊ぶ/ }));
+    expect(current?.entries[0].intendedWord).toBe('ねこ');
+    fireEvent.click(screen.getByRole('button', { name: '最初の画面へ' }));
+    fireEvent.click(screen.getByRole('button', { name: '最初に戻る' }));
+    fireEvent.click(screen.getByRole('button', { name: /デモで遊ぶ/ }));
+    expect(current?.entries[0].intendedWord).toBe('はな');
+    expect(localStorage.getItem('drawindow-ja-starter-sequence')).toBe('2');
+    cleanup();
+    current = undefined;
+    render(<App onStateChange={state => { current = state; }} />);
+    fireEvent.click(screen.getByRole('button', { name: /デモで遊ぶ/ }));
+    expect(current?.entries[0].intendedWord).toBe('すいか');
+  });
+});
