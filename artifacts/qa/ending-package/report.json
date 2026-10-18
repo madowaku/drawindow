@@ -6,9 +6,9 @@
     "syntheticDemo": true,
     "rounds": 5,
     "endingMusic": {
-      "time": 0.02322,
+      "time": 0.019987,
       "loop": false,
-      "src": "blob:http://localhost:5182/4d1dae2d-1785-4a7a-8fb9-3847f4831feb",
+      "src": "blob:http://localhost:5182/a974c7ca-ed7a-4c7c-bb88-96b391a4d26d",
       "duration": 162.966395
     },
     "noRestartBetweenActs": true,

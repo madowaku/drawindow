@@ -11,7 +11,7 @@ export function calculateScore(entries: readonly DrawingEntry[], sessionKind: Se
     const fromLetter = lastLetter(from?.intendedWord, language), toLetter = firstLetter(to?.intendedWord, language);
     return {
       index, fromEntryId: from?.id ?? null, toEntryId: to?.id ?? null, fromLetter, toLetter,
-      status: !fromLetter || !toLetter ? 'unknown' : !to?.chainRestart && chainLettersMatch(fromLetter, toLetter, language) ? 'connected' : 'broken',
+      status: !fromLetter || !toLetter ? 'unknown' : !to?.chainRestart && !(language === 'ja' && fromLetter === 'ん') && chainLettersMatch(fromLetter, toLetter, language) ? 'connected' : 'broken',
       comparable: sessionKind === 'api' && entryComparable(from) && entryComparable(to),
     };
   });

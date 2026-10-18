@@ -7,6 +7,7 @@ import type { DrawingRecognizer, GameState, Language, Mode, SessionKind } from '
 import { girlSketches } from './data/sketches';
 import { localizeGirlSketches, withJapaneseStarter } from './data/japaneseSketches';
 import { japaneseExtraSketches } from './data/japaneseExtraSketches';
+import { japaneseDoodlePack } from './data/japaneseDoodlePack';
 import { WindowCanvas } from './components/WindowCanvas';
 import { SketchThumbnail } from './components/SketchThumbnail';
 import { CharacterScene, characterArt } from './components/CharacterScene';
@@ -108,7 +109,7 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
     setIntentDrafts({});
     let sketches = localizeGirlSketches(girlSketches, state.language);
     if (state.language === 'ja') {
-      sketches = [...sketches, ...japaneseExtraSketches];
+      sketches = [...sketches, ...japaneseExtraSketches, ...japaneseDoodlePack];
       // Advance only on an actual Japanese START, never on render or language toggle.
       // Persisted index means a page reload does not go back to the same drawing.
       let startIndex = state.sessionId;

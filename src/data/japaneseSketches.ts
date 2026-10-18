@@ -36,8 +36,8 @@ export function localizeGirlSketches(sketches: readonly GirlSketch[], language: 
  * DAY and NIGHT have different opening pools without affecting English v0.4.
  */
 export const easyJapaneseStarters: Readonly<Record<Mode, readonly string[]>> = {
-  day: ['ねこ', 'はな', 'すいか', 'かさ', 'たこ', 'つき'],
-  night: ['つき', 'ほし', 'とけい', 'ねこ', 'はな', 'すいか'],
+  day: ['すいか', 'かさ', 'つき', 'ほし', 'ねこ', 'はな'],
+  night: ['つき', 'ほし', 'とけい', 'かさ', 'ねこ', 'すいか'],
 };
 
 export function withJapaneseStarter(sketches: readonly GirlSketch[], mode: Mode, startIndex: number): GirlSketch[] {

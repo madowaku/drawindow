@@ -5,12 +5,13 @@ const browser = await chromium.launch({ headless: true, executablePath: process.
 const base = process.env.DRAWINDOW_QA_URL ?? 'http://localhost:5181/';
 const folder = process.env.DRAWINDOW_QA_FOLDER ?? 'artifacts/qa/ending';
 const widths = process.env.DRAWINDOW_QA_GAME_ONLY ? [] : process.env.DRAWINDOW_QA_QUICK ? [[360,800]] : [[360,800],[720,1280],[1280,800]];
+const motions = process.env.DRAWINDOW_QA_REDUCED_ONLY ? [true] : [false, true];
 await mkdir(folder, { recursive: true });
 const report = { scope: 'Synthetic presentation fixtures + simulated five-exchange DEMO; no genuine recognition, human drawing, Android save or enjoyment evidence.', variants: [], scenarios: [], journey: null };
 const assert = (v, m) => { if (!v) throw new Error(m); };
 const metrics = page => page.evaluate(() => ({ overflow: document.documentElement.scrollWidth > innerWidth, missing: [...document.images].filter(i => !i.naturalWidth && !i.hidden).length, focus: document.activeElement?.tagName, controls: [...document.querySelectorAll('.ending button,.souvenir a,.souvenir label')].filter(e => e.getBoundingClientRect().height > 0).map(e => ({ text: e.textContent, height: e.getBoundingClientRect().height })), ink: [...document.querySelectorAll('.ending-diary canvas')].map(c => [...c.getContext('2d').getImageData(0, 0, c.width, c.height).data].filter((v, i) => i % 4 === 3 && v > 0).length) }));
 try {
-  for (const [width, height] of widths) for (const lang of ['en', 'ja']) for (const mode of ['day', 'night']) for (const reduced of [false, true]) {
+  for (const [width, height] of widths) for (const lang of ['en', 'ja']) for (const mode of ['day', 'night']) for (const reduced of motions) {
     const context = await browser.newContext({ viewport: { width, height }, reducedMotion: reduced ? 'reduce' : 'no-preference', acceptDownloads: true });
     const page = await context.newPage(); const errors = [], requests = [];
     page.on('pageerror', e => errors.push(e.message)); page.on('request', r => requests.push(r.url()));

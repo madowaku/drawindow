@@ -29,12 +29,42 @@ human recognition review and do not alter the English A–Z catalogue. The spoke
 is selected at session start and cannot change mid-session.
 
 Japanese sessions rotate among curated easy opening drawings. DAY begins with
-ねこ → はな → すいか → かさ → たこ → つき, NIGHT with
-つき → ほし → とけい → ねこ → はな → すいか. The index is saved locally
+すいか → かさ → つき → ほし → ねこ → はな, NIGHT with
+つき → ほし → とけい → かさ → ねこ → すいか. The index is saved locally
 so reloading the page does not always reset to the same starting drawing.
 English still starts with apple, unchanged.
 
-Some Japanese starting sounds are still not represented in the current drawing
+### Drawable-word expansion (v0.5.1)
+
+The original 64 sketches are unchanged. In addition to the first two Japanese
+templates (こま and こっぷ), `src/data/japaneseDoodlePack.ts` supplies **41
+hand-authored stroke illustrations**, for **107 total Japanese candidates**.
+
+Examples by exit utility:
+
+| Purpose | New playable Japanese words |
+| --- | --- |
+| Complete missing basic start kana | えんぴつ, せんす, そり, ちょうちょ, てぶくろ, ぬいぐるみ, ひこうき, まくら, みつばち, むしめがね, めがね, るーれっと, わに |
+| Recover common chains after voiced kana | こあら, きつね, かえる, くつ, さる, しんごう |
+| High-connectivity picture objects | たいこ, つくえ, とり, ねずみ, はさみ, ふね, ほうき, やま, ゆきだるま, らっぱ, りす, ろうそく |
+| More household / food silhouettes | おにぎり, けーき, すず, なべ, のこぎり, もも, ゆびわ, てがみ, れいぞうこ, ひまわり |
+
+`src/data/japaneseDoodlePack.test.ts` audits all **44 ordinary unvoiced
+hiragana starting sounds** as playable, and tests valid stroke bounds, unique
+IDs, both language contracts and five full exchanges. This is a **structural
+coverage metric**, not a claim that all pictures are identifiable by people.
+
+Selection in Japanese now prefers an equally eligible picture with at least
+one playable successor instead of one ending with ん, while retaining the
+SAFE-before-SOFT review tier. English selection remains unaffected.
+
+Developer-only review: run `npm run dev` and open
+`/?japanese-doodle-preview`. It initially hides word answers, allows
+revealing names, DAY/NIGHT visual checks, and can show the existing catalogue.
+Blind human trials are required before using maker SAFE judgements as reliable
+recognition scores.
+
+Some Japanese starting sounds outside the ordinary 44-kana set remain unrepresented in the current drawing
 library. If a recognized word ends in an uncovered sound (other than ん), the
 existing explicit error/retry/redraw/demo fallback remains. Do not secretly
 replace the genuine AI guess or pass an intended answer as a prompt hint.
