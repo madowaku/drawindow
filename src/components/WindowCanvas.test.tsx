@@ -47,6 +47,22 @@ it('reuses input capture on a neutral surface without mounting the character', (
   expect(onInputTypeChange).toHaveBeenCalledWith('touch');
 });
 
+it('changes character from neutral to curious at first player mark and back after clear', () => {
+  const firstMark: Stroke[] = [{ id: 'mark', points: [{ x: 0.2, y: 0.3, t: 0 }] }];
+  const { rerender } = render(<WindowCanvas {...props({ mode: 'day', phase: 'player_drawing', strokes: [] })} />);
+  expect(screen.getByTestId('character-scene').getAttribute('data-pose')).toBe('neutral');
+
+  rerender(<WindowCanvas {...props({ mode: 'day', phase: 'player_drawing', strokes: firstMark })} />);
+  expect(screen.getByTestId('character-scene').getAttribute('data-pose')).toBe('curious');
+
+  rerender(<WindowCanvas {...props({ mode: 'night', phase: 'player_drawing', strokes: firstMark, reducedMotion: true })} />);
+  expect(screen.getByTestId('character-scene').getAttribute('data-pose')).toBe('curious');
+  expect(screen.getByTestId('character-scene').getAttribute('data-running')).toBe('false');
+
+  rerender(<WindowCanvas {...props({ mode: 'night', phase: 'player_drawing', strokes: [] })} />);
+  expect(screen.getByTestId('character-scene').getAttribute('data-pose')).toBe('neutral');
+});
+
 it('keeps a captured finger stroke when another primary-marked pointer arrives', () => {
   const onStrokesChange = vi.fn();
   render(<WindowCanvas {...props({ onStrokesChange })} />);

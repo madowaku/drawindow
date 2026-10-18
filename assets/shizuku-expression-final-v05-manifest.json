@@ -1,0 +1,178 @@
+{
+  "version": "0.5-final-review",
+  "status": "UNAPPROVED; opt-in character preview only; no production promotion",
+  "provider": "OpenAI built-in ImageGen",
+  "provenance": "Two identity-preserving edits; SHY v0.1 reused without regeneration. Existing project original character only, no new third-party assets or license assignment.",
+  "processing": "Native PNG bytes preserved. Normalized PNG uses uniform scaling/translation only; no alpha removal, stretching, recoloring or facial fabrication. CURIOUS .93 scale offsets a measured generated face-size drift. All WebPs 768x1024 quality94 alphaQuality100; same anchor .502/.312 and renderScale1.28. DAY/NIGHT share bytes.",
+  "registration": {
+    "method": "Manual eye-socket midpoint and inter-eye distance; preserve gaze direction rather than recentering pupils",
+    "canonicalApprox": {
+      "midpoint": [
+        545,
+        451
+      ],
+      "distance": 192
+    },
+    "curiousBeforeApprox": {
+      "midpoint": [
+        507,
+        476
+      ],
+      "distance": 207
+    },
+    "curiousAfterApprox": {
+      "midpoint": [
+        545.5,
+        450.7
+      ],
+      "distance": 192.5
+    },
+    "tolerance": "Manual estimate, approximately 4 native px; no claim of subpixel anatomical identity"
+  },
+  "preserved": [
+    {
+      "filename": "assets/shizuku-manifest.json",
+      "sha256": "cffa6e25be486e73990ef780f8ce7999b4fade50eebd1e66d502534519ff9caa",
+      "verifiedEntries": 17
+    },
+    {
+      "filename": "assets/shizuku-v04-manifest.json",
+      "sha256": "d11e791d05b638c3b9663438f09092a8fbf46533ea4ee29552abb298ed10f7f9",
+      "verifiedEntries": 12
+    }
+  ],
+  "inputs": [
+    {
+      "filename": "assets/source/shizuku-expression-review/inputs/curious-initial-v05.png",
+      "sha256": "bcc31ff465eba6171d55c6290a8004e0ef8802a7586cffb96087f921153fb71a"
+    },
+    {
+      "filename": "assets/source/shizuku-expression-review/inputs/curious-v04.png",
+      "sha256": "61e0fcd238ad61d33eaf563800e81ea5a348d0f86c4af096e54ee2a95a60353d"
+    },
+    {
+      "filename": "assets/source/shizuku-expression-review/inputs/shy-v01-prompt.json",
+      "sha256": "b9ff3962c475209a1a76f94640e0accccb919f89bbe18805f7db4d1cc126b0b0"
+    },
+    {
+      "filename": "assets/source/shizuku-expression-review/inputs/shy-v04.png",
+      "sha256": "628385d54176764caeeeddb6f564a408bcf8df1603892bcf8b19e351b4ca2751"
+    },
+    {
+      "filename": "assets/source/shizuku-expression-review/inputs/thinking-v04.png",
+      "sha256": "fb427ed63db3c21b377ae8ced024b301b4c67e01a8d1c2dd18afab2ebdf79fba"
+    },
+    {
+      "filename": "assets/source/shizuku-v04/canonical-neutral.png",
+      "sha256": "75779c88d0ec8d9c8ba30f7896f63d02e1efb3b912d96c5656ecc975e8e5660f"
+    },
+    {
+      "filename": "docs/shizuku-expression-final-v05-prompts.json",
+      "sha256": "f57e5e2dcf77841fe20ec07f39399abb082257e6158fb12b1ea72f0f3fed6d60"
+    }
+  ],
+  "files": [
+    {
+      "pose": "thinking",
+      "source": "assets/source/shizuku-expression-review/thinking.png",
+      "sourceSha256": "16d7ce24077d32dc9dbb3c81997a3265bb3af394b642ba2375c6a669febeff69",
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "normalized": "assets/source/shizuku-expression-review/normalized/thinking.png",
+      "normalizedSha256": "d1358f8e0a71f170309c7e7b6b9a76b10a13c0e14e7057814acba9daf7a4ca21",
+      "transform": {
+        "scale": 1,
+        "left": 0,
+        "top": 0
+      },
+      "filename": "public/art/shizuku-expression-review/thinking.webp",
+      "sha256": "9c2d80b163076b6fa8146da11e999b8b77205194a3f1224ed39b08daab8eb2b9",
+      "bytes": 206776,
+      "width": 768,
+      "height": 1024,
+      "transparentPixels": 273809,
+      "softAlphaPixels": 512391,
+      "nearlyOpaquePixels": 484692,
+      "sideEdgePixels": 0,
+      "alpha16Bounds": [
+        63,
+        22,
+        743,
+        1023
+      ],
+      "anchor": {
+        "x": 0.502,
+        "y": 0.312
+      },
+      "renderScale": 1.28
+    },
+    {
+      "pose": "curious",
+      "source": "assets/source/shizuku-expression-review/curious.png",
+      "sourceSha256": "05c658277df55df81a206497873a9a31898cbb9030651443fe0923f723680e9f",
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "normalized": "assets/source/shizuku-expression-review/normalized/curious.png",
+      "normalizedSha256": "dfd1f2d638f36fab78e4e072fd4b09f36ac943af41a2cbf1770b0fce159aeb06",
+      "transform": {
+        "scale": 0.93,
+        "left": 74,
+        "top": 8
+      },
+      "filename": "public/art/shizuku-expression-review/curious.webp",
+      "sha256": "024eb895ce9702747d95b36fbf7502bb10f49178a837948a472b365a02d95330",
+      "bytes": 196438,
+      "width": 768,
+      "height": 1024,
+      "transparentPixels": 285459,
+      "softAlphaPixels": 499959,
+      "nearlyOpaquePixels": 477027,
+      "sideEdgePixels": 0,
+      "alpha16Bounds": [
+        86,
+        14,
+        762,
+        958
+      ],
+      "anchor": {
+        "x": 0.502,
+        "y": 0.312
+      },
+      "renderScale": 1.28
+    },
+    {
+      "pose": "shy",
+      "source": "assets/source/shizuku-expression-review/shy.png",
+      "sourceSha256": "4fda014dafe08eb3b8c834b530181d6d920ff65f27c4c2398b4f92b8f01955bb",
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "normalized": "assets/source/shizuku-expression-review/normalized/shy.png",
+      "normalizedSha256": "369a82b544fba8c6f9b659dcec3d75251df51b39cc3e5640ccf0d20d5b04f1d7",
+      "transform": {
+        "scale": 1,
+        "left": 0,
+        "top": 0
+      },
+      "filename": "public/art/shizuku-expression-review/shy.webp",
+      "sha256": "686c2b20ccc5e48b37453243e968227a0f6613e30f00b966adcb85bfe7b33bc9",
+      "bytes": 203254,
+      "width": 768,
+      "height": 1024,
+      "transparentPixels": 256199,
+      "softAlphaPixels": 529878,
+      "nearlyOpaquePixels": 504435,
+      "sideEdgePixels": 0,
+      "alpha16Bounds": [
+        67,
+        21,
+        763,
+        1023
+      ],
+      "anchor": {
+        "x": 0.502,
+        "y": 0.312
+      },
+      "renderScale": 1.28
+    }
+  ]
+}

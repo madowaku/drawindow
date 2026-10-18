@@ -13,6 +13,8 @@ export interface ShizukuReactionInput {
   round?: number;
   reducedMotion: boolean;
   progress?: number;
+  /** Whether the player has left any visible marks on the glass. Presentation only. */
+  hasPlayerMarks?: boolean;
 }
 
 export interface ShizukuReaction {
@@ -34,6 +36,7 @@ export function getShizukuReaction({
   round = 1,
   reducedMotion,
   progress = 1,
+  hasPlayerMarks = false,
 }: ShizukuReactionInput): ShizukuReaction {
   const safeRound = Number.isFinite(round) ? Math.max(1, Math.floor(round)) : 1;
   let pose: CharacterFrame = 'neutral';
@@ -52,9 +55,10 @@ export function getShizukuReaction({
       break;
     case 'girl_drawing':
       pose = progress < DRAWING_HESITATION ? 'thinking' : 'drawing';
-      motion = 'draw';
-      leanPx = 2;
-      durationMs = 600;
+      // Use the existing first 14% pause; begin the small hand/body gesture with ink.
+      motion = pose === 'thinking' ? 'think' : 'draw';
+      leanPx = pose === 'drawing' ? (mode === 'day' ? 2 : 1) : 0;
+      durationMs = pose === 'drawing' ? 600 : 0;
       break;
     case 'girl_holding':
       // This varies by exchange only; it never reads whether the guess was right.
@@ -62,10 +66,12 @@ export function getShizukuReaction({
       motion = 'hold';
       break;
     case 'player_drawing':
-      pose = safeRound % 2 === 1 ? 'curious' : 'neutral';
-      motion = 'watch';
-      leanPx = 2;
-      durationMs = 600;
+      // Watch the first visible marks, not the player's intent or the guess result.
+      // A quiet neutral pause becomes genuine interest as the player starts drawing.
+      pose = hasPlayerMarks ? 'curious' : 'neutral';
+      motion = hasPlayerMarks ? 'watch' : 'idle';
+      leanPx = hasPlayerMarks ? (mode === 'day' ? 2 : 1) : 0;
+      durationMs = hasPlayerMarks ? 600 : 0;
       break;
     case 'recognizing':
       pose = 'thinking';
@@ -80,8 +86,8 @@ export function getShizukuReaction({
       motion = 'review';
       break;
     case 'results':
-      // General closing tone, selected by exchange number rather than score.
-      pose = safeRound % 2 === 0 ? 'shy' : 'smile';
+      // One closing beat per session. Quiet NIGHT farewell, never correctness.
+      pose = mode === 'night' ? 'shy' : 'smile';
       motion = 'result';
       break;
   }

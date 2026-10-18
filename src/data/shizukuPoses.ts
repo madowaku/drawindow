@@ -24,6 +24,7 @@ export function characterArt(name: string): string {
 }
 
 /**
+ * v0.6 user final: all seven A sprites adopted for DAY/NIGHT; B is archive only.
  * The existing 384x512 transparent WebPs are preserved as authored. Eye anchors
  * were measured from the source sprites and normalized to the common 50%, 39.2%
  * scene target by CharacterScene. The tilted thinking pose keeps its gaze angle.

@@ -8,7 +8,7 @@ const assert=(v,m)=>{if(!v)throw new Error(m);};
 try {
   for(const [width,height] of [[360,800],[720,1280],[1280,720]]) for(const mode of ['day','night']) {
     const context=await browser.newContext({viewport:{width,height},deviceScaleFactor:width===360?2:1});const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
-    await page.goto('http://localhost:5173/?character-preview');
+    await page.goto('http://localhost:5173/?character-preview&archive-candidates');
     await page.getByRole('button',{name:mode.toUpperCase(),exact:true}).click();
     const samples=[];
     for(const pose of ['NEUTRAL','BREATH','DRAWING','SMILE','SHY','THINKING','CURIOUS']) {

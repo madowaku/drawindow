@@ -1,0 +1,386 @@
+{
+  "scope": "Chromium simulated viewports and shared game CharacterScene. No physical-device or independent human expression-recognition claim.",
+  "journeys": [
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "mode": "day",
+      "samples": [
+        {
+          "pose": "NEUTRAL",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-v04/neutral.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "BREATH",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-v04/breath.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.1%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "THINKING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-expression-review/thinking.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "CURIOUS",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-expression-review/curious.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "SHY",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-expression-review/shy.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "mode": "night",
+      "samples": [
+        {
+          "pose": "NEUTRAL",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-v04/neutral.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "BREATH",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-v04/breath.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.1%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "THINKING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-expression-review/thinking.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "CURIOUS",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-expression-review/curious.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "SHY",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-expression-review/shy.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "mode": "day",
+      "samples": [
+        {
+          "pose": "NEUTRAL",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-v04/neutral.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "BREATH",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-v04/breath.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.1%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "THINKING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-expression-review/thinking.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "CURIOUS",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-expression-review/curious.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "SHY",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-expression-review/shy.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "mode": "night",
+      "samples": [
+        {
+          "pose": "NEUTRAL",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-v04/neutral.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "BREATH",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-v04/breath.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.1%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "THINKING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-expression-review/thinking.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "CURIOUS",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-expression-review/curious.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        },
+        {
+          "pose": "SHY",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "./art/shizuku-expression-review/shy.webp",
+              "width": 768,
+              "height": 1024,
+              "transition": "0s",
+              "scale": "1.28",
+              "eyeX": "50.2%",
+              "eyeY": "31.2%"
+            }
+          ],
+          "blink": "false"
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "productionUnchanged": true
+}

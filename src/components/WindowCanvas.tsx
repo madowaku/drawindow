@@ -470,7 +470,7 @@ export function WindowCanvas({
 
   return (
     <div className="window-canvas" ref={rootRef} data-testid="window-canvas" data-mode={mode} data-variant={variant} data-glass-style={glassStyle} data-running={canvasVisible && !reducedMotion}>
-      {variant === 'glass' && <CharacterScene mode={mode} phase={phase} round={round} progress={animationProgress} reducedMotion={reducedMotion} />}
+      {variant === 'glass' && <CharacterScene mode={mode} phase={phase} round={round} progress={animationProgress} reducedMotion={reducedMotion} hasPlayerMarks={phase === 'player_drawing' && strokes.some(stroke => stroke.points.length > 0)} />}
       <svg className="window-canvas__spiral" viewBox="0 0 40 40" aria-hidden="true"><path d="M 29 27 C 7 38 1 7 22 8 C 39 8 39 29 24 29 C 12 29 12 15 23 16 C 30 17 29 23 24 23" /></svg>
       <canvas className="window-canvas__fog" ref={fogCanvasRef} aria-hidden="true" />
       <canvas

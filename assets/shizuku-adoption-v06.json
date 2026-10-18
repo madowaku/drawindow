@@ -1,0 +1,56 @@
+{
+  "version": "0.6",
+  "date": "2026-10-18",
+  "decision": "USER FINAL: A adopted for all seven poses in DAY and NIGHT. B v0.4/v0.5 not adopted; archive retained.",
+  "sharedDayNightSprites": true,
+  "regenerationPolicy": "Do not regenerate or upscale unless a concrete new issue is identified.",
+  "historicalManifests": [
+    "assets/shizuku-manifest.json",
+    "assets/shizuku-v04-manifest.json",
+    "assets/shizuku-expression-final-v05-manifest.json"
+  ],
+  "files": [
+    {
+      "pose": "neutral",
+      "filename": "public/art/shizuku/neutral.webp",
+      "sha256": "5b6148a7cd556b77caab373b54aaefa9d5ede166962032d3cbf79ed474a83ed7",
+      "bytes": 72198
+    },
+    {
+      "pose": "thinking",
+      "filename": "public/art/shizuku/thinking.webp",
+      "sha256": "65ffbfc5e446de7e88ea37b1b787d161c77c92da204d5ac20dad2886f89ddffd",
+      "bytes": 68770
+    },
+    {
+      "pose": "smile",
+      "filename": "public/art/shizuku/smile.webp",
+      "sha256": "b278c278fe4607e33d0cdac06157e4938923dc8a36f9086e5b0c2f9ccf6ddb82",
+      "bytes": 74356
+    },
+    {
+      "pose": "shy",
+      "filename": "public/art/shizuku/shy.webp",
+      "sha256": "ea3a44d0359232b07c007de52e78973a1008eb58c37b4c06b68004924fe480ed",
+      "bytes": 69388
+    },
+    {
+      "pose": "breath",
+      "filename": "public/art/shizuku/breath.webp",
+      "sha256": "918503aa0ace17ff6f06ed34b516e634dab66374d4cc1861421ae517cf457eb9",
+      "bytes": 73124
+    },
+    {
+      "pose": "curious",
+      "filename": "public/art/shizuku/curious.webp",
+      "sha256": "40be7fc7fd75f473430ad94a84ea076c043ccb6e81d3fff2dc8a6a3ddb963fd9",
+      "bytes": 79126
+    },
+    {
+      "pose": "drawing",
+      "filename": "public/art/shizuku/drawing.webp",
+      "sha256": "54ffbf02a4ae3aeec00a35fc0bc8b29ac53469a03300348d19d7b8939bf0952d",
+      "bytes": 78572
+    }
+  ]
+}

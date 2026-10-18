@@ -74,7 +74,7 @@
   user-select: none;
 }
 
-.character-scene[data-blink-enabled='true'][data-running='true'] .character-scene__blink {
+.character-scene[data-blink-enabled='true'] .character-scene__blink {
   animation: character-blink 7.4s linear infinite;
 }
 
@@ -99,8 +99,11 @@
 }
 
 .character-scene[data-running='false'] .character-scene__breathing {
-  animation: none;
+  animation-play-state: paused;
 }
+.character-scene[data-running='false'] .character-scene__blink { animation-play-state: paused; }
+
+.character-scene[data-reduced-motion='true'] .character-scene__breathing { animation: none; }
 
 @keyframes character-breathe {
   0%, 100% { transform: translateY(0) scaleY(1); }

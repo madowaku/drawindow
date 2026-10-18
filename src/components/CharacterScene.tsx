@@ -14,7 +14,8 @@ interface Props {
   reducedMotion: boolean;
   frameOverride?: CharacterFrame;
   round?: number;
-  artSet?: 'current' | 'candidate';
+  hasPlayerMarks?: boolean;
+  artSet?: 'current' | 'candidate' | 'final';
 }
 
 function recoverPoseImage(event: SyntheticEvent<HTMLImageElement>, fallbackId: ShizukuPose['fallback']): void {
@@ -38,11 +39,14 @@ function hideFailedRoom(event: SyntheticEvent<HTMLImageElement>): void {
 }
 
 /** Pose sprites + browser-native phase gestures. Glass and ink live outside this component. */
-export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1, artSet = 'current' }: Props) {
+export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1, hasPlayerMarks = false, artSet = 'current' }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const gestureRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<Animation | null>(null);
   const [running, setRunning] = useState(true);
-  const reaction = getShizukuReaction({ phase, mode, round, reducedMotion, progress });
+  const runningRef = useRef(running);
+  runningRef.current = running;
+  const reaction = getShizukuReaction({ phase, mode, round, reducedMotion, progress, hasPlayerMarks });
   const frame = frameOverride ?? reaction.pose;
 
   useEffect(() => {
@@ -60,16 +64,27 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
 
   useEffect(() => {
     const target = gestureRef.current;
-    if (reducedMotion || !target?.animate || !running || reaction.durationMs <= 0) return;
-    // One finite gesture per phase. Its timing is presentation-only and never advances the game.
+    if (reducedMotion || !target?.animate || reaction.durationMs <= 0) return;
+    // A finite beat on pose/phase entry, not on every stroke sample or UI render.
     const tilt = reaction.motion === 'watch' ? '-0.25' : '0';
-    const scale = reaction.motion === 'breath' && mode === 'day' ? '1.018' : '1';
+    const scale = reaction.motion === 'watch' ? (mode === 'day' ? '1.006' : '1.003') : reaction.motion === 'breath' && mode === 'day' ? '1.018' : '1';
     const animation = target.animate([
       { transform: 'translateY(0px) rotate(0deg) scale(1)' },
       { transform: `translateY(-${reaction.leanPx}px) rotate(${tilt}deg) scale(${scale})` },
     ], { duration: reaction.durationMs, easing: 'ease-out', fill: 'both' });
-    return () => animation.cancel();
-  }, [mode, phase, reducedMotion, running, reaction.durationMs, reaction.leanPx, reaction.motion]);
+    animationRef.current = animation;
+    if (!runningRef.current) animation.pause();
+    return () => { animation.cancel(); animationRef.current = null; };
+  }, [mode, phase, reducedMotion, reaction.durationMs, reaction.leanPx, reaction.motion]);
+
+  useEffect(() => {
+    const animation = animationRef.current;
+    if (!animation) return;
+    // Preserve the gesture clock while hidden, instead of replaying on tab return.
+    // A finished gesture must also stay finished; play() would restart it.
+    if (!running && animation.playState !== 'finished') animation.pause();
+    else if (running && animation.playState === 'paused') animation.play();
+  }, [running]);
 
   const poseStyles = (pose: ShizukuPose): CSSProperties => ({
     '--pose-eye-x': `${pose.anchor.x * 100}%`,
@@ -95,7 +110,7 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
       <div className="character-scene__gesture" ref={gestureRef}>
         <div className="character-scene__breathing">
           {CHARACTER_FRAMES.filter(name => name !== 'blink').map(name => {
-            const pose = artSet === 'candidate' ? reviewPose(name) : SHIZUKU_POSES[name];
+            const pose = artSet !== 'current' ? reviewPose(name, artSet === 'final') : SHIZUKU_POSES[name];
             return <img
               key={name}
               className="character-scene__sprite"

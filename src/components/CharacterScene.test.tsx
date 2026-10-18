@@ -1,12 +1,12 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { SHIZUKU_POSES } from '../data/shizukuPoses';
 import { SHIZUKU_EYE_TARGET } from '../data/shizukuPoses';
 import { getShizukuReaction } from '../lib/character';
 import { CharacterScene } from './CharacterScene';
 
-afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); Reflect.deleteProperty(document, 'hidden'); });
+afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); Reflect.deleteProperty(document, 'hidden'); Reflect.deleteProperty(HTMLElement.prototype, 'animate'); });
 
 describe('character presentation lifecycle', () => {
   it('uses the seven alpha sprites across day/night and keeps the character name out of play', () => {
@@ -15,6 +15,8 @@ describe('character presentation lifecycle', () => {
     const sources = sprites.map(img => img.getAttribute('src'));
     expect(sprites).toHaveLength(7);
     expect(sources.every(source => source?.includes('/art/shizuku/'))).toBe(true);
+    expect(screen.getByTestId('character-scene').getAttribute('data-pose')).toBe('neutral');
+    rerender(<CharacterScene mode="day" phase="player_drawing" hasPlayerMarks reducedMotion={false} />);
     expect(screen.getByTestId('character-scene').getAttribute('data-pose')).toBe('curious');
     rerender(<CharacterScene mode="night" phase="player_drawing" reducedMotion={false} />);
     expect([...document.querySelectorAll('.character-scene__sprite')].map(img => img.getAttribute('src'))).toEqual(sources);
@@ -66,6 +68,69 @@ describe('character presentation lifecycle', () => {
     fireEvent(document, new Event('visibilitychange'));
     expect(screen.getByTestId('character-scene').getAttribute('data-running')).toBe('true');
     expect(screen.getByTestId('character-scene').getAttribute('data-blink-enabled')).toBe('true');
+  });
+
+  it('begins drawing motion with ink, keeps nodes through fades and does not react again to stroke/UI renders', () => {
+    const cancel = vi.fn();
+    const animate = vi.fn(() => ({ cancel, pause: vi.fn(), play: vi.fn(), playState: 'running' }));
+    Object.defineProperty(HTMLElement.prototype, 'animate', { configurable: true, value: animate });
+    const { rerender } = render(<CharacterScene mode="day" phase="girl_drawing" progress={0} reducedMotion={false} />);
+    const sprite = document.querySelector('.character-scene__sprite');
+    expect(animate).not.toHaveBeenCalled();
+    rerender(<CharacterScene mode="day" phase="girl_drawing" progress={.14} reducedMotion={false} />);
+    expect(animate).toHaveBeenCalledTimes(1);
+    rerender(<CharacterScene mode="day" phase="player_drawing" reducedMotion={false} />);
+    rerender(<CharacterScene mode="day" phase="player_drawing" hasPlayerMarks reducedMotion={false} />);
+    expect(animate).toHaveBeenCalledTimes(2);
+    rerender(<CharacterScene mode="day" phase="player_drawing" hasPlayerMarks progress={.8} reducedMotion={false} />);
+    expect(animate).toHaveBeenCalledTimes(2);
+    expect(document.querySelector('.character-scene__sprite')).toBe(sprite);
+    rerender(<CharacterScene mode="day" phase="player_drawing" reducedMotion={false} />);
+    expect(screen.getByTestId('character-scene').getAttribute('data-pose')).toBe('neutral');
+    expect(cancel).toHaveBeenCalledTimes(2);
+  });
+
+  it('pauses a hidden gesture and resumes its clock without replaying completed beats', () => {
+    const animation = { playState: 'running', cancel: vi.fn(), pause: vi.fn(() => { animation.playState = 'paused'; }), play: vi.fn(() => { animation.playState = 'running'; }) };
+    const animate = vi.fn(() => animation);
+    Object.defineProperty(HTMLElement.prototype, 'animate', { configurable: true, value: animate });
+    render(<CharacterScene mode="night" phase="player_drawing" hasPlayerMarks reducedMotion={false} />);
+    Object.defineProperty(document, 'hidden', { configurable: true, value: true });
+    fireEvent(document, new Event('visibilitychange'));
+    expect(animation.pause).toHaveBeenCalledTimes(1);
+    expect(animation.cancel).not.toHaveBeenCalled();
+    Object.defineProperty(document, 'hidden', { configurable: true, value: false });
+    fireEvent(document, new Event('visibilitychange'));
+    expect(animation.play).toHaveBeenCalledTimes(1);
+    animation.playState = 'finished';
+    Object.defineProperty(document, 'hidden', { configurable: true, value: true });
+    fireEvent(document, new Event('visibilitychange'));
+    Object.defineProperty(document, 'hidden', { configurable: true, value: false });
+    fireEvent(document, new Event('visibilitychange'));
+    expect(animation.play).toHaveBeenCalledTimes(1);
+    expect(animate).toHaveBeenCalledTimes(1);
+  });
+
+  it('pauses an offscreen portrait and disconnects its observer on unmount', () => {
+    let visibilityChanged: IntersectionObserverCallback;
+    const disconnect = vi.fn();
+    vi.stubGlobal('IntersectionObserver', class {
+      constructor(callback: IntersectionObserverCallback) { visibilityChanged = callback; }
+      observe() { /* Events are controlled below. */ }
+      disconnect = disconnect;
+    });
+    const animation = { playState: 'running', cancel: vi.fn(), pause: vi.fn(() => { animation.playState = 'paused'; }), play: vi.fn(() => { animation.playState = 'running'; }) };
+    const animate = vi.fn(() => animation);
+    Object.defineProperty(HTMLElement.prototype, 'animate', { configurable: true, value: animate });
+    const { unmount } = render(<CharacterScene mode="day" phase="player_drawing" hasPlayerMarks reducedMotion={false} />);
+    act(() => visibilityChanged([{ isIntersecting: false } as IntersectionObserverEntry], {} as IntersectionObserver));
+    expect(animation.pause).toHaveBeenCalledTimes(1);
+    act(() => visibilityChanged([{ isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver));
+    expect(animation.play).toHaveBeenCalledTimes(1);
+    expect(animate).toHaveBeenCalledTimes(1);
+    unmount();
+    expect(animation.cancel).toHaveBeenCalledTimes(1);
+    expect(disconnect).toHaveBeenCalledTimes(1);
   });
 
   it('disables the title blink with reduced motion', () => {
