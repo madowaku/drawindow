@@ -131,7 +131,7 @@ describe('Japanese worker contract', () => {
     } });
     const response = await worker.fetch(request({ requestId: '1:1:1', imageDataUrl, language: 'ja' }), env);
     expect(response.status).toBe(200);
-    expect((await response.json()).guess).toBe('ねこ');
+    expect((await response.json() as { guess?: string }).guess).toBe('ねこ');
     expect(prompt).toMatch(/ひらがな/);
   });
   it('rejects unknown language tags and kanji guesses', async () => {

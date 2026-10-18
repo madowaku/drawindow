@@ -1,4 +1,4 @@
-import type { GirlSketch, Language } from '../core/types';
+import type { GirlSketch, Language, Mode } from '../core/types';
 
 /** Reading labels for the existing 64 art candidates. No image data or attribution is changed. */
 export const japaneseLabelByEnglish: Readonly<Record<string, string>> = Object.freeze({
@@ -29,4 +29,24 @@ export function localizeGirlSketches(sketches: readonly GirlSketch[], language: 
     const word = japaneseLabelByEnglish[sketch.word];
     return word ? [{ ...sketch, word }] : [];
   });
+}
+
+/** Starter drawings whose final kana invite many recognizable, drawable replies.
+ * One chosen drawing is moved to the front; the full catalogue remains available.
+ * DAY and NIGHT have different opening pools without affecting English v0.4.
+ */
+export const easyJapaneseStarters: Readonly<Record<Mode, readonly string[]>> = {
+  day: ['ねこ', 'はな', 'すいか', 'かさ', 'たこ', 'つき'],
+  night: ['つき', 'ほし', 'とけい', 'ねこ', 'はな', 'すいか'],
+};
+
+export function withJapaneseStarter(sketches: readonly GirlSketch[], mode: Mode, startIndex: number): GirlSketch[] {
+  const choices = easyJapaneseStarters[mode].flatMap(word => {
+    const eligible = sketches.find(sketch => sketch.word === word && (!sketch.readability || sketch.readability === 'safe'));
+    return eligible ? [eligible] : [];
+  });
+  if (!choices.length) return [...sketches];
+  const index = Number.isSafeInteger(startIndex) && startIndex >= 0 ? startIndex % choices.length : 0;
+  const chosen = choices[index];
+  return [chosen, ...sketches.filter(sketch => sketch.id !== chosen.id)];
 }

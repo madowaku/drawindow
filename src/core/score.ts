@@ -1,5 +1,5 @@
 import type { DrawingEntry, ScoreLink, ScoreResult, SessionKind, Language } from './types';
-import { firstLetter, lastLetter } from './words';
+import { chainLettersMatch, firstLetter, lastLetter } from './words';
 
 export function calculateScore(entries: readonly DrawingEntry[], sessionKind: SessionKind = 'api', language: Language = 'en'): ScoreResult {
   const validSession = entries.length === 10 && entries.every((entry, index) =>
@@ -11,7 +11,7 @@ export function calculateScore(entries: readonly DrawingEntry[], sessionKind: Se
     const fromLetter = lastLetter(from?.intendedWord, language), toLetter = firstLetter(to?.intendedWord, language);
     return {
       index, fromEntryId: from?.id ?? null, toEntryId: to?.id ?? null, fromLetter, toLetter,
-      status: !fromLetter || !toLetter ? 'unknown' : !to?.chainRestart && fromLetter === toLetter ? 'connected' : 'broken',
+      status: !fromLetter || !toLetter ? 'unknown' : !to?.chainRestart && chainLettersMatch(fromLetter, toLetter, language) ? 'connected' : 'broken',
       comparable: sessionKind === 'api' && entryComparable(from) && entryComparable(to),
     };
   });

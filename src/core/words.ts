@@ -25,6 +25,24 @@ const vowelRows: readonly [string, string][] = [
 ];
 function kanaUnit(character: string): string { return smallKana[character] ?? character; }
 
+/** Friendly Japanese house rule: voiced/semi-voiced syllables share a base.
+ * Keep the visible kana unchanged: results can show ご → こ as connected.
+ */
+const unvoicedKana: Readonly<Record<string, string>> = {
+  'が': 'か', 'ぎ': 'き', 'ぐ': 'く', 'げ': 'け', 'ご': 'こ',
+  'ざ': 'さ', 'じ': 'し', 'ず': 'す', 'ぜ': 'せ', 'ぞ': 'そ',
+  'だ': 'た', 'ぢ': 'ち', 'づ': 'つ', 'で': 'て', 'ど': 'と',
+  'ば': 'は', 'び': 'ひ', 'ぶ': 'ふ', 'べ': 'へ', 'ぼ': 'ほ',
+  'ぱ': 'は', 'ぴ': 'ひ', 'ぷ': 'ふ', 'ぺ': 'へ', 'ぽ': 'ほ',
+  'ゔ': 'う',
+};
+export function chainLettersMatch(from: string | null, to: string | null, language: Language = 'en'): boolean {
+  if (!from || !to) return false;
+  if (language === 'en') return from === to;
+  const base = (kana: string) => unvoicedKana[kanaUnit(kana)] ?? kanaUnit(kana);
+  return base(from) === base(to);
+}
+
 export function firstLetter(value: unknown, language: Language = 'en'): string | null {
   const normalized = normalizeWord(value, language);
   return normalized ? (language === 'ja' ? kanaUnit(normalized[0]) : normalized[0]) : null;
@@ -50,13 +68,26 @@ export function selectGirlSketch(
 ): GirlSketch | null {
   const letter = normalizeWord(requiredFirstLetter, language);
   if (!letter || letter.length !== 1) return null;
-  const matches = sketches.filter(sketch => firstLetter(sketch.word, language) === letter &&
-    (!sketch.readability || sketch.readability === 'safe' || sketch.readability === 'soft'));
-  const safe = matches.filter(sketch => !sketch.readability || sketch.readability === 'safe');
-  const pool = safe.length ? safe : matches;
+  const playable = sketches.filter(sketch => !sketch.readability || sketch.readability === 'safe' || sketch.readability === 'soft');
+  // Exact phonetic start and SAFE drawings win. Only then allow ぎ→き, ご→こ etc.
+  const exact = playable.filter(sketch => firstLetter(sketch.word, language) === letter);
+  const relaxed = playable.filter(sketch => chainLettersMatch(letter, firstLetter(sketch.word, language), language));
+  const safe = (items: readonly GirlSketch[]) => items.filter(sketch => !sketch.readability || sketch.readability === 'safe');
+  const pool = safe(exact).length ? safe(exact) : safe(relaxed).length ? safe(relaxed) : exact.length ? exact : relaxed;
   const byId = new Map(sketches.map(sketch => [sketch.id, normalizeWord(sketch.word, language)]));
   const recentWords = usedTemplateIds.map(id => byId.get(id));
   return [...pool].sort((a, b) =>
     recentWords.lastIndexOf(normalizeWord(a.word, language)) - recentWords.lastIndexOf(normalizeWord(b.word, language)) ||
     usedTemplateIds.lastIndexOf(a.id) - usedTemplateIds.lastIndexOf(b.id))[0] ?? null;
+}
+
+/** After an honest terminal-ん break, draw a different easy-to-continue picture.
+ * All choices remain curated SAFE art; the broken link is still recorded.
+ */
+export function selectJapaneseFreshSketch(sketches: readonly GirlSketch[], usedTemplateIds: readonly string[]): GirlSketch | null {
+  const easyEndings = new Set(['こ', 'な', 'き', 'か', 'し', 'さ', 'ま', 'い', 'う']);
+  const candidates = sketches.filter(sketch =>
+    (!sketch.readability || sketch.readability === 'safe') &&
+    easyEndings.has(lastLetter(sketch.word, 'ja') ?? ''));
+  return candidates.find(sketch => !usedTemplateIds.includes(sketch.id)) ?? candidates[0] ?? null;
 }
