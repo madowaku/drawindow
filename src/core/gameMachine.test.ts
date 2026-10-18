@@ -10,6 +10,14 @@ const done = (s: GameState) => gameReducer(gameReducer(s, { type: 'STROKES_CHANG
 const succeed = (s: GameState, guess = 'cat') => gameReducer(s, { type: 'RECOGNITION_RESOLVED', requestId: s.recognitionRequest!.requestId, result: { guess, source: s.sessionKind === 'demo' ? 'mock' : 'api' } });
 
 describe('five silent exchanges', () => {
+  it('explains rate limiting without encouraging repeated immediate retries', () => {
+    const state = done(toDraw(start()));
+    const failed = gameReducer(state, { type: 'RECOGNITION_RESOLVED', requestId: state.recognitionRequest!.requestId, result: { guess: null, source: 'api', errorCode: 'rate_limit', error: 'unsafe provider detail' } });
+    expect(failed.error?.message).toMatch(/limit|quota/i);
+    expect(failed.error?.message).toMatch(/wait/i);
+    expect(failed.activeStrokes).toEqual(strokes);
+    expect(failed.sessionKind).toBe('api');
+  });
   it.each(['day', 'night'] as const)('produces exactly ten alternating entries in %s, without recognizing player five', mode => {
     let state = start(mode);
     let calls = 0;

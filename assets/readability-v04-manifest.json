@@ -1,0 +1,21 @@
+{
+  "version": "0.4-review",
+  "status": "Unadopted original candidate. Await 3-5 blind people before keep/replace decision.",
+  "production": {
+    "id": "qd-owl-5322965052817408",
+    "word": "owl",
+    "unchanged": true,
+    "provenance": "src/data/sketch-provenance.json; Google Quick Draw CC BY 4.0",
+    "catalogueSha256": "f51a5a438ffcfb7c41e2eefc646f379bbf0aa68214c34e51424a19f970430a15"
+  },
+  "candidate": {
+    "id": "girl-owl-review-v04-original",
+    "word": "owl",
+    "source": "src/dev/readabilityCandidates.ts",
+    "sourceSha256": "15deca83056c5e5c7cae589e0ece7985a580d2edcfb685d78807220db558a27c",
+    "provenance": "Original normalized stroke geometry authored for DRAWINDOW by Codex, no imported artwork; no new project license assigned.",
+    "features": "Uneven oval body, paired eye discs, triangular beak, wings, feet and perch; no written labels; 1400ms review-only playback."
+  },
+  "blindObservations": [],
+  "historicalEvidence": "Prior one-person LIVE DAY result remains 8/9; NICE intent unchanged. No new blind participants or recognition calls."
+}

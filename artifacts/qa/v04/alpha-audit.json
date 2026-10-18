@@ -1,0 +1,114 @@
+[
+  {
+    "set": "shizuku",
+    "pose": "neutral",
+    "width": 384,
+    "height": 512,
+    "transparentFraction": 0.22858683268229166,
+    "softFraction": 0.7714131673177084,
+    "opaqueFraction": 0,
+    "cornerAlpha": [
+      0,
+      0,
+      1
+    ]
+  },
+  {
+    "set": "shizuku",
+    "pose": "breath",
+    "width": 384,
+    "height": 512,
+    "transparentFraction": 0.16138203938802084,
+    "softFraction": 0.8386179606119791,
+    "opaqueFraction": 0,
+    "cornerAlpha": [
+      1,
+      1,
+      1
+    ]
+  },
+  {
+    "set": "shizuku",
+    "pose": "drawing",
+    "width": 384,
+    "height": 512,
+    "transparentFraction": 0.15403238932291666,
+    "softFraction": 0.8459676106770834,
+    "opaqueFraction": 0,
+    "cornerAlpha": [
+      1,
+      1,
+      1
+    ]
+  },
+  {
+    "set": "shizuku",
+    "pose": "smile",
+    "width": 384,
+    "height": 512,
+    "transparentFraction": 0.21625264485677084,
+    "softFraction": 0.7837473551432291,
+    "opaqueFraction": 0,
+    "cornerAlpha": [
+      0,
+      0,
+      2
+    ]
+  },
+  {
+    "set": "shizuku-v04",
+    "pose": "neutral",
+    "width": 768,
+    "height": 1024,
+    "transparentFraction": 0.3540802001953125,
+    "softFraction": 0.6452560424804688,
+    "opaqueFraction": 0.00066375732421875,
+    "cornerAlpha": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "set": "shizuku-v04",
+    "pose": "breath",
+    "width": 768,
+    "height": 1024,
+    "transparentFraction": 0.3274993896484375,
+    "softFraction": 0.6721356709798177,
+    "opaqueFraction": 0.0003649393717447917,
+    "cornerAlpha": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "set": "shizuku-v04",
+    "pose": "drawing",
+    "width": 768,
+    "height": 1024,
+    "transparentFraction": 0.2917073567708333,
+    "softFraction": 0.7079734802246094,
+    "opaqueFraction": 0.0003191630045572917,
+    "cornerAlpha": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "set": "shizuku-v04",
+    "pose": "smile",
+    "width": 768,
+    "height": 1024,
+    "transparentFraction": 0.331298828125,
+    "softFraction": 0.6682141621907552,
+    "opaqueFraction": 0.0004870096842447917,
+    "cornerAlpha": [
+      0,
+      0,
+      0
+    ]
+  }
+]

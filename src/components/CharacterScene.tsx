@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties, type SyntheticEvent } from 'react';
 import type { GamePhase, Mode } from '../core/types';
 import { SHIZUKU_POSES, characterArt, type ShizukuPose } from '../data/shizukuPoses';
+import { reviewPose } from '../data/shizukuCandidates';
 import { CHARACTER_FRAMES, getShizukuReaction, type CharacterFrame } from '../lib/character';
 import './CharacterScene.css';
 
@@ -13,6 +14,7 @@ interface Props {
   reducedMotion: boolean;
   frameOverride?: CharacterFrame;
   round?: number;
+  artSet?: 'current' | 'candidate';
 }
 
 function recoverPoseImage(event: SyntheticEvent<HTMLImageElement>, fallbackId: ShizukuPose['fallback']): void {
@@ -26,6 +28,7 @@ function recoverPoseImage(event: SyntheticEvent<HTMLImageElement>, fallbackId: S
   image.dataset.fallbackApplied = 'true';
   image.style.setProperty('--pose-eye-x', `${fallback.anchor.x * 100}%`);
   image.style.setProperty('--pose-eye-y', `${fallback.anchor.y * 100}%`);
+  image.style.setProperty('--pose-scale', '1');
   image.src = fallback.src;
 }
 
@@ -35,7 +38,7 @@ function hideFailedRoom(event: SyntheticEvent<HTMLImageElement>): void {
 }
 
 /** Pose sprites + browser-native phase gestures. Glass and ink live outside this component. */
-export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1 }: Props) {
+export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1, artSet = 'current' }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const gestureRef = useRef<HTMLDivElement>(null);
   const [running, setRunning] = useState(true);
@@ -71,6 +74,7 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
   const poseStyles = (pose: ShizukuPose): CSSProperties => ({
     '--pose-eye-x': `${pose.anchor.x * 100}%`,
     '--pose-eye-y': `${pose.anchor.y * 100}%`,
+    '--pose-scale': pose.renderScale ?? 1,
   } as CSSProperties);
 
   return <div
@@ -82,7 +86,8 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
     data-motion={reaction.motion}
     data-running={running && !reducedMotion}
     data-reduced-motion={reducedMotion}
-    data-blink-enabled={phase === 'title' && !reducedMotion}
+    data-blink-enabled={phase === 'title' && !reducedMotion && artSet === 'current'}
+    data-art-set={artSet}
     data-testid="character-scene"
   >
     <img className="character-scene__room" src={characterArt(`room-${mode}`)} alt="" draggable={false} onError={hideFailedRoom} />
@@ -90,7 +95,7 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
       <div className="character-scene__gesture" ref={gestureRef}>
         <div className="character-scene__breathing">
           {CHARACTER_FRAMES.filter(name => name !== 'blink').map(name => {
-            const pose = SHIZUKU_POSES[name];
+            const pose = artSet === 'candidate' ? reviewPose(name) : SHIZUKU_POSES[name];
             return <img
               key={name}
               className="character-scene__sprite"

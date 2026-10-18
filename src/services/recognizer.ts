@@ -6,6 +6,8 @@ export interface ApiRecognizerOptions {
   timeoutMs?: number;
   fetch?: typeof globalThis.fetch;
   imageRenderer?: (strokes: readonly Stroke[]) => string;
+  /** Safe transport metadata only. Never expose provider bodies or headers. */
+  onResponse?: (metadata: { httpStatus: number; retryAfterMs: number | null }) => void;
 }
 
 export interface RecognitionRunnerOptions {
@@ -65,7 +67,10 @@ export function createApiRecognizer(options: ApiRecognizerOptions = {}): Drawing
               method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal,
               body: JSON.stringify({ requestId: input.requestId, imageDataUrl }),
             });
-            if (!response.ok) return failure(response.status === 429 ? 'rate_limit' : response.status === 504 ? 'timeout' : response.status === 400 || response.status === 413 || response.status === 415 ? 'invalid_input' : 'unavailable');
+            const retryAfter = response.headers.get('Retry-After');
+            const retryAfterMs = retryAfter === null ? null : /^\d+$/.test(retryAfter) ? Number(retryAfter) * 1000 : Date.parse(retryAfter) - Date.now();
+            options.onResponse?.({ httpStatus: response.status, retryAfterMs: retryAfterMs !== null && Number.isFinite(retryAfterMs) ? Math.max(0, retryAfterMs) : null });
+            if (!response.ok) return failure(response.status === 429 ? 'rate_limit' : response.status === 504 ? 'timeout' : response.status === 502 ? 'invalid_response' : response.status === 400 || response.status === 413 || response.status === 415 ? 'invalid_input' : 'unavailable');
             const data: unknown = await response.json();
             if (!data || typeof data !== 'object') return failure('invalid_response');
             const result = data as Partial<RecognitionResult>;

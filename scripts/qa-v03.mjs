@@ -6,7 +6,7 @@ const { chromium } = await import(playwrightModule ? pathToFileURL(playwrightMod
 const base = process.env.DRAWINDOW_QA_URL ?? 'http://localhost:5173/';
 const folder = process.env.DRAWINDOW_QA_FOLDER ?? 'artifacts/qa/v03';
 await mkdir(folder, { recursive:true });
-const browser = await chromium.launch({ headless:true });
+const browser = await chromium.launch({ headless:true, ...(process.env.DRAWINDOW_BROWSER_EXECUTABLE ? { executablePath: process.env.DRAWINDOW_BROWSER_EXECUTABLE } : {}) });
 const report = { scope:'Automated Chromium mouse/touch simulation and explicit DEMO. Not human playtest, Android hardware or genuine recognition.', base, journeys:[] };
 const selectedWidths = process.env.DRAWINDOW_QA_WIDTHS?.split(',').map(Number);
 if (selectedWidths) {

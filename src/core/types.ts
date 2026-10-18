@@ -46,6 +46,11 @@ export interface WindowCanvasProps {
   onPlaybackDone: () => void;
   reducedMotion: boolean;
   expression?: GirlExpression;
+  /** Neutral developer canvas still uses the production stroke/pointer pipeline. */
+  variant?: 'glass' | 'neutral';
+  /** Cosmetic A/B selection. Does not affect recorded geometry or inference. */
+  glassStyle?: 'tactile' | 'legacy';
+  onInputTypeChange?: (type: 'mouse' | 'touch' | 'pen' | 'keyboard') => void;
 }
 
 export type RecognitionSource = 'api' | 'mock';

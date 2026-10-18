@@ -88,6 +88,15 @@ describe('character presentation lifecycle', () => {
     fireEvent.error(room);
     expect(room.hidden).toBe(true);
   });
+  it('recovers a missing review candidate to the original neutral without enabling the old blink',()=>{
+    render(<CharacterScene mode="day" phase="title" reducedMotion={false} artSet="candidate" />);
+    const active=document.querySelector<HTMLImageElement>('.character-scene__sprite[data-active="true"]')!;
+    expect(active.src).toContain('/art/shizuku-v04/neutral.webp');
+    expect(screen.getByTestId('character-scene').getAttribute('data-blink-enabled')).toBe('false');
+    fireEvent.error(active);
+    expect(active.getAttribute('src')).toBe(SHIZUKU_POSES.neutral.src);
+    expect(active.hidden).toBe(false);
+  });
 
   it('registers source eye anchors against one common eye target at rendered CSS scale', () => {
     render(<CharacterScene mode="day" phase="title" reducedMotion />);

@@ -49,7 +49,8 @@
   height: 100%;
   object-fit: contain;
   object-position: top left;
-  transform: translate(calc(50% - var(--pose-eye-x)), calc(39.2% - var(--pose-eye-y)));
+  transform-origin: var(--pose-eye-x) var(--pose-eye-y);
+  transform: translate(calc(50% - var(--pose-eye-x)), calc(39.2% - var(--pose-eye-y))) scale(var(--pose-scale, 1));
   opacity: 0;
   transition: opacity 180ms ease;
   user-select: none;

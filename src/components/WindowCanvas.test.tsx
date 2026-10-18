@@ -38,6 +38,38 @@ function props(overrides: Partial<WindowCanvasProps> = {}): WindowCanvasProps {
   };
 }
 
+it('reuses input capture on a neutral surface without mounting the character', () => {
+  const onInputTypeChange = vi.fn();
+  render(<WindowCanvas {...props({ variant: 'neutral', onInputTypeChange })} />);
+  expect(screen.queryByTestId('character-scene')).toBeNull();
+  expect(screen.getByTestId('window-canvas').getAttribute('data-variant')).toBe('neutral');
+  fireEvent(screen.getByTestId('window-drawing-canvas'), pointer('pointerdown', { pointerType: 'touch' }));
+  expect(onInputTypeChange).toHaveBeenCalledWith('touch');
+});
+
+it('keeps a captured finger stroke when another primary-marked pointer arrives', () => {
+  const onStrokesChange = vi.fn();
+  render(<WindowCanvas {...props({ onStrokesChange })} />);
+  const canvas=screen.getByTestId('window-drawing-canvas');
+  fireEvent(canvas,pointer('pointerdown',{pointerId:7,clientX:50,clientY:180}));
+  fireEvent(canvas,pointer('pointerdown',{pointerId:9,clientX:290,clientY:400}));
+  fireEvent(canvas,pointer('pointermove',{pointerId:7,clientX:110,clientY:220}));
+  fireEvent(canvas,pointer('pointerup',{pointerId:7,clientX:110,clientY:220}));
+  const result=onStrokesChange.mock.calls.at(-1)?.[0] as Stroke[];
+  expect(result).toHaveLength(1);
+  expect(result[0].points.at(-1)?.x).toBeCloseTo(.3125);
+  expect(document.querySelector('.window-canvas__finger')).toBeNull();
+});
+
+it('removes the contact cue immediately when pointer capture is lost', () => {
+  render(<WindowCanvas {...props()} />);
+  const canvas=screen.getByTestId('window-drawing-canvas');
+  fireEvent(canvas,pointer('pointerdown',{clientX:50,clientY:180}));
+  expect(document.querySelector('.window-canvas__finger')).toBeTruthy();
+  fireEvent(canvas,pointer('lostpointercapture'));
+  expect(document.querySelector('.window-canvas__finger')).toBeNull();
+});
+
 function installFrameClock() {
   let currentTime = 0;
   let nextId = 0;

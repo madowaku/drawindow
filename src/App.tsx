@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, ArrowCounterClockwise, Check, Eraser, Info, Moon, SpeakerHigh, SpeakerSlash, Sun, X } from '@phosphor-icons/react';
 import { createInitialState, gameReducer, selectCanFinishDrawing, selectPlayerEntries, selectVisibleStrokes } from './core/gameMachine';
 import { calculateScore } from './core/score';
-import type { Mode, SessionKind } from './core/types';
+import type { DrawingRecognizer, GameState, Mode, SessionKind } from './core/types';
 import { girlSketches } from './data/sketches';
 import { WindowCanvas } from './components/WindowCanvas';
 import { SketchThumbnail } from './components/SketchThumbnail';
@@ -29,7 +29,13 @@ function useReducedMotion() {
   return reduced;
 }
 
-export default function App() {
+export interface AppProps {
+  /** Optional local acceptance observer; production supplies neither prop. */
+  apiRecognizer?: DrawingRecognizer;
+  onStateChange?: (state: GameState) => void;
+}
+
+export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
   const liveApiConfigured = Boolean(import.meta.env.VITE_RECOGNITION_URL?.trim()) || import.meta.env.VITE_ENABLE_LIVE_API === 'true';
   const [state, dispatch] = useReducer(gameReducer, undefined, () => createInitialState(savedMode()));
   const { sound, toggleSound, playSound } = useGameAudio(musicForScene(state.phase, state.mode));
@@ -38,7 +44,7 @@ export default function App() {
   const [sessionChoice, setSessionChoice] = useState<SessionKind>('demo');
   const [intentDrafts, setIntentDrafts] = useState<Record<string, string>>({});
   const [runners] = useState(() => ({
-    api: createRecognitionRunner(createApiRecognizer({ endpoint: import.meta.env.VITE_RECOGNITION_URL || '/api/recognize', imageRenderer: renderDrawingDataUrl })),
+    api: createRecognitionRunner(apiRecognizer ?? createApiRecognizer({ endpoint: import.meta.env.VITE_RECOGNITION_URL || '/api/recognize', imageRenderer: renderDrawingDataUrl })),
     demo: createRecognitionRunner(createDemoRecognizer()),
   }));
   const reducedMotion = useReducedMotion();
@@ -46,6 +52,9 @@ export default function App() {
   const active = !['title', 'review_intents', 'results'].includes(state.phase);
   const players = selectPlayerEntries(state);
   const score = calculateScore(state.entries, state.sessionKind);
+
+  // Clear a completed developer record before painting the next session.
+  useLayoutEffect(() => { onStateChange?.(state); }, [state, onStateChange]);
 
   useEffect(() => {
     try { localStorage.setItem('drawindow-mode', state.mode); } catch { /* Private browser storage is optional. */ }
@@ -120,7 +129,7 @@ export default function App() {
       <div className={`window-surface phase-${state.phase}`}>
         <WindowCanvas mode={state.mode} phase={state.phase} round={state.round} strokes={selectVisibleStrokes(state)} onStrokesChange={strokes => dispatch({ type: 'STROKES_CHANGED', strokes })} onBreathDone={() => dispatch({ type: 'BREATH_DONE' })} onPlaybackDone={() => dispatch({ type: 'PLAYBACK_DONE' })} reducedMotion={reducedMotion} />
         <div className="glass-corner-label">{['player_drawing', 'recognizing', 'recognition_error'].includes(state.phase) ? 'your side' : 'her side'}</div>
-        {state.sessionKind === 'demo' && <span className="demo-badge">DEMO</span>}
+        <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : 'LIVE API'}</span>
       </div>
       <div className="play-footer">
         <div className="turn-status" aria-live="polite">
@@ -151,7 +160,7 @@ export default function App() {
       <div className="score-strip"><div><span>{state.sessionKind === 'demo' ? 'DEMO LINKS' : 'LINK SCORE'}</span><strong>{score.connectedCount}<small> / {score.knownPairCount}</small></strong><p>{score.knownPairCount} of 9 possible links known</p></div><div><span>BEST CHAIN</span><strong>{score.bestChain}<small>{score.bestChain === 1 ? ' link' : ' links'}</small></strong><p>Consecutive connected links</p></div></div>
       <ol className="chain-list">{state.entries.map((entry, index) => <li key={entry.id}>
         {index > 0 && <div className={`chain-link ${score.links[index - 1].status}`}><span>{score.links[index - 1].status === 'connected' ? 'CONNECTED' : score.links[index - 1].status === 'broken' ? 'A DIFFERENT DIRECTION' : 'UNKNOWN LINK'}</span><span>{score.links[index - 1].status !== 'unknown' ? `${score.links[index - 1].fromLetter?.toUpperCase()} → ${score.links[index - 1].toLetter?.toUpperCase()}` : 'An intention was left unnamed'}</span></div>}
-        <div className={`result-drawing actor-${entry.actor}`}><SketchThumbnail strokes={entry.strokes} label={`${entry.actor === 'girl' ? 'Her' : 'Your'} drawing: ${entry.intendedWord || 'unknown intention'}`} /><div><p className="eyebrow">{entry.actor === 'girl' ? 'SHE DREW' : 'YOU MEANT'} · {entry.round}</p><h2>{entry.intendedWord || 'Unknown'}</h2>{entry.actor === 'player' && <p className="interpretation">{entry.recognition?.guess ? <>{entry.recognition.source === 'mock' ? 'Demo interpretation' : 'She thought'}: <strong>{entry.recognition.guess}</strong></> : 'Her interpretation: unknown'}</p>}</div></div>
+        <div className={`result-drawing actor-${entry.actor}`}><SketchThumbnail strokes={entry.strokes} label={`${entry.actor === 'girl' ? 'Her' : 'Your'} drawing: ${entry.intendedWord || 'unknown intention'}`} /><div><p className="eyebrow">{entry.actor === 'girl' ? 'SHE DREW' : 'YOU MEANT'} · {entry.round}</p><h2>{entry.intendedWord || 'Unknown'}</h2>{entry.actor === 'player' && <p className="interpretation">{entry.recognition?.guess ? <>{entry.recognition.source === 'mock' ? 'Demo interpretation' : 'She thought'}: <strong>{entry.recognition.guess}</strong></> : entry.round === 5 ? 'Final drawing · not sent for recognition' : 'Her interpretation: unknown'}</p>}</div></div>
       </li>)}</ol>
       <div className="result-end"><p className="tagline">Perhaps we’ll see it differently next time.</p><button className="primary" onClick={start}>ANOTHER WINDOW<ArrowCounterClockwise size={20} /></button><button className="text-button" onClick={() => dispatch({ type: 'RETURN_TO_TITLE' })}>Back to the beginning</button></div>
     </section>}

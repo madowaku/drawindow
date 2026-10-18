@@ -15,6 +15,8 @@ export interface ShizukuPose {
   handTipAnchor?: PoseAnchor;
   fallback: ShizukuPoseId | 'hide';
   renderWidth?: number;
+  /** Review sprites may use one shared scale around their measured eye anchor. */
+  renderScale?: number;
 }
 
 export function characterArt(name: string): string {

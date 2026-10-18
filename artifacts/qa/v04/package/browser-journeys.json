@@ -1,0 +1,101 @@
+{
+  "scope": "Automated Chromium mouse/touch simulation and explicit DEMO. Not human playtest, Android hardware or genuine recognition.",
+  "base": "http://localhost:5174/",
+  "journeys": [
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "mode": "day",
+      "phases": [
+        "girl_breath",
+        "girl_drawing",
+        "girl_holding",
+        "player_drawing",
+        "recognizing",
+        "girl_breath",
+        "girl_drawing",
+        "girl_holding",
+        "player_drawing",
+        "recognizing",
+        "girl_breath",
+        "girl_drawing",
+        "girl_holding",
+        "player_drawing",
+        "recognizing",
+        "girl_breath",
+        "girl_drawing",
+        "girl_holding",
+        "player_drawing",
+        "recognizing",
+        "girl_breath",
+        "girl_drawing",
+        "girl_holding",
+        "player_drawing",
+        "review_intents",
+        "results"
+      ],
+      "breaths": 5,
+      "entries": 10,
+      "links": 9,
+      "normalMotion": true,
+      "cursor": {
+        "left": 34.9108,
+        "top": 306.438,
+        "pointerEvents": "none",
+        "inlineStyle": "left: 34.9108px; top: 306.438px; pointer-events: none;",
+        "connected": true
+      },
+      "errors": []
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "mode": "night",
+      "phases": [
+        "girl_breath",
+        "girl_drawing",
+        "girl_holding",
+        "player_drawing",
+        "recognizing",
+        "girl_breath",
+        "girl_drawing",
+        "girl_holding",
+        "player_drawing",
+        "recognizing",
+        "girl_breath",
+        "girl_drawing",
+        "girl_holding",
+        "player_drawing",
+        "recognizing",
+        "girl_breath",
+        "girl_drawing",
+        "girl_holding",
+        "player_drawing",
+        "recognizing",
+        "girl_breath",
+        "girl_drawing",
+        "girl_holding",
+        "player_drawing",
+        "review_intents",
+        "results"
+      ],
+      "breaths": 5,
+      "entries": 10,
+      "links": 9,
+      "normalMotion": true,
+      "cursor": {
+        "left": 231.535,
+        "top": 308.721,
+        "pointerEvents": "none",
+        "inlineStyle": "left: 231.535px; top: 308.721px; pointer-events: none;",
+        "connected": true
+      },
+      "errors": []
+    }
+  ],
+  "reducedMotionPassed": true
+}

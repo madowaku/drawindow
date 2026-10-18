@@ -18,8 +18,11 @@ describe('browser recognition boundary', () => {
     expect(sent).toEqual({ requestId: '1:1:1', imageDataUrl: image });
   });
   it.each([
+    [403, { errorCode: 'unavailable' }, 'unavailable'],
     [429, { error: 'rate_limit' }, 'rate_limit'],
+    [502, { errorCode: 'invalid_response' }, 'invalid_response'],
     [503, { errorCode: 'unavailable' }, 'unavailable'],
+    [504, { errorCode: 'timeout' }, 'timeout'],
     [200, { guess: 'cat', source: 'mock' }, 'invalid_response'],
     [200, { guess: 'I think a cat', source: 'api' }, 'invalid_response'],
     [200, { guess: null, source: 'api' }, 'invalid_response'],
@@ -35,6 +38,19 @@ describe('browser recognition boundary', () => {
     expect(await recognizer.recognize({ ...input, imageDataUrl: undefined })).toMatchObject({ guess: null, errorCode: 'invalid_input' });
     expect(calls).toBe(0);
     expect(await recognizer.recognize({ ...input, imageDataUrl: 'data:image/jpeg;base64,aGVsbG8=' })).toMatchObject({ guess: null, errorCode: 'invalid_input' });
+  });
+  it('preserves Worker abstention as invalid_response and reports only safe HTTP metadata', async () => {
+    const onResponse = vi.fn();
+    const result = await createApiRecognizer({ onResponse, fetch: async () => Response.json({ errorCode: 'invalid_response' }, { status: 502 }) }).recognize(input);
+    expect(result).toMatchObject({ guess: null, errorCode: 'invalid_response' });
+    expect(onResponse).toHaveBeenCalledWith({ httpStatus: 502, retryAfterMs: null });
+  });
+  it('reports Retry-After without resending a rate limited request', async () => {
+    const fetch = vi.fn(async () => Response.json({}, { status: 429, headers: { 'Retry-After': '75' } }));
+    const onResponse = vi.fn();
+    expect(await createApiRecognizer({ fetch, onResponse }).recognize(input)).toMatchObject({ errorCode: 'rate_limit' });
+    expect(onResponse).toHaveBeenCalledWith({ httpStatus: 429, retryAfterMs: 75000 });
+    expect(fetch).toHaveBeenCalledTimes(1);
   });
   it('times out even when a transport ignores AbortSignal', async () => {
     vi.useFakeTimers();

@@ -1,5 +1,20 @@
 # Asset provenance
 
+## v0.4 local review candidates
+
+Approved Shizuku assets and all supplied originals remain unchanged. Four new
+review-only portraits (neutral, breath, drawing, smile) are derived with the
+built-in ImageGen tool from the supplied neutral and formal character sheet.
+Each native source is 1086×1448, downsampled to 768×1024 alpha WebP. The game keeps
+the approved sprites. The canonical master, rejected matched atlas study,
+sources, exact prompts, processing and hashes are recorded in
+`assets/shizuku-v04-manifest.json`, `docs/shizuku-v04-imagegen-prompts.json` and
+`docs/SHIZUKU_QUALITY_v0.4.md`. No additional third-party artwork or license
+assignment is introduced. The original OWL catalogue sample is unchanged; an
+original review-only stroke candidate and its source hash are recorded in
+`assets/readability-v04-manifest.json`. Owner approval and blind observations
+remain separate from alpha/hash/browser checks.
+
 ## v0.3 in-game integration
 
 The seven existing transparent character WebPs are preserved byte-for-byte;
