@@ -69,6 +69,62 @@ library. If a recognized word ends in an uncovered sound (other than ん), the
 existing explicit error/retry/redraw/demo fallback remains. Do not secretly
 replace the genuine AI guess or pass an intended answer as a prompt hint.
 
+
+### v0.6: Common picture-shiritori word pack (16)
+
+`src/data/japaneseClassicDoodles.ts` adds **16 original, monochrome,
+hand-authored vector doodles**, separate from the original English art:
+
+| Word | Visual clue | Review tier |
+| --- | --- | --- |
+| ごりら | big forearms, broad muzzle | SOFT: may look like a monkey |
+| ぱいなっぷる | spiky crown and diamond fruit pattern | SAFE (provisional) |
+| かめ | turtle shell, head and four feet | SAFE (provisional) |
+| うちわ | flat round paddle with handle | SAFE (provisional) |
+| とんぼ | 4 wings and segmented long body | SAFE (provisional) |
+| こうもり | scalloped wings and pointed ears | SAFE (provisional) |
+| ちくわ | hollow diagonally drawn fish-paste tube | SOFT: bread/roll risk |
+| せみ | rounded insect and veined wings | SOFT: other insects |
+| かまきり | triangular head and hooked forelegs | SAFE (provisional) |
+| くわがた | branched jaws and beetle silhouette | SAFE (provisional) |
+| さそり | hooked raised tail and pincers | SAFE (provisional) |
+| ながぐつ | tall boot and separate sole | SAFE (provisional) |
+| ねぎ | tall split leaves and white stalk | SOFT: generic onion |
+| すずめ | round body, short beak and cheek | SOFT: generic bird |
+| まつぼっくり | scale pattern and pine-cone outline | SOFT |
+| あさがお | five-lobed trumpet flower and curling vine | SOFT: generic flower |
+
+These are candidate illustrations, not assertions that humans will recognize
+them. Correct visual identity matters more than forced full-kana coverage.
+No letters or written hints have been embedded in any sprite.
+
+**123 Japanese playable template candidates** now exist (64 localized original
+candidates + 2 Japanese-only initial drawings + 41 expanded drawings + 16
+classic drawings). Some candidate words repeat; this count describes
+illustrations, not unique nouns.
+
+Developer visual test: `npm run dev` then
+`http://localhost:5173/?japanese-doodle-preview`. The review gallery initially
+shows the **16 classic pictures with hidden words**; buttons can reveal names,
+switch DAY/NIGHT, filter by starting sound, or include the full catalogue.
+
+#### Blind-read acceptance protocol
+
+1. Show the new 16 illustrations one by one without labels. Ask 3–5 people
+   independently what object the drawing resembles (no hints or menus).
+2. Collect the raw first answer and plausible alternate names; do not reveal
+   labels or coach while they are answering.
+3. Record a per-word count, confusion pairs and the daylight/night window view.
+   SAFE is **not** an empirical label until this study is complete.
+4. Prioritize shape changes for low agreement, particularly ごりら vs さる,
+   すずめ vs とり, あさがお vs はな, and ちくわ vs bread.
+5. Check actual mouse/touch playback on 360×800 Android and validate four
+   real-model Japanese image recognitions (not just DEMO) across five exchanges.
+6. Keep the draft PR unmerged until the human playtest and visual sign-off.
+
+English mode does not import the 16 extra drawings, does not translate
+their labels, and retains the original opening/apple story.
+
 ## Recognition / privacy
 
 The browser sends `language: 'ja'` only for Japanese play. Omission is
