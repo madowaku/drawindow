@@ -1,5 +1,5 @@
 import type { DrawingEntry, GameError, GameEvent, GameState, GirlSketch, Language, RecognitionErrorCode, RecognitionRequest, RecognitionResult, Stroke, StrokePoint } from './types';
-import { firstLetter, lastLetter, normalizeWord, selectGirlSketch } from './words';
+import { lastLetter, normalizeWord, selectGirlSketch, selectJapaneseFreshSketch } from './words';
 
 const MAX_ATTEMPTS = 3; // Original request plus two deliberate retries.
 
@@ -88,10 +88,11 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
       const usedIds = state.entries.flatMap(e => e.templateId ? [e.templateId] : []);
       const tail = lastLetter(guess, state.language)!;
       const chainRestart = state.language === 'ja' && tail === 'ん';
-      // A terminal ん is a genuine broken link. Start a fresh picture without
-      // claiming a matching word or leaking the recognition into the game UI.
-      const required = chainRestart ? firstLetter(state.sketches[0]?.word, state.language)! : tail;
-      const sketch = selectGirlSketch(state.sketches, required, usedIds, state.language);
+      // A terminal ん is a genuine broken link. Restart with a different,
+      // easy-to-continue drawing, without claiming the broken link as connected.
+      const sketch = chainRestart
+        ? selectJapaneseFreshSketch(state.sketches, usedIds)
+        : selectGirlSketch(state.sketches, tail, usedIds, state.language);
       if (!sketch) return errorState(state, 'uncovered_letter', result);
       const entries = state.entries.map(entry => entry.id === state.recognitionRequest?.playerEntryId ? { ...entry, recognition: result } : entry);
       const round = state.round + 1;
