@@ -1,3 +1,4 @@
+import { japaneseEverydayDoodles } from './data/japaneseEverydayDoodles';
 import { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, ArrowCounterClockwise, Check, Eraser, Info, Moon, SpeakerHigh, SpeakerSlash, Sun, X } from '@phosphor-icons/react';
 import { createInitialState, gameReducer, selectCanFinishDrawing, selectPlayerEntries, selectVisibleStrokes } from './core/gameMachine';
@@ -110,7 +111,7 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
     setIntentDrafts({});
     let sketches = localizeGirlSketches(girlSketches, state.language);
     if (state.language === 'ja') {
-      sketches = [...sketches, ...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles];
+      sketches = [...sketches, ...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles, ...japaneseEverydayDoodles];
       // Advance only on an actual Japanese START, never on render or language toggle.
       // Persisted index means a page reload does not go back to the same drawing.
       let startIndex = state.sessionId;
