@@ -32,7 +32,7 @@ describe('Shizuku conversational reactions', () => {
       .toMatchObject({ pose: 'breath', leanPx: 0, durationMs: 0 });
   });
 
-  it('varies only on round number during turns, never on a guess or score', () => {
+  it('uses round context for holding and results, never a guess or score', () => {
     expect(getShizukuReaction({ phase: 'girl_holding', mode: 'day', round: 1, reducedMotion: false }).pose).toBe('neutral');
     expect(getShizukuReaction({ phase: 'girl_holding', mode: 'day', round: 2, reducedMotion: false }).pose).toBe('smile');
     expect(getShizukuReaction({ phase: 'player_drawing', mode: 'night', round: 1, reducedMotion: false }).pose).toBe('neutral');
