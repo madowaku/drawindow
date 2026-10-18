@@ -196,3 +196,13 @@ h1,h2,.tagline { font-family:'Cormorant Garamond', Georgia, serif; font-weight:4
 }
 @media(max-width:700px) and (max-height:760px) { .title-art { height:25dvh; }.title-layout { padding-top:14px; }.title-copy { padding-top:16px; }.title-copy h1 { font-size:52px; }.title-copy .tagline { margin-bottom:12px; }.title-start { margin-top:12px; } }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; } }
+
+
+/* v0.5: language is independent of the day/night atmosphere. */
+.language-picker { display:flex; justify-content:flex-end; gap:4px; margin:0 0 14px; }
+.language-picker button { border:1px solid var(--line); background:transparent; color:inherit; border-radius:3px; font-size:12px; min-height:36px; min-width:88px; padding:6px 12px; }
+.language-picker button[aria-pressed=true] { background:var(--soft); border-color:var(--line); font-weight:700; }
+.language-picker button:focus-visible { outline:2px solid currentColor; outline-offset:2px; }
+html[lang="ja"] .app { font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+html[lang="ja"] .wordmark, html[lang="ja"] .title-copy h1 { font-family:"Cormorant Garamond",serif; }
+html[lang="ja"] .title-rules, html[lang="ja"] .turn-status { line-height:1.85; }

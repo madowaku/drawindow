@@ -1,5 +1,6 @@
 /** Shared contract. Core state is deterministic; presentation must not reveal words in play. */
 export type Mode = 'day' | 'night';
+export type Language = 'en' | 'ja';
 export type SessionKind = 'api' | 'demo';
 export type GirlExpression = 'neutral' | 'thinking' | 'smile' | 'shy' | 'breath' | 'curious';
 
@@ -90,6 +91,8 @@ export interface RecognitionResult {
 
 export interface RecognitionInput {
   requestId: string;
+  /** English by default for v0.4 compatible callers. */
+  language?: Language;
   strokes: readonly Stroke[];
   /** Neutral black-on-white PNG; never a screenshot of the character/glass. */
   imageDataUrl?: string;
@@ -120,6 +123,8 @@ export type NonComparableReason = 'demo' | 'mock' | 'uncovered_letter';
 
 export interface DrawingEntry {
   id: string;
+  /** True if the Japanese chain had to restart after a final ん. */
+  chainRestart?: boolean;
   actor: 'girl' | 'player';
   /** 1..5, with the girl preceding the player in each exchange. */
   round: number;
@@ -133,6 +138,7 @@ export interface DrawingEntry {
 }
 
 export interface GameState {
+  language: Language;
   phase: GamePhase;
   mode: Mode;
   sessionKind: SessionKind;
@@ -149,6 +155,7 @@ export interface GameState {
 
 export type GameEvent =
   | { type: 'SET_MODE'; mode: Mode }
+  | { type: 'SET_LANGUAGE'; language: Language }
   | { type: 'START'; mode: Mode; sessionKind: SessionKind; sketches: readonly GirlSketch[] }
   | { type: 'BREATH_DONE' }
   | { type: 'PLAYBACK_DONE' }

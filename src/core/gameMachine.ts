@@ -1,10 +1,10 @@
-import type { DrawingEntry, GameError, GameEvent, GameState, GirlSketch, RecognitionErrorCode, RecognitionRequest, RecognitionResult, Stroke, StrokePoint } from './types';
-import { lastLetter, normalizeWord, selectGirlSketch } from './words';
+import type { DrawingEntry, GameError, GameEvent, GameState, GirlSketch, Language, RecognitionErrorCode, RecognitionRequest, RecognitionResult, Stroke, StrokePoint } from './types';
+import { lastLetter, normalizeWord, selectGirlSketch, selectJapaneseFreshSketch } from './words';
 
 const MAX_ATTEMPTS = 3; // Original request plus two deliberate retries.
 
-export function createInitialState(mode: GameState['mode'] = 'day'): GameState {
-  return { phase: 'title', mode, sessionKind: 'demo', sessionId: 0, round: 0, sketches: [], entries: [], activeStrokes: [], recognitionRequest: null, error: null, recognitionAttempt: 0 };
+export function createInitialState(mode: GameState['mode'] = 'day', language: Language = 'en'): GameState {
+  return { phase: 'title', mode, language, sessionKind: 'demo', sessionId: 0, round: 0, sketches: [], entries: [], activeStrokes: [], recognitionRequest: null, error: null, recognitionAttempt: 0 };
 }
 export const initialState = createInitialState();
 
@@ -23,14 +23,14 @@ function validStrokes(strokes: readonly Stroke[]): boolean {
   }));
 }
 
-function girlEntry(state: GameState, sketch: GirlSketch, round: number): DrawingEntry {
-  return { id: `${state.sessionId}:girl:${round}`, actor: 'girl', round, strokes: copyStrokes(sketch.strokes), intendedWord: normalizeWord(sketch.word), recognition: null, templateId: sketch.id,
+function girlEntry(state: GameState, sketch: GirlSketch, round: number, chainRestart = false): DrawingEntry {
+  return { chainRestart, id: `${state.sessionId}:girl:${round}`, actor: 'girl', round, strokes: copyStrokes(sketch.strokes), intendedWord: normalizeWord(sketch.word, state.language), recognition: null, templateId: sketch.id,
     comparable: state.sessionKind === 'api', ...(state.sessionKind === 'demo' ? { nonComparableReason: 'demo' as const } : {}) };
 }
 
 function withRequest(state: GameState, entry: DrawingEntry, attempt = 1): GameState {
   const sequence = state.recognitionAttempt + 1;
-  const recognitionRequest: RecognitionRequest = { requestId: `${state.sessionId}:${state.round}:${sequence}`, playerEntryId: entry.id, strokes: entry.strokes, round: state.round, attempt, sessionKind: state.sessionKind };
+  const recognitionRequest: RecognitionRequest = { requestId: `${state.sessionId}:${state.round}:${sequence}`, playerEntryId: entry.id, strokes: entry.strokes, round: state.round, attempt, sessionKind: state.sessionKind, ...(state.language === 'ja' ? { language: 'ja' as const } : {}) };
   return { ...state, phase: 'recognizing', recognitionRequest, recognitionAttempt: sequence, error: null };
 }
 
@@ -58,11 +58,12 @@ export function selectCanFinishDrawing(state: GameState): boolean {
 export function gameReducer(state: GameState, event: GameEvent): GameState {
   switch (event.type) {
     case 'SET_MODE': return state.phase === 'title' ? { ...state, mode: event.mode } : state;
+    case 'SET_LANGUAGE': return state.phase === 'title' ? { ...state, language: event.language } : state;
     case 'START': {
       if (state.phase !== 'title' && state.phase !== 'results') return state;
       const first = event.sketches[0];
-      if (!first || !normalizeWord(first.word) || !validStrokes(first.strokes)) return state;
-      const next = { ...createInitialState(event.mode), sessionKind: event.sessionKind, sessionId: state.sessionId + 1, sketches: event.sketches, round: 1, phase: 'girl_breath' as const };
+      if (!first || !normalizeWord(first.word, state.language) || !validStrokes(first.strokes)) return state;
+      const next = { ...createInitialState(event.mode, state.language), sessionKind: event.sessionKind, sessionId: state.sessionId + 1, sketches: event.sketches, round: 1, phase: 'girl_breath' as const };
       return { ...next, entries: [girlEntry(next, first, 1)] };
     }
     case 'BREATH_DONE': return state.phase === 'girl_breath' ? { ...state, phase: 'girl_drawing' } : state;
@@ -81,14 +82,21 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
     case 'RECOGNITION_RESOLVED': {
       if (state.phase !== 'recognizing' || state.recognitionRequest?.requestId !== event.requestId) return state;
       if (event.result.source !== (state.sessionKind === 'api' ? 'api' : 'mock')) return errorState(state, 'invalid_response');
-      const guess = normalizeWord(event.result.guess);
+      const guess = normalizeWord(event.result.guess, state.language);
       if (event.result.error || !guess) return errorState(state, event.result.errorCode ?? 'invalid_response', { ...event.result, guess: null });
       const result: RecognitionResult = { guess, source: event.result.source };
-      const sketch = selectGirlSketch(state.sketches, lastLetter(guess)!, state.entries.flatMap(e => e.templateId ? [e.templateId] : []));
+      const usedIds = state.entries.flatMap(e => e.templateId ? [e.templateId] : []);
+      const tail = lastLetter(guess, state.language)!;
+      const chainRestart = state.language === 'ja' && tail === 'ん';
+      // A terminal ん is a genuine broken link. Restart with a different,
+      // easy-to-continue drawing, without claiming the broken link as connected.
+      const sketch = chainRestart
+        ? selectJapaneseFreshSketch(state.sketches, usedIds)
+        : selectGirlSketch(state.sketches, tail, usedIds, state.language);
       if (!sketch) return errorState(state, 'uncovered_letter', result);
       const entries = state.entries.map(entry => entry.id === state.recognitionRequest?.playerEntryId ? { ...entry, recognition: result } : entry);
       const round = state.round + 1;
-      return { ...state, entries: [...entries, girlEntry(state, sketch, round)], round, phase: 'girl_breath', activeStrokes: [], recognitionRequest: null, error: null };
+      return { ...state, entries: [...entries, girlEntry(state, sketch, round, chainRestart)], round, phase: 'girl_breath', activeStrokes: [], recognitionRequest: null, error: null };
     }
     case 'RETRY_RECOGNITION': {
       if (state.phase !== 'recognition_error' || !state.error?.retryable || !state.recognitionRequest) return state;
@@ -106,10 +114,10 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
     }
     case 'SET_INTENT': {
       if (state.phase !== 'review_intents' || !state.entries.some(e => e.id === event.entryId && e.actor === 'player')) return state;
-      return { ...state, entries: state.entries.map(entry => entry.id === event.entryId && entry.actor === 'player' ? { ...entry, intendedWord: normalizeWord(event.word) } : entry) };
+      return { ...state, entries: state.entries.map(entry => entry.id === event.entryId && entry.actor === 'player' ? { ...entry, intendedWord: normalizeWord(event.word, state.language) } : entry) };
     }
     case 'SHOW_RESULTS': return state.phase === 'review_intents' ? { ...state, phase: 'results' } : state;
-    case 'RETURN_TO_TITLE': return { ...createInitialState(state.mode), sessionId: state.sessionId };
+    case 'RETURN_TO_TITLE': return { ...createInitialState(state.mode, state.language), sessionId: state.sessionId };
     default: return state;
   }
 }
