@@ -3,6 +3,7 @@ import { createInitialState, gameReducer } from './gameMachine';
 import { calculateScore } from './score';
 import { chainLettersMatch, firstLetter, lastLetter, normalizeWord, selectGirlSketch } from './words';
 import { girlSketches } from '../data/sketches';
+import { japaneseExtraSketches } from '../data/japaneseExtraSketches';
 import { easyJapaneseStarters, japaneseLabelByEnglish, localizeGirlSketches, withJapaneseStarter } from '../data/japaneseSketches';
 import type { DrawingEntry, Stroke } from './types';
 
@@ -58,9 +59,10 @@ describe('Japanese word boundaries', () => {
     expect(chainLettersMatch('ご', 'か', 'ja')).toBe(false);
     expect(chainLettersMatch('g', 'k', 'en')).toBe(false);
     expect(chainLettersMatch('g', 'g', 'en')).toBe(true);
-    const localized = localizeGirlSketches(girlSketches, 'ja');
+    const localized = [...localizeGirlSketches(girlSketches, 'ja'), ...japaneseExtraSketches];
     expect(firstLetter(selectGirlSketch(localized, 'ご', [], 'ja')?.word, 'ja')).toBe('こ');
     expect(firstLetter(selectGirlSketch(localized, 'ぎ', [], 'ja')?.word, 'ja')).toBe('き');
+    expect(japaneseExtraSketches.every(sketch => sketch.readability === 'soft' && sketch.strokes.length > 0)).toBe(true);
   });
   it('rotates Japanese DAY and NIGHT starters through easy final sounds', () => {
     const localized = localizeGirlSketches(girlSketches, 'ja');
