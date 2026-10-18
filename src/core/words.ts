@@ -76,7 +76,16 @@ export function selectGirlSketch(
   const pool = safe(exact).length ? safe(exact) : safe(relaxed).length ? safe(relaxed) : exact.length ? exact : relaxed;
   const byId = new Map(sketches.map(sketch => [sketch.id, normalizeWord(sketch.word, language)]));
   const recentWords = usedTemplateIds.map(id => byId.get(id));
+  // Japanese-only: do not hand the player an accidental dead end when a
+  // similarly readable picture keeps the chain alive. No words are hinted.
+  const exitPenalty = (sketch: GirlSketch) => {
+    if (language !== 'ja') return 0;
+    const ending = lastLetter(sketch.word, language);
+    if (!ending || ending === 'ん') return 2;
+    return playable.some(candidate => chainLettersMatch(ending, firstLetter(candidate.word, language), language)) ? 0 : 1;
+  };
   return [...pool].sort((a, b) =>
+    exitPenalty(a) - exitPenalty(b) ||
     recentWords.lastIndexOf(normalizeWord(a.word, language)) - recentWords.lastIndexOf(normalizeWord(b.word, language)) ||
     usedTemplateIds.lastIndexOf(a.id) - usedTemplateIds.lastIndexOf(b.id))[0] ?? null;
 }
