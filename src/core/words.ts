@@ -21,6 +21,15 @@ export function selectGirlSketch(
 ): GirlSketch | null {
   const letter = normalizeWord(requiredFirstLetter);
   if (!letter || letter.length !== 1) return null;
-  const matches = sketches.filter(sketch => firstLetter(sketch.word) === letter);
-  return matches.find(sketch => !usedTemplateIds.includes(sketch.id)) ?? matches[0] ?? null;
+  const matches = sketches.filter(sketch => firstLetter(sketch.word) === letter &&
+    (!sketch.readability || sketch.readability === 'safe' || sketch.readability === 'soft'));
+  const safe = matches.filter(sketch => !sketch.readability || sketch.readability === 'safe');
+  const pool = safe.length ? safe : matches;
+  const byId = new Map(sketches.map(sketch => [sketch.id, normalizeWord(sketch.word)]));
+  const recentWords = usedTemplateIds.map(id => byId.get(id));
+  // Word recency comes before variant recency: two drawings of one noun still
+  // count as a repeat. Stable ordering keeps reducers/replays deterministic.
+  return [...pool].sort((a, b) =>
+    recentWords.lastIndexOf(normalizeWord(a.word)) - recentWords.lastIndexOf(normalizeWord(b.word)) ||
+    usedTemplateIds.lastIndexOf(a.id) - usedTemplateIds.lastIndexOf(b.id))[0] ?? null;
 }

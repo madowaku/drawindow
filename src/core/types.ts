@@ -33,6 +33,23 @@ export interface GirlSketch {
   word: string;
   strokes: readonly Stroke[];
   durationMs?: number;
+  /** Absent only on legacy/custom callers; treated as safe for compatibility. */
+  readability?: DoodleReadability;
+}
+
+export type DoodleReadability = 'safe' | 'soft' | 'spicy' | 'reject';
+export interface DoodleSource {
+  kind: 'quick-draw' | 'original';
+  attribution: string;
+  /** Local provenance document, not a request sent to recognition. */
+  reference: string;
+}
+export interface DoodleCandidate extends GirlSketch {
+  letter: string;
+  source: DoodleSource;
+  readability: DoodleReadability;
+  /** Maker judgement, never an empirical blind-recognition score. */
+  reviewNote: string;
 }
 
 export interface WindowCanvasProps {

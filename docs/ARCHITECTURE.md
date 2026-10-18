@@ -4,7 +4,7 @@ The React app owns presentation and effects. `src/core` is pure and deterministi
 
 ## Shared data and ownership
 
-`src/core/types.ts` is the shared contract. `Stroke` is one pointer gesture with normalized `x/y`, drawing-relative `t` in milliseconds and optional pressure. Girl templates use the same strokes. `GirlSketch` contains `id`, secret `word`, `strokes`, and optional `durationMs`. The sketch module exports `girlSketches: readonly GirlSketch[]`; the first template starts every session. A new session resets template usage and uses deterministic catalogue order.
+`src/core/types.ts` is the shared contract. `Stroke` is one pointer gesture with normalized `x/y`, drawing-relative `t` in milliseconds and optional pressure. Girl templates use the same strokes. `DoodleCandidate` extends the compatible `GirlSketch` contract with `letter`, `source`, required `readability` and maker `reviewNote`. `src/data/doodleLibrary.ts` owns the canonical uppercase `letter -> candidate[]` structure, including review-only entries. `src/data/sketches.ts` exports its flat compatibility view for the existing reducer/recognizer contracts. Apple still starts every session; usage resets per session and selection remains deterministic.
 
 - Lead: `src/core/*`, `src/services/*`, `worker/*`, their tests.
 - Canvas worker: `WindowCanvas`, `src/lib/strokes*`, `fog*`, `playback*`, `src/data/sketches*`, focused tests.
@@ -42,7 +42,7 @@ The portrait remains behind frost and ink. During girl playback a separate decor
 
 App effect: observe `state.recognitionRequest`, choose the API/demo runner from `request.sessionKind`, call it, then dispatch `RECOGNITION_RESOLVED { requestId, result }`. Do not dispatch extra `DONE` or synthesize a result in the UI. Runner errors are converted into explicit failure results. The reducer accepts a response only while `recognizing` and only for the exact active ID. Adapter timeout and retry count are bounded.
 
-On a genuine valid guess, `lastLetter(guess)` selects the first unused girl template with the matching first letter; reuse the first matching template after exhausting unused matches. No matching template creates an explicit `uncovered_letter` error, retaining the genuine interpretation. It does not select a falsely connected replacement.
+On a genuine valid guess, `lastLetter(guess)` selects a matching SAFE candidate, falling back to SOFT only when that letter has no SAFE. SPICY and REJECT never enter automatic play. Within the eligible tier, least recently used words precede least recently used variants, so a second drawing of the same noun cannot bypass repeat avoidance. Legacy custom sketches without readability keep their previous SAFE-compatible behavior. No playable match creates an explicit `uncovered_letter` error, retaining the genuine interpretation. It does not select a falsely connected replacement.
 
 `RETRY_RECOGNITION` retries the same sealed drawing with a new ID while retryable. `USE_DEMO` explicitly switches the whole session to demo and makes a new mock request. `BACK_TO_DRAWING` removes only the last sealed player entry and restores its strokes for editing; its obsolete request can never apply. Demo/mock participation makes the session non-comparable. Errors show non-spoiler copy, never raw provider text.
 

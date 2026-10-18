@@ -47,4 +47,7 @@ or used for AI training. Runtime gain/fades only; no rearrangement or trimming.
 Source and derivative SHA-256 hashes are in assets/bgm-manifest.json in source.
 
 DEMO is explicitly simulated and performs no image recognition.
+Shizuku Doodle Library v0.1 adds 37 original vector drawings and retains the
+original DRAWINDOW templates and owl review. Per-candidate provenance and vector
+hashes are recorded in assets/doodle-library-v01-manifest.json in source.
 Optional breath/glass sounds are synthesized locally. Audio starts muted.

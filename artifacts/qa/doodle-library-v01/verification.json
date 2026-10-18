@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-18 JST",
+  "baselineTests": 143,
+  "finalTests": 158,
+  "testFiles": 24,
+  "authTests": 6,
+  "build": "passed",
+  "catalogAudit": "passed",
+  "originalCandidatesGeometryPreserved": 26,
+  "originalGitIndexPreserved": true,
+  "gameMachineScoreRecognizerWorkerUnchanged": true,
+  "originalV04ZipPreserved": true,
+  "browserConditions": 12,
+  "browserViewports": [
+    "360x800",
+    "720x1280",
+    "1280x800"
+  ],
+  "newBlindParticipants": 0,
+  "publicDeployment": false
+}

@@ -51,25 +51,25 @@ try {
     report.comparisons.push({viewport:[width,height],mode,pixels,errors});await context.close();
   }
   const context=await browser.newContext({viewport:{width:360,height:800},reducedMotion:'reduce'});const page=await context.newPage();
-  await page.goto('http://localhost:5173/?catalogue-preview');
+  await page.goto('http://localhost:5173/?readability-study');
   const before = await page.locator('body').innerText();
   assert(!/\bowl\b|qd-owl|girl-owl/.test(before),'Blind page disclosed target');
   for (const mode of ['day','night']) {
     await page.getByRole('button',{name:mode.toUpperCase(),exact:true}).click();
     const metrics=await page.evaluate(async () => {
-      const {girlSketches}=await import('/src/data/sketches.ts');
+      const {legacyGirlSketches:girlSketches}=await import('/src/data/legacySketches.ts');
       return girlSketches.map(s=>{const pts=s.strokes.flatMap(p=>p.points), n=pts.length;return {id:s.id,word:s.word,strokes:s.strokes.length,points:n,shortSegments:s.strokes.reduce((sum,st)=>sum+st.points.slice(1).filter((p,i)=>Math.hypot(p.x-st.points[i].x,p.y-st.points[i].y)<.012).length,0),width:Math.max(...pts.map(p=>p.x))-Math.min(...pts.map(p=>p.x)),height:Math.max(...pts.map(p=>p.y))-Math.min(...pts.map(p=>p.y))};});
     });
     report.catalogue=metrics;
     // A labelled developer contact sheet is distinct from the blind participant page.
     await page.evaluate(async (mode) => {
-      const {girlSketches}=await import('/src/data/sketches.ts');const {owlCandidate}=await import('/src/dev/readabilityCandidates.ts');
+      const {legacyGirlSketches:girlSketches}=await import('/src/data/legacySketches.ts');const {owlCandidate}=await import('/src/dev/readabilityCandidates.ts');
       const {drawStrokes}=await import('/src/lib/strokes.ts');
       const main=document.querySelector('main');main.replaceChildren();main.style.cssText='padding:16px;max-width:1120px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;height:auto;';
       for(const s of [...girlSketches,owlCandidate]){const a=document.createElement('article'),label=document.createElement('p'),c=document.createElement('canvas');c.width=c.height=256;c.style.width='100%';label.textContent=s.id.includes('review')?'owl · REVIEW CANDIDATE':s.word;const ctx=c.getContext('2d');ctx.fillStyle=mode==='day'?'#eef3f0':'#192e40';ctx.fillRect(0,0,256,256);drawStrokes(ctx,s.strokes,256,256,{color:mode==='day'?'#15303b':'#edf7fa',widthScale:1});a.append(label,c);main.append(a);}
     },mode);
     await page.setViewportSize({width:1120,height:900});await page.screenshot({path:`${folder}/catalogue-${mode}-contact-sheet.png`,fullPage:true});
-    await page.goto('http://localhost:5173/?catalogue-preview');
+    await page.goto('http://localhost:5173/?readability-study');
   }
   await context.close();
 } finally { await browser.close();await writeFile(`${folder}/v04-checks.json`,JSON.stringify(report,null,2)); }

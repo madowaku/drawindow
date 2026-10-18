@@ -57,7 +57,7 @@ function eased(progress: number): number {
   return 1 - (1 - amount) ** 3;
 }
 
-function drawFrost(
+export function drawFrost(
   ctx: CanvasRenderingContext2D,
   width: number,
   height: number,

@@ -1,0 +1,1118 @@
+{
+  "version": "Shizuku Doodle Library v0.1",
+  "date": "2026-10-18",
+  "evidence": "Maker review and automated geometry/selection audit only. No new blind human observations.",
+  "total": 64,
+  "previousProductionCandidates": 26,
+  "newlyAuthored": 37,
+  "integratedExistingReview": 1,
+  "ratings": {
+    "safe": 40,
+    "soft": 18,
+    "spicy": 5,
+    "reject": 1
+  },
+  "originalGeometryPreserved": true,
+  "letters": {
+    "A": {
+      "count": 2,
+      "default": "qd-apple-6510060014403584",
+      "safe": 1
+    },
+    "B": {
+      "count": 2,
+      "default": "qd-banana-5564467330940928",
+      "safe": 2
+    },
+    "C": {
+      "count": 2,
+      "default": "qd-cat-6661137368088576",
+      "safe": 2
+    },
+    "D": {
+      "count": 2,
+      "default": "shizuku-duck-v01",
+      "safe": 1
+    },
+    "E": {
+      "count": 2,
+      "default": "qd-elephant-4709154050539520",
+      "safe": 2
+    },
+    "F": {
+      "count": 2,
+      "default": "qd-fish-5422743342284800",
+      "safe": 2
+    },
+    "G": {
+      "count": 3,
+      "default": "shizuku-grapes-v01",
+      "safe": 2
+    },
+    "H": {
+      "count": 2,
+      "default": "qd-house-5076612330553344",
+      "safe": 2
+    },
+    "I": {
+      "count": 2,
+      "default": "qd-ice-cream-5465068667928576",
+      "safe": 1
+    },
+    "J": {
+      "count": 2,
+      "default": "qd-jacket-5309134591229952",
+      "safe": 2
+    },
+    "K": {
+      "count": 3,
+      "default": "qd-key-5094706637701120",
+      "safe": 2
+    },
+    "L": {
+      "count": 2,
+      "default": "qd-lion-4555635679035392",
+      "safe": 2
+    },
+    "M": {
+      "count": 2,
+      "default": "qd-moon-6677376316473344",
+      "safe": 2
+    },
+    "N": {
+      "count": 3,
+      "default": "shizuku-nest-v01",
+      "safe": 0
+    },
+    "O": {
+      "count": 4,
+      "default": "shizuku-octopus-v01",
+      "safe": 1
+    },
+    "P": {
+      "count": 3,
+      "default": "qd-pizza-5109588850376704",
+      "safe": 3
+    },
+    "Q": {
+      "count": 3,
+      "default": "girl-queen-original",
+      "safe": 0
+    },
+    "R": {
+      "count": 2,
+      "default": "qd-rabbit-5034139143110656",
+      "safe": 2
+    },
+    "S": {
+      "count": 2,
+      "default": "qd-snake-6434015181537280",
+      "safe": 2
+    },
+    "T": {
+      "count": 2,
+      "default": "qd-tree-4896539229028352",
+      "safe": 1
+    },
+    "U": {
+      "count": 3,
+      "default": "qd-umbrella-4980311861493760",
+      "safe": 1
+    },
+    "V": {
+      "count": 3,
+      "default": "qd-van-5262917039554560",
+      "safe": 3
+    },
+    "W": {
+      "count": 3,
+      "default": "qd-watermelon-4799638206939136",
+      "safe": 3
+    },
+    "X": {
+      "count": 3,
+      "default": "shizuku-xylophone-bars-v01",
+      "safe": 0
+    },
+    "Y": {
+      "count": 3,
+      "default": "shizuku-yacht-v01",
+      "safe": 0
+    },
+    "Z": {
+      "count": 2,
+      "default": "qd-zebra-6484098010841088",
+      "safe": 1
+    }
+  },
+  "sources": {
+    "src/data/doodleLibrary.ts": "95aa0e2e327180ddc142dacd945486b73b194027dd7e7179fbf409a28a415552",
+    "src/data/originalDoodles.ts": "608426d4339724f8ff2d3e08c7d924ec7f005693303b947afa85c9c26b5222b5",
+    "src/data/legacySketches.ts": "7906e077d44f887927464c2ecd0ffc85fd789ae9ce7f29c7befd1f39d8691f90",
+    "src/data/owlReview.ts": "15deca83056c5e5c7cae589e0ece7985a580d2edcfb685d78807220db558a27c",
+    "src/data/quick-draw-sketches.json": "f51a5a438ffcfb7c41e2eefc646f379bbf0aa68214c34e51424a19f970430a15",
+    "src/data/sketch-provenance.json": "fdef6a909b52640850464c20c782c60e7853c986cf30a565a80794dbf1c310a3"
+  },
+  "candidates": [
+    {
+      "id": "qd-apple-6510060014403584",
+      "letter": "A",
+      "word": "apple",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 4,
+      "strokeSha256": "ff176bbf6f92451ef842691bf960f218c62a58602865cf3b32be34c2095c20fb"
+    },
+    {
+      "id": "shizuku-acorn-v01",
+      "letter": "A",
+      "word": "acorn",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "帽子と木の実。nutと呼ばれる可能性がありSOFT。",
+      "durationMs": 1200,
+      "strokeCount": 6,
+      "strokeSha256": "f0edd8fa937008717f1eb0d690723b6c41a93db3f4695091b0ce93af33fc47c7"
+    },
+    {
+      "id": "qd-banana-5564467330940928",
+      "letter": "B",
+      "word": "banana",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 5,
+      "strokeSha256": "5c9bd470b0264ae9b3002add501dbe8eb118e931f2688c9903ef46d4b9b50111"
+    },
+    {
+      "id": "shizuku-balloon-v01",
+      "letter": "B",
+      "word": "balloon",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "結び目と細いひも、大きなふくらみ。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 3,
+      "strokeSha256": "d4b140f01eb170f888eaa14070e14bbdefb8c5fff3940c587e6b47361a1cdf8e"
+    },
+    {
+      "id": "qd-cat-6661137368088576",
+      "letter": "C",
+      "word": "cat",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 8,
+      "strokeSha256": "61c39c8c82f01984f163d51ac3a4d2c09c9e977c5b09fcf266cee2dafa739c55"
+    },
+    {
+      "id": "shizuku-carrot-v01",
+      "letter": "C",
+      "word": "carrot",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "先細りの根と大きな葉。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 4,
+      "strokeSha256": "cba64a26a9d8f349c24e33f2c7a2f3b8afb7f930dc751ad80e20c17a52f8271e"
+    },
+    {
+      "id": "qd-dog-6317447978156032",
+      "letter": "D",
+      "word": "dog",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "soft",
+      "reviewNote": "縦長の耳に依存し、目・鼻が小さい。制作レビューの重点対象。",
+      "durationMs": 900,
+      "strokeCount": 4,
+      "strokeSha256": "7c50f13ac5ad4151da50c9e1dbd389f11396c6ff454e57a21b85f15594832306"
+    },
+    {
+      "id": "shizuku-duck-v01",
+      "letter": "D",
+      "word": "duck",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "広いくちばしと水鳥の胴を残した。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 4,
+      "strokeSha256": "08488e9366b8ffb13cd33d3e0fb69799f4dd0394c52b8c70241f38973e5722f0"
+    },
+    {
+      "id": "qd-elephant-4709154050539520",
+      "letter": "E",
+      "word": "elephant",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 4,
+      "strokeSha256": "9083d6f37191af2048ee075a0f1497a89169179533c36ebdaef59bef7a77df54"
+    },
+    {
+      "id": "shizuku-egg-v01",
+      "letter": "E",
+      "word": "egg",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "上が細く下が丸い単純な輪郭。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 1,
+      "strokeSha256": "bd4546bc55c3d4bac39becf0a6768d9d30a218bd001c4d3b2abe140c5c4306cb"
+    },
+    {
+      "id": "qd-fish-5422743342284800",
+      "letter": "F",
+      "word": "fish",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 7,
+      "strokeSha256": "7a091b0c23333505f6327be6aca9f3e0eab25d5d93a2abecf501e7e99ac1bf9e"
+    },
+    {
+      "id": "shizuku-flower-v01",
+      "letter": "F",
+      "word": "flower",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "大きな5枚の花びらと茎・葉。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 9,
+      "strokeSha256": "b55279ae89726fa6dd451088c0c0dabf1b84913fa97ef450f2ba3d4a8f34afdb"
+    },
+    {
+      "id": "qd-guitar-4660123291090944",
+      "letter": "G",
+      "word": "guitar",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "soft",
+      "reviewNote": "細い弦やネックの手掛かりが小さい。大きな房・箱のG候補を優先。",
+      "durationMs": 900,
+      "strokeCount": 6,
+      "strokeSha256": "1e94ab7e12e7b1b5c7c80fcb6be8fad7d715a47e170c8f99b82c6b651a182a5f"
+    },
+    {
+      "id": "shizuku-grapes-v01",
+      "letter": "G",
+      "word": "grapes",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "房の輪郭が残るよう実を大きく描いた。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 9,
+      "strokeSha256": "bdbf0a82c7f2e894a4e569c7d8b0c4f199ee711ad6f981528abf40f7e69833c8"
+    },
+    {
+      "id": "shizuku-gift-v01",
+      "letter": "G",
+      "word": "gift",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "箱と大きなリボン。presentという別名はある。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 5,
+      "strokeSha256": "28268b8f7aad4df9379287576ef4b0e4bfb59c83fdc4dd4a788259c1cacd920a"
+    },
+    {
+      "id": "qd-house-5076612330553344",
+      "letter": "H",
+      "word": "house",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 7,
+      "strokeSha256": "c97598a6bd12a0d714b67e287a07ddda037457499b0ba27d42497e38f4cd5a72"
+    },
+    {
+      "id": "shizuku-heart-v01",
+      "letter": "H",
+      "word": "heart",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "少し左右非対称のハート。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 1,
+      "strokeSha256": "4c34228afd12019cfd6ee736d252429652b61705e210e0173c3ba82cf7d1570c"
+    },
+    {
+      "id": "qd-ice-cream-5465068667928576",
+      "letter": "I",
+      "word": "ice cream",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 4,
+      "strokeSha256": "5674034ca5bcf960ff71058783617cfbfda587f4bcf4785d548f28af9f987250"
+    },
+    {
+      "id": "shizuku-igloo-v01",
+      "letter": "I",
+      "word": "igloo",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "氷の継ぎ目とトンネル状の入口。名称の難しさが残る。",
+      "durationMs": 1200,
+      "strokeCount": 7,
+      "strokeSha256": "c0af4f3bf7126b6d26755e55f977ee941e6fc9e94140c982401e67fe06210372"
+    },
+    {
+      "id": "qd-jacket-5309134591229952",
+      "letter": "J",
+      "word": "jacket",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 5,
+      "strokeSha256": "b67a6004f9954088762d800b2067220d3fbfd6439d174b077944547fa7e3e276"
+    },
+    {
+      "id": "shizuku-jellyfish-v01",
+      "letter": "J",
+      "word": "jellyfish",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "傘の下に4本の揺れる触手。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 5,
+      "strokeSha256": "4d647dc89bb5687139607aa081b81449745c9e5f1bdfc1dbfbe64dec3d6d6f22"
+    },
+    {
+      "id": "qd-key-5094706637701120",
+      "letter": "K",
+      "word": "key",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 4,
+      "strokeSha256": "ebffb48ba2ff26f7e18b2db9eb5c12d1615b193054142bf18f77f55a1a298480"
+    },
+    {
+      "id": "shizuku-kite-v01",
+      "letter": "K",
+      "word": "kite",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "ひし形の骨組みと、結び目のある長い尾。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 5,
+      "strokeSha256": "6045479c3e281901d9c8b8b82222fc7f0263e852488975240624f48140d12e07"
+    },
+    {
+      "id": "shizuku-kettle-v01",
+      "letter": "K",
+      "word": "kettle",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "注ぎ口と取っ手は明確。teapotとの英語上の区別は曖昧。",
+      "durationMs": 1200,
+      "strokeCount": 5,
+      "strokeSha256": "e61c13686af45ecc502c3e9401df7bc896dc232d604eb43667fdcbb7b24189aa"
+    },
+    {
+      "id": "qd-lion-4555635679035392",
+      "letter": "L",
+      "word": "lion",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 4,
+      "strokeSha256": "3cfc7acfd8c65f4294e0fbd6b53c0535d104f45b297dfc39da507aa9774d714d"
+    },
+    {
+      "id": "shizuku-leaf-v01",
+      "letter": "L",
+      "word": "leaf",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "葉脈と細い葉柄。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 5,
+      "strokeSha256": "2713156d7eaaef4f3d7c7bf4ef2656774f331f0b5bfe2b028c4de63c1305b845"
+    },
+    {
+      "id": "qd-moon-6677376316473344",
+      "letter": "M",
+      "word": "moon",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 6,
+      "strokeSha256": "b0d341310808edfe05717f6880a2e54c0f2bb1369a8474532f1c94c90fe9e811"
+    },
+    {
+      "id": "shizuku-mushroom-v01",
+      "letter": "M",
+      "word": "mushroom",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "幅広い傘と短い柄。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 5,
+      "strokeSha256": "16c52f6d87c1830666a47c1d03a71860fa909d76ec6ea9461544863b6af3bc7f"
+    },
+    {
+      "id": "qd-nose-5519533043351552",
+      "letter": "N",
+      "word": "nose",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "spicy",
+      "reviewNote": "鼻孔まわりの重なりが抽象的。新しいN候補と比較し採用を保留。",
+      "durationMs": 900,
+      "strokeCount": 6,
+      "strokeSha256": "6b71b0aaf1db8e057c6244e8f510f5d023cadba9fb4f9ad68ca0fcea83f6f907"
+    },
+    {
+      "id": "shizuku-nest-v01",
+      "letter": "N",
+      "word": "nest",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "卵3個と枝を残したが bowl of eggs とも読める。",
+      "durationMs": 1200,
+      "strokeCount": 7,
+      "strokeSha256": "089abd2791783d8d666b7c6b989eac8f80cebeb16045134671fad7bee060c811"
+    },
+    {
+      "id": "shizuku-notebook-v01",
+      "letter": "N",
+      "word": "notebook",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "リングと閉じた表紙。bookとの呼び分けが必要。文字は書かない。",
+      "durationMs": 1200,
+      "strokeCount": 9,
+      "strokeSha256": "082541df0cafdb7c2b43001ecd3cd73525285723472b100d4ad325cc063a13c8"
+    },
+    {
+      "id": "qd-owl-5322965052817408",
+      "letter": "O",
+      "word": "owl",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "spicy",
+      "reviewNote": "現行の丸い顔と空の両目だけでは体・足が読めない。既知の読み違いがあり、保持するが自動選択から外す。",
+      "durationMs": 900,
+      "strokeCount": 5,
+      "strokeSha256": "c19bd57ffff04de77df70b1f4b7ac45c9ab836978c9901ea07e8c58e90093184"
+    },
+    {
+      "id": "girl-owl-review-v04-original",
+      "letter": "O",
+      "word": "owl",
+      "source": {
+        "kind": "original",
+        "attribution": "Original DRAWINDOW v0.4 owl review candidate",
+        "reference": "assets/readability-v04-manifest.json"
+      },
+      "readability": "soft",
+      "reviewNote": "胴・足・止まり木を加えた既存の改善案。初見の3〜5人による比較は未完了。SAFEへの昇格・現行絵の削除は保留。",
+      "durationMs": 1400,
+      "strokeCount": 11,
+      "strokeSha256": "93ec311ea490c11d646255fc27eb52ceb4eb26c3068c6fe171733ba808b5e056"
+    },
+    {
+      "id": "shizuku-orange-v01",
+      "letter": "O",
+      "word": "orange",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "葉と皮の粒は手掛かり。ただし apple / peach と混同し得るためSAFEにはしない。",
+      "durationMs": 1200,
+      "strokeCount": 6,
+      "strokeSha256": "db5b98a1938368d7b179e6788a53bdc02ba4c81b7ef1c597f5e72a39cb12f73c"
+    },
+    {
+      "id": "shizuku-octopus-v01",
+      "letter": "O",
+      "word": "octopus",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "丸い頭と8本の腕を残した。小さな目より外形で読む候補。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 5,
+      "strokeSha256": "460a57cd6d09eda04fd1a13c992197d38b18e0f92a2834a9632c0e176669449c"
+    },
+    {
+      "id": "qd-pizza-5109588850376704",
+      "letter": "P",
+      "word": "pizza",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 5,
+      "strokeSha256": "2cb9a15bfef036df3fa659022fddfe826dca4c197d08540b34215478d2171f40"
+    },
+    {
+      "id": "shizuku-pear-v01",
+      "letter": "P",
+      "word": "pear",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "細い上半分と大きな下半分の輪郭。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 3,
+      "strokeSha256": "3f471b2836fc9abf225c54338551a418fd86a4a2d9857ef04e754768f9e5031b"
+    },
+    {
+      "id": "shizuku-penguin-v01",
+      "letter": "P",
+      "word": "penguin",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "直立した体、白い腹の境界、くちばし、短い翼と足。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 9,
+      "strokeSha256": "c2b3de1daf204aa310151c979e8d1cea74fb4e5224cf13086576428d3331866c"
+    },
+    {
+      "id": "girl-queen-original",
+      "letter": "Q",
+      "word": "queen",
+      "source": {
+        "kind": "original",
+        "attribution": "Original DRAWINDOW v0.2 vectors",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "soft",
+      "reviewNote": "冠は読めるが queen / princess / king の区別が曖昧。QにSAFEがない場合の補欠。",
+      "durationMs": 900,
+      "strokeCount": 8,
+      "strokeSha256": "6dd2059fb3af92a3054c09fc20a0fd23baeed64969cd79bbbe67df2df18801cb"
+    },
+    {
+      "id": "shizuku-quilt-v01",
+      "letter": "Q",
+      "word": "quilt",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "継ぎ目は表現できるが blanket / rug と同じ外形。Qの穏当な補欠。",
+      "durationMs": 1200,
+      "strokeCount": 9,
+      "strokeSha256": "801793b035df8a9da70df3278062530098374ec4a6c33791dd767679b95f209c"
+    },
+    {
+      "id": "shizuku-quail-v01",
+      "letter": "Q",
+      "word": "quail",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "spicy",
+      "reviewNote": "冠羽だけでquailと特定するのは難しい。bird / chick の誤読が強く制作レビュー専用。",
+      "durationMs": 1200,
+      "strokeCount": 9,
+      "strokeSha256": "8e6d9cf7bfe101e192fc301acf04f99c4ab727b38fd13820ac624ab5cdbd6173"
+    },
+    {
+      "id": "qd-rabbit-5034139143110656",
+      "letter": "R",
+      "word": "rabbit",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 6,
+      "strokeSha256": "764ccaeed18de8a9acd804a7a633b1684af29cb6f4d705e3bcb7f1ef7cb65004"
+    },
+    {
+      "id": "shizuku-rocket-v01",
+      "letter": "R",
+      "word": "rocket",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "尖った先端・丸窓・尾翼・炎。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 5,
+      "strokeSha256": "35f6f33b6f41d34f114f0da4f052b42f3bf181a731e85c0fbb8d8286ee0fa7b1"
+    },
+    {
+      "id": "qd-snake-6434015181537280",
+      "letter": "S",
+      "word": "snake",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 4,
+      "strokeSha256": "3ffdb78491fc893e90deba80e19fdf18daeab110bc9ca8d7cdc07c220b2e8ee9"
+    },
+    {
+      "id": "shizuku-star-v01",
+      "letter": "S",
+      "word": "star",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "少し傾いた5つの突起。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 1,
+      "strokeSha256": "0158142e45d845fcb3e41609d62553cd29c34df7b90811d64a3854c8235e4234"
+    },
+    {
+      "id": "qd-tree-4896539229028352",
+      "letter": "T",
+      "word": "tree",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 5,
+      "strokeSha256": "0a40864e0938136cbaa428a1833823c8e18a550bd645c3bf5bb5e229cca7291d"
+    },
+    {
+      "id": "shizuku-teapot-v01",
+      "letter": "T",
+      "word": "teapot",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "丸い胴、蓋、横の取っ手。kettleとも呼ばれ得る。",
+      "durationMs": 1200,
+      "strokeCount": 5,
+      "strokeSha256": "66f2329a832a54e9f13e10c476a848cde8baeab24f8aa7645893e5ee33b9b459"
+    },
+    {
+      "id": "qd-umbrella-4980311861493760",
+      "letter": "U",
+      "word": "umbrella",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 6,
+      "strokeSha256": "a31f095e8cc3594e4b1f4ea28edd4dcc1fa4499c5bc2508ec26f84e4d474edd0"
+    },
+    {
+      "id": "shizuku-ufo-v01",
+      "letter": "U",
+      "word": "ufo",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "円盤とドームの組合せ。UFO / spaceship の呼び分けが必要でSOFT。",
+      "durationMs": 1200,
+      "strokeCount": 9,
+      "strokeSha256": "45bae281e8152a65c5cf55238ff80653992a0fcc0ddc68ef52bfc38b88deaea8"
+    },
+    {
+      "id": "shizuku-unicorn-v01",
+      "letter": "U",
+      "word": "unicorn",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "角・たてがみ・鼻を大きくした。horseと誤認し得るため補欠。",
+      "durationMs": 1200,
+      "strokeCount": 5,
+      "strokeSha256": "e631b44a1d7f9544ac21253753aa302abf1ba1811e0b2c962144653d7df8c9dd"
+    },
+    {
+      "id": "qd-van-5262917039554560",
+      "letter": "V",
+      "word": "van",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 5,
+      "strokeSha256": "a1432450505348f3da2ab034ca438b42e319ab40b0aba4778252331458c83c49"
+    },
+    {
+      "id": "shizuku-vase-v01",
+      "letter": "V",
+      "word": "vase",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "くびれた口・肩・底を一筆で。大きな花は足さず器を主役に。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 3,
+      "strokeSha256": "fe8a010e863368477199449ffd3e643d297e29ffd3a71bbfba9da7f111f4c061"
+    },
+    {
+      "id": "shizuku-volcano-v01",
+      "letter": "V",
+      "word": "volcano",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "噴火口・溶岩・噴煙が一緒に見える大きな形。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 6,
+      "strokeSha256": "d8dab222ebdc0ebe0dc36592b33c32129e5d4c41531d48c2517b9bc1aa42ec4a"
+    },
+    {
+      "id": "qd-watermelon-4799638206939136",
+      "letter": "W",
+      "word": "watermelon",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 6,
+      "strokeSha256": "9f8134b4f1f29f536656bae70fe7bf3001b13168fdf11b94c73901ccb8f8ede0"
+    },
+    {
+      "id": "shizuku-whale-v01",
+      "letter": "W",
+      "word": "whale",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "大きな胴、二股の尾、潮吹き。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 5,
+      "strokeSha256": "3d6820bdf67a14133b894c14471821124cefaca850d03bf6bc753b93f7d3f458"
+    },
+    {
+      "id": "shizuku-watch-v01",
+      "letter": "W",
+      "word": "watch",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "safe",
+      "reviewNote": "丸い時計に上下の腕ベルト。clockとの混同は要観察。初見検証は未実施。",
+      "durationMs": 1200,
+      "strokeCount": 5,
+      "strokeSha256": "c8d44306eac809ce967cfe1c01f4fa0b78b0542a4c9bb2875a7d146f6b9c002d"
+    },
+    {
+      "id": "girl-xylophone-original",
+      "letter": "X",
+      "word": "xylophone",
+      "source": {
+        "kind": "original",
+        "attribution": "Original DRAWINDOW v0.2 vectors",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "reject",
+      "reviewNote": "旧案は箱・柵に見え、音板の長さや丸頭のばちが読み取れない。履歴用に保持しゲームでは使わない。",
+      "durationMs": 900,
+      "strokeCount": 10,
+      "strokeSha256": "3e9cfd5dce1d94d6d0ea1d44640ca2b1843602efb2c16b2c643ae6ab0638580d"
+    },
+    {
+      "id": "shizuku-xylophone-bars-v01",
+      "letter": "X",
+      "word": "xylophone",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "長さの違う音板と2本の丸頭のばち。旧案より楽器らしいが名称の難しさは残る。",
+      "durationMs": 1200,
+      "strokeCount": 11,
+      "strokeSha256": "79cdacecca938f4331bfa03a4912461c3da145f067402eeb14dfc064d3466fb0"
+    },
+    {
+      "id": "shizuku-x-ray-v01",
+      "letter": "X",
+      "word": "x-ray",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "spicy",
+      "reviewNote": "骨の写真の意図はあるが bone / skeleton とも読める。複合語X-rayの解釈も必要。",
+      "durationMs": 1200,
+      "strokeCount": 6,
+      "strokeSha256": "86054d7844580df47bd09eeac3ab81b41fe90c0795cfc3bc7f48765853673385"
+    },
+    {
+      "id": "girl-yarn-original",
+      "letter": "Y",
+      "word": "yarn",
+      "source": {
+        "kind": "original",
+        "attribution": "Original DRAWINDOW v0.2 vectors",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "spicy",
+      "reviewNote": "渦と丸い外周だけで ball / shell と混同しやすい。制作レビュー専用。",
+      "durationMs": 900,
+      "strokeCount": 4,
+      "strokeSha256": "39e9cf84a619b4114191f6b11ccb0770f83ed0574ca1dc0257082e8a0b7d721f"
+    },
+    {
+      "id": "shizuku-yacht-v01",
+      "letter": "Y",
+      "word": "yacht",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "帆と船体は大きく残したが boat / sailboat とも呼ばれる。Yの語彙上の難しさを残す。",
+      "durationMs": 1200,
+      "strokeCount": 5,
+      "strokeSha256": "b153720f3c6775fa4cc49a68f2d5376a7fa7d0edc92625827389c8880248d91d"
+    },
+    {
+      "id": "shizuku-yarn-loose-thread-v01",
+      "letter": "Y",
+      "word": "yarn",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "巻き筋を交差させ、ほどけた長い糸を追加。ball / wool との混同は残る。",
+      "durationMs": 1200,
+      "strokeCount": 7,
+      "strokeSha256": "7202e0ef20dbac5a63294c45321fc0221d057d82d22bf2b45314201322a7b875"
+    },
+    {
+      "id": "qd-zebra-6484098010841088",
+      "letter": "Z",
+      "word": "zebra",
+      "source": {
+        "kind": "quick-draw",
+        "attribution": "The Quick, Draw! Dataset / Google Creative Lab / CC BY 4.0",
+        "reference": "src/data/sketch-provenance.json"
+      },
+      "readability": "safe",
+      "reviewNote": "既存の形を保持。SAFEは制作側の暫定評価で、初見正答率の実測値ではない。",
+      "durationMs": 900,
+      "strokeCount": 5,
+      "strokeSha256": "6eb86074daca983ac25555e811d3ac8f4dcaa2c2ee9f3aa75a023f7ba2f07c8b"
+    },
+    {
+      "id": "shizuku-zipper-v01",
+      "letter": "Z",
+      "word": "zipper",
+      "source": {
+        "kind": "original",
+        "attribution": "Original vectors authored for DRAWINDOW / Shizuku Doodle Library v0.1",
+        "reference": "src/data/originalDoodles.ts"
+      },
+      "readability": "soft",
+      "reviewNote": "大きな引き手と噛み合う歯。全体より細部に依存するためSOFT。",
+      "durationMs": 1200,
+      "strokeCount": 8,
+      "strokeSha256": "902b332760a4e6e46231071058c160e7ede9ea3352354b25a98f800e8463e393"
+    }
+  ]
+}

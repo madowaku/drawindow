@@ -7,8 +7,8 @@ describe('girl sketch catalogue', () => {
     expect(girlSketches[0].word).toBe('apple');
     const initials = new Set(girlSketches.map(sketch => sketch.word[0]));
     expect(initials).toEqual(new Set('abcdefghijklmnopqrstuvwxyz'));
-    expect(girlSketches.length).toBeGreaterThanOrEqual(20);
-    expect(girlSketches.length).toBeLessThanOrEqual(40);
+    expect(girlSketches.length).toBeGreaterThanOrEqual(52);
+    expect(new Set(girlSketches.map(sketch => sketch.id)).size).toBe(girlSketches.length);
   });
 
   it('keeps every catalogue stroke normalized and animated within the expected duration', () => {

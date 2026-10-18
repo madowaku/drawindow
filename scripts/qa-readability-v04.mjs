@@ -8,7 +8,7 @@ const report={scope:'Developer visual inspection, automated playback only. Zero 
 try{
   for(const reduced of [false,true]){
     const context=await browser.newContext({viewport:{width:360,height:800},deviceScaleFactor:2,reducedMotion:reduced?'reduce':'no-preference'});const page=await context.newPage();
-    await page.goto('http://localhost:5173/?catalogue-preview&review');
+    await page.goto('http://localhost:5173/?readability-study&review');
     for(const mode of ['day','night'])for(const sample of ['qd-owl-5322965052817408','girl-owl-review-v04-original']){
       await page.getByRole('button',{name:mode.toUpperCase(),exact:true}).click();
       await page.getByRole('combobox',{name:'制作サンプル'}).selectOption(sample);

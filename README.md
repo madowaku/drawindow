@@ -3,9 +3,15 @@
 v0.4 introduces transparent finger-wiped condensation in the game. The old ink
 renderer remains in the development-only `/?glass-preview` comparison. DAY/NIGHT
 use identical stroke geometry and the original neutral inference image export.
-`/?catalogue-preview` records blind readability observations; add `&review` only
-for labelled maker review. The original OWL remains in the production catalogue
-until 3–5 blind participants have been observed. `/?character-preview` compares
+`/?doodle-catalog-preview` (also `/?catalogue-preview`) opens Shizuku Doodle
+Library v0.1: 64 candidates, at least two per letter, with word/readability,
+DAY/NIGHT, glass and SAFE-only controls. The game prefers SAFE, falls back to
+SOFT, and avoids repeated words; SPICY/REJECT remain review-only. Both OWL
+versions are retained for comparison; the SAFE octopus is the current O choice.
+`/?readability-study` preserves the original blind study; `&review` shows its
+labelled maker view. New blind observations are still pending.
+See [the library report](docs/SHIZUKU_DOODLE_LIBRARY_v0.1.md).
+`/?character-preview` compares
 four new 768×1024 candidates with the approved sprites; the game still uses the
 approved artwork. The user-approved glass rendering is ready for source
 integration; candidate artwork adoption remains a separate review. No public
@@ -13,7 +19,7 @@ deployment has been performed.
 
 For Android on the same Wi-Fi, keep `npm run dev` running and open its **Network**
 URL. On 2026-10-18 this is `http://192.168.0.9:5173/`; addresses may change.
-Use `/?glass-preview`, `/?catalogue-preview` or `/?character-preview` at that host.
+Use `/?glass-preview`, `/?doodle-catalog-preview` or `/?character-preview` at that host.
 Worker credentials and local backups are denied by the dev server. The local
 preview is not a public deployment. See [glass QA](docs/GLASS_FEEL_v0.4.md),
 [readability review](docs/READABILITY_v0.4.md) and
@@ -133,8 +139,10 @@ npm run dev:api
 - `src/core/`: deterministic reducer, normalized words and nine-link scoring.
 - `src/components/WindowCanvas.tsx` and `src/lib/`: input, frost mask, breath,
   retained strokes, playback and separate neutral inference image.
-- `src/data/`: A–Z catalogue, 23 selected Quick Draw samples and 3 original
-  rare-letter templates with individual provenance.
+- `src/data/doodleLibrary.ts`: canonical A–Z candidate arrays; 23 retained Quick
+  Draw samples, 3 retained original templates, 37 new original drawings and the
+  existing owl review. [Manifest](assets/doodle-library-v01-manifest.json) includes
+  source/stroke hashes. `node scripts/audit-doodle-library.mjs` regenerates it.
 - `src/services/` and `worker/`: bounded API/demo adapters, coalesced requests,
   secret-only provider calls, explicit failures and capped retries.
 - `docs/ARCHITECTURE.md`: frozen contracts and module ownership.

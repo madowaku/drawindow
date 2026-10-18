@@ -136,3 +136,16 @@ the session recording. The same source loops at its natural end (title/DAY are
 not advertised as seamless loops). Music and synthesized effects have separate
 gain paths under the existing sound toggle. Tab hide/page exit pause playback;
 late loads cannot start after mute, hide or disposal.
+
+## Shizuku Doodle Library v0.1
+
+37 additional original vector drawings are authored in `src/data/originalDoodles.ts`.
+They are not dataset tracings. Uneven contours and short, readable strokes are
+timed with the existing production playback utility. The original 23 Quick Draw
+samples and 3 original rare-letter templates retain their geometry and provenance
+in `legacySketches.ts`; the existing v0.4 owl review moves to `owlReview.ts` with
+identical strokes. No new third-party asset or license is introduced.
+`assets/doodle-library-v01-manifest.json` lists all 64 candidates, source references,
+maker judgements and source/stroke SHA-256 values. SAFE is a provisional maker
+judgement, not a human recognition result. Historic v0.4 manifests are preserved;
+their source-file hashes refer to the pre-library file layout.

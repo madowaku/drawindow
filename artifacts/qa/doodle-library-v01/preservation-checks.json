@@ -1,0 +1,96 @@
+{
+  "protectedFiles": 382,
+  "originalIndexPreserved": true,
+  "originalFilesModified": [
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "change": "updated"
+    },
+    {
+      "path": "docs/ASSETS.md",
+      "change": "updated"
+    },
+    {
+      "path": "docs/READABILITY_v0.4.md",
+      "change": "updated"
+    },
+    {
+      "path": "public/CREDITS.txt",
+      "change": "updated"
+    },
+    {
+      "path": "README.md",
+      "change": "updated"
+    },
+    {
+      "path": "scripts/qa-readability-v04.mjs",
+      "change": "updated"
+    },
+    {
+      "path": "scripts/qa-v04.mjs",
+      "change": "updated"
+    },
+    {
+      "path": "src/components/WindowCanvas.tsx",
+      "change": "updated"
+    },
+    {
+      "path": "src/core/types.ts",
+      "change": "updated"
+    },
+    {
+      "path": "src/core/words.ts",
+      "change": "updated"
+    },
+    {
+      "path": "src/data/sketches.test.ts",
+      "change": "updated"
+    },
+    {
+      "path": "src/data/sketches.ts",
+      "change": "updated"
+    },
+    {
+      "path": "src/dev/CataloguePreview.test.tsx",
+      "change": "updated"
+    },
+    {
+      "path": "src/dev/CataloguePreview.tsx",
+      "change": "updated"
+    },
+    {
+      "path": "src/dev/readabilityCandidates.ts",
+      "change": "updated"
+    },
+    {
+      "path": "src/Page.test.tsx",
+      "change": "updated"
+    },
+    {
+      "path": "src/Page.tsx",
+      "change": "updated"
+    }
+  ],
+  "protectedContracts": [
+    {
+      "path": "src/core/gameMachine.ts",
+      "preserved": true
+    },
+    {
+      "path": "src/core/score.ts",
+      "preserved": true
+    },
+    {
+      "path": "src/services/recognizer.ts",
+      "preserved": true
+    },
+    {
+      "path": "worker/index.ts",
+      "preserved": true
+    },
+    {
+      "path": "artifacts/release/DRAWINDOW-v0.4-itch.zip",
+      "preserved": true
+    }
+  ]
+}
