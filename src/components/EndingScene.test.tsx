@@ -7,7 +7,7 @@ import { EndingScene } from './EndingScene';
 import { closingLine } from '../lib/ending';
 
 vi.mock('./SketchThumbnail', () => ({ SketchThumbnail: ({ label }: { label: string }) => <div role="img" aria-label={label} /> }));
-vi.mock('./CharacterScene', () => ({ CharacterScene: () => <div /> }));
+vi.mock('./CharacterScene', () => ({ CharacterScene: ({ mode, frameOverride }: { mode: string; frameOverride?: string }) => <div data-testid="ending-character" data-mode={mode} data-override={frameOverride ?? 'none'} /> }));
 const entries: DrawingEntry[] = Array.from({ length: 10 }, (_, i) => ({ id: `entry-${i}`, actor: i % 2 ? 'player' : 'girl', round: Math.floor(i / 2) + 1, strokes: [{ id: 's', points: [{ x: .2, y: .3, t: 0 }] }], intendedWord: ['apple', 'egg', 'goat', 'tree', 'ear', 'rat', 'tiger', 'rain', 'nest', 'tea'][i], recognition: i % 2 && i < 9 ? { guess: ['egg', 'tree', 'rat', 'rain'][Math.floor(i / 2)], source: 'api' } : null, comparable: true }));
 const props = { entries, score: calculateScore(entries), mode: 'day' as const, language: 'en' as const, sessionKind: 'api' as const, reducedMotion: false, onRestart: vi.fn(), onTitle: vi.fn() };
 afterEach(() => { cleanup(); vi.useRealTimers(); });
@@ -53,6 +53,18 @@ describe('ten little thoughts', () => {
     expect(document.querySelectorAll('.chain-link')).toHaveLength(9);
     fireEvent.click(screen.getByRole('button', { name: 'Look at our drawings again' }));
     expect(document.querySelectorAll('.result-drawing')).toHaveLength(10);
+  });
+
+  it('uses the selected DAY/NIGHT farewell instead of forcing SMILE in the final act', () => {
+    for (const mode of ['day', 'night'] as const) {
+      const view = render(<EndingScene {...props} mode={mode} reducedMotion />);
+      fireEvent.click(screen.getByRole('button', { name: 'See what we meant' }));
+      fireEvent.click(screen.getByRole('button', { name: 'A little goodbye' }));
+      const character = screen.getByTestId('ending-character');
+      expect(character.getAttribute('data-mode')).toBe(mode);
+      expect(character.getAttribute('data-override')).toBe('none');
+      view.unmount();
+    }
   });
 
   it('reports unknown and demo honestly, with Japanese restart details', () => {
