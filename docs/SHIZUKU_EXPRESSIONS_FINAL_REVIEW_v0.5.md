@@ -1,5 +1,9 @@
 # DRAWINDOW | Shizuku expressions finalization v0.5 (review only)
 
+**Superseded by the user's v0.6 final decision: A adopted for all seven poses,
+DAY/NIGHT; B not adopted.** This v0.5 plan remains a historical record.
+See [v0.6 adoption and acting](SHIZUKU_ADOPTION_ACTING_v0.6.md).
+
 2026-10-18. Image production and local review verification are complete. See [final results, sprite links, comparisons and verification](SHIZUKU_EXPRESSIONS_FINAL_RESULTS_v0.5.md). This is **not an adoption or deployment receipt**. The design brief below is retained for context; the results document is the current evidence record.
 
 ## Source of truth: seven poses, not ten

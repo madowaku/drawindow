@@ -15,6 +15,11 @@ describe('Shizuku conversational reactions', () => {
     for (const phase of phases) {
       expect(getShizukuReaction({ phase, mode: 'day', round: 1, reducedMotion: false }).pose)
         .toMatch(/^(neutral|thinking|smile|shy|breath|curious|drawing)$/);
+      for (const mode of ['day', 'night'] as const) for (const hasPlayerMarks of [false, true]) {
+        const context = { phase, mode, hasPlayerMarks, reducedMotion: false };
+        expect(getShizukuReaction({ ...context, ...{ score: 0, correct: false, guess: 'cat' } }))
+          .toEqual(getShizukuReaction({ ...context, ...{ score: 9, correct: true, guess: 'tree' } }));
+      }
     }
 
     expect(getShizukuReaction({ phase: 'recognition_error', mode: 'day', reducedMotion: false }))
@@ -54,8 +59,10 @@ describe('Shizuku conversational reactions', () => {
   });
 
   it('holds the first girl pose, then follows monotonic drawing progress to the exact end', () => {
-    expect(getShizukuReaction({ phase: 'girl_drawing', mode: 'day', reducedMotion: false, progress: 0 }).pose).toBe('thinking');
-    expect(getShizukuReaction({ phase: 'girl_drawing', mode: 'day', reducedMotion: false, progress: DRAWING_HESITATION }).pose).toBe('drawing');
+    expect(getShizukuReaction({ phase: 'girl_drawing', mode: 'day', reducedMotion: false, progress: 0 }))
+      .toMatchObject({ pose: 'thinking', motion: 'think', durationMs: 0, leanPx: 0 });
+    expect(getShizukuReaction({ phase: 'girl_drawing', mode: 'day', reducedMotion: false, progress: DRAWING_HESITATION }))
+      .toMatchObject({ pose: 'drawing', motion: 'draw', durationMs: 600, leanPx: 2 });
     let last = 0;
     for (let i = 0; i <= 100; i += 1) {
       const current = characterDrawingProgress(i / 100);
@@ -63,5 +70,18 @@ describe('Shizuku conversational reactions', () => {
       last = current;
     }
     expect(characterDrawingProgress(1)).toBe(1);
+  });
+
+  it('reserves shy for the night farewell and ignores outcome data and round parity', () => {
+    for (const mode of ['day', 'night'] as const) for (const round of [1, 2, 5]) {
+      const context = { phase: 'results' as const, mode, round, reducedMotion: false };
+      expect(getShizukuReaction(context).pose).toBe(mode === 'day' ? 'smile' : 'shy');
+      const outcomeA = { ...context, score: 0, correct: false, recognition: { guess: 'cat' } };
+      const outcomeB = { ...context, score: 9, correct: true, recognition: { guess: 'tree' } };
+      expect(getShizukuReaction(outcomeA)).toEqual(getShizukuReaction(outcomeB));
+      for (const phase of ['girl_holding', 'player_drawing', 'recognition_error'] as const) {
+        expect(getShizukuReaction({ ...context, phase }).pose).not.toBe('shy');
+      }
+    }
   });
 });

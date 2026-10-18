@@ -3,8 +3,19 @@ import { resolve } from 'node:path';
 import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
 import { SHIZUKU_POSES, SHIZUKU_EYE_TARGET, type ShizukuPoseId } from './shizukuPoses';
+import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import adoption from '../../assets/shizuku-adoption-v06.json';
 
 describe('Shizuku pose manifest', () => {
+  it('pins all seven user-adopted A sprites to the original hashes', async () => {
+    expect(adoption.files).toHaveLength(7);
+    for (const file of adoption.files) {
+      const bytes = await readFile(file.filename);
+      expect(createHash('sha256').update(bytes).digest('hex')).toBe(file.sha256);
+      expect(SHIZUKU_POSES[file.pose as ShizukuPoseId].src).toBe(`${import.meta.env.BASE_URL}${file.filename.slice(7)}`);
+    }
+  });
   it('registers the seven shipped poses with valid source paths and bounded neutral fallbacks', () => {
     const ids = Object.keys(SHIZUKU_POSES).sort();
     expect(ids).toEqual(['breath', 'curious', 'drawing', 'neutral', 'shy', 'smile', 'thinking']);

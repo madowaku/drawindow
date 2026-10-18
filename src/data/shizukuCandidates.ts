@@ -1,6 +1,6 @@
 import { SHIZUKU_POSES, type ShizukuPose, type ShizukuPoseId } from './shizukuPoses';
 
-/** Review only. The game continues to use the approved v0.2 files. */
+/** v0.6: NOT ADOPTED. Historical archive preview only; game uses the A files. */
 const anchors = {
   neutral: { x: 0.502, y: 0.312 },
   breath: { x: 0.501, y: 0.312 },

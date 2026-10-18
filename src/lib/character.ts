@@ -55,9 +55,10 @@ export function getShizukuReaction({
       break;
     case 'girl_drawing':
       pose = progress < DRAWING_HESITATION ? 'thinking' : 'drawing';
-      motion = 'draw';
-      leanPx = 2;
-      durationMs = 600;
+      // Use the existing first 14% pause; begin the small hand/body gesture with ink.
+      motion = pose === 'thinking' ? 'think' : 'draw';
+      leanPx = pose === 'drawing' ? (mode === 'day' ? 2 : 1) : 0;
+      durationMs = pose === 'drawing' ? 600 : 0;
       break;
     case 'girl_holding':
       // This varies by exchange only; it never reads whether the guess was right.
@@ -85,8 +86,8 @@ export function getShizukuReaction({
       motion = 'review';
       break;
     case 'results':
-      // General closing tone, selected by exchange number rather than score.
-      pose = safeRound % 2 === 0 ? 'shy' : 'smile';
+      // One closing beat per session. Quiet NIGHT farewell, never correctness.
+      pose = mode === 'night' ? 'shy' : 'smile';
       motion = 'result';
       break;
   }

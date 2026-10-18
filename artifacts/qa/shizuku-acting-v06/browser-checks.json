@@ -1,0 +1,1207 @@
+{
+  "scope": "Automated browser interaction, synthetic drawings, disclosed DEMO and optionally intercepted HTTP fixtures. Not live recognition, physical-device or human playtest evidence.",
+  "journeys": [
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "mode": "day",
+      "fiveExchanges": true,
+      "trace": [
+        {
+          "phase": "title",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "smile"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "smile"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "review_intents",
+          "pose": "neutral"
+        },
+        {
+          "phase": "results",
+          "pose": "smile"
+        }
+      ],
+      "hiddenCheck": {
+        "syntheticVisibility": true,
+        "paused": {
+          "state": "paused",
+          "time": 173.39199999901166,
+          "running": "false",
+          "breathing": "paused"
+        },
+        "resumed": {
+          "count": 4,
+          "time": 600,
+          "state": "finished"
+        }
+      },
+      "rejectedRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "mode": "night",
+      "fiveExchanges": true,
+      "trace": [
+        {
+          "phase": "title",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "smile"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "smile"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "review_intents",
+          "pose": "neutral"
+        },
+        {
+          "phase": "results",
+          "pose": "shy"
+        }
+      ],
+      "hiddenCheck": {
+        "syntheticVisibility": true,
+        "paused": {
+          "state": "paused",
+          "time": 173.33699999943474,
+          "running": "false",
+          "breathing": "paused"
+        },
+        "resumed": {
+          "count": 4,
+          "time": 600,
+          "state": "finished"
+        }
+      },
+      "rejectedRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "mode": "day",
+      "fiveExchanges": true,
+      "trace": [
+        {
+          "phase": "title",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "smile"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "smile"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "review_intents",
+          "pose": "neutral"
+        },
+        {
+          "phase": "results",
+          "pose": "smile"
+        }
+      ],
+      "rejectedRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "mode": "night",
+      "fiveExchanges": true,
+      "trace": [
+        {
+          "phase": "title",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "smile"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "smile"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "review_intents",
+          "pose": "neutral"
+        },
+        {
+          "phase": "results",
+          "pose": "shy"
+        }
+      ],
+      "rejectedRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "mode": "day",
+      "fiveExchanges": true,
+      "trace": [
+        {
+          "phase": "title",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "smile"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "smile"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "breath"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "review_intents",
+          "pose": "neutral"
+        },
+        {
+          "phase": "results",
+          "pose": "smile"
+        }
+      ],
+      "rejectedRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "mode": "night",
+      "fiveExchanges": true,
+      "trace": [
+        {
+          "phase": "title",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "smile"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "smile"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "recognizing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_breath",
+          "pose": "neutral"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "thinking"
+        },
+        {
+          "phase": "girl_drawing",
+          "pose": "drawing"
+        },
+        {
+          "phase": "girl_holding",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "neutral"
+        },
+        {
+          "phase": "player_drawing",
+          "pose": "curious"
+        },
+        {
+          "phase": "review_intents",
+          "pose": "neutral"
+        },
+        {
+          "phase": "results",
+          "pose": "shy"
+        }
+      ],
+      "rejectedRequests": [],
+      "errors": []
+    }
+  ],
+  "previews": [
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "mode": "day",
+      "poses": [
+        "neutral",
+        "thinking",
+        "smile",
+        "shy",
+        "breath",
+        "curious",
+        "drawing"
+      ]
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "mode": "night",
+      "poses": [
+        "neutral",
+        "thinking",
+        "smile",
+        "shy",
+        "breath",
+        "curious",
+        "drawing"
+      ]
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "mode": "day",
+      "poses": [
+        "neutral",
+        "thinking",
+        "smile",
+        "shy",
+        "breath",
+        "curious",
+        "drawing"
+      ]
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "mode": "night",
+      "poses": [
+        "neutral",
+        "thinking",
+        "smile",
+        "shy",
+        "breath",
+        "curious",
+        "drawing"
+      ]
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "mode": "day",
+      "poses": [
+        "neutral",
+        "thinking",
+        "smile",
+        "shy",
+        "breath",
+        "curious",
+        "drawing"
+      ]
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "mode": "night",
+      "poses": [
+        "neutral",
+        "thinking",
+        "smile",
+        "shy",
+        "breath",
+        "curious",
+        "drawing"
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "mode": "day",
+      "source": "intercepted HTTP fixture, zero provider calls",
+      "requests": 2,
+      "inkPreserved": true,
+      "recoveredToRound2": true
+    },
+    {
+      "mode": "night",
+      "source": "intercepted HTTP fixture, zero provider calls",
+      "requests": 2,
+      "inkPreserved": true,
+      "recoveredToRound2": true
+    }
+  ],
+  "reducedMotion": {
+    "animations": 0,
+    "fade": "0s"
+  }
+}

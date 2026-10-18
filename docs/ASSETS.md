@@ -1,5 +1,15 @@
 # Asset provenance
 
+## v0.6 final art decision
+
+The user adopted A for all seven poses in DAY/NIGHT. `public/art/shizuku/`
+is preserved byte-for-byte; [adoption hashes](../assets/shizuku-adoption-v06.json)
+pin those files. B's v0.4 four portraits and v0.5 three revisions are **not
+adopted**. Their masters, WebPs, prompts, manifests and QA images stay archived;
+the historical sections below describe their production, not pending adoption.
+No further image regeneration or upscaling without a concrete new problem.
+Development now focuses on [acting with existing A sprites](SHIZUKU_ADOPTION_ACTING_v0.6.md).
+
 ## v0.4 local review candidates
 
 Approved Shizuku assets and all supplied originals remain unchanged. Four new

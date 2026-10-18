@@ -11,11 +11,13 @@ versions are retained for comparison; the SAFE octopus is the current O choice.
 `/?readability-study` preserves the original blind study; `&review` shows its
 labelled maker view. New blind observations are still pending.
 See [the library report](docs/SHIZUKU_DOODLE_LIBRARY_v0.1.md).
-`/?character-preview` compares
-four new 768×1024 candidates with the approved sprites; the game still uses the
-approved artwork. The user-approved glass rendering is ready for source
-integration; candidate artwork adoption remains a separate review. No public
-deployment has been performed.
+**Shizuku v0.6 final decision:** all seven A sprites in `public/art/shizuku/`
+are adopted for DAY/NIGHT. B v0.4/v0.5 candidates are not adopted; originals,
+prompts, hashes and comparisons are retained as historical production records.
+`/?character-preview` shows adopted A only. `&archive-candidates` and
+`&expression-final` explicitly open the rejected v0.4/v0.5 studies.
+See [adoption and acting v0.6](docs/SHIZUKU_ADOPTION_ACTING_v0.6.md).
+No public deployment has been performed.
 
 For Android on the same Wi-Fi, keep `npm run dev` running and open its **Network**
 URL. On 2026-10-18 this is `http://192.168.0.9:5173/`; addresses may change.
