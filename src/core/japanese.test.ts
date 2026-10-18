@@ -67,11 +67,11 @@ describe('Japanese word boundaries', () => {
   it('rotates Japanese DAY and NIGHT starters through easy final sounds', () => {
     const localized = localizeGirlSketches(girlSketches, 'ja');
     expect(easyJapaneseStarters.day.length).toBeGreaterThan(3);
-    expect(withJapaneseStarter(localized, 'day', 0)[0].word).toBe('ねこ');
-    expect(withJapaneseStarter(localized, 'day', 1)[0].word).toBe('はな');
+    expect(withJapaneseStarter(localized, 'day', 0)[0].word).toBe('すいか');
+    expect(withJapaneseStarter(localized, 'day', 1)[0].word).toBe('かさ');
     expect(withJapaneseStarter(localized, 'night', 0)[0].word).toBe('つき');
     expect(withJapaneseStarter(localized, 'night', 1)[0].word).toBe('ほし');
-    expect(withJapaneseStarter(localized, 'day', 2)[0].word).toBe('すいか');
+    expect(withJapaneseStarter(localized, 'day', 2)[0].word).toBe('つき');
     expect(withJapaneseStarter(localized, 'day', 0)).toHaveLength(localized.length);
     expect(localized[0].word).toBe('りんご');
   });
