@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-17 JST",
+  "endpoint": "http://127.0.0.1:8787/api/recognize",
+  "checks": [
+    { "name": "allowed preflight", "method": "OPTIONS", "origin": "http://localhost:5173", "status": 204, "allowOrigin": "http://localhost:5173" },
+    { "name": "untrusted origin", "method": "POST", "origin": "https://untrusted.invalid", "status": 403, "allowOrigin": null }
+  ],
+  "providerCalls": 0,
+  "secretStatus": "Existing local value did not match a configured Google API key format. Private replacement requested; value never recorded.",
+  "liveRecognitionTested": false,
+  "humanDoodleBenchmarkSamples": 0,
+  "actualItchIframeTested": false
+}

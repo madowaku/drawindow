@@ -4,7 +4,8 @@ import { resolve, dirname, extname } from 'node:path';
 import { unzipSync } from 'fflate';
 
 const destination = resolve('artifacts/qa/package-extracted');
-const archive = unzipSync(await readFile('artifacts/release/DRAWINDOW-v0.2-itch.zip'));
+const version = JSON.parse(await readFile('package.json', 'utf8')).version.split('.').slice(0, 2).join('.');
+const archive = unzipSync(await readFile(`artifacts/release/DRAWINDOW-v${version}-itch.zip`));
 for (const [name, bytes] of Object.entries(archive)) {
   const target = resolve(destination, name);
   if (!target.startsWith(destination + '/') && !target.startsWith(destination + '\\')) throw new Error(`Unsafe archive path: ${name}`);

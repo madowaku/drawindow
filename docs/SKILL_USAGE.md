@@ -1,5 +1,43 @@
 # Skill scope and execution
 
+## v0.3 requested model routing
+
+Applied `dispatching-parallel-agents` for disjoint ownership and
+`hiro-frontend-qa` for responsive verification. Sol6.1/XHigh owned integration
+and design, Luna6/Max owned the typed poses/reactions and stroke-contact overlay,
+Astra6/Low performed the brief read-only screenshot review. Actual direct-child
+`turn_context` model/effort metadata was checked; see `model-receipt-v03.json`.
+Wrangler skill and the existing Wrangler configuration guide local API setup;
+no cloud deployment or secret upload is part of this change.
+
+The user-requested Playwright smoke checks used the already installed cached
+`playwright-core`1.59.1 and Chromium, with explicit normal/reduced motion. No new
+runtime dependency or permanent browser setting was added. Browser mouse/touch
+automation is separately reported from human drawing/device/playtest evidence.
+
+## Character v0.2 update (2026-10-17)
+
+The user's explicit request to find and use a 2D character-animation plugin or
+skill was handled with Plugin Management search (Live2D / Spine / 2D character
+animation) and the installed Sprite Pipeline skill. Search returned Runway,
+Higgsfield and Figma; none was added for this work. Live2D's official runtime
+documentation requires exported model data (moc3/model3.json), which the supplied
+PNG artwork does not contain. The current solution is a pose-based animated
+illustration, with no claim of a Live2D or skeletal rig.
+
+Sprite Pipeline principles were applied to a single approved identity, one
+whole-atlas edit, shared size/anchor, alpha preservation and browser inspection.
+ImageGen used the built-in tool for that atlas and the separate background.
+Game Playtest and Hiro Frontend QA guide state, responsive and visual checks.
+The native Web Animations API pattern was consulted from Hyperframes Animation's
+adapter reference; this remains an interactive game, not a HyperFrames movie,
+and no HyperFrames runtime was installed. Native animations are cancelled on
+cleanup and disabled for reduced motion.
+
+Research: [Live2D embedded data](https://docs.live2d.com/en/cubism-editor-manual/export-moc3-motion3-files/).
+
+## Initial game implementation
+
 The user requested a production game from the supplied implementation task. That request controls stack, game rules and completion scope. The attached files were inspected as specification/reference material; their executable agent configuration was not installed or merged into protected `.codex` paths. Runtime collaboration tools successfully selected all three requested model/effort profiles directly.
 
 - Game Studio, Web Game Foundations and Game UI Frontend: applied to simulation/render separation, DOM controls, Canvas input and mobile-first layout. The specification explicitly selects React/Vite/Canvas2D.

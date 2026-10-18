@@ -1,7 +1,7 @@
 /** Shared contract. Core state is deterministic; presentation must not reveal words in play. */
 export type Mode = 'day' | 'night';
 export type SessionKind = 'api' | 'demo';
-export type GirlExpression = 'neutral' | 'thinking' | 'smiling';
+export type GirlExpression = 'neutral' | 'thinking' | 'smile' | 'shy' | 'breath' | 'curious';
 
 export type GamePhase =
   | 'title'
@@ -38,12 +38,19 @@ export interface GirlSketch {
 export interface WindowCanvasProps {
   mode: Mode;
   phase: GamePhase;
+  /** Cosmetic acting variation only; never target words or recognition output. */
+  round?: number;
   strokes: readonly Stroke[];
   onStrokesChange: (strokes: readonly Stroke[]) => void;
   onBreathDone: () => void;
   onPlaybackDone: () => void;
   reducedMotion: boolean;
   expression?: GirlExpression;
+  /** Neutral developer canvas still uses the production stroke/pointer pipeline. */
+  variant?: 'glass' | 'neutral';
+  /** Cosmetic A/B selection. Does not affect recorded geometry or inference. */
+  glassStyle?: 'tactile' | 'legacy';
+  onInputTypeChange?: (type: 'mouse' | 'touch' | 'pen' | 'keyboard') => void;
 }
 
 export type RecognitionSource = 'api' | 'mock';

@@ -1,0 +1,58 @@
+{
+  "verifiedDate": "2026-10-17",
+  "suppliedBy": "User-supplied local MP3 files; originals retained outside the published repository",
+  "license": "OpenTracks sound license plus each composer profile",
+  "licenseUrl": "https://opentracks.com/help/articles/license/",
+  "termsUrl": "https://opentracks.com/help/articles/terms/",
+  "processing": "Full-length stereo MP3,128kbps/44.1kHz; metadata/cover stripped; no rearrangement, trimming or AI processing. DRAWBGM1 container: header plus byte XOR0xa7. Playback uses a temporary in-memory Blob URL; no standalone audio files ship.",
+  "tracks": [
+    {
+      "id": "title",
+      "filename": "物語の幕を.mp3",
+      "title": "物語の幕を",
+      "artist": "のる",
+      "source": "https://opentracks.com/bgm/detail/15353",
+      "creator": "https://opentracks.com/creator/detail/432",
+      "originalBytes": 5262159,
+      "originalSha256": "612c9d6296cfd9c8fd0d2562b1687b3a176e0ea9a4504262d2d2bb3dfe621971",
+      "convertedBytes": 3006842,
+      "convertedSha256": "eeec49cea2c52577694f12ccfe2b1232f2f99c580e6ad4df633d5c8a8ce1eed7",
+      "output": "src/assets/music/title.bin",
+      "outputBytes": 3006850,
+      "outputSha256": "7483559e4889f24f9931a0baedd0ec69e53a8569d1f55d5bd82eda9e8f57415e",
+      "durationSeconds": 187.847982
+    },
+    {
+      "id": "day",
+      "filename": "Coral_Ambience.mp3",
+      "title": "Coral Ambience",
+      "artist": "ハヤシユウ",
+      "source": "https://opentracks.com/bgm/detail/20419",
+      "creator": "https://opentracks.com/creator/detail/59",
+      "originalBytes": 11342518,
+      "originalSha256": "adab242b1e288790d5dd76ee6ad673ff716b99253de7a20e4387ef6d32dbb3f3",
+      "convertedBytes": 4536991,
+      "convertedSha256": "16950574c889d08fcb3fc245adad6027499a176c37db17e988c23a074bb255ff",
+      "output": "src/assets/music/day.bin",
+      "outputBytes": 4536999,
+      "outputSha256": "c6669da429e8da4ed8ca648b6ee70c5ba09bea206450b3e070af37bb3e475119",
+      "durationSeconds": 283.484875
+    },
+    {
+      "id": "night",
+      "filename": "おやすみの時間.mp3",
+      "title": "おやすみの時間",
+      "artist": "蒲鉾さちこ",
+      "source": "https://opentracks.com/bgm/detail/22683",
+      "creator": "https://opentracks.com/creator/detail/418",
+      "originalBytes": 5030647,
+      "originalSha256": "e3f9266cec31743811f9d211e0c1c58ff3e7ae715c028816e6aaaf6171e5c0e2",
+      "convertedBytes": 1874173,
+      "convertedSha256": "1da13be6a1b0aecde5ceb9371c2d3278f328dbe32c89e985de7825a347051da9",
+      "output": "src/assets/music/night.bin",
+      "outputBytes": 1874181,
+      "outputSha256": "9ea45345c3cb7c9ee548d32d1981a34de216e2f3f2da5783b1e92e8dfbd01624",
+      "durationSeconds": 117.062494
+    }
+  ]
+}

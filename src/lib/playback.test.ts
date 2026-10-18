@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Stroke } from '../core/types';
-import { clampPlaybackDuration, createTimedStrokes, getPlaybackDuration, strokesAtProgress } from './playback';
+import { clampPlaybackDuration, createTimedStrokes, getPlaybackDuration, getPlaybackTip, strokesAtProgress } from './playback';
 
 describe('stroke playback', () => {
   it('keeps girl sketches within the requested half-to-one-and-a-half second range', () => {
@@ -21,6 +21,21 @@ describe('stroke playback', () => {
     ]);
     expect(strokesAtProgress(strokes, 1)).toEqual(strokes);
     expect(strokesAtProgress(strokes, -2)).toEqual([{ id: 'first', points: [{ x: 0, y: 0, t: 0 }] }]);
+  });
+
+  it('tracks the exact visible tip at stroke beginnings and middles, and lifts across gaps and completion', () => {
+    const strokes: readonly Stroke[] = [
+      { id: 'first', points: [{ x: 0.1, y: 0.2, t: 0 }, { x: 0.5, y: 0.6, t: 1000 }] },
+      { id: 'second', points: [{ x: 0.2, y: 0.8, t: 1500 }, { x: 0.8, y: 0.4, t: 2000 }] },
+    ];
+
+    expect(getPlaybackTip(strokes, 0)).toEqual({ x: 0.1, y: 0.2, penDown: true });
+    const middle = strokesAtProgress(strokes, 0.25)[0].points.at(-1)!;
+    expect(getPlaybackTip(strokes, 0.25)).toEqual({ x: middle.x, y: middle.y, penDown: true });
+    expect(getPlaybackTip(strokes, 0.6)).toBeNull();
+    expect(getPlaybackTip(strokes, 0.75)).toEqual({ x: 0.2, y: 0.8, penDown: true });
+    expect(getPlaybackTip(strokes, 1)).toBeNull();
+    expect(getPlaybackTip(strokes, Number.NaN)).toEqual({ x: 0.1, y: 0.2, penDown: true });
   });
 
   it('assigns monotonic synthetic timestamps to untimed source paths', () => {

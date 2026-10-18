@@ -1,0 +1,355 @@
+{
+  "scope": "Automated Chromium simulation and raster checks. No human judgement, hardware touch or recognition quality claim.",
+  "comparisons": [
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "mode": "day",
+      "pixels": {
+        "fogCenter": 0,
+        "fogOutside": 255,
+        "wetCenter": 0,
+        "sameExport": true,
+        "dimensions": [
+          512,
+          512
+        ],
+        "catalogueCount": 26
+      },
+      "errors": []
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "mode": "night",
+      "pixels": {
+        "fogCenter": 0,
+        "fogOutside": 255,
+        "wetCenter": 0,
+        "sameExport": true,
+        "dimensions": [
+          512,
+          512
+        ],
+        "catalogueCount": 26
+      },
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "mode": "day",
+      "pixels": {
+        "fogCenter": 0,
+        "fogOutside": 255,
+        "wetCenter": 0,
+        "sameExport": true,
+        "dimensions": [
+          512,
+          512
+        ],
+        "catalogueCount": 26
+      },
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "mode": "night",
+      "pixels": {
+        "fogCenter": 0,
+        "fogOutside": 255,
+        "wetCenter": 0,
+        "sameExport": true,
+        "dimensions": [
+          512,
+          512
+        ],
+        "catalogueCount": 26
+      },
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "mode": "day",
+      "pixels": {
+        "fogCenter": 0,
+        "fogOutside": 255,
+        "wetCenter": 0,
+        "sameExport": true,
+        "dimensions": [
+          512,
+          512
+        ],
+        "catalogueCount": 26
+      },
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "mode": "night",
+      "pixels": {
+        "fogCenter": 0,
+        "fogOutside": 255,
+        "wetCenter": 0,
+        "sameExport": true,
+        "dimensions": [
+          512,
+          512
+        ],
+        "catalogueCount": 26
+      },
+      "errors": []
+    }
+  ],
+  "catalogue": [
+    {
+      "id": "qd-apple-6510060014403584",
+      "word": "apple",
+      "strokes": 4,
+      "points": 64,
+      "shortSegments": 1,
+      "width": 0.8400000000000001,
+      "height": 0.8400000000000001
+    },
+    {
+      "id": "qd-banana-5564467330940928",
+      "word": "banana",
+      "strokes": 5,
+      "points": 87,
+      "shortSegments": 0,
+      "width": 0.8400000000000001,
+      "height": 0.7707999999999999
+    },
+    {
+      "id": "qd-cat-6661137368088576",
+      "word": "cat",
+      "strokes": 8,
+      "points": 77,
+      "shortSegments": 0,
+      "width": 0.8400000000000001,
+      "height": 0.8038000000000001
+    },
+    {
+      "id": "qd-dog-6317447978156032",
+      "word": "dog",
+      "strokes": 4,
+      "points": 77,
+      "shortSegments": 0,
+      "width": 0.8136000000000001,
+      "height": 0.8400000000000001
+    },
+    {
+      "id": "qd-elephant-4709154050539520",
+      "word": "elephant",
+      "strokes": 4,
+      "points": 75,
+      "shortSegments": 0,
+      "width": 0.8333999999999999,
+      "height": 0.8400000000000001
+    },
+    {
+      "id": "qd-fish-5422743342284800",
+      "word": "fish",
+      "strokes": 7,
+      "points": 72,
+      "shortSegments": 2,
+      "width": 0.8400000000000001,
+      "height": 0.6983999999999999
+    },
+    {
+      "id": "qd-guitar-4660123291090944",
+      "word": "guitar",
+      "strokes": 6,
+      "points": 72,
+      "shortSegments": 0,
+      "width": 0.8400000000000001,
+      "height": 0.8202
+    },
+    {
+      "id": "qd-house-5076612330553344",
+      "word": "house",
+      "strokes": 7,
+      "points": 63,
+      "shortSegments": 1,
+      "width": 0.8400000000000001,
+      "height": 0.8302
+    },
+    {
+      "id": "qd-ice-cream-5465068667928576",
+      "word": "ice cream",
+      "strokes": 4,
+      "points": 48,
+      "shortSegments": 2,
+      "width": 0.8400000000000001,
+      "height": 0.8366
+    },
+    {
+      "id": "qd-jacket-5309134591229952",
+      "word": "jacket",
+      "strokes": 5,
+      "points": 62,
+      "shortSegments": 0,
+      "width": 0.7576,
+      "height": 0.8400000000000001
+    },
+    {
+      "id": "qd-key-5094706637701120",
+      "word": "key",
+      "strokes": 4,
+      "points": 66,
+      "shortSegments": 1,
+      "width": 0.8333999999999999,
+      "height": 0.8400000000000001
+    },
+    {
+      "id": "qd-lion-4555635679035392",
+      "word": "lion",
+      "strokes": 4,
+      "points": 74,
+      "shortSegments": 0,
+      "width": 0.8333999999999999,
+      "height": 0.8400000000000001
+    },
+    {
+      "id": "qd-moon-6677376316473344",
+      "word": "moon",
+      "strokes": 6,
+      "points": 78,
+      "shortSegments": 0,
+      "width": 0.8400000000000001,
+      "height": 0.7742
+    },
+    {
+      "id": "qd-nose-5519533043351552",
+      "word": "nose",
+      "strokes": 6,
+      "points": 71,
+      "shortSegments": 0,
+      "width": 0.8400000000000001,
+      "height": 0.7081999999999999
+    },
+    {
+      "id": "qd-owl-5322965052817408",
+      "word": "owl",
+      "strokes": 5,
+      "points": 69,
+      "shortSegments": 0,
+      "width": 0.8400000000000001,
+      "height": 0.7771999999999999
+    },
+    {
+      "id": "qd-pizza-5109588850376704",
+      "word": "pizza",
+      "strokes": 5,
+      "points": 74,
+      "shortSegments": 2,
+      "width": 0.8400000000000001,
+      "height": 0.8368
+    },
+    {
+      "id": "qd-rabbit-5034139143110656",
+      "word": "rabbit",
+      "strokes": 6,
+      "points": 74,
+      "shortSegments": 2,
+      "width": 0.8400000000000001,
+      "height": 0.8302
+    },
+    {
+      "id": "qd-snake-6434015181537280",
+      "word": "snake",
+      "strokes": 4,
+      "points": 63,
+      "shortSegments": 0,
+      "width": 0.8400000000000001,
+      "height": 0.7742
+    },
+    {
+      "id": "qd-tree-4896539229028352",
+      "word": "tree",
+      "strokes": 5,
+      "points": 68,
+      "shortSegments": 0,
+      "width": 0.7378,
+      "height": 0.8400000000000001
+    },
+    {
+      "id": "qd-umbrella-4980311861493760",
+      "word": "umbrella",
+      "strokes": 6,
+      "points": 64,
+      "shortSegments": 0,
+      "width": 0.8400000000000001,
+      "height": 0.8368
+    },
+    {
+      "id": "qd-van-5262917039554560",
+      "word": "van",
+      "strokes": 5,
+      "points": 70,
+      "shortSegments": 0,
+      "width": 0.8400000000000001,
+      "height": 0.754
+    },
+    {
+      "id": "qd-watermelon-4799638206939136",
+      "word": "watermelon",
+      "strokes": 6,
+      "points": 77,
+      "shortSegments": 0,
+      "width": 0.8400000000000001,
+      "height": 0.8268
+    },
+    {
+      "id": "qd-zebra-6484098010841088",
+      "word": "zebra",
+      "strokes": 5,
+      "points": 75,
+      "shortSegments": 1,
+      "width": 0.8102,
+      "height": 0.8400000000000001
+    },
+    {
+      "id": "girl-queen-original",
+      "word": "queen",
+      "strokes": 8,
+      "points": 53,
+      "shortSegments": 2,
+      "width": 0.6399999999999999,
+      "height": 0.81
+    },
+    {
+      "id": "girl-xylophone-original",
+      "word": "xylophone",
+      "strokes": 10,
+      "points": 25,
+      "shortSegments": 0,
+      "width": 0.6799999999999999,
+      "height": 0.7300000000000001
+    },
+    {
+      "id": "girl-yarn-original",
+      "word": "yarn",
+      "strokes": 4,
+      "points": 44,
+      "shortSegments": 0,
+      "width": 0.69,
+      "height": 0.79
+    }
+  ]
+}

@@ -1,9 +1,13 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent, KeyboardEvent as ReactKeyboardEvent } from 'react';
 import type { GamePhase, Mode, Stroke, StrokePoint, WindowCanvasProps } from '../core/types';
-import { advanceFogTimeline, createFogTimeline, fogTimelineProgress, getBreathOrigin, pauseFogTimeline, resumeFogTimeline, type FogTimeline } from '../lib/fog';
-import { getPlaybackDuration, strokesAtProgress } from '../lib/playback';
+import { advanceFogTimeline, createFogTimeline, fogTimelineProgress, getBreathOrigin, isTimedCanvasPhase, pauseFogTimeline, resumeFogTimeline, type FogTimeline } from '../lib/fog';
+import { getPlaybackDuration, getPlaybackTip, strokesAtProgress } from '../lib/playback';
 import { drawStrokes, normalizePointerPoint, normalizeStrokes } from '../lib/strokes';
+import { characterDrawingProgress, DRAWING_HESITATION } from '../lib/character';
+import { drawWetEdges, wipeCondensation } from '../lib/glass';
+import { CharacterScene } from './CharacterScene';
+import { StrokeTipOverlay } from './StrokeTipOverlay';
 import './WindowCanvas.css';
 
 interface CanvasLayout {
@@ -60,14 +64,15 @@ function drawFrost(
   mode: Mode,
   phase: GamePhase,
   progress: number,
+  tactile = false,
 ): void {
   ctx.clearRect(0, 0, width, height);
   if (phase === 'title') return;
 
   const breathProgress = phase === 'girl_breath' ? eased(progress) : 1;
   const base = mode === 'day'
-    ? { red: 220, green: 237, blue: 239, alpha: 0.42 }
-    : { red: 156, green: 181, blue: 211, alpha: 0.49 };
+    ? { red: 220, green: 237, blue: 239, alpha: tactile ? 0.59 : 0.42 }
+    : { red: 156, green: 181, blue: 211, alpha: tactile ? 0.57 : 0.49 };
   const baseAlpha = phase === 'girl_breath' ? base.alpha * (0.18 + breathProgress * 0.82) : base.alpha;
   ctx.save();
   ctx.globalCompositeOperation = 'source-over';
@@ -122,11 +127,15 @@ function configureCanvas(canvas: HTMLCanvasElement, width: number, height: numbe
 export function WindowCanvas({
   mode,
   phase,
+  round = 1,
   strokes,
   onStrokesChange,
   onBreathDone,
   onPlaybackDone,
   reducedMotion,
+  variant = 'glass',
+  glassStyle = 'tactile',
+  onInputTypeChange,
 }: WindowCanvasProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const fogCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -138,6 +147,7 @@ export function WindowCanvas({
   const layoutRef = useRef<CanvasLayout>({ width: 0, height: 0, size: 0, left: 0, top: 0, dpr: 1 });
   const frameRef = useRef<number | null>(null);
   const timelineRef = useRef<FogTimeline | null>(null);
+  const completedTransitionRef = useRef<string | null>(null);
   const visibleRef = useRef(true);
   const scheduleFrameRef = useRef<() => void>(() => undefined);
   const tickFrameRef = useRef<FrameRequestCallback>(() => undefined);
@@ -149,6 +159,8 @@ export function WindowCanvas({
   const timestampOffsetRef = useRef(0);
   const [layout, setLayout] = useState<CanvasLayout>(layoutRef.current);
   const [animationProgress, setAnimationProgress] = useState(1);
+  const [canvasVisible, setCanvasVisible] = useState(true);
+  const [pointerTip, setPointerTip] = useState<StrokePoint | null>(null);
 
   strokesRef.current = strokes;
   onStrokesChangeRef.current = onStrokesChange;
@@ -194,6 +206,7 @@ export function WindowCanvas({
     const finished = activeStrokeRef.current;
     activePointerRef.current = null;
     activeStrokeRef.current = null;
+    setPointerTip(null);
     publishStrokes([...strokesRef.current.filter(stroke => stroke.id !== finished.id), { id: finished.id, points: finished.points }]);
     const target = event.currentTarget;
     if (typeof target.hasPointerCapture === 'function' && target.hasPointerCapture(event.pointerId)) {
@@ -202,12 +215,14 @@ export function WindowCanvas({
   };
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLCanvasElement>) => {
-    if (phase !== 'player_drawing' || event.button !== 0 || event.isPrimary === false) return;
+    if (phase !== 'player_drawing' || event.button !== 0 || event.isPrimary === false || activePointerRef.current !== null) return;
     event.preventDefault();
     if (keyboardStrokeRef.current) keyboardStrokeRef.current = null;
     activePointerRef.current = event.pointerId;
+    if (['mouse', 'touch', 'pen'].includes(event.pointerType)) onInputTypeChange?.(event.pointerType as 'mouse' | 'touch' | 'pen');
     const active: ActiveStroke = { id: makeId(), points: [pointFromPointer(event.nativeEvent, event.currentTarget)] };
     activeStrokeRef.current = active;
+    setPointerTip(active.points[0]);
     publishStrokes([...strokesRef.current, { id: active.id, points: active.points }]);
     if (typeof event.currentTarget.setPointerCapture === 'function') {
       try { event.currentTarget.setPointerCapture(event.pointerId); } catch { /* Detached test/browser surfaces may reject capture. */ }
@@ -219,12 +234,14 @@ export function WindowCanvas({
     if (phase !== 'player_drawing' || event.pointerId !== activePointerRef.current || !active) return;
     event.preventDefault();
     if (appendPointerSamples(event, active)) {
+      setPointerTip(active.points.at(-1) ?? null);
       publishStrokes([...strokesRef.current.filter(stroke => stroke.id !== active.id), { id: active.id, points: active.points }]);
     }
   };
 
   const beginKeyboardStroke = () => {
     if (keyboardStrokeRef.current) return;
+    onInputTypeChange?.('keyboard');
     const cursor = keyboardCursorRef.current;
     keyboardStrokeRef.current = {
       id: makeId(),
@@ -267,6 +284,7 @@ export function WindowCanvas({
     }
     if (event.key === 'Enter' && !event.repeat) {
       event.preventDefault();
+      onInputTypeChange?.('keyboard');
       const point = { ...cursor, t: elapsedDrawingTime() };
       publishStrokes([...strokesRef.current, { id: makeId(), points: [point] }]);
     }
@@ -320,6 +338,7 @@ export function WindowCanvas({
       activePointerRef.current = null;
       activeStrokeRef.current = null;
       keyboardStrokeRef.current = null;
+      setPointerTip(null);
       return;
     }
     drawingStartedAtRef.current = nowMs();
@@ -328,7 +347,8 @@ export function WindowCanvas({
   }, [phase]);
 
   scheduleFrameRef.current = () => {
-    if (frameRef.current !== null || !visibleRef.current) return;
+    const timeline = timelineRef.current;
+    if (frameRef.current !== null || !visibleRef.current || !timeline || timeline.completed || !isTimedCanvasPhase(timeline.phase)) return;
     frameRef.current = requestFrame(tickFrameRef.current);
   };
   tickFrameRef.current = now => {
@@ -339,6 +359,9 @@ export function WindowCanvas({
     timelineRef.current = result.timeline;
     setAnimationProgress(result.progress);
     if (result.completedNow) {
+      const transition = `${mode}:${timeline.phase}:${round}`;
+      if (completedTransitionRef.current === transition) return;
+      completedTransitionRef.current = transition;
       if (timeline.phase === 'girl_breath') onBreathDoneRef.current();
       if (timeline.phase === 'girl_drawing') onPlaybackDoneRef.current();
       return;
@@ -346,9 +369,12 @@ export function WindowCanvas({
     scheduleFrameRef.current();
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const now = nowMs();
     let timeline = createFogTimeline(mode, phase, now, { reducedMotion, playbackDurationMs: playbackDuration });
+    if (completedTransitionRef.current === `${mode}:${phase}:${round}`) {
+      timeline = { ...timeline, elapsedMs: timeline.durationMs, startedAt: null, completed: true };
+    }
     if (!visibleRef.current) timeline = pauseFogTimeline(timeline, now);
     timelineRef.current = timeline;
     setAnimationProgress(fogTimelineProgress(timeline, now));
@@ -358,17 +384,17 @@ export function WindowCanvas({
       frameRef.current = null;
       if (timelineRef.current?.phase === phase) timelineRef.current = null;
     };
-  }, [mode, phase, reducedMotion, playbackDuration]);
+  }, [mode, phase, round, reducedMotion, playbackDuration]);
 
   useEffect(() => {
     const root = rootRef.current;
-    if (!root || typeof IntersectionObserver === 'undefined') return;
-    const observer = new IntersectionObserver(entries => {
-      const entry = entries[entries.length - 1];
-      if (!entry) return;
-      const visible = entry.isIntersecting && entry.intersectionRatio > 0;
+    if (!root) return;
+    let onScreen = true;
+    const updateVisibility = () => {
+      const visible = onScreen && !document.hidden;
       if (visible === visibleRef.current) return;
       visibleRef.current = visible;
+      setCanvasVisible(visible);
       const now = nowMs();
       if (!visible) {
         if (timelineRef.current) timelineRef.current = pauseFogTimeline(timelineRef.current, now);
@@ -378,9 +404,17 @@ export function WindowCanvas({
         if (timelineRef.current) timelineRef.current = resumeFogTimeline(timelineRef.current, now);
         scheduleFrameRef.current();
       }
+    };
+    const observer = typeof IntersectionObserver === 'undefined' ? null : new IntersectionObserver(entries => {
+      const entry = entries[entries.length - 1];
+      if (!entry) return;
+      onScreen = entry.isIntersecting && entry.intersectionRatio > 0;
+      updateVisibility();
     });
-    observer.observe(root);
-    return () => observer.disconnect();
+    observer?.observe(root);
+    document.addEventListener('visibilitychange', updateVisibility);
+    updateVisibility();
+    return () => { observer?.disconnect(); document.removeEventListener('visibilitychange', updateVisibility); };
   }, []);
 
   useLayoutEffect(() => {
@@ -392,26 +426,33 @@ export function WindowCanvas({
     const drawingContext = configureCanvas(drawingCanvas, layout.size, layout.size, layout.dpr);
     if (!fogContext || !drawingContext) return;
 
-    drawFrost(fogContext, layout.width, layout.height, mode, phase, animationProgress);
-    const visibleStrokes = phase === 'girl_drawing' ? strokesAtProgress(strokes, animationProgress) : strokes;
+    const tactile = variant === 'glass' && glassStyle === 'tactile';
+    drawFrost(fogContext, layout.width, layout.height, mode, phase, animationProgress, tactile);
+    const visibleStrokes = phase === 'girl_drawing'
+      ? animationProgress < DRAWING_HESITATION ? [] : strokesAtProgress(strokes, characterDrawingProgress(animationProgress))
+      : strokes;
     if (phase !== 'girl_breath' && visibleStrokes.length > 0) {
       fogContext.save();
       fogContext.translate(layout.left, layout.top);
-      fogContext.globalCompositeOperation = 'destination-out';
-      drawStrokes(fogContext, visibleStrokes, layout.size, layout.size, { color: '#000000', widthScale: 1.8 });
+      if (tactile) wipeCondensation(fogContext, visibleStrokes, layout.size);
+      else {
+        fogContext.globalCompositeOperation = 'destination-out';
+        drawStrokes(fogContext, visibleStrokes, layout.size, layout.size, { color: '#000000', widthScale: 1.8 });
+      }
       fogContext.restore();
     }
 
     drawingContext.clearRect(0, 0, layout.size, layout.size);
     if (phase !== 'girl_breath' && phase !== 'title' && visibleStrokes.length > 0) {
-      drawStrokes(drawingContext, visibleStrokes, layout.size, layout.size, {
-        color: mode === 'day' ? '#152a32' : '#142332',
-        edgeColor: mode === 'day' ? 'rgba(250, 252, 245, 0.88)' : 'rgba(231, 240, 252, 0.94)',
-        widthScale: 0.96,
+      if (tactile) drawWetEdges(drawingContext, visibleStrokes, layout.size, mode);
+      else drawStrokes(drawingContext, visibleStrokes, layout.size, layout.size, {
+        color: variant === 'neutral' ? '#111111' : mode === 'day' ? '#152a32' : '#142332',
+        edgeColor: variant === 'neutral' ? undefined : mode === 'day' ? 'rgba(250, 252, 245, 0.88)' : 'rgba(231, 240, 252, 0.94)',
+        widthScale: variant === 'neutral' ? 1.1 : 0.96,
         edgeWidthScale: 0.002,
       });
     }
-  }, [layout, mode, phase, strokes, animationProgress]);
+  }, [layout, mode, phase, strokes, animationProgress, variant, glassStyle]);
 
   const drawingStyle = layout.size > 0 ? {
     width: `${layout.size}px`,
@@ -419,9 +460,18 @@ export function WindowCanvas({
     left: `${layout.left}px`,
     bottom: '0px',
   } : undefined;
+  // The cursor and the ink use the identical eased playback position and square.
+  // Keep this local to the canvas so animation never drives the App reducer.
+  const playbackTip = phase === 'girl_drawing' && animationProgress >= DRAWING_HESITATION
+    ? getPlaybackTip(strokes, characterDrawingProgress(animationProgress))
+    : null;
+
+  const activeTip = phase === 'player_drawing' ? pointerTip : null;
 
   return (
-    <div className="window-canvas" ref={rootRef} data-testid="window-canvas" data-mode={mode}>
+    <div className="window-canvas" ref={rootRef} data-testid="window-canvas" data-mode={mode} data-variant={variant} data-glass-style={glassStyle} data-running={canvasVisible && !reducedMotion}>
+      {variant === 'glass' && <CharacterScene mode={mode} phase={phase} round={round} progress={animationProgress} reducedMotion={reducedMotion} />}
+      <svg className="window-canvas__spiral" viewBox="0 0 40 40" aria-hidden="true"><path d="M 29 27 C 7 38 1 7 22 8 C 39 8 39 29 24 29 C 12 29 12 15 23 16 C 30 17 29 23 24 23" /></svg>
       <canvas className="window-canvas__fog" ref={fogCanvasRef} aria-hidden="true" />
       <canvas
         className={`window-canvas__drawing${phase === 'player_drawing' ? ' is-interactive' : ''}`}
@@ -440,12 +490,15 @@ export function WindowCanvas({
           if (activePointerRef.current === event.pointerId) {
             activePointerRef.current = null;
             activeStrokeRef.current = null;
+            setPointerTip(null);
           }
         }}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
         onBlur={handleBlur}
       />
+      <StrokeTipOverlay tip={playbackTip} layout={layout} reducedMotion={reducedMotion} visible={canvasVisible && phase === 'girl_drawing'} />
+      {variant === 'glass' && glassStyle === 'tactile' && activeTip && <span className="window-canvas__finger" aria-hidden="true" style={{ left: layout.left + activeTip.x * layout.size, top: layout.top + activeTip.y * layout.size }} />}
       {phase === 'player_drawing' && strokes.length === 0 && drawingStyle && (
         <div className="window-canvas__prompt" style={drawingStyle} aria-hidden="true" data-testid="window-drawing-hint">
           <span>DRAW HERE</span>

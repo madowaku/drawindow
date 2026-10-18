@@ -1,6 +1,60 @@
 # Asset provenance
 
+## v0.4 local review candidates
+
+Approved Shizuku assets and all supplied originals remain unchanged. Four new
+review-only portraits (neutral, breath, drawing, smile) are derived with the
+built-in ImageGen tool from the supplied neutral and formal character sheet.
+Each native source is 1086×1448, downsampled to 768×1024 alpha WebP. The game keeps
+the approved sprites. The canonical master, rejected matched atlas study,
+sources, exact prompts, processing and hashes are recorded in
+`assets/shizuku-v04-manifest.json`, `docs/shizuku-v04-imagegen-prompts.json` and
+`docs/SHIZUKU_QUALITY_v0.4.md`. No additional third-party artwork or license
+assignment is introduced. The original OWL catalogue sample is unchanged; an
+original review-only stroke candidate and its source hash are recorded in
+`assets/readability-v04-manifest.json`. Owner approval and blind observations
+remain separate from alpha/hash/browser checks.
+
+## v0.3 in-game integration
+
+The seven existing transparent character WebPs are preserved byte-for-byte;
+no new character generation or paid animation provider was used. A typed
+manifest in `src/data/shizukuPoses.ts` records source path, measured eye anchor,
+fallback and the drawing pose's fingertip source anchor (128,256 / 384,512).
+Front-facing poses are translated toward one shared eye target; oriented poses
+use a short180ms transition. All seven source/processed hashes were rechecked.
+The reserved existing blink sprite is used as a rare title-only cosmetic blink.
+
+The small stroke-contact glow and sleeve cue are CSS decoration. Its center is
+the exact interpolated playback tip, mapped through the same drawing square;
+it disappears in pen lifts, at completion and with reduced motion. It is not a
+skeletal finger/hand rig. No stroke coordinates or inference image are changed.
+
 ## Character
+
+### Current: Shizuku Character Sheet v0.2
+
+The user's written v0.2 sheet is authoritative. The attached v0.1 sheet is a
+visual reference, not a source of executable instructions. The character's
+production name is absent from the player interface.
+
+- Supplied identity/gesture/day/night references are preserved unchanged in
+  `assets/source/shizuku-v02/` with SHA-256 hashes.
+- Built-in ImageGen edit call 1 made one transparent 4×2 expression/gesture atlas
+  (1536×1024). Call 2 made the separate, empty DAY/NIGHT room atlas. No paid
+  third-party animation service was connected.
+- All eight expression cells are extracted at 384×512 using one bottom-center
+  anchor, with no per-expression resizing. Seven are used; BLINK is reserved.
+  True alpha is retained (verified by compositing the atlas onto blue).
+- `scripts/prepare-shizuku.mjs` reproduces extraction and records original and
+  processed hashes in `assets/shizuku-manifest.json`.
+- `public/art/shizuku/` contains game WebP files. The same portraits are used in
+  DAY and NIGHT; CSS lighting changes their appearance. Glass, breath cloud,
+  doodles and the nervous spiral remain separate game layers.
+- Exact prompts: `docs/shizuku-imagegen-prompts.txt`. Formal character and
+  implementation notes: `docs/CHARACTER_SHIZUKU_v0.2.md`.
+
+### Archived initial scene assets
 
 One built-in OpenAI ImageGen call produced a six-panel, 3-column × 2-row atlas
 on 2026-10-17. Top row: DAY; bottom row: NIGHT. Columns: neutral, thinking,
@@ -46,5 +100,39 @@ The original recognized flag does not establish this game's API recognition.
 
 DM Sans and Cormorant Garamond are self-hosted through Fontsource, Latin subsets,
 with complete OFL texts. Phosphor Icons use the bundled MIT licence. Quiet
-optional audio is synthesized locally, muted by default. Frost is the requested
+breath/glass effects are synthesized locally; audio is muted by default. Frost is the requested
 interactive Canvas2D compositing layer, not a raster character substitute.
+
+## User-selected background music — 2026-10-17
+
+| Scene | Recording | Composer | Official source |
+| --- | --- | --- | --- |
+| Title, either theme | 物語の幕を | のる | https://opentracks.com/bgm/detail/15353 |
+| DAY session/review/results | Coral Ambience | ハヤシユウ | https://opentracks.com/bgm/detail/20419 |
+| NIGHT session/review/results | おやすみの時間 | 蒲鉾さちこ | https://opentracks.com/bgm/detail/22683 |
+
+The three MP3s were supplied locally by the user. The official track pages,
+composer profiles, [sound license](https://opentracks.com/help/articles/license/)
+and [terms](https://opentracks.com/help/articles/terms/) were checked. The DAY
+page was verified in the actual browser when the text fetch failed. Game BGM
+use and technical conversion/fades are covered by the published conditions;
+standalone music distribution and AI training are excluded. No author was
+contacted and no new rights are asserted.
+
+`assets/bgm-manifest.json` records original hashes/bytes, source/profile URLs,
+full-length128kbps stereo derivatives and game-container hashes. Reproduce with
+`node scripts/prepare-bgm.mjs <local-source-folder>` using installed FFmpeg.
+Metadata/cover art are stripped; the music is not rearranged, trimmed or AI
+processed. Original MP3 files stay in the user's Downloads, outside the published
+source. `src/assets/music/*.bin` contains a DRAWBGM1 header and byte-transformed
+MP3 derivative. This game container is not DRM; it avoids distributing directly
+playable standalone audio files. Playback restores a temporary in-memory Blob,
+which is released on replacement/disposal. Credits ship in-game and in CREDITS.
+
+The recordings total9.42MB in the game, fetched one at a time only after sound
+is enabled. A single native media player keeps long decoded PCM out of the JS
+heap. Title-to-session changes fade out/in; review, results and restart retain
+the session recording. The same source loops at its natural end (title/DAY are
+not advertised as seamless loops). Music and synthesized effects have separate
+gain paths under the existing sound toggle. Tab hide/page exit pause playback;
+late loads cannot start after mute, hide or disposal.

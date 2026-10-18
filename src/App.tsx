@@ -2,15 +2,17 @@ import { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, ArrowCounterClockwise, Check, Eraser, Info, Moon, SpeakerHigh, SpeakerSlash, Sun, X } from '@phosphor-icons/react';
 import { createInitialState, gameReducer, selectCanFinishDrawing, selectPlayerEntries, selectVisibleStrokes } from './core/gameMachine';
 import { calculateScore } from './core/score';
-import type { GirlExpression, Mode, SessionKind } from './core/types';
+import type { DrawingRecognizer, GameState, Mode, SessionKind } from './core/types';
 import { girlSketches } from './data/sketches';
 import { WindowCanvas } from './components/WindowCanvas';
 import { SketchThumbnail } from './components/SketchThumbnail';
+import { CharacterScene, characterArt } from './components/CharacterScene';
+import { MusicCredits } from './components/MusicCredits';
+import { CHARACTER_FRAMES } from './lib/character';
 import { renderDrawingDataUrl } from './lib/strokes';
-import { playSound } from './lib/audio';
+import { musicForScene } from './lib/music';
+import { useGameAudio } from './lib/useGameAudio';
 import { createApiRecognizer, createDemoRecognizer, createRecognitionRunner } from './services/recognizer';
-
-const art = (mode: Mode, expression: GirlExpression = 'neutral') => `${import.meta.env.BASE_URL}art/${mode}-${expression}.webp`;
 
 function savedMode(): Mode {
   try { return localStorage.getItem('drawindow-mode') === 'night' ? 'night' : 'day'; } catch { return 'day'; }
@@ -27,16 +29,22 @@ function useReducedMotion() {
   return reduced;
 }
 
-export default function App() {
+export interface AppProps {
+  /** Optional local acceptance observer; production supplies neither prop. */
+  apiRecognizer?: DrawingRecognizer;
+  onStateChange?: (state: GameState) => void;
+}
+
+export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
   const liveApiConfigured = Boolean(import.meta.env.VITE_RECOGNITION_URL?.trim()) || import.meta.env.VITE_ENABLE_LIVE_API === 'true';
   const [state, dispatch] = useReducer(gameReducer, undefined, () => createInitialState(savedMode()));
-  const [sound, setSound] = useState(false);
+  const { sound, toggleSound, playSound } = useGameAudio(musicForScene(state.phase, state.mode));
   const [info, setInfo] = useState(false);
   const [leave, setLeave] = useState(false);
   const [sessionChoice, setSessionChoice] = useState<SessionKind>('demo');
   const [intentDrafts, setIntentDrafts] = useState<Record<string, string>>({});
   const [runners] = useState(() => ({
-    api: createRecognitionRunner(createApiRecognizer({ endpoint: import.meta.env.VITE_RECOGNITION_URL || '/api/recognize', imageRenderer: renderDrawingDataUrl })),
+    api: createRecognitionRunner(apiRecognizer ?? createApiRecognizer({ endpoint: import.meta.env.VITE_RECOGNITION_URL || '/api/recognize', imageRenderer: renderDrawingDataUrl })),
     demo: createRecognitionRunner(createDemoRecognizer()),
   }));
   const reducedMotion = useReducedMotion();
@@ -44,7 +52,9 @@ export default function App() {
   const active = !['title', 'review_intents', 'results'].includes(state.phase);
   const players = selectPlayerEntries(state);
   const score = calculateScore(state.entries, state.sessionKind);
-  const expression: GirlExpression = state.phase === 'recognizing' || state.phase === 'recognition_error' ? 'thinking' : state.phase === 'girl_holding' || state.phase === 'results' ? 'smiling' : 'neutral';
+
+  // Clear a completed developer record before painting the next session.
+  useLayoutEffect(() => { onStateChange?.(state); }, [state, onStateChange]);
 
   useEffect(() => {
     try { localStorage.setItem('drawindow-mode', state.mode); } catch { /* Private browser storage is optional. */ }
@@ -69,11 +79,11 @@ export default function App() {
       else if (state.phase === 'results') playSound('finish');
     }
     phaseRef.current = state.phase;
-  }, [state.phase, sound]);
+  }, [state.phase, sound, playSound]);
 
   useEffect(() => {
-    for (const mode of ['day', 'night'] as Mode[]) for (const face of ['neutral', 'thinking', 'smiling'] as GirlExpression[]) {
-      const preload = new Image(); preload.src = art(mode, face);
+    for (const name of [...CHARACTER_FRAMES, 'room-day', 'room-night']) {
+      const preload = new Image(); preload.src = characterArt(name);
     }
   }, []);
 
@@ -93,7 +103,7 @@ export default function App() {
       <button className="wordmark" onClick={() => active ? setLeave(true) : dispatch({ type: 'RETURN_TO_TITLE' })} aria-label="DRAWINDOW home">DRA<span>W</span>INDOW<span className="wordmark-period">.</span></button>
       <div className="topbar-right">
         {active && <span className="mode-label">{state.mode === 'day' ? <Sun size={15} /> : <Moon size={15} />}{state.mode.toUpperCase()}</span>}
-        <button className="icon-button" aria-label={sound ? 'Mute sound' : 'Enable sound'} aria-pressed={sound} onClick={() => { setSound(!sound); if (!sound) playSound('turn'); }}>{sound ? <SpeakerHigh size={20} /> : <SpeakerSlash size={20} />}</button>
+        <button className="icon-button" aria-label={sound ? 'Mute sound' : 'Enable sound'} aria-pressed={sound} onClick={toggleSound}>{sound ? <SpeakerHigh size={20} /> : <SpeakerSlash size={20} />}</button>
         <button className="icon-button" aria-label="How to play and credits" onClick={() => setInfo(true)}><Info size={20} /></button>
       </div>
     </header>
@@ -111,16 +121,15 @@ export default function App() {
         </div>
         <p className="edition">FIVE EXCHANGES. ONE MISTED WINDOW.</p>
       </div>
-      <div className="title-art"><img src={art(state.mode, 'smiling')} alt="A girl waiting on the other side of a misted window" /><div className="art-caption"><span>on the other side</span><span>{state.mode === 'day' ? 'a quiet afternoon' : 'a light still on'}</span></div></div>
+      <div className="title-art" role="img" aria-label="A girl waiting on the other side of a misted window"><CharacterScene mode={state.mode} phase="title" reducedMotion={reducedMotion} /><div className="title-art__glass" /><div className="art-caption"><span>on the other side</span><span>{state.mode === 'day' ? 'a quiet afternoon' : 'a light still on'}</span></div></div>
     </section>}
 
     {active && <section className="play-layout" aria-label="Picture word chain">
       <div className="play-heading"><div><p className="eyebrow">ACROSS THE GLASS</p><h1>{state.phase === 'player_drawing' ? 'Your little reply.' : state.phase === 'recognizing' ? 'A moment to wonder.' : state.phase === 'recognition_error' ? 'A little interruption.' : 'What do you see?'}</h1></div><div className="round-label"><span>EXCHANGE</span><strong>{String(state.round).padStart(2, '0')}<small> / 05</small></strong></div></div>
       <div className={`window-surface phase-${state.phase}`}>
-        <img className="girl-scene" src={art(state.mode, expression)} alt="" draggable={false} />
-        <WindowCanvas mode={state.mode} phase={state.phase} strokes={selectVisibleStrokes(state)} onStrokesChange={strokes => dispatch({ type: 'STROKES_CHANGED', strokes })} onBreathDone={() => dispatch({ type: 'BREATH_DONE' })} onPlaybackDone={() => dispatch({ type: 'PLAYBACK_DONE' })} reducedMotion={reducedMotion} expression={expression} />
+        <WindowCanvas mode={state.mode} phase={state.phase} round={state.round} strokes={selectVisibleStrokes(state)} onStrokesChange={strokes => dispatch({ type: 'STROKES_CHANGED', strokes })} onBreathDone={() => dispatch({ type: 'BREATH_DONE' })} onPlaybackDone={() => dispatch({ type: 'PLAYBACK_DONE' })} reducedMotion={reducedMotion} />
         <div className="glass-corner-label">{['player_drawing', 'recognizing', 'recognition_error'].includes(state.phase) ? 'your side' : 'her side'}</div>
-        {state.sessionKind === 'demo' && <span className="demo-badge">DEMO</span>}
+        <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : 'LIVE API'}</span>
       </div>
       <div className="play-footer">
         <div className="turn-status" aria-live="polite">
@@ -138,18 +147,20 @@ export default function App() {
     </section>}
 
     {state.phase === 'review_intents' && <section className="review-layout">
+      <div className="session-portrait" data-testid="review-character" aria-hidden="true"><CharacterScene mode={state.mode} phase="review_intents" round={state.round} reducedMotion={reducedMotion} /></div>
       <div className="section-intro"><p className="eyebrow">NOW WE CAN ASK</p><h1>What did you mean?</h1><p>Name your five drawings in English.<br />Your intentions make the chain. You can skip any.</p></div>
       <div className="review-list">{players.map((entry, index) => <div className="review-row" key={entry.id}><span className="item-number">{String(index + 1).padStart(2, '0')}</span><SketchThumbnail strokes={entry.strokes} label={`Your drawing ${index + 1}`} /><div className="review-field"><label htmlFor={`intent-${index}`}>I drew a…</label><input id={`intent-${index}`} value={intentDrafts[entry.id] ?? entry.intendedWord ?? ''} maxLength={48} autoComplete="off" spellCheck={false} placeholder="English noun" onChange={event => { const word = event.target.value; setIntentDrafts(drafts => ({ ...drafts, [entry.id]: word })); dispatch({ type: 'SET_INTENT', entryId: entry.id, word }); }} /><button className="text-button skip-button" onClick={() => { setIntentDrafts(drafts => ({ ...drafts, [entry.id]: '' })); dispatch({ type: 'SET_INTENT', entryId: entry.id, word: '' }); }}>Skip / leave unknown</button></div></div>)}</div>
       <div className="review-footer"><p>Only now do we reveal the words.</p><button className="primary" onClick={() => dispatch({ type: 'SHOW_RESULTS' })}>REVEAL OUR CHAIN<ArrowRight size={20} /></button></div>
     </section>}
 
     {state.phase === 'results' && <section className="results-layout">
+      <div className="session-portrait" data-testid="results-character" aria-hidden="true"><CharacterScene mode={state.mode} phase="results" round={state.round} reducedMotion={reducedMotion} /></div>
       <div className="section-intro"><p className="eyebrow">TEN DRAWINGS. TWO WAYS OF SEEING.</p><h1>{score.perfect ? 'A perfect understanding.' : 'Between the lines.'}</h1><p>Some thoughts met. Others took a little detour.</p></div>
       {!score.comparable && <p className="result-disclosure">{state.sessionKind === 'demo' ? 'DEMO — simulated interpretations. This result is not score-comparable.' : 'INCOMPLETE — unknown or non-comparable links. No official best score.'}</p>}
       <div className="score-strip"><div><span>{state.sessionKind === 'demo' ? 'DEMO LINKS' : 'LINK SCORE'}</span><strong>{score.connectedCount}<small> / {score.knownPairCount}</small></strong><p>{score.knownPairCount} of 9 possible links known</p></div><div><span>BEST CHAIN</span><strong>{score.bestChain}<small>{score.bestChain === 1 ? ' link' : ' links'}</small></strong><p>Consecutive connected links</p></div></div>
       <ol className="chain-list">{state.entries.map((entry, index) => <li key={entry.id}>
         {index > 0 && <div className={`chain-link ${score.links[index - 1].status}`}><span>{score.links[index - 1].status === 'connected' ? 'CONNECTED' : score.links[index - 1].status === 'broken' ? 'A DIFFERENT DIRECTION' : 'UNKNOWN LINK'}</span><span>{score.links[index - 1].status !== 'unknown' ? `${score.links[index - 1].fromLetter?.toUpperCase()} → ${score.links[index - 1].toLetter?.toUpperCase()}` : 'An intention was left unnamed'}</span></div>}
-        <div className={`result-drawing actor-${entry.actor}`}><SketchThumbnail strokes={entry.strokes} label={`${entry.actor === 'girl' ? 'Her' : 'Your'} drawing: ${entry.intendedWord || 'unknown intention'}`} /><div><p className="eyebrow">{entry.actor === 'girl' ? 'SHE DREW' : 'YOU MEANT'} · {entry.round}</p><h2>{entry.intendedWord || 'Unknown'}</h2>{entry.actor === 'player' && <p className="interpretation">{entry.recognition?.guess ? <>{entry.recognition.source === 'mock' ? 'Demo interpretation' : 'She thought'}: <strong>{entry.recognition.guess}</strong></> : 'Her interpretation: unknown'}</p>}</div></div>
+        <div className={`result-drawing actor-${entry.actor}`}><SketchThumbnail strokes={entry.strokes} label={`${entry.actor === 'girl' ? 'Her' : 'Your'} drawing: ${entry.intendedWord || 'unknown intention'}`} /><div><p className="eyebrow">{entry.actor === 'girl' ? 'SHE DREW' : 'YOU MEANT'} · {entry.round}</p><h2>{entry.intendedWord || 'Unknown'}</h2>{entry.actor === 'player' && <p className="interpretation">{entry.recognition?.guess ? <>{entry.recognition.source === 'mock' ? 'Demo interpretation' : 'She thought'}: <strong>{entry.recognition.guess}</strong></> : entry.round === 5 ? 'Final drawing · not sent for recognition' : 'Her interpretation: unknown'}</p>}</div></div>
       </li>)}</ol>
       <div className="result-end"><p className="tagline">Perhaps we’ll see it differently next time.</p><button className="primary" onClick={start}>ANOTHER WINDOW<ArrowCounterClockwise size={20} /></button><button className="text-button" onClick={() => dispatch({ type: 'RETURN_TO_TITLE' })}>Back to the beginning</button></div>
     </section>}
@@ -162,6 +173,6 @@ export default function App() {
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
         else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
       }
-    }}><button autoFocus className="icon-button close-dialog" aria-label="Close dialog" onClick={() => { setInfo(false); setLeave(false); }}><X size={22} /></button>{leave ? <><p className="eyebrow">TAKE YOUR TIME</p><h2 id="dialog-title">Close this window?</h2><p>This unfinished chain will be lost.</p><button className="primary" onClick={() => { setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>RETURN TO TITLE</button><button className="text-button" onClick={() => setLeave(false)}>Keep drawing</button></> : <><p className="eyebrow">DRAWINDOW · v0.2</p><h2 id="dialog-title">A conversation without words.</h2><p>Look at her drawing. Think of its English name. Draw something beginning with its last letter.</p><p>Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.</p><p><strong>DAY & NIGHT</strong> change only the mood. There is no timer.</p><p><strong>DEMO</strong> uses simulated interpretations, not image recognition. Live API sends a neutral drawing image to a configured server; the character is never included.</p><div className="credits"><p>Character: OpenAI ImageGen, based on the supplied reference.<br />Doodles: Quick, Draw! / Google, CC BY 4.0; original rare-letter sketches. Fonts: DM Sans & Cormorant Garamond, OFL.</p><a href="https://github.com/googlecreativelab/quickdraw-dataset" target="_blank" rel="noreferrer">Quick, Draw! dataset & attribution</a></div></>}</section></div>}
+    }}><button autoFocus className="icon-button close-dialog" aria-label="Close dialog" onClick={() => { setInfo(false); setLeave(false); }}><X size={22} /></button>{leave ? <><p className="eyebrow">TAKE YOUR TIME</p><h2 id="dialog-title">Close this window?</h2><p>This unfinished chain will be lost.</p><button className="primary" onClick={() => { setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>RETURN TO TITLE</button><button className="text-button" onClick={() => setLeave(false)}>Keep drawing</button></> : <><p className="eyebrow">DRAWINDOW · v0.3</p><h2 id="dialog-title">A conversation without words.</h2><p>Look at her drawing. Think of its English name. Draw something beginning with its last letter.</p><p>Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.</p><p><strong>DAY & NIGHT</strong> change only the mood. There is no timer.</p><p><strong>DEMO</strong> uses simulated interpretations, not image recognition. Live API sends a neutral drawing image to a configured server; the character is never included.</p><div className="credits"><p>Character: OpenAI ImageGen, based on the supplied character references.<br />Doodles: Quick, Draw! / Google, CC BY 4.0; original rare-letter sketches. Fonts: DM Sans & Cormorant Garamond, OFL.</p><MusicCredits /><a href="https://github.com/googlecreativelab/quickdraw-dataset" target="_blank" rel="noreferrer">Quick, Draw! dataset & attribution</a></div></>}</section></div>}
   </main>;
 }

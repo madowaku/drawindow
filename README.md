@@ -1,8 +1,37 @@
-# DRAWINDOW v0.2
+# DRAWINDOW v0.4 local review
+
+v0.4 introduces transparent finger-wiped condensation in the game. The old ink
+renderer remains in the development-only `/?glass-preview` comparison. DAY/NIGHT
+use identical stroke geometry and the original neutral inference image export.
+`/?catalogue-preview` records blind readability observations; add `&review` only
+for labelled maker review. The original OWL remains in the production catalogue
+until 3–5 blind participants have been observed. `/?character-preview` compares
+four new 768×1024 candidates with the approved sprites; the game still uses the
+approved artwork. The user-approved glass rendering is ready for source
+integration; candidate artwork adoption remains a separate review. No public
+deployment has been performed.
+
+For Android on the same Wi-Fi, keep `npm run dev` running and open its **Network**
+URL. On 2026-10-18 this is `http://192.168.0.9:5173/`; addresses may change.
+Use `/?glass-preview`, `/?catalogue-preview` or `/?character-preview` at that host.
+Worker credentials and local backups are denied by the dev server. The local
+preview is not a public deployment. See [glass QA](docs/GLASS_FEEL_v0.4.md),
+[readability review](docs/READABILITY_v0.4.md) and
+[Shizuku candidates](docs/SHIZUKU_QUALITY_v0.4.md).
 
 A quiet five-exchange picture shiritori game through a misted window.
-**Current deliverable: a complete, explicitly labelled local DEMO, plus an
-implemented optional recognition Worker. Real API quality has not been validated.**
+The character now follows [Shizuku Character Sheet v0.2](docs/CHARACTER_SHIZUKU_v0.2.md):
+six expressions, a drawing pose, subtle state-driven movement and separate glass.
+The five-exchange game uses a deterministic phase/round reaction selector and a
+small contact cursor that follows the exact visible stroke interpolation. This
+is pose-based illustration, with articulated hand rigging deferred.
+DAY/NIGHT share the same character textures. Her name is not shown during play.
+The separate production review page is `/?character-preview`; it lets you inspect
+all expressions, lighting and motion without playing a full session.
+**Current deliverable: an explicitly labelled local DEMO and optional recognition
+Worker. One human DAY LIVE session passed the five-exchange flow gate (four real
+API responses, nine links independently checked); broader quality, Android and
+public LIVE deployment remain unverified. See [the acceptance report](docs/LIVE_5_EXCHANGE_ACCEPTANCE_v0.1.md).**
 
 ## Run
 
@@ -20,6 +49,10 @@ Mouse/touch draw in the outlined square. CLEAR and UNDO are available. With the
 drawing square focused, arrow keys move the pen, hold Space while using arrows
 to draw, or press Enter for a dot. Controls also work with keyboard focus.
 Sound starts muted. DAY/NIGHT changes presentation only; there is no timer.
+Use the speaker button for BGM and quiet effects: title "物語の幕を" / のる,
+DAY "Coral Ambience" / ハヤシユウ, NIGHT "おやすみの時間" / 蒲鉾さちこ.
+Starting a game fades from the title track into the chosen mode's recording.
+Music pauses while the tab is hidden and resumes when you return.
 The chosen mode is stored locally when browser storage is available.
 
 The unconfigured title offers only DEMO; it does not invite a broken live API.
@@ -35,9 +68,12 @@ npm run build
 npm run package:itch
 ```
 
-The ZIP is written to `artifacts/release/DRAWINDOW-v0.2-itch.zip`, with root
+The ZIP is written to `artifacts/release/DRAWINDOW-v0.4-itch.zip`, with root
 `index.html`, relative asset paths, credits and licenses. Its receipt records
 SHA-256 and round-trip extracted-byte parity. The source atlas is excluded.
+Packaging rebuilds the static frontend with live-integration flags disabled,
+so an existing local API test setting cannot expose an unconfigured live option
+in the standalone DEMO ZIP. The protected v0.2 ZIP is retained separately.
 
 For itch.io choose an HTML game, upload the ZIP, enable play in browser and
 mobile friendly sizing. Use a responsive portrait container; 360×800 and
@@ -47,9 +83,25 @@ does not deploy a server. No jam submission or public deployment was performed.
 
 ## Optional real recognition
 
+For the developer-only human drawing pilot, open
+`http://localhost:5173/?recognition-benchmark` while Vite and the local Worker
+are running. It uses the saved Worker key without re-entry, sends each picture
+once, and exports sanitized JSON/CSV with human judgements and first-pass latency
+statistics. See [the 12-drawing procedure](docs/FREEHAND_RECOGNITION_BENCHMARK_v0.1.md).
+This page is excluded from production builds. The user supplied the 12-drawing
+pilot results; their provenance and limits are recorded in the acceptance report.
+For a new local LIVE game with private post-reveal evidence export, open
+`http://localhost:5173/?live-acceptance` with `VITE_ENABLE_LIVE_API=true` and the
+Worker running. This development-only recorder preserves the normal game rules
+and never substitutes automated drawings for a human session.
+
 See [docs/RECOGNITION.md](docs/RECOGNITION.md) for secret binding, exact allowed
 origins, rate limits, iframe/CORS verification and the 12-real-drawing benchmark
 required before calling this validated live recognition.
+For private local key entry, use `npm run setup:gemini`; it writes only the
+Git-ignored `.dev.vars` file with masked terminal input. `npm run check:gemini`
+reports configuration booleans without printing the key. See
+[safe setup instructions](docs/GEMINI_LOCAL_SETUP.md).
 
 For local API development put the provider key in ignored `.dev.vars`, then
 run `npm run dev:api` alongside Vite. Never put secrets in `VITE_` variables.

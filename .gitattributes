@@ -5,3 +5,4 @@
 *.zip -text
 *.woff -text
 *.woff2 -text
+*.bin -text

@@ -1,0 +1,86 @@
+{
+  "base": "http://localhost:5177/",
+  "scope": "Actual Chromium media decoding/progress/signal with simulated input and pagehide/pageshow. Not physical-device listening or subjective mix acceptance.",
+  "journeys": [
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "mode": "day",
+      "title": {
+        "track": "title",
+        "paused": false,
+        "time": 0.16254,
+        "duration": 187.847982,
+        "loop": true,
+        "ready": 4,
+        "players": 1,
+        "contextState": "running",
+        "rms": 0.26877425982190617
+      },
+      "session": {
+        "track": "day",
+        "paused": false,
+        "time": 0.168345,
+        "duration": 283.484875,
+        "loop": true,
+        "ready": 4,
+        "players": 1,
+        "contextState": "running",
+        "rms": 0.11236955147920355
+      },
+      "mutedEntryNoRequests": true,
+      "themeKeepsTitleTrack": true,
+      "muteResume": true,
+      "simulatedPageHideResume": true,
+      "nativeTitleAndSessionLoop": true,
+      "fiveExchanges": true,
+      "reviewResultsRestartKeepSource": true,
+      "titleReturn": true,
+      "credits": true,
+      "errors": [],
+      "musicRequestCount": 3
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "mode": "night",
+      "title": {
+        "track": "title",
+        "paused": false,
+        "time": 0.15093,
+        "duration": 187.847982,
+        "loop": true,
+        "ready": 4,
+        "players": 1,
+        "contextState": "running",
+        "rms": 0.2648030232637344
+      },
+      "session": {
+        "track": "night",
+        "paused": false,
+        "time": 0.16254,
+        "duration": 117.062494,
+        "loop": true,
+        "ready": 4,
+        "players": 1,
+        "contextState": "running",
+        "rms": 0.08441703137734793
+      },
+      "mutedEntryNoRequests": true,
+      "themeKeepsTitleTrack": true,
+      "muteResume": true,
+      "simulatedPageHideResume": true,
+      "nativeTitleAndSessionLoop": true,
+      "fiveExchanges": true,
+      "reviewResultsRestartKeepSource": true,
+      "titleReturn": true,
+      "credits": true,
+      "errors": [],
+      "musicRequestCount": 3
+    }
+  ]
+}

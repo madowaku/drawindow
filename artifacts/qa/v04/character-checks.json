@@ -1,0 +1,1031 @@
+{
+  "scope": "Browser and image integrity only; art approval, Android hardware touch and subjective acting quality pending.",
+  "journeys": [
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "mode": "day",
+      "samples": [
+        {
+          "pose": "NEUTRAL",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/neutral.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "50%",
+              "eyeY": "39.2%",
+              "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            {
+              "src": "/art/shizuku-v04/neutral.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.2%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.677156, 36.115)"
+            }
+          ]
+        },
+        {
+          "pose": "BREATH",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/breath.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "39.1%",
+              "matrix": "matrix(1, 0, 0, 1, 1.01573, 0.451438)"
+            },
+            {
+              "src": "/art/shizuku-v04/breath.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.1%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.338578, 36.115)"
+            }
+          ]
+        },
+        {
+          "pose": "DRAWING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/drawing.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.3%",
+              "eyeY": "39.5%",
+              "matrix": "matrix(1, 0, 0, 1, 2.37005, -1.35431)"
+            },
+            {
+              "src": "/art/shizuku-v04/drawing.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.1%",
+              "eyeY": "31.4%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.338578, 35.2121)"
+            }
+          ]
+        },
+        {
+          "pose": "SMILE",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/smile.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "38.4%",
+              "matrix": "matrix(1, 0, 0, 1, 1.69289, 3.6115)"
+            },
+            {
+              "src": "/art/shizuku-v04/smile.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.2%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.677156, 36.115)"
+            }
+          ]
+        },
+        {
+          "pose": "SHY",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/shy.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "41.699999999999996%",
+              "matrix": "matrix(1, 0, 0, 1, 1.69289, -11.2859)"
+            },
+            {
+              "src": "/art/shizuku/shy.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "41.699999999999996%",
+              "matrix": "matrix(1, 0, 0, 1, 1.69289, -11.2859)"
+            }
+          ]
+        },
+        {
+          "pose": "THINKING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/thinking.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "53.900000000000006%",
+              "eyeY": "36.6%",
+              "matrix": "matrix(1, 0, 0, 1, -13.2045, 11.7374)"
+            },
+            {
+              "src": "/art/shizuku/thinking.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "53.900000000000006%",
+              "eyeY": "36.6%",
+              "matrix": "matrix(1, 0, 0, 1, -13.2045, 11.7374)"
+            }
+          ]
+        },
+        {
+          "pose": "CURIOUS",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/curious.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "40.5%",
+              "matrix": "matrix(1, 0, 0, 1, 1.01573, -5.86869)"
+            },
+            {
+              "src": "/art/shizuku/curious.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "40.5%",
+              "matrix": "matrix(1, 0, 0, 1, 1.01573, -5.86869)"
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "mode": "night",
+      "samples": [
+        {
+          "pose": "NEUTRAL",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/neutral.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "50%",
+              "eyeY": "39.2%",
+              "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            {
+              "src": "/art/shizuku-v04/neutral.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.2%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.677156, 36.115)"
+            }
+          ]
+        },
+        {
+          "pose": "BREATH",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/breath.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "39.1%",
+              "matrix": "matrix(1, 0, 0, 1, 1.01573, 0.451438)"
+            },
+            {
+              "src": "/art/shizuku-v04/breath.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.1%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.338578, 36.115)"
+            }
+          ]
+        },
+        {
+          "pose": "DRAWING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/drawing.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.3%",
+              "eyeY": "39.5%",
+              "matrix": "matrix(1, 0, 0, 1, 2.37005, -1.35431)"
+            },
+            {
+              "src": "/art/shizuku-v04/drawing.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.1%",
+              "eyeY": "31.4%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.338578, 35.2121)"
+            }
+          ]
+        },
+        {
+          "pose": "SMILE",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/smile.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "38.4%",
+              "matrix": "matrix(1, 0, 0, 1, 1.69289, 3.6115)"
+            },
+            {
+              "src": "/art/shizuku-v04/smile.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.2%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.677156, 36.115)"
+            }
+          ]
+        },
+        {
+          "pose": "SHY",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/shy.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "41.699999999999996%",
+              "matrix": "matrix(1, 0, 0, 1, 1.69289, -11.2859)"
+            },
+            {
+              "src": "/art/shizuku/shy.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "41.699999999999996%",
+              "matrix": "matrix(1, 0, 0, 1, 1.69289, -11.2859)"
+            }
+          ]
+        },
+        {
+          "pose": "THINKING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/thinking.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "53.900000000000006%",
+              "eyeY": "36.6%",
+              "matrix": "matrix(1, 0, 0, 1, -13.2045, 11.7374)"
+            },
+            {
+              "src": "/art/shizuku/thinking.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "53.900000000000006%",
+              "eyeY": "36.6%",
+              "matrix": "matrix(1, 0, 0, 1, -13.2045, 11.7374)"
+            }
+          ]
+        },
+        {
+          "pose": "CURIOUS",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/curious.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "40.5%",
+              "matrix": "matrix(1, 0, 0, 1, 1.01573, -5.86869)"
+            },
+            {
+              "src": "/art/shizuku/curious.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "40.5%",
+              "matrix": "matrix(1, 0, 0, 1, 1.01573, -5.86869)"
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "mode": "day",
+      "samples": [
+        {
+          "pose": "NEUTRAL",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/neutral.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "50%",
+              "eyeY": "39.2%",
+              "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            {
+              "src": "/art/shizuku-v04/neutral.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.2%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.341, 18.1875)"
+            }
+          ]
+        },
+        {
+          "pose": "BREATH",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/breath.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "39.1%",
+              "matrix": "matrix(1, 0, 0, 1, 0.5115, 0.227344)"
+            },
+            {
+              "src": "/art/shizuku-v04/breath.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.1%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.1705, 18.1875)"
+            }
+          ]
+        },
+        {
+          "pose": "DRAWING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/drawing.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.3%",
+              "eyeY": "39.5%",
+              "matrix": "matrix(1, 0, 0, 1, 1.1935, -0.682031)"
+            },
+            {
+              "src": "/art/shizuku-v04/drawing.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.1%",
+              "eyeY": "31.4%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.1705, 17.7328)"
+            }
+          ]
+        },
+        {
+          "pose": "SMILE",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/smile.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "38.4%",
+              "matrix": "matrix(1, 0, 0, 1, 0.8525, 1.81875)"
+            },
+            {
+              "src": "/art/shizuku-v04/smile.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.2%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.341, 18.1875)"
+            }
+          ]
+        },
+        {
+          "pose": "SHY",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/shy.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "41.699999999999996%",
+              "matrix": "matrix(1, 0, 0, 1, 0.8525, -5.68359)"
+            },
+            {
+              "src": "/art/shizuku/shy.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "41.699999999999996%",
+              "matrix": "matrix(1, 0, 0, 1, 0.8525, -5.68359)"
+            }
+          ]
+        },
+        {
+          "pose": "THINKING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/thinking.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "53.900000000000006%",
+              "eyeY": "36.6%",
+              "matrix": "matrix(1, 0, 0, 1, -6.6495, 5.91094)"
+            },
+            {
+              "src": "/art/shizuku/thinking.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "53.900000000000006%",
+              "eyeY": "36.6%",
+              "matrix": "matrix(1, 0, 0, 1, -6.6495, 5.91094)"
+            }
+          ]
+        },
+        {
+          "pose": "CURIOUS",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/curious.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "40.5%",
+              "matrix": "matrix(1, 0, 0, 1, 0.5115, -2.95547)"
+            },
+            {
+              "src": "/art/shizuku/curious.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "40.5%",
+              "matrix": "matrix(1, 0, 0, 1, 0.5115, -2.95547)"
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "mode": "night",
+      "samples": [
+        {
+          "pose": "NEUTRAL",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/neutral.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "50%",
+              "eyeY": "39.2%",
+              "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            {
+              "src": "/art/shizuku-v04/neutral.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.2%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.341, 18.1875)"
+            }
+          ]
+        },
+        {
+          "pose": "BREATH",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/breath.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "39.1%",
+              "matrix": "matrix(1, 0, 0, 1, 0.5115, 0.227344)"
+            },
+            {
+              "src": "/art/shizuku-v04/breath.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.1%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.1705, 18.1875)"
+            }
+          ]
+        },
+        {
+          "pose": "DRAWING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/drawing.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.3%",
+              "eyeY": "39.5%",
+              "matrix": "matrix(1, 0, 0, 1, 1.1935, -0.682031)"
+            },
+            {
+              "src": "/art/shizuku-v04/drawing.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.1%",
+              "eyeY": "31.4%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.1705, 17.7328)"
+            }
+          ]
+        },
+        {
+          "pose": "SMILE",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/smile.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "38.4%",
+              "matrix": "matrix(1, 0, 0, 1, 0.8525, 1.81875)"
+            },
+            {
+              "src": "/art/shizuku-v04/smile.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.2%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.341, 18.1875)"
+            }
+          ]
+        },
+        {
+          "pose": "SHY",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/shy.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "41.699999999999996%",
+              "matrix": "matrix(1, 0, 0, 1, 0.8525, -5.68359)"
+            },
+            {
+              "src": "/art/shizuku/shy.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "41.699999999999996%",
+              "matrix": "matrix(1, 0, 0, 1, 0.8525, -5.68359)"
+            }
+          ]
+        },
+        {
+          "pose": "THINKING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/thinking.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "53.900000000000006%",
+              "eyeY": "36.6%",
+              "matrix": "matrix(1, 0, 0, 1, -6.6495, 5.91094)"
+            },
+            {
+              "src": "/art/shizuku/thinking.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "53.900000000000006%",
+              "eyeY": "36.6%",
+              "matrix": "matrix(1, 0, 0, 1, -6.6495, 5.91094)"
+            }
+          ]
+        },
+        {
+          "pose": "CURIOUS",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/curious.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "40.5%",
+              "matrix": "matrix(1, 0, 0, 1, 0.5115, -2.95547)"
+            },
+            {
+              "src": "/art/shizuku/curious.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "40.5%",
+              "matrix": "matrix(1, 0, 0, 1, 0.5115, -2.95547)"
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "mode": "day",
+      "samples": [
+        {
+          "pose": "NEUTRAL",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/neutral.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "50%",
+              "eyeY": "39.2%",
+              "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            {
+              "src": "/art/shizuku-v04/neutral.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.2%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.622063, 33.1775)"
+            }
+          ]
+        },
+        {
+          "pose": "BREATH",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/breath.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "39.1%",
+              "matrix": "matrix(1, 0, 0, 1, 0.933094, 0.414719)"
+            },
+            {
+              "src": "/art/shizuku-v04/breath.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.1%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.311031, 33.1775)"
+            }
+          ]
+        },
+        {
+          "pose": "DRAWING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/drawing.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.3%",
+              "eyeY": "39.5%",
+              "matrix": "matrix(1, 0, 0, 1, 2.17722, -1.24416)"
+            },
+            {
+              "src": "/art/shizuku-v04/drawing.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.1%",
+              "eyeY": "31.4%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.311031, 32.3481)"
+            }
+          ]
+        },
+        {
+          "pose": "SMILE",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/smile.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "38.4%",
+              "matrix": "matrix(1, 0, 0, 1, 1.55516, 3.31775)"
+            },
+            {
+              "src": "/art/shizuku-v04/smile.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.2%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.622063, 33.1775)"
+            }
+          ]
+        },
+        {
+          "pose": "SHY",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/shy.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "41.699999999999996%",
+              "matrix": "matrix(1, 0, 0, 1, 1.55516, -10.368)"
+            },
+            {
+              "src": "/art/shizuku/shy.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "41.699999999999996%",
+              "matrix": "matrix(1, 0, 0, 1, 1.55516, -10.368)"
+            }
+          ]
+        },
+        {
+          "pose": "THINKING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/thinking.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "53.900000000000006%",
+              "eyeY": "36.6%",
+              "matrix": "matrix(1, 0, 0, 1, -12.1302, 10.7827)"
+            },
+            {
+              "src": "/art/shizuku/thinking.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "53.900000000000006%",
+              "eyeY": "36.6%",
+              "matrix": "matrix(1, 0, 0, 1, -12.1302, 10.7827)"
+            }
+          ]
+        },
+        {
+          "pose": "CURIOUS",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/curious.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "40.5%",
+              "matrix": "matrix(1, 0, 0, 1, 0.933094, -5.39134)"
+            },
+            {
+              "src": "/art/shizuku/curious.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "40.5%",
+              "matrix": "matrix(1, 0, 0, 1, 0.933094, -5.39134)"
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "mode": "night",
+      "samples": [
+        {
+          "pose": "NEUTRAL",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/neutral.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "50%",
+              "eyeY": "39.2%",
+              "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            {
+              "src": "/art/shizuku-v04/neutral.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.2%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.622063, 33.1775)"
+            }
+          ]
+        },
+        {
+          "pose": "BREATH",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/breath.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "39.1%",
+              "matrix": "matrix(1, 0, 0, 1, 0.933094, 0.414719)"
+            },
+            {
+              "src": "/art/shizuku-v04/breath.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.1%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.311031, 33.1775)"
+            }
+          ]
+        },
+        {
+          "pose": "DRAWING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/drawing.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.3%",
+              "eyeY": "39.5%",
+              "matrix": "matrix(1, 0, 0, 1, 2.17722, -1.24416)"
+            },
+            {
+              "src": "/art/shizuku-v04/drawing.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.1%",
+              "eyeY": "31.4%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.311031, 32.3481)"
+            }
+          ]
+        },
+        {
+          "pose": "SMILE",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/smile.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "38.4%",
+              "matrix": "matrix(1, 0, 0, 1, 1.55516, 3.31775)"
+            },
+            {
+              "src": "/art/shizuku-v04/smile.webp",
+              "width": 768,
+              "height": 1024,
+              "eyeX": "50.2%",
+              "eyeY": "31.2%",
+              "matrix": "matrix(1.28, 0, 0, 1.28, -0.622063, 33.1775)"
+            }
+          ]
+        },
+        {
+          "pose": "SHY",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/shy.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "41.699999999999996%",
+              "matrix": "matrix(1, 0, 0, 1, 1.55516, -10.368)"
+            },
+            {
+              "src": "/art/shizuku/shy.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.5%",
+              "eyeY": "41.699999999999996%",
+              "matrix": "matrix(1, 0, 0, 1, 1.55516, -10.368)"
+            }
+          ]
+        },
+        {
+          "pose": "THINKING",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/thinking.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "53.900000000000006%",
+              "eyeY": "36.6%",
+              "matrix": "matrix(1, 0, 0, 1, -12.1302, 10.7827)"
+            },
+            {
+              "src": "/art/shizuku/thinking.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "53.900000000000006%",
+              "eyeY": "36.6%",
+              "matrix": "matrix(1, 0, 0, 1, -12.1302, 10.7827)"
+            }
+          ]
+        },
+        {
+          "pose": "CURIOUS",
+          "overflow": false,
+          "missing": 0,
+          "active": [
+            {
+              "src": "/art/shizuku/curious.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "40.5%",
+              "matrix": "matrix(1, 0, 0, 1, 0.933094, -5.39134)"
+            },
+            {
+              "src": "/art/shizuku/curious.webp",
+              "width": 384,
+              "height": 512,
+              "eyeX": "49.7%",
+              "eyeY": "40.5%",
+              "matrix": "matrix(1, 0, 0, 1, 0.933094, -5.39134)"
+            }
+          ]
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+import assert from 'node:assert/strict';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { pathToFileURL } from 'node:url';
+
+// UI/transport fixtures only: never a human drawing benchmark or provider test.
+const { chromium } = await import(process.env.DRAWINDOW_PLAYWRIGHT_MODULE ? pathToFileURL(process.env.DRAWINDOW_PLAYWRIGHT_MODULE).href : 'playwright');
+const folder = 'artifacts/local/recognition-benchmark';
+await mkdir(folder, { recursive: true });
+const browser = await chromium.launch({ headless: true, ...(process.env.DRAWINDOW_BROWSER_EXECUTABLE ? { executablePath: process.env.DRAWINDOW_BROWSER_EXECUTABLE } : {}) });
+const report = { scope: 'AUTOMATED UI ONLY. Synthetic pointer marks + intercepted API fixtures. Zero provider calls. Zero human benchmark records.', checks: [] };
+try {
+  for (const [width, height] of [[1440, 900], [390, 844]]) {
+    const context = await browser.newContext({ viewport: { width, height }, hasTouch: width < 700, acceptDownloads: true });
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    const requests = [];
+    let status = 200;
+    let source = 'api';
+    await page.route('**/api/recognize', async route => {
+      const body = route.request().postDataJSON();
+      assert.deepEqual(Object.keys(body).sort(), ['imageDataUrl', 'requestId']);
+      assert.match(body.requestId, /^\d+:\d+:\d+$/);
+      const bytes = Buffer.from(body.imageDataUrl.split(',')[1], 'base64');
+      assert.equal(bytes.readUInt32BE(16), 512);
+      assert.equal(bytes.readUInt32BE(20), 512);
+      requests.push({ requestId: body.requestId, pngWidth: 512, pngHeight: 512, bytes: bytes.length });
+      await route.fulfill({ status, contentType: 'application/json', headers: status === 429 ? { 'Retry-After': '75' } : {}, body: JSON.stringify(status === 200 ? { guess: 'fixture', source } : { guess: null, source: 'api', errorCode: status === 429 ? 'rate_limit' : 'invalid_response' }) });
+    });
+    await page.goto('http://localhost:5173/?recognition-benchmark');
+    await page.getByRole('heading', { name: 'りんご / apple' }).waitFor();
+    assert.equal(await page.getByRole('button', { name: 'SEND ONCE', exact: true }).isEnabled(), false);
+    await page.getByRole('button', { name: 'ZERO-STROKE CHECK' }).click();
+    assert.equal(requests.length, 0);
+    assert.equal(await page.getByText('invalid_input · API calls: 0').count(), 1);
+    await page.screenshot({ path: `${folder}/${width}-ready.png`, fullPage: true });
+    const canvas = page.getByTestId('window-drawing-canvas');
+    await canvas.scrollIntoViewIfNeeded();
+    const box = await canvas.boundingBox();
+    assert.ok(box && box.width > 250);
+    await page.mouse.move(box.x + box.width * .25, box.y + box.height * .4);
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width * .7, box.y + box.height * .6, { steps: 15 });
+    await page.mouse.up();
+    assert.equal(await page.getByRole('button', { name: 'SEND ONCE', exact: true }).isEnabled(), true);
+    await page.getByRole('button', { name: 'UNDO', exact: true }).click();
+    assert.equal(await page.getByRole('button', { name: 'SEND ONCE', exact: true }).isEnabled(), false);
+    if (width < 700) {
+      await canvas.scrollIntoViewIfNeeded();
+      const touchBox = await canvas.boundingBox();
+      await page.touchscreen.tap(touchBox.x + touchBox.width * .5, touchBox.y + touchBox.height * .5);
+    }
+    else await canvas.press('Enter');
+    await page.getByRole('button', { name: 'CLEAR', exact: true }).click();
+    assert.equal(await page.getByRole('button', { name: 'SEND ONCE', exact: true }).isEnabled(), false);
+    await canvas.press('Enter');
+    await page.getByRole('button', { name: 'SEND ONCE', exact: true }).click();
+    await page.getByTestId('guess-1').waitFor();
+    assert.equal(await page.getByTestId('guess-1').textContent(), 'fixture');
+    assert.equal(requests.length, 1);
+    assert.equal(await page.getByRole('button', { name: 'NEXT', exact: true }).isEnabled(), false);
+    await page.getByLabel('納得度 · attempt 1', { exact: true }).selectOption('unrelated');
+    await page.getByLabel('理由 · attempt 1', { exact: true }).fill('AUTOMATED UI FIXTURE ONLY =HYPERLINK("unsafe") AQ.fake-fixture-token');
+    await page.getByRole('button', { name: /MANUAL RETRY/ }).waitFor({ state: 'visible' });
+    assert.equal(await page.getByRole('button', { name: /MANUAL RETRY/ }).isEnabled(), false);
+    const downloadJson = page.waitForEvent('download');
+    await page.getByRole('button', { name: 'Export sanitized JSON' }).click();
+    const jsonDownload = await downloadJson;
+    const json = await readFile(await jsonDownload.path(), 'utf8');
+    assert.equal(json.includes('fake-fixture-token'), false);
+    assert.equal(json.includes('imageDataUrl'), false);
+    assert.equal(JSON.parse(json).summary.firstAttempts, 1);
+    assert.equal(JSON.parse(json).summary.complete, false);
+    assert.equal(JSON.parse(json).attempts[0].httpStatus, 200);
+    const downloadCsv = page.waitForEvent('download');
+    await page.getByRole('button', { name: 'Export sanitized CSV' }).click();
+    const csvDownload = await downloadCsv;
+    const csv = await readFile(await csvDownload.path(), 'utf8');
+    assert.ok(csv.includes('rawPointCount') && csv.includes('fixture'));
+    assert.equal(csv.includes('fake-fixture-token'), false);
+    // Test an explicitly initiated retry after real pacing. No sleeps or automatic retries.
+    source = 'mock';
+    await page.getByRole('button', { name: /MANUAL RETRY/ }).click({ timeout: 15000 });
+    await page.getByTestId('guess-2').waitFor();
+    assert.equal(await page.getByTestId('guess-2').textContent(), 'invalid_response');
+    assert.equal(requests.length, 2);
+    assert.equal(await page.getByText(/集計対象外/).count(), 1);
+    await page.getByLabel('納得度 · attempt 2', { exact: true }).selectOption('abstain_or_error');
+    await page.getByLabel('理由 · attempt 2', { exact: true }).fill('AUTOMATED mock source rejection fixture.');
+    await page.getByRole('button', { name: 'NEXT', exact: true }).click();
+    await page.getByRole('heading', { name: 'ねこ / cat' }).waitFor();
+    assert.equal(await page.getByRole('button', { name: 'SEND ONCE', exact: true }).isEnabled(), false);
+    status = 429; source = 'api';
+    await canvas.press('Enter');
+    await page.getByRole('button', { name: 'SEND ONCE', exact: true }).click({ timeout: 15000 });
+    await page.getByTestId('guess-1').waitFor();
+    assert.equal(await page.getByTestId('guess-1').textContent(), 'rate_limit');
+    assert.match(await page.getByRole('status').textContent(), /7[0-5] 秒/);
+    assert.equal(requests.length, 3);
+    assert.equal(await page.getByRole('button', { name: /MANUAL RETRY/ }).isEnabled(), false);
+    await page.screenshot({ path: `${folder}/${width}-rate-limit-fixture.png`, fullPage: true });
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
+    assert.equal(overflow, false);
+    assert.deepEqual(errors, []);
+    report.checks.push({ viewport: [width, height], emptyBlocked: true, pointerUndoClear: true, neutral512PayloadOnly: true, manualRetrySeparated: true, mockRejected: true, rateLimit75s: true, exportsSanitized: true, overflow, errors, interceptedRequests: requests });
+    await context.close();
+  }
+  const distAssets = await import('node:fs/promises').then(fs => fs.readdir('dist/assets'));
+  const scripts = await Promise.all(distAssets.filter(path => /\.(js|css)$/.test(path)).map(path => readFile(`dist/assets/${path}`, 'utf8')));
+  assert.equal(scripts.some(script => /recognition-benchmark|FREEHAND|tissue box|BenchmarkSession|sanitized JSON/.test(script)), false);
+  report.productionBundleContainsBenchmark = false;
+  const production = await browser.newPage();
+  await production.goto('http://localhost:4173/?recognition-benchmark');
+  await production.getByRole('button', { name: 'PLAY DEMO', exact: true }).waitFor();
+  assert.equal(await production.getByRole('button', { name: 'SEND ONCE', exact: true }).count(), 0);
+  report.productionQueryShowsNormalGame = true;
+  await production.close();
+} finally {
+  await browser.close();
+  await writeFile(`${folder}/ui-qa.json`, JSON.stringify(report, null, 2) + '\n');
+}
+console.log(JSON.stringify(report, null, 2));

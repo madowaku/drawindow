@@ -1,0 +1,102 @@
+{
+  "scope": "Developer visual inspection, automated playback only. Zero blind human participants; no production catalogue replacement.",
+  "samples": [
+    {
+      "mode": "day",
+      "sample": "qd-owl-5322965052817408",
+      "surface": "fog",
+      "reduced": false
+    },
+    {
+      "mode": "day",
+      "sample": "qd-owl-5322965052817408",
+      "surface": "clear",
+      "reduced": false
+    },
+    {
+      "mode": "day",
+      "sample": "girl-owl-review-v04-original",
+      "surface": "fog",
+      "reduced": false
+    },
+    {
+      "mode": "day",
+      "sample": "girl-owl-review-v04-original",
+      "surface": "clear",
+      "reduced": false
+    },
+    {
+      "mode": "night",
+      "sample": "qd-owl-5322965052817408",
+      "surface": "fog",
+      "reduced": false
+    },
+    {
+      "mode": "night",
+      "sample": "qd-owl-5322965052817408",
+      "surface": "clear",
+      "reduced": false
+    },
+    {
+      "mode": "night",
+      "sample": "girl-owl-review-v04-original",
+      "surface": "fog",
+      "reduced": false
+    },
+    {
+      "mode": "night",
+      "sample": "girl-owl-review-v04-original",
+      "surface": "clear",
+      "reduced": false
+    },
+    {
+      "mode": "day",
+      "sample": "qd-owl-5322965052817408",
+      "surface": "fog",
+      "reduced": true
+    },
+    {
+      "mode": "day",
+      "sample": "qd-owl-5322965052817408",
+      "surface": "clear",
+      "reduced": true
+    },
+    {
+      "mode": "day",
+      "sample": "girl-owl-review-v04-original",
+      "surface": "fog",
+      "reduced": true
+    },
+    {
+      "mode": "day",
+      "sample": "girl-owl-review-v04-original",
+      "surface": "clear",
+      "reduced": true
+    },
+    {
+      "mode": "night",
+      "sample": "qd-owl-5322965052817408",
+      "surface": "fog",
+      "reduced": true
+    },
+    {
+      "mode": "night",
+      "sample": "qd-owl-5322965052817408",
+      "surface": "clear",
+      "reduced": true
+    },
+    {
+      "mode": "night",
+      "sample": "girl-owl-review-v04-original",
+      "surface": "fog",
+      "reduced": true
+    },
+    {
+      "mode": "night",
+      "sample": "girl-owl-review-v04-original",
+      "surface": "clear",
+      "reduced": true
+    }
+  ],
+  "candidateSourceSha256": "15deca83056c5e5c7cae589e0ece7985a580d2edcfb685d78807220db558a27c"
+}

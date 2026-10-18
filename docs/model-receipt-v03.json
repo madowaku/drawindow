@@ -1,0 +1,11 @@
+{
+  "verifiedOn": "2026-10-17 JST",
+  "evidence": "Filtered local direct-child session_meta parent_thread_id/agent_path and turn_context model/effort. Only execution metadata retained.",
+  "baseline": "9ec815b9d0dd9f7f28098ec754c14e0717210001",
+  "agents": [
+    { "task": "sol_integration", "model": "gpt-6.1-sol", "effort": "xhigh", "sessionId": "01a149b3-3179-7d90-becb-4f869ba45951", "work": "design, actual game integration, lifecycle and five-round correctness" },
+    { "task": "luna_character", "model": "gpt-6-luna", "effort": "max", "sessionId": "01a149b3-916f-75d2-83f9-ec48cdc4944f", "work": "typed manifest, deterministic reactions, alignment, playback tip, no-hit overlay" },
+    { "task": "astra_ux", "model": "gpt-6-astra", "effort": "low", "sessionId": "01a149c0-0d52-7c22-8e77-3a1f1a0b1c4f", "work": "brief read-only review of five actual mobile/tablet screenshots; no P0/P1 blocker" }
+  ],
+  "fallbacks": []
+}

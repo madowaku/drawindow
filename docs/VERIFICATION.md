@@ -1,4 +1,197 @@
-# DRAWINDOW v0.2 verification — 2026-10-17 JST
+# DRAWINDOW v0.3 verification — 2026-10-17 JST
+
+## Current v0.3 result
+
+Latest music integration passes **110 tests /16 files**, TypeScript/Vite build,
+package byte parity and actual Chromium title/DAY/NIGHT audio checks. Details
+are in the BGM follow-up below. The original P0 checkpoint passed **96 tests /14 files**, TypeScript/Vite production
+build, static packaging and extracted-byte parity passed. Exactly five girl and
+five player entries, nine links, five DAY breaths and five NIGHT refog phases
+were observed. The previous77-test/seven-pose version was first re-run and
+protected at commit `9ec815b9d0dd9f7f28098ec754c14e0717210001` on branch
+`codex/shizuku-v03`, with a separate patch/file/hash backup. GitHub main was
+independently checked at `5a5430cd9ac91cd1c87c2adebf3b49a538fdc099`; no older
+remote file was used to overwrite local work.
+
+Requested model routing was verified from execution metadata: Sol6.1/XHigh
+integration/design, Luna6/Max reactions/playback tip, Astra6/Low short screenshot
+review. See `model-receipt-v03.json`. Astra found no P0/P1 issue in five actual
+mobile/tablet screenshots; that is not human playtest or motion-quality proof.
+
+### Actual automated browser checks
+
+Playwright-core1.59.1 from the existing local cache drove installed headless
+Chromium. This did not add a dependency or change OS motion settings.
+
+| CSS viewport | DAY and NIGHT evidence |
+| --- | --- |
+| 360×800, DPR2 | Both normal-motion five-exchange journeys passed; contact cursor, mouse/touch-event input, undo/clear, retained ink, five labels,10cards/9links. |
+| 720×1280 | Both normal-motion journeys passed the same checks. |
+| 1280×720 | Both normal-motion journeys passed, including no vertical/horizontal play scrolling and reachable actions. |
+
+The contact marker uses the exact same interpolated/eased point as visible ink,
+with the same drawing-square left/top/size transform. Focused tests cover
+begin/middle/end, pen lifts, resize and HiDPI-independent CSS coordinates. It
+does not move the portrait across the stroke path and does not alter stroke
+coordinates. The fixed-art hand is not an articulated rig; that remains deferred.
+An inline no-hit guard hardens the overlay even before stylesheet readiness.
+Held ink was pixel-compared after1050ms in each journey. No missing images,
+early labels/interpretation/score elements or browser errors were found.
+
+A360px reduced-motion browser check passed with no moving contact cursor and
+no character motion. Tests additionally cover normal650ms DAY/280ms NIGHT
+timelines, tab hide/resume, motion changes, resize and unmount; completion fires
+once and static phases do not create an endless animation-frame loop.
+
+Structured evidence: `artifacts/qa/v03/browser-journeys.json`. Screenshots include
+`360-day-drawing.png`, `360-night-drawing.png`, `720-day-player.png`,
+`1280-night-holding.png` and the matching breath/holding/player/results states.
+The source browser script is `scripts/qa-v03.mjs`; it uses simulated mouse/touch
+inputs, not physical Android or human hand-drawn quality evidence.
+
+### Package and recognition status
+
+`npm run package:itch` rebuilt a standalone DEMO with local live flags disabled,
+then wrote `DRAWINDOW-v0.3-itch.zip`: **1,509,746bytes,36entries**. SHA-256:
+`3331436253d6eee1920bcf2301a07a681d9dfd08896e17ab0c88d35f227e00ff`.
+Root index, relative assets and extracted-byte parity pass. The old v0.2 ZIP
+remains intact. The actual extracted archive was served at localhost5176 and
+completed normal-motion DAY/NIGHT five-exchange checks at360×800; evidence is
+under `artifacts/qa/v03/archive/`. This is not the real itch.io iframe.
+
+P1 preparation: the existing genuine Gemini adapter and Worker remain in place;
+official model/image support was rechecked. A masked `npm run setup:gemini`
+command stores a key only in ignored `.dev.vars`; `npm run check:gemini` prints
+booleans only. Actual local Worker checks returned204 for trusted preflight and
+403 without an allow-origin header for an untrusted origin. No provider call
+was made by those checks. See `recognition-preflight.json` and
+`docs/GEMINI_LOCAL_SETUP.md`.
+
+The original setup check incorrectly rejected a stored `AQ.` Auth Key because it
+accepted only the old `AIza` family. The follow-up below supersedes that format
+assessment; no replacement key was needed. Genuine LIVE five-exchange recognition,12human
+freehand samples, actual iframe CORS, Android touch comfort and the3–5minute
+unassisted naive-player study are **pending**. No live-ready, recognition-quality,
+human-comfort or fun claim is made by the DEMO checks.
+
+### Auth Key follow-up — 2026-10-17 JST
+
+Scope is limited to the setup/check/verification commands, authentication tests,
+and this documentation. Game source, artwork, animation, model selection and
+Worker production code are unchanged. The existing `x-goog-api-key` transport
+already supports opaque Auth Keys and required no rewrite.
+
+- `npm test`: **97 passed /14 files**, including the existing77-test baseline.
+- `npm run test:auth`: **6 passed**. Actual masked PowerShell input is replaced
+  only in the test harness; it verifies short/long Auth Key fixtures, legacy and
+  future opaque fixtures, preservation of other settings, unsafe-character
+  rejection, Git exclusion and no credential echo. Worker tests verify exact
+  header forwarding, no URL/Bearer duplication, and sanitizing401 error bodies.
+- `npm run build`: TypeScript/Vite passed.
+- `npm run check:gemini`: Git ignored, key present and safe to store/send; it
+  deliberately does not claim authentication from the local string.
+- Real diagnostic image requests: initial old Worker8787 returned504 after
+  **9167ms**; a fresh Worker8788 returned**200 /1760ms**, and the normal8787
+  Worker was restarted and returned**200 /1506ms**. Both successes returned
+  `source: api` and a validated nonempty recognition noun. There was no retry
+  loop, provider substitution, key re-entry or cloud deployment.
+
+Input was the same existing catalogue sketch, rendered white/black at512×512.
+The expected label was excluded from requests. This is real provider transport/
+authentication evidence, not new human hand-drawn quality evidence. Safe receipt:
+`artifacts/qa/auth-key/verification-default.json`. Temporary port8788 is stopped;
+the normal Worker8787 remains available for the existing Vite proxy.
+
+The key was not printed, changed, committed or embedded into the frontend.
+Masked input, `.dev.vars*` Git exclusion and zeroing the unmanaged input buffer
+remain in place. No additional game screenshots are needed for this auth-only
+change; the DAY/NIGHT visual evidence above remains the character-integration gate.
+
+### User-selected BGM follow-up — 2026-10-17 JST
+
+Title:「物語の幕を」/のる; DAY:「Coral Ambience」/ハヤシユウ;
+NIGHT:「おやすみの時間」/蒲鉾さちこ. The supplied originals, source/profile
+URLs, technical conversion and byte hashes are recorded in `assets/bgm-manifest.json`.
+Credits are present in the info dialog and shipped CREDITS.txt. See ASSETS.md.
+
+- **110 tests /16 files pass**, retaining the previous97 tests. Thirteen new
+  tests cover track selection, admitted byte parity, mute/hidden/dispose races,
+  stale loads, cancellation during fades, single-player ownership and optional
+  audio failure recovery. TypeScript check and Vite/package build pass.
+- Actual Chromium checks at390×844 DAY and1280×720 NIGHT pass against both the
+  development server and the production package build. Native MP3 decoding,
+  advancing playback time, nonzero audio signal and one running player/context
+  were observed. The title song stays the same when its visual theme changes.
+- Start changes to the selected DAY/NIGHT song. Five exchanges, review, results
+  and another-window restart keep the same media source. Title return changes
+  back to the title song. Ten cards/nine links and no early disclosure pass.
+- Initial mute fetches no recording. Explicit enable, immediate mute, resume,
+  credits links and no horizontal overflow pass. Native end-to-start rollover
+  was exercised for all3 recordings in the production browser. Pagehide/
+  pageshow events were simulated and produced native pause/suspend/resume.
+  Unit tests separately cover hidden-state behavior and late-load cancellation.
+- No page, console or HTTP error was returned. Listening balance on physical
+  speakers/headphones, actual OS backgrounding and iOS/Android audio policy
+  remain untested; headless signal/progress checks are not human listening.
+
+Browser receipts/screenshots: `artifacts/qa/bgm/browser-audio.json` and
+`artifacts/qa/bgm/production/`. Repeatable driver: `scripts/qa-bgm.mjs`, using
+the existing cached Playwright1.59.1 and installed Chromium; no new dependency.
+The source game/character rules, Gemini authentication and main branch are not
+changed by this music addition.
+
+The updated `DRAWINDOW-v0.3-itch.zip` is**10,871,092bytes /39 entries**;
+SHA-256 `e89d19bb2390f38ce6c44482c7da3c7c1d2509c7e88c2aaa090a438ef5bd75eb`.
+All extracted bytes match the built input. The3 game music containers have the
+manifest's exact hashes; no directly playable MP3, original recording, secret
+or environment file ships. Original user MP3s remain unchanged outside Git.
+
+## Historical v0.2 evidence
+
+## Current character update: Shizuku v0.2
+
+The character update passes **77 tests in 12 files**, TypeScript/Vite build,
+source/output SHA-256 verification and ZIP extracted-byte parity. Commands:
+`npm test`, `npm run build`, `npm run package:itch`, `git diff --check`.
+Tests added for conversational acting, monotonic replay with a short hesitation,
+shared DAY/NIGHT textures, no player-visible name, pose timers, reduced-motion
+cancellation and hidden-document motion lifecycle. The mouth/fog mapping now
+uses the same shared portrait rectangle as the character's CSS.
+
+Actual browser checks of this update:
+
+- 360×800 DAY: five exchanges with keyboard dots, five naming fields, ten cards
+  and nine links. Curious expression during each player's turn; smile after her
+  drawing. No overflow or missing images.
+- 1280×900 NIGHT: title and holding screenshots, five exchanges, ten cards and
+  nine links. Empty intentions remain unknown. No missing images or console
+  warnings/errors returned.
+- Separate `/?character-preview`: all six expressions and DRAWING selected
+  successfully, with no missing images; DAY/NIGHT controls preserve one portrait
+  set. 390×844 portrait layout checked for overflow and readable artwork.
+- The host browser reports reduced motion, so ordinary game play respected it.
+  The explicit production-preview motion toggle enabled actual browser motion:
+  BREATH native transform reached scale 1.018 / y -3px / rotation 0.2deg; two
+  consecutive breathing transform samples differed. Stopping preview motion
+  returned both transforms to `none`. Normal-speed whole-game timing has helper
+  and lifecycle tests; a physical device animation test is not claimed.
+
+Screenshots: `artifacts/qa/shizuku-*`. Structured journey/motion evidence:
+`artifacts/qa/shizuku-browser-journeys.json`. Alpha was inspected by compositing
+the atlas over blue (`shizuku-atlas-on-blue.png`). The pins, neck ribbon, sleeves
+and fingertips are consistent at game scale; no fog/background is baked into
+the portrait textures. Sprite poses do not constitute a skeletal/Live2D rig,
+and the pointing fingertip does not track every replay coordinate.
+
+Updated ZIP: **1,508,310 bytes / 36 entries**, SHA-256
+`d4d79f6a9952c487668720c3746f08b7ac2bb89cd19f947edbd3bba48e86d9a4`.
+Root index, relative assets and exact extracted-byte parity pass. The ZIP was
+rebuilt; the old archive's browser journey below is historical and is not
+claimed as a second archive browser run for these new bytes. No deployment,
+genuine recognition call, physical touch test or audio listening was part of
+this character update.
+
+## Initial game evidence (before the character update)
 
 ## Result and scope
 

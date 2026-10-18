@@ -1,0 +1,135 @@
+{
+  "date": "2026-10-17 JST",
+  "day": {
+    "viewport": [
+      360,
+      800
+    ],
+    "steps": [
+      {
+        "overflow": false,
+        "phase": "player_drawing",
+        "pose": "curious",
+        "round": "01 / 05"
+      },
+      {
+        "overflow": false,
+        "phase": "player_drawing",
+        "pose": "curious",
+        "round": "02 / 05"
+      },
+      {
+        "overflow": false,
+        "phase": "player_drawing",
+        "pose": "curious",
+        "round": "03 / 05"
+      },
+      {
+        "overflow": false,
+        "phase": "player_drawing",
+        "pose": "curious",
+        "round": "04 / 05"
+      },
+      {
+        "overflow": false,
+        "phase": "player_drawing",
+        "pose": "curious",
+        "round": "05 / 05"
+      }
+    ],
+    "entries": 10,
+    "links": 9
+  },
+  "night": {
+    "viewport": [
+      1280,
+      900
+    ],
+    "steps": [
+      {
+        "mode": "night",
+        "phase": "player_drawing",
+        "pose": "curious",
+        "round": "01 / 05"
+      },
+      {
+        "mode": "night",
+        "phase": "player_drawing",
+        "pose": "curious",
+        "round": "02 / 05"
+      },
+      {
+        "mode": "night",
+        "phase": "player_drawing",
+        "pose": "curious",
+        "round": "03 / 05"
+      },
+      {
+        "mode": "night",
+        "phase": "player_drawing",
+        "pose": "curious",
+        "round": "04 / 05"
+      },
+      {
+        "mode": "night",
+        "phase": "player_drawing",
+        "pose": "curious",
+        "round": "05 / 05"
+      }
+    ],
+    "entries": 10,
+    "links": 9
+  },
+  "productionPreview": {
+    "viewport": [
+      1280,
+      900
+    ],
+    "poses": [
+      {
+        "missing": 0,
+        "pose": "neutral"
+      },
+      {
+        "missing": 0,
+        "pose": "thinking"
+      },
+      {
+        "missing": 0,
+        "pose": "smile"
+      },
+      {
+        "missing": 0,
+        "pose": "shy"
+      },
+      {
+        "missing": 0,
+        "pose": "breath"
+      },
+      {
+        "missing": 0,
+        "pose": "curious"
+      },
+      {
+        "missing": 0,
+        "pose": "drawing"
+      }
+    ],
+    "breathingSamples": [
+      "matrix(1, 0, 0, 1.00391, 0, -1.46524)",
+      "matrix(1, 0, 0, 1.00388, 0, -1.45348)"
+    ],
+    "nativeBreathTransform": "matrix(1.01799, 0.00355348, -0.00355348, 1.01799, 0, -3)",
+    "stopped": {
+      "breathing": "none",
+      "gesture": "none"
+    },
+    "mobile": [
+      390,
+      844
+    ]
+  },
+  "browserReducedMotion": true,
+  "input": "Keyboard dots, not physical touch or recognition",
+  "consoleErrors": []
+}

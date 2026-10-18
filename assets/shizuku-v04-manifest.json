@@ -1,0 +1,95 @@
+{
+  "version": "0.4-review",
+  "status": "Candidate only; owner approval and physical Android review pending. Original production sprites retained.",
+  "provider": "OpenAI built-in ImageGen",
+  "provenance": "Derived from user-supplied original and authoritative character sheet; no new third-party art or license change.",
+  "processing": "One canonical native master, matched 2x2 pose study, then three full-native edits from same master. Atlas draft rejected for closed smile eyes and limited per-cell detail. Downsample only to 768x1024, WebP94, real alpha, common bottom-center framing; eye anchors in shizukuCandidates.ts. No fog/background baked in. Review scene applies one common 1.28 scale around measured eye anchors to match approved face size; never per-pose stretch.",
+  "sources": [
+    {
+      "filename": "docs/CHARACTER_SHIZUKU_v0.2.md",
+      "sha256": "b44e663f7cdefab1aec8b64f4d2b26922d52397cec03e2033a7eff50eaa0f9d6"
+    },
+    {
+      "filename": "assets/source/shizuku-v02/approved-neutral.png",
+      "sha256": "231695fe6e74200adadcaacd54e9b6fd9c61a7c992d5a5848326fda61f1bbc3a"
+    },
+    {
+      "filename": "assets/source/shizuku-v02/expression-atlas.png",
+      "sha256": "23d7c05534956bc6aabe3f4f4a0fd1d0ed5608f620b158c6bf60996cc5d92337"
+    },
+    {
+      "filename": "assets/source/shizuku-v04/canonical-neutral.png",
+      "sha256": "75779c88d0ec8d9c8ba30f7896f63d02e1efb3b912d96c5656ecc975e8e5660f"
+    },
+    {
+      "filename": "assets/source/shizuku-v04/matched-atlas-draft.png",
+      "sha256": "62826337bcbbe742c9c3dfc9fcf74dfda5fcd3bf03e6422b2eb680533963f2bb"
+    },
+    {
+      "filename": "assets/source/shizuku-v04/breath.png",
+      "sha256": "975b9edb8207285a6298af33473fc01e50a09a068bd6e1998a5f0ebaa93692f8"
+    },
+    {
+      "filename": "assets/source/shizuku-v04/drawing.png",
+      "sha256": "40ac053f5faf30022972e52a67ab37906da34da5cca134020a2f32d87125166e"
+    },
+    {
+      "filename": "assets/source/shizuku-v04/smile.png",
+      "sha256": "5622d9ffb591145c79b0ffb38d8ed43ba5d24a444ce92211f3e9b61a1b317d2c"
+    }
+  ],
+  "files": [
+    {
+      "pose": "neutral",
+      "filename": "public/art/shizuku-v04/neutral.webp",
+      "width": 768,
+      "height": 1024,
+      "bytes": 224316,
+      "sha256": "6c4d43020ae1a41b4e19d69c6bea335b6326c5b9a45b6f133d3dd3136e1c1b53",
+      "source": "assets/source/shizuku-v04/canonical-neutral.png",
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "transparentPixels": 278460,
+      "softAlphaPixels": 507450
+    },
+    {
+      "pose": "breath",
+      "filename": "public/art/shizuku-v04/breath.webp",
+      "width": 768,
+      "height": 1024,
+      "bytes": 219344,
+      "sha256": "cbeb8299644f1dd1f0e57c8fb83021aa5a23bdd4a951194b9c365a9822c3e02b",
+      "source": "assets/source/shizuku-v04/breath.png",
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "transparentPixels": 257556,
+      "softAlphaPixels": 528589
+    },
+    {
+      "pose": "drawing",
+      "filename": "public/art/shizuku-v04/drawing.webp",
+      "width": 768,
+      "height": 1024,
+      "bytes": 244728,
+      "sha256": "873c62414e963e51822a993485c653ec4931267b0a8eb75d5ba39a52e35b2ea2",
+      "source": "assets/source/shizuku-v04/drawing.png",
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "transparentPixels": 229408,
+      "softAlphaPixels": 556773
+    },
+    {
+      "pose": "smile",
+      "filename": "public/art/shizuku-v04/smile.webp",
+      "width": 768,
+      "height": 1024,
+      "bytes": 209754,
+      "sha256": "9e5d476aa405d18c3de6ddc1d263f2919a72d19f6b5a85dc05f45d7a3174383d",
+      "source": "assets/source/shizuku-v04/smile.png",
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "transparentPixels": 260544,
+      "softAlphaPixels": 525505
+    }
+  ]
+}

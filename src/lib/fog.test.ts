@@ -3,7 +3,7 @@ import type { GamePhase } from '../core/types';
 import { advanceFogTimeline, createFogTimeline, fogAnimationDuration, fogTimelineProgress, getBreathOrigin, pauseFogTimeline, resumeFogTimeline } from './fog';
 
 describe('fog and animation timing', () => {
-  it('places the breath cloud at the mouth after the portrait cover crop', () => {
+  it('places the breath cloud at the mouth of the bottom-centered cutout', () => {
     for (const [width, height] of [[328, 440], [1280, 720], [360, 800]]) {
       const origin = getBreathOrigin(width, height);
       expect(origin.x).toBeGreaterThanOrEqual(0);
@@ -12,9 +12,10 @@ describe('fog and animation timing', () => {
       expect(origin.y).toBeLessThanOrEqual(height);
     }
 
-    expect(getBreathOrigin(328, 440).x).toBeCloseTo(328 * 0.6);
+    expect(getBreathOrigin(328, 440).x).toBeCloseTo(164 + 440 * 1.08 * 0.75 * 0.05);
     expect(getBreathOrigin(328, 440).y).toBeGreaterThan(440 * 0.4);
-    expect(getBreathOrigin(1280, 720).y).toBeGreaterThan(720 * 0.6);
+    expect(getBreathOrigin(1280, 720).y).toBeGreaterThan(720 * 0.4);
+    expect(getBreathOrigin(1280, 720).y).toBeLessThan(720 * 0.6);
   });
 
   it('uses visible daytime breath, short night refog, and shared sketch timing', () => {

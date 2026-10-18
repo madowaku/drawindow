@@ -5,6 +5,13 @@ export const MIN_SKETCH_PLAYBACK_MS = 500;
 export const MAX_SKETCH_PLAYBACK_MS = 1500;
 export const DEFAULT_SKETCH_PLAYBACK_MS = 900;
 
+export interface PlaybackTip {
+  x: number;
+  y: number;
+  /** True when the time cursor is traversing a visible stroke segment. */
+  penDown: boolean;
+}
+
 export function clampPlaybackDuration(durationMs: number): number {
   if (!Number.isFinite(durationMs)) return DEFAULT_SKETCH_PLAYBACK_MS;
   return Math.min(MAX_SKETCH_PLAYBACK_MS, Math.max(MIN_SKETCH_PLAYBACK_MS, durationMs));
@@ -61,6 +68,41 @@ export function strokesAtProgress(strokes: readonly Stroke[], progress: number):
     }
     return [{ id: stroke.id, points: visible }];
   });
+}
+
+/**
+ * Returns the current visible stroke tip using the same clamped progress,
+ * normalized strokes, and interpolated endpoint as strokesAtProgress. A null
+ * result means the pen is lifted between strokes, or playback is complete.
+ */
+export function getPlaybackTip(strokes: readonly Stroke[], progress: number): PlaybackTip | null {
+  const amount = Math.min(1, Math.max(0, Number.isFinite(progress) ? progress : 0));
+  if (amount >= 1) return null;
+
+  const safeStrokes = normalizeStrokes(strokes);
+  let lastTime = 0;
+  for (const stroke of safeStrokes) {
+    for (const point of stroke.points) lastTime = Math.max(lastTime, point.t);
+  }
+  if (lastTime <= 0) return null;
+
+  const targetTime = lastTime * amount;
+  const visibleStrokes = strokesAtProgress(safeStrokes, amount);
+  // Search from the latest registered stroke so a shared timestamp belongs to
+  // the stroke that is beginning, matching the visible list's order.
+  for (let strokeIndex = safeStrokes.length - 1; strokeIndex >= 0; strokeIndex -= 1) {
+    const source = safeStrokes[strokeIndex].points;
+    for (let pointIndex = source.length - 1; pointIndex > 0; pointIndex -= 1) {
+      const previous = source[pointIndex - 1];
+      const next = source[pointIndex];
+      if (next.t <= previous.t || targetTime < previous.t || targetTime >= next.t) continue;
+      const visible = visibleStrokes.find(stroke => stroke.id === safeStrokes[strokeIndex].id);
+      const tip = visible?.points.at(-1);
+      if (!tip) return null;
+      return { x: tip.x, y: tip.y, penDown: true };
+    }
+  }
+  return null;
 }
 
 /**

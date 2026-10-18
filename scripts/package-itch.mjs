@@ -21,7 +21,8 @@ for (const [name, bytes] of Object.entries(files)) {
   if (/secret|\.env|\.dev\.vars/i.test(name)) throw new Error(`Unexpected config in archive: ${name}`);
 }
 await mkdir('artifacts/release', { recursive: true });
-const filename = 'DRAWINDOW-v0.2-itch.zip';
+const version = JSON.parse(await readFile('package.json', 'utf8')).version.split('.').slice(0, 2).join('.');
+const filename = `DRAWINDOW-v${version}-itch.zip`;
 await writeFile(`artifacts/release/${filename}`, archive);
 const receipt = { filename, sha256: createHash('sha256').update(archive).digest('hex'), bytes: archive.length, entries: Object.keys(restored).length, rootIndex: true, extractedByteParity: true, scope: 'Static frontend; default DEMO. No deployed API or live benchmark claimed.' };
 await writeFile('artifacts/release/package-receipt.json', JSON.stringify(receipt, null, 2));
