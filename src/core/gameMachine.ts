@@ -30,7 +30,7 @@ function girlEntry(state: GameState, sketch: GirlSketch, round: number, chainRes
 
 function withRequest(state: GameState, entry: DrawingEntry, attempt = 1): GameState {
   const sequence = state.recognitionAttempt + 1;
-  const recognitionRequest: RecognitionRequest = { requestId: `${state.sessionId}:${state.round}:${sequence}`, playerEntryId: entry.id, strokes: entry.strokes, round: state.round, attempt, sessionKind: state.sessionKind, language: state.language };
+  const recognitionRequest: RecognitionRequest = { requestId: `${state.sessionId}:${state.round}:${sequence}`, playerEntryId: entry.id, strokes: entry.strokes, round: state.round, attempt, sessionKind: state.sessionKind, ...(state.language === 'ja' ? { language: 'ja' as const } : {}) };
   return { ...state, phase: 'recognizing', recognitionRequest, recognitionAttempt: sequence, error: null };
 }
 
