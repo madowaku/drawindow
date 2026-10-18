@@ -9,3 +9,7 @@ artifacts/qa/temp/
 artifacts/qa/package-extracted/
 artifacts/local/
 *.log
+
+# Local browser QA recordings and screenshots
+.playwright-cli/
+output/playwright/
