@@ -17,19 +17,21 @@ const syllables = [...new Set(all.map(sketch => firstLetter(sketch.word, 'ja') ?
 export function JapaneseDoodlePreview() {
   const [mode, setMode] = useState<Mode>('day');
   const [showAnswers, setShowAnswers] = useState(false);
-  const [showAll, setShowAll] = useState(false);
+  const [scope, setScope] = useState<'classic' | 'additions' | 'all'>('classic');
   const [syllable, setSyllable] = useState('all');
-  const visible = (showAll ? all : additions)
+  const visible = (scope === 'classic' ? japaneseClassicDoodles : scope === 'additions' ? additions : all)
     .filter(sketch => syllable === 'all' || firstLetter(sketch.word, 'ja') === syllable);
   return <main className="ja-catalog" data-mode={mode} lang="ja">
     <header className="ja-catalog-header"><a href="/">← DRAWINDOW</a><span>SHIZUKU'S JAPANESE SKETCHBOOK</span></header>
     <h1>しずくの絵ことば帳。</h1>
-    <p>新しい絵を、まず名前を見ずに確かめよう。絵だけで意味が伝わるかな？</p>
+    <p>定番16枚からブラインドで確認。名前を隠して見て、伝わらなかった絵は直そう。</p>
     <div className="ja-catalog-actions" role="group" aria-label="プレビュー設定">
       <button aria-pressed={mode === 'day'} onClick={() => setMode('day')}>☀ 昼</button>
       <button aria-pressed={mode === 'night'} onClick={() => setMode('night')}>☾ 夜</button>
       <button aria-pressed={showAnswers} onClick={() => setShowAnswers(value => !value)}>{showAnswers ? '名前を隠す' : '名前を表示'}</button>
-      <button aria-pressed={showAll} onClick={() => setShowAll(value => !value)}>{showAll ? '追加分だけ' : '既存の絵も表示'}</button>
+      <button aria-pressed={scope === 'classic'} onClick={() => setScope('classic')}>定番16枚</button>
+      <button aria-pressed={scope === 'additions'} onClick={() => setScope('additions')}>追加分</button>
+      <button aria-pressed={scope === 'all'} onClick={() => setScope('all')}>全部</button>
       <label>はじまりの音 <select value={syllable} onChange={event => setSyllable(event.target.value)}>
         <option value="all">すべて</option>
         {syllables.map(kana => <option key={kana} value={kana}>{kana}</option>)}
