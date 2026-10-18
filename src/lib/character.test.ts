@@ -35,9 +35,22 @@ describe('Shizuku conversational reactions', () => {
   it('varies only on round number during turns, never on a guess or score', () => {
     expect(getShizukuReaction({ phase: 'girl_holding', mode: 'day', round: 1, reducedMotion: false }).pose).toBe('neutral');
     expect(getShizukuReaction({ phase: 'girl_holding', mode: 'day', round: 2, reducedMotion: false }).pose).toBe('smile');
-    expect(getShizukuReaction({ phase: 'player_drawing', mode: 'night', round: 1, reducedMotion: false }).pose).toBe('curious');
+    expect(getShizukuReaction({ phase: 'player_drawing', mode: 'night', round: 1, reducedMotion: false }).pose).toBe('neutral');
     expect(getShizukuReaction({ phase: 'player_drawing', mode: 'night', round: 2, reducedMotion: false }).pose).toBe('neutral');
     expect(getShizukuReaction({ phase: 'results', mode: 'day', round: 5, reducedMotion: false }).pose).toBe('smile');
+  });
+
+  it('changes from neutral to curious only after the first player marks, regardless of round or lighting', () => {
+    for (const mode of ['day', 'night'] as const) {
+      for (const round of [1, 2, 5]) {
+        expect(getShizukuReaction({ phase: 'player_drawing', mode, round, reducedMotion: false, hasPlayerMarks: false }))
+          .toMatchObject({ pose: 'neutral', motion: 'idle', durationMs: 0 });
+        expect(getShizukuReaction({ phase: 'player_drawing', mode, round, reducedMotion: false, hasPlayerMarks: true }))
+          .toMatchObject({ pose: 'curious', motion: 'watch', durationMs: 600, leanPx: mode === 'day' ? 2 : 1 });
+        expect(getShizukuReaction({ phase: 'player_drawing', mode, round, reducedMotion: true, hasPlayerMarks: true }))
+          .toMatchObject({ pose: 'curious', durationMs: 0, leanPx: 0 });
+      }
+    }
   });
 
   it('holds the first girl pose, then follows monotonic drawing progress to the exact end', () => {
