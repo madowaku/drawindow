@@ -15,6 +15,8 @@ describe('character presentation lifecycle', () => {
     const sources = sprites.map(img => img.getAttribute('src'));
     expect(sprites).toHaveLength(7);
     expect(sources.every(source => source?.includes('/art/shizuku/'))).toBe(true);
+    expect(screen.getByTestId('character-scene').getAttribute('data-pose')).toBe('neutral');
+    rerender(<CharacterScene mode="day" phase="player_drawing" hasPlayerMarks reducedMotion={false} />);
     expect(screen.getByTestId('character-scene').getAttribute('data-pose')).toBe('curious');
     rerender(<CharacterScene mode="night" phase="player_drawing" reducedMotion={false} />);
     expect([...document.querySelectorAll('.character-scene__sprite')].map(img => img.getAttribute('src'))).toEqual(sources);
