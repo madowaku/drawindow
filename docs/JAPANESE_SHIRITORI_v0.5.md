@@ -22,7 +22,9 @@ choice, stored in `drawindow-language` when local storage permits.
 ## Drawing vocabulary
 
 Existing 64 drawing candidates, attribution, stroke geometry and SAFE/SOFT
-review labels are preserved. The spoken names for Japanese are provided by
+review labels are preserved. Two Japanese-only vector sketches, こま and こっぷ,
+cover the previously missing こ start. They are provisionally SOFT until blind
+human recognition review and do not alter the English A–Z catalogue. The spoken names for Japanese are provided by
 `src/data/japaneseSketches.ts` (61 distinct English word types). Language
 is selected at session start and cannot change mid-session.
 
@@ -32,7 +34,7 @@ Japanese sessions rotate among curated easy opening drawings. DAY begins with
 so reloading the page does not always reset to the same starting drawing.
 English still starts with apple, unchanged.
 
-Some Japanese starting sounds are not represented in the current drawing
+Some Japanese starting sounds are still not represented in the current drawing
 library. If a recognized word ends in an uncovered sound (other than ん), the
 existing explicit error/retry/redraw/demo fallback remains. Do not secretly
 replace the genuine AI guess or pass an intended answer as a prompt hint.
