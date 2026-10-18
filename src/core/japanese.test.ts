@@ -20,7 +20,7 @@ describe('Japanese word boundaries', () => {
     expect(normalizeWord('りんご', 'en')).toBeNull();
   });
   it('applies small kana and long-vowel rules to the chain, not to labels', () => {
-    expect(firstLetter('ジャケット', 'ja')).toBe('し');
+    expect(firstLetter('ジャケット', 'ja')).toBe('じ');
     expect(lastLetter('でんしゃ', 'ja')).toBe('や');
     expect(lastLetter('コーヒー', 'ja')).toBe('い');
     expect(lastLetter('ケーキ', 'ja')).toBe('き');
