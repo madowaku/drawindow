@@ -29,8 +29,8 @@ human recognition review and do not alter the English A–Z catalogue. The spoke
 is selected at session start and cannot change mid-session.
 
 Japanese sessions rotate among curated easy opening drawings. DAY begins with
-ねこ → はな → すいか → かさ → たこ → つき, NIGHT with
-つき → ほし → とけい → ねこ → はな → すいか. The index is saved locally
+すいか → かさ → つき → ほし → ねこ → はな, NIGHT with
+つき → ほし → とけい → かさ → ねこ → すいか. The index is saved locally
 so reloading the page does not always reset to the same starting drawing.
 English still starts with apple, unchanged.
 
