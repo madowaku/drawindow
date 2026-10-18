@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, ArrowCounterClockwise, Check, Eraser, Info, Moon, SpeakerHigh, SpeakerSlash, Sun, X } from '@phosphor-icons/react';
 import { createInitialState, gameReducer, selectCanFinishDrawing, selectPlayerEntries, selectVisibleStrokes } from './core/gameMachine';
 import { calculateScore } from './core/score';
+import { EndingScene } from './components/EndingScene';
 import type { DrawingRecognizer, GameState, Language, Mode, SessionKind } from './core/types';
 import { girlSketches } from './data/sketches';
 import { localizeGirlSketches, withJapaneseStarter } from './data/japaneseSketches';
@@ -189,17 +190,7 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
       <div className="review-footer"><p>{t('Only now do we reveal the words.', 'ここで初めて、名前を明かす。')}</p><button className="primary" onClick={() => dispatch({ type: 'SHOW_RESULTS' })}>{t('REVEAL OUR CHAIN', '答えあわせ')}<ArrowRight size={20} /></button></div>
     </section>}
 
-    {state.phase === 'results' && <section className="results-layout">
-      <div className="session-portrait" data-testid="results-character" aria-hidden="true"><CharacterScene mode={state.mode} phase="results" round={state.round} reducedMotion={reducedMotion} /></div>
-      <div className="section-intro"><p className="eyebrow">{t('TEN DRAWINGS. TWO WAYS OF SEEING.', '１０枚の絵。ふたつの見え方。')}</p><h1>{score.perfect ? t('A perfect understanding.', 'ぴったり、通じあった。') : t('Between the lines.', '絵と絵のあいだ。')}</h1><p>{t('Some thoughts met. Others took a little detour.', '伝わった想いも、寄り道した想いも。')}</p></div>
-      {!score.comparable && <p className="result-disclosure">{state.sessionKind === 'demo' ? t('DEMO — simulated interpretations. This result is not score-comparable.', 'デモの解釈はシミュレーションです。正式なスコアにはなりません。') : t('INCOMPLETE — unknown or non-comparable links. No official best score.', '不明なつながりがあります。正式なベストスコアはつきません。')}</p>}
-      <div className="score-strip"><div><span>{state.sessionKind === 'demo' ? t('DEMO LINKS', 'デモのつながり') : t('LINK SCORE', 'つながり')}</span><strong>{score.connectedCount}<small> / {score.knownPairCount}</small></strong><p>{t(`${score.knownPairCount} of 9 possible links known`, `９本中${score.knownPairCount}本が判定できた`)}</p></div><div><span>{t('BEST CHAIN', '最長のつながり')}</span><strong>{score.bestChain}<small>{t(score.bestChain === 1 ? ' link' : ' links', ' 本')}</small></strong><p>{t('Consecutive connected links', '連続してつながった数')}</p></div></div>
-      <ol className="chain-list">{state.entries.map((entry, index) => <li key={entry.id}>
-        {index > 0 && <div className={`chain-link ${score.links[index - 1].status}`}><span>{score.links[index - 1].status === 'connected' ? t('CONNECTED', 'つながった') : score.links[index - 1].status === 'broken' ? t('A DIFFERENT DIRECTION', 'ちがう道へ') : t('UNKNOWN LINK', 'まだわからない')}</span><span>{score.links[index - 1].status !== 'unknown' ? `${score.links[index - 1].fromLetter?.toUpperCase()} → ${score.links[index - 1].toLetter?.toUpperCase()}` : t('An intention was left unnamed', '名前のない絵がある')}</span></div>}
-        <div className={`result-drawing actor-${entry.actor}`}><SketchThumbnail strokes={entry.strokes} label={t(`${entry.actor === 'girl' ? 'Her' : 'Your'} drawing: ${entry.intendedWord || 'unknown intention'}`, `${entry.actor === 'girl' ? 'しずく' : 'あなた'}の絵：${entry.intendedWord || '不明'}`)} /><div><p className="eyebrow">{entry.actor === 'girl' ? t('SHE DREW', 'しずくの絵') : t('YOU MEANT', 'あなたの絵')} · {entry.round}</p><h2>{entry.intendedWord || t('Unknown', 'わからない')}</h2>{entry.actor === 'player' && <p className="interpretation">{entry.recognition?.guess ? <>{entry.recognition.source === 'mock' ? t('Demo interpretation', 'デモの解釈') : t('She thought', 'しずくには')}: <strong>{entry.recognition.guess}</strong></> : entry.round === 5 ? t('Final drawing · not sent for recognition', '最後の絵は認識していません') : t('Her interpretation: unknown', 'しずくの解釈：不明')}</p>}</div></div>
-      </li>)}</ol>
-      <div className="result-end"><p className="tagline">{t('Perhaps we’ll see it differently next time.', '次は、ちがうふうに見えるかも。')}</p><button className="primary" onClick={start}>{t('ANOTHER WINDOW', 'もう一度遊ぶ')}<ArrowCounterClockwise size={20} /></button><button className="text-button" onClick={() => dispatch({ type: 'RETURN_TO_TITLE' })}>{t('Back to the beginning', '最初に戻る')}</button></div>
-    </section>}
+    {state.phase === 'results' && <EndingScene key={state.sessionId} entries={state.entries} score={score} mode={state.mode} language={state.language} sessionKind={state.sessionKind} reducedMotion={reducedMotion} onRestart={start} onTitle={() => dispatch({ type: 'RETURN_TO_TITLE' })} />}
 
     {(info || leave) && <div className="modal-backdrop" onClick={() => { setInfo(false); setLeave(false); }}><section className="info-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" onClick={e => e.stopPropagation()} onKeyDown={e => {
       if (e.key === 'Escape') { setInfo(false); setLeave(false); }

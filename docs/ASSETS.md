@@ -108,10 +108,10 @@ interactive Canvas2D compositing layer, not a raster character substitute.
 | Scene | Recording | Composer | Official source |
 | --- | --- | --- | --- |
 | Title, either theme | 物語の幕を | のる | https://opentracks.com/bgm/detail/15353 |
-| DAY session/review/results | Coral Ambience | ハヤシユウ | https://opentracks.com/bgm/detail/20419 |
-| NIGHT session/review/results | おやすみの時間 | 蒲鉾さちこ | https://opentracks.com/bgm/detail/22683 |
+| DAY session/review | Coral Ambience | ハヤシユウ | https://opentracks.com/bgm/detail/20419 |
+| NIGHT session/review | おやすみの時間 | 蒲鉾さちこ | https://opentracks.com/bgm/detail/22683 |
 
-The three MP3s were supplied locally by the user. The official track pages,
+The MP3s were supplied locally by the user. The official track pages,
 composer profiles, [sound license](https://opentracks.com/help/articles/license/)
 and [terms](https://opentracks.com/help/articles/terms/) were checked. The DAY
 page was verified in the actual browser when the text fetch failed. Game BGM
@@ -129,9 +129,9 @@ MP3 derivative. This game container is not DRM; it avoids distributing directly
 playable standalone audio files. Playback restores a temporary in-memory Blob,
 which is released on replacement/disposal. Credits ship in-game and in CREDITS.
 
-The recordings total9.42MB in the game, fetched one at a time only after sound
+The four recordings total12.03MB in the game, fetched one at a time only after sound
 is enabled. A single native media player keeps long decoded PCM out of the JS
-heap. Title-to-session changes fade out/in; review, results and restart retain
+heap. Title-to-session changes fade out/in; review retains
 the session recording. The same source loops at its natural end (title/DAY are
 not advertised as seamless loops). Music and synthesized effects have separate
 gain paths under the existing sound toggle. Tab hide/page exit pause playback;
@@ -149,3 +149,15 @@ identical strokes. No new third-party asset or license is introduced.
 maker judgements and source/stroke SHA-256 values. SAFE is a provisional maker
 judgement, not a human recognition result. Historic v0.4 manifests are preserved;
 their source-file hashes refer to the pre-library file layout.
+
+
+## TEN LITTLE THOUGHTS ending music — 2026-10-18
+
+User-selected **優花 — のる**: https://opentracks.com/bgm/detail/20352
+Composer: https://opentracks.com/creator/detail/432
+License and terms rechecked 2026-10-18 at the URLs above. Background use in games and technical conversion/fades are permitted by the published license; music-only redistribution and AI training are excluded.
+
+The user supplied 優花.mp3 locally (2,849,172 bytes, 162.966395 seconds).
+Full-length 128kbps/44.1kHz stereo derivative, metadata and covers removed; no cut, rearrangement, generated audio or training. Original stays outside the repository. Reproduce **only** this addition with `node scripts/prepare-bgm.mjs <source-folder> --ending-only`; the prior three recordings and their manifest hashes stay unchanged. `assets/bgm-manifest.json` records original/derivative/container hashes. The packed file is `src/assets/music/ending.bin` (2,608,535 bytes), covered by the existing binary Git attributes.
+
+`results` now selects the same ending piano recording in DAY/NIGHT. It fades from gameplay over 0.8s and in over 1.8s; all three acts share one uninterrupted native media player. The track finishes naturally without looping or restarting on later button presses. Sound starts muted; existing mute, hidden-tab/pagehide, deferred-load cancellation, gesture retry and disposal apply. Restart chooses gameplay music; returning to title chooses the title track. The souvenir PNG contains no audio.

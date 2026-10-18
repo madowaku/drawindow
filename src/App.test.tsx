@@ -64,6 +64,7 @@ describe('integrated UI journey with controlled presentation callbacks', () => {
     for (const guess of guesses) expect(document.body.textContent).not.toMatch(new RegExp(`\\b${guess}\\b`, 'i'));
     screen.getAllByRole('textbox').forEach((input, i) => fireEvent.change(input, { target: { value: ['dog', 'house', 'fish', 'cat', 'tree'][i] } }));
     fireEvent.click(screen.getByRole('button', { name: /REVEAL OUR CHAIN/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'See what we meant' }));
     expect(document.querySelectorAll('.result-drawing')).toHaveLength(10);
     expect(document.querySelectorAll('.chain-link')).toHaveLength(9);
     expect(screen.getByText('Final drawing · not sent for recognition')).toBeTruthy();
@@ -96,7 +97,8 @@ describe('integrated UI journey with controlled presentation callbacks', () => {
     expect(labels[0].value).toBe('ice cream');
     ['tree', 'egg', 'goat', 'rain'].forEach((word, i) => fireEvent.change(labels[i + 1], { target: { value: word } }));
     fireEvent.click(screen.getByRole('button', { name: /REVEAL OUR CHAIN/ }));
-    expect(['smile', 'shy']).toContain(screen.getByTestId('results-character').querySelector('[data-pose]')?.getAttribute('data-pose'));
+    fireEvent.click(screen.getByRole('button', { name: 'See what we meant' }));
+    expect(document.body.textContent).not.toContain('perfect understanding');
     expect(document.querySelectorAll('.result-drawing')).toHaveLength(10);
     expect(document.querySelectorAll('.chain-link')).toHaveLength(9);
     expect(screen.getByText('9 of 9 possible links known')).toBeTruthy();
@@ -110,6 +112,7 @@ describe('integrated UI journey with controlled presentation callbacks', () => {
     fireEvent.click(screen.getByRole('button', { name: /NIGHT/ }));
     await finishFive();
     fireEvent.click(screen.getByRole('button', { name: /REVEAL OUR CHAIN/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'See what we meant' }));
     expect(screen.getByText('0 of 9 possible links known')).toBeTruthy();
     expect(document.querySelectorAll('.chain-link.unknown')).toHaveLength(9);
     fireEvent.click(screen.getByRole('button', { name: /Back to the beginning/ }));
@@ -137,6 +140,7 @@ describe('Japanese UI playthrough', () => {
     await waitFor(() => expect(screen.getAllByRole('textbox')).toHaveLength(5));
     fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'ゴリラ' } });
     fireEvent.click(screen.getByRole('button', { name: /答えあわせ/ }));
+    fireEvent.click(screen.getByRole('button', { name: '答え合わせをする' }));
     expect(document.querySelectorAll('.result-drawing')).toHaveLength(10);
     expect(document.querySelectorAll('.chain-link')).toHaveLength(9);
     expect(screen.getByText('ごりら')).toBeTruthy();
@@ -161,6 +165,6 @@ describe('Japanese starter variety', () => {
     current = undefined;
     render(<App onStateChange={state => { current = state; }} />);
     fireEvent.click(screen.getByRole('button', { name: /デモで遊ぶ/ }));
-    expect(current?.entries[0].intendedWord).toBe('すいか');
+    expect((current as GameState | undefined)?.entries[0].intendedWord).toBe('すいか');
   });
 });

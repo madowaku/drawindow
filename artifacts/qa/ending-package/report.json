@@ -1,0 +1,18 @@
+{
+  "scope": "Synthetic presentation fixtures + simulated five-exchange DEMO; no genuine recognition, human drawing, Android save or enjoyment evidence.",
+  "variants": [],
+  "scenarios": [],
+  "journey": {
+    "syntheticDemo": true,
+    "rounds": 5,
+    "endingMusic": {
+      "time": 0.02322,
+      "loop": false,
+      "src": "blob:http://localhost:5182/4d1dae2d-1785-4a7a-8fb9-3847f4831feb",
+      "duration": 162.966395
+    },
+    "noRestartBetweenActs": true,
+    "mutedAndRestarted": true,
+    "errors": []
+  }
+}

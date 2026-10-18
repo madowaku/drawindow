@@ -70,11 +70,13 @@ export function createGameAudio(options: AudioOptions = {}) {
 
   function playMusic() {
     if (!audible() || !media || !currentAsset || loaded !== desired) return;
+    // The non-looping piano ending may finish naturally while pictures stay open.
+    if (desired === 'ending' && media.ended) return;
     const token = generation;
     try {
       void context?.resume().catch(() => {});
       void media.play().then(() => {
-        if (token === generation && audible()) ramp(MUSIC_GAIN[desired], 0.45);
+        if (token === generation && audible()) ramp(MUSIC_GAIN[desired], desired === 'ending' ? 1.8 : 0.45);
       }).catch(() => { /* A later user gesture can retry a browser-blocked play. */ });
     } catch { /* Optional audio never blocks drawing. */ }
   }
@@ -90,7 +92,7 @@ export function createGameAudio(options: AudioOptions = {}) {
       const token = generation, track = desired;
       const controller = new AbortController(); pending = controller;
       const fading = media && !media.paused;
-      ramp(0, fading ? 0.18 : 0);
+      ramp(0, fading ? track === 'ending' ? 0.8 : 0.18 : 0);
       void load(track, controller.signal).then(asset => {
         if (token !== generation || !audible()) { asset.release(); return; }
         pendingAsset = asset;
@@ -100,12 +102,13 @@ export function createGameAudio(options: AudioOptions = {}) {
           media!.pause();
           currentAsset?.release(); currentAsset = asset;
           loaded = track;
+          media!.loop = track !== 'ending';
           media!.dataset.drawindowBgm = track;
           media!.src = asset.url;
           media!.load();
           playMusic();
         };
-        if (fading) fadeTimer = setTimeout(commit, 200); else commit();
+        if (fading) fadeTimer = setTimeout(commit, track === 'ending' ? 850 : 200); else commit();
       }).catch(() => { if (token === generation) { pending = undefined; media?.pause(); } });
     } catch { pause(); }
   }

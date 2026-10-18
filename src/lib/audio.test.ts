@@ -37,6 +37,26 @@ function fixture() {
 afterEach(() => vi.useRealTimers());
 
 describe('owned music lifecycle', () => {
+  it('fades into the ending once, does not loop it or restart it at natural completion, and restores gameplay on restart', async () => {
+    vi.useFakeTimers(); const f = fixture();
+    f.audio.setTrack('day'); f.audio.setEnabled(true); const day = await f.complete(0);
+    f.audio.setTrack('ending'); await f.complete(1);
+    await vi.advanceTimersByTimeAsync(850);
+    expect(day.release).toHaveBeenCalledTimes(1);
+    expect(f.media.dataset.drawindowBgm).toBe('ending');
+    expect(f.media.loop).toBe(false);
+    f.media.currentTime = 45;
+    f.audio.setTrack('ending');
+    expect(f.media.currentTime).toBe(45); expect(f.loads).toHaveLength(2);
+    Object.assign(f.media, { ended: true, paused: true });
+    const plays = f.media.play.mock.calls.length;
+    f.audio.retryFromGesture();
+    expect(f.media.play).toHaveBeenCalledTimes(plays);
+    Object.assign(f.media, { ended: false });
+    f.audio.setTrack('day'); await f.complete(2);
+    expect(f.media.dataset.drawindowBgm).toBe('day'); expect(f.media.loop).toBe(true);
+    f.audio.dispose();
+  });
   it('does not create or load audio while initially muted', () => {
     const f = fixture();
     f.audio.setTrack('day'); f.audio.setVisible(false); f.audio.setVisible(true); f.audio.playSound('turn'); f.audio.retryFromGesture();

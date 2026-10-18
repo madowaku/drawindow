@@ -1,5 +1,5 @@
 {
-  "verifiedDate": "2026-10-17",
+  "verifiedDate": "2026-10-18",
   "suppliedBy": "User-supplied local MP3 files; originals retained outside the published repository",
   "license": "OpenTracks sound license plus each composer profile",
   "licenseUrl": "https://opentracks.com/help/articles/license/",
@@ -53,6 +53,24 @@
       "outputBytes": 1874181,
       "outputSha256": "9ea45345c3cb7c9ee548d32d1981a34de216e2f3f2da5783b1e92e8dfbd01624",
       "durationSeconds": 117.062494
+    },
+    {
+      "id": "ending",
+      "filename": "優花.mp3",
+      "title": "優花",
+      "artist": "のる",
+      "source": "https://opentracks.com/bgm/detail/20352",
+      "creator": "https://opentracks.com/creator/detail/432",
+      "verifiedDate": "2026-10-18",
+      "loop": false,
+      "originalBytes": 2849172,
+      "originalSha256": "ed8db65acdaa8deebb97691fa6cc5fab18efa887cd8c78efe2760eee66a06779",
+      "convertedBytes": 2608527,
+      "convertedSha256": "acd8f86082a6b5608e650a7c7835ab93a048bb7cb495bbfdeb434995e106e2e5",
+      "output": "src/assets/music/ending.bin",
+      "outputBytes": 2608535,
+      "outputSha256": "18b8b304ad7713be92aa8c2f8c59d73b86508ec3d06820ffd9215866b8f765f8",
+      "durationSeconds": 162.966395
     }
   ]
 }
