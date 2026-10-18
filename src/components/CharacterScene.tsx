@@ -14,6 +14,7 @@ interface Props {
   reducedMotion: boolean;
   frameOverride?: CharacterFrame;
   round?: number;
+  hasPlayerMarks?: boolean;
   artSet?: 'current' | 'candidate';
 }
 
@@ -38,11 +39,11 @@ function hideFailedRoom(event: SyntheticEvent<HTMLImageElement>): void {
 }
 
 /** Pose sprites + browser-native phase gestures. Glass and ink live outside this component. */
-export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1, artSet = 'current' }: Props) {
+export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1, hasPlayerMarks = false, artSet = 'current' }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const gestureRef = useRef<HTMLDivElement>(null);
   const [running, setRunning] = useState(true);
-  const reaction = getShizukuReaction({ phase, mode, round, reducedMotion, progress });
+  const reaction = getShizukuReaction({ phase, mode, round, reducedMotion, progress, hasPlayerMarks });
   const frame = frameOverride ?? reaction.pose;
 
   useEffect(() => {
