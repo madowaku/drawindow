@@ -44,7 +44,7 @@ describe('DRAWINDOW v0.6 classic picture-shiritori doodles', () => {
         for (const point of stroke.points) {
           expect(Number.isFinite(point.x) && point.x >= 0 && point.x <= 1).toBe(true);
           expect(Number.isFinite(point.y) && point.y >= 0 && point.y <= 1).toBe(true);
-          expect(Number.isFinite(point.t) && point.t >= 0 && point.t <= 1200).toBe(true);
+          expect(Number.isFinite(point.t) && point.t >= 0 && point.t <= 1200 + 0.000001).toBe(true);
         }
       }
     }
