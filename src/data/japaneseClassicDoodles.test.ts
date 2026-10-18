@@ -3,7 +3,7 @@ import { girlSketches } from './sketches';
 import { localizeGirlSketches } from './japaneseSketches';
 import { japaneseExtraSketches } from './japaneseExtraSketches';
 import { japaneseDoodlePack } from './japaneseDoodlePack';
-import { japaneseClassicDoodles } from './japaneseClassicDoodles';
+import { japaneseClassicBefore, japaneseClassicDoodles } from './japaneseClassicDoodles';
 import { chainLettersMatch, firstLetter, lastLetter, selectGirlSketch } from '../core/words';
 
 const nouns = [
@@ -33,7 +33,7 @@ describe('DRAWINDOW v0.6 classic picture-shiritori doodles', () => {
 
   it('keeps each illustration within the glass and preserves the naive monochrome strokes', () => {
     for (const item of japaneseClassicDoodles) {
-      expect(item.id).toMatch(/^shizuku-ja-classic-[a-z-]+-v01$/);
+      expect(item.id).toMatch(/^shizuku-ja-classic-[a-z-]+-v02$/);
       expect(item.word).toMatch(/^[ぁ-ゖー]+$/);
       expect(item.readability === 'safe' || item.readability === 'soft').toBe(true);
       expect(item.durationMs).toBe(1200);
@@ -47,6 +47,25 @@ describe('DRAWINDOW v0.6 classic picture-shiritori doodles', () => {
           expect(Number.isFinite(point.t) && point.t >= 0 && point.t <= 1200 + 0.000001).toBe(true);
         }
       }
+    }
+  });
+
+  it('preserves the original candidate as a separate review baseline', () => {
+    expect(japaneseClassicBefore).toHaveLength(16);
+    expect(japaneseClassicBefore.map(sketch => sketch.word)).toEqual(nouns);
+    for (let i = 0; i < 16; i++) {
+      const before = japaneseClassicBefore[i];
+      const after = japaneseClassicDoodles[i];
+      expect(before.id).toMatch(/-v01$/);
+      expect(after.id).toBe(before.id.replace(/-v01$/, '-v02'));
+      expect(after.word).toBe(before.word);
+      expect(after.readability).toBe(before.readability);
+      expect(after.strokes).not.toEqual(before.strokes);
+      expect(after.strokes.length).toBeGreaterThanOrEqual(before.strokes.length);
+      expect(after.strokes.reduce((sum, s) => sum + s.points.length, 0))
+        .toBeGreaterThan(before.strokes.reduce((sum, s) => sum + s.points.length, 0));
+      expect(after.durationMs).toBe(before.durationMs);
+      expect(japaneseClassicBefore[i].id).not.toBe(after.id);
     }
   });
 
