@@ -12,10 +12,10 @@ const basicKana = [...'あいうえおかきくけこさしすせそたちつて
 const dummy: Stroke[] = [{ id: 'hand', points: [{ x: .2, y: .2, t: 0 }, { x: .7, y: .7, t: 120 }] }];
 
 describe('Japanese drawable-word expansion', () => {
-  it('ships 40 distinct new doodles, without changing any English asset', () => {
-    expect(japaneseDoodlePack).toHaveLength(40);
+  it('ships 41 distinct new doodles, without changing any English asset', () => {
+    expect(japaneseDoodlePack).toHaveLength(41);
     expect(new Set(japaneseDoodlePack.map(sketch => sketch.word)).size).toBe(40);
-    expect(japanese).toHaveLength(girlSketches.length + japaneseExtraSketches.length + 40);
+    expect(japanese).toHaveLength(girlSketches.length + japaneseExtraSketches.length + 41);
     expect(new Set(japanese.map(sketch => sketch.id)).size).toBe(japanese.length);
     expect(girlSketches[0].word).toBe('apple');
     expect(withJapaneseStarter(japanese, 'day', 0)[0].word).toBe('すいか');
