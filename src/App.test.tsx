@@ -117,3 +117,30 @@ describe('integrated UI journey with controlled presentation callbacks', () => {
     expect(localStorage.getItem('drawindow-mode')).toBe('night');
   });
 });
+
+describe('Japanese UI playthrough', () => {
+  it('switches language, persists it and completes five demo exchanges without revealing answers early', async () => {
+    render(<App />);
+    fireEvent.click(screen.getByRole('button', { name: '日本語' }));
+    expect(document.querySelector('main')?.getAttribute('data-language')).toBe('ja');
+    expect(localStorage.getItem('drawindow-language')).toBe('ja');
+    fireEvent.click(screen.getByRole('button', { name: /デモで遊ぶ/ }));
+    for (let round = 1; round <= 5; round++) {
+      await waitFor(() => expect(document.querySelector('main')?.getAttribute('data-phase')).toBe('girl_breath'));
+      fireEvent.click(screen.getByRole('button', { name: 'Test complete breath' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Test complete playback' }));
+      expect(screen.queryByRole('textbox')).toBeNull();
+      fireEvent.click(screen.getByRole('button', { name: /あなたの番/ }));
+      fireEvent.click(screen.getByRole('button', { name: 'Test draw' }));
+      fireEvent.click(screen.getByRole('button', { name: /できた/ }));
+    }
+    await waitFor(() => expect(screen.getAllByRole('textbox')).toHaveLength(5));
+    fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'ゴリラ' } });
+    fireEvent.click(screen.getByRole('button', { name: /答えあわせ/ }));
+    expect(document.querySelectorAll('.result-drawing')).toHaveLength(10);
+    expect(document.querySelectorAll('.chain-link')).toHaveLength(9);
+    expect(screen.getByText('ごりら')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: /最初に戻る/ }));
+    expect(document.querySelector('main')?.getAttribute('data-language')).toBe('ja');
+  });
+});
