@@ -26,7 +26,10 @@ function doodle(id: string, word: string, readability: 'safe' | 'soft', paths: r
   return { id: fullId, word, readability, durationMs: 1200, strokes: createTimedStrokes(fullId, paths, 1200) };
 }
 
-export const japaneseClassicDoodles: readonly GirlSketch[] = [
+/** Pre-polish version, retained for honest side-by-side visual review only.
+ * It is NEVER included in the Japanese gameplay catalogue.
+ */
+export const japaneseClassicBefore: readonly GirlSketch[] = [
   // ご → ごりら : distinctive huge arms, round ears, broad muzzle.
   // A generic monkey remains a possible reading, so review as SOFT.
   doodle('gorilla', 'ごりら', 'soft', [
@@ -183,3 +186,79 @@ export const japaneseClassicDoodles: readonly GirlSketch[] = [
     line([.54,.88],[.65,.91],[.69,.85]),
   ]),
 ];
+
+
+/** A small, deterministic human-hand wobble. No randomness, colors or glyphs.
+ * Each source path keeps its endpoints and topology, but long ruler-straight
+ * edges get a little bow and small irregularity at 200px playback scale.
+ * This is NOT recognition validation, only a proposed drawing variant.
+ */
+function shizukuLineFeel(paths: readonly Path[], seed: number): Path[] {
+  const clamp = (value: number) => Math.min(.97, Math.max(.03, value));
+  return paths.map((path, strokeIndex) => {
+    const phase = seed * .173 + strokeIndex * 1.27;
+    const affect = (x: number, y: number): Point => [
+      clamp(x + .009 * Math.sin(5.5 * y + phase) + .003 * Math.sin(11 * x - phase)),
+      clamp(y + .009 * Math.sin(5 * x - phase) + .003 * Math.cos(12 * y + phase)),
+    ];
+    if (path.length === 1) return [affect(path[0][0], path[0][1])];
+    const out: Point[] = [affect(path[0][0], path[0][1])];
+    for (let i = 1; i < path.length; i++) {
+      const a = path[i - 1], b = path[i];
+      const dx = b[0] - a[0], dy = b[1] - a[1];
+      const distance = Math.hypot(dx, dy);
+      const segments = Math.max(1, Math.ceil(distance / .074));
+      for (let j = 1; j <= segments; j++) {
+        const fraction = j / segments;
+        const bow = j === segments ? 0 : .012 * Math.sin(Math.PI * fraction) *
+          Math.sin(phase * 1.4 + i * 1.87);
+        const x = a[0] + fraction * dx - (distance ? dy / distance * bow : 0);
+        const y = a[1] + fraction * dy + (distance ? dx / distance * bow : 0);
+        out.push(affect(x, y));
+      }
+    }
+    return out;
+  });
+}
+
+/** Tiny object-specific gestures: off-center tufts, tilted cheeks and imperfect
+ * details, never universal smiley faces on foods or manufactured objects.
+ */
+const shyDetails: Readonly<Record<string, readonly Path[]>> = {
+  gorilla: [
+    line([.43,.14],[.45,.105],[.49,.14],[.52,.10],[.56,.145]),
+    line([.45,.49],[.49,.515],[.54,.497]),
+  ],
+  turtle: [line([.85,.62],[.88,.63],[.895,.60])],
+  bat: [line([.47,.555],[.505,.58],[.539,.55])],
+  chikuwa: [
+    line([.43,.40],[.455,.425]), line([.60,.30],[.625,.32]),
+  ],
+  cicada: [line([.44,.46],[.40,.58]), line([.56,.46],[.60,.575])],
+  sparrow: [
+    line([.56,.445],[.59,.468]), line([.65,.445],[.685,.461]),
+    line([.42,.54],[.46,.585],[.49,.573]),
+  ],
+  'morning-glory': [
+    line([.375,.164],[.40,.19],[.422,.195]),
+    line([.693,.17],[.67,.19],[.643,.202]),
+  ],
+  pineapple: [line([.56,.31],[.58,.29],[.61,.305])],
+  'stag-beetle': [line([.50,.47],[.48,.53],[.50,.59])],
+};
+
+function polishedClassic(original: GirlSketch, index: number): GirlSketch {
+  const id = original.id.replace(/-v01$/, '-v02');
+  const name = id.match(/^shizuku-ja-classic-(.+)-v02$/)?.[1] ?? '';
+  const raw: Path[] = original.strokes.map(stroke =>
+    stroke.points.map(point => [point.x, point.y] as Point));
+  const strokes = createTimedStrokes(id,
+    shizukuLineFeel([...raw, ...(shyDetails[name] ?? [])], index + 1), 1200);
+  return { ...original, id, strokes };
+}
+
+/** v0.6.1: candidate Shizuku hand-drawn variant of the 16 classics.
+ * Approved legacy pictures and 41 original Japanese doodles remain unchanged.
+ */
+export const japaneseClassicDoodles: readonly GirlSketch[] =
+  japaneseClassicBefore.map(polishedClassic);
