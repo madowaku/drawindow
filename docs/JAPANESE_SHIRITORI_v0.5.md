@@ -21,7 +21,7 @@ choice, stored in `drawindow-language` when local storage permits.
 
 Existing 64 drawing candidates, attribution, stroke geometry and SAFE/SOFT
 review labels are preserved. The spoken names for Japanese are provided by
-`src/data/japaneseSketches.ts` (63 distinct English word types). Language
+`src/data/japaneseSketches.ts` (61 distinct English word types). Language
 is selected at session start and cannot change mid-session.
 
 Some Japanese starting sounds are not represented in the current drawing
