@@ -60,7 +60,7 @@ export function EndingScene(props: EndingSceneProps) {
     </div>
     {act === 'goodbye' && <div className="ending-goodbye">
       <div className="ending-window" aria-hidden="true">
-        <CharacterScene mode={mode} phase="results" frameOverride="smile" round={5} reducedMotion={reducedMotion} />
+        <CharacterScene mode={mode} phase="results" round={5} reducedMotion={reducedMotion} />
         <div className="ending-window-pictures">{entries.map((e, i) => <SketchThumbnail key={e.id} strokes={e.strokes} label={String(i + 1)} />)}</div>
         <div className="ending-refog" />
       </div>
