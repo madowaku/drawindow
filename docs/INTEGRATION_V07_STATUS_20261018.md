@@ -33,3 +33,61 @@ Project owner reported PASS on five **Shizuku v0.6-only** smartphone checks: DAY
 5. Worker/security/cost budgets, licenses, production iframe, performance and release/marketing proof; separate explicit publish approval.
 
 **GO/NO-GO:** This branch is a code-integrated, CI-green **review candidate**, not an approved public build. Keep PR #16 Draft until full human/integration checks, and do not merge to main or deploy without explicit user approval.
+
+## Product polish follow-up (2026-10-18, functional head 4498207)
+
+The latest Japanese source changes from #7 are now also on this integration
+branch (cherry-picked; no PR merge or main update):
+- Six corrected classic silhouettes, with the previous v02 comparison retained.
+- Twelve everyday nouns, bringing Japanese artwork candidates to 135.
+- Continuation-friendly Japanese weighting, small mood tie-breaks and preserved
+  least-recent reuse. English selection and opening pools are unchanged.
+- Mobile blind review, personal marks and one-at-a-time navigation.
+
+### Current local evidence
+
+- `npm test -- --maxWorkers=2`: **220 tests / 34 files passed**.
+- `npm run test:auth`: **6/6 passed** (Windows credential safety harness).
+- `npm run build`: passed. No Japanese development-gallery strings in built JS.
+- `npm run package:itch`: **48 entries**, root index and extracted byte parity.
+- ZIP SHA-256: `968d386072540771c3347b4418c8428ef725a8f0b3f4234e3121f433603e61ed`.
+- Browser over the **extracted ZIP**, 360x800, reduced motion: EN/JA x DAY/NIGHT,
+  five synthetic DEMO exchanges each, first-mark UNDO/CLEAR, 10 diary pictures,
+  nine revealed links, three ending acts, 1200x3000 local PNG with names unchecked
+  by default, zero HTTP during PNG creation, no recognition calls, no horizontal
+  overflow, no page errors. `?japanese-doodle-preview` opens the normal product,
+  not the development gallery.
+- The source gallery was separately checked at 360x800 and 1280x800 x DAY/NIGHT,
+  all 16 before/after pairs and all 12 additions, blind labels and persisted marks.
+- Approved core geometry, original character artwork and starter pool file have
+  no diff in this follow-up.
+
+Reproduce the package browser check after extracting/serving with
+`scripts/verify-archive.mjs` (set `DRAWINDOW_ARCHIVE_PORT` to a free local port):
+
+```powershell
+npx --yes --package @playwright/cli playwright-cli -s=product open http://localhost:5287/
+npx --yes --package @playwright/cli playwright-cli -s=product run-code --filename=scripts/qa-product-demo.cjs
+```
+
+These results establish automated behavior on a desktop browser, not human
+recognition, physical Android touch/save, audible BGM quality, or enjoyment.
+The earlier human/real-LIVE acceptance tasks above remain pending. The ZIP keeps
+its historical v0.4 filename and is a **local review artifact**, not a release.
+
+### PR navigation after cleanup
+
+- **#16: sole product-wide review candidate (Draft)**. Start here.
+- **#7: active Japanese source/diff (Draft)**; this batch is included in #16.
+- #8 and #12: closed as already included; heads were verified as ancestors of
+  the integration branch. Branches and original descriptions remain available.
+- No merge to main, deployment, public upload, or paid recognition request.
+
+### Next human review
+
+Candidate adoption: first compare the six revised classics, then the seven
+provisionally clearer new nouns (いちご, きゅうり, なす, だるま, くし,
+くつした, たけのこ). Rework priorities if confused: ごぼう/にんじん,
+うでわ/指輪, けしごむ/積み木, むぎ/葉, plus the classic animal/flower pairs.
+All decisions still require an unprompted first guess followed by a separate
+charm judgement; review marks do not change production eligibility.
