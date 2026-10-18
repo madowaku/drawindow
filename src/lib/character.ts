@@ -13,6 +13,8 @@ export interface ShizukuReactionInput {
   round?: number;
   reducedMotion: boolean;
   progress?: number;
+  /** Whether the player has left any visible marks on the glass. Presentation only. */
+  hasPlayerMarks?: boolean;
 }
 
 export interface ShizukuReaction {
@@ -34,6 +36,7 @@ export function getShizukuReaction({
   round = 1,
   reducedMotion,
   progress = 1,
+  hasPlayerMarks = false,
 }: ShizukuReactionInput): ShizukuReaction {
   const safeRound = Number.isFinite(round) ? Math.max(1, Math.floor(round)) : 1;
   let pose: CharacterFrame = 'neutral';
@@ -62,10 +65,12 @@ export function getShizukuReaction({
       motion = 'hold';
       break;
     case 'player_drawing':
-      pose = safeRound % 2 === 1 ? 'curious' : 'neutral';
-      motion = 'watch';
-      leanPx = 2;
-      durationMs = 600;
+      // Watch the first visible marks, not the player's intent or the guess result.
+      // A quiet neutral pause becomes genuine interest as the player starts drawing.
+      pose = hasPlayerMarks ? 'curious' : 'neutral';
+      motion = hasPlayerMarks ? 'watch' : 'idle';
+      leanPx = hasPlayerMarks ? (mode === 'day' ? 2 : 1) : 0;
+      durationMs = hasPlayerMarks ? 600 : 0;
       break;
     case 'recognizing':
       pose = 'thinking';
