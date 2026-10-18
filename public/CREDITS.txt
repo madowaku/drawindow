@@ -38,6 +38,8 @@ DAY: "Coral Ambience" by ハヤシユウ / Hayashi Yuu
 https://opentracks.com/bgm/detail/20419
 NIGHT: "おやすみの時間" by 蒲鉾さちこ / Kamaboko Sachiko
 https://opentracks.com/bgm/detail/22683
+ENDING: "優花" by のる / Noru
+https://opentracks.com/bgm/detail/20352
 License: https://opentracks.com/help/articles/license/
 Terms: https://opentracks.com/help/articles/terms/
 Used as background music in the game; not released as standalone audio assets.

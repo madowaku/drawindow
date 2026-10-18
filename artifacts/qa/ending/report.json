@@ -1,0 +1,1368 @@
+{
+  "scope": "Synthetic presentation fixtures + simulated five-exchange DEMO; no genuine recognition, human drawing, Android save or enjoyment evidence.",
+  "variants": [
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "lang": "en",
+      "mode": "day",
+      "reduced": false,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "Skip animation · see results",
+          "height": 48
+        },
+        {
+          "text": "A little goodbye",
+          "height": 48
+        },
+        {
+          "text": "Include words and interpretations",
+          "height": 44
+        },
+        {
+          "text": "SAVE TODAY’S WINDOW",
+          "height": 48
+        },
+        {
+          "text": "ANOTHER WINDOW",
+          "height": 48
+        },
+        {
+          "text": "Back to the beginning",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2366,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "lang": "en",
+      "mode": "day",
+      "reduced": true,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "Skip animation · see results",
+          "height": 48
+        },
+        {
+          "text": "A little goodbye",
+          "height": 48
+        },
+        {
+          "text": "Include words and interpretations",
+          "height": 44
+        },
+        {
+          "text": "SAVE TODAY’S WINDOW",
+          "height": 48
+        },
+        {
+          "text": "ANOTHER WINDOW",
+          "height": 48
+        },
+        {
+          "text": "Back to the beginning",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2366,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "lang": "en",
+      "mode": "night",
+      "reduced": false,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "Skip animation · see results",
+          "height": 48
+        },
+        {
+          "text": "A little goodbye",
+          "height": 48
+        },
+        {
+          "text": "Include words and interpretations",
+          "height": 44
+        },
+        {
+          "text": "SAVE TODAY’S WINDOW",
+          "height": 48
+        },
+        {
+          "text": "ANOTHER WINDOW",
+          "height": 48
+        },
+        {
+          "text": "Back to the beginning",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2366,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "lang": "en",
+      "mode": "night",
+      "reduced": true,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "Skip animation · see results",
+          "height": 48
+        },
+        {
+          "text": "A little goodbye",
+          "height": 48
+        },
+        {
+          "text": "Include words and interpretations",
+          "height": 44
+        },
+        {
+          "text": "SAVE TODAY’S WINDOW",
+          "height": 48
+        },
+        {
+          "text": "ANOTHER WINDOW",
+          "height": 48
+        },
+        {
+          "text": "Back to the beginning",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2366,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "lang": "ja",
+      "mode": "day",
+      "reduced": false,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "すぐ見る・答えを開く",
+          "height": 48
+        },
+        {
+          "text": "窓の向こうへ、またね",
+          "height": 48
+        },
+        {
+          "text": "名前と解釈も入れる",
+          "height": 44
+        },
+        {
+          "text": "今日の窓を残す",
+          "height": 48
+        },
+        {
+          "text": "もう一度遊ぶ",
+          "height": 48
+        },
+        {
+          "text": "最初に戻る",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2962,
+        1923,
+        2641,
+        2532,
+        1845,
+        1923,
+        2641,
+        2532,
+        2721,
+        1661
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "lang": "ja",
+      "mode": "day",
+      "reduced": true,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "すぐ見る・答えを開く",
+          "height": 48
+        },
+        {
+          "text": "窓の向こうへ、またね",
+          "height": 48
+        },
+        {
+          "text": "名前と解釈も入れる",
+          "height": 44
+        },
+        {
+          "text": "今日の窓を残す",
+          "height": 48
+        },
+        {
+          "text": "もう一度遊ぶ",
+          "height": 48
+        },
+        {
+          "text": "最初に戻る",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2962,
+        1923,
+        2641,
+        2532,
+        1845,
+        1923,
+        2641,
+        2532,
+        2721,
+        1661
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "lang": "ja",
+      "mode": "night",
+      "reduced": false,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "すぐ見る・答えを開く",
+          "height": 48
+        },
+        {
+          "text": "窓の向こうへ、またね",
+          "height": 48
+        },
+        {
+          "text": "名前と解釈も入れる",
+          "height": 44
+        },
+        {
+          "text": "今日の窓を残す",
+          "height": 48
+        },
+        {
+          "text": "もう一度遊ぶ",
+          "height": 48
+        },
+        {
+          "text": "最初に戻る",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2962,
+        1923,
+        2641,
+        2532,
+        1845,
+        1923,
+        2641,
+        2532,
+        2721,
+        1661
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "lang": "ja",
+      "mode": "night",
+      "reduced": true,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "すぐ見る・答えを開く",
+          "height": 48
+        },
+        {
+          "text": "窓の向こうへ、またね",
+          "height": 48
+        },
+        {
+          "text": "名前と解釈も入れる",
+          "height": 44
+        },
+        {
+          "text": "今日の窓を残す",
+          "height": 48
+        },
+        {
+          "text": "もう一度遊ぶ",
+          "height": 48
+        },
+        {
+          "text": "最初に戻る",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2962,
+        1923,
+        2641,
+        2532,
+        1845,
+        1923,
+        2641,
+        2532,
+        2721,
+        1661
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "lang": "en",
+      "mode": "day",
+      "reduced": false,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "Skip animation · see results",
+          "height": 48
+        },
+        {
+          "text": "A little goodbye",
+          "height": 48
+        },
+        {
+          "text": "Include words and interpretations",
+          "height": 44
+        },
+        {
+          "text": "SAVE TODAY’S WINDOW",
+          "height": 50
+        },
+        {
+          "text": "ANOTHER WINDOW",
+          "height": 50
+        },
+        {
+          "text": "Back to the beginning",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2366,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "lang": "en",
+      "mode": "day",
+      "reduced": true,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "Skip animation · see results",
+          "height": 48
+        },
+        {
+          "text": "A little goodbye",
+          "height": 48
+        },
+        {
+          "text": "Include words and interpretations",
+          "height": 44
+        },
+        {
+          "text": "SAVE TODAY’S WINDOW",
+          "height": 50
+        },
+        {
+          "text": "ANOTHER WINDOW",
+          "height": 50
+        },
+        {
+          "text": "Back to the beginning",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2366,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "lang": "en",
+      "mode": "night",
+      "reduced": false,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "Skip animation · see results",
+          "height": 48
+        },
+        {
+          "text": "A little goodbye",
+          "height": 48
+        },
+        {
+          "text": "Include words and interpretations",
+          "height": 44
+        },
+        {
+          "text": "SAVE TODAY’S WINDOW",
+          "height": 50
+        },
+        {
+          "text": "ANOTHER WINDOW",
+          "height": 50
+        },
+        {
+          "text": "Back to the beginning",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2366,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "lang": "en",
+      "mode": "night",
+      "reduced": true,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "Skip animation · see results",
+          "height": 48
+        },
+        {
+          "text": "A little goodbye",
+          "height": 48
+        },
+        {
+          "text": "Include words and interpretations",
+          "height": 44
+        },
+        {
+          "text": "SAVE TODAY’S WINDOW",
+          "height": 50
+        },
+        {
+          "text": "ANOTHER WINDOW",
+          "height": 50
+        },
+        {
+          "text": "Back to the beginning",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2366,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "lang": "ja",
+      "mode": "day",
+      "reduced": false,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "すぐ見る・答えを開く",
+          "height": 48
+        },
+        {
+          "text": "窓の向こうへ、またね",
+          "height": 48
+        },
+        {
+          "text": "名前と解釈も入れる",
+          "height": 44
+        },
+        {
+          "text": "今日の窓を残す",
+          "height": 50
+        },
+        {
+          "text": "もう一度遊ぶ",
+          "height": 50
+        },
+        {
+          "text": "最初に戻る",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2962,
+        1923,
+        2641,
+        2532,
+        1845,
+        1923,
+        2641,
+        2532,
+        2721,
+        1661
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "lang": "ja",
+      "mode": "day",
+      "reduced": true,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "すぐ見る・答えを開く",
+          "height": 48
+        },
+        {
+          "text": "窓の向こうへ、またね",
+          "height": 48
+        },
+        {
+          "text": "名前と解釈も入れる",
+          "height": 44
+        },
+        {
+          "text": "今日の窓を残す",
+          "height": 50
+        },
+        {
+          "text": "もう一度遊ぶ",
+          "height": 50
+        },
+        {
+          "text": "最初に戻る",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2962,
+        1923,
+        2641,
+        2532,
+        1845,
+        1923,
+        2641,
+        2532,
+        2721,
+        1661
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "lang": "ja",
+      "mode": "night",
+      "reduced": false,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "すぐ見る・答えを開く",
+          "height": 48
+        },
+        {
+          "text": "窓の向こうへ、またね",
+          "height": 48
+        },
+        {
+          "text": "名前と解釈も入れる",
+          "height": 44
+        },
+        {
+          "text": "今日の窓を残す",
+          "height": 50
+        },
+        {
+          "text": "もう一度遊ぶ",
+          "height": 50
+        },
+        {
+          "text": "最初に戻る",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2962,
+        1923,
+        2641,
+        2532,
+        1845,
+        1923,
+        2641,
+        2532,
+        2721,
+        1661
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        720,
+        1280
+      ],
+      "lang": "ja",
+      "mode": "night",
+      "reduced": true,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "すぐ見る・答えを開く",
+          "height": 48
+        },
+        {
+          "text": "窓の向こうへ、またね",
+          "height": 48
+        },
+        {
+          "text": "名前と解釈も入れる",
+          "height": 44
+        },
+        {
+          "text": "今日の窓を残す",
+          "height": 50
+        },
+        {
+          "text": "もう一度遊ぶ",
+          "height": 50
+        },
+        {
+          "text": "最初に戻る",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2962,
+        1923,
+        2641,
+        2532,
+        1845,
+        1923,
+        2641,
+        2532,
+        2721,
+        1661
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "lang": "en",
+      "mode": "day",
+      "reduced": false,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "Skip animation · see results",
+          "height": 48
+        },
+        {
+          "text": "A little goodbye",
+          "height": 48
+        },
+        {
+          "text": "Include words and interpretations",
+          "height": 44
+        },
+        {
+          "text": "SAVE TODAY’S WINDOW",
+          "height": 50
+        },
+        {
+          "text": "ANOTHER WINDOW",
+          "height": 50
+        },
+        {
+          "text": "Back to the beginning",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2366,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "lang": "en",
+      "mode": "day",
+      "reduced": true,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "Skip animation · see results",
+          "height": 48
+        },
+        {
+          "text": "A little goodbye",
+          "height": 48
+        },
+        {
+          "text": "Include words and interpretations",
+          "height": 44
+        },
+        {
+          "text": "SAVE TODAY’S WINDOW",
+          "height": 50
+        },
+        {
+          "text": "ANOTHER WINDOW",
+          "height": 50
+        },
+        {
+          "text": "Back to the beginning",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2366,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "lang": "en",
+      "mode": "night",
+      "reduced": false,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "Skip animation · see results",
+          "height": 48
+        },
+        {
+          "text": "A little goodbye",
+          "height": 48
+        },
+        {
+          "text": "Include words and interpretations",
+          "height": 44
+        },
+        {
+          "text": "SAVE TODAY’S WINDOW",
+          "height": 50
+        },
+        {
+          "text": "ANOTHER WINDOW",
+          "height": 50
+        },
+        {
+          "text": "Back to the beginning",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2366,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "lang": "en",
+      "mode": "night",
+      "reduced": true,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "Skip animation · see results",
+          "height": 48
+        },
+        {
+          "text": "A little goodbye",
+          "height": 48
+        },
+        {
+          "text": "Include words and interpretations",
+          "height": 44
+        },
+        {
+          "text": "SAVE TODAY’S WINDOW",
+          "height": 50
+        },
+        {
+          "text": "ANOTHER WINDOW",
+          "height": 50
+        },
+        {
+          "text": "Back to the beginning",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2366,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060,
+        2200,
+        3060
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "lang": "ja",
+      "mode": "day",
+      "reduced": false,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "すぐ見る・答えを開く",
+          "height": 48
+        },
+        {
+          "text": "窓の向こうへ、またね",
+          "height": 48
+        },
+        {
+          "text": "名前と解釈も入れる",
+          "height": 44
+        },
+        {
+          "text": "今日の窓を残す",
+          "height": 50
+        },
+        {
+          "text": "もう一度遊ぶ",
+          "height": 50
+        },
+        {
+          "text": "最初に戻る",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2962,
+        1923,
+        2641,
+        2532,
+        1845,
+        1923,
+        2641,
+        2532,
+        2721,
+        1661
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "lang": "ja",
+      "mode": "day",
+      "reduced": true,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "すぐ見る・答えを開く",
+          "height": 48
+        },
+        {
+          "text": "窓の向こうへ、またね",
+          "height": 48
+        },
+        {
+          "text": "名前と解釈も入れる",
+          "height": 44
+        },
+        {
+          "text": "今日の窓を残す",
+          "height": 50
+        },
+        {
+          "text": "もう一度遊ぶ",
+          "height": 50
+        },
+        {
+          "text": "最初に戻る",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2962,
+        1923,
+        2641,
+        2532,
+        1845,
+        1923,
+        2641,
+        2532,
+        2721,
+        1661
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "lang": "ja",
+      "mode": "night",
+      "reduced": false,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "すぐ見る・答えを開く",
+          "height": 48
+        },
+        {
+          "text": "窓の向こうへ、またね",
+          "height": 48
+        },
+        {
+          "text": "名前と解釈も入れる",
+          "height": 44
+        },
+        {
+          "text": "今日の窓を残す",
+          "height": 50
+        },
+        {
+          "text": "もう一度遊ぶ",
+          "height": 50
+        },
+        {
+          "text": "最初に戻る",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2962,
+        1923,
+        2641,
+        2532,
+        1845,
+        1923,
+        2641,
+        2532,
+        2721,
+        1661
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "lang": "ja",
+      "mode": "night",
+      "reduced": true,
+      "overflow": false,
+      "missing": 0,
+      "focus": "H1",
+      "controls": [
+        {
+          "text": "すぐ見る・答えを開く",
+          "height": 48
+        },
+        {
+          "text": "窓の向こうへ、またね",
+          "height": 48
+        },
+        {
+          "text": "名前と解釈も入れる",
+          "height": 44
+        },
+        {
+          "text": "今日の窓を残す",
+          "height": 50
+        },
+        {
+          "text": "もう一度遊ぶ",
+          "height": 50
+        },
+        {
+          "text": "最初に戻る",
+          "height": 44
+        }
+      ],
+      "ink": [
+        2962,
+        1923,
+        2641,
+        2532,
+        1845,
+        1923,
+        2641,
+        2532,
+        2721,
+        1661
+      ],
+      "exportSize": [
+        1200,
+        3000
+      ],
+      "saveOutgoingRequests": [],
+      "errors": []
+    }
+  ],
+  "scenarios": [
+    "unknown",
+    "perfect",
+    "restart",
+    "demo"
+  ],
+  "journey": {
+    "syntheticDemo": true,
+    "rounds": 5,
+    "endingMusic": {
+      "time": 0.01161,
+      "loop": false,
+      "src": "blob:http://localhost:5181/0ac1c903-95a1-409e-ae41-5d79394052a5",
+      "duration": 162.966395
+    },
+    "noRestartBetweenActs": true,
+    "mutedAndRestarted": true,
+    "errors": []
+  }
+}
