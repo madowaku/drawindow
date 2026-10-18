@@ -14,7 +14,7 @@ const dummy: Stroke[] = [{ id: 'hand', points: [{ x: .2, y: .2, t: 0 }, { x: .7,
 describe('Japanese drawable-word expansion', () => {
   it('ships 41 distinct new doodles, without changing any English asset', () => {
     expect(japaneseDoodlePack).toHaveLength(41);
-    expect(new Set(japaneseDoodlePack.map(sketch => sketch.word)).size).toBe(40);
+    expect(new Set(japaneseDoodlePack.map(sketch => sketch.word)).size).toBe(41);
     expect(japanese).toHaveLength(girlSketches.length + japaneseExtraSketches.length + 41);
     expect(new Set(japanese.map(sketch => sketch.id)).size).toBe(japanese.length);
     expect(girlSketches[0].word).toBe('apple');
