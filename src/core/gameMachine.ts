@@ -92,7 +92,7 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
       // easy-to-continue drawing, without claiming the broken link as connected.
       const sketch = chainRestart
         ? selectJapaneseFreshSketch(state.sketches, usedIds)
-        : selectGirlSketch(state.sketches, tail, usedIds, state.language);
+        : selectGirlSketch(state.sketches, tail, usedIds, state.language, state.mode);
       if (!sketch) return errorState(state, 'uncovered_letter', result);
       const entries = state.entries.map(entry => entry.id === state.recognitionRequest?.playerEntryId ? { ...entry, recognition: result } : entry);
       const round = state.round + 1;

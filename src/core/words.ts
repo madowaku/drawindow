@@ -1,4 +1,4 @@
-import type { GirlSketch, Language } from './types';
+import type { GirlSketch, Language, Mode } from './types';
 
 /** English v0.4 labels stay valid; Japanese gameplay stores phonetic kana labels. */
 export function normalizeWord(value: unknown, language: Language = 'en'): string | null {
@@ -60,11 +60,31 @@ export function lastLetter(value: unknown, language: Language = 'en'): string | 
   return vowelRows.find(([characters]) => characters.includes(preceding))?.[1] ?? null;
 }
 
+/** Catalogue connectivity is a maker heuristic, not measured human vocabulary.
+ * Count distinct readable, nonterminal replies; alternate drawings of one noun
+ * must not inflate its score. A small mood tie-break never beats one more exit. */
+const moodWords: Readonly<Record<Mode, readonly string[]>> = {
+  day: ['すいか', 'はな', 'ひまわり', 'あさがお', 'とんぼ', 'すずめ', 'うちわ'],
+  night: ['つき', 'ほし', 'こうもり', 'ふくろう', 'ろうそく', 'とけい'],
+};
+function japaneseContinuationScore(sketch: GirlSketch, playable: readonly GirlSketch[], mode?: Mode): number {
+  const ending = lastLetter(sketch.word, 'ja');
+  if (!ending || ending === 'ん') return -2;
+  const replies = playable.filter(candidate => candidate.word !== sketch.word &&
+    chainLettersMatch(ending, firstLetter(candidate.word, 'ja'), 'ja'));
+  if (!replies.length) return -1;
+  const readableWords = new Set(replies.filter(candidate =>
+    (!candidate.readability || candidate.readability === 'safe') &&
+    lastLetter(candidate.word, 'ja') !== 'ん').map(candidate => normalizeWord(candidate.word, 'ja')));
+  return Math.min(3, readableWords.size) + (mode && moodWords[mode].includes(sketch.word) ? .25 : 0);
+}
+
 export function selectGirlSketch(
   sketches: readonly GirlSketch[],
   requiredFirstLetter: string,
   usedTemplateIds: readonly string[] = [],
   language: Language = 'en',
+  mode?: Mode,
 ): GirlSketch | null {
   const letter = normalizeWord(requiredFirstLetter, language);
   if (!letter || letter.length !== 1) return null;
@@ -84,8 +104,13 @@ export function selectGirlSketch(
     if (!ending || ending === 'ん') return 2;
     return playable.some(candidate => chainLettersMatch(ending, firstLetter(candidate.word, language), language)) ? 0 : 1;
   };
+  const scores = new Map(pool.map(sketch => [sketch.id,
+    language === 'ja' ? japaneseContinuationScore(sketch, playable, mode) : 0]));
+  const seen = (sketch: GirlSketch) => recentWords.includes(normalizeWord(sketch.word, language));
   return [...pool].sort((a, b) =>
     exitPenalty(a) - exitPenalty(b) ||
+    (language === 'ja' ? Number(seen(a)) - Number(seen(b)) : 0) ||
+    (!seen(a) && !seen(b) ? scores.get(b.id)! - scores.get(a.id)! : 0) ||
     recentWords.lastIndexOf(normalizeWord(a.word, language)) - recentWords.lastIndexOf(normalizeWord(b.word, language)) ||
     usedTemplateIds.lastIndexOf(a.id) - usedTemplateIds.lastIndexOf(b.id))[0] ?? null;
 }
