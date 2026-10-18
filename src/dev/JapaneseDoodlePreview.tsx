@@ -5,11 +5,12 @@ import { girlSketches } from '../data/sketches';
 import { localizeGirlSketches } from '../data/japaneseSketches';
 import { japaneseExtraSketches } from '../data/japaneseExtraSketches';
 import { japaneseDoodlePack } from '../data/japaneseDoodlePack';
+import { japaneseClassicDoodles } from '../data/japaneseClassicDoodles';
 import { SketchThumbnail } from '../components/SketchThumbnail';
 import './JapaneseDoodlePreview.css';
 
 const original = localizeGirlSketches(girlSketches, 'ja');
-const additions = [...japaneseExtraSketches, ...japaneseDoodlePack];
+const additions = [...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles];
 const all = [...original, ...additions];
 const syllables = [...new Set(all.map(sketch => firstLetter(sketch.word, 'ja') ?? ''))].sort((a, b) => a.localeCompare(b, 'ja'));
 
