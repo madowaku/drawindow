@@ -189,3 +189,47 @@ fixed interpretations, not AI recognition.
   currently affect the opening pool only; the whole vocabulary still needs
   themed weighting after coverage and human readability review.
 - Publish nothing automatically. The release requires human acceptance.
+
+### v0.6.2: readable shapes, everyday words and review workflow
+
+- Six classic candidates now use v03 shapes: ごりら, ちくわ, せみ, ねぎ,
+  すずめ, あさがお. The review baseline is the actual previous v02, not v01.
+  The other ten classics and the approved five core pictures are unchanged.
+- Twelve original monochrome, authored vector nouns are added in
+  `src/data/japaneseEverydayDoodles.ts`: いちご, ごぼう, きゅうり, なす,
+  だるま, くし, すいとう, うでわ, けしごむ, むぎ, くつした, たけのこ.
+  **135 Japanese picture candidates**, not 135 unique words. No external art
+  or new dependency. ごぼう / すいとう / うでわ / けしごむ / むぎ are SOFT;
+  the other seven are provisional maker SAFE. None has human recognition proof.
+- Japanese selection keeps the existing exact/relaxed and SAFE/SOFT tiers,
+  avoids terminal exits within a tier, prefers unseen words, then up to three
+  distinct readable nonterminal successor words. DAY/NIGHT adds only a 0.25
+  tie-break. Reused words retain least-recent order so one high-score noun does
+  not monopolize the session. Starter pools and English selection are intact.
+- The dev-only gallery adds version-keyed local 採用 / 保留 / 再修正 marks,
+  one-at-a-time navigation, 360px width and an isolated 12-new-picture scope.
+  One-at-a-time mode folds settings so the whole review card fits 360x800.
+  Marks are personal notes, never gameplay approval or recognition labels.
+  Blocked/corrupt storage falls back to in-memory marks with a visible message
+  when saving fails. Initial word labels and image accessibility labels are blind.
+
+Verification: 198 unit/component tests, production build, and browser checks at
+360x800 and 1280x800 in DAY/NIGHT. Each browser journey checks all 16 before/after
+pairs, all 12 additions, equal comparison scale, bounded paging, marks across
+reload, explicit reveal and no horizontal overflow. Re-run with a dev server:
+
+```powershell
+npx --yes --package @playwright/cli playwright-cli -s=ja open 'http://localhost:5183/?japanese-doodle-preview'
+npx --yes --package @playwright/cli playwright-cli -s=ja run-code --filename=scripts/qa-japanese-doodles.cjs
+```
+
+Human next pass: hide names; give a first guess before revealing; compare charm
+and clarity separately. Prioritize ごりら/さる, ちくわ/パン, せみ/昆虫,
+すずめ/とり, あさがお/花 and ねぎ/玉ねぎ. Also check ごぼう/にんじん,
+うでわ/指輪, けしごむ/積み木 and むぎ/葉. No LIVE request or paid API was
+used for this batch. Android touch/audio, real human recognition and comfort
+remain separate acceptance tasks.
+
+Product review entry point: PR #16 (integration). PR #7 is the active Japanese
+source; already integrated quality/ending work from #8/#12 is historical.
+Neither branch is a public release. No merge to main, deploy or public upload.
