@@ -125,6 +125,49 @@ switch DAY/NIGHT, filter by starting sound, or include the full catalogue.
 English mode does not import the 16 extra drawings, does not translate
 their labels, and retains the original opening/apple story.
 
+### v0.6.1: Shizuku hand-drawn feel (comparison candidate)
+
+Art direction approved for this project: **black/white, no color, deliberately
+imperfect but affectionate**, not overly skilled or polished. Round shapes,
+a little asymmetry, slight hand jitter, simple silhouettes and sparing details.
+Do not add universal smiley faces to unrelated foods or objects.
+
+The existing approved five core drawings are preserved as-is: りんご B3,
+ばなな B2, ねこ B3, いぬ B1, ぞう B1 (the B1/B2/B3 labels refer to the
+separately approved visual direction, not empirical recognition scores).
+Also preserve the established Shizuku character-expression sprites.
+
+- The source 16 classic drawings are kept in
+  `japaneseClassicBefore` with `-v01` IDs.
+- `japaneseClassicDoodles` is a **v02 candidate** of those exact 16
+  objects, with subtle deterministic irregularity in long strokes and
+  small object-specific character marks. The names and provisional
+  SAFE/SOFT classifications remain the same.
+- The original English sketches, first 2 Japanese extras and 41
+  Japanese base-kana sketches are **not altered**.
+- Development-only `/?japanese-doodle-preview` starts with the 16
+  classic pairs side-by-side, both names hidden until intentionally
+  revealed; DAY/NIGHT, new/old single display, and wider catalog filter
+  remain available.
+- Current Japanese gameplay uses only the v02 variants, not both, so
+  the two versions never double the weighted chance of the same word.
+
+#### Human review gate
+
+View each pair at mobile scale (e.g. 360 × 800). First give an *unprompted*
+object guess, then rate the version preferred for "looks like something
+Shizuku drew" rather than professional rendering. Do this separately:
+**recognizability and charm are not the same metric**.
+
+Priority confusion pairs: ごりら/さる, せみ/昆虫全般,
+すずめ/とり, ちくわ/パン, あさがお/花全般.
+Revert a modified version if clarity decreases; do not "fix" it with a word
+label, color fill, shiny finish or a generic eye/mouth.
+
+No claim of human validation or camera-browser screenshot review is made by
+these automated tests. Do not merge until real human visual feedback and
+Android playback are inspected.
+
 ## Recognition / privacy
 
 The browser sends `language: 'ja'` only for Japanese play. Omission is
