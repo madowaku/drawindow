@@ -18,3 +18,14 @@
 .ja-catalog-card strong { font-size:16px; }
 .ja-catalog-card small { font-size:9px; color:#687478; overflow-wrap:anywhere; }
 @media (max-width:390px) { .ja-catalog-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; } .ja-catalog-card { padding:8px; } }
+
+/* Blind, like-for-like comparison at exactly the same rendered thumbnail scale. */
+.ja-catalog-grid[data-comparing='true'] { grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
+.ja-catalog-compare { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.ja-catalog-compare > div { min-width:0; }
+.ja-catalog-compare .sketch-thumb { width:100%; }
+.ja-catalog-compare span { display:block; text-align:center; font-size:11px; padding-top:6px; opacity:.7; }
+@media(max-width:390px) {
+  .ja-catalog-grid[data-comparing='true'] { grid-template-columns:1fr; }
+  .ja-catalog-compare { gap:12px; }
+}
