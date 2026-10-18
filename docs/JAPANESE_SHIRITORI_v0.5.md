@@ -11,7 +11,7 @@ choice, stored in `drawindow-language` when local storage permits.
   are normalized). The end-of-session input explicitly asks for a kana reading.
 - Small terminal ゃ/ゅ/ょ/っ are treated as や/ゆ/よ/つ.
 - Voiced/unvoiced and semi-voiced kana can be interchanged for links: ご→こ, ぎ→き, ぱ→は. The displayed letters remain the true phonetic readings. English remains strict.
-- Girl drawings prioritize exact-kana SAFE templates, then exact SOFT templates, then relaxed SAFE/SOFT alternatives.
+- Girl drawings prioritize exact-kana SAFE templates, then relaxed SAFE templates, then exact/relaxed SOFT alternatives. Thus a readable きのこ can beat the ambiguous ぎたー for a ぎ link.
 - Final ー uses the preceding kana's vowel: コーヒー → い. This is a deliberate
   house rule and should be explained to players.
 - A Japanese AI interpretation ending with ん breaks that link. Shizuku begins
