@@ -120,3 +120,25 @@ describe('recognition worker security and genuine-provider boundary', () => {
     expect(await response.json()).toMatchObject({ guess: null, source: 'api', errorCode: 'timeout' });
   });
 });
+
+describe('Japanese worker contract', () => {
+  it('prompts for Japanese kana and returns a normalized label', async () => {
+    let prompt = '';
+    const worker = createWorker({ fetch: async (_url, init) => {
+      const body = JSON.parse(String(init?.body));
+      prompt = body.contents[0].parts[1].text;
+      return providerResponse('ネコ');
+    } });
+    const response = await worker.fetch(request({ requestId: '1:1:1', imageDataUrl, language: 'ja' }), env);
+    expect(response.status).toBe(200);
+    expect((await response.json()).guess).toBe('ねこ');
+    expect(prompt).toMatch(/ひらがな/);
+  });
+  it('rejects unknown language tags and kanji guesses', async () => {
+    let calls = 0;
+    const worker = createWorker({ fetch: async () => { calls++; return providerResponse('猫'); } });
+    expect((await worker.fetch(request({ requestId: '1:1:1', imageDataUrl, language: 'fr' }), env)).status).toBe(400);
+    expect(calls).toBe(0);
+    expect((await worker.fetch(request({ requestId: '1:1:1', imageDataUrl, language: 'ja' }), env)).status).toBe(502);
+  });
+});
