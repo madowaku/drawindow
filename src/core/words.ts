@@ -80,3 +80,14 @@ export function selectGirlSketch(
     recentWords.lastIndexOf(normalizeWord(a.word, language)) - recentWords.lastIndexOf(normalizeWord(b.word, language)) ||
     usedTemplateIds.lastIndexOf(a.id) - usedTemplateIds.lastIndexOf(b.id))[0] ?? null;
 }
+
+/** After an honest terminal-ん break, draw a different easy-to-continue picture.
+ * All choices remain curated SAFE art; the broken link is still recorded.
+ */
+export function selectJapaneseFreshSketch(sketches: readonly GirlSketch[], usedTemplateIds: readonly string[]): GirlSketch | null {
+  const easyEndings = new Set(['こ', 'な', 'き', 'か', 'し', 'さ', 'ま', 'い', 'う']);
+  const candidates = sketches.filter(sketch =>
+    (!sketch.readability || sketch.readability === 'safe') &&
+    easyEndings.has(lastLetter(sketch.word, 'ja') ?? ''));
+  return candidates.find(sketch => !usedTemplateIds.includes(sketch.id)) ?? candidates[0] ?? null;
+}
