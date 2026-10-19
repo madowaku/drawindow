@@ -1,7 +1,7 @@
 /** Shared contract. Core state is deterministic; presentation must not reveal words in play. */
 export type Mode = 'day' | 'night';
 export type Language = 'en' | 'ja';
-export type SessionKind = 'api' | 'demo';
+export type SessionKind = 'api' | 'demo' | 'local';
 export type GirlExpression = 'neutral' | 'thinking' | 'smile' | 'shy' | 'breath' | 'curious';
 
 export type GamePhase =
@@ -75,7 +75,7 @@ export interface WindowCanvasProps {
   onInputTypeChange?: (type: 'mouse' | 'touch' | 'pen' | 'keyboard') => void;
 }
 
-export type RecognitionSource = 'api' | 'mock';
+export type RecognitionSource = 'api' | 'mock' | 'local';
 export type RecognitionErrorCode =
   | 'unavailable'
   | 'timeout'
