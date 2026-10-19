@@ -21,6 +21,7 @@ try {
   const page=await browser.newPage({viewport:{width:720,height:1280},reducedMotion:'reduce'});
   const failures=[],requests=[];
   page.on('pageerror',e=>failures.push(e.message));
+  page.on('console',msg=>{if(['warning','error'].includes(msg.type()))failures.push(msg.type()+': '+msg.text());});
   page.on('request',r=>requests.push(r.url()));
   await page.goto(origin+'/',{waitUntil:'networkidle'});
   const prediction=await page.evaluate(async()=>{
