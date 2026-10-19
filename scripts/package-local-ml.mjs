@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { readFile, readdir, mkdir, writeFile } from 'node:fs/promises';
+import { readFile, readdir, mkdir, writeFile, rm } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 import { createHash } from 'node:crypto';
 import { zipSync, unzipSync } from 'fflate';
@@ -13,6 +13,9 @@ const build = spawnSync(process.execPath, ['node_modules/vite/bin/vite.js', 'bui
 if (build.error) throw build.error;
 if (build.status !== 0) process.exit(build.status ?? 1);
 
+// The SHA-verified original is used only to generate the batch-1 static copy.
+// Do not double the sold game's download size by shipping both model variants.
+await rm('dist/local-ml/quickdraw_model.tflite', {force:true});
 const root = 'dist';
 const files = {};
 async function walk(dir) {
