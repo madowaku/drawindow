@@ -17,7 +17,7 @@
     "verify:gemini": "node scripts/verify-gemini.mjs",
     "test:auth": "node --test scripts/gemini-auth.test.mjs",
     "prepare:local-ml": "node scripts/prepare-quickdraw-model.mjs",
-    "dev:local-ml": "npm run prepare:local-ml && vite --host 0.0.0.0",
+    "dev:local-ml": "npm run prepare:local-ml && node scripts/dev-local-ml.mjs",
     "package:local-ml": "npm run prepare:local-ml && node scripts/package-local-ml.mjs"
   },
   "dependencies": {
