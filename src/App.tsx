@@ -74,7 +74,7 @@ export default function App({ apiRecognizer, localRecognizer, onStateChange }: A
   const [runners] = useState(() => ({
     api: createRecognitionRunner(apiRecognizer ?? createApiRecognizer({ endpoint: import.meta.env.VITE_RECOGNITION_URL || '/api/recognize', imageRenderer: renderDrawingDataUrl })),
     demo: createRecognitionRunner(createDemoRecognizer()),
-    local: createRecognitionRunner(localRecognizer ?? createLocalRecognizer(sketchesForLanguage)),
+    local: createRecognitionRunner(localRecognizer ?? createLocalRecognizer(sketchesForLanguage, { exploreNearest: true })),
   }));
   const reducedMotion = useReducedMotion();
   const phaseRef = useRef(state.phase);
@@ -173,7 +173,7 @@ export default function App({ apiRecognizer, localRecognizer, onStateChange }: A
           <p className="session-note">{sessionChoice === 'demo'
             ? t('DEMO · Simulated interpretations. No comparable score.', 'デモ · 絵の認識はシミュレーションです。正式なスコアにはなりません。')
             : sessionChoice === 'local'
-              ? t('LOCAL LAB · Drawings stay on this device. Experimental shape matching, not validated AI.', 'ローカル実験版 · 絵は端末から送信されません。形の照合精度は検証中です。')
+              ? t('LOCAL LAB · Nearest-shape guesses on this device. Results may be wrong; not an official score.', 'ローカル実験版 · 絵は端末内で照合します。いちばん近い形を推測するため、間違うことがあります。公式スコアにはなりません。')
               : t('LIVE API · Drawings are sent to the configured recognizer.', 'LIVE API · あなたの絵が認識用サーバーに送られます。')}</p>
           {localLabEnabled && <button className="text-button connection-toggle" onClick={() => setSessionChoice(sessionChoice === 'local' ? 'demo' : 'local')}>{sessionChoice === 'local' ? t('Return to demo', 'デモに戻る') : t('Try offline recognition lab', '端末内で絵を認識する（実験版）')}</button>}
           {liveApiConfigured && <button className="text-button connection-toggle" onClick={() => setSessionChoice(sessionChoice === 'api' ? 'demo' : 'api')}>{sessionChoice === 'api' ? t('Return to demo', 'デモに戻る') : t('Use live API', '認識APIに接続して遊ぶ')}</button>}
