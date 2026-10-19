@@ -25,6 +25,10 @@ export interface LocalRecognizerOptions {
   maxDistance?: number;
   /** Required separation from the best competing distinct word. */
   minMargin?: number;
+  /** LAB ONLY: always return the nearest drawable word when the drawing is
+   * structurally valid, even if the fit is weak or tied. Never use as a
+   * quality claim or an official score. */
+  exploreNearest?: boolean;
 }
 
 const failure = (errorCode: 'invalid_input' | 'invalid_response' | 'unavailable'): RecognitionResult => ({
@@ -142,8 +146,9 @@ export function createLocalRecognizer(
       const ranked = [...byWord].sort((a, b) => a[1] - b[1]);
       const [winner, runnerUp] = ranked;
       // Deliberate abstention. Distances are not neural confidence scores.
-      if (!winner || winner[1] > (options.maxDistance ?? 4.0) ||
-          (runnerUp && runnerUp[1] - winner[1] < (options.minMargin ?? 0.20)))
+      if (!winner || (!options.exploreNearest &&
+          (winner[1] > (options.maxDistance ?? 4.0) ||
+           (runnerUp && runnerUp[1] - winner[1] < (options.minMargin ?? 0.20)))))
         return failure('invalid_response');
       if (signal?.aborted) return failure('unavailable');
       return { guess: winner[0], source: 'local' };
