@@ -16,6 +16,7 @@ beforeEach(() => {
   localStorage.clear();
   vi.stubEnv('VITE_RECOGNITION_URL', '');
   vi.stubEnv('VITE_ENABLE_LIVE_API', 'false');
+  vi.stubEnv('VITE_ENABLE_LOCAL_RECOGNITION', 'false');
   window.scrollTo = vi.fn();
   Object.defineProperty(window, 'matchMedia', { writable: true, value: () => ({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() }) });
 });
@@ -173,5 +174,35 @@ describe('Japanese starter variety', () => {
     render(<App onStateChange={state => { current = state; }} />);
     fireEvent.click(screen.getByRole('button', { name: /デモで遊ぶ/ }));
     expect((current as GameState | undefined)?.entries[0].intendedWord).toBe('つき');
+  });
+});
+
+describe('experimental on-device recognition path', () => {
+  it('runs 5 exchanges from real local predictions with zero API calls and no early word leaks', async () => {
+    vi.stubEnv('VITE_ENABLE_LOCAL_RECOGNITION', 'true');
+    const guesses = ['dog', 'house', 'fish', 'cat'];
+    const recognize = vi.fn(async () => ({ guess: guesses[recognize.mock.calls.length - 1], source: 'local' as const }));
+    const api = vi.fn(async () => ({guess:'unexpected',source:'api' as const}));
+    let latest: GameState | undefined;
+    render(<App apiRecognizer={{recognize:api}} localRecognizer={{recognize}} onStateChange={state => { latest = state; }}/>);
+    fireEvent.click(screen.getByRole('button',{name:/offline recognition lab/}));
+    expect(screen.getByText(/Nearest-shape guesses on this device/)).toBeTruthy();
+    fireEvent.click(screen.getByRole('button',{name:/START GAME/}));
+    for (let round=1; round<=5; round++) {
+      await waitFor(()=>expect(document.querySelector('main')?.getAttribute('data-phase')).toBe('girl_breath'));
+      fireEvent.click(screen.getByRole('button',{name:'Test complete breath'}));
+      fireEvent.click(screen.getByRole('button',{name:'Test complete playback'}));
+      expect(screen.getByText('LOCAL LAB')).toBeTruthy();
+      expect(document.querySelectorAll('.score-strip,.interpretation,input')).toHaveLength(0);
+      fireEvent.click(screen.getByRole('button',{name:/YOUR TURN/}));
+      fireEvent.click(screen.getByRole('button',{name:'Test draw'}));
+      fireEvent.click(screen.getByRole('button',{name:/^DONE/}));
+    }
+    await waitFor(()=>expect(screen.getAllByRole('textbox')).toHaveLength(5));
+    expect(recognize).toHaveBeenCalledTimes(4);
+    expect(api).not.toHaveBeenCalled();
+    expect(latest?.sessionKind).toBe('local');
+    expect(latest?.entries.filter(entry=>entry.actor==='player').slice(0,4).map(entry=>entry.recognition?.source)).toEqual(['local','local','local','local']);
+    expect(document.body.textContent).not.toContain('dog');
   });
 });

@@ -51,6 +51,7 @@ export function EndingScene(props: EndingSceneProps) {
       <h1 id="ending-title" tabIndex={-1} ref={heading}>{act === 'diary' ? t('Our little picture diary.', 'ふたりの絵日記。') : act === 'reveal' ? t('Between the lines.', 'すれ違いの答え合わせ。') : t('Until another window.', '窓の向こうの、またね。')}</h1>
       {act !== 'goodbye' && <p>{act === 'diary' ? t('Five exchanges. Your side, her side. Take another look.', 'しずくの絵、あなたの絵。５往復の、ちいさな時間。') : t('A word chain is one thing. Seeing the same picture is another.', '言葉のつながりと、同じものが見えたかは、別のこと。')}</p>}
     </div>
+    {sessionKind === 'local' && <p className="result-disclosure">{t('LOCAL LAB — real on-device stroke matching, experimental and not accuracy-validated.', 'LOCAL LAB — 端末内で絵の形を照合した実験記録です。認識精度は検証中です。')}</p>}
     {(!score.comparable || score.knownPairCount < 9) && <p className="result-disclosure">{sessionKind === 'demo' ? t('DEMO — simulated interpretations. This result is not score-comparable.', 'デモ — 解釈はシミュレーションです。成績として比較できません。') : t('INCOMPLETE — unknown or non-comparable links. No official best score.', '参考記録 — 不明、または比較できないつながりがあります。公式スコアではありません。')}</p>}
     <div className="ending-controls">
       {!revealed && <button className="primary" onClick={() => setAct('reveal')}>{t('See what we meant', '答え合わせをする')}</button>}

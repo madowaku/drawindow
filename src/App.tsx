@@ -20,6 +20,15 @@ import { renderDrawingDataUrl } from './lib/strokes';
 import { musicForScene } from './lib/music';
 import { useGameAudio } from './lib/useGameAudio';
 import { createApiRecognizer, createDemoRecognizer, createRecognitionRunner } from './services/recognizer';
+import { createLocalRecognizer } from './services/localRecognizer';
+
+/** Shared, local catalogue. The offline baseline uses only the same approved
+ * drawable nouns as Shizuku (never reads guesses, intentions or network). */
+function sketchesForLanguage(language: Language) {
+  const sketches = localizeGirlSketches(girlSketches, language);
+  if (language === 'en') return sketches;
+  return [...sketches, ...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles, ...japaneseEverydayDoodles];
+}
 
 function savedMode(): Mode {
   try { return localStorage.getItem('drawindow-mode') === 'night' ? 'night' : 'day'; } catch { return 'day'; }
@@ -47,11 +56,15 @@ function useReducedMotion() {
 export interface AppProps {
   /** Optional local acceptance observer; production supplies neither prop. */
   apiRecognizer?: DrawingRecognizer;
+  /** Optional offline test double for browser journeys. */
+  localRecognizer?: DrawingRecognizer;
   onStateChange?: (state: GameState) => void;
 }
 
-export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
+export default function App({ apiRecognizer, localRecognizer, onStateChange }: AppProps = {}) {
   const liveApiConfigured = Boolean(import.meta.env.VITE_RECOGNITION_URL?.trim()) || import.meta.env.VITE_ENABLE_LIVE_API === 'true';
+  // Explicit lab opt-in: do not claim offline model quality in the paid release.
+  const localLabEnabled = import.meta.env.VITE_ENABLE_LOCAL_RECOGNITION === 'true';
   const [state, dispatch] = useReducer(gameReducer, undefined, () => createInitialState(savedMode(), savedLanguage()));
   const { sound, toggleSound, playSound } = useGameAudio(musicForScene(state.phase, state.mode));
   const [info, setInfo] = useState(false);
@@ -61,6 +74,7 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
   const [runners] = useState(() => ({
     api: createRecognitionRunner(apiRecognizer ?? createApiRecognizer({ endpoint: import.meta.env.VITE_RECOGNITION_URL || '/api/recognize', imageRenderer: renderDrawingDataUrl })),
     demo: createRecognitionRunner(createDemoRecognizer()),
+    local: createRecognitionRunner(localRecognizer ?? createLocalRecognizer(sketchesForLanguage, { exploreNearest: true })),
   }));
   const reducedMotion = useReducedMotion();
   const phaseRef = useRef(state.phase);
@@ -86,7 +100,7 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
     const request = state.recognitionRequest;
     if (state.phase !== 'recognizing' || !request) return;
     let current = true;
-    const runner = request.sessionKind === 'demo' ? runners.demo : runners.api;
+    const runner = request.sessionKind === 'demo' ? runners.demo : request.sessionKind === 'local' ? runners.local : runners.api;
     void runner.recognize(request).then(result => {
       if (current) dispatch({ type: 'RECOGNITION_RESOLVED', requestId: request.requestId, result });
     });
@@ -110,9 +124,8 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
 
   const start = () => {
     setIntentDrafts({});
-    let sketches = localizeGirlSketches(girlSketches, state.language);
+    let sketches = sketchesForLanguage(state.language);
     if (state.language === 'ja') {
-      sketches = [...sketches, ...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles, ...japaneseEverydayDoodles];
       // Advance only on an actual Japanese START, never on render or language toggle.
       // Persisted index means a page reload does not go back to the same drawing.
       let startIndex = state.sessionId;
@@ -157,8 +170,13 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
         <div className="title-rules"><p>{t('Look. Guess. Draw the next word.', '見て、想像して、次の絵を描く。')}<br />{t('Never ask what it was.', '正解は、最後まで聞かない。')}</p><p className="fine-rule">{t('Start with the last letter of what you THINK you saw.', '見えたと思うものの、最後の文字から。')}</p>{state.language === 'ja' && <p className="fine-rule">濁点・半濁点はつけても外してもOK。（ご→こ、ぎ→き）</p>}</div>
         <div className="title-start">{languageButtons}{modeButtons}
           <button className="primary start-button" onClick={start}>{sessionChoice === 'demo' ? t('PLAY DEMO', 'デモで遊ぶ') : t('START GAME', 'はじめる')}<ArrowRight size={20} /></button>
-          <p className="session-note">{sessionChoice === 'demo' ? t('DEMO · Simulated interpretations. No comparable score.', 'デモ · 絵の認識はシミュレーションです。正式なスコアにはなりません。') : t('LIVE API · Drawings are sent to the configured recognizer.', 'LIVE API · あなたの絵が認識用サーバーに送られます。')}</p>
-          {liveApiConfigured && <button className="text-button connection-toggle" onClick={() => setSessionChoice(sessionChoice === 'demo' ? 'api' : 'demo')}>{sessionChoice === 'demo' ? t('Have a recognizer connected? Use live API', '認識APIに接続して遊ぶ') : t('Return to local demo', 'ローカルデモに戻る')}</button>}
+          <p className="session-note">{sessionChoice === 'demo'
+            ? t('DEMO · Simulated interpretations. No comparable score.', 'デモ · 絵の認識はシミュレーションです。正式なスコアにはなりません。')
+            : sessionChoice === 'local'
+              ? t('LOCAL LAB · Nearest-shape guesses on this device. Results may be wrong; not an official score.', 'ローカル実験版 · 絵は端末内で照合します。いちばん近い形を推測するため、間違うことがあります。公式スコアにはなりません。')
+              : t('LIVE API · Drawings are sent to the configured recognizer.', 'LIVE API · あなたの絵が認識用サーバーに送られます。')}</p>
+          {localLabEnabled && <button className="text-button connection-toggle" onClick={() => setSessionChoice(sessionChoice === 'local' ? 'demo' : 'local')}>{sessionChoice === 'local' ? t('Return to demo', 'デモに戻る') : t('Try offline recognition lab', '端末内で絵を認識する（実験版）')}</button>}
+          {liveApiConfigured && <button className="text-button connection-toggle" onClick={() => setSessionChoice(sessionChoice === 'api' ? 'demo' : 'api')}>{sessionChoice === 'api' ? t('Return to demo', 'デモに戻る') : t('Use live API', '認識APIに接続して遊ぶ')}</button>}
         </div>
         <p className="edition">{t('FIVE EXCHANGES. ONE MISTED WINDOW.', '５往復。ひとつの曇りガラス。')}</p>
       </div>
@@ -170,7 +188,7 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
       <div className={`window-surface phase-${state.phase}`}>
         <WindowCanvas previousStrokes={state.entries.at(-1)?.falseStart?.strokes} mode={state.mode} phase={state.phase} round={state.round} strokes={selectVisibleStrokes(state)} onStrokesChange={strokes => dispatch({ type: 'STROKES_CHANGED', strokes })} onBreathDone={() => dispatch({ type: 'BREATH_DONE' })} onPlaybackDone={() => dispatch({ type: 'PLAYBACK_DONE' })} reducedMotion={reducedMotion} />
         <div className="glass-corner-label">{['player_drawing', 'recognizing', 'recognition_error'].includes(state.phase) ? t('your side', 'こちらがわ') : t('her side', 'むこうがわ')}</div>
-        <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : 'LIVE API'}</span>
+        <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : state.sessionKind === 'local' ? 'LOCAL LAB' : 'LIVE API'}</span>
       </div>
       <div className="play-footer">
         <div className="turn-status" aria-live="polite">
