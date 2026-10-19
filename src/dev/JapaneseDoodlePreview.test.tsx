@@ -23,6 +23,17 @@ describe('Japanese blind doodle comparison gallery', () => {
     expect(container.textContent).not.toContain('ごりら');
   });
 
+  it('exposes a nine-piece anonymous bilingual review scope without altering the classic baseline', () => {
+    const { container } = render(<JapaneseDoodlePreview />);
+    fireEvent.click(screen.getByRole('button', { name: '昼夜・日英9枚' }));
+    expect(screen.getAllByRole('img')).toHaveLength(9);
+    expect(container.textContent).not.toContain('てんとうむし');
+    fireEvent.click(screen.getByRole('button', { name: '名前を表示' }));
+    expect(screen.getByText('てんとうむし')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: '定番16枚' }));
+    expect(screen.getAllByRole('img')).toHaveLength(32);
+  });
+
   it('filters classics, switches daylight, and can hide/show comparison without losing the catalogue', () => {
     const { container } = render(<JapaneseDoodlePreview />);
     fireEvent.click(screen.getByRole('button', { name: /夜/ }));
@@ -33,7 +44,7 @@ describe('Japanese blind doodle comparison gallery', () => {
     expect(screen.getAllByRole('img')).toHaveLength(32);
     fireEvent.click(screen.getByRole('button', { name: '追加分' }));
     expect(container.querySelector('.ja-catalog-grid')?.getAttribute('data-comparing')).toBe('false');
-    expect(screen.getAllByRole('img')).toHaveLength(71);
+    expect(screen.getAllByRole('img')).toHaveLength(80);
     fireEvent.click(screen.getByRole('button', { name: '定番16枚' }));
     expect(screen.getAllByRole('img')).toHaveLength(32);
   });
@@ -77,7 +88,7 @@ it('handles empty filters, catalogue changes and the last item', () => {
   fireEvent.click(screen.getByRole('button', { name: '全部' }));
   expect(screen.getAllByRole('img')).toHaveLength(1);
   fireEvent.change(screen.getByRole('combobox'), { target: { value: 'all' } });
-  expect(screen.getByText('1 / 135')).toBeTruthy();
+  expect(screen.getByText('1 / 144')).toBeTruthy();
 });
 
 it('survives malformed and blocked storage with usable in-memory marks', () => {
