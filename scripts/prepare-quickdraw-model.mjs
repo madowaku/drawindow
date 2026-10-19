@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { staticBatchOne } from './static-batch-quickdraw.mjs';
 
 const REVISION = 'b02fde8d8732aed32bc9d8176c3dc4efda0333fb';
 const BASE = 'https://huggingface.co/zarqankhn/quickdraw-345-tflite/resolve/' + REVISION;
@@ -28,12 +29,17 @@ async function download(name, expectedHash) {
 
 await mkdir(OUT, {recursive:true});
 const model = await download('quickdraw_model.tflite', MODEL_SHA256);
+const staticCopy = staticBatchOne(model);
+await writeFile(join(OUT,'quickdraw_model_static.tflite'), staticCopy.bytes);
 const labelsBytes = await download('labels.txt');
 const labels = labelsBytes.toString('utf8').trim().split(/\r?\n/);
 if (labels.length !== 345 || !['apple','bat','cat','dog','fish','t-shirt'].every(x=>labels.includes(x)))
   throw new Error('Unexpected 345-class label manifest');
 const metadata = {
-  source: BASE, revision: REVISION, modelSha256: MODEL_SHA256, labelsSha256: createHash('sha256').update(labelsBytes).digest('hex'),
+  source: BASE, revision: REVISION, modelSha256: MODEL_SHA256,
+  staticBatchModelSha256: createHash('sha256').update(staticCopy.bytes).digest('hex'),
+  patchNote: 'Only TFLite flatbuffer batch-shape signatures -1 to 1; all learned weights unchanged.',
+  labelsSha256: createHash('sha256').update(labelsBytes).digest('hex'),
   classes: labels.length, bytes: model.length, engine: '@litertjs/core@2.5.3',
   license: 'Model weights: Apache-2.0; QuickDraw data: CC BY 4.0. See documentation and licenses before redistribution.',
 };
