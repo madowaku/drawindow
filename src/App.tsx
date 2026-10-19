@@ -7,6 +7,8 @@ import { calculateScore } from './core/score';
 import { EndingScene } from './components/EndingScene';
 import type { DrawingRecognizer, GameState, Language, Mode, SessionKind } from './core/types';
 import { girlSketches } from './data/sketches';
+import { withEnglishStarter } from './data/themeVocabulary';
+import { getBilingualV08Doodles } from './data/bilingualV08Doodles';
 import { localizeGirlSketches, withJapaneseStarter } from './data/japaneseSketches';
 import { japaneseExtraSketches } from './data/japaneseExtraSketches';
 import { japaneseDoodlePack } from './data/japaneseDoodlePack';
@@ -113,16 +115,20 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
     let sketches = localizeGirlSketches(girlSketches, state.language);
     if (state.language === 'ja') {
       sketches = [...sketches, ...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles, ...japaneseEverydayDoodles];
-      // Advance only on an actual Japanese START, never on render or language toggle.
-      // Persisted index means a page reload does not go back to the same drawing.
-      let startIndex = state.sessionId;
-      try {
-        const saved = localStorage.getItem('drawindow-ja-starter-sequence');
-        if (saved !== null && Number.isSafeInteger(Number(saved)) && Number(saved) >= 0) startIndex = Number(saved);
-        localStorage.setItem('drawindow-ja-starter-sequence', String(startIndex + 1));
-      } catch { /* Session counter fallback when storage is unavailable. */ }
-      sketches = withJapaneseStarter(sketches, state.mode, startIndex);
     }
+    sketches = [...sketches, ...getBilingualV08Doodles(state.language)];
+    // A fresh play advances this language's own opening rotation, never a render.
+    const starterKey = state.language === 'ja'
+      ? 'drawindow-ja-starter-sequence' : 'drawindow-en-starter-sequence';
+    let startIndex = state.sessionId;
+    try {
+      const saved = localStorage.getItem(starterKey);
+      if (saved !== null && Number.isSafeInteger(Number(saved)) && Number(saved) >= 0) startIndex = Number(saved);
+      localStorage.setItem(starterKey, String(startIndex + 1));
+    } catch { /* Session counter fallback when storage is unavailable. */ }
+    sketches = state.language === 'ja'
+      ? withJapaneseStarter(sketches, state.mode, startIndex)
+      : withEnglishStarter(sketches, state.mode, startIndex);
     dispatch({ type: 'START', mode: state.mode, sessionKind: state.phase === 'title' ? sessionChoice : state.sessionKind, sketches });
   };
   const languageButtons = <div className="language-picker" role="group" aria-label="Language / 言語">
@@ -207,6 +213,6 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
         else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
       }
-    }}><button autoFocus className="icon-button close-dialog" aria-label={t('Close dialog', '閉じる')} onClick={() => { setInfo(false); setLeave(false); }}><X size={22} /></button>{leave ? <><p className="eyebrow">{t('TAKE YOUR TIME', 'まだ大丈夫')}</p><h2 id="dialog-title">{t('Close this window?', '窓を閉じる？')}</h2><p>{t('This unfinished chain will be lost.', '描きかけのしりとりは消えてしまうよ。')}</p><button className="primary" onClick={() => { setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>{t('RETURN TO TITLE', '最初に戻る')}</button><button className="text-button" onClick={() => setLeave(false)}>{t('Keep drawing', '続きを描く')}</button></> : <><p className="eyebrow">DRAWINDOW · v0.5</p><h2 id="dialog-title">{t('A conversation without words.', '言葉を使わない会話。')}</h2><p>{t('Look at her drawing. Think of its English name. Draw something beginning with its last letter.', 'しずくの絵に名前をつけて、最後の音から次の絵を描こう。ご→こ、ぎ→きのように濁点を外してもOK。「ん」で終わったら、新しい絵から再開するよ。')}</p><p>{t('Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.', '途中で答えを言わないでね。５往復したら名前を明かして、９本のつながりを確かめよう。')}</p><p>{t('DAY & NIGHT change only the mood. There is no timer.', '昼と夜では雰囲気が変わるよ。時間制限はありません。')}</p><p>{t('DEMO uses simulated interpretations, not image recognition. Live API sends a neutral drawing image to a configured server; the character is never included.', 'デモは画像認識ではなく、決まった解釈を返します。LIVE APIでは絵だけを認識サーバーに送り、しずくの画像は送りません。')}</p><div className="credits"><p>{t('Character', 'キャラクター')}: OpenAI ImageGen<br />{t('Doodles', '絵')}: Quick, Draw! / Google, CC BY 4.0; DRAWINDOW original. {t('Fonts', 'フォント')}: DM Sans &amp; Cormorant Garamond, OFL.</p><MusicCredits /><a href="https://github.com/googlecreativelab/quickdraw-dataset" target="_blank" rel="noreferrer">Quick, Draw! dataset & attribution</a></div></>}</section></div>}
+    }}><button autoFocus className="icon-button close-dialog" aria-label={t('Close dialog', '閉じる')} onClick={() => { setInfo(false); setLeave(false); }}><X size={22} /></button>{leave ? <><p className="eyebrow">{t('TAKE YOUR TIME', 'まだ大丈夫')}</p><h2 id="dialog-title">{t('Close this window?', '窓を閉じる？')}</h2><p>{t('This unfinished chain will be lost.', '描きかけのしりとりは消えてしまうよ。')}</p><button className="primary" onClick={() => { setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>{t('RETURN TO TITLE', '最初に戻る')}</button><button className="text-button" onClick={() => setLeave(false)}>{t('Keep drawing', '続きを描く')}</button></> : <><p className="eyebrow">DRAWINDOW · v0.5</p><h2 id="dialog-title">{t('A conversation without words.', '言葉を使わない会話。')}</h2><p>{t('Look at her drawing. Think of its English name. Draw something beginning with its last letter.', 'しずくの絵に名前をつけて、最後の音から次の絵を描こう。ご→こ、ぎ→きのように濁点を外してもOK。「ん」で終わったら、新しい絵から再開するよ。')}</p><p>{t('Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.', '途中で答えを言わないでね。５往復したら名前を明かして、９本のつながりを確かめよう。')}</p><p>{t('DAY & NIGHT also influence what she likes to draw. There is no timer.', '昼と夜では、しずくが描きたがるものも少し違うよ。時間制限はありません。')}</p><p>{t('DEMO uses simulated interpretations, not image recognition. Live API sends a neutral drawing image to a configured server; the character is never included.', 'デモは画像認識ではなく、決まった解釈を返します。LIVE APIでは絵だけを認識サーバーに送り、しずくの画像は送りません。')}</p><div className="credits"><p>{t('Character', 'キャラクター')}: OpenAI ImageGen<br />{t('Doodles', '絵')}: Quick, Draw! / Google, CC BY 4.0; DRAWINDOW original. {t('Fonts', 'フォント')}: DM Sans &amp; Cormorant Garamond, OFL.</p><MusicCredits /><a href="https://github.com/googlecreativelab/quickdraw-dataset" target="_blank" rel="noreferrer">Quick, Draw! dataset & attribution</a></div></>}</section></div>}
   </main>;
 }
