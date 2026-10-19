@@ -110,7 +110,7 @@ export function createRecognitionRunner(recognizer: DrawingRecognizer, options: 
     let timer: ReturnType<typeof setTimeout>;
     const request = Promise.race([
       Promise.resolve().then(() => recognizer.recognize(input, { signal: controller.signal })).catch(() => failure('network')),
-      new Promise<RecognitionResult>(resolve => { timer = setTimeout(() => { controller.abort(); resolve(failure('timeout')); }, Math.min(25000, Math.max(1, options.timeoutMs ?? 15000))); }),
+      new Promise<RecognitionResult>(resolve => { timer = setTimeout(() => { controller.abort(); resolve(failure('timeout')); }, Math.min(60000, Math.max(1, options.timeoutMs ?? 15000))); }),
     ]).finally(() => clearTimeout(timer));
     requests.set(input.requestId, request);
     while (requests.size > maxEntries) requests.delete(requests.keys().next().value!);
