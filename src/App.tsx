@@ -21,6 +21,7 @@ import { musicForScene } from './lib/music';
 import { useGameAudio } from './lib/useGameAudio';
 import { createApiRecognizer, createDemoRecognizer, createRecognitionRunner } from './services/recognizer';
 import { createLocalRecognizer } from './services/localRecognizer';
+import { createQuickDrawRecognizer, preloadQuickDrawModel } from './services/quickDrawRecognizer';
 
 /** Shared, local catalogue. The offline baseline uses only the same approved
  * drawable nouns as Shizuku (never reads guesses, intentions or network). */
@@ -65,6 +66,7 @@ export default function App({ apiRecognizer, localRecognizer, onStateChange }: A
   const liveApiConfigured = Boolean(import.meta.env.VITE_RECOGNITION_URL?.trim()) || import.meta.env.VITE_ENABLE_LIVE_API === 'true';
   // Explicit lab opt-in: do not claim offline model quality in the paid release.
   const localLabEnabled = import.meta.env.VITE_ENABLE_LOCAL_RECOGNITION === 'true';
+  const localMlEnabled = import.meta.env.VITE_ENABLE_LOCAL_ML === 'true';
   const [state, dispatch] = useReducer(gameReducer, undefined, () => createInitialState(savedMode(), savedLanguage()));
   const { sound, toggleSound, playSound } = useGameAudio(musicForScene(state.phase, state.mode));
   const [info, setInfo] = useState(false);
@@ -75,6 +77,7 @@ export default function App({ apiRecognizer, localRecognizer, onStateChange }: A
     api: createRecognitionRunner(apiRecognizer ?? createApiRecognizer({ endpoint: import.meta.env.VITE_RECOGNITION_URL || '/api/recognize', imageRenderer: renderDrawingDataUrl })),
     demo: createRecognitionRunner(createDemoRecognizer()),
     local: createRecognitionRunner(localRecognizer ?? createLocalRecognizer(sketchesForLanguage, { exploreNearest: true })),
+    ml: createRecognitionRunner(createQuickDrawRecognizer(), { timeoutMs: 45000 }),
   }));
   const reducedMotion = useReducedMotion();
   const phaseRef = useRef(state.phase);
@@ -100,7 +103,7 @@ export default function App({ apiRecognizer, localRecognizer, onStateChange }: A
     const request = state.recognitionRequest;
     if (state.phase !== 'recognizing' || !request) return;
     let current = true;
-    const runner = request.sessionKind === 'demo' ? runners.demo : request.sessionKind === 'local' ? runners.local : runners.api;
+    const runner = request.sessionKind === 'demo' ? runners.demo : request.sessionKind === 'local' ? runners.local : request.sessionKind === 'ml' ? runners.ml : runners.api;
     void runner.recognize(request).then(result => {
       if (current) dispatch({ type: 'RECOGNITION_RESOLVED', requestId: request.requestId, result });
     });
@@ -122,6 +125,10 @@ export default function App({ apiRecognizer, localRecognizer, onStateChange }: A
     }
   }, []);
 
+  const chooseLocalML = () => {
+    setSessionChoice(sessionChoice === 'ml' ? 'demo' : 'ml');
+    if (sessionChoice !== 'ml') void preloadQuickDrawModel().catch(() => { /* Show controlled error only at recognition. */ });
+  };
   const start = () => {
     setIntentDrafts({});
     let sketches = sketchesForLanguage(state.language);
@@ -170,11 +177,14 @@ export default function App({ apiRecognizer, localRecognizer, onStateChange }: A
         <div className="title-rules"><p>{t('Look. Guess. Draw the next word.', '見て、想像して、次の絵を描く。')}<br />{t('Never ask what it was.', '正解は、最後まで聞かない。')}</p><p className="fine-rule">{t('Start with the last letter of what you THINK you saw.', '見えたと思うものの、最後の文字から。')}</p>{state.language === 'ja' && <p className="fine-rule">濁点・半濁点はつけても外してもOK。（ご→こ、ぎ→き）</p>}</div>
         <div className="title-start">{languageButtons}{modeButtons}
           <button className="primary start-button" onClick={start}>{sessionChoice === 'demo' ? t('PLAY DEMO', 'デモで遊ぶ') : t('START GAME', 'はじめる')}<ArrowRight size={20} /></button>
-          <p className="session-note">{sessionChoice === 'demo'
+          <p className="session-note">{sessionChoice === 'ml'
+            ? t('LOCAL ML · On-device trained 345-class recognition. Experimental, unofficial score. Unsupported words may fail.', '学習済みローカルAI · 345種類の絵を端末内で推測します。未対応語や誤認識があり、正式スコアにはなりません。')
+            : sessionChoice === 'demo'
             ? t('DEMO · Simulated interpretations. No comparable score.', 'デモ · 絵の認識はシミュレーションです。正式なスコアにはなりません。')
             : sessionChoice === 'local'
               ? t('LOCAL LAB · Nearest-shape guesses on this device. Results may be wrong; not an official score.', 'ローカル実験版 · 絵は端末内で照合します。いちばん近い形を推測するため、間違うことがあります。公式スコアにはなりません。')
               : t('LIVE API · Drawings are sent to the configured recognizer.', 'LIVE API · あなたの絵が認識用サーバーに送られます。')}</p>
+          {localMlEnabled && <button className="text-button connection-toggle" onClick={chooseLocalML}>{sessionChoice === 'ml' ? t('Return to demo', 'デモに戻る') : t('Try trained offline AI (research)', '学習済みローカルAIを試す（研究版）')}</button>}
           {localLabEnabled && <button className="text-button connection-toggle" onClick={() => setSessionChoice(sessionChoice === 'local' ? 'demo' : 'local')}>{sessionChoice === 'local' ? t('Return to demo', 'デモに戻る') : t('Try offline recognition lab', '端末内で絵を認識する（実験版）')}</button>}
           {liveApiConfigured && <button className="text-button connection-toggle" onClick={() => setSessionChoice(sessionChoice === 'api' ? 'demo' : 'api')}>{sessionChoice === 'api' ? t('Return to demo', 'デモに戻る') : t('Use live API', '認識APIに接続して遊ぶ')}</button>}
         </div>
@@ -188,7 +198,7 @@ export default function App({ apiRecognizer, localRecognizer, onStateChange }: A
       <div className={`window-surface phase-${state.phase}`}>
         <WindowCanvas previousStrokes={state.entries.at(-1)?.falseStart?.strokes} mode={state.mode} phase={state.phase} round={state.round} strokes={selectVisibleStrokes(state)} onStrokesChange={strokes => dispatch({ type: 'STROKES_CHANGED', strokes })} onBreathDone={() => dispatch({ type: 'BREATH_DONE' })} onPlaybackDone={() => dispatch({ type: 'PLAYBACK_DONE' })} reducedMotion={reducedMotion} />
         <div className="glass-corner-label">{['player_drawing', 'recognizing', 'recognition_error'].includes(state.phase) ? t('your side', 'こちらがわ') : t('her side', 'むこうがわ')}</div>
-        <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : state.sessionKind === 'local' ? 'LOCAL LAB' : 'LIVE API'}</span>
+        <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : state.sessionKind === 'local' ? 'LOCAL LAB' : state.sessionKind === 'ml' ? 'LOCAL ML' : 'LIVE API'}</span>
       </div>
       <div className="play-footer">
         <div className="turn-status" aria-live="polite">

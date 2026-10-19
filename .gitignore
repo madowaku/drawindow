@@ -13,3 +13,6 @@ artifacts/local/
 # Local browser QA recordings and screenshots
 .playwright-cli/
 output/playwright/
+
+# Generated pinned pretrained model and bundled LiteRT Wasm; built for local ML lab only.
+public/local-ml/

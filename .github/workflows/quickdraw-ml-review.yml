@@ -1,0 +1,58 @@
+name: DRAWINDOW trained local ML research
+
+on:
+  pull_request:
+    branches: [feat/local-recognition-v08-lab]
+    paths:
+      - 'src/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/quickdraw-ml-review.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trained-local:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned deps
+        run: npm ci
+      - name: Regression tests
+        run: npm test
+      - name: Prepare and verify pinned model and WASM
+        run: npm run prepare:local-ml
+      - name: Install headless browser for REAL model runtime smoke
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.0
+          npx playwright install --with-deps chromium
+      - name: Run two actual LiteRT/WASM inferences in Chromium (no API)
+        run: node scripts/qa-quickdraw-browser.mjs
+      - name: Build independent ML experiment ZIP
+        run: npm run package:local-ml
+      - name: Confirm bundled model, labels and wasm
+        run: |
+          node --input-type=module -e "
+            import {readdir,stat} from 'node:fs/promises';
+            const names=await readdir('dist/local-ml/wasm');
+            if(!names.some(x=>x.endsWith('.wasm')))throw Error('LiteRT WASM not bundled');
+            if((await stat('dist/local-ml/quickdraw_model_static.tflite')).size<8000000)throw Error('Model not bundled');
+            if((await stat('dist/local-ml/labels.txt')).size<2000)throw Error('Labels not bundled');
+            console.log('Local model, labels and WASM are bundled.');
+          "
+      - name: Upload experimental ML ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: DRAWINDOW-v0.8-quickdraw345-ML-research
+          path: |
+            artifacts/release/DRAWINDOW-v0.8-quickdraw345-ml-lab.zip
+            artifacts/release/local-ml-receipt.json
+          retention-days: 7

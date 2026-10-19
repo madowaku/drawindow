@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { readFile, readdir, mkdir, writeFile } from 'node:fs/promises';
+import { readFile, readdir, mkdir, writeFile, rm } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 import { createHash } from 'node:crypto';
 import { zipSync, unzipSync } from 'fflate';
@@ -13,6 +13,7 @@ const build = spawnSync(process.execPath, ['node_modules/vite/bin/vite.js', 'bui
 if (build.error) throw build.error;
 if (build.status !== 0) process.exit(build.status ?? 1);
 
+await rm('dist/local-ml', {recursive: true, force: true});
 const root = 'dist';
 const files = {};
 async function walk(dir) {
