@@ -42,7 +42,7 @@ describe('Japanese continuation weighting', () => {
       return [...pool].sort((a,b) => recent.lastIndexOf(normalizeWord(a.word)) - recent.lastIndexOf(normalizeWord(b.word)) ||
         used.lastIndexOf(a.id) - used.lastIndexOf(b.id))[0] ?? null;
     }
-    for (const letter of 'abcdefghijklmnopqrstuvwxyz' {
+    for (const letter of 'abcdefghijklmnopqrstuvwxyz') {
       for (const used of [[], girlSketches.slice(0, 10).map(s => s.id), girlSketches.map(s => s.id)]) {
         expect(selectGirlSketch(girlSketches, letter, used, 'en')).toBe(previousEnglish(letter, used));
       }
