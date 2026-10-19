@@ -30,6 +30,12 @@ jobs:
         run: npm test
       - name: Prepare and verify pinned model and WASM
         run: npm run prepare:local-ml
+      - name: Install headless browser for REAL model runtime smoke
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.0
+          npx playwright install --with-deps chromium
+      - name: Run two actual LiteRT/WASM inferences in Chromium (no API)
+        run: node scripts/qa-quickdraw-browser.mjs
       - name: Build independent ML experiment ZIP
         run: npm run package:local-ml
       - name: Confirm bundled model, labels and wasm
