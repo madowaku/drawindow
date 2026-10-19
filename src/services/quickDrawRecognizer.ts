@@ -33,7 +33,8 @@ async function initialize(): Promise<Ready> {
   if (labels.length !== 345 || !labels.includes('cat') || !labels.includes('bat')) throw new Error('345 labels mismatch');
   const input = model.getInputDetails()[0];
   const output = model.getOutputDetails()[0];
-  if (Array.from(input?.shape??[]).join(',')!=='1,28,28,1' || Array.from(output?.shape??[]).join(',')!=='1,345') {
+  if (!['1,28,28,1','-1,28,28,1'].includes(Array.from(input?.shape??[]).join(',')) ||
+      !['1,345','-1,345'].includes(Array.from(output?.shape??[]).join(','))) {
     throw new Error('Model tensor shape mismatch: ' + JSON.stringify({input,output}));
   }
   return {lite,model,labels};
