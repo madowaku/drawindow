@@ -36,7 +36,7 @@ describe('Japanese blind doodle comparison gallery', () => {
 
   it('filters classics, switches daylight, and can hide/show comparison without losing the catalogue', () => {
     const { container } = render(<JapaneseDoodlePreview />);
-    fireEvent.click(screen.getByRole('button', { name: /夜/ }));
+    fireEvent.click(screen.getByRole('button', { name: '☾ 夜' }));
     expect(container.querySelector('main')?.getAttribute('data-mode')).toBe('night');
     fireEvent.click(screen.getByRole('button', { name: '比較を閉じる' }));
     expect(screen.getAllByRole('img')).toHaveLength(16);
