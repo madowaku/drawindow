@@ -92,10 +92,10 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
     }
     case 'RECOGNITION_RESOLVED': {
       if (state.phase !== 'recognizing' || state.recognitionRequest?.requestId !== event.requestId) return state;
-      if (event.result.source !== (state.sessionKind === 'api' ? 'api' : state.sessionKind === 'local' ? 'local' : 'mock')) return errorState(state, 'invalid_response');
+      if (event.result.source !== (state.sessionKind === 'api' ? 'api' : state.sessionKind === 'local' ? 'local' : state.sessionKind === 'ml' ? 'ml' : 'mock')) return errorState(state, 'invalid_response');
       const guess = normalizeWord(event.result.guess, state.language);
       if (event.result.error || !guess) return errorState(state, event.result.errorCode ?? 'invalid_response', { ...event.result, guess: null });
-      const result: RecognitionResult = { guess, source: event.result.source };
+      const result: RecognitionResult = { guess, source: event.result.source, ...(event.result.alternatives ? { alternatives: event.result.alternatives } : {}) };
       const usedIds = state.entries.flatMap(e => e.templateId ? [e.templateId] : []);
       const tail = lastLetter(guess, state.language)!;
       const chainRestart = state.language === 'ja' && tail === 'ん';
