@@ -7,6 +7,8 @@ import { calculateScore } from './core/score';
 import { EndingScene } from './components/EndingScene';
 import type { DrawingRecognizer, GameState, Language, Mode, SessionKind } from './core/types';
 import { girlSketches } from './data/sketches';
+import { withEnglishStarter } from './data/themeVocabulary';
+import { getBilingualV08Doodles } from './data/bilingualV08Doodles';
 import { localizeGirlSketches, withJapaneseStarter } from './data/japaneseSketches';
 import { japaneseExtraSketches } from './data/japaneseExtraSketches';
 import { japaneseDoodlePack } from './data/japaneseDoodlePack';
@@ -113,16 +115,20 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
     let sketches = localizeGirlSketches(girlSketches, state.language);
     if (state.language === 'ja') {
       sketches = [...sketches, ...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles, ...japaneseEverydayDoodles];
-      // Advance only on an actual Japanese START, never on render or language toggle.
-      // Persisted index means a page reload does not go back to the same drawing.
-      let startIndex = state.sessionId;
-      try {
-        const saved = localStorage.getItem('drawindow-ja-starter-sequence');
-        if (saved !== null && Number.isSafeInteger(Number(saved)) && Number(saved) >= 0) startIndex = Number(saved);
-        localStorage.setItem('drawindow-ja-starter-sequence', String(startIndex + 1));
-      } catch { /* Session counter fallback when storage is unavailable. */ }
-      sketches = withJapaneseStarter(sketches, state.mode, startIndex);
     }
+    sketches = [...sketches, ...getBilingualV08Doodles(state.language)];
+    // A fresh play advances this language's own opening rotation, never a render.
+    const starterKey = state.language === 'ja'
+      ? 'drawindow-ja-starter-sequence' : 'drawindow-en-starter-sequence';
+    let startIndex = state.sessionId;
+    try {
+      const saved = localStorage.getItem(starterKey);
+      if (saved !== null && Number.isSafeInteger(Number(saved)) && Number(saved) >= 0) startIndex = Number(saved);
+      localStorage.setItem(starterKey, String(startIndex + 1));
+    } catch { /* Session counter fallback when storage is unavailable. */ }
+    sketches = state.language === 'ja'
+      ? withJapaneseStarter(sketches, state.mode, startIndex)
+      : withEnglishStarter(sketches, state.mode, startIndex);
     dispatch({ type: 'START', mode: state.mode, sessionKind: state.phase === 'title' ? sessionChoice : state.sessionKind, sketches });
   };
   const languageButtons = <div className="language-picker" role="group" aria-label="Language / 言語">

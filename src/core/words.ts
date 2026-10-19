@@ -1,4 +1,5 @@
 import type { GirlSketch, Language, Mode } from './types';
+import { prefersThemeWord } from '../data/themeVocabulary';
 
 /** English v0.4 labels stay valid; Japanese gameplay stores phonetic kana labels. */
 export function normalizeWord(value: unknown, language: Language = 'en'): string | null {
@@ -63,10 +64,6 @@ export function lastLetter(value: unknown, language: Language = 'en'): string | 
 /** Catalogue connectivity is a maker heuristic, not measured human vocabulary.
  * Count distinct readable, nonterminal replies; alternate drawings of one noun
  * must not inflate its score. A small mood tie-break never beats one more exit. */
-const moodWords: Readonly<Record<Mode, readonly string[]>> = {
-  day: ['すいか', 'はな', 'ひまわり', 'あさがお', 'とんぼ', 'すずめ', 'うちわ'],
-  night: ['つき', 'ほし', 'こうもり', 'ふくろう', 'ろうそく', 'とけい'],
-};
 function japaneseContinuationScore(sketch: GirlSketch, playable: readonly GirlSketch[], mode?: Mode): number {
   const ending = lastLetter(sketch.word, 'ja');
   if (!ending || ending === 'ん') return -2;
@@ -76,7 +73,7 @@ function japaneseContinuationScore(sketch: GirlSketch, playable: readonly GirlSk
   const readableWords = new Set(replies.filter(candidate =>
     (!candidate.readability || candidate.readability === 'safe') &&
     lastLetter(candidate.word, 'ja') !== 'ん').map(candidate => normalizeWord(candidate.word, 'ja')));
-  return Math.min(3, readableWords.size) + (mode && moodWords[mode].includes(sketch.word) ? .25 : 0);
+  return Math.min(3, readableWords.size) + (mode && prefersThemeWord(sketch.word, 'ja', mode) ? .25 : 0);
 }
 
 export function selectGirlSketch(
@@ -105,11 +102,15 @@ export function selectGirlSketch(
     return playable.some(candidate => chainLettersMatch(ending, firstLetter(candidate.word, language), language)) ? 0 : 1;
   };
   const scores = new Map(pool.map(sketch => [sketch.id,
-    language === 'ja' ? japaneseContinuationScore(sketch, playable, mode) : 0]));
+    language === 'ja' ? japaneseContinuationScore(sketch, playable, mode) :
+    // Theme only helps English words with a drawable continuation.
+    mode && prefersThemeWord(sketch.word, 'en', mode) &&
+    playable.some(candidate => candidate.word !== sketch.word &&
+      chainLettersMatch(lastLetter(sketch.word, 'en'), firstLetter(candidate.word, 'en'), 'en')) ? .25 : 0]));
   const seen = (sketch: GirlSketch) => recentWords.includes(normalizeWord(sketch.word, language));
   return [...pool].sort((a, b) =>
     exitPenalty(a) - exitPenalty(b) ||
-    (language === 'ja' ? Number(seen(a)) - Number(seen(b)) : 0) ||
+    (Number(seen(a)) - Number(seen(b))) ||
     (!seen(a) && !seen(b) ? scores.get(b.id)! - scores.get(a.id)! : 0) ||
     recentWords.lastIndexOf(normalizeWord(a.word, language)) - recentWords.lastIndexOf(normalizeWord(b.word, language)) ||
     usedTemplateIds.lastIndexOf(a.id) - usedTemplateIds.lastIndexOf(b.id))[0] ?? null;
