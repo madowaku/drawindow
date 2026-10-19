@@ -30,6 +30,14 @@ describe('offline local recognition lab', () => {
     const local = createLocalRecognizer(() => [sketch('one','cat',horizontal), sketch('two','dog',horizontal)]);
     expect(await local.recognize(input(horizontal))).toMatchObject({guess:null,source:'local',errorCode:'invalid_response'});
   });
+  it('can continue the LAB with an explicitly unvalidated nearest-shape guess', async () => {
+    const strict = createLocalRecognizer(() => [sketch('a','apple',horizontal), sketch('b','banana',vertical)], { maxDistance: 0.01 });
+    const explore = createLocalRecognizer(() => [sketch('a','apple',horizontal), sketch('b','banana',vertical)], { maxDistance: 0.01, minMargin: 999, exploreNearest: true });
+    expect(await strict.recognize(input(zigzag))).toMatchObject({ guess: null, errorCode: 'invalid_response' });
+    const result = await explore.recognize(input(zigzag));
+    expect(['apple', 'banana']).toContain(result.guess);
+    expect(result.source).toBe('local');
+  });
   it('rejects empty, malformed, ambiguous or aborted input without sending a request', async () => {
     const factory = vi.fn(() => [sketch('a','apple',horizontal), sketch('b','banana',vertical)]);
     const local = createLocalRecognizer(factory, {maxDistance:.01});
