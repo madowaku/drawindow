@@ -45,8 +45,7 @@ function signature(strokes: readonly Stroke[]): Signature | null {
     }
   }
   if (points.length === 0) return null;
-  const minX = Math.min(...points.slice(0, 512).map(p => p.x)); // temporary, full bounds below
-  let left = minX, right = minX, top = points[0].y, bottom = points[0].y;
+  let left = points[0].x, right = points[0].x, top = points[0].y, bottom = points[0].y;
   for (const point of points) {
     left = Math.min(left, point.x); right = Math.max(right, point.x);
     top = Math.min(top, point.y); bottom = Math.max(bottom, point.y);
