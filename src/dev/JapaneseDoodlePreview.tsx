@@ -33,7 +33,7 @@ export function JapaneseDoodlePreview() {
   const [mode, setMode] = useState<Mode>('day');
   const [showAnswers, setShowAnswers] = useState(false);
   const [compare, setCompare] = useState(true);
-  const [scope, setScope] = useState<'classic' | 'everyday' | 'bilingual' | 'additions' | 'all'>('bilingual');
+  const [scope, setScope] = useState<'classic' | 'everyday' | 'bilingual' | 'additions' | 'all'>('classic');
   const [syllable, setSyllable] = useState('all');
   const [single, setSingle] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(true);
