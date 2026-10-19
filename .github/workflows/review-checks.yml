@@ -38,3 +38,11 @@ jobs:
         run: npm run package:itch
       - name: Verify LOCAL LAB packaging (standalone test ZIP)
         run: npm run package:local-lab
+      - name: Save experimental ZIP for human testing
+        uses: actions/upload-artifact@v4
+        with:
+          name: DRAWINDOW-v0.8-local-lab
+          path: |
+            artifacts/release/DRAWINDOW-v0.8-local-lab.zip
+            artifacts/release/local-lab-receipt.json
+          retention-days: 7
