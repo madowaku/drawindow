@@ -10,6 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "package:itch": "node scripts/package-demo.mjs",
+    "package:local-lab": "node scripts/package-local-lab.mjs",
     "dev:api": "wrangler dev --port 8787",
     "setup:gemini": "powershell -NoProfile -File scripts/setup-gemini.ps1",
     "check:gemini": "node scripts/check-gemini-setup.mjs",
