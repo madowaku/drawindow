@@ -62,7 +62,11 @@ export function createQuickDrawRecognizer(options: QuickDrawOptions = {}): Drawi
         if(!sharedReady) sharedReady=initialize().catch(error=>{sharedReady=undefined;throw error;});
         const {lite,model,labels}=await sharedReady;
         if(signal?.aborted)return fail('unavailable');
-        const tensor=new lite.Tensor(pixels,[1,28,28,1], 'float32');
+        // TypedArray's ArrayBufferLike generic is broader than LiteRT's host
+        // ArrayBuffer constructor signature. Own a standard CPU backing buffer.
+        const ownedPixels = new Float32Array(new ArrayBuffer(pixels.byteLength));
+        ownedPixels.set(pixels);
+        const tensor=new lite.Tensor(ownedPixels,[1,28,28,1]);
         let scores: number[];
         try {
           const outputs=await model.run([tensor]);
