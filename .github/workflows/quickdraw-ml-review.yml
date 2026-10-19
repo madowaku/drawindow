@@ -44,7 +44,7 @@ jobs:
             import {readdir,stat} from 'node:fs/promises';
             const names=await readdir('dist/local-ml/wasm');
             if(!names.some(x=>x.endsWith('.wasm')))throw Error('LiteRT WASM not bundled');
-            if((await stat('dist/local-ml/quickdraw_model.tflite')).size<8000000)throw Error('Model not bundled');
+            if((await stat('dist/local-ml/quickdraw_model_static.tflite')).size<8000000)throw Error('Model not bundled');
             if((await stat('dist/local-ml/labels.txt')).size<2000)throw Error('Labels not bundled');
             console.log('Local model, labels and WASM are bundled.');
           "
