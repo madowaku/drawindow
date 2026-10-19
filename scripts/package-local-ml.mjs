@@ -6,6 +6,9 @@ import { zipSync, unzipSync } from 'fflate';
 
 // TEST-ONLY archive: local inference, normal static hosting. Not an installable
 // airplane-mode PWA; cannot be advertised as a fully offline commercial build.
+const typecheck = spawnSync(process.execPath, ['node_modules/typescript/bin/tsc', '--noEmit'], {stdio:'inherit'});
+if (typecheck.error) throw typecheck.error;
+if (typecheck.status !== 0) process.exit(typecheck.status ?? 1);
 const build = spawnSync(process.execPath, ['node_modules/vite/bin/vite.js', 'build'], {
   stdio: 'inherit',
   env: { ...process.env, VITE_ENABLE_LOCAL_RECOGNITION: 'false', VITE_ENABLE_LOCAL_ML: 'true', VITE_ENABLE_LIVE_API: 'false', VITE_RECOGNITION_URL: '' },
