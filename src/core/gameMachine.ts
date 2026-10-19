@@ -25,7 +25,7 @@ function validStrokes(strokes: readonly Stroke[]): boolean {
 
 function girlEntry(state: GameState, sketch: GirlSketch, round: number, chainRestart = false): DrawingEntry {
   return { chainRestart, id: `${state.sessionId}:girl:${round}`, actor: 'girl', round, strokes: copyStrokes(sketch.strokes), intendedWord: normalizeWord(sketch.word, state.language), recognition: null, templateId: sketch.id,
-    comparable: state.sessionKind !== 'demo', ...(state.sessionKind === 'demo' ? { nonComparableReason: 'demo' as const } : {}) };
+    comparable: state.sessionKind === 'api', ...(state.sessionKind === 'demo' ? { nonComparableReason: 'demo' as const } : {}) };
 }
 
 function withRequest(state: GameState, entry: DrawingEntry, attempt = 1): GameState {
@@ -86,7 +86,7 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
     case 'DONE': {
       if (!selectCanFinishDrawing(state)) return state;
       const entry: DrawingEntry = { id: `${state.sessionId}:player:${state.round}`, actor: 'player', round: state.round, strokes: copyStrokes(state.activeStrokes), intendedWord: null, recognition: null,
-        comparable: state.sessionKind !== 'demo', ...(state.sessionKind === 'demo' ? { nonComparableReason: 'demo' } : {}) };
+        comparable: state.sessionKind === 'api', ...(state.sessionKind === 'demo' ? { nonComparableReason: 'demo' } : {}) };
       const next = { ...state, entries: [...state.entries, entry] };
       return state.round === 5 ? { ...next, phase: 'review_intents', recognitionRequest: null, error: null } : withRequest(next, entry);
     }
