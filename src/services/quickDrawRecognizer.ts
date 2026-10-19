@@ -25,7 +25,7 @@ async function initialize(): Promise<Ready> {
   const lite = await import('@litertjs/core');
   await lite.loadLiteRt(bundled('wasm/')); // CPU/WASM works without GPU or JSPI.
   const [model, labelResponse] = await Promise.all([
-    lite.loadAndCompile(bundled('quickdraw_model.tflite'), {accelerator:'wasm'}),
+    lite.loadAndCompile(bundled('quickdraw_model_static.tflite'), {accelerator:'wasm'}),
     fetch(bundled('labels.txt'), {cache:'force-cache'}),
   ]);
   if (!labelResponse.ok) throw new Error('Local label asset is unavailable');
