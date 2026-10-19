@@ -1,0 +1,32 @@
+name: Bootstrap LiteRT lockfile on ML lab only
+
+on:
+  push:
+    branches: [feat/quickdraw345-local-ml-v08]
+    paths: [package.json, package-lock.json, .github/workflows/quickdraw-lock.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-lock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Pin lockfile for model runtime
+        run: npm install @litertjs/core@2.5.3 --save-exact --package-lock-only --ignore-scripts
+      - name: Commit lockfile if changed
+        run: |
+          if ! git diff --quiet -- package-lock.json; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add package-lock.json
+            git commit -m 'build(ml): lock LiteRT.js 2.5.3 dependency'
+            git push origin HEAD:feat/quickdraw345-local-ml-v08
+          fi
