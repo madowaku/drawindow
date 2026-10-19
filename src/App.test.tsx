@@ -186,7 +186,7 @@ describe('experimental on-device recognition path', () => {
     let latest: GameState | undefined;
     render(<App apiRecognizer={{recognize:api}} localRecognizer={{recognize}} onStateChange={state => { latest = state; }}/>);
     fireEvent.click(screen.getByRole('button',{name:/offline recognition lab/}));
-    expect(screen.getByText(/Drawings stay on this device/)).toBeTruthy();
+    expect(screen.getByText(/Nearest-shape guesses on this device/)).toBeTruthy();
     fireEvent.click(screen.getByRole('button',{name:/START GAME/}));
     for (let round=1; round<=5; round++) {
       await waitFor(()=>expect(document.querySelector('main')?.getAttribute('data-phase')).toBe('girl_breath'));
