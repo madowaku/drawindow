@@ -34,3 +34,7 @@ jobs:
         run: npm test
       - name: Type-check and build
         run: npm run build
+      - name: Verify public DEMO packaging (lab disabled)
+        run: npm run package:itch
+      - name: Verify LOCAL LAB packaging (standalone test ZIP)
+        run: npm run package:local-lab
