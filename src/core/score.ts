@@ -12,7 +12,7 @@ export function calculateScore(entries: readonly DrawingEntry[], sessionKind: Se
     return {
       index, fromEntryId: from?.id ?? null, toEntryId: to?.id ?? null, fromLetter, toLetter,
       status: !fromLetter || !toLetter ? 'unknown' : !to?.chainRestart && !(language === 'ja' && fromLetter === 'ん') && chainLettersMatch(fromLetter, toLetter, language) ? 'connected' : 'broken',
-      comparable: sessionKind !== 'demo' && entryComparable(from) && entryComparable(to),
+      comparable: sessionKind === 'api' && entryComparable(from) && entryComparable(to),
     };
   });
   let bestChain = 0, run = 0, connectedCount = 0, knownPairCount = 0;
@@ -21,7 +21,7 @@ export function calculateScore(entries: readonly DrawingEntry[], sessionKind: Se
     if (link.status === 'connected') { connectedCount++; run++; bestChain = Math.max(bestChain, run); }
     else run = 0;
   }
-  const comparable = validSession && sessionKind !== 'demo' && entries.every(entryComparable);
+  const comparable = validSession && sessionKind === 'api' && entries.every(entryComparable);
   return {
     links, connectedCount, knownPairCount, possiblePairCount: 9,
     linkScore: knownPairCount ? connectedCount / knownPairCount : null, bestChain, comparable,
