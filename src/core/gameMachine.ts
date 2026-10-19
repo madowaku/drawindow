@@ -25,7 +25,7 @@ function validStrokes(strokes: readonly Stroke[]): boolean {
 
 function girlEntry(state: GameState, sketch: GirlSketch, round: number, chainRestart = false): DrawingEntry {
   return { chainRestart, id: `${state.sessionId}:girl:${round}`, actor: 'girl', round, strokes: copyStrokes(sketch.strokes), intendedWord: normalizeWord(sketch.word, state.language), recognition: null, templateId: sketch.id,
-    comparable: state.sessionKind === 'api', ...(state.sessionKind === 'demo' ? { nonComparableReason: 'demo' as const } : {}) };
+    comparable: state.sessionKind !== 'demo', ...(state.sessionKind === 'demo' ? { nonComparableReason: 'demo' as const } : {}) };
 }
 
 function withRequest(state: GameState, entry: DrawingEntry, attempt = 1): GameState {
@@ -86,13 +86,13 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
     case 'DONE': {
       if (!selectCanFinishDrawing(state)) return state;
       const entry: DrawingEntry = { id: `${state.sessionId}:player:${state.round}`, actor: 'player', round: state.round, strokes: copyStrokes(state.activeStrokes), intendedWord: null, recognition: null,
-        comparable: state.sessionKind === 'api', ...(state.sessionKind === 'demo' ? { nonComparableReason: 'demo' } : {}) };
+        comparable: state.sessionKind !== 'demo', ...(state.sessionKind === 'demo' ? { nonComparableReason: 'demo' } : {}) };
       const next = { ...state, entries: [...state.entries, entry] };
       return state.round === 5 ? { ...next, phase: 'review_intents', recognitionRequest: null, error: null } : withRequest(next, entry);
     }
     case 'RECOGNITION_RESOLVED': {
       if (state.phase !== 'recognizing' || state.recognitionRequest?.requestId !== event.requestId) return state;
-      if (event.result.source !== (state.sessionKind === 'api' ? 'api' : 'mock')) return errorState(state, 'invalid_response');
+      if (event.result.source !== (state.sessionKind === 'api' ? 'api' : state.sessionKind === 'local' ? 'local' : 'mock')) return errorState(state, 'invalid_response');
       const guess = normalizeWord(event.result.guess, state.language);
       if (event.result.error || !guess) return errorState(state, event.result.errorCode ?? 'invalid_response', { ...event.result, guess: null });
       const result: RecognitionResult = { guess, source: event.result.source };
