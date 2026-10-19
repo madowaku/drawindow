@@ -86,7 +86,9 @@ export function createQuickDrawRecognizer(options: QuickDrawOptions = {}): Drawi
           guess,source:'ml',
           alternatives:ordered.slice(1,4).map(({label})=>language==='ja'?quickDrawJapanese[label]??label:label),
         };
-      } catch {
+      } catch(error) {
+        // Developer-only diagnostic; never logs strokes, tensors or images.
+        if (import.meta.env.DEV) console.warn('QuickDraw local inference failed:', String(error));
         return fail('unavailable');
       }
     },
