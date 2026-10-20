@@ -52,6 +52,7 @@ export interface AppProps {
 }
 
 export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
+  const appScrollRef = useRef<HTMLElement>(null);
   const liveApiConfigured = Boolean(import.meta.env.VITE_RECOGNITION_URL?.trim()) || import.meta.env.VITE_ENABLE_LIVE_API === 'true';
   const [state, dispatch] = useReducer(gameReducer, undefined, () => createInitialState(savedMode(), savedLanguage()));
   const { sound, toggleSound, playSound } = useGameAudio(musicForScene(state.phase, state.mode));
@@ -137,10 +138,13 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
   const title = state.phase === 'title';
 
   useLayoutEffect(() => {
-    if (['title', 'review_intents', 'results'].includes(state.phase) || (state.phase === 'girl_breath' && state.round === 1)) window.scrollTo(0, 0);
+    if (['title', 'review_intents', 'results'].includes(state.phase) || (state.phase === 'girl_breath' && state.round === 1)) {
+      if (appScrollRef.current) appScrollRef.current.scrollTop = 0;
+      window.scrollTo(0, 0);
+    }
   }, [state.phase, state.round]);
 
-  return <main className={`app ${title ? 'is-title' : ''} ${active ? 'is-playing' : ''}`} data-mode={state.mode} data-language={state.language} data-phase={state.phase}>
+  return <main ref={appScrollRef} className={`app ${title ? 'is-title' : ''} ${active ? 'is-playing' : ''}`} data-mode={state.mode} data-language={state.language} data-phase={state.phase}>
     <header className="topbar">
       <button className="wordmark" onClick={() => active ? setLeave(true) : dispatch({ type: 'RETURN_TO_TITLE' })} aria-label={t('DRAWINDOW home', '最初の画面へ')}>DRA<span>W</span>INDOW<span className="wordmark-period">.</span></button>
       <div className="topbar-right">

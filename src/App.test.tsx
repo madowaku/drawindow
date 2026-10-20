@@ -156,6 +156,20 @@ describe('Japanese UI playthrough', () => {
   });
 });
 
+it('resets the internal iframe scroller when entering naming, results and title', async () => {
+  render(<App />);
+  const scroller = document.querySelector('main')!;
+  scroller.scrollTop = 400;
+  await finishFive();
+  expect(scroller.scrollTop).toBe(0);
+  scroller.scrollTop = 900;
+  fireEvent.click(screen.getByRole('button', { name: /REVEAL OUR CHAIN/ }));
+  expect(scroller.scrollTop).toBe(0);
+  scroller.scrollTop = 1800;
+  fireEvent.click(screen.getByRole('button', { name: 'DRAWINDOW home' }));
+  expect(scroller.scrollTop).toBe(0);
+});
+
 describe('Japanese starter variety', () => {
   it('does not begin with an apple, rotates openings, and persists across page reload', () => {
     let current: GameState | undefined;
