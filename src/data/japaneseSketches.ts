@@ -1,3 +1,4 @@
+import { adoptedJapaneseLabels } from './shizuku-doodles/adopted';
 import type { GirlSketch, Language, Mode } from '../core/types';
 
 /** Reading labels for the existing 64 art candidates. No image data or attribution is changed. */
@@ -26,7 +27,7 @@ export const japaneseLabelByEnglish: Readonly<Record<string, string>> = Object.f
 export function localizeGirlSketches(sketches: readonly GirlSketch[], language: Language): GirlSketch[] {
   if (language === 'en') return [...sketches];
   return sketches.flatMap(sketch => {
-    const word = japaneseLabelByEnglish[sketch.word];
+    const word = sketch.id.startsWith('shizuku-style-v01-') ? adoptedJapaneseLabels[sketch.word] : japaneseLabelByEnglish[sketch.word];
     return word ? [{ ...sketch, word }] : [];
   });
 }

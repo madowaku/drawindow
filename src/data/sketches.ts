@@ -1,4 +1,5 @@
 import { doodleCandidates } from './doodleLibrary';
+import { adoptShizukuSketches } from './shizuku-doodles/adopted';
 
-/** Compatibility view for the game contracts; letter -> candidates is canonical. */
-export const girlSketches = doodleCandidates;
+/** Approved originals plus the existing vocabulary fallback. */
+export const girlSketches = adoptShizukuSketches(doodleCandidates);

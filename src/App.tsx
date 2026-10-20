@@ -1,3 +1,4 @@
+import { adoptShizukuSketches } from './data/shizuku-doodles/adopted';
 import { GirlOopsReaction } from './components/GirlOopsReaction';
 import { japaneseEverydayDoodles } from './data/japaneseEverydayDoodles';
 import { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react';
@@ -112,7 +113,7 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
     setIntentDrafts({});
     let sketches = localizeGirlSketches(girlSketches, state.language);
     if (state.language === 'ja') {
-      sketches = [...sketches, ...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles, ...japaneseEverydayDoodles];
+      sketches = adoptShizukuSketches([...sketches, ...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles, ...japaneseEverydayDoodles], 'ja');
       // Advance only on an actual Japanese START, never on render or language toggle.
       // Persisted index means a page reload does not go back to the same drawing.
       let startIndex = state.sessionId;

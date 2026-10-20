@@ -1,0 +1,892 @@
+{
+  "version": "0.1",
+  "width": 120,
+  "height": 120,
+  "strokeWidth": 2.1,
+  "doodles": [
+    {
+      "key": "apple", "labelJa": "りんご", "labelEn": "apple", "adoptionBase": "B3",
+      "strokes": [
+        { "name": "左から本体", "durationMs": 1050, "path": "M 59 36 Q 48 28 37 35 Q 24 40 25 57 Q 24 73 35 87 Q 44 98 56 92" },
+        { "name": "右の輪郭とくぼみ", "durationMs": 1000, "path": "M 56 92 Q 65 97 72 92 Q 86 85 91 65 Q 97 44 83 36 Q 73 29 59 36" },
+        { "name": "少し曲がった茎", "durationMs": 300, "path": "M 59 37 Q 57 28 61 22" },
+        { "name": "最後に葉っぱ", "durationMs": 500, "path": "M 62 29 Q 70 16 82 22 Q 77 33 63 30" }
+      ]
+    },
+    {
+      "key": "cat", "labelJa": "ねこ", "labelEn": "cat", "adoptionBase": "B3",
+      "strokes": [
+        { "name": "丸い顔の下半分", "durationMs": 1000, "path": "M 31 48 Q 23 57 28 73 Q 34 89 57 90 Q 81 92 91 76 Q 98 64 88 47" },
+        { "name": "左の耳", "durationMs": 480, "path": "M 31 49 L 30 25 Q 32 23 35 27 L 47 40" },
+        { "name": "頭と右の耳", "durationMs": 650, "path": "M 47 40 Q 59 36 71 40 L 85 27 Q 88 26 87 31 L 88 47" },
+        { "name": "左目", "durationMs": 150, "path": "M 45 59 L 45.3 60" },
+        { "name": "右目", "durationMs": 150, "path": "M 73 58 L 72.8 59" },
+        { "name": "小さな鼻", "durationMs": 180, "path": "M 57 66 L 60 67 L 59 69" },
+        { "name": "口元", "durationMs": 360, "path": "M 59 69 Q 56 76 52 72 M 59 69 Q 62 75 66 72" },
+        { "name": "左のひげ", "durationMs": 300, "path": "M 36 65 L 21 62 M 36 72 L 23 75" },
+        { "name": "右のひげ", "durationMs": 300, "path": "M 82 64 L 97 61 M 83 71 L 98 74" }
+      ]
+    },
+    {
+      "key": "dog", "labelJa": "いぬ", "labelEn": "dog", "adoptionBase": "B1",
+      "strokes": [
+        { "name": "頭の輪郭", "durationMs": 700, "path": "M 35 42 Q 42 28 58 29 Q 76 27 83 42" },
+        { "name": "左のたれ耳", "durationMs": 650, "path": "M 36 38 Q 24 35 20 52 Q 16 67 23 73 Q 31 76 35 57 L 38 45" },
+        { "name": "右のたれ耳", "durationMs": 650, "path": "M 81 39 Q 95 35 99 55 Q 104 71 95 74 Q 87 76 84 58 L 81 47" },
+        { "name": "ほっぺとあご", "durationMs": 750, "path": "M 35 61 Q 33 83 48 89 Q 62 95 77 85 Q 87 79 85 63" },
+        { "name": "左目", "durationMs": 150, "path": "M 46 56 L 46.2 57" },
+        { "name": "右目", "durationMs": 150, "path": "M 72 55 L 72 56" },
+        { "name": "小さな鼻", "durationMs": 300, "path": "M 55 66 Q 59 63 64 66 L 59 70 L 55 66" },
+        { "name": "少しにこっとした口", "durationMs": 400, "path": "M 59 71 L 59 75 Q 54 81 50 76 M 59 75 Q 64 80 69 75" }
+      ]
+    },
+    {
+      "key": "banana", "labelJa": "バナナ", "labelEn": "banana", "adoptionBase": "B2",
+      "strokes": [
+        { "name": "外側の曲線", "durationMs": 1000, "path": "M 28 40 Q 18 61 32 80 Q 45 99 68 88 Q 88 79 94 51" },
+        { "name": "内側の曲線", "durationMs": 900, "path": "M 91 42 Q 79 66 62 69 Q 41 72 33 43" },
+        { "name": "左の先端", "durationMs": 280, "path": "M 28 40 L 29 35 L 34 36 L 33 43" },
+        { "name": "右のヘタ", "durationMs": 350, "path": "M 94 51 L 98 39 L 94 36 L 91 42" },
+        { "name": "皮の短いすじ", "durationMs": 450, "path": "M 39 75 Q 51 86 65 81 Q 74 78 79 72" }
+      ]
+    },
+    {
+      "key": "elephant", "labelJa": "ぞう", "labelEn": "elephant", "adoptionBase": "B1",
+      "strokes": [
+        { "name": "丸い背中と頭", "durationMs": 1000, "path": "M 25 71 Q 16 51 29 38 Q 42 25 62 34 Q 70 26 82 32 Q 93 37 94 50" },
+        { "name": "下向きの鼻", "durationMs": 850, "path": "M 94 50 L 98 77 Q 99 84 91 84 Q 85 84 85 77 L 85 65" },
+        { "name": "胸と前脚", "durationMs": 550, "path": "M 85 65 Q 84 70 76 73 L 76 90 Q 71 93 66 90 L 66 77" },
+        { "name": "おなかと後脚", "durationMs": 600, "path": "M 66 77 Q 51 82 41 76 L 40 90 Q 34 92 29 89 L 28 73" },
+        { "name": "大きな耳", "durationMs": 750, "path": "M 67 42 Q 55 32 48 44 Q 43 56 52 67 Q 62 79 70 64 Q 74 53 67 42" },
+        { "name": "小さな目", "durationMs": 160, "path": "M 82 48 L 82.2 49" },
+        { "name": "最後にしっぽ", "durationMs": 330, "path": "M 22 56 Q 13 57 14 69 M 14 68 L 11 71" }
+      ]
+    },
+    {
+      "key": "fish", "labelJa": "さかな", "labelEn": "fish", "adoptionBase": "style-v01",
+      "strokes": [
+        { "name": "ふくらんだ背中", "durationMs": 850, "path": "M 24 60 Q 35 39 54 39 Q 69 40 80 51" },
+        { "name": "おなか", "durationMs": 850, "path": "M 80 66 Q 65 81 48 78 Q 31 75 24 60" },
+        { "name": "少し傾いた尾びれ", "durationMs": 600, "path": "M 80 51 L 98 40 Q 101 39 100 44 L 99 78 Q 98 81 95 78 L 80 66" },
+        { "name": "小さな目", "durationMs": 160, "path": "M 39 55 L 39.2 56" },
+        { "name": "えら", "durationMs": 340, "path": "M 49 48 Q 55 60 49 69" },
+        { "name": "最後に小さなひれ", "durationMs": 350, "path": "M 62 57 L 70 62 L 61 66" }
+      ]
+    },
+    {
+      "key": "bird", "labelJa": "とり", "labelEn": "bird", "adoptionBase": "style-v01",
+      "strokes": [
+        { "name": "丸い頭と背中", "durationMs": 900, "path": "M 25 64 Q 30 54 41 51 Q 42 30 60 29 Q 79 27 85 44" },
+        { "name": "胸とおなか", "durationMs": 850, "path": "M 85 53 Q 87 72 71 80 Q 49 90 29 76" },
+        { "name": "短いしっぽ", "durationMs": 450, "path": "M 29 76 L 17 75 L 18 55 Q 19 52 22 56 L 25 64" },
+        { "name": "ちいさなくちばし", "durationMs": 280, "path": "M 85 44 L 96 49 L 85 53" },
+        { "name": "目", "durationMs": 160, "path": "M 73 43 L 73.2 44" },
+        { "name": "まるい羽", "durationMs": 500, "path": "M 45 59 Q 57 55 64 61 Q 59 75 45 70" },
+        { "name": "最後に二本の足", "durationMs": 450, "path": "M 48 84 L 47 94 L 41 94 M 64 84 L 66 94 L 72 93" }
+      ]
+    },
+    {
+      "key": "car", "labelJa": "くるま", "labelEn": "car", "adoptionBase": "style-v01",
+      "strokes": [
+        { "name": "ちょっと丸い屋根", "durationMs": 650, "path": "M 31 55 L 44 35 Q 57 31 72 36 L 85 56" },
+        { "name": "車体の左右", "durationMs": 750, "path": "M 31 55 L 21 58 Q 16 61 18 76 L 27 79 M 85 56 L 99 59 Q 104 66 101 78 L 92 79" },
+        { "name": "左のタイヤ", "durationMs": 500, "path": "M 45 80 Q 44 70 35 71 Q 25 71 26 81 Q 27 91 36 90 Q 45 90 45 80" },
+        { "name": "右のタイヤ", "durationMs": 500, "path": "M 92 80 Q 92 71 83 71 Q 73 70 73 81 Q 74 91 83 90 Q 93 90 92 80" },
+        { "name": "車体の下", "durationMs": 250, "path": "M 45 81 Q 60 83 73 81" },
+        { "name": "最後に窓", "durationMs": 650, "path": "M 40 54 L 48 41 L 58 40 L 58 55 L 40 54 M 65 41 L 70 42 L 78 55 L 65 55 L 65 41" }
+      ]
+    },
+    {
+      "key": "flower", "labelJa": "はな", "labelEn": "flower", "adoptionBase": "style-v01",
+      "strokes": [
+        { "name": "まんなかの丸", "durationMs": 450, "path": "M 66 47 Q 65 39 58 40 Q 49 42 52 50 Q 55 57 62 54 Q 68 52 66 47" },
+        { "name": "上の花びら", "durationMs": 550, "path": "M 52 41 Q 43 24 56 22 Q 69 20 66 40" },
+        { "name": "右の花びら", "durationMs": 550, "path": "M 66 41 Q 80 29 86 41 Q 92 54 67 53" },
+        { "name": "下の花びら", "durationMs": 700, "path": "M 65 54 Q 79 65 67 72 Q 58 75 56 57 Q 49 75 40 66 Q 33 57 51 51" },
+        { "name": "左の花びら", "durationMs": 500, "path": "M 50 49 Q 29 54 31 40 Q 34 28 51 41" },
+        { "name": "ゆるい茎", "durationMs": 450, "path": "M 60 72 Q 58 85 62 99" },
+        { "name": "最後に葉っぱ", "durationMs": 400, "path": "M 60 88 Q 45 91 42 78 Q 53 76 60 88" }
+      ]
+    },
+    {
+      "key": "moon", "labelJa": "つき", "labelEn": "moon", "adoptionBase": "style-v01",
+      "strokes": [
+        { "name": "外側の大きな曲線", "durationMs": 1450, "path": "M 75 24 Q 49 17 33 38 Q 19 56 28 75 Q 42 101 79 91" },
+        { "name": "最後に内側のくぼみ", "durationMs": 1250, "path": "M 79 91 Q 55 87 49 67 Q 42 43 75 24" }
+      ]
+    },
+    {
+      "key": "star", "labelJa": "ほし", "labelEn": "star", "adoptionBase": "style-v01",
+      "strokes": [
+        { "name": "上から右の角", "durationMs": 850, "path": "M 58 24 Q 59 21 61 26 L 70 47 L 94 49 Q 98 50 94 53 L 76 68" },
+        { "name": "下の二つの角", "durationMs": 1000, "path": "M 76 68 L 81 91 Q 82 95 78 93 L 59 80 L 38 94 Q 34 96 36 91 L 40 68" },
+        { "name": "左の角をつないで星に", "durationMs": 850, "path": "M 40 68 L 22 53 Q 19 50 24 49 L 47 47 L 58 24" }
+      ]
+    },
+    {
+      "key": "rabbit", "labelJa": "うさぎ", "labelEn": "rabbit", "adoptionBase": "style-v01", "batch": "expansion-02",
+      "strokes": [
+        { "name": "まるい顔", "durationMs": 950, "path": "M 42 46 Q 27 54 32 76 Q 38 94 60 94 Q 84 94 89 75 Q 94 55 74 46" },
+        { "name": "左の長い耳", "durationMs": 650, "path": "M 42 46 Q 33 17 42 15 Q 52 13 54 44" },
+        { "name": "額と右の耳", "durationMs": 650, "path": "M 54 44 Q 59 42 63 44 Q 62 17 73 18 Q 82 20 74 46" },
+        { "name": "小さな両目", "durationMs": 300, "path": "M 47 66 L 47.2 67 M 73 65 L 73 66" },
+        { "name": "鼻と口元", "durationMs": 450, "path": "M 57 75 L 60 77 L 63 75 M 60 77 L 60 80 Q 56 85 53 81 M 60 80 Q 64 84 67 81" }
+      ]
+    },
+    {
+      "key": "turtle", "labelJa": "かめ", "labelEn": "turtle", "adoptionBase": "style-v01", "batch": "expansion-02",
+      "strokes": [
+        { "name": "丸いこうら", "durationMs": 950, "path": "M 27 70 Q 27 39 52 36 Q 76 33 81 68 Q 58 78 27 70" },
+        { "name": "のんびりした頭", "durationMs": 600, "path": "M 79 61 Q 84 49 94 51 Q 105 53 101 64 Q 98 73 81 70" },
+        { "name": "後ろ足", "durationMs": 380, "path": "M 33 72 L 29 82 Q 33 86 41 82 L 43 74" },
+        { "name": "前足", "durationMs": 380, "path": "M 65 74 L 65 83 Q 72 87 77 81 L 76 71" },
+        { "name": "小さなしっぽと目", "durationMs": 320, "path": "M 27 64 L 18 68 L 27 70 M 94 58 L 94.2 59" },
+        { "name": "最後にこうらの模様", "durationMs": 700, "path": "M 40 49 L 51 43 L 65 49 L 63 62 L 48 65 L 40 49 M 48 65 L 44 72 M 63 62 L 77 67" }
+      ]
+    },
+    {
+      "key": "whale", "labelJa": "くじら", "labelEn": "whale", "adoptionBase": "style-v01", "batch": "expansion-02",
+      "strokes": [
+        { "name": "大きな頭と背中", "durationMs": 950, "path": "M 88 69 Q 82 75 74 64 Q 65 41 43 43 Q 20 42 20 64 Q 20 86 48 88" },
+        { "name": "おなかからしっぽへ", "durationMs": 650, "path": "M 48 88 Q 80 93 95 73" },
+        { "name": "二つに分かれた尾びれ", "durationMs": 650, "path": "M 88 69 Q 76 58 84 50 Q 92 51 95 60 Q 97 48 105 47 Q 111 59 95 73" },
+        { "name": "小さな目と口", "durationMs": 350, "path": "M 35 63 L 35.2 64 M 22 72 Q 31 77 37 74" },
+        { "name": "短い胸びれ", "durationMs": 380, "path": "M 51 72 Q 51 84 62 80" },
+        { "name": "最後にしおをふく", "durationMs": 550, "path": "M 44 36 Q 44 23 35 24 M 44 36 Q 48 22 55 25" }
+      ]
+    },
+    {
+      "key": "octopus", "labelJa": "たこ", "labelEn": "octopus", "adoptionBase": "style-v01", "batch": "expansion-02",
+      "strokes": [
+        { "name": "ふっくらした頭", "durationMs": 1000, "path": "M 32 64 Q 27 49 34 35 Q 43 21 60 24 Q 79 23 86 40 Q 91 53 85 65" },
+        { "name": "左の二本の足", "durationMs": 650, "path": "M 32 64 Q 12 72 20 81 Q 27 87 33 75 Q 24 91 34 93 Q 42 94 42 78" },
+        { "name": "まんなかの四本の足", "durationMs": 900, "path": "M 42 78 Q 38 97 46 98 Q 53 98 51 80 Q 49 102 56 102 Q 63 101 60 80 Q 61 101 67 99 Q 74 97 69 79 Q 74 98 80 94 Q 85 90 78 77" },
+        { "name": "右の二本の足", "durationMs": 650, "path": "M 78 77 Q 86 94 92 86 Q 96 81 87 74 Q 100 85 103 77 Q 106 70 85 65" },
+        { "name": "小さな両目", "durationMs": 300, "path": "M 47 49 L 47.2 50 M 71 48 L 71.2 49" },
+        { "name": "最後にぽけっとした口", "durationMs": 350, "path": "M 61 58 Q 54 56 55 62 Q 59 67 63 62 Q 65 58 61 58" }
+      ]
+    },
+    {
+      "key": "butterfly", "labelJa": "ちょう", "labelEn": "butterfly", "adoptionBase": "style-v01", "batch": "expansion-02",
+      "strokes": [
+        { "name": "細い体", "durationMs": 600, "path": "M 59 44 Q 53 43 54 63 Q 54 82 59 83 Q 65 80 64 61 Q 65 44 59 44" },
+        { "name": "左の大きな羽", "durationMs": 750, "path": "M 54 53 Q 31 20 21 32 Q 10 49 53 65" },
+        { "name": "左の下の羽", "durationMs": 550, "path": "M 53 65 Q 21 64 26 83 Q 33 99 55 74" },
+        { "name": "右の大きな羽", "durationMs": 750, "path": "M 64 53 Q 89 22 99 36 Q 108 51 65 65" },
+        { "name": "右の下の羽", "durationMs": 550, "path": "M 65 65 Q 99 66 93 84 Q 86 99 64 74" },
+        { "name": "最後に二本の触角", "durationMs": 400, "path": "M 56 44 Q 56 32 49 31 M 62 44 Q 65 32 71 33" }
+      ]
+    },
+    {
+      "key": "house", "labelJa": "いえ", "labelEn": "house", "adoptionBase": "style-v01", "batch": "expansion-02",
+      "strokes": [
+        { "name": "三角の屋根", "durationMs": 850, "path": "M 20 55 L 57 24 Q 59 22 62 25 L 99 56 Q 62 53 20 55" },
+        { "name": "少しゆがんだ壁", "durationMs": 850, "path": "M 29 56 L 30 94 Q 58 97 91 93 L 90 56" },
+        { "name": "小さな窓", "durationMs": 550, "path": "M 40 65 L 53 65 L 54 78 L 40 79 L 40 65" },
+        { "name": "最後に入り口", "durationMs": 550, "path": "M 65 95 L 65 71 Q 72 69 79 72 L 79 94 M 74 82 L 74.3 82.5" }
+      ]
+    },
+    {
+      "key": "umbrella", "labelJa": "かさ", "labelEn": "umbrella", "adoptionBase": "style-v01", "batch": "expansion-02",
+      "strokes": [
+        { "name": "大きな丸いかさ", "durationMs": 1100, "path": "M 19 62 Q 25 29 58 28 Q 89 26 101 61" },
+        { "name": "下のなみなみ", "durationMs": 850, "path": "M 19 62 Q 29 53 40 62 Q 50 53 60 62 Q 70 53 80 62 Q 90 54 101 61" },
+        { "name": "かさの骨", "durationMs": 550, "path": "M 58 29 Q 43 39 40 61 M 58 29 Q 77 38 80 61" },
+        { "name": "最後に曲がった持ち手", "durationMs": 700, "path": "M 59 63 L 60 91 Q 60 103 50 101 Q 43 99 45 93 M 58 28 L 58 22" }
+      ]
+    },
+    {
+      "key": "tree", "labelJa": "き", "labelEn": "tree", "adoptionBase": "style-v01", "batch": "expansion-02",
+      "strokes": [
+        { "name": "左のもこもこ", "durationMs": 1000, "path": "M 49 72 Q 31 78 27 65 Q 14 56 26 43 Q 23 28 43 30 Q 46 18 59 23" },
+        { "name": "右のもこもこ", "durationMs": 1000, "path": "M 59 23 Q 74 17 80 32 Q 98 30 95 48 Q 109 65 91 72 Q 81 79 68 72" },
+        { "name": "最後に太い幹", "durationMs": 800, "path": "M 49 65 L 48 98 Q 58 101 70 98 L 68 65 M 59 82 L 59 69" }
+      ]
+    },
+    {
+      "key": "mushroom", "labelJa": "きのこ", "labelEn": "mushroom", "adoptionBase": "style-v01", "batch": "expansion-02",
+      "strokes": [
+        { "name": "丸いかさ", "durationMs": 1100, "path": "M 22 62 Q 26 28 54 27 Q 85 23 98 59 Q 64 69 22 62" },
+        { "name": "短い軸", "durationMs": 850, "path": "M 47 66 L 43 93 Q 60 101 76 92 L 70 66" },
+        { "name": "左のもよう", "durationMs": 350, "path": "M 45 42 Q 37 41 38 48 Q 41 54 47 49 Q 50 43 45 42" },
+        { "name": "右のもよう", "durationMs": 350, "path": "M 72 37 Q 64 36 65 43 Q 67 48 74 45 Q 77 40 72 37" }
+      ]
+    },
+    {
+      "key": "strawberry", "labelJa": "いちご", "labelEn": "strawberry", "adoptionBase": "style-v01", "batch": "expansion-02",
+      "strokes": [
+        { "name": "ふっくらした実", "durationMs": 1200, "path": "M 45 37 Q 27 32 28 53 Q 29 76 55 95 Q 59 98 63 94 Q 88 74 92 51 Q 94 33 75 37" },
+        { "name": "最後に葉のかんむり", "durationMs": 950, "path": "M 45 37 L 37 28 L 53 32 L 59 21 L 65 33 L 81 27 L 75 37 L 81 44 L 65 41 L 59 49 L 53 40 L 38 45 L 45 37" },
+        { "name": "控えめなつぶつぶ", "durationMs": 650, "path": "M 42 55 L 43 58 M 61 57 L 60 60 M 78 53 L 77 56 M 49 71 L 50 74 M 68 71 L 67 74 M 59 84 L 59 86" }
+      ]
+    },
+    {
+      "key": "grapes", "labelJa": "ぶどう", "labelEn": "grapes", "adoptionBase": "style-v01", "batch": "expansion-02",
+      "strokes": [
+        { "name": "左上の実", "durationMs": 450, "path": "M 57 44 Q 56 32 45 33 Q 32 34 33 46 Q 35 58 46 56 Q 58 56 57 44" },
+        { "name": "右上の実", "durationMs": 450, "path": "M 57 40 Q 64 29 75 35 Q 87 41 81 51 Q 74 62 59 52" },
+        { "name": "左の実", "durationMs": 420, "path": "M 40 56 Q 30 63 36 73 Q 43 83 54 74 Q 59 67 51 57" },
+        { "name": "右の実", "durationMs": 420, "path": "M 67 57 Q 79 56 82 66 Q 85 78 73 80 Q 61 82 57 72" },
+        { "name": "いちばん下の実", "durationMs": 420, "path": "M 49 79 Q 44 90 55 95 Q 68 100 71 85 L 70 81" },
+        { "name": "最後に茎と小さな葉", "durationMs": 650, "path": "M 58 34 Q 56 27 61 21 M 60 28 Q 69 17 80 24 Q 73 32 62 29" }
+      ]
+    },
+    {
+      "key": "ice-cream", "labelJa": "アイスクリーム", "labelEn": "ice cream", "adoptionBase": "style-v01", "batch": "expansion-02",
+      "strokes": [
+        { "name": "丸いアイス", "durationMs": 1000, "path": "M 35 58 Q 26 50 34 39 Q 34 22 52 22 Q 68 17 76 30 Q 93 32 88 49 Q 93 58 82 61" },
+        { "name": "下のふち", "durationMs": 650, "path": "M 35 58 Q 41 65 48 59 Q 57 67 64 60 Q 73 67 82 61" },
+        { "name": "とがったコーン", "durationMs": 800, "path": "M 38 63 L 58 101 Q 60 105 62 100 L 80 64" },
+        { "name": "最後にコーンの線", "durationMs": 450, "path": "M 47 69 L 68 87 M 70 69 L 52 88" }
+      ]
+    },
+    {
+      "key": "frog", "labelJa": "かえる", "labelEn": "frog", "adoptionBase": "fog-doodle-v02", "batch": "expansion-03",
+      "strokes": [
+        { "name": "左の目のふくらみ", "durationMs": 600, "path": "M 30 52 Q 26 34 34 30 Q 47 24 49 43" },
+        { "name": "右の目も描いてみる", "durationMs": 650, "path": "M 50 44 L 64 42 Q 67 29 78 34 Q 87 37 82 53" },
+        { "name": "少しつぶれた顔", "durationMs": 1100, "path": "M 29 53 Q 20 64 28 77 L 39 85 Q 53 92 71 85 Q 91 82 94 66 Q 95 59 85 53" },
+        { "name": "高さの違う目", "durationMs": 300, "path": "M 38 43 L 38.3 44 M 75 45 L 75 46.4" },
+        { "name": "最後に大きな口", "durationMs": 550, "path": "M 36 66 L 43 73 Q 49 78 57 74 L 67 76 Q 78 73 82 66" }
+      ]
+    },
+    {
+      "key": "bear", "labelJa": "くま", "labelEn": "bear", "adoptionBase": "fog-doodle-v02", "batch": "expansion-03",
+      "strokes": [
+        { "name": "左の耳", "durationMs": 500, "path": "M 31 44 Q 20 33 29 26 Q 40 19 46 35" },
+        { "name": "小さめの右耳", "durationMs": 450, "path": "M 72 35 Q 79 24 86 29 Q 94 35 85 44" },
+        { "name": "ちょっと四角い丸顔", "durationMs": 1300, "path": "M 46 35 L 53 32 L 62 36 L 72 36 M 31 44 L 26 60 Q 23 77 39 88 L 58 92 Q 75 95 87 79 L 85 73 L 91 60 Q 92 48 84 43" },
+        { "name": "小さな目", "durationMs": 300, "path": "M 43 58 L 43.1 59 M 73 60 L 73.2 61.5" },
+        { "name": "鼻と控えめな口", "durationMs": 600, "path": "M 52 69 Q 58 65 63 70 L 57 74 L 52 69 M 57 74 L 57 78 Q 52 83 48 79 M 57 78 Q 62 84 67 80" }
+      ]
+    },
+    {
+      "key": "penguin", "labelJa": "ペンギン", "labelEn": "penguin", "adoptionBase": "fog-doodle-v02", "batch": "expansion-03",
+      "strokes": [
+        { "name": "頭からおなかの外側", "durationMs": 1250, "path": "M 36 75 L 39 61 L 37 47 Q 34 24 56 25 L 64 28 Q 77 24 78 45 L 83 73 Q 89 91 64 94 L 52 92 Q 43 98 35 85" },
+        { "name": "左右で違う羽", "durationMs": 650, "path": "M 36 51 L 23 72 Q 20 81 28 76 L 35 69 M 80 54 Q 96 67 92 76 L 83 72" },
+        { "name": "白いおなかの輪郭", "durationMs": 650, "path": "M 51 60 Q 42 66 46 84 Q 55 91 70 84 Q 76 71 66 61" },
+        { "name": "目とくちばし", "durationMs": 450, "path": "M 48 43 L 48.2 44 M 67 45 L 67 46 M 53 51 L 65 52 L 58 57 L 53 51" },
+        { "name": "最後に足", "durationMs": 400, "path": "M 46 94 L 38 100 L 52 100 M 68 95 L 65 102 L 79 99" }
+      ]
+    },
+    {
+      "key": "snail", "labelJa": "かたつむり", "labelEn": "snail", "adoptionBase": "fog-doodle-v02", "batch": "expansion-03",
+      "strokes": [
+        { "name": "殻の大きな丸", "durationMs": 1100, "path": "M 40 76 Q 24 72 27 53 L 34 37 Q 47 25 63 35 Q 80 43 76 59 Q 77 76 63 78" },
+        { "name": "迷いながらうずまき", "durationMs": 850, "path": "M 41 68 Q 62 76 65 59 L 64 49 Q 53 39 44 47 Q 37 55 45 61 L 54 60" },
+        { "name": "低い体", "durationMs": 850, "path": "M 24 80 L 43 78 L 59 82 L 77 80 Q 91 81 91 65 Q 91 60 96 63 L 98 81 Q 97 92 79 92 L 60 89 L 47 92 L 28 90 Q 20 90 24 84" },
+        { "name": "最後に触角", "durationMs": 500, "path": "M 91 64 L 84 52 M 96 63 L 103 48 M 83 51 L 84 51 M 102 47 L 104 47" }
+      ]
+    },
+    {
+      "key": "crab", "labelJa": "かに", "labelEn": "crab", "adoptionBase": "fog-doodle-v02", "batch": "expansion-03",
+      "strokes": [
+        { "name": "横に広い体", "durationMs": 850, "path": "M 38 57 L 49 52 L 61 55 L 70 53 Q 86 56 82 70 L 73 79 Q 60 85 52 80 L 38 76 Q 31 69 36 61" },
+        { "name": "左のはさみ", "durationMs": 600, "path": "M 37 61 L 26 48 Q 13 45 21 29 L 26 39 L 31 27 Q 41 43 28 48" },
+        { "name": "大きめの右のはさみ", "durationMs": 650, "path": "M 80 61 L 90 46 Q 77 41 84 25 L 91 36 L 99 24 Q 111 44 94 47" },
+        { "name": "目", "durationMs": 350, "path": "M 49 52 L 47 43 M 67 53 L 69 44 M 46 42 L 48 42 M 68 43 L 70 43" },
+        { "name": "ばらばらの足", "durationMs": 700, "path": "M 34 65 L 23 66 L 18 73 M 37 73 L 25 78 L 24 86 M 44 79 L 34 88 M 82 65 L 96 68 L 101 76 M 80 73 L 94 80 L 96 88 M 73 79 L 83 90" },
+        { "name": "小さな口", "durationMs": 220, "path": "M 53 67 Q 59 72 64 67" }
+      ]
+    },
+    {
+      "key": "chicken", "labelJa": "にわとり", "labelEn": "chicken", "adoptionBase": "fog-doodle-v02", "batch": "expansion-03",
+      "strokes": [
+        { "name": "丸い体から頭", "durationMs": 1100, "path": "M 29 58 Q 43 48 58 53 L 60 38 Q 65 25 79 32 Q 89 36 85 51 Q 91 70 76 83 Q 54 93 34 78" },
+        { "name": "少し角ばった尾", "durationMs": 500, "path": "M 34 78 L 20 74 L 17 52 L 28 61 L 25 47 L 36 56" },
+        { "name": "目とくちばし", "durationMs": 350, "path": "M 76 41 L 76.2 42 M 87 44 L 99 48 L 86 53" },
+        { "name": "とさかを足す", "durationMs": 500, "path": "M 64 31 Q 57 18 67 22 Q 71 11 76 23 Q 86 18 81 32" },
+        { "name": "小さな羽と足", "durationMs": 650, "path": "M 46 62 Q 59 58 63 65 Q 58 77 47 72 M 49 87 L 47 99 L 40 99 M 69 87 L 72 98 L 79 97" }
+      ]
+    },
+    {
+      "key": "carrot", "labelJa": "にんじん", "labelEn": "carrot", "adoptionBase": "fog-doodle-v02", "batch": "expansion-03",
+      "strokes": [
+        { "name": "細くしたい実の輪郭", "durationMs": 1200, "path": "M 44 41 Q 54 32 71 42 Q 76 48 70 58 L 57 78 L 44 100 Q 40 104 40 97 L 39 74 L 37 56 Q 35 47 42 43" },
+        { "name": "左の葉", "durationMs": 550, "path": "M 49 36 L 36 25 L 38 19 L 45 22 L 53 35" },
+        { "name": "右の葉", "durationMs": 550, "path": "M 56 35 L 59 15 L 65 17 L 63 33 L 77 22 L 80 28 L 67 40" },
+        { "name": "最後に短い線", "durationMs": 400, "path": "M 40 56 L 50 59 M 60 69 L 53 68 M 42 81 L 47 82" }
+      ]
+    },
+    {
+      "key": "pear", "labelJa": "ようなし", "labelEn": "pear", "adoptionBase": "fog-doodle-v02", "batch": "expansion-03",
+      "strokes": [
+        { "name": "左の細い首と大きなおなか", "durationMs": 1050, "path": "M 57 33 Q 47 32 47 47 L 35 62 Q 25 76 34 91 Q 42 100 57 96" },
+        { "name": "ふくらみすぎた右側", "durationMs": 1050, "path": "M 60 96 L 73 98 Q 84 95 88 86 Q 94 73 77 59 L 68 48 L 69 40 Q 68 33 60 33" },
+        { "name": "茎", "durationMs": 350, "path": "M 58 33 L 56 25 L 60 20" },
+        { "name": "最後に小さな葉", "durationMs": 450, "path": "M 61 27 Q 70 17 80 24 Q 77 32 64 29" }
+      ]
+    },
+    {
+      "key": "cake", "labelJa": "ケーキ", "labelEn": "cake", "adoptionBase": "fog-doodle-v02", "batch": "expansion-03",
+      "strokes": [
+        { "name": "少し傾いた上の面", "durationMs": 800, "path": "M 24 57 L 47 47 L 66 39 L 79 49 L 94 57 L 50 72 L 27 60" },
+        { "name": "ケーキの厚み", "durationMs": 850, "path": "M 25 60 L 27 82 L 49 97 L 73 87 L 95 85 L 94 59 M 50 73 L 47 84 L 49 95" },
+        { "name": "はみ出したクリーム", "durationMs": 550, "path": "M 27 69 L 48 84 L 65 75 L 76 76 L 92 69" },
+        { "name": "最後にいちごのつもり", "durationMs": 650, "path": "M 54 43 Q 48 35 52 30 Q 57 26 60 31 Q 69 25 71 33 Q 71 39 63 45 M 55 29 L 58 24 L 61 28 L 66 24" }
+      ]
+    },
+    {
+      "key": "cup", "labelJa": "カップ", "labelEn": "cup", "adoptionBase": "fog-doodle-v02", "batch": "expansion-03",
+      "strokes": [
+        { "name": "つぶれた飲み口", "durationMs": 850, "path": "M 27 43 Q 39 34 54 39 Q 73 35 79 45 Q 78 54 62 51 L 45 52 L 29 47" },
+        { "name": "少し斜めのカップ", "durationMs": 1000, "path": "M 27 44 L 31 66 L 29 76 Q 34 89 48 87 L 58 92 Q 72 92 75 81 L 77 67 L 79 49" },
+        { "name": "後からつけた持ち手", "durationMs": 650, "path": "M 82 54 Q 103 43 99 64 L 96 71 Q 92 78 80 75" },
+        { "name": "最後にゆげ", "durationMs": 400, "path": "M 44 30 Q 37 25 43 18 M 61 30 Q 69 25 63 16" }
+      ]
+    },
+    {
+      "key": "key", "labelJa": "かぎ", "labelEn": "key", "adoptionBase": "fog-doodle-v02", "batch": "expansion-03",
+      "strokes": [
+        { "name": "つぶれた持ち手", "durationMs": 1100, "path": "M 43 58 Q 28 66 23 52 L 22 42 Q 21 30 40 29 L 49 33 Q 59 32 57 46 Q 56 53 47 58" },
+        { "name": "長いところ", "durationMs": 1000, "path": "M 48 57 L 59 65 L 62 71 L 88 94 L 94 88 L 76 69 L 70 67 L 57 51" },
+        { "name": "最後にぎざぎざ", "durationMs": 700, "path": "M 79 74 L 88 68 L 94 75 L 85 81 M 69 64 L 76 59 L 82 65 L 75 70" }
+      ]
+    },
+    {
+      "key": "boat", "labelJa": "ふね", "labelEn": "boat", "adoptionBase": "fog-doodle-v02", "batch": "expansion-03",
+      "strokes": [
+        { "name": "ゆがんだ船の下", "durationMs": 900, "path": "M 19 76 L 36 94 L 51 92 Q 69 99 84 90 L 101 72 L 68 76 L 45 73 L 21 76" },
+        { "name": "まっすぐにしたい柱", "durationMs": 650, "path": "M 60 76 L 58 55 L 60 23" },
+        { "name": "大きい帆", "durationMs": 800, "path": "M 56 29 L 34 50 L 25 65 L 55 66" },
+        { "name": "小さい帆と波", "durationMs": 700, "path": "M 65 39 L 88 61 L 65 64 M 23 102 Q 31 98 39 102 M 74 101 Q 85 97 94 100" }
+      ]
+    },
+    {
+      "key": "lion", "labelJa": "ライオン", "labelEn": "lion", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "はみ出したたてがみ", "durationMs": 1400, "path": "M 39 28 L 48 20 L 59 25 L 73 19 L 79 30 L 93 34 L 92 47 L 102 60 L 93 69 L 95 84 L 81 88 L 73 101 L 59 94 L 44 101 L 37 89 L 23 85 L 26 70 L 17 58 L 27 48 L 25 34 L 36 31" },
+        { "name": "小さめの顔", "durationMs": 900, "path": "M 43 42 Q 59 34 77 43 L 82 58 Q 87 76 69 83 L 54 84 Q 37 83 35 66 L 37 51" },
+        { "name": "少しずれた目", "durationMs": 250, "path": "M 47 57 L 47.3 58 M 71 59 L 71 60" },
+        { "name": "鼻と口元", "durationMs": 550, "path": "M 54 67 L 63 67 L 58 72 L 54 67 M 58 72 L 58 75 Q 53 79 49 75 M 58 75 Q 63 81 68 76" }
+      ]
+    },
+    {
+      "key": "fox", "labelJa": "きつね", "labelEn": "fox", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "左の大きな耳", "durationMs": 650, "path": "M 29 53 L 25 24 Q 25 19 29 24 L 48 44" },
+        { "name": "頭と小さい右耳", "durationMs": 650, "path": "M 48 44 L 61 40 L 71 44 L 89 29 L 87 54" },
+        { "name": "とがらせたい顔", "durationMs": 950, "path": "M 28 54 L 35 70 L 57 94 Q 60 97 63 92 L 79 76 L 90 54" },
+        { "name": "ほっぺと目", "durationMs": 550, "path": "M 33 61 Q 46 59 57 79 M 87 63 Q 76 60 64 79 M 44 58 L 44.3 59 M 75 57 L 75.2 58" },
+        { "name": "最後に鼻", "durationMs": 250, "path": "M 56 85 L 63 85 L 60 89 L 56 85" }
+      ]
+    },
+    {
+      "key": "panda", "labelJa": "パンダ", "labelEn": "panda", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "大きさの違う耳", "durationMs": 700, "path": "M 30 44 Q 18 28 29 25 Q 40 20 45 36 M 73 35 Q 83 25 89 32 Q 94 39 85 45" },
+        { "name": "つぶれた丸顔", "durationMs": 1100, "path": "M 45 36 L 58 32 L 73 36 M 30 44 Q 19 64 30 82 L 46 90 Q 68 98 84 83 Q 94 76 91 62 L 85 45" },
+        { "name": "左目のまわり", "durationMs": 500, "path": "M 44 49 Q 32 46 34 61 Q 39 70 47 62 Q 52 54 44 49 M 42 56 L 42 57" },
+        { "name": "右目のまわり", "durationMs": 500, "path": "M 72 51 Q 62 49 64 62 Q 71 72 80 62 Q 82 55 72 51 M 71 58 L 71.3 59" },
+        { "name": "小さな鼻と口", "durationMs": 400, "path": "M 53 73 L 60 73 L 57 77 M 51 80 Q 57 84 63 80" }
+      ]
+    },
+    {
+      "key": "mouse", "labelJa": "ねずみ", "labelEn": "mouse", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "左のまるい耳", "durationMs": 650, "path": "M 31 53 Q 15 48 20 30 Q 26 16 41 23 Q 53 30 45 44" },
+        { "name": "右も丸くしたい耳", "durationMs": 650, "path": "M 70 44 Q 66 27 81 27 Q 98 28 96 42 Q 98 52 84 56" },
+        { "name": "ほそい顔", "durationMs": 900, "path": "M 45 44 L 58 41 L 70 45 M 31 54 Q 28 70 43 84 L 58 94 L 74 83 Q 89 70 84 56" },
+        { "name": "目と鼻", "durationMs": 350, "path": "M 44 62 L 44 63 M 72 63 L 72 64 M 54 84 Q 59 81 63 85 L 58 89 L 54 84" },
+        { "name": "最後にひげ", "durationMs": 400, "path": "M 40 75 L 23 70 M 43 81 L 26 84 M 76 75 L 94 71 M 74 81 L 93 85" }
+      ]
+    },
+    {
+      "key": "sheep", "labelJa": "ひつじ", "labelEn": "sheep", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "もこもこの背中", "durationMs": 1000, "path": "M 25 65 Q 16 55 25 47 Q 23 33 38 36 Q 44 24 55 33 Q 70 26 77 39" },
+        { "name": "もこもこのおなか", "durationMs": 850, "path": "M 25 65 Q 18 78 34 79 Q 43 90 54 81 Q 66 89 73 78 L 79 76" },
+        { "name": "顔とたれた耳", "durationMs": 750, "path": "M 80 41 Q 95 37 97 53 L 94 69 Q 89 80 80 71 L 75 54 Q 73 43 80 41 M 79 41 Q 64 37 67 49 L 76 50" },
+        { "name": "短い足", "durationMs": 400, "path": "M 34 81 L 33 95 L 40 95 M 65 84 L 68 96 L 75 95" },
+        { "name": "最後に目と鼻", "durationMs": 300, "path": "M 86 53 L 86.2 54 M 88 67 L 91 68" }
+      ]
+    },
+    {
+      "key": "pig", "labelJa": "ぶた", "labelEn": "pig", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "丸い体", "durationMs": 1000, "path": "M 79 41 Q 65 28 45 34 L 31 41 Q 18 53 24 70 Q 27 86 48 87 L 62 85 Q 79 90 87 72" },
+        { "name": "大きな鼻", "durationMs": 650, "path": "M 86 52 Q 105 48 104 62 Q 106 76 87 73 Q 77 69 80 59 L 86 52 M 89 61 L 89 63 M 98 60 L 98 62" },
+        { "name": "折れた耳と目", "durationMs": 450, "path": "M 66 35 L 66 23 L 81 34 L 79 45 M 75 49 L 75.3 50" },
+        { "name": "小さな足", "durationMs": 400, "path": "M 36 85 L 35 96 L 43 96 L 44 88 M 66 86 L 69 96 L 76 94 L 75 86" },
+        { "name": "最後にくるっとしっぽ", "durationMs": 450, "path": "M 23 57 Q 9 60 12 49 Q 14 43 19 48 Q 24 55 16 55" }
+      ]
+    },
+    {
+      "key": "horse", "labelJa": "うま", "labelEn": "horse", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "長くしたい顔と首", "durationMs": 850, "path": "M 67 53 L 70 32 L 79 23 L 94 38 L 103 47 Q 104 55 94 56 L 84 49 L 85 72" },
+        { "name": "体", "durationMs": 800, "path": "M 67 53 L 45 49 Q 28 44 28 60 L 28 76 L 48 81 L 65 78 L 84 75" },
+        { "name": "ばらばらの脚", "durationMs": 550, "path": "M 30 77 L 27 99 L 35 99 M 46 81 L 45 94 L 52 95 M 68 79 L 71 99 L 79 97 M 83 75 L 88 92" },
+        { "name": "耳とたてがみ", "durationMs": 600, "path": "M 75 27 L 72 15 L 81 24 M 69 33 L 61 38 L 65 41 L 59 49 L 66 50" },
+        { "name": "しっぽと目", "durationMs": 450, "path": "M 28 53 Q 14 56 19 76 L 14 81 M 87 37 L 87.3 38" }
+      ]
+    },
+    {
+      "key": "giraffe", "labelJa": "きりん", "labelEn": "giraffe", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "頭", "durationMs": 650, "path": "M 62 32 Q 57 22 70 23 L 86 27 L 96 34 Q 96 41 85 39 L 77 36" },
+        { "name": "長い首と体", "durationMs": 1000, "path": "M 63 33 L 60 52 L 64 68 L 44 66 Q 29 61 30 77 L 31 85 L 60 88 L 80 83 L 76 59 L 77 38" },
+        { "name": "短くなった脚", "durationMs": 450, "path": "M 33 85 L 32 103 L 39 103 M 48 87 L 48 99 M 66 86 L 69 102 L 77 102 M 78 84 L 84 97" },
+        { "name": "角と耳", "durationMs": 450, "path": "M 66 24 L 64 15 M 75 24 L 76 15 M 64 14 L 65 14 M 75 14 L 77 14 M 63 27 L 52 21 L 54 30 L 62 32" },
+        { "name": "最後に模様と目", "durationMs": 700, "path": "M 68 42 L 72 44 L 69 48 L 67 46 L 68 42 M 67 56 L 72 55 L 73 61 L 68 62 L 67 56 M 44 73 L 52 75 L 49 81 L 42 79 L 44 73 M 82 29 L 82.2 30" }
+      ]
+    },
+    {
+      "key": "owl", "labelJa": "ふくろう", "labelEn": "owl", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "耳みたいな角と頭", "durationMs": 700, "path": "M 32 47 L 30 24 L 45 34 L 60 31 L 73 36 L 87 27 L 84 50" },
+        { "name": "丸い体", "durationMs": 900, "path": "M 32 47 L 28 68 Q 25 88 46 94 L 61 92 Q 83 98 89 76 L 85 52" },
+        { "name": "大きさの違う目", "durationMs": 750, "path": "M 47 44 Q 33 42 34 56 Q 36 69 49 63 Q 59 57 47 44 M 73 48 Q 62 42 60 56 Q 60 66 73 65 Q 85 62 73 48 M 45 54 L 45.2 55 M 71 55 L 71.2 56" },
+        { "name": "くちばしと羽", "durationMs": 550, "path": "M 53 65 L 63 64 L 58 72 L 53 65 M 35 69 Q 33 83 43 86 M 80 70 Q 85 83 73 87" },
+        { "name": "最後に足", "durationMs": 300, "path": "M 47 94 L 45 101 L 39 101 M 69 94 L 73 101 L 80 100" }
+      ]
+    },
+    {
+      "key": "bee", "labelJa": "はち", "labelEn": "bee", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "まるい体", "durationMs": 950, "path": "M 32 52 Q 49 40 71 49 Q 92 52 96 70 Q 91 86 67 87 L 46 82 Q 28 77 29 61" },
+        { "name": "左の羽", "durationMs": 550, "path": "M 48 47 Q 24 35 36 24 Q 50 16 56 46" },
+        { "name": "右の羽", "durationMs": 550, "path": "M 60 47 Q 67 22 80 29 Q 94 42 69 49" },
+        { "name": "しましま", "durationMs": 550, "path": "M 56 47 Q 49 64 55 83 M 72 50 L 68 67 L 72 86" },
+        { "name": "触角と顔", "durationMs": 450, "path": "M 32 53 L 23 41 M 41 48 L 38 35 M 39 62 L 39.2 63 M 34 72 Q 40 76 44 72 M 96 69 L 103 72 L 94 76" }
+      ]
+    },
+    {
+      "key": "dragonfly", "labelJa": "とんぼ", "labelEn": "dragonfly", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "左右で違う目", "durationMs": 550, "path": "M 57 30 Q 49 22 45 29 Q 42 38 53 38 L 57 33 Q 62 22 69 28 Q 75 36 64 39 L 59 36" },
+        { "name": "細長い体", "durationMs": 850, "path": "M 56 39 L 54 59 L 58 76 L 57 102 L 63 101 L 64 76 L 61 57 L 62 40" },
+        { "name": "上の二枚の羽", "durationMs": 850, "path": "M 54 49 Q 27 30 18 40 Q 12 51 54 57 M 63 48 Q 94 28 103 40 Q 109 50 64 57" },
+        { "name": "下の二枚の羽", "durationMs": 800, "path": "M 54 61 Q 23 54 23 67 Q 24 77 56 67 M 64 60 Q 97 52 99 65 Q 99 76 65 68" }
+      ]
+    },
+    {
+      "key": "sunflower", "labelJa": "ひまわり", "labelEn": "sunflower", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "まんなかの丸", "durationMs": 700, "path": "M 48 34 Q 61 27 71 39 L 74 51 Q 69 65 55 63 L 43 54 Q 39 43 48 34" },
+        { "name": "上と右の花びら", "durationMs": 950, "path": "M 48 34 L 44 22 L 53 28 L 58 15 L 65 29 L 77 22 L 75 36 L 89 34 L 81 45 L 94 54 L 77 56" },
+        { "name": "下と左の花びら", "durationMs": 950, "path": "M 76 56 L 80 71 L 67 66 L 62 79 L 54 68 L 43 74 L 44 61 L 29 62 L 36 49 L 25 40 L 40 38 L 37 27 L 47 33" },
+        { "name": "最後に茎と葉", "durationMs": 650, "path": "M 59 79 L 56 91 L 58 105 M 57 95 Q 40 99 36 83 Q 50 83 57 95" }
+      ]
+    },
+    {
+      "key": "leaf", "labelJa": "はっぱ", "labelEn": "leaf", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "左のふくらみ", "durationMs": 1000, "path": "M 40 87 Q 21 74 29 55 L 43 40 L 69 32 L 89 20" },
+        { "name": "右の曲がった輪郭", "durationMs": 1000, "path": "M 89 20 L 87 42 L 81 64 Q 76 85 45 88" },
+        { "name": "最後に葉のすじ", "durationMs": 700, "path": "M 32 102 L 48 79 L 63 61 L 81 34 M 48 79 L 37 63 M 62 63 L 60 44 M 55 73 L 72 73" }
+      ]
+    },
+    {
+      "key": "watermelon", "labelJa": "すいか", "labelEn": "watermelon", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "ななめの切り口", "durationMs": 650, "path": "M 21 39 L 43 42 L 61 38 L 98 42" },
+        { "name": "大きな丸い皮", "durationMs": 1050, "path": "M 99 42 Q 94 78 72 89 L 57 92 Q 29 88 21 42" },
+        { "name": "皮の内側", "durationMs": 750, "path": "M 29 47 Q 37 76 55 81 Q 78 85 90 48" },
+        { "name": "最後に種", "durationMs": 500, "path": "M 43 51 L 45 55 M 60 50 L 59 55 M 77 52 L 75 56 M 56 66 L 57 71 M 71 65 L 69 69" }
+      ]
+    },
+    {
+      "key": "pizza", "labelJa": "ピザ", "labelEn": "pizza", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "丸くしたいみみ", "durationMs": 900, "path": "M 28 37 Q 53 20 83 31 L 93 37 L 88 45 Q 60 32 32 46 L 28 37" },
+        { "name": "三角のつもり", "durationMs": 950, "path": "M 33 46 L 44 66 L 57 99 Q 59 104 62 98 L 75 73 L 88 46" },
+        { "name": "丸い具を二つ", "durationMs": 650, "path": "M 49 51 Q 39 50 43 60 Q 50 67 55 58 Q 57 53 49 51 M 70 61 Q 61 60 64 69 Q 70 76 75 68 Q 77 63 70 61" },
+        { "name": "最後にちいさな具", "durationMs": 300, "path": "M 55 77 L 60 74 L 63 80 M 68 46 L 71 50" }
+      ]
+    },
+    {
+      "key": "bread", "labelJa": "パン", "labelEn": "bread", "adoptionBase": "fog-doodle-v02", "batch": "expansion-04",
+      "strokes": [
+        { "name": "ふくらんだ上の形", "durationMs": 1150, "path": "M 29 59 Q 17 54 23 39 Q 29 26 47 29 Q 60 22 75 30 Q 94 28 99 43 Q 103 57 89 62" },
+        { "name": "少しつぶれた下の形", "durationMs": 1000, "path": "M 29 60 L 28 89 L 49 93 L 67 89 L 90 91 L 88 63" },
+        { "name": "最後にパンの中の線", "durationMs": 650, "path": "M 39 62 L 39 82 L 79 82 L 79 62 M 44 43 Q 51 37 56 42 M 65 42 Q 71 37 77 43" }
+      ]
+    },
+    {
+      "key": "chair",
+      "labelJa": "いす",
+      "labelEn": "chair",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "曲がった背もたれ",
+          "durationMs": 950,
+          "path": "M 34 62 L 31 28 Q 48 24 68 29 L 70 60"
+        },
+        {
+          "name": "座るところ",
+          "durationMs": 950,
+          "path": "M 33 61 L 72 58 L 86 72 L 38 76 L 27 66 L 33 61"
+        },
+        {
+          "name": "最後に足",
+          "durationMs": 950,
+          "path": "M 37 77 L 35 99 M 83 74 L 85 96 M 30 68 L 27 87"
+        }
+      ]
+    },
+    {
+      "key": "pencil",
+      "labelJa": "えんぴつ",
+      "labelEn": "pencil",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "長い片側",
+          "durationMs": 950,
+          "path": "M 31 88 L 73 21 L 88 31"
+        },
+        {
+          "name": "反対と先っぽ",
+          "durationMs": 950,
+          "path": "M 88 32 L 49 94 L 26 104 L 31 88 L 49 94"
+        },
+        {
+          "name": "最後に芯と線",
+          "durationMs": 950,
+          "path": "M 29 98 L 33 101 M 40 88 L 79 29 M 69 29 L 83 39"
+        }
+      ]
+    },
+    {
+      "key": "scissors",
+      "labelJa": "はさみ",
+      "labelEn": "scissors",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "左の持ち手",
+          "durationMs": 950,
+          "path": "M 45 73 Q 22 66 23 84 Q 23 101 39 94 Q 50 88 45 73"
+        },
+        {
+          "name": "右の持ち手",
+          "durationMs": 950,
+          "path": "M 70 75 Q 87 65 95 80 Q 99 95 83 97 Q 70 95 70 75"
+        },
+        {
+          "name": "最後に開いた刃",
+          "durationMs": 950,
+          "path": "M 46 78 L 83 23 Q 85 45 69 73 M 73 79 L 35 24 Q 34 45 52 66 M 58 65 L 59 66"
+        }
+      ]
+    },
+    {
+      "key": "clock",
+      "labelJa": "とけい",
+      "labelEn": "clock",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "つぶれた丸",
+          "durationMs": 950,
+          "path": "M 57 22 Q 88 18 96 48 Q 103 76 80 92 Q 45 105 28 82 Q 16 62 27 39 Q 37 22 54 23"
+        },
+        {
+          "name": "文字のかわりに目盛り",
+          "durationMs": 950,
+          "path": "M 59 29 L 59 35 M 87 58 L 81 59 M 60 88 L 59 82 M 30 58 L 36 59"
+        },
+        {
+          "name": "最後に針",
+          "durationMs": 950,
+          "path": "M 58 42 L 57 60 L 76 70"
+        }
+      ]
+    },
+    {
+      "key": "bus",
+      "labelJa": "バス",
+      "labelEn": "bus",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "長い車体",
+          "durationMs": 950,
+          "path": "M 18 73 L 19 35 Q 47 30 89 36 L 100 52 L 98 79 L 20 78"
+        },
+        {
+          "name": "ふぞろいの窓",
+          "durationMs": 950,
+          "path": "M 27 44 L 27 59 L 44 60 L 43 43 L 27 44 M 53 43 L 52 60 L 69 60 L 70 44 L 53 43 M 79 43 L 78 61 L 96 62"
+        },
+        {
+          "name": "最後にタイヤ",
+          "durationMs": 950,
+          "path": "M 38 75 Q 25 74 28 89 Q 38 99 45 86 Q 47 77 38 75 M 82 76 Q 69 76 72 88 Q 81 98 89 87 Q 92 78 82 76"
+        }
+      ]
+    },
+    {
+      "key": "airplane",
+      "labelJa": "ひこうき",
+      "labelEn": "airplane",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "細い胴体",
+          "durationMs": 950,
+          "path": "M 54 92 L 55 32 Q 61 12 65 34 L 68 92"
+        },
+        {
+          "name": "大きな翼",
+          "durationMs": 950,
+          "path": "M 55 48 L 19 72 L 20 80 L 55 69 M 67 47 L 100 76 L 97 83 L 68 69"
+        },
+        {
+          "name": "最後に尾翼",
+          "durationMs": 950,
+          "path": "M 54 82 L 39 97 L 40 102 L 61 96 L 81 102 L 82 97 L 68 83"
+        }
+      ]
+    },
+    {
+      "key": "rice-ball",
+      "labelJa": "おにぎり",
+      "labelEn": "rice ball",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "丸くした三角",
+          "durationMs": 950,
+          "path": "M 25 70 Q 37 48 53 28 Q 61 21 67 31 L 94 75"
+        },
+        {
+          "name": "下のふくらみ",
+          "durationMs": 950,
+          "path": "M 94 74 Q 105 92 83 94 L 36 95 Q 17 94 23 75"
+        },
+        {
+          "name": "最後にのり",
+          "durationMs": 950,
+          "path": "M 47 92 L 45 68 L 70 66 L 72 93"
+        }
+      ]
+    },
+    {
+      "key": "sushi",
+      "labelJa": "すし",
+      "labelEn": "sushi",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "乗っかったネタ",
+          "durationMs": 950,
+          "path": "M 24 49 Q 39 31 90 40 L 101 53 Q 60 50 23 61 L 24 49"
+        },
+        {
+          "name": "はみだしたごはん",
+          "durationMs": 950,
+          "path": "M 30 63 L 31 79 Q 56 89 89 76 L 91 56"
+        },
+        {
+          "name": "最後にネタのすじ",
+          "durationMs": 950,
+          "path": "M 43 44 L 48 53 M 61 41 L 66 50 M 80 43 L 85 50 M 40 75 L 42 76 M 72 76 L 74 75"
+        }
+      ]
+    },
+    {
+      "key": "squid",
+      "labelJa": "いか",
+      "labelEn": "squid",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "とがった頭",
+          "durationMs": 950,
+          "path": "M 41 43 L 61 20 L 82 45 L 70 43 M 41 43 L 49 44"
+        },
+        {
+          "name": "胴と目",
+          "durationMs": 950,
+          "path": "M 49 44 L 46 72 Q 58 83 72 72 L 70 44 M 54 61 L 54 62 M 65 60 L 65 61"
+        },
+        {
+          "name": "最後にくねくねの足",
+          "durationMs": 950,
+          "path": "M 47 75 Q 30 89 39 99 M 54 79 Q 47 93 52 103 M 62 80 L 62 100 M 70 77 Q 85 88 78 99"
+        }
+      ]
+    },
+    {
+      "key": "duck",
+      "labelJa": "あひる",
+      "labelEn": "duck",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "頭からおなか",
+          "durationMs": 950,
+          "path": "M 46 54 Q 27 45 36 30 Q 46 21 57 32 L 60 58 Q 81 65 97 55 Q 100 82 73 90 Q 42 95 32 76"
+        },
+        {
+          "name": "くちばしと目",
+          "durationMs": 950,
+          "path": "M 35 39 L 20 44 L 35 49 M 46 35 L 46 36"
+        },
+        {
+          "name": "最後に羽と水",
+          "durationMs": 950,
+          "path": "M 49 65 Q 72 60 76 73 Q 64 86 48 74 M 25 99 Q 42 95 53 100 M 65 100 L 96 98"
+        }
+      ]
+    },
+    {
+      "key": "dolphin",
+      "labelJa": "いるか",
+      "labelEn": "dolphin",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "背中と背びれ",
+          "durationMs": 950,
+          "path": "M 23 59 Q 30 41 54 40 L 66 25 L 68 43 Q 84 48 94 74"
+        },
+        {
+          "name": "おなかと尾",
+          "durationMs": 950,
+          "path": "M 24 59 L 14 67 L 33 66 Q 54 57 78 77 L 72 87 L 89 84 L 102 90 L 97 77"
+        },
+        {
+          "name": "最後にひれと目",
+          "durationMs": 950,
+          "path": "M 45 61 L 44 78 L 60 65 M 32 53 L 32 54"
+        }
+      ]
+    },
+    {
+      "key": "snake",
+      "labelJa": "へび",
+      "labelEn": "snake",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "くねくねの背中",
+          "durationMs": 950,
+          "path": "M 24 80 Q 49 100 69 80 Q 77 71 65 62 Q 50 52 62 36 Q 72 23 86 34"
+        },
+        {
+          "name": "おなかと頭",
+          "durationMs": 950,
+          "path": "M 24 80 Q 43 108 75 92 Q 99 78 78 59 Q 70 50 78 47 Q 99 53 99 39 Q 98 30 87 33"
+        },
+        {
+          "name": "最後に目と舌",
+          "durationMs": 950,
+          "path": "M 88 37 L 88 38 M 98 44 L 107 48 L 109 44 M 107 48 L 110 51"
+        }
+      ]
+    },
+    {
+      "key": "glasses",
+      "labelJa": "めがね",
+      "labelEn": "glasses",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "左の丸",
+          "durationMs": 950,
+          "path": "M 44 45 Q 21 37 20 61 Q 23 83 44 76 Q 60 66 48 47"
+        },
+        {
+          "name": "右の丸",
+          "durationMs": 950,
+          "path": "M 79 46 Q 63 44 66 66 Q 70 86 91 75 Q 106 65 96 49 Q 90 44 79 46"
+        },
+        {
+          "name": "最後につなぐ",
+          "durationMs": 950,
+          "path": "M 53 57 Q 59 51 66 58 M 21 51 L 15 35 M 98 52 L 107 40"
+        }
+      ]
+    },
+    {
+      "key": "mountain",
+      "labelJa": "やま",
+      "labelEn": "mountain",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "左の山",
+          "durationMs": 950,
+          "path": "M 15 90 L 43 36 Q 46 28 51 39 L 75 86"
+        },
+        {
+          "name": "右の山とすそ",
+          "durationMs": 950,
+          "path": "M 64 61 L 81 41 L 105 92 L 77 90 M 18 94 L 72 93"
+        },
+        {
+          "name": "最後に山の雪",
+          "durationMs": 950,
+          "path": "M 36 51 L 43 55 L 49 48 L 58 56 M 75 53 L 83 58 L 88 54"
+        }
+      ]
+    },
+    {
+      "key": "ghost",
+      "labelJa": "おばけ",
+      "labelEn": "ghost",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "頭と体",
+          "durationMs": 950,
+          "path": "M 29 85 Q 31 67 35 45 Q 42 23 64 28 Q 89 30 87 59 L 96 91"
+        },
+        {
+          "name": "ゆらゆらのすそ",
+          "durationMs": 950,
+          "path": "M 96 91 L 80 83 L 69 95 L 56 86 L 42 97 L 29 85"
+        },
+        {
+          "name": "最後にぽけっとした顔",
+          "durationMs": 950,
+          "path": "M 49 49 L 49 51 M 72 48 L 72 50 M 57 63 Q 63 57 67 64 Q 66 74 60 72 Q 55 70 57 63"
+        }
+      ]
+    },
+    {
+      "key": "candy",
+      "labelJa": "あめ",
+      "labelEn": "candy",
+      "adoptionBase": "fog-doodle-v02",
+      "batch": "expansion-05",
+      "strokes": [
+        {
+          "name": "まんなか",
+          "durationMs": 950,
+          "path": "M 48 44 Q 70 35 78 53 Q 86 76 65 81 Q 42 86 39 65 Q 36 50 48 44"
+        },
+        {
+          "name": "左右のつつみ",
+          "durationMs": 950,
+          "path": "M 40 53 L 20 43 L 24 60 L 18 78 L 41 70 M 79 53 L 100 42 L 96 62 L 103 79 L 80 71"
+        },
+        {
+          "name": "最後につつみのしわ",
+          "durationMs": 950,
+          "path": "M 26 57 L 36 61 M 27 69 L 36 65 M 85 60 L 94 55 M 86 65 L 96 70"
+        }
+      ]
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { adoptShizukuSketches } from './shizuku-doodles/adopted';
 import { describe, expect, it } from 'vitest';
 import { japaneseEverydayDoodles } from './japaneseEverydayDoodles';
 import { japaneseClassicDoodles } from './japaneseClassicDoodles';
@@ -10,13 +11,15 @@ import { chainLettersMatch, firstLetter, lastLetter, selectGirlSketch } from '..
 const existing = [...localizeGirlSketches(girlSketches, 'ja'), ...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles];
 const catalogue = [...existing, ...japaneseEverydayDoodles];
 describe('Japanese everyday vocabulary', () => {
-  it('adds 12 new nouns and IDs rather than duplicate drawings of existing nouns', () => {
+  it('retains 12 historical nouns and replaces overlapping adopted art in play', () => {
     expect(japaneseEverydayDoodles.map(s => s.word)).toEqual([
       'いちご','ごぼう','きゅうり','なす','だるま','くし','すいとう','うでわ','けしごむ','むぎ','くつした','たけのこ',
     ]);
     expect(new Set(catalogue.map(s => s.id)).size).toBe(catalogue.length);
     expect(new Set(japaneseEverydayDoodles.map(s => s.word)).size).toBe(12);
-    for (const item of japaneseEverydayDoodles) expect(existing.some(s => s.word === item.word)).toBe(false);
+    const adopted = adoptShizukuSketches(catalogue, 'ja');
+    expect(adopted.filter(s => s.word === 'いちご').map(s => s.id)).toEqual(['shizuku-style-v01-strawberry']);
+    for (const item of japaneseEverydayDoodles) expect(adopted.some(s => s.word === item.word)).toBe(true);
     expect(localizeGirlSketches(girlSketches, 'en')).toEqual(girlSketches);
   });
   it('keeps bounded sparse timed strokes and a nonterminal playable exit for every noun', () => {

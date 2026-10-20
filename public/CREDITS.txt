@@ -53,3 +53,5 @@ Shizuku Doodle Library v0.1 adds 37 original vector drawings and retains the
 original DRAWINDOW templates and owl review. Per-candidate provenance and vector
 hashes are recorded in assets/doodle-library-v01-manifest.json in source.
 Optional breath/glass sounds are synthesized locally. Audio starts muted.
+
+Shizuku doodles (67 adopted originals, 2026-10-18): Original DRAWINDOW SVG paths. Vocabulary inspiration: https://kotoba-moji.com/eshiritori-kotoba/ (no external artwork reused).
