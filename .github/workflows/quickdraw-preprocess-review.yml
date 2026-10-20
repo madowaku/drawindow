@@ -1,0 +1,42 @@
+name: DRAWINDOW v0.8.1 preprocess A-B
+
+on:
+  pull_request:
+    branches: [feat/quickdraw345-local-ml-v08]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preprocess-comparison:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Run all unit and regression tests
+        run: npm test
+      - name: Pin and prepare offline trained model
+        run: npm run prepare:local-ml
+      - name: Install Chromium for real inference comparison
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.0
+          npx playwright install --with-deps chromium
+      - name: Compare historical vs corrected preprocessing using same model
+        run: node scripts/qa-quickdraw-browser.mjs
+      - name: Typecheck, build and verify experimental package
+        run: npm run package:local-ml
+      - name: Upload A-B results and test package
+        uses: actions/upload-artifact@v4
+        with:
+          name: DRAWINDOW-v0.8.1-preprocess-comparison
+          path: |
+            artifacts/release/quickdraw-preprocess-ab.json
+            artifacts/release/DRAWINDOW-v0.8-quickdraw345-ml-lab.zip
+            artifacts/release/local-ml-receipt.json
+          retention-days: 7
