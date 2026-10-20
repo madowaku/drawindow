@@ -1,6 +1,7 @@
 import type { DrawingRecognizer, Language, RecognitionResult } from '../core/types';
 import { normalizeWord } from '../core/words';
 import { preprocessQuickDraw } from './quickDrawPreprocess';
+import type { QuickDrawPreprocessOptions } from './quickDrawPreprocess';
 import { quickDrawJapanese } from './quickDrawJapanese';
 
 type LiteRuntime = typeof import('@litertjs/core');
@@ -50,13 +51,15 @@ function fail(errorCode: 'invalid_input' | 'unavailable' | 'invalid_response'): 
 export interface QuickDrawOptions {
   /** Pretrained model scores, not a calibrated probability of human correctness. */
   minScore?: number;
+  /** Research-only A/B configuration. Production defaults to training polarity. */
+  preprocess?: QuickDrawPreprocessOptions;
 }
 
 export function createQuickDrawRecognizer(options: QuickDrawOptions = {}): DrawingRecognizer {
   return {
     async recognize(input, {signal}={}) {
       if(signal?.aborted)return fail('unavailable');
-      const pixels=preprocessQuickDraw(input.strokes);
+      const pixels=preprocessQuickDraw(input.strokes, options.preprocess);
       if(!pixels)return fail('invalid_input');
       try {
         if(!sharedReady) sharedReady=initialize().catch(error=>{sharedReady=undefined;throw error;});
