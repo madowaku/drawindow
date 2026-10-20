@@ -5,17 +5,17 @@ const preferred: Readonly<Record<Language, Readonly<Record<Mode, readonly string
   ja: {
     day: ['すいか','はな','ひまわり','あさがお','とんぼ','すずめ','うちわ','とり',
       'かめ','いちご','きゅうり','たけのこ','そり','きつね','かえる',
-      'たんぽぽ','てんとうむし','ぶらんこ','ちゅーりっぷ','ひよこ','さくらんぼ'],
+      'たんぽぽ','てんとうむし','ぶらんこ','ちゅーりっぷ','ひよこ','さくらんぼ','すべりだい','あり'],
     night: ['つき','ほし','こうもり','ふくろう','ろうそく','とけい',
       'らんぷ','おばけ','ぼうえんきょう','ほたる','ぱじゃま','べっど',
-      'かぼちゃ','まじょ','くものす','しろ'],
+      'かぼちゃ','まじょ','くものす','しろ','ほね'],
   },
   en: {
     day: ['apple','flower','butterfly','tree','watermelon','banana','rabbit',
       'mushroom','carrot','fish','grapes','orange','ladybug','dandelion',
-      'swing','chick','cherry','tulip','pinwheel','caterpillar'],
+      'swing','chick','cherry','tulip','pinwheel','caterpillar','slide','ant'],
     night: ['moon','star','rocket','watch','owl','house','ghost','lamp','telescope',
-      'firefly','pajamas','bed','pumpkin','witch','spiderweb','castle'],
+      'firefly','pajamas','bed','pumpkin','witch','spiderweb','castle','bone'],
   },
 };
 export const prefersThemeWord = (word: string, language: Language, mode: Mode): boolean =>

@@ -9,6 +9,7 @@ import type { DrawingRecognizer, GameState, Language, Mode, SessionKind } from '
 import { girlSketches } from './data/sketches';
 import { withEnglishStarter } from './data/themeVocabulary';
 import { getBilingualV08Doodles } from './data/bilingualV08Doodles';
+import { getEshiritoriV08Doodles } from './data/eshiritoriV08Pack';
 import { localizeGirlSketches, withJapaneseStarter } from './data/japaneseSketches';
 import { japaneseExtraSketches } from './data/japaneseExtraSketches';
 import { japaneseDoodlePack } from './data/japaneseDoodlePack';
@@ -116,7 +117,7 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
     if (state.language === 'ja') {
       sketches = [...sketches, ...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles, ...japaneseEverydayDoodles];
     }
-    sketches = [...sketches, ...getBilingualV08Doodles(state.language)];
+    sketches = [...sketches, ...getBilingualV08Doodles(state.language), ...getEshiritoriV08Doodles(state.language)];
     // A fresh play advances this language's own opening rotation, never a render.
     const starterKey = state.language === 'ja'
       ? 'drawindow-ja-starter-sequence' : 'drawindow-en-starter-sequence';
