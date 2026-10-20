@@ -34,6 +34,15 @@ describe('Japanese blind doodle comparison gallery', () => {
     expect(screen.getAllByRole('img')).toHaveLength(32);
   });
 
+  it('allows blind review of the 14 new picture-shiritori candidates', () => {
+    const { container } = render(<JapaneseDoodlePreview />);
+    fireEvent.click(screen.getByRole('button', { name: '絵しりとり追加14枚' }));
+    expect(screen.getAllByRole('img')).toHaveLength(14);
+    expect(container.textContent).not.toContain('すべりだい');
+    fireEvent.click(screen.getByRole('button', { name: '名前を表示' }));
+    expect(screen.getByText('すべりだい')).toBeTruthy();
+  });
+
   it('filters classics, switches daylight, and can hide/show comparison without losing the catalogue', () => {
     const { container } = render(<JapaneseDoodlePreview />);
     fireEvent.click(screen.getByRole('button', { name: '☾ 夜' }));
@@ -44,7 +53,7 @@ describe('Japanese blind doodle comparison gallery', () => {
     expect(screen.getAllByRole('img')).toHaveLength(32);
     fireEvent.click(screen.getByRole('button', { name: '追加分' }));
     expect(container.querySelector('.ja-catalog-grid')?.getAttribute('data-comparing')).toBe('false');
-    expect(screen.getAllByRole('img')).toHaveLength(80);
+    expect(screen.getAllByRole('img')).toHaveLength(94);
     fireEvent.click(screen.getByRole('button', { name: '定番16枚' }));
     expect(screen.getAllByRole('img')).toHaveLength(32);
   });
@@ -88,7 +97,7 @@ it('handles empty filters, catalogue changes and the last item', () => {
   fireEvent.click(screen.getByRole('button', { name: '全部' }));
   expect(screen.getAllByRole('img')).toHaveLength(1);
   fireEvent.change(screen.getByRole('combobox'), { target: { value: 'all' } });
-  expect(screen.getByText('1 / 144')).toBeTruthy();
+  expect(screen.getByText('1 / 158')).toBeTruthy();
 });
 
 it('survives malformed and blocked storage with usable in-memory marks', () => {

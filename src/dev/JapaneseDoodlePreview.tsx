@@ -1,5 +1,6 @@
 import { japaneseEverydayDoodles } from '../data/japaneseEverydayDoodles';
 import { getBilingualV08Doodles } from '../data/bilingualV08Doodles';
+import { getEshiritoriV08Doodles } from '../data/eshiritoriV08Pack';
 import { useState } from 'react';
 import type { Mode } from '../core/types';
 import { firstLetter } from '../core/words';
@@ -13,7 +14,8 @@ import './JapaneseDoodlePreview.css';
 
 const original = localizeGirlSketches(girlSketches, 'ja');
 const bilingual = getBilingualV08Doodles('ja');
-const additions = [...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles, ...japaneseEverydayDoodles, ...bilingual];
+const eshiritori = getEshiritoriV08Doodles('ja');
+const additions = [...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles, ...japaneseEverydayDoodles, ...bilingual, ...eshiritori];
 const all = [...original, ...additions];
 const previousClassic = new Map(japaneseClassicV02.map(sketch => [sketch.word, sketch]));
 const syllables = [...new Set(all.map(sketch => firstLetter(sketch.word, 'ja') ?? ''))].sort((a, b) => a.localeCompare(b, 'ja'));
@@ -33,7 +35,7 @@ export function JapaneseDoodlePreview() {
   const [mode, setMode] = useState<Mode>('day');
   const [showAnswers, setShowAnswers] = useState(false);
   const [compare, setCompare] = useState(true);
-  const [scope, setScope] = useState<'classic' | 'everyday' | 'bilingual' | 'additions' | 'all'>('classic');
+  const [scope, setScope] = useState<'classic' | 'everyday' | 'bilingual' | 'eshiritori' | 'additions' | 'all'>('classic');
   const [syllable, setSyllable] = useState('all');
   const [single, setSingle] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(true);
@@ -48,7 +50,7 @@ export function JapaneseDoodlePreview() {
     try { localStorage.setItem(reviewKey, JSON.stringify(next)); setStorageFailed(false); }
     catch { setStorageFailed(true); }
   }
-  const visible = (scope === 'classic' ? japaneseClassicDoodles : scope === 'everyday' ? japaneseEverydayDoodles : scope === 'bilingual' ? bilingual : scope === 'additions' ? additions : all)
+  const visible = (scope === 'classic' ? japaneseClassicDoodles : scope === 'everyday' ? japaneseEverydayDoodles : scope === 'bilingual' ? bilingual : scope === 'eshiritori' ? eshiritori : scope === 'additions' ? additions : all)
     .filter(sketch => syllable === 'all' || firstLetter(sketch.word, 'ja') === syllable);
   const current = Math.min(position, Math.max(0, visible.length - 1));
   const displayed = single ? visible.slice(current, current + 1) : visible;
@@ -69,6 +71,7 @@ export function JapaneseDoodlePreview() {
       <button aria-pressed={scope === 'classic'} onClick={() => { setScope('classic'); setPosition(0); }}>定番16枚</button>
       <button aria-pressed={scope === 'everyday'} onClick={() => { setScope('everyday'); setPosition(0); }}>前回追加12枚</button>
       <button aria-pressed={scope === 'bilingual'} onClick={() => { setScope('bilingual'); setPosition(0); }}>昼夜・日英9枚</button>
+      <button aria-pressed={scope === 'eshiritori'} onClick={() => { setScope('eshiritori'); setPosition(0); }}>絵しりとり追加14枚</button>
       <button aria-pressed={scope === 'additions'} onClick={() => { setScope('additions'); setPosition(0); }}>追加分</button>
       <button aria-pressed={scope === 'all'} onClick={() => { setScope('all'); setPosition(0); }}>全部</button>
       <button aria-pressed={phoneWidth} onClick={() => setPhoneWidth(value => !value)}>360px幅</button>
