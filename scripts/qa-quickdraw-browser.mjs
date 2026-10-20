@@ -43,7 +43,7 @@ try {
   const comparison=await page.evaluate(async()=>{
     const {girlSketches}=await import('/src/data/sketches.ts');
     const {createQuickDrawRecognizer}=await import('/src/services/quickDrawRecognizer.ts');
-    const labels = new Set((await (await fetch('/local-ml/labels.txt')).text()).trim().split(/\\r?\\n/));
+    const labels = new Set((await (await fetch('/local-ml/labels.txt')).text()).trim().split(/\r?\n/));
     const seen = new Set();
     const sketches = girlSketches.filter(item => {
       if (item.readability === 'reject' || item.readability === 'spicy' ||
