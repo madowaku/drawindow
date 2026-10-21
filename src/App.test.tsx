@@ -64,6 +64,7 @@ describe('integrated UI journey with controlled presentation callbacks', () => {
     for (const guess of guesses) expect(document.body.textContent).not.toMatch(new RegExp(`\\b${guess}\\b`, 'i'));
     screen.getAllByRole('textbox').forEach((input, i) => fireEvent.change(input, { target: { value: ['dog', 'house', 'fish', 'cat', 'tree'][i] } }));
     fireEvent.click(screen.getByRole('button', { name: /REVEAL OUR CHAIN/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'See what we meant' }));
     expect(document.querySelectorAll('.result-drawing')).toHaveLength(10);
     expect(document.querySelectorAll('.chain-link')).toHaveLength(9);
     expect(screen.getByText('Final drawing · not sent for recognition')).toBeTruthy();
@@ -96,7 +97,8 @@ describe('integrated UI journey with controlled presentation callbacks', () => {
     expect(labels[0].value).toBe('ice cream');
     ['tree', 'egg', 'goat', 'rain'].forEach((word, i) => fireEvent.change(labels[i + 1], { target: { value: word } }));
     fireEvent.click(screen.getByRole('button', { name: /REVEAL OUR CHAIN/ }));
-    expect(['smile', 'shy']).toContain(screen.getByTestId('results-character').querySelector('[data-pose]')?.getAttribute('data-pose'));
+    fireEvent.click(screen.getByRole('button', { name: 'See what we meant' }));
+    expect(document.body.textContent).not.toContain('perfect understanding');
     expect(document.querySelectorAll('.result-drawing')).toHaveLength(10);
     expect(document.querySelectorAll('.chain-link')).toHaveLength(9);
     expect(screen.getByText('9 of 9 possible links known')).toBeTruthy();
@@ -110,10 +112,80 @@ describe('integrated UI journey with controlled presentation callbacks', () => {
     fireEvent.click(screen.getByRole('button', { name: /NIGHT/ }));
     await finishFive();
     fireEvent.click(screen.getByRole('button', { name: /REVEAL OUR CHAIN/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'See what we meant' }));
     expect(screen.getByText('0 of 9 possible links known')).toBeTruthy();
     expect(document.querySelectorAll('.chain-link.unknown')).toHaveLength(9);
     fireEvent.click(screen.getByRole('button', { name: /Back to the beginning/ }));
     expect(document.querySelector('main')?.getAttribute('data-mode')).toBe('night');
     expect(localStorage.getItem('drawindow-mode')).toBe('night');
+  });
+});
+
+describe('Japanese UI playthrough', () => {
+  it('switches language, persists it and completes five demo exchanges without revealing answers early', async () => {
+    render(<App />);
+    fireEvent.click(screen.getByRole('button', { name: '日本語' }));
+    expect(document.querySelector('main')?.getAttribute('data-language')).toBe('ja');
+    expect(localStorage.getItem('drawindow-language')).toBe('ja');
+    fireEvent.click(screen.getByRole('button', { name: /デモで遊ぶ/ }));
+    for (let round = 1; round <= 5; round++) {
+      await waitFor(() => expect(document.querySelector('main')?.getAttribute('data-phase')).toBe('girl_breath'));
+      fireEvent.click(screen.getByRole('button', { name: 'Test complete breath' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Test complete playback' }));
+      if (document.querySelector('main')?.getAttribute('data-phase') === 'girl_notice') {
+        expect(screen.getByRole('status').textContent).toBe('あっ。');
+        expect(screen.queryByRole('button', { name: /あなたの番/ })).toBeNull();
+        await waitFor(() => expect(document.querySelector('main')?.getAttribute('data-phase')).toBe('girl_breath'), { timeout: 2500 });
+        fireEvent.click(screen.getByRole('button', { name: 'Test complete breath' }));
+        fireEvent.click(screen.getByRole('button', { name: 'Test complete playback' }));
+      }
+      expect(screen.queryByRole('textbox')).toBeNull();
+      fireEvent.click(await screen.findByRole('button', { name: /あなたの番/ }, { timeout: 10000 }));
+      fireEvent.click(screen.getByRole('button', { name: 'Test draw' }));
+      fireEvent.click(screen.getByRole('button', { name: /できた/ }));
+    }
+    await waitFor(() => expect(screen.getAllByRole('textbox')).toHaveLength(5));
+    fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'ゴリラ' } });
+    fireEvent.click(screen.getByRole('button', { name: /答えあわせ/ }));
+    fireEvent.click(screen.getByRole('button', { name: '答え合わせをする' }));
+    expect(document.querySelectorAll('.result-drawing')).toHaveLength(10);
+    expect(document.querySelectorAll('.chain-link')).toHaveLength(9);
+    expect(screen.getByText('ごりら')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: /最初に戻る/ }));
+    expect(document.querySelector('main')?.getAttribute('data-language')).toBe('ja');
+  });
+});
+
+it('resets the internal iframe scroller when entering naming, results and title', async () => {
+  render(<App />);
+  const scroller = document.querySelector('main')!;
+  scroller.scrollTop = 400;
+  await finishFive();
+  expect(scroller.scrollTop).toBe(0);
+  scroller.scrollTop = 900;
+  fireEvent.click(screen.getByRole('button', { name: /REVEAL OUR CHAIN/ }));
+  expect(scroller.scrollTop).toBe(0);
+  scroller.scrollTop = 1800;
+  fireEvent.click(screen.getByRole('button', { name: 'DRAWINDOW home' }));
+  expect(scroller.scrollTop).toBe(0);
+});
+
+describe('Japanese starter variety', () => {
+  it('does not begin with an apple, rotates openings, and persists across page reload', () => {
+    let current: GameState | undefined;
+    render(<App onStateChange={state => { current = state; }} />);
+    fireEvent.click(screen.getByRole('button', { name: '日本語' }));
+    fireEvent.click(screen.getByRole('button', { name: /デモで遊ぶ/ }));
+    expect(current!.entries[0].intendedWord).toBe('すいか');
+    fireEvent.click(screen.getByRole('button', { name: '最初の画面へ' }));
+    fireEvent.click(screen.getByRole('button', { name: '最初に戻る' }));
+    fireEvent.click(screen.getByRole('button', { name: /デモで遊ぶ/ }));
+    expect(current!.entries[0].intendedWord).toBe('かさ');
+    expect(localStorage.getItem('drawindow-ja-starter-sequence')).toBe('2');
+    cleanup();
+    current = undefined;
+    render(<App onStateChange={state => { current = state; }} />);
+    fireEvent.click(screen.getByRole('button', { name: /デモで遊ぶ/ }));
+    expect((current as GameState | undefined)?.entries[0].intendedWord).toBe('つき');
   });
 });

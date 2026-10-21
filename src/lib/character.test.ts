@@ -85,3 +85,12 @@ describe('Shizuku conversational reactions', () => {
     }
   });
 });
+
+
+it('uses a startle then a shy fluster for her own slip, with motion disabled when reduced', () => {
+  for (const mode of ['day','night'] as const) {
+    expect(getShizukuReaction({ phase:'girl_notice', mode, reducedMotion:false })).toMatchObject({pose:'curious',motion:'startle'});
+    expect(getShizukuReaction({ phase:'girl_flustered', mode, reducedMotion:false })).toMatchObject({pose:'shy',motion:'fluster'});
+    expect(getShizukuReaction({ phase:'girl_flustered', mode, reducedMotion:true })).toMatchObject({pose:'shy',leanPx:0,durationMs:0});
+  }
+});

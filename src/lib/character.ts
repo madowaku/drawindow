@@ -5,7 +5,7 @@ export const CHARACTER_FRAMES = ['neutral', 'thinking', 'smile', 'shy', 'breath'
 export type CharacterFrame = ShizukuPoseId | 'blink';
 export const DRAWING_HESITATION = 0.14;
 
-export type CharacterMotion = 'idle' | 'breath' | 'draw' | 'watch' | 'think' | 'hold' | 'concern' | 'review' | 'result';
+export type CharacterMotion = 'idle' | 'breath' | 'draw' | 'watch' | 'think' | 'hold' | 'concern' | 'review' | 'result' | 'startle' | 'fluster';
 
 export interface ShizukuReactionInput {
   phase: GamePhase;
@@ -59,6 +59,12 @@ export function getShizukuReaction({
       motion = pose === 'thinking' ? 'think' : 'draw';
       leanPx = pose === 'drawing' ? (mode === 'day' ? 2 : 1) : 0;
       durationMs = pose === 'drawing' ? 600 : 0;
+      break;
+    case 'girl_notice':
+      pose = 'curious'; motion = 'startle'; leanPx = 2; durationMs = 220;
+      break;
+    case 'girl_flustered':
+      pose = 'shy'; motion = 'fluster'; leanPx = 2; durationMs = 700;
       break;
     case 'girl_holding':
       // This varies by exchange only; it never reads whether the guess was right.

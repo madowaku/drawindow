@@ -1,0 +1,43 @@
+.ending { max-width: 860px; }
+.ending .ending-intro h1 { font-size:clamp(30px,5vw,54px); outline:none; }
+.ending-controls { display:flex; flex-wrap:wrap; gap:12px; margin:24px 0 36px; }
+.ending-controls button { min-height:48px; letter-spacing:.04em; }
+.ending-diary { list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px 20px; margin:0; padding:0; }
+.ending-diary > li { min-width:0; display:flex; flex-direction:column; justify-content:flex-end; animation:ending-arrive .8s ease both; }
+.ending .result-drawing { display:flex; flex-direction:column; align-items:stretch; gap:0; padding:18px; margin:0; height:100%; border:1px solid var(--line); background:var(--panel); border-radius:3px; }
+.ending .actor-player { background:var(--soft); }
+.ending .result-drawing .eyebrow { margin-bottom:12px; letter-spacing:.08em; }
+.ending .result-drawing .sketch-thumb,.ending-window-pictures .sketch-thumb { width:100%; height:auto; aspect-ratio:1; background:#f7f8f2; border-radius:2px; }
+.ending-link-space { min-height:76px; flex-shrink:0; }
+.ending-meaning { overflow-wrap:anywhere; padding-top:16px; }
+.ending-meaning > p:first-child { font-size:11px; color:var(--muted); margin-bottom:6px; }
+.ending .ending-meaning h2 { font-size:26px; line-height:1.35; margin-bottom:12px; text-transform:none; }
+.ending .interpretation,.ending-entry-note { font-size:12px; line-height:1.7; margin:0; }
+.ending-entry-note { margin-top:12px; }
+.ending .chain-link { margin:0 0 12px; padding:10px 0 8px; display:flex; flex-shrink:0; flex-direction:column; align-items:flex-start; gap:5px; min-height:64px; border-top:2px solid var(--accent); font-size:10px; letter-spacing:0; line-height:1.5; color:var(--ink); animation:ending-arrive .5s ease both; }
+.ending .chain-link.broken { border-top-style:dashed; }
+.ending .chain-link.unknown { border-top-style:dotted; }
+.ending .chain-link::before,.ending .chain-link::after { content:none; }
+.ending .score-strip { margin-bottom:36px; }
+.ending .result-end { display:flex; flex-direction:column; align-items:center; gap:14px; }
+.ending .text-button { min-height:44px; }
+.ending .result-end .tagline { max-width:600px; line-height:1.6; }
+.ending-goodbye { margin-bottom:40px; }
+.ending-window { position:relative; height:340px; max-width:560px; overflow:hidden; margin:0 auto 28px; border:8px solid var(--line); background:var(--soft); }
+.ending-window-pictures { position:absolute; inset:15px; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; align-content:center; opacity:.04; animation:ending-away 4s ease both; }
+.ending-window-pictures .sketch-thumb { opacity:.85; }
+.ending-refog { position:absolute; inset:0; background:var(--paper); opacity:.92; backdrop-filter:blur(8px); animation:ending-fog 4s ease both; }
+.ending-goodbye blockquote { text-align:center; margin:0; line-height:1.8; font-size:16px; }
+.ending-goodbye blockquote p:first-child { font-family:'Cormorant Garamond',Georgia,serif; font-size:28px; }
+.souvenir { width:100%; max-width:520px; margin:12px 0 28px; padding:24px 16px; border-block:1px solid var(--line); text-align:center; }
+.souvenir label { display:flex; align-items:center; justify-content:center; gap:10px; min-height:44px; font-size:13px; margin-bottom:12px; }
+.souvenir input { width:20px; height:20px; }
+.souvenir p { font-size:12px; line-height:1.7; margin:12px 0 0; }
+.souvenir img { max-width:100%; height:auto; margin-top:16px; }
+.souvenir a { display:inline-flex; align-items:center; justify-content:center; min-height:48px; color:var(--ink); margin-top:12px; }
+@keyframes ending-arrive { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+@keyframes ending-away { from { opacity:.9; } to { opacity:.04; } }
+@keyframes ending-fog { from { opacity:0; } to { opacity:.92; } }
+@media(max-width:520px) { .ending-diary { gap:20px 12px; } .ending .result-drawing { padding:10px; } .ending .ending-meaning h2 { font-size:23px; } .ending .chain-link { min-height:78px; } .ending-link-space { min-height:90px; } .ending-controls { flex-direction:column; } .ending-controls button { width:100%; } .ending-window { height:250px; } }
+@media(prefers-reduced-motion:reduce) { .ending *, .ending *::before, .ending *::after { animation:none !important; transition:none !important; } }
+.ending[data-reduced-motion=true] * { animation:none; transition:none; }

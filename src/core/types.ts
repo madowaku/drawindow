@@ -1,5 +1,6 @@
 /** Shared contract. Core state is deterministic; presentation must not reveal words in play. */
 export type Mode = 'day' | 'night';
+export type Language = 'en' | 'ja';
 export type SessionKind = 'api' | 'demo';
 export type GirlExpression = 'neutral' | 'thinking' | 'smile' | 'shy' | 'breath' | 'curious';
 
@@ -8,6 +9,8 @@ export type GamePhase =
   | 'girl_breath'
   | 'girl_drawing'
   | 'girl_holding'
+  | 'girl_notice'
+  | 'girl_flustered'
   | 'player_drawing'
   | 'recognizing'
   | 'recognition_error'
@@ -53,6 +56,8 @@ export interface DoodleCandidate extends GirlSketch {
 }
 
 export interface WindowCanvasProps {
+  /** Withdrawn girl drawing fades under the new breath, never player ink. */
+  previousStrokes?: readonly Stroke[];
   mode: Mode;
   phase: GamePhase;
   /** Cosmetic acting variation only; never target words or recognition output. */
@@ -90,6 +95,8 @@ export interface RecognitionResult {
 
 export interface RecognitionInput {
   requestId: string;
+  /** English by default for v0.4 compatible callers. */
+  language?: Language;
   strokes: readonly Stroke[];
   /** Neutral black-on-white PNG; never a screenshot of the character/glass. */
   imageDataUrl?: string;
@@ -120,6 +127,8 @@ export type NonComparableReason = 'demo' | 'mock' | 'uncovered_letter';
 
 export interface DrawingEntry {
   id: string;
+  /** True if the Japanese chain had to restart after a final ん. */
+  chainRestart?: boolean;
   actor: 'girl' | 'player';
   /** 1..5, with the girl preceding the player in each exchange. */
   round: number;
@@ -128,11 +137,14 @@ export interface DrawingEntry {
   intendedWord: string | null;
   recognition: RecognitionResult | null;
   templateId?: string;
+  /** Withdrawn before the player turn; retained for an honest local record. */
+  falseStart?: GirlSketch;
   comparable: boolean;
   nonComparableReason?: NonComparableReason;
 }
 
 export interface GameState {
+  language: Language;
   phase: GamePhase;
   mode: Mode;
   sessionKind: SessionKind;
@@ -145,14 +157,18 @@ export interface GameState {
   recognitionRequest: RecognitionRequest | null;
   error: GameError | null;
   recognitionAttempt: number;
+  girlCorrection?: GirlSketch | null;
+  girlSlipUsed?: boolean;
 }
 
 export type GameEvent =
   | { type: 'SET_MODE'; mode: Mode }
+  | { type: 'SET_LANGUAGE'; language: Language }
   | { type: 'START'; mode: Mode; sessionKind: SessionKind; sketches: readonly GirlSketch[] }
   | { type: 'BREATH_DONE' }
   | { type: 'PLAYBACK_DONE' }
   | { type: 'YOUR_TURN' }
+  | { type: 'GIRL_OOPS_BEAT_DONE'; sessionId: number; round: number; phase: 'girl_notice' | 'girl_flustered' }
   | { type: 'STROKES_CHANGED'; strokes: readonly Stroke[] }
   | { type: 'CLEAR' }
   | { type: 'UNDO' }

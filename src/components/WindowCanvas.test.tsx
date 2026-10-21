@@ -303,3 +303,20 @@ describe('WindowCanvas input', () => {
     expect(clock.pending.size).toBe(0);
   });
 });
+
+it('replays breath and drawing in the same round after a slip, including a NIGHT breath pose', () => {
+  const clock = installFrameClock();
+  const ink: Stroke[] = [{id:'old',points:[{x:.2,y:.3,t:0},{x:.7,y:.6,t:900}]}];
+  const base = props({mode:'night',round:2,strokes:ink,previousStrokes:ink});
+  const {rerender} = render(<WindowCanvas {...base} phase="girl_breath"/>);
+  expect(screen.getByTestId('character-scene').getAttribute('data-pose')).toBe('breath');
+  clock.at(300); expect(base.onBreathDone).toHaveBeenCalledTimes(1);
+  rerender(<WindowCanvas {...base} phase="girl_drawing"/>);
+  clock.at(1300);expect(base.onPlaybackDone).toHaveBeenCalledTimes(1);
+  rerender(<WindowCanvas {...base} phase="girl_notice"/>);
+  rerender(<WindowCanvas {...base} phase="girl_flustered"/>);
+  rerender(<WindowCanvas {...base} phase="girl_breath"/>);
+  clock.at(1600);expect(base.onBreathDone).toHaveBeenCalledTimes(2);
+  rerender(<WindowCanvas {...base} phase="girl_drawing"/>);
+  clock.at(2600);expect(base.onPlaybackDone).toHaveBeenCalledTimes(2);
+});

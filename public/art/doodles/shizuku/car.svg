@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="title"><title id="title">くるま / car</title>
+  <path d="M 31 55 L 44 35 Q 57 31 72 36 L 85 56"/>
+  <path d="M 31 55 L 21 58 Q 16 61 18 76 L 27 79 M 85 56 L 99 59 Q 104 66 101 78 L 92 79"/>
+  <path d="M 45 80 Q 44 70 35 71 Q 25 71 26 81 Q 27 91 36 90 Q 45 90 45 80"/>
+  <path d="M 92 80 Q 92 71 83 71 Q 73 70 73 81 Q 74 91 83 90 Q 93 90 92 80"/>
+  <path d="M 45 81 Q 60 83 73 81"/>
+  <path d="M 40 54 L 48 41 L 58 40 L 58 55 L 40 54 M 65 41 L 70 42 L 78 55 L 65 55 L 65 41"/>
+</svg>

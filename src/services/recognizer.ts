@@ -65,7 +65,7 @@ export function createApiRecognizer(options: ApiRecognizerOptions = {}): Drawing
           (async (): Promise<RecognitionResult> => {
             const response = await (options.fetch ?? globalThis.fetch)(options.endpoint ?? '/api/recognize', {
               method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal,
-              body: JSON.stringify({ requestId: input.requestId, imageDataUrl }),
+              body: JSON.stringify({ requestId: input.requestId, imageDataUrl, ...(input.language === 'ja' ? { language: 'ja' } : {}) }),
             });
             const retryAfter = response.headers.get('Retry-After');
             const retryAfterMs = retryAfter === null ? null : /^\d+$/.test(retryAfter) ? Number(retryAfter) * 1000 : Date.parse(retryAfter) - Date.now();
@@ -74,8 +74,8 @@ export function createApiRecognizer(options: ApiRecognizerOptions = {}): Drawing
             const data: unknown = await response.json();
             if (!data || typeof data !== 'object') return failure('invalid_response');
             const result = data as Partial<RecognitionResult>;
-            const guess = normalizeWord(result.guess);
-            if (result.source !== 'api' || result.error || !guess || !/^[a-z]{1,32}$/.test(guess)) return failure(result.errorCode ?? 'invalid_response');
+            const guess = normalizeWord(result.guess, input.language);
+            if (result.source !== 'api' || result.error || !guess || (input.language === 'ja' ? !/^[ぁ-ゖー]{1,32}$/.test(guess) : !/^[a-z]{1,32}$/.test(guess))) return failure(result.errorCode ?? 'invalid_response');
             return { guess, source: 'api' };
           })().catch(() => failure(controller.signal.aborted ? 'timeout' : 'invalid_response')),
           new Promise<RecognitionResult>(resolve => { timer = setTimeout(() => { controller.abort(); resolve(failure('timeout')); }, Math.min(20000, Math.max(1, options.timeoutMs ?? 12000))); }),
@@ -91,9 +91,11 @@ export function createApiRecognizer(options: ApiRecognizerOptions = {}): Drawing
 /** This is a disclosed simulation, not drawing recognition. */
 export function createDemoRecognizer(): DrawingRecognizer {
   const guesses = ['cat', 'tree', 'egg', 'tiger'];
+  const japaneseGuesses = ['くじら', 'うさぎ', 'すいか', 'はな'];
   return { async recognize(input) {
     const round = Number(input.requestId.split(':')[1]);
-    return { guess: guesses[(Math.max(1, Number.isFinite(round) ? round : 1) - 1) % guesses.length], source: 'mock' };
+    const pool = input.language === 'ja' ? japaneseGuesses : guesses;
+    return { guess: pool[(Math.max(1, Number.isFinite(round) ? round : 1) - 1) % pool.length], source: 'mock' };
   } };
 }
 

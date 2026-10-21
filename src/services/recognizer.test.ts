@@ -83,3 +83,21 @@ describe('browser recognition boundary', () => {
     expect(await demo.recognize({ ...input, requestId: '1:2:8' })).toEqual({ guess: 'tree', source: 'mock' });
   });
 });
+
+describe('Japanese browser recognition', () => {
+  it('sends an explicit Japanese language tag and accepts kana only', async () => {
+    let payload: any;
+    const recognizer = createApiRecognizer({ fetch: async (_url, init) => {
+      payload = JSON.parse(String(init?.body));
+      return Response.json({ guess: 'ネコ', source: 'api' });
+    } });
+    expect(await recognizer.recognize({ ...input, language: 'ja' })).toEqual({ guess: 'ねこ', source: 'api' });
+    expect(payload).toEqual({ requestId: input.requestId, imageDataUrl: image, language: 'ja' });
+    expect(await createApiRecognizer({ fetch: async () => Response.json({ guess: '猫', source: 'api' }) }).recognize({ ...input, language: 'ja' })).toMatchObject({ guess: null, errorCode: 'invalid_response' });
+  });
+  it('has an independent non-recognition Japanese demo script', async () => {
+    const demo = createDemoRecognizer();
+    expect(await demo.recognize({ ...input, language: 'ja' })).toMatchObject({ guess: 'くじら', source: 'mock' });
+    expect(await demo.recognize({ ...input, language: 'ja', requestId: '1:2:2' })).toMatchObject({ guess: 'うさぎ', source: 'mock' });
+  });
+});

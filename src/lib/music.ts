@@ -1,15 +1,16 @@
 import titleUrl from '../assets/music/title.bin?url';
 import dayUrl from '../assets/music/day.bin?url';
 import nightUrl from '../assets/music/night.bin?url';
+import endingUrl from '../assets/music/ending.bin?url';
 import type { GamePhase, Mode } from '../core/types';
 
-export type MusicTrack = 'title' | 'day' | 'night';
+export type MusicTrack = 'title' | 'day' | 'night' | 'ending';
 export interface MusicAsset { url: string; release(): void }
-export const MUSIC_GAIN: Record<MusicTrack, number> = { title: 0.18, day: 0.18, night: 0.22 };
-const urls: Record<MusicTrack, string> = { title: titleUrl, day: dayUrl, night: nightUrl };
+export const MUSIC_GAIN: Record<MusicTrack, number> = { title: 0.18, day: 0.18, night: 0.22, ending: 0.2 };
+const urls: Record<MusicTrack, string> = { title: titleUrl, day: dayUrl, night: nightUrl, ending: endingUrl };
 
 export function musicForScene(phase: GamePhase, mode: Mode): MusicTrack {
-  return phase === 'title' ? 'title' : mode;
+  return phase === 'title' ? 'title' : phase === 'results' ? 'ending' : mode;
 }
 
 export function unpackMusic(packed: ArrayBuffer): Uint8Array<ArrayBuffer> {

@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-18",
+  "functionalHead": "4498207",
+  "scope": "Extracted static DEMO ZIP; synthetic pointer input; no human LIVE, Android hardware or audio-quality claim",
+  "unitTests": {"passed": 220, "files": 34},
+  "authTests": {"passed": 6},
+  "build": "passed",
+  "zipSha256": "968d386072540771c3347b4418c8428ef725a8f0b3f4234e3121f433603e61ed",
+  "zipEntries": 48,
+  "extractedByteParity": true,
+  "viewport": [360, 800],
+  "reducedMotion": true,
+  "journeys": ["en-day", "en-night", "ja-day", "ja-night"],
+  "perJourney": {"rounds": 5, "pictures": 10, "links": 9, "png": [1200, 3000], "pngHttpRequests": 0, "undoClear": true, "defaultPngNames": false, "pageErrors": 0, "horizontalOverflow": false},
+  "recognitionRequests": 0,
+  "devGalleryInPackage": false,
+  "galleryChecks": {"sourceBranch": "feat/japanese-shiritori-v05", "viewports": [[360,800],[1280,800]], "modes": ["day","night"], "classicPairsPerJourney": 16, "newWordsPerJourney": 12, "markPersistence": true}
+}

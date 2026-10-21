@@ -1,3 +1,13 @@
+# TEN LITTLE THOUGHTS — local ending review
+
+After the optional five intention fields, the results open as a ten-picture diary.
+Choose **See what we meant / 答え合わせをする** to reveal interpretations and the nine actual links, or skip to the same results instantly. **A little goodbye** softly refogs a decorative window; the full diary remains browsable.
+
+**SAVE TODAY’S WINDOW / 今日の窓を残す** creates a 1200×3000 PNG on this device. Words are optional and off by default. Download the generated image, or long-press the preview on a phone; no upload or automatic sharing is used. Android download/long-press still needs physical-device review.
+
+Ending BGM: **優花 — のる**, supplied by the user; both themes use it across all three acts under the existing sound toggle.
+Development-only instant presentation preview: `/?ending-preview&lang=ja&mode=day` (also `lang=en`, `mode=night`, `case=unknown|perfect|restart|demo`). Preview drawings/recognition are explicitly synthetic. The normal game remains at `/`. See [storyboard and gates](docs/TEN_LITTLE_THOUGHTS_v0.1.md).
+
 # DRAWINDOW v0.4 local review
 
 v0.4 introduces transparent finger-wiped condensation in the game. The old ink

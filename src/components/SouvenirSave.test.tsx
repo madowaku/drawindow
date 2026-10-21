@@ -1,0 +1,32 @@
+// @vitest-environment jsdom
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { afterEach, expect, it, vi } from 'vitest';
+import { SouvenirSave } from './SouvenirSave';
+import { createSouvenir } from '../lib/souvenir';
+import { calculateScore } from '../core/score';
+vi.mock('../lib/souvenir', () => ({ createSouvenir: vi.fn() }));
+afterEach(() => { cleanup(); vi.restoreAllMocks(); });
+it('makes generation explicit, defaults to no words, reports errors, supports retry and frees preview URLs', async () => {
+  const createUrl = vi.fn(() => 'blob:local-keepsake');
+  const revoke = vi.fn();
+  Object.defineProperty(URL, 'createObjectURL', { configurable: true, value: createUrl });
+  Object.defineProperty(URL, 'revokeObjectURL', { configurable: true, value: revoke });
+  vi.mocked(createSouvenir).mockRejectedValueOnce(new Error('encoder')).mockResolvedValue(new Blob(['png']));
+  const { unmount } = render(<SouvenirSave entries={[]} score={calculateScore([])} mode="day" language="en" sessionKind="demo" />);
+  expect(createSouvenir).not.toHaveBeenCalled();
+  const save = screen.getByRole('button', { name: 'SAVE TODAY’S WINDOW' });
+  fireEvent.click(save);
+  await waitFor(() => expect(screen.getByRole('status').textContent).toContain('could not be created'));
+  expect(createSouvenir).toHaveBeenCalledWith(expect.objectContaining({ includeWords: false }));
+  fireEvent.click(save);
+  await waitFor(() => expect(screen.getByRole('link', { name: 'Download image' })).toBeTruthy());
+  expect(screen.getByRole('link').getAttribute('download')).toBe('DRAWINDOW-todays-window.png');
+  fireEvent.click(screen.getByRole('checkbox'));
+  expect(screen.queryByRole('link')).toBeNull();
+  expect(revoke).toHaveBeenCalledWith('blob:local-keepsake');
+  fireEvent.click(save);
+  await waitFor(() => expect(createSouvenir).toHaveBeenLastCalledWith(expect.objectContaining({ includeWords: true })));
+  await waitFor(() => expect(screen.getByRole('link')).toBeTruthy());
+  unmount();
+  expect(revoke).toHaveBeenCalledTimes(2);
+});

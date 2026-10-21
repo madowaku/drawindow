@@ -6,14 +6,15 @@ import type { GamePhase } from '../core/types';
 import manifest from '../../assets/bgm-manifest.json';
 
 describe('scene music and admitted asset bytes', () => {
-  it('uses the title track for both title themes and the mode track everywhere in a session', () => {
+  it('uses the dedicated ending for results in both themes; naming retains the session track', () => {
     for (const mode of ['day', 'night'] as const) {
       expect(musicForScene('title', mode)).toBe('title');
-      for (const phase of ['girl_breath', 'girl_drawing', 'girl_holding', 'player_drawing', 'recognizing', 'recognition_error', 'review_intents', 'results'] as GamePhase[]) expect(musicForScene(phase, mode)).toBe(mode);
+      for (const phase of ['girl_breath', 'girl_drawing', 'girl_holding', 'player_drawing', 'recognizing', 'recognition_error', 'review_intents'] as GamePhase[]) expect(musicForScene(phase, mode)).toBe(mode);
+      expect(musicForScene('results', mode)).toBe('ending');
     }
   });
 
-  it('preserves all three converted recordings exactly inside their game containers', async () => {
+  it('preserves every converted recording exactly inside its game container', async () => {
     for (const track of manifest.tracks) {
       const bytes = await readFile(track.output);
       expect(createHash('sha256').update(bytes).digest('hex')).toBe(track.outputSha256);
