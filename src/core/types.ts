@@ -87,6 +87,9 @@ export type RecognitionErrorCode =
 
 export interface RecognitionResult {
   guess: string | null;
+  /** Validated noun spelling only; never a provider body or canonical replacement. */
+  label?: string;
+  uncertain?: boolean;
   alternatives?: readonly string[];
   source: RecognitionSource;
   error?: string;
@@ -125,7 +128,22 @@ export interface GameError {
 
 export type NonComparableReason = 'demo' | 'mock' | 'uncovered_letter';
 
+export interface NameObservation {
+  label: string | null;
+  reading: string | null;
+  termId: string | null;
+  conceptId: string | null;
+  ambiguous?: boolean;
+  dictionaryVersion: string;
+}
+export interface MeaningRecord {
+  relation: 'equivalent' | 'narrower' | 'broader' | 'different' | 'unknown';
+  certainty: 'unverified' | 'uncertain' | 'simulated' | 'unavailable';
+  dictionaryVersion: string;
+}
 export interface DrawingEntry {
+  /** Local observations; never inputs to recognition, next-letter selection or scoring. */
+  naming?: { canonical?: NameObservation; intention?: NameObservation; recognition?: NameObservation; meaning?: MeaningRecord };
   id: string;
   /** True if the Japanese chain had to restart after a final ん. */
   chainRestart?: boolean;

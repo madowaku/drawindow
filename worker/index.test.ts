@@ -1,10 +1,19 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createWorker, type Env } from './index';
+import { createApiRecognizer } from '../src/services/recognizer';
 
 const origin = 'https://drawindow.example';
 const imageDataUrl = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a8X8AAAAASUVORK5CYII=';
 const env: Env = { GEMINI_API_KEY: 'test-secret-never-return', ALLOWED_ORIGINS: origin, RATE_LIMITER: { limit: async () => ({ success: true }) } };
 const request = (body: unknown = { requestId: '1:1:1', imageDataUrl }, headers: Record<string, string> = {}) => new Request(`${origin}/api/recognize`, { method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json', ...headers }, body: JSON.stringify(body) });
+
+it.each([['花', 'はな'], ['ラ・フランス', 'らふらんす']])('preserves the validated provider name %s through Worker and browser reading %s', async (name, reading) => {
+  const worker = createWorker({ fetch: async () => providerResponse(name) });
+  const browser = createApiRecognizer({ fetch: async (_url, options) => worker.fetch(request(JSON.parse(String(options?.body))), env) });
+  const result = await browser.recognize({ requestId: '1:1:1', imageDataUrl, strokes: [], language: 'ja' });
+  expect(result).toEqual({ guess: reading, label: name, source: 'api' });
+  expect(JSON.stringify(result)).not.toContain('test-secret');
+});
 const providerResponse = (guess: unknown = 'cat') => Response.json({ candidates: [{ content: { parts: [{ text: JSON.stringify({ guess }) }] }, finishReason: 'STOP' }] });
 afterEach(() => vi.useRealTimers());
 

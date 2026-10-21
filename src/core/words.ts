@@ -1,9 +1,12 @@
 import type { GirlSketch, Language, Mode } from './types';
+import { lookupJapaneseName } from '../data/namingDictionary';
 
 /** English v0.4 labels stay valid; Japanese gameplay stores phonetic kana labels. */
 export function normalizeWord(value: unknown, language: Language = 'en'): string | null {
   if (typeof value !== 'string' || value.length > 80 || /[0-9<>{}\[\]\/\\]/.test(value)) return null;
   if (language === 'ja') {
+    const named = lookupJapaneseName(value);
+    if (named) return named.reading;
     const normalized = value.normalize('NFKC').trim().replace(/^[\s「」『』（）、。！？!?.]+|[\s「」『』（）、。！？!?.]+$/g, '')
       .replace(/[\u30a1-\u30f6]/g, character => String.fromCharCode(character.charCodeAt(0) - 0x60));
     return normalized.length > 0 && normalized.length <= 64 && /^[ぁ-ゖー]+$/.test(normalized) ? normalized : null;

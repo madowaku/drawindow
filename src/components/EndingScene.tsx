@@ -5,6 +5,7 @@ import { SketchThumbnail } from './SketchThumbnail';
 import { CharacterScene } from './CharacterScene';
 import { SouvenirSave } from './SouvenirSave';
 import './EndingScene.css';
+import { meaningNote } from '../core/naming';
 
 export interface EndingSceneProps {
   entries: readonly DrawingEntry[];
@@ -77,7 +78,7 @@ export function EndingScene(props: EndingSceneProps) {
         <div className={`result-drawing actor-${entry.actor}`}>
           <p className="eyebrow">{String(index + 1).padStart(2, '0')} · {entry.actor === 'girl' ? t('SHIZUKU', 'しずく') : t('YOU', 'あなた')}</p>
           <SketchThumbnail strokes={entry.strokes} label={revealed ? `${entry.actor === 'girl' ? t('She drew', 'しずくの絵') : t('You meant', 'あなたの意図')}: ${entry.intendedWord || t('Unknown', '不明')}` : t(`Drawing ${index + 1}`, `${index + 1}枚目の絵`)} />
-          {revealed && <div className="ending-meaning"><p>{entry.actor === 'girl' ? t('She drew', 'しずくの意図') : t('You meant', 'あなたの意図')}</p><h2>{entry.intendedWord || t('Unknown', 'わからない')}</h2>{entry.actor === 'player' && <p className="interpretation">{interpretation(entry, language)}</p>}{entryNote(entry, language) && <p className="ending-entry-note">{entryNote(entry, language)}</p>}</div>}
+          {revealed && <div className="ending-meaning"><p>{entry.actor === 'girl' ? t('She drew', 'しずくの意図') : t('You meant', 'あなたの意図')}</p><h2>{entry.intendedWord || t('Unknown', 'わからない')}</h2>{entry.actor === 'player' && <p className="interpretation">{interpretation(entry, language)}</p>}{meaningNote(entry, language) && <p className="ending-entry-note meaning-note">{meaningNote(entry, language)}</p>}{entryNote(entry, language) && <p className="ending-entry-note">{entryNote(entry, language)}</p>}</div>}
         </div>
       </li>)}
     </ol>

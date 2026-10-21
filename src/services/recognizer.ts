@@ -1,5 +1,6 @@
 import type { DrawingRecognizer, RecognitionErrorCode, RecognitionInput, RecognitionResult, Stroke } from '../core/types';
 import { normalizeWord } from '../core/words';
+import { recognitionDetails } from '../core/naming';
 
 export interface ApiRecognizerOptions {
   endpoint?: string;
@@ -76,7 +77,7 @@ export function createApiRecognizer(options: ApiRecognizerOptions = {}): Drawing
             const result = data as Partial<RecognitionResult>;
             const guess = normalizeWord(result.guess, input.language);
             if (result.source !== 'api' || result.error || !guess || (input.language === 'ja' ? !/^[ぁ-ゖー]{1,32}$/.test(guess) : !/^[a-z]{1,32}$/.test(guess))) return failure(result.errorCode ?? 'invalid_response');
-            return { guess, source: 'api' };
+            return recognitionDetails({ ...result, guess: result.guess!, source: 'api' }, input.language ?? 'en');
           })().catch(() => failure(controller.signal.aborted ? 'timeout' : 'invalid_response')),
           new Promise<RecognitionResult>(resolve => { timer = setTimeout(() => { controller.abort(); resolve(failure('timeout')); }, Math.min(20000, Math.max(1, options.timeoutMs ?? 12000))); }),
         ]);
