@@ -8,6 +8,8 @@ const files = {};
 async function walk(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const path = join(dir, entry.name);
+    const archivePath = relative(root, path).replaceAll('\\', '/');
+    if (/^art\/(?:doodles|shizuku-v04|shizuku-expression-review)(?:\/|$)/.test(archivePath) || /^art\/(?:day|night)-(?:neutral|smiling|thinking)\.webp$/.test(archivePath)) continue;
     if (entry.isDirectory()) await walk(path);
     else files[relative(root, path).replaceAll('\\', '/')] = new Uint8Array(await readFile(path));
   }
@@ -21,9 +23,10 @@ for (const [name, bytes] of Object.entries(files)) {
   if (/secret|\.env|\.dev\.vars/i.test(name)) throw new Error(`Unexpected config in archive: ${name}`);
 }
 await mkdir('artifacts/release', { recursive: true });
-const version = JSON.parse(await readFile('package.json', 'utf8')).version.split('.').slice(0, 2).join('.');
-const filename = `DRAWINDOW-v${version}-itch.zip`;
+const version = JSON.parse(await readFile('package.json', 'utf8')).version;
+const mode = process.env.DRAWINDOW_PACKAGE_MODE === 'live' ? 'live' : 'demo';
+const filename = `DRAWINDOW-v${version}-${mode}-itch.zip`;
 await writeFile(`artifacts/release/${filename}`, archive);
-const receipt = { filename, sha256: createHash('sha256').update(archive).digest('hex'), bytes: archive.length, entries: Object.keys(restored).length, rootIndex: true, extractedByteParity: true, scope: 'Static frontend; default DEMO. No deployed API or live benchmark claimed.' };
+const receipt = { filename, mode, endpoint: mode === 'live' ? process.env.DRAWINDOW_PACKAGE_ENDPOINT : null, sha256: createHash('sha256').update(archive).digest('hex'), bytes: archive.length, entries: Object.keys(restored).length, rootIndex: true, extractedByteParity: true, scope: mode === 'live' ? 'LIVE frontend. API deployment, actual itch iframe and human acceptance are separate verification gates.' : 'Explicit DEMO; no image recognition.', files: Object.keys(restored).sort() };
 await writeFile('artifacts/release/package-receipt.json', JSON.stringify(receipt, null, 2));
 console.log(JSON.stringify(receipt, null, 2));

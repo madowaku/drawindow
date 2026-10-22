@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent, KeyboardEvent as ReactKeyboardEvent } from 'react';
 import type { GamePhase, Mode, Stroke, StrokePoint, WindowCanvasProps } from '../core/types';
+import { sameStrokes } from '../core/drawingHistory';
 import { advanceFogTimeline, createFogTimeline, fogTimelineProgress, getBreathOrigin, isTimedCanvasPhase, pauseFogTimeline, resumeFogTimeline, type FogTimeline } from '../lib/fog';
 import { getPlaybackDuration, getPlaybackTip, strokesAtProgress } from '../lib/playback';
 import { drawStrokes, normalizePointerPoint, normalizeStrokes } from '../lib/strokes';
@@ -125,6 +126,7 @@ function configureCanvas(canvas: HTMLCanvasElement, width: number, height: numbe
 }
 
 export function WindowCanvas({
+  language = 'en',
   mode,
   phase,
   round = 1,
@@ -142,6 +144,7 @@ export function WindowCanvas({
   const fogCanvasRef = useRef<HTMLCanvasElement>(null);
   const drawingCanvasRef = useRef<HTMLCanvasElement>(null);
   const strokesRef = useRef<readonly Stroke[]>(strokes);
+  const lastPublishedRef = useRef<readonly Stroke[]>(strokes);
   const onStrokesChangeRef = useRef(onStrokesChange);
   const onBreathDoneRef = useRef(onBreathDone);
   const onPlaybackDoneRef = useRef(onPlaybackDone);
@@ -162,8 +165,8 @@ export function WindowCanvas({
   const [animationProgress, setAnimationProgress] = useState(1);
   const [canvasVisible, setCanvasVisible] = useState(true);
   const [pointerTip, setPointerTip] = useState<StrokePoint | null>(null);
+  const [keyboardPen, setKeyboardPen] = useState<{ x: number; y: number; drawing: boolean } | null>(null);
 
-  strokesRef.current = strokes;
   onStrokesChangeRef.current = onStrokesChange;
   onBreathDoneRef.current = onBreathDone;
   onPlaybackDoneRef.current = onPlaybackDone;
@@ -172,6 +175,7 @@ export function WindowCanvas({
 
   const publishStrokes = (next: readonly Stroke[]) => {
     const normalized = normalizeStrokes(next);
+    lastPublishedRef.current = normalized;
     strokesRef.current = normalized;
     onStrokesChangeRef.current(normalized);
   };
@@ -219,6 +223,7 @@ export function WindowCanvas({
     if (phase !== 'player_drawing' || event.button !== 0 || event.isPrimary === false || activePointerRef.current !== null) return;
     event.preventDefault();
     if (keyboardStrokeRef.current) keyboardStrokeRef.current = null;
+    setKeyboardPen(null);
     activePointerRef.current = event.pointerId;
     if (['mouse', 'touch', 'pen'].includes(event.pointerType)) onInputTypeChange?.(event.pointerType as 'mouse' | 'touch' | 'pen');
     const active: ActiveStroke = { id: makeId(), points: [pointFromPointer(event.nativeEvent, event.currentTarget)] };
@@ -248,6 +253,7 @@ export function WindowCanvas({
       id: makeId(),
       points: [{ x: cursor.x, y: cursor.y, t: elapsedDrawingTime() }],
     };
+    setKeyboardPen({ ...cursor, drawing: true });
   };
 
   const appendKeyboardPoint = () => {
@@ -264,6 +270,7 @@ export function WindowCanvas({
     const active = keyboardStrokeRef.current;
     if (!active) return;
     keyboardStrokeRef.current = null;
+    setKeyboardPen(pen => pen ? { ...pen, drawing: false } : null);
     publishStrokes([...strokesRef.current.filter(stroke => stroke.id !== active.id), { id: active.id, points: active.points }]);
   };
 
@@ -275,6 +282,7 @@ export function WindowCanvas({
       event.preventDefault();
       cursor.x = Math.min(0.98, Math.max(0.02, cursor.x + (event.key === 'ArrowLeft' ? -step : event.key === 'ArrowRight' ? step : 0)));
       cursor.y = Math.min(0.98, Math.max(0.02, cursor.y + (event.key === 'ArrowUp' ? -step : event.key === 'ArrowDown' ? step : 0)));
+      setKeyboardPen({ ...cursor, drawing: Boolean(keyboardStrokeRef.current) });
       appendKeyboardPoint();
       return;
     }
@@ -287,6 +295,7 @@ export function WindowCanvas({
       event.preventDefault();
       onInputTypeChange?.('keyboard');
       const point = { ...cursor, t: elapsedDrawingTime() };
+      setKeyboardPen({ ...cursor, drawing: false });
       publishStrokes([...strokesRef.current, { id: makeId(), points: [point] }]);
     }
   };
@@ -298,7 +307,25 @@ export function WindowCanvas({
     }
   };
 
-  const handleBlur = () => finishKeyboardStroke();
+  const handleBlur = () => { finishKeyboardStroke(); setKeyboardPen(null); };
+
+  useLayoutEffect(() => {
+    strokesRef.current = strokes;
+    // A reducer echo has copied objects but identical data. An edit replacement
+    // invalidates local gestures before their next pointer/key event can publish.
+    if (sameStrokes(strokes, lastPublishedRef.current)) return;
+    lastPublishedRef.current = strokes;
+    const pointerId = activePointerRef.current;
+    activePointerRef.current = null;
+    activeStrokeRef.current = null;
+    keyboardStrokeRef.current = null;
+    setPointerTip(null);
+    setKeyboardPen(pen => pen ? { ...pen, drawing: false } : null);
+    const canvas = drawingCanvasRef.current;
+    if (pointerId !== null && canvas && typeof canvas.hasPointerCapture === 'function' && canvas.hasPointerCapture(pointerId)) {
+      try { canvas.releasePointerCapture(pointerId); } catch { /* Capture may already have ended. */ }
+    }
+  }, [strokes]);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -340,6 +367,7 @@ export function WindowCanvas({
       activeStrokeRef.current = null;
       keyboardStrokeRef.current = null;
       setPointerTip(null);
+      setKeyboardPen(null);
       return;
     }
     drawingStartedAtRef.current = nowMs();
@@ -486,7 +514,7 @@ export function WindowCanvas({
         data-has-strokes={strokes.length > 0}
         ref={drawingCanvasRef}
         style={drawingStyle}
-        aria-label="Drawing area. Use arrow keys to move. Hold Space to draw, or press Enter to place a dot."
+        aria-label={language === 'ja' ? '絵を描くところ。矢印キーで移動。スペースキーを押しながら描くか、Enterキーで点を置けます。' : 'Drawing area. Use arrow keys to move. Hold Space to draw, or press Enter to place a dot.'}
         role="application"
         tabIndex={phase === 'player_drawing' ? 0 : -1}
         onPointerDown={handlePointerDown}
@@ -502,13 +530,15 @@ export function WindowCanvas({
         }}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
+        onFocus={() => phase === 'player_drawing' && setKeyboardPen({ ...keyboardCursorRef.current, drawing: Boolean(keyboardStrokeRef.current) })}
         onBlur={handleBlur}
       />
       <StrokeTipOverlay tip={playbackTip} layout={layout} reducedMotion={reducedMotion} visible={canvasVisible && phase === 'girl_drawing'} />
       {variant === 'glass' && glassStyle === 'tactile' && activeTip && <span className="window-canvas__finger" aria-hidden="true" style={{ left: layout.left + activeTip.x * layout.size, top: layout.top + activeTip.y * layout.size }} />}
+      {phase === 'player_drawing' && keyboardPen && <span className="window-canvas__keyboard-pen" data-testid="keyboard-cursor" data-drawing={keyboardPen.drawing} aria-hidden="true" style={{ left: layout.left + keyboardPen.x * layout.size, top: layout.top + keyboardPen.y * layout.size }} />}
       {phase === 'player_drawing' && strokes.length === 0 && drawingStyle && (
         <div className="window-canvas__prompt" style={drawingStyle} aria-hidden="true" data-testid="window-drawing-hint">
-          <span>DRAW HERE</span>
+          <span>{language === 'ja' ? 'ここに描こう' : 'DRAW HERE'}</span>
         </div>
       )}
     </div>

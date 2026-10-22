@@ -1,4 +1,4 @@
-DRAWINDOW v0.3
+DRAWINDOW v0.7.1
 
 Character art and separate room backgrounds:
 OpenAI built-in ImageGen, generated/edited 2026-10-17 from the user-supplied

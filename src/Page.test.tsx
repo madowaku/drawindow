@@ -15,7 +15,7 @@ it('never routes a production URL to the benchmark', () => {
   expect(screen.getByText('Normal five-exchange game')).toBeTruthy();
   expect(screen.queryByText('Developer benchmark')).toBeNull();
 });
-it.each(['japanese-doodle-preview','ending-preview','glass-preview','catalogue-preview','doodle-catalog-preview','readability-study'])('keeps %s outside production game routing',query=>{
+it.each(['character-preview','japanese-doodle-preview','ending-preview','glass-preview','catalogue-preview','doodle-catalog-preview','readability-study'])('keeps %s outside production game routing',query=>{
   window.history.replaceState({},'',`/?${query}`);
   vi.stubEnv('DEV',false);
   render(<Page />);

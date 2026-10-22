@@ -1,6 +1,6 @@
 {
   "name": "drawindow",
-  "version": "0.4.0",
+  "version": "0.7.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,7 +14,8 @@
     "setup:gemini": "powershell -NoProfile -File scripts/setup-gemini.ps1",
     "check:gemini": "node scripts/check-gemini-setup.mjs",
     "verify:gemini": "node scripts/verify-gemini.mjs",
-    "test:auth": "node --test scripts/gemini-auth.test.mjs"
+    "test:auth": "node --test scripts/gemini-auth.test.mjs",
+    "package:itch:live": "node scripts/package-live.mjs"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",

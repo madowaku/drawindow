@@ -1,3 +1,18 @@
+# DRAWINDOW — current product source
+
+GitHub `main` is the canonical product source. The local `C:\Dev\Projects\drawindow` checkout follows `main`; recovery branches and vocabulary/recognition Draft PRs are archives or experiments, not alternative product defaults.
+
+The consolidated v0.7.1 includes the 132 adopted bilingual doodles, the naming dictionary, reversible CLEAR / UNDO / REDO, protected naming drafts, keyboard position display and narrow Japanese layouts. The seven adopted A character sprites remain unchanged.
+
+- `npm test`, `npm run build`, `npm run test:auth`: regression checks.
+- `npm run package:itch`: explicit DEMO ZIP, with type checking and no recognition endpoint.
+- `VITE_RECOGNITION_URL=<approved HTTPS /api/recognize endpoint>` plus `npm run package:itch:live`: optional LIVE package; building does not deploy or upload it.
+- `node scripts/verify-archive.mjs`: serves the exact package named in its receipt.
+
+See [consolidation and recovery](docs/REPOSITORY_CONSOLIDATION_20261022.md) for decisions, evidence and retained experiments. The dated sections below describe earlier milestones, not the current integration status.
+
+---
+
 # TEN LITTLE THOUGHTS — local ending review
 
 After the optional five intention fields, the results open as a ten-picture diary.

@@ -56,6 +56,8 @@ export interface DoodleCandidate extends GirlSketch {
 }
 
 export interface WindowCanvasProps {
+  /** Localized input guidance; existing callers default to English. */
+  language?: Language;
   /** Withdrawn girl drawing fades under the new breath, never player ink. */
   previousStrokes?: readonly Stroke[];
   mode: Mode;
@@ -172,6 +174,8 @@ export interface GameState {
   sketches: readonly GirlSketch[];
   entries: readonly DrawingEntry[];
   activeStrokes: readonly Stroke[];
+  /** Drawing edits only. Snapshots share immutable stroke data, capped at 32. */
+  drawingHistory: { past: readonly (readonly Stroke[])[]; future: readonly (readonly Stroke[])[] };
   recognitionRequest: RecognitionRequest | null;
   error: GameError | null;
   recognitionAttempt: number;
@@ -190,6 +194,7 @@ export type GameEvent =
   | { type: 'STROKES_CHANGED'; strokes: readonly Stroke[] }
   | { type: 'CLEAR' }
   | { type: 'UNDO' }
+  | { type: 'REDO' }
   | { type: 'DONE' }
   | { type: 'RECOGNITION_RESOLVED'; requestId: string; result: RecognitionResult }
   | { type: 'RETRY_RECOGNITION' }

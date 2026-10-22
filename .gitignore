@@ -13,3 +13,7 @@ artifacts/local/
 # Local browser QA recordings and screenshots
 .playwright-cli/
 output/playwright/
+
+# Local parallel checkouts and test cache
+.worktrees/
+.vitest/
