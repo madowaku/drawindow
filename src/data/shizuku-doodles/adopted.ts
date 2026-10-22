@@ -1,8 +1,14 @@
 import source from './doodles.json';
+import expansion from './expansion-20261022.json';
+import expansionB from './expansion-20261022-b.json';
+import expansionC from './expansion-20261022-c.json';
+import expansionD from './expansion-20261022-d.json';
+import expansionE from './expansion-20261022-e.json';
 import type { GirlSketch, Stroke } from '../../core/types';
 
 const hiragana = (word: string) => word.replace(/[ァ-ヶ]/g, c => String.fromCharCode(c.charCodeAt(0) - 0x60));
-export const adoptedJapaneseLabels = Object.fromEntries(source.doodles.map(d => [d.labelEn, hiragana(d.labelJa)]));
+const authoredDoodles = [...source.doodles, ...expansion.doodles, ...expansionB.doodles, ...expansionC.doodles, ...expansionD.doodles, ...expansionE.doodles];
+export const adoptedJapaneseLabels = Object.fromEntries(authoredDoodles.map(d => [d.labelEn, hiragana(d.labelJa)]));
 
 /** Sample the authored M/L/Q paths without browser-only SVG APIs. Each M lifts the finger. */
 function sample(path: string): number[][][] {
@@ -28,8 +34,8 @@ function sample(path: string): number[][][] {
   return parts;
 }
 
-/** Approved art, not an empirical recognition rating. Keep the game's existing 1.2s tempo. */
-export const adoptedShizukuSketches: readonly GirlSketch[] = source.doodles.map(doodle => {
+/** Authored art including the requested expansion; SAFE is not a measured recognition rating. */
+export const adoptedShizukuSketches: readonly GirlSketch[] = authoredDoodles.map(doodle => {
   let time = 0;
   const strokes: Stroke[] = [];
   for (const [index, stroke] of doodle.strokes.entries()) {
