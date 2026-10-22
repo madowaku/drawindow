@@ -91,7 +91,7 @@ describe('Japanese browser recognition', () => {
       payload = JSON.parse(String(init?.body));
       return Response.json({ guess: 'ネコ', source: 'api' });
     } });
-    expect(await recognizer.recognize({ ...input, language: 'ja' })).toEqual({ guess: 'ねこ', source: 'api' });
+    expect(await recognizer.recognize({ ...input, language: 'ja' })).toEqual({ guess: 'ねこ', label: 'ネコ', source: 'api' });
     expect(payload).toEqual({ requestId: input.requestId, imageDataUrl: image, language: 'ja' });
     expect(await createApiRecognizer({ fetch: async () => Response.json({ guess: '猫', source: 'api' }) }).recognize({ ...input, language: 'ja' })).toMatchObject({ guess: null, errorCode: 'invalid_response' });
   });
@@ -100,4 +100,14 @@ describe('Japanese browser recognition', () => {
     expect(await demo.recognize({ ...input, language: 'ja' })).toMatchObject({ guess: 'くじら', source: 'mock' });
     expect(await demo.recognize({ ...input, language: 'ja', requestId: '1:2:2' })).toMatchObject({ guess: 'うさぎ', source: 'mock' });
   });
+});
+
+it('preserves a named Japanese interpretation, uncertainty and alternatives without sending dictionary or intention hints', async () => {
+  let sent: unknown;
+  const recognizer = createApiRecognizer({ fetch: async (_url, options) => {
+    sent = JSON.parse(String(options?.body));
+    return Response.json({ guess: 'ラ・フランス', source: 'api', uncertain: true, alternatives: ['ようなし'] });
+  } });
+  expect(await recognizer.recognize({ ...input, language: 'ja' })).toEqual({ guess: 'らふらんす', label: 'ラ・フランス', source: 'api', uncertain: true, alternatives: ['ようなし'] });
+  expect(sent).toEqual({ requestId: input.requestId, imageDataUrl: image, language: 'ja' });
 });

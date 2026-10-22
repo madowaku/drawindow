@@ -1,5 +1,6 @@
 import type { DrawingEntry, GameError, GameEvent, GameState, GirlSketch, Language, RecognitionErrorCode, RecognitionRequest, RecognitionResult, Stroke, StrokePoint } from './types';
 import { lastLetter, normalizeWord, selectGirlSketch, selectJapaneseFreshSketch, selectJapaneseSlip } from './words';
+import { observeCanonicalName, recordIntention, recordRecognition, recognitionDetails } from './naming';
 
 const MAX_ATTEMPTS = 3; // Original request plus two deliberate retries.
 
@@ -25,7 +26,7 @@ function validStrokes(strokes: readonly Stroke[]): boolean {
 
 function girlEntry(state: GameState, sketch: GirlSketch, round: number, chainRestart = false): DrawingEntry {
   return { chainRestart, id: `${state.sessionId}:girl:${round}`, actor: 'girl', round, strokes: copyStrokes(sketch.strokes), intendedWord: normalizeWord(sketch.word, state.language), recognition: null, templateId: sketch.id,
-    comparable: state.sessionKind === 'api', ...(state.sessionKind === 'demo' ? { nonComparableReason: 'demo' as const } : {}) };
+    comparable: state.sessionKind === 'api', ...(state.language === 'ja' ? { naming: { canonical: observeCanonicalName(sketch, 'ja') } } : {}), ...(state.sessionKind === 'demo' ? { nonComparableReason: 'demo' as const } : {}) };
 }
 
 function withRequest(state: GameState, entry: DrawingEntry, attempt = 1): GameState {
@@ -37,7 +38,7 @@ function withRequest(state: GameState, entry: DrawingEntry, attempt = 1): GameSt
 function errorState(state: GameState, code: RecognitionErrorCode, result?: RecognitionResult): GameState {
   const retryable = code !== 'invalid_input' && (state.recognitionRequest?.attempt ?? MAX_ATTEMPTS) < MAX_ATTEMPTS;
   const error: GameError = { code, retryable, message: code === 'uncovered_letter' ? "She can't think of the next drawing. Try again, redraw, or continue as a demo." : code === 'rate_limit' ? 'Recognition limit or quota reached. Please wait at least a minute before trying again. Your drawing is safe.' : "She couldn't read the drawing this time. Your drawing is safe." };
-  const entries = result ? state.entries.map(entry => entry.id === state.recognitionRequest?.playerEntryId ? { ...entry, recognition: result, ...(code === 'uncovered_letter' ? { comparable: false, nonComparableReason: 'uncovered_letter' as const } : {}) } : entry) : state.entries;
+  const entries = result ? state.entries.map(entry => entry.id === state.recognitionRequest?.playerEntryId ? { ...recordRecognition(entry, result, state.language), ...(code === 'uncovered_letter' ? { comparable: false, nonComparableReason: 'uncovered_letter' as const } : {}) } : entry) : state.entries;
   return { ...state, phase: 'recognition_error', error, entries };
 }
 
@@ -95,7 +96,7 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
       if (event.result.source !== (state.sessionKind === 'api' ? 'api' : 'mock')) return errorState(state, 'invalid_response');
       const guess = normalizeWord(event.result.guess, state.language);
       if (event.result.error || !guess) return errorState(state, event.result.errorCode ?? 'invalid_response', { ...event.result, guess: null });
-      const result: RecognitionResult = { guess, source: event.result.source };
+      const result: RecognitionResult = recognitionDetails(event.result, state.language);
       const usedIds = state.entries.flatMap(e => e.templateId ? [e.templateId] : []);
       const tail = lastLetter(guess, state.language)!;
       const chainRestart = state.language === 'ja' && tail === 'ん';
@@ -105,7 +106,7 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
         ? selectJapaneseFreshSketch(state.sketches, usedIds)
         : selectGirlSketch(state.language === 'ja' ? state.sketches.filter(candidate => lastLetter(candidate.word, 'ja') !== 'ん') : state.sketches, tail, usedIds, state.language, state.mode);
       if (!sketch) return errorState(state, 'uncovered_letter', result);
-      const entries = state.entries.map(entry => entry.id === state.recognitionRequest?.playerEntryId ? { ...entry, recognition: result } : entry);
+      const entries = state.entries.map(entry => entry.id === state.recognitionRequest?.playerEntryId ? recordRecognition(entry, result, state.language) : entry);
       const round = state.round + 1;
       // One eligible slip in a rotating three-round slot; never the starter or
       // a response to the player's terminal-ん restart. Require a safe redraw.
@@ -131,7 +132,7 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
     }
     case 'SET_INTENT': {
       if (state.phase !== 'review_intents' || !state.entries.some(e => e.id === event.entryId && e.actor === 'player')) return state;
-      return { ...state, entries: state.entries.map(entry => entry.id === event.entryId && entry.actor === 'player' ? { ...entry, intendedWord: normalizeWord(event.word, state.language) } : entry) };
+      return { ...state, entries: state.entries.map(entry => entry.id === event.entryId && entry.actor === 'player' ? recordIntention(entry, event.word, state.language) : entry) };
     }
     case 'SHOW_RESULTS': return state.phase === 'review_intents' ? { ...state, phase: 'results' } : state;
     case 'RETURN_TO_TITLE': return { ...createInitialState(state.mode, state.language), sessionId: state.sessionId };

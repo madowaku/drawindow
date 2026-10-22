@@ -122,6 +122,7 @@ export function createWorker(options: WorkerOptions = {}) {
       if (!/^[a-z0-9][a-z0-9._-]{0,79}$/i.test(model)) throw new RequestError(503, 'unavailable');
       const controller = new AbortController();
       let guess: string | null;
+      let recognizedLabel: string | undefined;
       try {
         guess = await bounded((async () => {
           const response = await (options.fetch ?? globalThis.fetch)(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
@@ -143,8 +144,10 @@ export function createWorker(options: WorkerOptions = {}) {
             const candidate = payload.candidates?.[0];
             if (candidate?.finishReason !== 'STOP' || !Array.isArray(candidate.content?.parts)) throw new Error('Invalid candidate');
             const text = candidate.content.parts.filter((part: { text?: string; thought?: boolean }) => typeof part.text === 'string' && !part.thought).map((part: { text: string }) => part.text).join('');
-            const label = normalizeWord(JSON.parse(text).guess, language);
+            const supplied = JSON.parse(text).guess;
+            const label = normalizeWord(supplied, language);
             if (!label || (language === 'ja' ? !/^[ぁ-ゖー]{1,32}$/.test(label) : !/^[a-z]{1,32}$/.test(label))) throw new Error('Invalid label');
+            if (language === 'ja' && supplied !== label) recognizedLabel = supplied;
             return label;
           } catch (error) {
             if (error instanceof RequestError && error.code === 'timeout') throw error;
@@ -155,7 +158,7 @@ export function createWorker(options: WorkerOptions = {}) {
         if (error instanceof RequestError) throw error;
         throw new RequestError(503, 'network');
       }
-      return Response.json({ guess, source: 'api' }, { status: 200, headers: headers(origin) });
+      return Response.json({ guess, source: 'api', ...(recognizedLabel ? { label: recognizedLabel } : {}) }, { status: 200, headers: headers(origin) });
     } catch (error) {
       return error instanceof RequestError ? failed(error.status, error.code, origin) : failed(503, 'unavailable', origin);
     }
