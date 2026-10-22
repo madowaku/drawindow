@@ -55,3 +55,7 @@ Local-only preservation commits, also saved in `preserved-local-work.bundle`:
 ## Remaining acceptance
 
 Human freehand/live quality, physical-phone save/audio/comfort and the vocabulary/ML Draft gates remain open. Existing drawing point/stroke limits and reload persistence are separate future design work. Historical release documents record their dates and are not current deployment claims.
+
+## Cleanup performed
+
+After verified backup, removed the clean legacy Japanese and expression worktrees under .worktrees. Deleted five main-ancestor local branches: codex/drawindow-v04, codex/shizuku-v03, codex/shizuku-v04-adoption, feat/drawindow-v05-quality-gates, integration/drawindow-v07-20261018. Retained experiment and recovery refs; no remote experiment branch was deleted. The primary checkout was moved to main with fast-forward only. Final remote/local SHA is recorded in the task handoff after PR merge.
