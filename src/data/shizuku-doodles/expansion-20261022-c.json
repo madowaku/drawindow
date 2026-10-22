@@ -1,0 +1,82 @@
+{
+  "version": "2026-10-22-c",
+  "doodles": [
+    {"key":"swan","labelJa":"はくちょう","labelEn":"swan","adoptionBase":"fog-doodle-v02-expansion-c","strokes":[
+      {"name":"長く曲がった首","durationMs":1000,"path":"M 73 61 Q 91 43 76 30 Q 67 24 72 17 Q 82 9 90 19 Q 98 34 89 48 Q 85 57 91 69"},
+      {"name":"丸い体と尾","durationMs":850,"path":"M 91 69 Q 96 87 68 95 Q 36 100 20 79 L 12 60 L 32 70 Q 51 61 73 61"},
+      {"name":"羽","durationMs":500,"path":"M 32 73 Q 54 47 70 69 Q 58 86 38 82 M 43 73 L 60 69"},
+      {"name":"くちばしと目","durationMs":250,"path":"M 72 19 L 60 24 L 72 27 M 81 18 L 81 20"},
+      {"name":"水面","durationMs":250,"path":"M 23 102 Q 59 106 99 98"}
+    ]},
+    {"key":"peacock","labelJa":"くじゃく","labelEn":"peacock","adoptionBase":"fog-doodle-v02-expansion-c","strokes":[
+      {"name":"広げた尾","durationMs":1050,"path":"M 42 87 Q 8 78 14 55 Q 6 37 28 31 Q 30 10 51 23 Q 65 6 78 24 Q 101 19 102 42 Q 119 54 99 70 Q 101 86 77 91"},
+      {"name":"小さな頭と体","durationMs":800,"path":"M 52 56 Q 47 43 57 40 Q 71 36 70 51 L 71 68 Q 83 86 66 95 Q 43 100 43 81 L 52 56"},
+      {"name":"羽の筋","durationMs":600,"path":"M 43 77 L 24 59 M 46 64 L 36 35 M 73 63 L 87 40 M 78 77 L 98 59"},
+      {"name":"羽の目玉","durationMs":500,"path":"M 24 50 Q 15 52 23 58 Q 30 58 24 50 M 35 28 Q 28 31 36 37 Q 43 35 35 28 M 87 32 Q 79 35 86 41 Q 94 38 87 32"},
+      {"name":"顔と足","durationMs":400,"path":"M 61 46 L 61 48 M 51 48 L 44 53 L 52 55 M 53 95 L 50 104 M 66 95 L 69 103 M 57 39 L 53 30 M 62 38 L 65 29"}
+    ]},
+    {"key":"flamingo","labelJa":"ふらみんご","labelEn":"flamingo","adoptionBase":"fog-doodle-v02-expansion-c","strokes":[
+      {"name":"曲げた首","durationMs":900,"path":"M 65 60 Q 89 42 72 29 Q 65 25 70 17 Q 77 9 85 17 Q 95 30 84 46 L 77 66"},
+      {"name":"小さな体と羽","durationMs":850,"path":"M 77 66 Q 75 81 49 78 Q 33 76 22 61 Q 41 59 50 53 Q 62 48 65 60 M 37 64 Q 54 58 65 65 Q 55 73 44 70"},
+      {"name":"片足立ち","durationMs":600,"path":"M 52 79 L 50 104 L 38 105 M 65 78 L 79 91 L 61 95"},
+      {"name":"曲がったくちばしと目","durationMs":350,"path":"M 70 19 L 59 25 L 62 34 L 69 28 L 74 27 M 79 18 L 79 20"}
+    ]},
+    {"key":"ladybug","labelJa":"てんとうむし","labelEn":"ladybug","adoptionBase":"fog-doodle-v02-expansion-c","strokes":[
+      {"name":"丸い背中","durationMs":900,"path":"M 59 38 Q 30 35 24 61 Q 17 89 48 98 Q 77 106 91 81 Q 103 51 74 41 L 59 38"},
+      {"name":"頭と触角","durationMs":550,"path":"M 47 39 Q 42 23 59 21 Q 78 20 78 41 M 51 24 L 43 14 M 69 22 L 75 12"},
+      {"name":"羽の境目","durationMs":450,"path":"M 61 40 Q 56 68 60 99"},
+      {"name":"ふぞろいな点","durationMs":800,"path":"M 39 52 Q 31 55 38 63 Q 47 62 39 52 M 76 54 Q 68 56 74 65 Q 83 64 76 54 M 38 78 Q 31 82 39 88 Q 48 85 38 78 M 78 77 Q 69 78 74 88 Q 85 87 78 77"},
+      {"name":"六本の足","durationMs":400,"path":"M 26 55 L 15 49 M 23 72 L 11 73 M 29 87 L 19 98 M 91 56 L 103 50 M 94 73 L 108 74 M 87 89 L 98 100"}
+    ]},
+    {"key":"ant","labelJa":"あり","labelEn":"ant","adoptionBase":"fog-doodle-v02-expansion-c","strokes":[
+      {"name":"大きな頭","durationMs":650,"path":"M 30 40 Q 15 39 14 54 Q 14 68 29 67 Q 43 67 44 53 Q 42 41 30 40"},
+      {"name":"小さい胸と大きいおしり","durationMs":800,"path":"M 44 53 Q 52 46 60 53 Q 65 64 54 67 Q 45 67 44 58 M 62 55 Q 75 38 95 47 Q 113 61 97 76 Q 77 91 63 65"},
+      {"name":"触角","durationMs":350,"path":"M 23 41 L 18 28 L 10 26 M 34 41 L 38 27 L 47 24"},
+      {"name":"六本の足","durationMs":700,"path":"M 47 53 L 48 35 L 58 29 M 55 52 L 65 33 L 74 32 M 61 54 L 78 39 L 87 39 M 46 65 L 40 82 L 30 87 M 54 68 L 55 89 L 45 96 M 62 66 L 73 86 L 70 97"},
+      {"name":"目","durationMs":150,"path":"M 23 52 L 23 54"}
+    ]},
+    {"key":"beetle","labelJa":"かぶとむし","labelEn":"beetle","adoptionBase":"fog-doodle-v02-expansion-c","strokes":[
+      {"name":"丸い羽","durationMs":900,"path":"M 46 51 Q 28 67 36 88 Q 43 105 61 103 Q 83 103 86 82 Q 88 61 73 51 Q 61 46 46 51 M 60 51 Q 57 77 61 102"},
+      {"name":"頭","durationMs":550,"path":"M 45 51 Q 38 37 50 31 Q 65 25 75 36 L 74 51"},
+      {"name":"枝分かれした太い角","durationMs":550,"path":"M 54 31 L 51 19 L 42 11 L 47 8 L 56 17 L 64 8 L 69 12 L 61 22 L 63 30 M 68 31 L 72 24 L 77 27"},
+      {"name":"六本の足","durationMs":650,"path":"M 42 49 L 26 40 L 20 29 M 35 66 L 20 66 L 16 75 M 37 87 L 22 94 L 23 104 M 78 48 L 93 39 L 98 29 M 85 66 L 101 68 L 105 77 M 83 87 L 99 94 L 98 105"}
+    ]},
+    {"key":"bat","labelJa":"こうもり","labelEn":"bat","adoptionBase":"fog-doodle-v02-expansion-c","strokes":[
+      {"name":"耳と小さい体","durationMs":800,"path":"M 47 49 L 46 29 L 57 41 L 64 41 L 74 29 L 73 50 Q 81 72 61 87 Q 42 73 47 49"},
+      {"name":"左の羽","durationMs":750,"path":"M 46 49 Q 27 45 11 29 Q 10 55 16 77 Q 27 61 35 78 Q 36 66 47 71"},
+      {"name":"右の羽","durationMs":750,"path":"M 74 49 Q 93 43 108 27 Q 111 54 104 76 Q 93 62 86 78 Q 84 65 74 71"},
+      {"name":"羽の骨と顔","durationMs":550,"path":"M 46 51 L 16 77 M 74 51 L 104 76 M 54 54 L 54 56 M 67 54 L 67 56 M 56 65 Q 61 70 66 64"}
+    ]},
+    {"key":"harmonica","labelJa":"はーもにか","labelEn":"harmonica","adoptionBase":"fog-doodle-v02-expansion-c","strokes":[
+      {"name":"少し斜めの箱","durationMs":850,"path":"M 14 57 L 92 40 L 105 49 L 106 72 L 27 91 L 14 79 L 14 57 M 14 57 L 27 67 L 105 49 M 27 67 L 27 91"},
+      {"name":"息を吹く穴","durationMs":900,"path":"M 34 71 L 42 69 L 42 79 L 34 81 L 34 71 M 49 68 L 57 66 L 57 76 L 49 78 L 49 68 M 64 64 L 72 62 L 72 72 L 64 74 L 64 64 M 79 60 L 87 58 L 87 68 L 79 70 L 79 60 M 94 56 L 100 55 L 100 65 L 94 67 L 94 56"}
+    ]},
+    {"key":"trumpet","labelJa":"らっぱ","labelEn":"trumpet","adoptionBase":"fog-doodle-v02-expansion-c","strokes":[
+      {"name":"大きな吹き出し口","durationMs":900,"path":"M 21 52 L 67 50 Q 84 46 94 29 L 99 81 Q 83 66 68 63 L 21 64 M 94 29 Q 108 52 99 81"},
+      {"name":"丸めた管","durationMs":650,"path":"M 35 64 L 35 79 Q 36 91 57 89 Q 76 88 75 73 L 74 65 M 45 64 L 45 77 Q 55 83 64 77 L 64 64"},
+      {"name":"三つのボタン","durationMs":450,"path":"M 43 50 L 43 39 M 38 39 L 47 38 M 55 50 L 55 35 M 50 35 L 59 35 M 66 50 L 66 37 M 62 37 L 71 37"},
+      {"name":"口をつけるところ","durationMs":250,"path":"M 21 56 L 12 55 L 12 63 L 21 61"}
+    ]},
+    {"key":"drum","labelJa":"たいこ","labelEn":"drum","adoptionBase":"fog-doodle-v02-expansion-c","strokes":[
+      {"name":"丸い面","durationMs":750,"path":"M 23 49 Q 24 35 61 35 Q 97 35 98 48 Q 95 64 59 63 Q 23 62 23 49"},
+      {"name":"少し傾いた胴","durationMs":700,"path":"M 23 49 L 26 89 Q 60 108 96 88 L 98 48"},
+      {"name":"横のひも","durationMs":700,"path":"M 27 61 L 39 94 L 49 65 L 61 99 L 73 65 L 84 94 L 95 60"},
+      {"name":"二本のばち","durationMs":550,"path":"M 27 14 L 54 46 M 30 12 L 58 44 M 91 16 L 69 46 M 94 18 L 73 48"}
+    ]},
+    {"key":"eggplant","labelJa":"なす","labelEn":"eggplant","adoptionBase":"fog-doodle-v02-expansion-c","strokes":[
+      {"name":"曲がった実","durationMs":1100,"path":"M 59 37 Q 64 60 39 70 Q 22 76 18 91 Q 40 109 68 91 Q 95 75 86 43"},
+      {"name":"とがったへた","durationMs":650,"path":"M 59 37 L 54 29 L 68 30 L 72 17 L 81 28 L 95 25 L 90 39 L 97 49 L 81 45 L 75 53 L 70 40 L 59 37"},
+      {"name":"短い茎","durationMs":300,"path":"M 73 24 L 69 11 L 76 10 L 81 26"}
+    ]},
+    {"key":"pineapple","labelJa":"ぱいなっぷる","labelEn":"pineapple","adoptionBase":"fog-doodle-v02-expansion-c","strokes":[
+      {"name":"丸い実","durationMs":900,"path":"M 56 40 Q 30 38 29 68 Q 26 99 56 104 Q 87 106 91 78 Q 95 45 68 40 L 56 40"},
+      {"name":"とがった葉っぱ","durationMs":700,"path":"M 48 41 L 34 20 L 51 29 L 52 10 L 63 29 L 77 13 L 73 31 L 91 24 L 76 43"},
+      {"name":"斜めの模様","durationMs":700,"path":"M 38 48 L 83 91 M 30 66 L 67 102 M 57 42 L 90 73 M 80 46 L 31 88 M 90 63 L 45 101 M 60 42 L 30 66"}
+    ]},
+    {"key":"cucumber","labelJa":"きゅうり","labelEn":"cucumber","adoptionBase":"fog-doodle-v02-expansion-c","strokes":[
+      {"name":"少し曲がったきゅうり","durationMs":1100,"path":"M 78 20 Q 88 16 95 27 Q 102 36 91 47 Q 69 70 42 99 Q 33 109 23 101 Q 14 94 23 83 Q 47 56 73 26 L 78 20"},
+      {"name":"先とへた","durationMs":450,"path":"M 76 23 Q 83 36 97 32 M 22 86 Q 22 98 34 103 M 86 21 L 88 13"},
+      {"name":"いぼのつもり","durationMs":500,"path":"M 77 39 L 79 41 M 64 54 L 67 56 M 49 69 L 51 71 M 34 85 L 36 87 M 56 77 L 58 79 M 76 54 L 78 56"}
+    ]}
+  ]
+}
