@@ -56,11 +56,13 @@ it('retains the original 67 plus five 13-drawing and seven reviewed expansion gr
       expect(stroke.points[0].y).toBeCloseTo(coordinates[1] / 120);
       expect(stroke.points.at(-1)!.x).toBeCloseTo(coordinates.at(-2)! / 120);
       expect(stroke.points.at(-1)!.y).toBeCloseTo(coordinates.at(-1)! / 120);
-      for (const point of stroke.points) {
-        expect(point.t).toBeGreaterThanOrEqual(previous); previous = point.t;
-        expect(point.x).toBeGreaterThanOrEqual(0); expect(point.x).toBeLessThanOrEqual(1);
-        expect(point.y).toBeGreaterThanOrEqual(0); expect(point.y).toBeLessThanOrEqual(1);
-      }
+      // Check every sampled point without constructing five matchers per point.
+      const invalidPoints = stroke.points.filter(point => {
+        const valid = point.t >= previous && point.x >= 0 && point.x <= 1 && point.y >= 0 && point.y <= 1;
+        previous = point.t;
+        return !valid;
+      });
+      expect(invalidPoints, `${doodle.key} stroke ${part}: time order and normalized bounds`).toEqual([]);
     });
     expect(previous).toBeCloseTo(1200);
     expect(girlSketches.filter(s => s.word === sketch.word).map(s => s.id)).toEqual([sketch.id]);
