@@ -1,3 +1,21 @@
+# DRAWINDOW — local edition (PR #27)
+
+This branch adds on-device drawing recognition. Build with `npm ci` and
+`npm run package:offline`, then run `npm run preview` and open the displayed
+localhost URL. No API key or recognition server is needed. Model downloads
+happen during packaging; the game uses the bundled model, fonts, pictures and music.
+
+Wait for **Ready to play offline / 通信なしで遊ぶ準備ができました** on the title
+screen before disconnecting. Saving failures offer a retry. Reopen using the same
+browser and URL; clearing browser site data removes the offline copy. Installing
+on a phone requires a standalone HTTPS origin; opening the ZIP with `file://`
+does not install it. The default is real local recognition; DEMO is an explicit,
+optional simulation. Human recognition quality and Android acceptance remain pending.
+
+See [local edition design and checks](docs/OFFLINE_FIRST_v09.md).
+
+---
+
 # DRAWINDOW — current product source
 
 GitHub `main` is the canonical product source. The local `C:\Dev\Projects\drawindow` checkout follows `main`; recovery branches and vocabulary/recognition Draft PRs are archives or experiments, not alternative product defaults.

@@ -24,9 +24,9 @@ for (const [name, bytes] of Object.entries(files)) {
 }
 await mkdir('artifacts/release', { recursive: true });
 const version = JSON.parse(await readFile('package.json', 'utf8')).version;
-const mode = process.env.DRAWINDOW_PACKAGE_MODE === 'live' ? 'live' : 'demo';
+const mode = process.env.DRAWINDOW_PACKAGE_MODE === 'offline' ? 'offline' : process.env.DRAWINDOW_PACKAGE_MODE === 'live' ? 'live' : 'demo';
 const filename = `DRAWINDOW-v${version}-${mode}-itch.zip`;
 await writeFile(`artifacts/release/${filename}`, archive);
-const receipt = { filename, mode, endpoint: mode === 'live' ? process.env.DRAWINDOW_PACKAGE_ENDPOINT : null, sha256: createHash('sha256').update(archive).digest('hex'), bytes: archive.length, entries: Object.keys(restored).length, rootIndex: true, extractedByteParity: true, scope: mode === 'live' ? 'LIVE frontend. API deployment, actual itch iframe and human acceptance are separate verification gates.' : 'Explicit DEMO; no image recognition.', files: Object.keys(restored).sort() };
+const receipt = { filename, mode, endpoint: mode === 'live' ? process.env.DRAWINDOW_PACKAGE_ENDPOINT : null, sha256: createHash('sha256').update(archive).digest('hex'), bytes: archive.length, entries: Object.keys(restored).length, rootIndex: true, extractedByteParity: true, scope: mode === 'offline' ? 'Experimental offline static edition with bundled local AI and service worker; real airplane-mode acceptance pending.' : mode === 'live' ? 'LIVE frontend. API deployment, actual itch iframe and human acceptance are separate verification gates.' : 'Explicit DEMO; no image recognition.', files: Object.keys(restored).sort() };
 await writeFile('artifacts/release/package-receipt.json', JSON.stringify(receipt, null, 2));
 console.log(JSON.stringify(receipt, null, 2));
