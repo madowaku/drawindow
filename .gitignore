@@ -17,3 +17,8 @@ output/playwright/
 # Local parallel checkouts and test cache
 .worktrees/
 .vitest/
+
+# Reproducible local art-review screenshots and package
+/artifacts/qa/shizuku-300/*.png
+/artifacts/qa/shizuku-300/*.zip
+/artifacts/qa/shizuku-300/gameplay/*.png

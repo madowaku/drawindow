@@ -1,0 +1,24 @@
+{
+  "baseCommit": "f87a18947b1985a54796c0639756c815f0c93842",
+  "unchangedOriginalDoodles": 132,
+  "unchangedSourceHashes": {
+    "src\\data\\shizuku-doodles\\doodles.json": "23f47dbfcfd9409edd11a671db0f99279333d825e4e414262d23e28eae292a5b",
+    "src\\data\\shizuku-doodles\\expansion-20261022-b.json": "30e647936f506bd97e4222a9e616b29720a6c62da41293422bff2dbca2a234d6",
+    "src\\data\\shizuku-doodles\\expansion-20261022-c.json": "d0d131328129520ee86698089a6ff63e1fe7a8104c089fd165901d7dfdb5d895",
+    "src\\data\\shizuku-doodles\\expansion-20261022-d.json": "6ddd36166ec69b63f4efbbba05cdd6e8725a7cf8d6b97bfb7fd415391de877e6",
+    "src\\data\\shizuku-doodles\\expansion-20261022-e.json": "3fc4dae5862f372e7507dd4df656f9cce558dc70371d0398173b98d5687cc14c",
+    "src\\data\\shizuku-doodles\\expansion-20261022.json": "01634c7ac93c89d3aee44b7b408ccabc38e4e3ec757f4a78fe6984f9d7ea266f"
+  },
+  "unchangedCharacterAndSceneFiles": [
+    "public/art/shizuku/blink.webp",
+    "public/art/shizuku/breath.webp",
+    "public/art/shizuku/curious.webp",
+    "public/art/shizuku/drawing.webp",
+    "public/art/shizuku/neutral.webp",
+    "public/art/shizuku/room-day.webp",
+    "public/art/shizuku/room-night.webp",
+    "public/art/shizuku/shy.webp",
+    "public/art/shizuku/smile.webp",
+    "public/art/shizuku/thinking.webp"
+  ]
+}

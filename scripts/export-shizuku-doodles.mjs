@@ -19,11 +19,16 @@ const expansionD = JSON.parse(expansionDRaw);
 const expansionEPath = 'src/data/shizuku-doodles/expansion-20261022-e.json';
 const expansionERaw = await readFile(expansionEPath, 'utf8');
 const expansionE = JSON.parse(expansionERaw);
+const newSources = await Promise.all(["food", "home", "tools", "nature", "clothes", "animals", "travel"].map(async category => {
+  const path = `src/data/shizuku-doodles/expansion-20261023-${category}.json`;
+  const raw = await readFile(path, 'utf8');
+  return { path, raw, data: JSON.parse(raw) };
+}));
 const directory = 'public/art/doodles/shizuku';
 await mkdir(directory, { recursive: true });
 const hash = value => createHash('sha256').update(value).digest('hex');
 const entries = [];
-for (const doodle of [...source.doodles, ...expansion.doodles, ...expansionB.doodles, ...expansionC.doodles, ...expansionD.doodles, ...expansionE.doodles]) {
+for (const doodle of [...source.doodles, ...expansion.doodles, ...expansionB.doodles, ...expansionC.doodles, ...expansionD.doodles, ...expansionE.doodles, ...newSources.flatMap(s => s.data.doodles)]) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${source.width}" height="${source.height}" viewBox="0 0 ${source.width} ${source.height}" fill="none" stroke="#000" stroke-width="${source.strokeWidth}" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="title"><title id="title">${doodle.labelJa} / ${doodle.labelEn}</title>\n${doodle.strokes.map(stroke => `  <path d="${stroke.path}"/>`).join('\n')}\n</svg>\n`;
   const path = `${directory}/${doodle.key}.svg`;
   await writeFile(path, svg);
@@ -39,6 +44,8 @@ await writeFile('assets/shizuku-doodles-v01-manifest.json', JSON.stringify({
   expansionCSource: expansionCPath, expansionCSha256: hash(expansionCRaw),
   expansionDSource: expansionDPath, expansionDSha256: hash(expansionDRaw),
   expansionESource: expansionEPath, expansionESha256: hash(expansionERaw),
+  expansion300Sources: newSources.map(s => ({ path: s.path, sha256: hash(s.raw), count: s.data.doodles.length })),
+  expansion300Status: '168 original stroke drawings added at user request on 2026-10-23; human readability and LIVE recognition unverified.',
   entries,
 }, null, 2) + '\n');
 console.log(`Exported ${entries.length} SVGs and provenance manifest.`);

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="title"><title id="title">しんごうき / traffic light</title>
+  <path d="M 39 12 L 81 12 Q 87 12 87 19 L 87 87 Q 87 93 81 93 L 39 93 Q 33 93 33 87 L 33 19 Q 33 12 39 12"/>
+  <path d="M 70 28 Q 70 38 60 38 Q 50 37.6 50 28 Q 50 18 60.3 18 Q 69.8 18 70 28 M 70 52 Q 70 62 60 62 Q 50 61.6 50 52 Q 50 42 60.3 42 Q 69.8 42 70 52 M 70 77 Q 70 87 60 87 Q 50 86.6 50 77 Q 50 67 60.3 67 Q 69.8 67 70 77"/>
+  <path d="M 54 94 L 54 110 M 66 94 L 66 110 M 33 21 L 24 18 L 27 36 L 33 36 M 87 21 L 96 18 L 93 36 L 87 36"/>
+</svg>

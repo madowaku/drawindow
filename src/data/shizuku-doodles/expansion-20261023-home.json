@@ -1,0 +1,670 @@
+{
+  "version": "fog-doodle-v03",
+  "width": 120,
+  "height": 120,
+  "strokeWidth": 2.1,
+  "category": "home",
+  "doodles": [
+    {
+      "key": "bed",
+      "labelJa": "べっど",
+      "labelEn": "bed",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 18 42 L 18 101 M 99 69 L 101 103 M 19 89 L 100 91 M 19 71 L 98 72 L 99 87 L 19 86"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 21 69 L 22 36 Q 57 29 93 37 L 94 69"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 31 42 Q 46 37 59 43 L 59 54 Q 42 57 30 53 L 31 42"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 24 59 Q 58 54 92 61"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "sofa",
+      "labelJa": "そふぁ",
+      "labelEn": "sofa",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 21 57 L 21 36 Q 24 24 39 26 L 82 27 Q 98 26 98 39 L 98 59"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 29 61 Q 17 48 11 58 L 14 93 L 105 92 L 108 59 Q 100 49 91 61 L 90 80 L 29 79 L 29 61"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 31 59 L 59 58 L 61 79 M 65 58 L 89 60 M 22 94 L 21 103 M 96 94 L 98 102"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "table",
+      "labelJa": "つくえ",
+      "labelEn": "table",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 13 43 L 87 30 L 108 49 L 34 66 L 13 43"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 14 49 L 34 73 L 108 57 L 108 49 M 23 60 L 24 98 L 32 100 L 32 71 M 95 62 L 96 92 L 103 91 L 103 59 M 46 72 L 46 92"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "stool",
+      "labelJa": "まるいす",
+      "labelEn": "stool",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 94 36 Q 94 49 60 49 Q 26 48.48 26 36 Q 26 23 61.02 23 Q 93.32 23 94 36"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 26 38 L 27 46 Q 57 64 94 45 L 94 37"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 37 52 L 29 104 L 37 104 L 47 55 M 72 55 L 83 104 L 91 102 L 82 52 M 47 83 L 78 83"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "door",
+      "labelJa": "どあ",
+      "labelEn": "door",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 24 104 L 24 16 L 92 17 L 94 103"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 32 102 L 33 25 L 83 26 L 84 103 L 32 102"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 43 35 L 73 36 L 73 62 L 43 61 L 43 35 M 43 76 L 74 76 L 74 94 L 43 94 L 43 76"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 78 69 Q 78 72 75 72 Q 72 71.88 72 69 Q 72 66 75.09 66 Q 77.94 66 78 69"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "window",
+      "labelJa": "まど",
+      "labelEn": "window",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 19 22 L 101 23 L 100 94 L 18 94 L 19 22"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 28 31 L 91 32 L 90 84 L 27 85 L 28 31 M 59 32 L 60 84 M 28 57 L 91 57"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 13 95 L 107 95 L 106 102 L 14 102 L 13 95"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 36 38 L 48 49 M 36 47 L 41 52"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "mirror",
+      "labelJa": "かがみ",
+      "labelEn": "mirror",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 89 44 Q 89 78 59 78 Q 29 76.64 29 44 Q 29 10 59.9 10 Q 88.4 10 89 44"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 81 44 Q 81 70 59 70 Q 37 68.96 37 44 Q 37 18 59.66 18 Q 80.56 18 81 44"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 51 79 L 50 103 Q 59 113 68 103 L 66 79"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 47 29 L 61 42 M 44 39 L 52 47"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "lamp",
+      "labelJa": "らんぷ",
+      "labelEn": "lamp",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 39 22 L 79 23 L 97 65 Q 59 74 21 65 L 39 22"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 58 70 L 59 99 M 45 101 Q 59 93 77 101 L 80 106 L 40 105 L 45 101"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 80 70 L 80 83 M 82 86 Q 82 89 80 89 Q 78 88.88 78 86 Q 78 83 80.06 83 Q 81.96 83 82 86"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "fan",
+      "labelJa": "せんぷうき",
+      "labelEn": "fan",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 94 44 Q 94 78 59 78 Q 24 76.64 24 44 Q 24 10 60.05 10 Q 93.3 10 94 44"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 88 44 Q 88 72 59 72 Q 30 70.88 30 44 Q 30 16 59.87 16 Q 87.42 16 88 44"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 65 44 Q 65 50 59 50 Q 53 49.76 53 44 Q 53 38 59.18 38 Q 64.88 38 65 44"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 57 37 Q 35 14 37 41 Q 43 54 53 46 M 65 43 Q 89 24 86 48 Q 79 60 64 50 M 58 51 Q 69 78 48 64 Q 37 53 53 47"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 53 79 L 51 98 M 65 79 L 68 98 M 37 100 Q 60 94 82 101 L 86 107 L 32 107 L 37 100"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "television",
+      "labelJa": "てれび",
+      "labelEn": "television",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 19 32 Q 61 27 103 34 L 101 90 Q 61 96 20 90 L 19 32"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 29 40 L 81 40 L 81 81 L 29 81 L 29 40"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 95 49 Q 95 52 92 52 Q 89 51.88 89 49 Q 89 46 92.09 46 Q 94.94 46 95 49 M 95 65 Q 95 68 92 68 Q 89 67.88 89 65 Q 89 62 92.09 62 Q 94.94 62 95 65"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 30 94 L 25 104 M 91 94 L 97 104 M 53 29 L 38 14 M 57 29 L 75 11"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "radio",
+      "labelJa": "らじお",
+      "labelEn": "radio",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 18 43 Q 59 37 103 42 L 103 91 Q 61 97 18 91 L 18 43"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 29 39 L 84 12"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 63 67 Q 63 84 45 84 Q 27 83.32 27 67 Q 27 50 45.54 50 Q 62.64 50 63 67"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 34 58 L 56 58 M 31 65 L 59 65 M 31 72 L 59 72 M 36 79 L 54 79"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 72 50 L 94 50 L 94 60 L 72 60 L 72 50 M 90 78 Q 90 86 82 86 Q 74 85.68 74 78 Q 74 70 82.24 70 Q 89.84 70 90 78"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "telephone",
+      "labelJa": "でんわ",
+      "labelEn": "telephone",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 22 63 L 34 45 L 84 46 L 100 86 Q 61 100 19 87 L 22 63"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 22 41 Q 59 14 97 39 L 94 51 L 77 52 L 72 39 Q 59 33 44 39 L 41 52 L 22 51 L 22 41"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 74 68 Q 74 81 60 81 Q 46 80.48 46 68 Q 46 55 60.42 55 Q 73.72 55 74 68 M 65 68 Q 65 73 60 73 Q 55 72.8 55 68 Q 55 63 60.15 63 Q 64.9 63 65 68"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 21 46 Q 8 54 15 63 Q 5 71 17 78"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "refrigerator",
+      "labelJa": "れいぞうこ",
+      "labelEn": "refrigerator",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 31 16 Q 61 11 90 17 L 91 103 L 29 103 L 31 16"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 31 48 L 90 49 M 39 27 L 39 39 M 39 60 L 39 79"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 36 104 L 36 109 M 83 104 L 83 110"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "washing-machine",
+      "labelJa": "せんたくき",
+      "labelEn": "washing machine",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 25 20 L 96 22 L 96 103 L 24 103 L 25 20"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 26 39 L 95 40 M 41 30 Q 41 33 38 33 Q 35 32.88 35 30 Q 35 27 38.09 27 Q 40.94 27 41 30 M 68 28 L 85 28"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 85 70 Q 85 94 60 94 Q 35 93.04 35 70 Q 35 46 60.75 46 Q 84.5 46 85 70 M 78 70 Q 78 87 60 87 Q 42 86.32 42 70 Q 42 53 60.54 53 Q 77.64 53 78 70"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 44 72 Q 52 65 61 74 Q 70 81 77 73"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "bathtub",
+      "labelJa": "ふろ",
+      "labelEn": "bathtub",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 14 58 Q 58 51 107 58 L 107 66 Q 59 73 14 66 L 14 58"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 20 69 L 30 95 Q 61 108 91 94 L 102 69"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 33 99 L 29 108 M 87 99 L 92 107"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 82 56 L 82 30 Q 81 18 92 19 Q 102 20 101 31 L 95 32 M 78 38 L 89 38"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "toilet",
+      "labelJa": "といれ",
+      "labelEn": "toilet",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 65 16 L 100 18 L 100 57 L 65 57 L 65 16"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 87 64 Q 87 75 54 75 Q 21 74.56 21 64 Q 21 53 54.99 53 Q 86.34 53 87 64"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 22 65 Q 23 85 49 90 L 46 105 L 83 104 L 77 87 Q 95 75 88 65"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 79 28 L 91 29"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "sink",
+      "labelJa": "ながし",
+      "labelEn": "sink",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 13 57 L 109 58 L 101 80 Q 63 99 23 80 L 13 57"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 98 59 Q 98 69 61 69 Q 24 68.6 24 59 Q 24 49 62.11 49 Q 97.26 49 98 59"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 50 49 L 50 25 Q 58 13 68 24 L 69 38 L 62 38 L 61 27 M 40 45 L 40 52 M 83 45 L 83 53"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 32 88 L 31 107 M 90 88 L 90 106"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "teapot",
+      "labelJa": "てぃーぽっと",
+      "labelEn": "teapot",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 35 47 Q 20 64 32 84 Q 51 104 80 86 Q 94 65 78 47 L 35 47"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 31 59 L 13 43 L 13 57 L 29 78"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 84 50 Q 112 40 109 62 Q 107 85 87 77"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 32 45 Q 58 26 82 45 M 53 34 L 52 26 Q 59 19 65 27 L 64 34"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "kettle",
+      "labelJa": "けとる",
+      "labelEn": "kettle",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 34 47 Q 24 57 26 90 Q 58 101 94 89 Q 95 62 80 47 L 34 47"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 34 46 Q 58 34 82 45 M 53 38 L 53 30 L 64 29 L 65 38"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 40 34 Q 38 11 62 11 Q 86 10 86 43"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 29 62 L 11 44 L 12 61 L 26 80"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "skillet",
+      "labelJa": "すきれっと",
+      "labelEn": "skillet",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 90 52 Q 90 76 53 76 Q 16 75.04 16 52 Q 16 28 54.11 28 Q 89.26 28 90 52"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 82 51 Q 82 68 53 68 Q 24 67.32 24 51 Q 24 34 53.87 34 Q 81.42 34 82 51"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 17 55 L 22 72 Q 47 90 83 72 L 89 57"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 83 70 L 106 96 L 113 91 L 89 63"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "pot",
+      "labelJa": "なべ",
+      "labelEn": "pot",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 26 42 L 28 86 Q 60 104 94 85 L 95 43"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 96 42 Q 96 53 60 53 Q 24 52.56 24 42 Q 24 31 61.08 31 Q 95.28 31 96 42"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 24 52 Q 8 47 11 66 L 27 66 M 96 52 Q 112 49 110 66 L 96 66"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 35 38 Q 60 23 85 38 M 54 28 L 54 21 L 66 21 L 66 29"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "bowl",
+      "labelJa": "うつわ",
+      "labelEn": "bowl",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 102 46 Q 102 60 59 60 Q 16 59.44 16 46 Q 16 32 60.29 32 Q 101.14 32 102 46"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 17 48 Q 21 87 48 94 L 72 94 Q 98 85 102 47"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 45 95 L 43 103 L 76 102 L 73 95"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 29 68 Q 55 80 88 68"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "plate",
+      "labelJa": "さら",
+      "labelEn": "plate",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 105 61 Q 105 98 60 98 Q 15 96.52 15 61 Q 15 24 61.35 24 Q 104.1 24 105 61"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 95 61 Q 95 88 60 88 Q 25 86.92 25 61 Q 25 34 61.05 34 Q 94.3 34 95 61"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 27 42 Q 39 30 52 30 M 81 86 Q 88 81 94 72"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "spoon",
+      "labelJa": "さじ",
+      "labelEn": "spoon",
+      "adoptionBase": "fog-doodle-v03-expansion-300-home",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 44 49 Q 23 35 38 17 Q 54 1 67 21 Q 78 40 58 51 L 81 103 Q 76 112 69 108 L 44 49"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 40 23 Q 34 35 45 41"
+        }
+      ],
+      "readability": "safe"
+    }
+  ]
+}

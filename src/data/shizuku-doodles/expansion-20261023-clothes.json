@@ -1,0 +1,610 @@
+{
+  "version": "fog-doodle-v03",
+  "width": 120,
+  "height": 120,
+  "strokeWidth": 2.1,
+  "category": "clothes",
+  "doodles": [
+    {
+      "key": "t-shirt",
+      "labelJa": "てぃーしゃつ",
+      "labelEn": "t-shirt",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 42 24 Q 59 37 77 24 L 105 43 L 93 61 L 80 53 L 81 102 L 38 102 L 39 54 L 25 63 L 13 44 L 42 24"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 43 25 Q 58 47 76 25 M 42 94 L 77 94"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "dress",
+      "labelJa": "わんぴーす",
+      "labelEn": "dress",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 44 17 L 53 17 Q 59 27 66 17 L 76 18 L 78 42 L 68 58 L 101 103 Q 61 113 19 103 L 51 58 L 40 42 L 44 17"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 50 57 L 69 58 M 49 68 L 40 95 M 71 69 L 82 96"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "skirt",
+      "labelJa": "すかーと",
+      "labelEn": "skirt",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 37 26 L 82 27 L 84 38 L 37 38 L 37 26"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 37 38 L 17 96 Q 57 110 104 95 L 84 38"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 48 42 L 39 94 M 61 42 L 62 98 M 74 42 L 84 94"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "shorts",
+      "labelJa": "はーふぱんつ",
+      "labelEn": "shorts",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 27 27 L 92 28 L 97 89 L 66 92 L 60 61 L 53 92 L 22 88 L 27 27"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 27 38 L 92 39 M 59 39 L 60 61 M 32 43 Q 35 58 47 58 M 86 43 Q 84 58 73 58"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 24 80 L 54 84 M 66 84 L 95 80"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "hat",
+      "labelJa": "ぼうし",
+      "labelEn": "hat",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 106 80 Q 106 97 60 97 Q 14 96.32 14 80 Q 14 63 61.38 63 Q 105.08 63 106 80"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 30 77 L 37 35 Q 61 22 85 36 L 92 77 Q 61 89 30 77"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 33 64 Q 60 75 89 65"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "cap",
+      "labelJa": "きゃっぷ",
+      "labelEn": "cap",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 23 70 Q 21 27 60 26 Q 92 26 98 69 Q 61 81 23 70"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 24 70 Q 16 86 48 91 Q 82 93 99 70 M 61 28 Q 48 48 52 76"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 65 24 Q 65 27 61 27 Q 57 26.88 57 24 Q 57 21 61.12 21 Q 64.92 21 65 24"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "crown",
+      "labelJa": "かんむり",
+      "labelEn": "crown",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 23 83 L 13 36 L 39 55 L 59 19 L 80 55 L 106 35 L 97 84 L 23 83"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 24 86 L 25 101 L 96 101 L 97 86"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 65 72 Q 65 79 59 79 Q 53 78.72 53 72 Q 53 65 59.18 65 Q 64.88 65 65 72 M 40 74 Q 40 78 37 78 Q 34 77.84 34 74 Q 34 70 37.09 70 Q 39.94 70 40 74 M 85 73 Q 85 77 82 77 Q 79 76.84 79 73 Q 79 69 82.09 69 Q 84.94 69 85 73"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 16 32 Q 16 35 13 35 Q 10 34.88 10 32 Q 10 29 13.09 29 Q 15.94 29 16 32 M 62 15 Q 62 18 59 18 Q 56 17.88 56 15 Q 56 12 59.09 12 Q 61.94 12 62 15 M 109 31 Q 109 34 106 34 Q 103 33.88 103 31 Q 103 28 106.09 28 Q 108.94 28 109 31"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "scarf",
+      "labelJa": "まふらー",
+      "labelEn": "scarf",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 24 34 Q 58 21 94 36 L 94 56 Q 62 43 29 60 L 24 34"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 43 57 L 35 102 L 54 105 L 63 53 M 70 53 L 79 91 L 96 87 L 86 54"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 38 96 L 54 99 M 80 83 L 94 80 M 35 105 L 33 111 M 43 107 L 42 113 M 51 108 L 50 113 M 83 93 L 85 100 M 91 90 L 94 97"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "shoe",
+      "labelJa": "くつ",
+      "labelEn": "shoe",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 18 62 L 24 35 Q 40 49 52 33 L 69 58 L 95 66 Q 109 72 105 91 L 17 92 L 18 62"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 18 81 Q 59 86 105 81 M 45 47 L 61 48 M 50 55 L 68 57 M 56 63 L 75 65"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 24 61 Q 33 64 36 75"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "sandal",
+      "labelJa": "さんだる",
+      "labelEn": "sandal",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 41 16 Q 63 8 78 27 L 89 86 Q 89 106 65 109 Q 44 111 39 96 L 26 42 Q 23 23 41 16"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 35 47 L 77 40 L 81 57 L 39 65 L 35 47 M 43 78 L 84 72 L 86 85 L 46 93 L 43 78"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 36 28 Q 53 18 67 31"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "necktie",
+      "labelJa": "ねくたい",
+      "labelEn": "necktie",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 43 16 L 80 18 L 69 40 L 52 39 L 43 16"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 53 40 L 42 91 L 59 110 L 78 92 L 68 40"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 50 61 L 73 73 M 45 84 L 69 99"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "bow-tie",
+      "labelJa": "ちょうねくたい",
+      "labelEn": "bow tie",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 48 49 L 17 29 L 19 88 L 49 70 M 72 49 L 105 31 L 101 89 L 72 70"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 49 47 L 71 48 L 72 73 L 48 73 L 49 47"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 24 43 L 46 56 M 24 76 L 46 66 M 76 56 L 98 45 M 76 66 L 96 78"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "ring",
+      "labelJa": "ゆびわ",
+      "labelEn": "ring",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 88 77 Q 88 106 60 106 Q 32 104.84 32 77 Q 32 48 60.84 48 Q 87.44 48 88 77"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 80 77 Q 80 99 60 99 Q 40 98.12 40 77 Q 40 55 60.6 55 Q 79.6 55 80 77"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 36 32 L 47 19 L 72 19 L 84 33 L 61 57 L 36 32"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 37 32 L 83 33 M 48 20 L 51 32 L 61 56 L 69 33 L 72 20"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "necklace",
+      "labelJa": "ねっくれす",
+      "labelEn": "necklace",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 31 16 Q 15 42 29 66 Q 42 88 59 89 Q 81 85 95 58 Q 105 33 91 15"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 34 18 Q 24 50 41 69 M 88 19 Q 96 43 80 64"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 60 87 Q 46 76 43 90 Q 44 100 60 111 Q 76 101 78 90 Q 74 77 60 87"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "bracelet",
+      "labelJa": "うでわ",
+      "labelEn": "bracelet",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 100 60 Q 100 99 58 99 Q 16 97.44 16 60 Q 16 21 59.26 21 Q 99.16 21 100 60"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 88 60 Q 88 88 59 88 Q 30 86.88 30 60 Q 30 32 59.87 32 Q 87.42 32 88 60"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 65 26 Q 65 31 60 31 Q 55 30.8 55 26 Q 55 21 60.15 21 Q 64.9 21 65 26 M 94 43 Q 94 48 89 48 Q 84 47.8 84 43 Q 84 38 89.15 38 Q 93.9 38 94 43 M 97 75 Q 97 80 92 80 Q 87 79.8 87 75 Q 87 70 92.15 70 Q 96.9 70 97 75 M 70 96 Q 70 101 65 101 Q 60 100.8 60 96 Q 60 91 65.15 91 Q 69.9 91 70 96 M 36 85 Q 36 90 31 90 Q 26 89.8 26 85 Q 26 80 31.15 80 Q 35.9 80 36 85 M 27 53 Q 27 58 22 58 Q 17 57.8 17 53 Q 17 48 22.15 48 Q 26.9 48 27 53 M 40 32 Q 40 37 35 37 Q 30 36.8 30 32 Q 30 27 35.15 27 Q 39.9 27 40 32"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "watch",
+      "labelJa": "うでどけい",
+      "labelEn": "watch",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 44 34 L 46 12 L 74 13 L 76 34 M 44 86 L 46 109 L 73 109 L 76 85"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 87 60 Q 87 88 60 88 Q 33 86.88 33 60 Q 33 32 60.81 32 Q 86.46 32 87 60"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 80 60 Q 80 81 60 81 Q 40 80.16 40 60 Q 40 39 60.6 39 Q 79.6 39 80 60"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 60 44 L 60 61 L 74 68 M 88 54 L 94 54 L 94 65 L 88 65"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 55 99 L 65 99"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "ball",
+      "labelJa": "ぼーる",
+      "labelEn": "ball",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 102 61 Q 102 101 60 101 Q 18 99.4 18 61 Q 18 21 61.26 21 Q 101.16 21 102 61"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 52 43 L 69 44 L 78 59 L 66 73 L 48 66 L 52 43"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 52 43 L 41 27 M 69 44 L 83 30 M 78 59 L 100 60 M 66 73 L 68 100 M 48 66 L 23 77"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 41 27 L 29 43 L 20 44 M 83 30 L 94 44 L 100 60 M 23 77 L 40 91 L 39 97"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "kite",
+      "labelJa": "かみだこ",
+      "labelEn": "kite",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 57 13 L 92 43 L 59 87 L 25 44 L 57 13"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 57 14 L 59 87 M 25 44 L 92 43"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 59 88 Q 80 99 66 106 Q 57 110 66 115 M 65 98 L 78 94 L 74 104 L 65 98"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "balloon",
+      "labelJa": "ふうせん",
+      "labelEn": "balloon",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 60 15 Q 91 14 94 43 Q 97 68 62 85 Q 29 72 26 46 Q 23 17 60 15"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 60 85 L 54 93 L 67 93 L 60 85 M 61 94 Q 73 102 60 109 L 64 115"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 39 31 Q 32 40 37 50"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "guitar",
+      "labelJa": "ぎたー",
+      "labelEn": "guitar",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 32 56 Q 17 57 18 74 Q 4 87 24 103 Q 45 116 58 97 Q 79 94 70 74 L 54 59 Q 39 50 32 56"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 52 63 L 85 20 L 95 27 L 63 70"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 85 20 L 89 9 L 104 17 L 98 31 L 85 20"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 53 78 Q 53 86 45 86 Q 37 85.68 37 78 Q 37 70 45.24 70 Q 52.84 70 53 78 M 29 88 L 42 98 M 35 92 L 92 24"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "violin",
+      "labelJa": "ばいおりん",
+      "labelEn": "violin",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 46 39 Q 28 35 27 51 Q 42 57 30 67 Q 11 82 29 98 Q 48 110 61 91 Q 70 74 55 68 Q 44 61 59 55 Q 63 42 46 39"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 46 40 L 67 13 L 75 19 L 56 48 M 65 12 Q 65 4 76 10 Q 85 16 75 24"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 29 76 Q 23 82 32 85 M 46 84 Q 53 77 46 74 M 37 91 L 70 18 M 84 19 L 96 104 M 90 18 L 102 103"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "piano",
+      "labelJa": "ぴあの",
+      "labelEn": "piano",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 22 23 L 99 25 L 99 76 L 20 77 L 22 23"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 21 64 L 99 65 L 107 83 L 13 83 L 21 64"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 15 84 L 16 105 M 104 84 L 104 105 M 27 67 L 24 82 M 40 67 L 38 82 M 53 67 L 52 82 M 66 67 L 66 82 M 79 67 L 81 82 M 91 67 L 95 82"
+        },
+        {
+          "name": "仕上げ",
+          "durationMs": 700,
+          "path": "M 31 66 L 30 75 M 44 66 L 44 75 M 71 66 L 72 75 M 84 66 L 86 75"
+        }
+      ],
+      "readability": "safe"
+    },
+    {
+      "key": "xylophone",
+      "labelJa": "もっきん",
+      "labelEn": "xylophone",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 19 33 L 30 35 L 31 96 L 18 98 L 19 33 M 35 38 L 46 40 L 46 91 L 34 93 L 35 38 M 50 43 L 62 45 L 62 86 L 50 88 L 50 43 M 66 48 L 78 50 L 78 81 L 66 83 L 66 48 M 82 53 L 94 55 L 94 77 L 82 78 L 82 53"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 23 39 L 90 61 M 23 90 L 90 71"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 52 13 L 99 40 M 53 11 Q 53 16 48 16 Q 43 15.8 43 11 Q 43 6 48.15 6 Q 52.9 6 53 11"
+        }
+      ],
+      "readability": "soft"
+    },
+    {
+      "key": "dice",
+      "labelJa": "さいころ",
+      "labelEn": "dice",
+      "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
+      "strokes": [
+        {
+          "name": "かたち",
+          "durationMs": 700,
+          "path": "M 20 39 L 65 19 L 102 41 L 102 86 L 56 107 L 20 85 L 20 39"
+        },
+        {
+          "name": "目印",
+          "durationMs": 700,
+          "path": "M 20 39 L 56 61 L 102 41 M 56 61 L 56 107"
+        },
+        {
+          "name": "細部",
+          "durationMs": 700,
+          "path": "M 63 39 Q 63 42 60 42 Q 57 41.88 57 39 Q 57 36 60.09 36 Q 62.94 36 63 39 M 35 57 Q 35 61 32 61 Q 29 60.84 29 57 Q 29 53 32.09 53 Q 34.94 53 35 57 M 47 86 Q 47 90 44 90 Q 41 89.84 41 86 Q 41 82 44.09 82 Q 46.94 82 47 86 M 73 69 Q 73 73 70 73 Q 67 72.84 67 69 Q 67 65 70.09 65 Q 72.94 65 73 69 M 91 58 Q 91 62 88 62 Q 85 61.84 85 58 Q 85 54 88.09 54 Q 90.94 54 91 58 M 74 91 Q 74 95 71 95 Q 68 94.84 68 91 Q 68 87 71.09 87 Q 73.94 87 74 91 M 92 80 Q 92 84 89 84 Q 86 83.84 86 80 Q 86 76 89.09 76 Q 91.94 76 92 80"
+        }
+      ],
+      "readability": "safe"
+    }
+  ]
+}

@@ -61,7 +61,7 @@ describe('Japanese drawable-word expansion', () => {
 
   it('resolves troublesome kana to new illustrations instead of uncovered-letter failures', () => {
     for (const [tail, allowed] of [
-      ['ご', 'ご'], ['ぎ', 'き'], ['ぜ', 'せ'], ['ぢ', 'ち'], ['で', 'て'],
+      ['ご', 'ご'], ['ぎ', 'ぎ'], ['ぜ', 'せ'], ['ぢ', 'ち'], ['で', 'で'],
       ['め', 'め'], ['る', 'る'], ['わ', 'わ'], ['ぬ', 'ぬ'],
     ] as const) {
       const next = selectGirlSketch(japanese, tail, [], 'ja');

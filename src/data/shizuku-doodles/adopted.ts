@@ -1,3 +1,4 @@
+import { expansion300Doodles } from './expansion300';
 import source from './doodles.json';
 import expansion from './expansion-20261022.json';
 import expansionB from './expansion-20261022-b.json';
@@ -7,7 +8,7 @@ import expansionE from './expansion-20261022-e.json';
 import type { GirlSketch, Stroke } from '../../core/types';
 
 const hiragana = (word: string) => word.replace(/[ァ-ヶ]/g, c => String.fromCharCode(c.charCodeAt(0) - 0x60));
-const authoredDoodles = [...source.doodles, ...expansion.doodles, ...expansionB.doodles, ...expansionC.doodles, ...expansionD.doodles, ...expansionE.doodles];
+const authoredDoodles = [...source.doodles, ...expansion.doodles, ...expansionB.doodles, ...expansionC.doodles, ...expansionD.doodles, ...expansionE.doodles, ...expansion300Doodles];
 export const adoptedJapaneseLabels = Object.fromEntries(authoredDoodles.map(d => [d.labelEn, hiragana(d.labelJa)]));
 
 /** Sample the authored M/L/Q paths without browser-only SVG APIs. Each M lifts the finger. */
@@ -53,7 +54,7 @@ export const adoptedShizukuSketches: readonly GirlSketch[] = authoredDoodles.map
     time += 120;
   }
   const last = strokes.at(-1)!.points.at(-1)!.t;
-  return { id: `shizuku-style-v01-${doodle.key}`, word: doodle.labelEn, readability: 'safe', durationMs: 1200,
+  return { id: `shizuku-style-v01-${doodle.key}`, word: doodle.labelEn, readability: 'readability' in doodle && doodle.readability === 'soft' ? 'soft' : 'safe', durationMs: 1200,
     strokes: strokes.map(stroke => ({ ...stroke, points: stroke.points.map(p => ({ ...p, t: p.t / last * 1200 })) })) };
 });
 

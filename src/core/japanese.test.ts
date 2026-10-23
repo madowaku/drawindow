@@ -65,7 +65,9 @@ describe('Japanese word boundaries', () => {
     expect(selectGirlSketch(localized, 'ご', [], 'ja')?.word).toBe('ごりら');
     const withoutExactGo = localized.filter(sketch => firstLetter(sketch.word, 'ja') !== 'ご');
     expect(firstLetter(selectGirlSketch(withoutExactGo, 'ご', [], 'ja')?.word, 'ja')).toBe('こ');
-    expect(firstLetter(selectGirlSketch(localized, 'ぎ', [], 'ja')?.word, 'ja')).toBe('き');
+    expect(firstLetter(selectGirlSketch(localized, 'ぎ', [], 'ja')?.word, 'ja')).toBe('ぎ');
+    const withoutExactGi = localized.filter(sketch => firstLetter(sketch.word, 'ja') !== 'ぎ');
+    expect(firstLetter(selectGirlSketch(withoutExactGi, 'ぎ', [], 'ja')?.word, 'ja')).toBe('き');
     expect(japaneseExtraSketches.every(sketch => sketch.readability === 'soft' && sketch.strokes.length > 0)).toBe(true);
   });
   it('rotates Japanese DAY and NIGHT starters through easy final sounds', () => {
