@@ -22,3 +22,8 @@ output/playwright/
 /artifacts/qa/shizuku-300/*.png
 /artifacts/qa/shizuku-300/*.zip
 /artifacts/qa/shizuku-300/gameplay/*.png
+
+# Local review evidence; human answers stay outside Git
+/artifacts/qa/shizuku-quality/*.png
+/artifacts/qa/shizuku-quality/*responses*.json
+/artifacts/qa/shizuku-quality/*.zip

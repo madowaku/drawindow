@@ -12,19 +12,14 @@
       "adoptionBase": "fog-doodle-v03-expansion-300-tools",
       "strokes": [
         {
-          "name": "かたち",
+          "name": "手描き比較案",
           "durationMs": 700,
-          "path": "M 31 27 L 74 22 L 93 29 L 94 44 L 77 48 L 73 40 L 54 43 L 54 52 L 34 52 L 31 27"
+          "path": "M 24 28 Q 45 29 62 23 Q 73 26 86 31 Q 88 42 87 50 L 69 54 Q 66 48 62 47 L 47 51 Q 47 56 46 60 L 27 59 Q 25 44 24 28"
         },
         {
-          "name": "目印",
+          "name": "手描き比較案",
           "durationMs": 700,
-          "path": "M 46 52 L 41 105 L 57 107 L 62 50"
-        },
-        {
-          "name": "細部",
-          "durationMs": 700,
-          "path": "M 43 89 L 57 90"
+          "path": "M 43 60 Q 42 78 39 100 Q 47 103 56 102 Q 59 75 60 57 M 41 89 Q 48 92 57 91"
         }
       ],
       "readability": "safe"
@@ -79,14 +74,14 @@
       "adoptionBase": "fog-doodle-v03-expansion-300-tools",
       "strokes": [
         {
-          "name": "かたち",
+          "name": "手描き比較案",
           "durationMs": 700,
-          "path": "M 26 18 Q 10 40 29 52 L 67 93 Q 78 107 91 96 Q 105 84 90 73 L 49 36 Q 48 14 29 11 L 36 28 L 27 37 L 17 29"
+          "path": "M 37 17 Q 44 28 44 37 L 36 45 Q 29 42 26 36 L 19 23 Q 8 38 20 53 Q 23 57 30 58 Q 49 75 76 102 Q 85 109 94 100 Q 102 92 94 83 Q 72 65 50 45 Q 58 26 37 17"
         },
         {
-          "name": "目印",
+          "name": "手描き比較案",
           "durationMs": 700,
-          "path": "M 88 85 Q 88 91 82 91 Q 76 90.76 76 85 Q 76 79 82.18 79 Q 87.88 79 88 85"
+          "path": "M 79 89 Q 77 82 84 82 Q 92 82 91 89 Q 91 96 84 96 Q 78 96 79 89"
         }
       ],
       "readability": "safe"
@@ -418,35 +413,6 @@
       "readability": "safe"
     },
     {
-      "key": "flashlight",
-      "labelJa": "かいちゅうでんとう",
-      "labelEn": "flashlight",
-      "adoptionBase": "fog-doodle-v03-expansion-300-tools",
-      "strokes": [
-        {
-          "name": "かたち",
-          "durationMs": 700,
-          "path": "M 24 89 L 60 48 L 73 60 L 39 103 Q 30 108 24 98 L 24 89"
-        },
-        {
-          "name": "目印",
-          "durationMs": 700,
-          "path": "M 60 48 L 56 31 L 77 15 L 100 36 L 82 60 L 73 60"
-        },
-        {
-          "name": "細部",
-          "durationMs": 700,
-          "path": "M 95 33 Q 95 45 80 45 Q 65 44.52 65 33 Q 65 21 80.45 21 Q 94.7 21 95 33"
-        },
-        {
-          "name": "仕上げ",
-          "durationMs": 700,
-          "path": "M 46 70 L 54 62 L 61 68 L 53 77 L 46 70"
-        }
-      ],
-      "readability": "safe"
-    },
-    {
       "key": "battery",
       "labelJa": "でんち",
       "labelEn": "battery",
@@ -509,30 +475,6 @@
           "name": "細部",
           "durationMs": 700,
           "path": "M 66 73 Q 66 79 60 79 Q 54 78.76 54 73 Q 54 67 60.18 67 Q 65.88 67 66 73 M 57 79 L 55 90 L 65 90 L 63 79"
-        }
-      ],
-      "readability": "safe"
-    },
-    {
-      "key": "clothespin",
-      "labelJa": "せんたくばさみ",
-      "labelEn": "clothespin",
-      "adoptionBase": "fog-doodle-v03-expansion-300-tools",
-      "strokes": [
-        {
-          "name": "かたち",
-          "durationMs": 700,
-          "path": "M 35 20 L 47 16 L 84 101 L 72 106 L 35 20 M 74 19 L 86 23 L 47 106 L 35 101 L 74 19"
-        },
-        {
-          "name": "目印",
-          "durationMs": 700,
-          "path": "M 47 40 L 60 49 L 73 40 M 45 83 L 55 87 M 65 87 L 76 82"
-        },
-        {
-          "name": "細部",
-          "durationMs": 700,
-          "path": "M 53 60 Q 50 48 61 48 Q 72 48 68 61 Q 65 69 57 64 M 56 55 L 65 58"
         }
       ],
       "readability": "safe"

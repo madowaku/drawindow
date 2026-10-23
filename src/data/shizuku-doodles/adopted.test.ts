@@ -19,7 +19,7 @@ import { firstLetter, lastLetter, normalizeWord, selectJapaneseFreshSketch, sele
 it('adds unique bilingual nouns with a playable continuation in both actual catalogues', () => {
   const ja = adoptShizukuSketches([...localizeGirlSketches(girlSketches, 'ja'), ...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles, ...japaneseEverydayDoodles], 'ja');
   const all = [...source.doodles, ...expansion.doodles, ...expansionB.doodles, ...expansionC.doodles, ...expansionD.doodles, ...expansionE.doodles, ...expansion300Doodles];
-  for (const field of ['key', 'labelEn', 'labelJa'] as const) expect(new Set(all.map(d => d[field])).size).toBe(field === 'labelJa' ? 292 : 294);
+  for (const field of ['key', 'labelEn', 'labelJa'] as const) expect(new Set(all.map(d => d[field])).size).toBe(field === 'labelJa' ? 289 : 291);
   for (const language of ['en', 'ja'] as const) {
     const catalogue = language === 'en' ? girlSketches : ja;
     expect(new Set(catalogue.map(s => s.id)).size).toBe(catalogue.length);
@@ -37,14 +37,14 @@ it('adds unique bilingual nouns with a playable continuation in both actual cata
 });
 
 it('retains the original 67 plus five 13-drawing and seven reviewed expansion groups with every pen lift and endpoint preserved', () => {
-  expect(Object.values(expansion300Groups).map(group => group.doodles.length)).toEqual([24,22,24,23,24,21,24]);
+  expect(Object.values(expansion300Groups).map(group => group.doodles.length)).toEqual([23,22,22,23,24,21,24]);
   expect(source.doodles).toHaveLength(67);
   expect(expansion.doodles).toHaveLength(13);
   expect(expansionB.doodles).toHaveLength(13);
   expect(expansionC.doodles).toHaveLength(13);
   expect(expansionD.doodles).toHaveLength(13);
   expect(expansionE.doodles).toHaveLength(13);
-  expect(adoptedShizukuSketches).toHaveLength(294);
+  expect(adoptedShizukuSketches).toHaveLength(291);
   [...source.doodles, ...expansion.doodles, ...expansionB.doodles, ...expansionC.doodles, ...expansionD.doodles, ...expansionE.doodles, ...expansion300Doodles].forEach((doodle, i) => {
     const sketch = adoptedShizukuSketches[i];
     const paths = doodle.strokes.flatMap(s => s.path.match(/M[^M]+/g) ?? []);
@@ -74,14 +74,14 @@ it('uses the same geometry in both languages and replaces Japanese duplicate var
   expect(ja.filter(s => s.word === 'りんご')).toHaveLength(1);
   expect(ja.some(s => s.id === 'fallback')).toBe(true);
   expect(ja.filter(s => s.word === 'ごりら').map(s => s.id)).toEqual(['shizuku-style-v01-gorilla']);
-  expect(ja.slice(0, 294).every(s => /^[ぁ-ゖー]+$/.test(s.word))).toBe(true);
-  expect(ja.slice(0, 294).map(s => s.strokes)).toEqual(en.slice(0, 294).map(s => s.strokes));
+  expect(ja.slice(0, 291).every(s => /^[ぁ-ゖー]+$/.test(s.word))).toBe(true);
+  expect(ja.slice(0, 291).map(s => s.strokes)).toEqual(en.slice(0, 291).map(s => s.strokes));
   expect(ja.find(s => s.word === 'ぱん')).toBeTruthy();
 });
 
-it('keeps all 162 new nouns valid, unique after Japanese normalization, and connected without hiding terminal n', () => {
+it('keeps all 159 new nouns valid, unique after Japanese normalization, and connected without hiding terminal n', () => {
   const ja = adoptShizukuSketches([...localizeGirlSketches(girlSketches, 'ja'), ...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles, ...japaneseEverydayDoodles], 'ja');
-  expect(new Set(ja.slice(0, 294).map(s => normalizeWord(s.word, 'ja'))).size).toBe(292);
+  expect(new Set(ja.slice(0, 291).map(s => normalizeWord(s.word, 'ja'))).size).toBe(289);
   for (const language of ['en', 'ja'] as const) {
     const catalogue = language === 'en' ? girlSketches : ja;
     for (const item of expansion300Doodles) {
@@ -103,7 +103,7 @@ it('keeps all 162 new nouns valid, unique after Japanese normalization, and conn
 it('applies the requested names and removals while retaining both pictures of shared Japanese nouns', () => {
  const ja = adoptShizukuSketches([], 'ja');
  for (const [key, word] of [['popsicle','あいす'],['stool','いす'],['kite','たこ'],['spoon','すぷーん']]) expect(ja.find(s=>s.id===`shizuku-style-v01-${key}`)?.word).toBe(word);
- for (const key of ['sink','skillet','daisy','skunk','toucan','turkey']) expect(ja.some(s=>s.id===`shizuku-style-v01-${key}`)).toBe(false);
+ for (const key of ['sink','skillet','daisy','skunk','toucan','turkey','clothespin','flashlight','pretzel']) expect(ja.some(s=>s.id===`shizuku-style-v01-${key}`)).toBe(false);
  expect(ja.filter(s=>s.word==='たこ').map(s=>s.id)).toEqual(['shizuku-style-v01-octopus','shizuku-style-v01-kite']);
  expect(ja.filter(s=>s.word==='いす').map(s=>s.id)).toEqual(['shizuku-style-v01-chair','shizuku-style-v01-stool']);
 });
