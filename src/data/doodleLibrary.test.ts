@@ -84,7 +84,7 @@ describe('Shizuku Doodle Library v0.1', () => {
     }
     expect(calls).toBe(4);
     expect(state.phase).toBe('review_intents');
-    expect(state.entries.filter(entry => entry.actor === 'girl').map(entry => entry.intendedWord)).toEqual(['apple', 'key', 'koala', 'kangaroo', 'kite']);
+    expect(state.entries.filter(entry => entry.actor === 'girl').map(entry => entry.intendedWord)).toEqual(['apple', 'key', 'koala', 'kangaroo', 'kiwi']);
     expect(state.entries.filter(entry => entry.actor === 'player').every(entry => entry.intendedWord === null)).toBe(true);
     expect(state.entries.at(-1)?.recognition).toBeNull();
     expect(state.recognitionRequest).toBeNull();

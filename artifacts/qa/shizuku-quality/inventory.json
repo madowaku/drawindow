@@ -1,0 +1,2603 @@
+{
+  "baseCommit": "44ba6ad95bc15e85f8ba3419bff1f0aed98439c5",
+  "catalogueRevision": "082bfd0c7f0a0b057e9df1d6a088c13f44713dd1b66a3fc54518d8d7072feba5",
+  "count": 291,
+  "soft": [
+    "tapir",
+    "armadillo",
+    "anteater",
+    "sparrow",
+    "xylophone",
+    "lime",
+    "blueberry",
+    "lettuce"
+  ],
+  "homonyms": {
+    "たこ": [
+      "octopus",
+      "kite"
+    ],
+    "いす": [
+      "chair",
+      "stool"
+    ]
+  },
+  "draftComparison": [
+    {
+      "pr": 17,
+      "headSha": "2f9b34a1121b8043d0b3917751b2c0e9950356ae",
+      "key": "ladybug",
+      "ja": "てんとうむし",
+      "en": "ladybug",
+      "currentKeys": [
+        "ladybug"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 17,
+      "headSha": "2f9b34a1121b8043d0b3917751b2c0e9950356ae",
+      "key": "dandelion",
+      "ja": "たんぽぽ",
+      "en": "dandelion",
+      "currentKeys": [],
+      "decision": "preserve-draft-unique"
+    },
+    {
+      "pr": 17,
+      "headSha": "2f9b34a1121b8043d0b3917751b2c0e9950356ae",
+      "key": "swing",
+      "ja": "ぶらんこ",
+      "en": "swing",
+      "currentKeys": [
+        "swing"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 17,
+      "headSha": "2f9b34a1121b8043d0b3917751b2c0e9950356ae",
+      "key": "lamp",
+      "ja": "らんぷ",
+      "en": "lamp",
+      "currentKeys": [
+        "lamp"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 17,
+      "headSha": "2f9b34a1121b8043d0b3917751b2c0e9950356ae",
+      "key": "ghost",
+      "ja": "おばけ",
+      "en": "ghost",
+      "currentKeys": [
+        "ghost"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 17,
+      "headSha": "2f9b34a1121b8043d0b3917751b2c0e9950356ae",
+      "key": "telescope",
+      "ja": "ぼうえんきょう",
+      "en": "telescope",
+      "currentKeys": [
+        "telescope"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 17,
+      "headSha": "2f9b34a1121b8043d0b3917751b2c0e9950356ae",
+      "key": "bicycle",
+      "ja": "じてんしゃ",
+      "en": "bicycle",
+      "currentKeys": [
+        "bicycle"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 17,
+      "headSha": "2f9b34a1121b8043d0b3917751b2c0e9950356ae",
+      "key": "window",
+      "ja": "まど",
+      "en": "window",
+      "currentKeys": [
+        "window"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 17,
+      "headSha": "2f9b34a1121b8043d0b3917751b2c0e9950356ae",
+      "key": "snail",
+      "ja": "かたつむり",
+      "en": "snail",
+      "currentKeys": [
+        "snail"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "slide",
+      "ja": "すべりだい",
+      "en": "slide",
+      "currentKeys": [
+        "slide"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "chick",
+      "ja": "ひよこ",
+      "en": "chick",
+      "currentKeys": [
+        "chick"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "cherry",
+      "ja": "さくらんぼ",
+      "en": "cherry",
+      "currentKeys": [
+        "cherries"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "ant",
+      "ja": "あり",
+      "en": "ant",
+      "currentKeys": [
+        "ant"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "pumpkin",
+      "ja": "かぼちゃ",
+      "en": "pumpkin",
+      "currentKeys": [
+        "pumpkin"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "firefly",
+      "ja": "ほたる",
+      "en": "firefly",
+      "currentKeys": [
+        "firefly"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "castle",
+      "ja": "しろ",
+      "en": "castle",
+      "currentKeys": [
+        "castle"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "bone",
+      "ja": "ほね",
+      "en": "bone",
+      "currentKeys": [],
+      "decision": "preserve-draft-unique"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "chair",
+      "ja": "いす",
+      "en": "chair",
+      "currentKeys": [
+        "chair",
+        "stool"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "shrimp",
+      "ja": "えび",
+      "en": "shrimp",
+      "currentKeys": [
+        "shrimp"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "box",
+      "ja": "はこ",
+      "en": "box",
+      "currentKeys": [],
+      "decision": "preserve-draft-unique"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "chestnut",
+      "ja": "くり",
+      "en": "chestnut",
+      "currentKeys": [
+        "chestnut"
+      ],
+      "decision": "retain-current-compare-art"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "ruby",
+      "ja": "るびー",
+      "en": "ruby",
+      "currentKeys": [],
+      "decision": "preserve-draft-unique"
+    },
+    {
+      "pr": 22,
+      "headSha": "7af90a76a87c22cd2e9c8587b8bb99c12332ebc7",
+      "key": "rainbow",
+      "ja": "にじ",
+      "en": "rainbow",
+      "currentKeys": [
+        "rainbow"
+      ],
+      "decision": "retain-current-compare-art"
+    }
+  ],
+  "items": [
+    {
+      "key": "apple",
+      "labelJa": "りんご",
+      "labelEn": "apple",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "b2e998c4b7dd2e7da37585a292d0c58c2a2f4f507678b0ed6eaea51982ab3cc6"
+    },
+    {
+      "key": "cat",
+      "labelJa": "ねこ",
+      "labelEn": "cat",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "bf2d52917e35c6e722fca5c30010525a8095463c9dc1cf11ab856d7038623fa6"
+    },
+    {
+      "key": "dog",
+      "labelJa": "いぬ",
+      "labelEn": "dog",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "ae636fe2b3bcb893ce59810fe7bba53d224a15e08afae52114085aeb2ede43f2"
+    },
+    {
+      "key": "banana",
+      "labelJa": "バナナ",
+      "labelEn": "banana",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "2b179df1d376cff781aae65f51a9c650d3c236bf547f596038d81fc9d67bc186"
+    },
+    {
+      "key": "elephant",
+      "labelJa": "ぞう",
+      "labelEn": "elephant",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "43863a80ae6bdf2cc251ad951c7b242030389b4538c60236ee338dc6518c7ec8"
+    },
+    {
+      "key": "fish",
+      "labelJa": "さかな",
+      "labelEn": "fish",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "4964114da02b5274a7dc308718915e555d73d166db4088b311f8df39ace9ced6"
+    },
+    {
+      "key": "bird",
+      "labelJa": "とり",
+      "labelEn": "bird",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "3ef1d928376172f02831220444b60609ea5231ca4d92ccedf89c3bc142ee0959"
+    },
+    {
+      "key": "car",
+      "labelJa": "くるま",
+      "labelEn": "car",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "e45ff14d4a10a2f7278e030a3237a2caad937f209c4f44f13bd4e9b08439ef42"
+    },
+    {
+      "key": "flower",
+      "labelJa": "はな",
+      "labelEn": "flower",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "28b1fef1dea5141898fc25b57509c738720c983d77ce100691d7da78d9aa1301"
+    },
+    {
+      "key": "moon",
+      "labelJa": "つき",
+      "labelEn": "moon",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "389e6690282fd37b9036965d84de23ef9dded41059a01ab04d756ab446fcd5cc"
+    },
+    {
+      "key": "star",
+      "labelJa": "ほし",
+      "labelEn": "star",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "f1f82811784f4d04700ac731674436767eabbdde03edb57a264273f56efa237b"
+    },
+    {
+      "key": "rabbit",
+      "labelJa": "うさぎ",
+      "labelEn": "rabbit",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "c2ff5cef3863632bb06cc826030c0daae1c16bef3eaf8f7fd77bc51f7cb2f1eb"
+    },
+    {
+      "key": "turtle",
+      "labelJa": "かめ",
+      "labelEn": "turtle",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "2db1f35811935c1970da9b7e9b4d85c9e0ec08ead34d0fe591d617d23fb7daa3"
+    },
+    {
+      "key": "whale",
+      "labelJa": "くじら",
+      "labelEn": "whale",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "0f33c7624777720189f166211cd98b73d49bb0d4b7f8341bccbb043929153743"
+    },
+    {
+      "key": "octopus",
+      "labelJa": "たこ",
+      "labelEn": "octopus",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "0f1d5346604cefa368c70871d8eb0d4424d9ea875f3903ca1d34532a7f2f5d1d"
+    },
+    {
+      "key": "butterfly",
+      "labelJa": "ちょう",
+      "labelEn": "butterfly",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "18496beb37fd4b3d96d34860107b64512b5106bc91f1afad13f83639613a48e9"
+    },
+    {
+      "key": "house",
+      "labelJa": "いえ",
+      "labelEn": "house",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "0452fd96d83607eeea7b1f8584d79bcb4f6b4ba989ed2284723b249daa11fa42"
+    },
+    {
+      "key": "umbrella",
+      "labelJa": "かさ",
+      "labelEn": "umbrella",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "c37ddf5154bc3f5eaad940109e72dab32f7d5af537f00f1749b287ad74fa8840"
+    },
+    {
+      "key": "tree",
+      "labelJa": "き",
+      "labelEn": "tree",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "6757a9311914a87f92eae3a6f39487e3c64bccb869780ce9cc7c4535c969a9e7"
+    },
+    {
+      "key": "mushroom",
+      "labelJa": "きのこ",
+      "labelEn": "mushroom",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "7596d213a2e0a6f568ac9999d0a4b0c1fc3b0e15cfa4f34b5017afb721025b0b"
+    },
+    {
+      "key": "strawberry",
+      "labelJa": "いちご",
+      "labelEn": "strawberry",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "8c4fa7c79f04973b45f5a885a61c7c7b7d84feb01347af24f222de83df7b59cf"
+    },
+    {
+      "key": "grapes",
+      "labelJa": "ぶどう",
+      "labelEn": "grapes",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "9f0475317f1f4c717e9c226da5e86899927f4c20abfcae75af258eaf505fb650"
+    },
+    {
+      "key": "ice-cream",
+      "labelJa": "アイスクリーム",
+      "labelEn": "ice cream",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "746b76d53a77bac4f01de38c8f2c8265ac36162c46f4806202a3bd51bcd1c491"
+    },
+    {
+      "key": "frog",
+      "labelJa": "かえる",
+      "labelEn": "frog",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "351ceca6fa713af0f7f39a07decab8382fe4198e1446febeecdfc841a89c9640"
+    },
+    {
+      "key": "bear",
+      "labelJa": "くま",
+      "labelEn": "bear",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "abe54ab31faad9ce888dd6f3a63776b475ea3096b66f0b7f05dae82566637efe"
+    },
+    {
+      "key": "penguin",
+      "labelJa": "ペンギン",
+      "labelEn": "penguin",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "4033625b6ada1ab3318cebcc782c683dd790e32a81ded8c673f28111f25d73c8"
+    },
+    {
+      "key": "snail",
+      "labelJa": "かたつむり",
+      "labelEn": "snail",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "de0ebc9de23bb303da426a3d95740e6de21ecc6c29748cd7beec78566edbc495"
+    },
+    {
+      "key": "crab",
+      "labelJa": "かに",
+      "labelEn": "crab",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "93b0e03233c5d0a64b3ad25d55a1467926799948cbfe7d5ff5adc148069ae3aa"
+    },
+    {
+      "key": "chicken",
+      "labelJa": "にわとり",
+      "labelEn": "chicken",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "5055dd7d261d1f5d7384e4e888feae5aea871d80aa500dae00276adae403cb69"
+    },
+    {
+      "key": "carrot",
+      "labelJa": "にんじん",
+      "labelEn": "carrot",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "3df885108d521b0d4f7f48569d536cb4b7b27eeed88a20590f2ce02ffd3fff94"
+    },
+    {
+      "key": "pear",
+      "labelJa": "ようなし",
+      "labelEn": "pear",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "4cd1f9259639a0e7089ba8271a2835aa53645316704e27dbcab519517ccf08c7"
+    },
+    {
+      "key": "cake",
+      "labelJa": "ケーキ",
+      "labelEn": "cake",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "6915006ab4a2297928342c4774bc98edae0c3a60c3f0e80865e36babbd0f6d58"
+    },
+    {
+      "key": "cup",
+      "labelJa": "カップ",
+      "labelEn": "cup",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "451235c523ee23a99d3ef385a2f83fc709fa66cba69d44c86238b1be281a9e21"
+    },
+    {
+      "key": "key",
+      "labelJa": "かぎ",
+      "labelEn": "key",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "596908b4d7e42c05774ec97cc372fd942dc6b8de8843abac5b23d48a62eace3f"
+    },
+    {
+      "key": "boat",
+      "labelJa": "ふね",
+      "labelEn": "boat",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "3e5696babba79fa0c5eb2e6912e051bf0da9cafc63c7eb1b03d5fac0d6a4eee5"
+    },
+    {
+      "key": "lion",
+      "labelJa": "ライオン",
+      "labelEn": "lion",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "94c739334dafb358f4f218348bafbd945fb3fae8791f46c1d8358a5a786367e0"
+    },
+    {
+      "key": "fox",
+      "labelJa": "きつね",
+      "labelEn": "fox",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "6a932c634d7a6a57531e97b7c74afae523d3cb98d6d57bb94ebb2c6df47de4f9"
+    },
+    {
+      "key": "panda",
+      "labelJa": "パンダ",
+      "labelEn": "panda",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "83523262868f13d7c11dfe3f82f50a336351f66d5a951b2e27330ec98a49d348"
+    },
+    {
+      "key": "mouse",
+      "labelJa": "ねずみ",
+      "labelEn": "mouse",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "0678b2a67aebcaf75b7af0b1dd5797075f6229429dff4eb6f77b8601a136eb32"
+    },
+    {
+      "key": "sheep",
+      "labelJa": "ひつじ",
+      "labelEn": "sheep",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "43008c54f1f4623f6c16a536138775798c5fe47e91f6ee8d3b425245f49ae377"
+    },
+    {
+      "key": "pig",
+      "labelJa": "ぶた",
+      "labelEn": "pig",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "58fb765866e4457cb6c00e27d10142308d6ddb7bf8331f5175950900565a4abd"
+    },
+    {
+      "key": "horse",
+      "labelJa": "うま",
+      "labelEn": "horse",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "a19c1c9398522c6b923b88ce932d6f7b5626c6121723358062922c6cdbfde505"
+    },
+    {
+      "key": "giraffe",
+      "labelJa": "きりん",
+      "labelEn": "giraffe",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "47a4d18abd4bb02880bbf8e2101cdfbb80d37bbe79fc52cbc0d07abe034776f5"
+    },
+    {
+      "key": "owl",
+      "labelJa": "ふくろう",
+      "labelEn": "owl",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "b8943ead9d686bbfff2199198aecd03c0343d269740291d49898adeb205ba5b9"
+    },
+    {
+      "key": "bee",
+      "labelJa": "はち",
+      "labelEn": "bee",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "a8e1b3e00dd5b221c4dd49eaabc1469ec739aa8baec2c6b5cfbf7de06802a784"
+    },
+    {
+      "key": "dragonfly",
+      "labelJa": "とんぼ",
+      "labelEn": "dragonfly",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "1a8a5829fde82b5d6eff3302ad2b39ede15a5395f9eda76b6bd8f454aff5d74b"
+    },
+    {
+      "key": "sunflower",
+      "labelJa": "ひまわり",
+      "labelEn": "sunflower",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "a78ae6633bcca8c9c9e24d5f51abf654139758c1eec3fa43dc51994ae6e45e94"
+    },
+    {
+      "key": "leaf",
+      "labelJa": "はっぱ",
+      "labelEn": "leaf",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "27799d4fd2e7899fe5deaa953533ab12a4050161e308b8ed8c6dca5fd8f91a47"
+    },
+    {
+      "key": "watermelon",
+      "labelJa": "すいか",
+      "labelEn": "watermelon",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "c268b8eacf454327eec9c5e540ade129a17dac71511863560cb25a7f92afbcd6"
+    },
+    {
+      "key": "pizza",
+      "labelJa": "ピザ",
+      "labelEn": "pizza",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "06ec4117cf222b70b77b6ed2a566989eeb82bce53943571a5552c612394a128a"
+    },
+    {
+      "key": "bread",
+      "labelJa": "パン",
+      "labelEn": "bread",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "c8a5ce1d4ed3f23072263896f8065347b806d853e7ffc050d15bb7fb3fec6c79"
+    },
+    {
+      "key": "chair",
+      "labelJa": "いす",
+      "labelEn": "chair",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "4227f16f4dbd2b6716954ff1614a65c22b1f29ef7cfaee1dff27fd84fdb95ebe"
+    },
+    {
+      "key": "pencil",
+      "labelJa": "えんぴつ",
+      "labelEn": "pencil",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "484b96d339e101b90ab9b19434db992a68df9f03a6e4169860ee76e7ea976168"
+    },
+    {
+      "key": "scissors",
+      "labelJa": "はさみ",
+      "labelEn": "scissors",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "602919d184b041daff0a68be0ba59637ac6207de226d2443b74275facec793e6"
+    },
+    {
+      "key": "clock",
+      "labelJa": "とけい",
+      "labelEn": "clock",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "aefcb9ac873edf96e1b6cffe4d0f0a0842318be955d0bc49abbc6eecf185ec10"
+    },
+    {
+      "key": "bus",
+      "labelJa": "バス",
+      "labelEn": "bus",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "3a6669697c9047e16dbcffcc6c0d4c94b5a5171a81f78e66eda81a2a75a6eebf"
+    },
+    {
+      "key": "airplane",
+      "labelJa": "ひこうき",
+      "labelEn": "airplane",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "f53436a90f9f5c7a733172528f7d5dd719ee97b3c1a27096570c70a9458b7b59"
+    },
+    {
+      "key": "rice-ball",
+      "labelJa": "おにぎり",
+      "labelEn": "rice ball",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "0eced8b12426983c32e99ac4cacd6a31841cae23f746f7eac565ce4e37b031a2"
+    },
+    {
+      "key": "sushi",
+      "labelJa": "すし",
+      "labelEn": "sushi",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "a6b4fff585aa6ebce8529b491aa22729a56bdb685c5b3fb5ae10f65ca738a3b7"
+    },
+    {
+      "key": "squid",
+      "labelJa": "いか",
+      "labelEn": "squid",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "9c3d2d8fc846ffec38403d490d40df169165c6b7fdaa29a8b94b46b564960c3f"
+    },
+    {
+      "key": "duck",
+      "labelJa": "あひる",
+      "labelEn": "duck",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "b451b7488890ed3789c5caf7c6215c849e159bb28050e75c73914bb5f5ab627f"
+    },
+    {
+      "key": "dolphin",
+      "labelJa": "いるか",
+      "labelEn": "dolphin",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "7963b36b13e528d2a9ed6de7b5bac0fe11a6fe8ed405492b165a5b7301703ed9"
+    },
+    {
+      "key": "snake",
+      "labelJa": "へび",
+      "labelEn": "snake",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "48c6f4ab3510680c0e685b48b7ca7511f5115d120824beaa23817d9db5da5187"
+    },
+    {
+      "key": "glasses",
+      "labelJa": "めがね",
+      "labelEn": "glasses",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "b02e916e65c8bc6c6891d399b5b814d06804c6ef2257ca011c013ee3aad55ea1"
+    },
+    {
+      "key": "mountain",
+      "labelJa": "やま",
+      "labelEn": "mountain",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "d8c0aa696c1b39c72756aa8cec8d8eeb7137b4bcb21b7193b2d286dcf23a0d8a"
+    },
+    {
+      "key": "ghost",
+      "labelJa": "おばけ",
+      "labelEn": "ghost",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "fad741464f7dc4f14aedfafb94d9524591fe60ce2b96a854d30975ec52e7518a"
+    },
+    {
+      "key": "candy",
+      "labelJa": "あめ",
+      "labelEn": "candy",
+      "readability": "safe",
+      "source": "doodles.json",
+      "artSha256": "0fae0cc02a04931d4ef5165ee439c6f726a5af7be12f0bdc70e52ff661f29ce2"
+    },
+    {
+      "key": "seahorse",
+      "labelJa": "たつのおとしご",
+      "labelEn": "seahorse",
+      "readability": "safe",
+      "source": "expansion-20261022-b.json",
+      "artSha256": "e4608e809a5018d84eaada302a64f9ea2faad8be182c4bdc7241561516069dfd"
+    },
+    {
+      "key": "starfish",
+      "labelJa": "ひとで",
+      "labelEn": "starfish",
+      "readability": "safe",
+      "source": "expansion-20261022-b.json",
+      "artSha256": "0070ddd45280063eb488e17f3da117dc3e9cb264216ce003719446cb67a8e5b9"
+    },
+    {
+      "key": "stingray",
+      "labelJa": "えい",
+      "labelEn": "stingray",
+      "readability": "safe",
+      "source": "expansion-20261022-b.json",
+      "artSha256": "6d7eed8cc9c585e3972a9d3d5a3f1f555b383a7bcce94db9340eca974f5e0d4c"
+    },
+    {
+      "key": "clam",
+      "labelJa": "あさり",
+      "labelEn": "clam",
+      "readability": "safe",
+      "source": "expansion-20261022-b.json",
+      "artSha256": "8599a6c4f15edb042aedcdfbb0d5e7d229c1289fb9b48f9e9f60855bd165e415"
+    },
+    {
+      "key": "walrus",
+      "labelJa": "せいうち",
+      "labelEn": "walrus",
+      "readability": "safe",
+      "source": "expansion-20261022-b.json",
+      "artSha256": "b7e0fff7839cf15419070c54d865e6fe60f8bf124be29f8dab876adc2e520eb7"
+    },
+    {
+      "key": "crocodile",
+      "labelJa": "わに",
+      "labelEn": "crocodile",
+      "readability": "safe",
+      "source": "expansion-20261022-b.json",
+      "artSha256": "ba12b386c630840bcf54d131a9216ff6b7bcbcbe56cad0ae109332d879793581"
+    },
+    {
+      "key": "koala",
+      "labelJa": "こあら",
+      "labelEn": "koala",
+      "readability": "safe",
+      "source": "expansion-20261022-b.json",
+      "artSha256": "260bf7065974ddc08c7d72baae2cc7ad2d4c2aaf402b781920899323b8bd1ec0"
+    },
+    {
+      "key": "camel",
+      "labelJa": "らくだ",
+      "labelEn": "camel",
+      "readability": "safe",
+      "source": "expansion-20261022-b.json",
+      "artSha256": "b85fa825559085b6ea285006d705e739d4b911f409134349d80539aa7b98057b"
+    },
+    {
+      "key": "turnip",
+      "labelJa": "かぶ",
+      "labelEn": "turnip",
+      "readability": "safe",
+      "source": "expansion-20261022-b.json",
+      "artSha256": "8dcd37e6f089f39e36160b27a2564b00460060111ced27ec907ef6a0d9db9631"
+    },
+    {
+      "key": "donut",
+      "labelJa": "どーなつ",
+      "labelEn": "donut",
+      "readability": "safe",
+      "source": "expansion-20261022-b.json",
+      "artSha256": "326f06eb4d2626676eed5d69846e1baa51b92752b358eccd570de1556c868197"
+    },
+    {
+      "key": "boot",
+      "labelJa": "ながぐつ",
+      "labelEn": "boot",
+      "readability": "safe",
+      "source": "expansion-20261022-b.json",
+      "artSha256": "f1939a846342439096830e38f3d3cbfeaaa9056594bddbefc1ff5c603e4eda3e"
+    },
+    {
+      "key": "watering-can",
+      "labelJa": "じょうろ",
+      "labelEn": "watering can",
+      "readability": "safe",
+      "source": "expansion-20261022-b.json",
+      "artSha256": "373b6a0c51de92ad7e3cbdf6d2c0f682ff31431a0813acbebd40b401dd3af0c1"
+    },
+    {
+      "key": "teacup",
+      "labelJa": "ゆのみ",
+      "labelEn": "teacup",
+      "readability": "safe",
+      "source": "expansion-20261022-b.json",
+      "artSha256": "09644dc23ec3c42a4462c9dd1b0933f9a4b8d9eb22ce9eb3986399cf1ff92f5c"
+    },
+    {
+      "key": "swan",
+      "labelJa": "はくちょう",
+      "labelEn": "swan",
+      "readability": "safe",
+      "source": "expansion-20261022-c.json",
+      "artSha256": "89591975bf877f3ee49e6d5cd5cb1f69397ce03a0bde3569d85332ecd29427b5"
+    },
+    {
+      "key": "peacock",
+      "labelJa": "くじゃく",
+      "labelEn": "peacock",
+      "readability": "safe",
+      "source": "expansion-20261022-c.json",
+      "artSha256": "8409ad78d57b57feb1500b893e39753e635c6985dd3ab876a41db7ef179cd59f"
+    },
+    {
+      "key": "flamingo",
+      "labelJa": "ふらみんご",
+      "labelEn": "flamingo",
+      "readability": "safe",
+      "source": "expansion-20261022-c.json",
+      "artSha256": "e4cb5fbaf8ac8a6b07a4280459906cc33f37b17c52dbf63158fb39728e4394d3"
+    },
+    {
+      "key": "ladybug",
+      "labelJa": "てんとうむし",
+      "labelEn": "ladybug",
+      "readability": "safe",
+      "source": "expansion-20261022-c.json",
+      "artSha256": "29e30ca6bb3f5dc29b2ebdfae4410923f5ee8b908e5fc4f51eb2775eb7269cf0"
+    },
+    {
+      "key": "ant",
+      "labelJa": "あり",
+      "labelEn": "ant",
+      "readability": "safe",
+      "source": "expansion-20261022-c.json",
+      "artSha256": "5c84253c2443236e8183ca45ac49b47b19ccfd40e66e94189d502dd0f6502f83"
+    },
+    {
+      "key": "beetle",
+      "labelJa": "かぶとむし",
+      "labelEn": "beetle",
+      "readability": "safe",
+      "source": "expansion-20261022-c.json",
+      "artSha256": "3a825201e5ff201168489cb15bfc84b5b642e85a24fee720c612864eca0dfb80"
+    },
+    {
+      "key": "bat",
+      "labelJa": "こうもり",
+      "labelEn": "bat",
+      "readability": "safe",
+      "source": "expansion-20261022-c.json",
+      "artSha256": "b1f26712d31ce6d6e928d2f105fbaa011ec2cadf9a34d4ab4c2a3775ddff5210"
+    },
+    {
+      "key": "harmonica",
+      "labelJa": "はーもにか",
+      "labelEn": "harmonica",
+      "readability": "safe",
+      "source": "expansion-20261022-c.json",
+      "artSha256": "26044747a8327c3eee6dadc127d2e97ef7dd157047d28f43471d7fc14242345d"
+    },
+    {
+      "key": "trumpet",
+      "labelJa": "らっぱ",
+      "labelEn": "trumpet",
+      "readability": "safe",
+      "source": "expansion-20261022-c.json",
+      "artSha256": "4879b750c96b89cf9daab2c40d40b6a33734ea21597bd1582d685e1a4dd3b514"
+    },
+    {
+      "key": "drum",
+      "labelJa": "たいこ",
+      "labelEn": "drum",
+      "readability": "safe",
+      "source": "expansion-20261022-c.json",
+      "artSha256": "51f7468cc6cf218507941058ca72bef4448827ad0f1d037eeed1589a4bc04d21"
+    },
+    {
+      "key": "eggplant",
+      "labelJa": "なす",
+      "labelEn": "eggplant",
+      "readability": "safe",
+      "source": "expansion-20261022-c.json",
+      "artSha256": "47f494b7ede75e92a121d27f6768503a34cdd6dc9ca405d07a82f9db2e575208"
+    },
+    {
+      "key": "pineapple",
+      "labelJa": "ぱいなっぷる",
+      "labelEn": "pineapple",
+      "readability": "safe",
+      "source": "expansion-20261022-c.json",
+      "artSha256": "8162f4a4887cdd9c867e4e00e2d7f795ac87af90dba34804c47571a8c33170c7"
+    },
+    {
+      "key": "cucumber",
+      "labelJa": "きゅうり",
+      "labelEn": "cucumber",
+      "readability": "safe",
+      "source": "expansion-20261022-c.json",
+      "artSha256": "4c89c81a7513e0a59b3eb509352056b9eb3d05b6df3a705b12c1af982cc16ff4"
+    },
+    {
+      "key": "otter",
+      "labelJa": "らっこ",
+      "labelEn": "otter",
+      "readability": "safe",
+      "source": "expansion-20261022-d.json",
+      "artSha256": "b93c26bfb2e60d1e5c39bfc742a8d175072c3ffb8268c020d8d417fd53ff6d17"
+    },
+    {
+      "key": "kangaroo",
+      "labelJa": "かんがるー",
+      "labelEn": "kangaroo",
+      "readability": "safe",
+      "source": "expansion-20261022-d.json",
+      "artSha256": "a4d67207bd0fbed6dda634c287d3dbd719aeee0ad16412221a5dc82ef223f417"
+    },
+    {
+      "key": "rhinoceros",
+      "labelJa": "さい",
+      "labelEn": "rhinoceros",
+      "readability": "safe",
+      "source": "expansion-20261022-d.json",
+      "artSha256": "2d82137edf49bed9ebdc2ce4874396e60805becb67a325d9418c9d7919b21fdc"
+    },
+    {
+      "key": "hippo",
+      "labelJa": "かば",
+      "labelEn": "hippo",
+      "readability": "safe",
+      "source": "expansion-20261022-d.json",
+      "artSha256": "5d41756305da9686f7a2e3fc42fb94ca057c69d152751f061e2602f03879bde5"
+    },
+    {
+      "key": "lobster",
+      "labelJa": "いせえび",
+      "labelEn": "lobster",
+      "readability": "safe",
+      "source": "expansion-20261022-d.json",
+      "artSha256": "abe72ab5dc70a1207697ddd7d21f1f4b1cbe1a901953ccb70ed4b23735991059"
+    },
+    {
+      "key": "pumpkin",
+      "labelJa": "かぼちゃ",
+      "labelEn": "pumpkin",
+      "readability": "safe",
+      "source": "expansion-20261022-d.json",
+      "artSha256": "32a39d2e85fadaefb030a0bedabdcf55acd57bd3df647a715447d8a01c16571a"
+    },
+    {
+      "key": "corn",
+      "labelJa": "とうもろこし",
+      "labelEn": "corn",
+      "readability": "safe",
+      "source": "expansion-20261022-d.json",
+      "artSha256": "0e70aeef4160e1c7987fd816a6d7ac70e03d08938371d6a3c00c0c0fffdd869e"
+    },
+    {
+      "key": "tomato",
+      "labelJa": "とまと",
+      "labelEn": "tomato",
+      "readability": "safe",
+      "source": "expansion-20261022-d.json",
+      "artSha256": "70eb2e87a1ce2bef19a3d89f669e47c179aed64b8366a07e8939f7377d0dfbea"
+    },
+    {
+      "key": "onion",
+      "labelJa": "たまねぎ",
+      "labelEn": "onion",
+      "readability": "safe",
+      "source": "expansion-20261022-d.json",
+      "artSha256": "e452b23cedd881ce292379d48ddd90aa6ac449896c874e281ea36fe495363092"
+    },
+    {
+      "key": "sock",
+      "labelJa": "くつした",
+      "labelEn": "sock",
+      "readability": "safe",
+      "source": "expansion-20261022-d.json",
+      "artSha256": "98fce75ab2c960d1beed33e3cabb071c1dfa3541884730bb1b4120de97b320bd"
+    },
+    {
+      "key": "shovel",
+      "labelJa": "すこっぷ",
+      "labelEn": "shovel",
+      "readability": "safe",
+      "source": "expansion-20261022-d.json",
+      "artSha256": "be5a5ea5e04110b88833e712bea163d8d151558a40d42c1187e48750164c7d50"
+    },
+    {
+      "key": "bucket",
+      "labelJa": "ばけつ",
+      "labelEn": "bucket",
+      "readability": "safe",
+      "source": "expansion-20261022-d.json",
+      "artSha256": "a434b461c540cb58fea3fb21426a7e71f621224a9dd3d0b86e96308660eb1050"
+    },
+    {
+      "key": "comb",
+      "labelJa": "くし",
+      "labelEn": "comb",
+      "readability": "safe",
+      "source": "expansion-20261022-d.json",
+      "artSha256": "ff7a9d41a360ff43119e556883635900bf2ef444dd9e23aad3f3606742a52b11"
+    },
+    {
+      "key": "raccoon",
+      "labelJa": "あらいぐま",
+      "labelEn": "raccoon",
+      "readability": "safe",
+      "source": "expansion-20261022-e.json",
+      "artSha256": "6c712eca7985d9830c982bd5a9f85a470c9ce751b69a5a7c532fc4a644cf5afc"
+    },
+    {
+      "key": "sloth",
+      "labelJa": "なまけもの",
+      "labelEn": "sloth",
+      "readability": "safe",
+      "source": "expansion-20261022-e.json",
+      "artSha256": "cd107a16f26072a9c11438e2f58a7a56028a2a33f1071ba54608b93bba9f5b4d"
+    },
+    {
+      "key": "gorilla",
+      "labelJa": "ごりら",
+      "labelEn": "gorilla",
+      "readability": "safe",
+      "source": "expansion-20261022-e.json",
+      "artSha256": "7d7588a746f3164213d822ac2a57e26bf1ea71ae5600aec229082f91339cdf1a"
+    },
+    {
+      "key": "wolf",
+      "labelJa": "おおかみ",
+      "labelEn": "wolf",
+      "readability": "safe",
+      "source": "expansion-20261022-e.json",
+      "artSha256": "53c4dd861c9d3a11d5fe5cd1108ece9b93dff84ad68292bc22e96ce04d9dfbf8"
+    },
+    {
+      "key": "ostrich",
+      "labelJa": "だちょう",
+      "labelEn": "ostrich",
+      "readability": "safe",
+      "source": "expansion-20261022-e.json",
+      "artSha256": "5ddb324d0610d721f1f7cffedfae11828a5869d1b73d70f98f40b1ebbc2595f1"
+    },
+    {
+      "key": "parrot",
+      "labelJa": "おうむ",
+      "labelEn": "parrot",
+      "readability": "safe",
+      "source": "expansion-20261022-e.json",
+      "artSha256": "15a947aabf907fe66a3459a895f0479fe85e2877622c69c13394f69a7462c80f"
+    },
+    {
+      "key": "grasshopper",
+      "labelJa": "ばった",
+      "labelEn": "grasshopper",
+      "readability": "safe",
+      "source": "expansion-20261022-e.json",
+      "artSha256": "e248c7bc46385e0570a40c42d5b91295ed5f804802c6d7167d2ffe915fcb98e6"
+    },
+    {
+      "key": "mantis",
+      "labelJa": "かまきり",
+      "labelEn": "mantis",
+      "readability": "safe",
+      "source": "expansion-20261022-e.json",
+      "artSha256": "2feb2419c9d1f7c10df3464797542b736ca31a8646d88df4554d58a84803fcb4"
+    },
+    {
+      "key": "dragon",
+      "labelJa": "りゅう",
+      "labelEn": "dragon",
+      "readability": "safe",
+      "source": "expansion-20261022-e.json",
+      "artSha256": "6bb4706d12ecff83c185a7a4e1f0894981de87881f26b5c0144a2c84913f9f13"
+    },
+    {
+      "key": "robot",
+      "labelJa": "ろぼっと",
+      "labelEn": "robot",
+      "readability": "safe",
+      "source": "expansion-20261022-e.json",
+      "artSha256": "7294e2dc721e64d18aea5e4326a5367fb3b87200fd16c7f311ab67246401c4e9"
+    },
+    {
+      "key": "camera",
+      "labelJa": "かめら",
+      "labelEn": "camera",
+      "readability": "safe",
+      "source": "expansion-20261022-e.json",
+      "artSha256": "ac28544c34344c6bd556cd0d968888f7bcb684e3563b0792479d5cac6e88e0bf"
+    },
+    {
+      "key": "telescope",
+      "labelJa": "ぼうえんきょう",
+      "labelEn": "telescope",
+      "readability": "safe",
+      "source": "expansion-20261022-e.json",
+      "artSha256": "3d91b2e1b42ca9768d61bd0dd45d0d276f85efe639722f68fe02905d5aa31118"
+    },
+    {
+      "key": "swing",
+      "labelJa": "ぶらんこ",
+      "labelEn": "swing",
+      "readability": "safe",
+      "source": "expansion-20261022-e.json",
+      "artSha256": "b3dbc68aa10b814f8eae58c14e6b34450ceab676b7e2feef6fa91d5a7c07ef79"
+    },
+    {
+      "key": "mole",
+      "labelJa": "もぐら",
+      "labelEn": "mole",
+      "readability": "safe",
+      "source": "expansion-20261022.json",
+      "artSha256": "29dea80de763b98763c399220bfea2e7b67e9ba501b3de8e8d7d3105478d6ebd"
+    },
+    {
+      "key": "seal",
+      "labelJa": "あざらし",
+      "labelEn": "seal",
+      "readability": "safe",
+      "source": "expansion-20261022.json",
+      "artSha256": "9eb69430ff6473da817ad8c351be497ba9e39d5c85920f9a0b914e49b2374079"
+    },
+    {
+      "key": "hedgehog",
+      "labelJa": "はりねずみ",
+      "labelEn": "hedgehog",
+      "readability": "safe",
+      "source": "expansion-20261022.json",
+      "artSha256": "b336c2bc60b39e81cc0056c14efd090efcfdba4c5cf645f9dc237e155353744f"
+    },
+    {
+      "key": "squirrel",
+      "labelJa": "りす",
+      "labelEn": "squirrel",
+      "readability": "safe",
+      "source": "expansion-20261022.json",
+      "artSha256": "d98c9427963b9c9feb267e181e4df44fa7b6017106903397b798ff35b8564ba8"
+    },
+    {
+      "key": "shrimp",
+      "labelJa": "えび",
+      "labelEn": "shrimp",
+      "readability": "safe",
+      "source": "expansion-20261022.json",
+      "artSha256": "3ed433c0cb63bc1feee1af4b1c8535c3e4e61a9bbd3016d6f31b78acd74f8dd2"
+    },
+    {
+      "key": "peach",
+      "labelJa": "もも",
+      "labelEn": "peach",
+      "readability": "safe",
+      "source": "expansion-20261022.json",
+      "artSha256": "36369b2c144ee89bf9dd9d16199e97860b1de2537903f556c920d58f73c9de41"
+    },
+    {
+      "key": "cherries",
+      "labelJa": "さくらんぼ",
+      "labelEn": "cherries",
+      "readability": "safe",
+      "source": "expansion-20261022.json",
+      "artSha256": "df6603bc452745bb0aff80e67650ceebb8a315516e012d3f185b7608bae1a8b4"
+    },
+    {
+      "key": "broccoli",
+      "labelJa": "ぶろっこり",
+      "labelEn": "broccoli",
+      "readability": "safe",
+      "source": "expansion-20261022.json",
+      "artSha256": "404d8a24ea8073fc5855f9cad9a00bff49eed3b817f10f46251217254848cadd"
+    },
+    {
+      "key": "bell",
+      "labelJa": "かね",
+      "labelEn": "bell",
+      "readability": "safe",
+      "source": "expansion-20261022.json",
+      "artSha256": "8b4d0774f7e303ab8384fc7fe0c1c5670665e3cb49fea1b226c1860b6c53239e"
+    },
+    {
+      "key": "ladder",
+      "labelJa": "はしご",
+      "labelEn": "ladder",
+      "readability": "safe",
+      "source": "expansion-20261022.json",
+      "artSha256": "20475806f09ff576525d6c728f8c9c8625dd6dbbe710bf38ac37ebd2ff4ab961"
+    },
+    {
+      "key": "mitten",
+      "labelJa": "てぶくろ",
+      "labelEn": "mitten",
+      "readability": "safe",
+      "source": "expansion-20261022.json",
+      "artSha256": "58c7b7582bd517c12b3f279d9a9125dd9f626fdbd7256633d604ffc4a21a3cf8"
+    },
+    {
+      "key": "backpack",
+      "labelJa": "りゅっく",
+      "labelEn": "backpack",
+      "readability": "safe",
+      "source": "expansion-20261022.json",
+      "artSha256": "f509496a6bbad8f5beef95472d2abe07b260a68ac6eb702139d71824f10a1d3f"
+    },
+    {
+      "key": "candle",
+      "labelJa": "ろうそく",
+      "labelEn": "candle",
+      "readability": "safe",
+      "source": "expansion-20261022.json",
+      "artSha256": "d953f5a79a14b70fbdaa11cff542f5551c84e8906a4518abc7fc699b0dae952e"
+    },
+    {
+      "key": "cow",
+      "labelJa": "うし",
+      "labelEn": "cow",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "7b60457400e763de6abefee1467d830b808e5031b56e50aafb5bdb035d3af183"
+    },
+    {
+      "key": "goat",
+      "labelJa": "やぎ",
+      "labelEn": "goat",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "5f9ad48e602d7de2f90299ba0628e69d24edae23877352f3875de2b375bc599b"
+    },
+    {
+      "key": "deer",
+      "labelJa": "しか",
+      "labelEn": "deer",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "2b1e68a0b85e18c38bfa6d1497a1501cf249f4f4c78fd02871545c056b63d646"
+    },
+    {
+      "key": "tiger",
+      "labelJa": "とら",
+      "labelEn": "tiger",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "84fc3dcd0376eaf18d9e589e53a92aa5c434d6fc4c6415aa83169ec41e8a13f7"
+    },
+    {
+      "key": "zebra",
+      "labelJa": "しまうま",
+      "labelEn": "zebra",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "e5c28d35ded5678955a14dcf7b59ef0c85f2c39835fd2a63ff8f64d6af8b42ba"
+    },
+    {
+      "key": "monkey",
+      "labelJa": "さる",
+      "labelEn": "monkey",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "c3cf331263166c4b65ac834fdd6b7ea5512ec38ec0945ed5e0d300bdfced1055"
+    },
+    {
+      "key": "donkey",
+      "labelJa": "ろば",
+      "labelEn": "donkey",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "cf1a026d2e789d25287a6a857f658309845bbcebcc2efab1cf7f93443088352f"
+    },
+    {
+      "key": "hamster",
+      "labelJa": "はむすたー",
+      "labelEn": "hamster",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "ed48a8b1691c2de25d10b44d7e8da593002fee14e78435ef7cffc85ba9d184df"
+    },
+    {
+      "key": "tapir",
+      "labelJa": "ばく",
+      "labelEn": "tapir",
+      "readability": "soft",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "1a3d405b386d48f683382494a5b784c02cb31e2a117b73feda573e49439e4a0b"
+    },
+    {
+      "key": "armadillo",
+      "labelJa": "あるまじろ",
+      "labelEn": "armadillo",
+      "readability": "soft",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "b92c6fc80fdcbde437f28489dcb59d8f2a3df795b904efd720f5dd26f1057124"
+    },
+    {
+      "key": "anteater",
+      "labelJa": "ありくい",
+      "labelEn": "anteater",
+      "readability": "soft",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "3ca23df5855adb42b23e56344c1d1bcf3f352ca006dd958615903b3c07ee69ec"
+    },
+    {
+      "key": "pelican",
+      "labelJa": "ぺりかん",
+      "labelEn": "pelican",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "b00973e2e0ed39c8e96ffdd07c0b276f6622d4722299dccdf368dcac652f0bcc"
+    },
+    {
+      "key": "woodpecker",
+      "labelJa": "きつつき",
+      "labelEn": "woodpecker",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "ae756c134090fd3f6d5dc8b5b06d292983cee1b543bb861d55bc8d96db4905b3"
+    },
+    {
+      "key": "sparrow",
+      "labelJa": "すずめ",
+      "labelEn": "sparrow",
+      "readability": "soft",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "de3315f35597ada8f42fa42c91be7cdc3abdd6947fd4d68854732ddd8c67b0ad"
+    },
+    {
+      "key": "chick",
+      "labelJa": "ひよこ",
+      "labelEn": "chick",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "255fed748f58af7c0f47e479c3d81a872533ad97135e9efe6d643837751a9bf5"
+    },
+    {
+      "key": "mosquito",
+      "labelJa": "か",
+      "labelEn": "mosquito",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "8f6bb9dac2e28cab7cea58ce99d205e80501d2f95b61c010c282604bac2bdaf0"
+    },
+    {
+      "key": "spider",
+      "labelJa": "くも",
+      "labelEn": "spider",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "546f1784bc2acaa78c1b8bc955ccd1e894a7922d7cee370d3f4b86fc9828ce1d"
+    },
+    {
+      "key": "worm",
+      "labelJa": "みみず",
+      "labelEn": "worm",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "d70bdea9db78ac7e44d81740c65c7c4b624651e8d9ca8db953a2a4119ad6be85"
+    },
+    {
+      "key": "caterpillar",
+      "labelJa": "あおむし",
+      "labelEn": "caterpillar",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "e11b7ba5685d25ae4688c2106932cf8989dfc32f6ee81d0449fc8e13d68cdbd1"
+    },
+    {
+      "key": "centipede",
+      "labelJa": "むかで",
+      "labelEn": "centipede",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "a35a9ac89fbae9e6e41913e385c4c9b516b22c6bfe7b2111f419e9490f7243ce"
+    },
+    {
+      "key": "firefly",
+      "labelJa": "ほたる",
+      "labelEn": "firefly",
+      "readability": "safe",
+      "source": "expansion-20261023-animals.json",
+      "artSha256": "f389d9daef7805e9935dd126cb77fcc77c852269539d3df89b20a9c9a72c4fd4"
+    },
+    {
+      "key": "t-shirt",
+      "labelJa": "てぃーしゃつ",
+      "labelEn": "t-shirt",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "a90ba017083b41b7193a837eba49e2bb10a11e13654f5ff3315dfb470ea6945b"
+    },
+    {
+      "key": "dress",
+      "labelJa": "わんぴーす",
+      "labelEn": "dress",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "37dcf239ecade22190c5abf92738b287db6ab4347422396951d30b4a8d120fd2"
+    },
+    {
+      "key": "skirt",
+      "labelJa": "すかーと",
+      "labelEn": "skirt",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "c5fbc44ef1ddd99da457df482cadaf4b8285f0c1e2c10cbca9034f941cb4e641"
+    },
+    {
+      "key": "shorts",
+      "labelJa": "はーふぱんつ",
+      "labelEn": "shorts",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "79fcdf165220f61411ddb73c475f012682e17db586273b17e6d41b433a46663c"
+    },
+    {
+      "key": "hat",
+      "labelJa": "ぼうし",
+      "labelEn": "hat",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "4fd32ea20004d5d9b08af800783df1835caa3feea267ca5215672c37b586cc1d"
+    },
+    {
+      "key": "cap",
+      "labelJa": "きゃっぷ",
+      "labelEn": "cap",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "e4397f62103aec10418fa091de489d90de5c8e8186dee2e138a9050a2d832610"
+    },
+    {
+      "key": "crown",
+      "labelJa": "かんむり",
+      "labelEn": "crown",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "a8e790790d4700052691dbf1e543611a295d4ef0ec99ea342640ab1667fc927d"
+    },
+    {
+      "key": "scarf",
+      "labelJa": "まふらー",
+      "labelEn": "scarf",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "75dc7c09b4547a4a885f0dbfc916642e4616097378d45529e1b51f937757e613"
+    },
+    {
+      "key": "shoe",
+      "labelJa": "くつ",
+      "labelEn": "shoe",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "a0c5bd857b5e2fec37ae3dd29945590030254d34cc9fb2d36390ca660b2676f7"
+    },
+    {
+      "key": "sandal",
+      "labelJa": "さんだる",
+      "labelEn": "sandal",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "8e2da17983a99df0454137cc4e3ba8c5014f5483724e164bc5ba9b4b6abf6937"
+    },
+    {
+      "key": "necktie",
+      "labelJa": "ねくたい",
+      "labelEn": "necktie",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "14680c8dc07ec49ed0d39233d5bc7092d2f3010cfe859bf6214e3b766b07491a"
+    },
+    {
+      "key": "bow-tie",
+      "labelJa": "ちょうねくたい",
+      "labelEn": "bow tie",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "5fbdfc813dd12f6f4c4e6eb7a1c2e36c9c99dcd5e154a0334e61841bbe0f4ee2"
+    },
+    {
+      "key": "ring",
+      "labelJa": "ゆびわ",
+      "labelEn": "ring",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "02c77c664b6a2f3ac7766868bb132c2025fb1ddf5f279197025c4ada035f8fa0"
+    },
+    {
+      "key": "necklace",
+      "labelJa": "ねっくれす",
+      "labelEn": "necklace",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "e4b6c046e845edd1fcdf4fab88a482bb5c33c19813dd4857b9d0aee2b7698421"
+    },
+    {
+      "key": "bracelet",
+      "labelJa": "うでわ",
+      "labelEn": "bracelet",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "e9abdc79ec37529a0107196069d0585dc17c41b3220109788b6d5cf633c272c9"
+    },
+    {
+      "key": "watch",
+      "labelJa": "うでどけい",
+      "labelEn": "watch",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "914b1970f13cc0268e8bdd0e1921af93ffe579972e571437ab3244873241136f"
+    },
+    {
+      "key": "ball",
+      "labelJa": "ぼーる",
+      "labelEn": "ball",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "6942c669bd9c777eee87b846a419489f3c236277999fb302a4c751fc19d7a430"
+    },
+    {
+      "key": "kite",
+      "labelJa": "たこ",
+      "labelEn": "kite",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "82ac2f6c434ca1ea1533219efeee7b68cbc9dc52dc61aad96a46d1eed7accd87"
+    },
+    {
+      "key": "balloon",
+      "labelJa": "ふうせん",
+      "labelEn": "balloon",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "47ca2e842c11625d48bb0338460ca339925f5f530df18a6c255e5cd40b2e61e3"
+    },
+    {
+      "key": "guitar",
+      "labelJa": "ぎたー",
+      "labelEn": "guitar",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "8011b1785eb6995508b539fae32c726d7174863df2ada6b731b616bfab2001fd"
+    },
+    {
+      "key": "violin",
+      "labelJa": "ばいおりん",
+      "labelEn": "violin",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "fb1844a7ca02967e2d2cbe69d479e72bdccb5dfa244f8414c8fb62fd6236ac3a"
+    },
+    {
+      "key": "piano",
+      "labelJa": "ぴあの",
+      "labelEn": "piano",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "c0e3228d98c5cbd70ff9af551558c5305275a999b3c7f07fdf0aed8fc75cc48a"
+    },
+    {
+      "key": "xylophone",
+      "labelJa": "もっきん",
+      "labelEn": "xylophone",
+      "readability": "soft",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "80e6144ec9cd41342918f00ed2d588adac6e7f0d1d8d94e6f7d4db84530a8d6c"
+    },
+    {
+      "key": "dice",
+      "labelJa": "さいころ",
+      "labelEn": "dice",
+      "readability": "safe",
+      "source": "expansion-20261023-clothes.json",
+      "artSha256": "5fd0f69fdc6c85a3b1485632e0137da6bae498cf79b09eaf8f7bd3229a9f445a"
+    },
+    {
+      "key": "lime",
+      "labelJa": "らいむ",
+      "labelEn": "lime",
+      "readability": "soft",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "acc96c35144d6797bd9737ad1e066fe1b51a09bc15e1b2b633b5d1284c22edb1"
+    },
+    {
+      "key": "orange",
+      "labelJa": "おれんじ",
+      "labelEn": "orange",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "7a92dcf895d285d58ba76fdf9f9d1be1cc57151ba14fbaf3f54a85a105d87be7"
+    },
+    {
+      "key": "avocado",
+      "labelJa": "あぼかど",
+      "labelEn": "avocado",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "20bc39c6c8d9675007765e7b8200a0938e0c43ee9a830556a6f6a4d326429dae"
+    },
+    {
+      "key": "blueberry",
+      "labelJa": "ぶるーべりー",
+      "labelEn": "blueberry",
+      "readability": "soft",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "75240bde14bb1fa255d091d849e63cce360d494b8ebc92681535235cee6fd788"
+    },
+    {
+      "key": "kiwi",
+      "labelJa": "きうい",
+      "labelEn": "kiwi",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "fc5fb7469f9ece1433a15d6c177282fca9aa7bc35f94f7dd534a68adefc6d1aa"
+    },
+    {
+      "key": "coconut",
+      "labelJa": "ここなつ",
+      "labelEn": "coconut",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "c619497a0d2faa4bc899aa0e121c6fd65d4f7165ed14e24b98a166a0e546020c"
+    },
+    {
+      "key": "chestnut",
+      "labelJa": "くり",
+      "labelEn": "chestnut",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "8d7756f2bf75e9371ed78ca903a83a06df1daf260cc747ee8c23834360731aa1"
+    },
+    {
+      "key": "peanut",
+      "labelJa": "ぴーなっつ",
+      "labelEn": "peanut",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "23671c30b4ef9e8efb7772b7a67232faf81111f19e400603901c2be71b8d4f83"
+    },
+    {
+      "key": "peas",
+      "labelJa": "えんどうまめ",
+      "labelEn": "peas",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "51f28f74da159d31d2fae1b6fb68fea6d4fa526b42c68b5a355d6b4cab72739b"
+    },
+    {
+      "key": "sweet-potato",
+      "labelJa": "さつまいも",
+      "labelEn": "sweet potato",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "60338a33a9bfb63508df4460622a7a28a414cc0f249a2dfd8d7a84d8dda53070"
+    },
+    {
+      "key": "potato",
+      "labelJa": "じゃがいも",
+      "labelEn": "potato",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "22db01984dfbfd6206125f73a2225597fa7615f2d1865687edb5eb0f11dcb251"
+    },
+    {
+      "key": "cabbage",
+      "labelJa": "きゃべつ",
+      "labelEn": "cabbage",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "145c5ba4726c75711d880502114fd1dc3de21644eabde432a257dc409093f3af"
+    },
+    {
+      "key": "lettuce",
+      "labelJa": "れたす",
+      "labelEn": "lettuce",
+      "readability": "soft",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "fdfd134b85742e7148cca90d47006c8ddfc9419b95538dc17ab31cd7c8e634ae"
+    },
+    {
+      "key": "chili",
+      "labelJa": "とうがらし",
+      "labelEn": "chili",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "418426e91c248395766de8e12ac50f8f6c6c6c18b52891e56922749c80f89b92"
+    },
+    {
+      "key": "garlic",
+      "labelJa": "にんにく",
+      "labelEn": "garlic",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "a5b87ab524410649446c5c57bc9bc708416a6882a6a6626bdf38b7ef6080aae7"
+    },
+    {
+      "key": "cheese",
+      "labelJa": "ちーず",
+      "labelEn": "cheese",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "6fae1cb0280210cf403b1b96a0e08d176447f2451060196749eec862c48bf920"
+    },
+    {
+      "key": "egg",
+      "labelJa": "たまご",
+      "labelEn": "egg",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "27c3ccf6db412a8219864e6288f60570942930e2415f46e155673a12cdb98b44"
+    },
+    {
+      "key": "hot-dog",
+      "labelJa": "ほっとどっぐ",
+      "labelEn": "hot dog",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "2a34ba9fc94f2199848bcd0620aba7f3cbdbd99d29a21f6181e825dea2d01d93"
+    },
+    {
+      "key": "burger",
+      "labelJa": "はんばーがー",
+      "labelEn": "burger",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "bec81bb3a1b17d84c288e4444e7468b8f905b0727fd8eaf28a12dc44069c4b20"
+    },
+    {
+      "key": "sandwich",
+      "labelJa": "さんどいっち",
+      "labelEn": "sandwich",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "1baf5b6103e3550cf6a732d138e8fa95b6849bde7b6027dc8db9a02cda7e201c"
+    },
+    {
+      "key": "cookie",
+      "labelJa": "くっきー",
+      "labelEn": "cookie",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "f553e8036319266c4a2b849e9436ebeedc707cec7893a3d143298396e59f3f22"
+    },
+    {
+      "key": "chocolate",
+      "labelJa": "ちょこれーと",
+      "labelEn": "chocolate",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "d7b0d7df4afd739e0a3e03c876599a5547b64b09b064f88207ad1edc295a2ff9"
+    },
+    {
+      "key": "popsicle",
+      "labelJa": "アイス",
+      "labelEn": "popsicle",
+      "readability": "safe",
+      "source": "expansion-20261023-food.json",
+      "artSha256": "e8fb4bdc7277a40ab624c61f6fe9cdfbd0d71540c6e7c4b63ac900c6411df17f"
+    },
+    {
+      "key": "bed",
+      "labelJa": "べっど",
+      "labelEn": "bed",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "4aaf32e09d00f07cf07b8631a9c1d249c551f10dd608765b1781916630b3ca6f"
+    },
+    {
+      "key": "sofa",
+      "labelJa": "そふぁ",
+      "labelEn": "sofa",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "1e68bf8c512aab244c04bda4b15f3c44e2ea51c22858741eeac7a0aed1e8d342"
+    },
+    {
+      "key": "table",
+      "labelJa": "つくえ",
+      "labelEn": "table",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "b2bef955d569e28748ff0cb1a950fadaeab7747a873508d72ff94cd2218bfd21"
+    },
+    {
+      "key": "stool",
+      "labelJa": "いす",
+      "labelEn": "stool",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "bd3819566ab2d48257743c1bad51120c0e33bfbd22b9cddf9a2077b35c981f45"
+    },
+    {
+      "key": "door",
+      "labelJa": "どあ",
+      "labelEn": "door",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "76daa27f4f821f2dd56e125f72be6b620e1f020dbe8db676e21f3b1177ece64b"
+    },
+    {
+      "key": "window",
+      "labelJa": "まど",
+      "labelEn": "window",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "a429fa3f40d7d2729addf098bc3148d31d0d7ceeb18e7cfd3bdc4c8d5ee387eb"
+    },
+    {
+      "key": "mirror",
+      "labelJa": "かがみ",
+      "labelEn": "mirror",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "31a974e2c63633741db843bc935bec33d3c70bf871cc426bce67d454d98113cc"
+    },
+    {
+      "key": "lamp",
+      "labelJa": "らんぷ",
+      "labelEn": "lamp",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "b8a8ca99051c0a11a00cb07e63aa1403dabaf81f9f9c5341d1ed4ea10a0e8da5"
+    },
+    {
+      "key": "fan",
+      "labelJa": "せんぷうき",
+      "labelEn": "fan",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "1e37fd2fdf1b7b04586e7c52ea2ecc85cb29d87e2e43cad4f4758bdba3565c3e"
+    },
+    {
+      "key": "television",
+      "labelJa": "てれび",
+      "labelEn": "television",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "b3e4343fcae957dd18b28cd0988d8fe4a136f1f589f21a24762d25f964c45dcb"
+    },
+    {
+      "key": "radio",
+      "labelJa": "らじお",
+      "labelEn": "radio",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "0694c0bef786a37d1b5624d38db744999de20b788e42ef35011a5e7d77f1672a"
+    },
+    {
+      "key": "telephone",
+      "labelJa": "でんわ",
+      "labelEn": "telephone",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "120e90dcbc24bf3d50618fbb510c2a2f02e29aa2080367ae39d6e063b530e6f6"
+    },
+    {
+      "key": "refrigerator",
+      "labelJa": "れいぞうこ",
+      "labelEn": "refrigerator",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "287ed536062b0c56785670a476693b926b67c03fb8e4d48bbe22da0d27399a28"
+    },
+    {
+      "key": "washing-machine",
+      "labelJa": "せんたくき",
+      "labelEn": "washing machine",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "0df311ea9a1d9b2545703da6b83fe6c1ced224b885cb20df5a037a2f719b076e"
+    },
+    {
+      "key": "bathtub",
+      "labelJa": "ふろ",
+      "labelEn": "bathtub",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "6595a0113418ec45996cb3d1f960d7a7610b02d29c387ea234ce38cd585406b3"
+    },
+    {
+      "key": "toilet",
+      "labelJa": "といれ",
+      "labelEn": "toilet",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "a7775a95881ab0ccbcf9f94a15812fbadf2d970818e7291a9c40d82aea1e3381"
+    },
+    {
+      "key": "teapot",
+      "labelJa": "てぃーぽっと",
+      "labelEn": "teapot",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "218e87a13cfc92591c00ed2225e483e9fe7c3e202158d928d26281a8e3a1252c"
+    },
+    {
+      "key": "kettle",
+      "labelJa": "けとる",
+      "labelEn": "kettle",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "2a9ee5326e2127796040f9b94c27d660f40bae283e4b3d516db384b65bb0196c"
+    },
+    {
+      "key": "pot",
+      "labelJa": "なべ",
+      "labelEn": "pot",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "64bac6bceb612399dfee8351e6332ed444edde7780fe5660473c64806810a0aa"
+    },
+    {
+      "key": "bowl",
+      "labelJa": "うつわ",
+      "labelEn": "bowl",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "ffd0350731c34145954ae7898522b061a258035278cd101ce8a0540e5bb8a3d6"
+    },
+    {
+      "key": "plate",
+      "labelJa": "さら",
+      "labelEn": "plate",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "a2084e1bd7d261135719c0c4e6f7aee9358499b896e26a1e7604b5211c617844"
+    },
+    {
+      "key": "spoon",
+      "labelJa": "スプーン",
+      "labelEn": "spoon",
+      "readability": "safe",
+      "source": "expansion-20261023-home.json",
+      "artSha256": "4de156a6a958bfea9bdafbdc983d47e8e744b6bd3b0edc9e42b647b90f4bf145"
+    },
+    {
+      "key": "sun",
+      "labelJa": "たいよう",
+      "labelEn": "sun",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "938be84ca16a89cf4601af43fd2e43cd6e08bbfd2f65bab28ec8b447fd0dee71"
+    },
+    {
+      "key": "cloud",
+      "labelJa": "あまぐも",
+      "labelEn": "cloud",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "fc0833b70e3ea3c9eb48039d6787f4f799e24290dd7186ad0b907e225fefa3b6"
+    },
+    {
+      "key": "rainbow",
+      "labelJa": "にじ",
+      "labelEn": "rainbow",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "64a1dcb533709ed27e3a9c6d27a34c81637ecd55a0d68b27432c2684a456f1ef"
+    },
+    {
+      "key": "snowflake",
+      "labelJa": "ゆき",
+      "labelEn": "snowflake",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "df3a940cf583fe1987a1a210f1d1a173f53f97e41cab3f57006d0413242cc91b"
+    },
+    {
+      "key": "snowman",
+      "labelJa": "ゆきだるま",
+      "labelEn": "snowman",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "4d51f76c8003060d6c0bf15bde0ac6800ab3907ecc20f6b5e927a61adee79a6a"
+    },
+    {
+      "key": "lightning",
+      "labelJa": "かみなり",
+      "labelEn": "lightning",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "6fede3614cbc3a9f9cd7ad42e70147f8119d3111268a5e00f5739f1cc175cf9e"
+    },
+    {
+      "key": "raindrop",
+      "labelJa": "しずく",
+      "labelEn": "raindrop",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "a10c34e826128b9c7c3479b8c9fbf0b003f2e24fea81153380f65d6d3d2d9dfd"
+    },
+    {
+      "key": "wave",
+      "labelJa": "なみ",
+      "labelEn": "wave",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "f0f7c4b03316bd5ce05648aa2a27372eb5f110c78741b00a1d4aae3360fe8286"
+    },
+    {
+      "key": "volcano",
+      "labelJa": "かざん",
+      "labelEn": "volcano",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "779f7f2c57132d0fbfc8fcb7697214a1b765385882d9cacb8a3f05bb744938ea"
+    },
+    {
+      "key": "island",
+      "labelJa": "しま",
+      "labelEn": "island",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "b1b5d54c7fd024fba378bc9628c83cd61ff98e46ffed9dce5e29c523e6f08dce"
+    },
+    {
+      "key": "waterfall",
+      "labelJa": "たき",
+      "labelEn": "waterfall",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "61fa6270e61b6280c8bde821de3ecca352d767a156aaa9a49e6fdb92d5759c31"
+    },
+    {
+      "key": "cactus",
+      "labelJa": "さぼてん",
+      "labelEn": "cactus",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "8e4292c7c4899a413b452d3a13f961af8db3d45671647bcd94e43dda0b68a878"
+    },
+    {
+      "key": "palm-tree",
+      "labelJa": "やし",
+      "labelEn": "palm tree",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "bff6560fee337a15a8465b6e029a470cb6ab0ad93d8f7a00887e06771e7d0c64"
+    },
+    {
+      "key": "fir-tree",
+      "labelJa": "もみのき",
+      "labelEn": "fir tree",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "243c24196c2d0cd63a6574c89831d5c4bece7ee1cd3cd91a4768e5e6ca781ef4"
+    },
+    {
+      "key": "tulip",
+      "labelJa": "ちゅーりっぷ",
+      "labelEn": "tulip",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "2ef1917ab58be0137050950c27fc42719c75d24bcea03b448f3a80425818d8fb"
+    },
+    {
+      "key": "rose",
+      "labelJa": "ばら",
+      "labelEn": "rose",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "b0b7c7446c686d3c063d450b0fdb1d8933aaf542daff40d812e59fd3e535b6c8"
+    },
+    {
+      "key": "bamboo",
+      "labelJa": "たけ",
+      "labelEn": "bamboo",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "50e677bfd950e52338c68c4313e2fcc18ff0f88a7b878ff4a5b455676790a361"
+    },
+    {
+      "key": "acorn",
+      "labelJa": "どんぐり",
+      "labelEn": "acorn",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "830ddf3d699eb732dcaace84bb3896a3c3be39d1c5f48b3bd1be5c2a43f5bf77"
+    },
+    {
+      "key": "pinecone",
+      "labelJa": "まつぼっくり",
+      "labelEn": "pinecone",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "ea36eaa240bccccfbf22e4facc7c9c3a597d367b0cba73b1ac8c8f9b9a2ee37f"
+    },
+    {
+      "key": "shell",
+      "labelJa": "かいがら",
+      "labelEn": "shell",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "5bed666933008d40ec1317efdede0b79a243007df4df813101d68b4cc6ec9435"
+    },
+    {
+      "key": "coral",
+      "labelJa": "さんご",
+      "labelEn": "coral",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "bf1ef1a28e60621670ab137501931b2b87c60ec6251d7466700579549f1824ae"
+    },
+    {
+      "key": "jellyfish",
+      "labelJa": "くらげ",
+      "labelEn": "jellyfish",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "ededced9e10e4940a6c7960cd457a7de404fa6ed4df24639a059a07dadedb203"
+    },
+    {
+      "key": "shark",
+      "labelJa": "さめ",
+      "labelEn": "shark",
+      "readability": "safe",
+      "source": "expansion-20261023-nature.json",
+      "artSha256": "af8c4fb866107587116e688efe27919e712921927bdbd296e93b5e219009f420"
+    },
+    {
+      "key": "hammer",
+      "labelJa": "とんかち",
+      "labelEn": "hammer",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "46f7876e470977cda1891f89687e3da8ba2a1f709889df4313188bfbf82d9ad5"
+    },
+    {
+      "key": "saw",
+      "labelJa": "のこぎり",
+      "labelEn": "saw",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "9df0b88c2261f0403b9ac7fab18739f60e0f8805cba95305acf32c7f6c3ecdc8"
+    },
+    {
+      "key": "screwdriver",
+      "labelJa": "ねじまわし",
+      "labelEn": "screwdriver",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "44d8e12812202bc0fc1f9bee9867b3684b8907e0c98084bfa9a0963672188450"
+    },
+    {
+      "key": "wrench",
+      "labelJa": "れんち",
+      "labelEn": "wrench",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "0faab43565b00bc6cdab86d28fec436c119ff2ac69060e2c4a31b6362b2cf96b"
+    },
+    {
+      "key": "pliers",
+      "labelJa": "ぺんち",
+      "labelEn": "pliers",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "39a624243d23e1224da9c216e0a7f5e690879c2f2d5d775cfe0b146d2f855030"
+    },
+    {
+      "key": "screw",
+      "labelJa": "ねじ",
+      "labelEn": "screw",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "f46883be56422157d270144681ebdea93e22c0fba076109b0e7fb9d67a284f06"
+    },
+    {
+      "key": "nail",
+      "labelJa": "くぎ",
+      "labelEn": "nail",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "49a5e8446655dbb76e363395c5ecaf356a089584ca584c9f4457add1e1cd418c"
+    },
+    {
+      "key": "needle",
+      "labelJa": "はり",
+      "labelEn": "needle",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "ed284fff53cffa1d79631a9bd2fa539a824dc399507c24a625fc6d0f84617eb9"
+    },
+    {
+      "key": "paintbrush",
+      "labelJa": "ふで",
+      "labelEn": "paintbrush",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "dd5305a7f8737b78803a3ba99fe6a718c3ddd346f7e0d112f08d88c58ea9ebdd"
+    },
+    {
+      "key": "hairbrush",
+      "labelJa": "へあぶらし",
+      "labelEn": "hairbrush",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "1c12718add736cf688573c8f0f44c76d53036b437fe14f7889004671bfa16859"
+    },
+    {
+      "key": "eraser",
+      "labelJa": "けしごむ",
+      "labelEn": "eraser",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "087dfd372dddfe834f2ad9be0b513f35208b31af8fa64bf72f1306e828d0f38a"
+    },
+    {
+      "key": "ruler",
+      "labelJa": "ものさし",
+      "labelEn": "ruler",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "63f8f3638eb26eb01c3a9c0b2e57260ef5ed43cb9b992a6cd0a7bd8a48248c3b"
+    },
+    {
+      "key": "notebook",
+      "labelJa": "のーと",
+      "labelEn": "notebook",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "596f61fdadaf8d57dc4db8d56503e857c355a1032e3ede6d0f9e25abdb3edb9d"
+    },
+    {
+      "key": "envelope",
+      "labelJa": "ふうとう",
+      "labelEn": "envelope",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "1ff9e151a9e3d8eaea6943e18499b669b3c8a5b97e40a635ac14c51a9860ab2f"
+    },
+    {
+      "key": "stamp",
+      "labelJa": "きって",
+      "labelEn": "stamp",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "fb7fcc98b4b1ef5eb70da10e58b7cd5a6f57bb08228a483cd07fd09637cbe707"
+    },
+    {
+      "key": "paperclip",
+      "labelJa": "くりっぷ",
+      "labelEn": "paperclip",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "7a5e2b5527ca94abb9addb17a5808d31899a0ba7caaaa1e5acd9894c5c6b15c7"
+    },
+    {
+      "key": "stapler",
+      "labelJa": "ほちきす",
+      "labelEn": "stapler",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "d55f9d46b36424c915bb5376dfd7eb6b351a4b6fddd818ccb9d0728739a79000"
+    },
+    {
+      "key": "tape",
+      "labelJa": "てーぷ",
+      "labelEn": "tape",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "5fe7bdb0594d3adf550f161f9dba0cd97e77d8c5a814e04f65960b3ed119d808"
+    },
+    {
+      "key": "battery",
+      "labelJa": "でんち",
+      "labelEn": "battery",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "d5f94481f3b6c1b85be55903bfd957d25e3aaf6e3836c9f1ed4896f570be4bec"
+    },
+    {
+      "key": "magnet",
+      "labelJa": "じしゃく",
+      "labelEn": "magnet",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "8ce0892c71a92fd0fa982746e6e8c1790f7893ad6967e632ec99ff0ae5109ee0"
+    },
+    {
+      "key": "lock",
+      "labelJa": "じょうまえ",
+      "labelEn": "lock",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "ab998d5aee99fa279a027889e389569e3b251d751c858cf55cd4adf8c04215b0"
+    },
+    {
+      "key": "whistle",
+      "labelJa": "ふえ",
+      "labelEn": "whistle",
+      "readability": "safe",
+      "source": "expansion-20261023-tools.json",
+      "artSha256": "6072e1b9db404869a8757df690580c6f7d62664e2abf613282aeab28572e31a2"
+    },
+    {
+      "key": "bicycle",
+      "labelJa": "じてんしゃ",
+      "labelEn": "bicycle",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "65b56576ebe6e3e2d812a85094fe294ed7e72d63c3f4fe2ea906e107e04226b0"
+    },
+    {
+      "key": "motorcycle",
+      "labelJa": "おーとばい",
+      "labelEn": "motorcycle",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "a0d50bcca60ca0c98a3821a2ffcfa129648b795a4b46341db282bb24810e573d"
+    },
+    {
+      "key": "train",
+      "labelJa": "でんしゃ",
+      "labelEn": "train",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "00e3d01496a988c42e1f1b787fe5732c562bd826b4b3cb6dfd927d6942cd7d0e"
+    },
+    {
+      "key": "truck",
+      "labelJa": "とらっく",
+      "labelEn": "truck",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "9531543197246dc09e8a49e255e0c773906928d117c0cb077e7553396b8944ab"
+    },
+    {
+      "key": "tractor",
+      "labelJa": "とらくたー",
+      "labelEn": "tractor",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "7f469b258259e93c010a14380ce6c2123ea915f4e1268db3497dffeab6101629"
+    },
+    {
+      "key": "ambulance",
+      "labelJa": "きゅうきゅうしゃ",
+      "labelEn": "ambulance",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "a58971279684722b3f3cbb30ad0b71065e158a1b83b848631864e39c9b594175"
+    },
+    {
+      "key": "fire-engine",
+      "labelJa": "しょうぼうしゃ",
+      "labelEn": "fire engine",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "2a77698308836e436e47405a68b8d8ded61660a036b2e00415f129651f6e4d31"
+    },
+    {
+      "key": "helicopter",
+      "labelJa": "へりこぷたー",
+      "labelEn": "helicopter",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "a6e20c7d84e41e01d78592c0dee729de03dc9855bffb7b02bc7ffdc59fe5faeb"
+    },
+    {
+      "key": "rocket",
+      "labelJa": "ろけっと",
+      "labelEn": "rocket",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "5103a7ddb0156f533a68e7b12032e5c153dd3e7614b31c081476adce5a9c7a76"
+    },
+    {
+      "key": "submarine",
+      "labelJa": "せんすいかん",
+      "labelEn": "submarine",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "e70fae19c24c73973518199599e34e2e31a0ea17a9e112ab82c0d22c9581a099"
+    },
+    {
+      "key": "hot-air-balloon",
+      "labelJa": "ききゅう",
+      "labelEn": "hot air balloon",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "efa51641ac3939f8ceaef308b7d02e6d92435d833a8b9511be8ecdc2fbe17c14"
+    },
+    {
+      "key": "sailboat",
+      "labelJa": "よっと",
+      "labelEn": "sailboat",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "322e76eb3d1e373dc5b69e7eb7f75c03565428e72e077f7e9b1dffe73055ec74"
+    },
+    {
+      "key": "anchor",
+      "labelJa": "いかり",
+      "labelEn": "anchor",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "b025941eff00f6b7d2a0d3c8b2ac038a531f3e714af9846745c70cfde6e6896c"
+    },
+    {
+      "key": "tent",
+      "labelJa": "てんと",
+      "labelEn": "tent",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "89a3ad198025c4f123896254511bf574f62ff3275ddff9c71d716ad3c63138c4"
+    },
+    {
+      "key": "castle",
+      "labelJa": "しろ",
+      "labelEn": "castle",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "b3ba1eb336004f0b3f69a5429b83bf8ad5ad1e56a052a2671ef434c59ab8d893"
+    },
+    {
+      "key": "lighthouse",
+      "labelJa": "とうだい",
+      "labelEn": "lighthouse",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "bfd8efa2b128bab18964d7b09a781d875e9e3db7bd43eff3052ff312c7446444"
+    },
+    {
+      "key": "windmill",
+      "labelJa": "ふうしゃ",
+      "labelEn": "windmill",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "9648d7f17bdbb02267ed56d8076708d623db97c554a78c7a6bd54a13c4af7e9a"
+    },
+    {
+      "key": "ferris-wheel",
+      "labelJa": "かんらんしゃ",
+      "labelEn": "ferris wheel",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "85e238ac4ee0c93bc9e338342bbd7bff9c0591ea618cd23d619312edfc77457c"
+    },
+    {
+      "key": "slide",
+      "labelJa": "すべりだい",
+      "labelEn": "slide",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "a9792c4a4ad6fbdb33bff2214b39623fe50e44fd3c520eaf5ee9bf1b3a948335"
+    },
+    {
+      "key": "seesaw",
+      "labelJa": "しーそー",
+      "labelEn": "seesaw",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "532b57ccb7fa95b0e3edb712303888b6507ecf61cb733206ea2385d7e0b3b794"
+    },
+    {
+      "key": "traffic-light",
+      "labelJa": "しんごうき",
+      "labelEn": "traffic light",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "782d143ef4a5687f388ac7f75a4bbef6c608f3d0d237fb09f338e994901c5b2a"
+    },
+    {
+      "key": "mailbox",
+      "labelJa": "ぽすと",
+      "labelEn": "mailbox",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "68c1b2ced59532584bdb502ffde684d1ede84d8464baf94eceb2808ca2b79aba"
+    },
+    {
+      "key": "fence",
+      "labelJa": "さく",
+      "labelEn": "fence",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "bef170c6d9067c2d64f8a598fb4bbc20eaea305633281c8a0b8998abd3fb75ae"
+    },
+    {
+      "key": "well",
+      "labelJa": "いど",
+      "labelEn": "well",
+      "readability": "safe",
+      "source": "expansion-20261023-travel.json",
+      "artSha256": "53b5555f9c49985496a995dbf599f4696cec73651a0b0547d5f6d105a60d2ad4"
+    }
+  ]
+}

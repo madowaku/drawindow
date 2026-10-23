@@ -1,0 +1,12 @@
+{
+  "count": 6,
+  "reviewOnly": true,
+  "viewport": [
+    1000,
+    360
+  ],
+  "bounds": true,
+  "localMarks": true,
+  "errors": [],
+  "scope": "Synthetic interaction only. No human approval recorded."
+}

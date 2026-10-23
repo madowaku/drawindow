@@ -1,0 +1,2047 @@
+{
+  "count": 291,
+  "newDrawings": 159,
+  "runtime": [
+    {
+      "id": "shizuku-style-v01-apple",
+      "frames": [
+        551,
+        1831
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-cat",
+      "frames": [
+        898,
+        2276
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-dog",
+      "frames": [
+        689,
+        2468
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-banana",
+      "frames": [
+        782,
+        2072
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-elephant",
+      "frames": [
+        845,
+        2867
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-fish",
+      "frames": [
+        477,
+        1838
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bird",
+      "frames": [
+        639,
+        2140
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-car",
+      "frames": [
+        687,
+        2861
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-flower",
+      "frames": [
+        646,
+        2491
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-moon",
+      "frames": [
+        480,
+        1616
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-star",
+      "frames": [
+        488,
+        1826
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-rabbit",
+      "frames": [
+        895,
+        2168
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-turtle",
+      "frames": [
+        1017,
+        2697
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-whale",
+      "frames": [
+        933,
+        2373
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-octopus",
+      "frames": [
+        825,
+        2951
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-butterfly",
+      "frames": [
+        876,
+        3118
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-house",
+      "frames": [
+        1128,
+        2960
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-umbrella",
+      "frames": [
+        645,
+        2357
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-tree",
+      "frames": [
+        506,
+        2094
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-mushroom",
+      "frames": [
+        878,
+        2309
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-strawberry",
+      "frames": [
+        746,
+        2382
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-grapes",
+      "frames": [
+        823,
+        2499
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-ice-cream",
+      "frames": [
+        671,
+        2180
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-frog",
+      "frames": [
+        457,
+        1954
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bear",
+      "frames": [
+        481,
+        2140
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-penguin",
+      "frames": [
+        1018,
+        2969
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-snail",
+      "frames": [
+        778,
+        3096
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-crab",
+      "frames": [
+        881,
+        3269
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-chicken",
+      "frames": [
+        950,
+        2763
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-carrot",
+      "frames": [
+        699,
+        2185
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-pear",
+      "frames": [
+        510,
+        1740
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-cake",
+      "frames": [
+        1034,
+        3016
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-cup",
+      "frames": [
+        713,
+        2194
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-key",
+      "frames": [
+        499,
+        1900
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-boat",
+      "frames": [
+        1156,
+        2774
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-lion",
+      "frames": [
+        1207,
+        3298
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-fox",
+      "frames": [
+        529,
+        2277
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-panda",
+      "frames": [
+        668,
+        2642
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-mouse",
+      "frames": [
+        610,
+        2572
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-sheep",
+      "frames": [
+        580,
+        2271
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-pig",
+      "frames": [
+        939,
+        2629
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-horse",
+      "frames": [
+        822,
+        2983
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-giraffe",
+      "frames": [
+        675,
+        3105
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-owl",
+      "frames": [
+        845,
+        3243
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bee",
+      "frames": [
+        1028,
+        2896
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-dragonfly",
+      "frames": [
+        715,
+        3585
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-sunflower",
+      "frames": [
+        755,
+        3245
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-leaf",
+      "frames": [
+        549,
+        2374
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-watermelon",
+      "frames": [
+        586,
+        2369
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-pizza",
+      "frames": [
+        865,
+        2512
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bread",
+      "frames": [
+        612,
+        2595
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-chair",
+      "frames": [
+        564,
+        1994
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-pencil",
+      "frames": [
+        552,
+        2229
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-scissors",
+      "frames": [
+        447,
+        2686
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-clock",
+      "frames": [
+        1313,
+        2120
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bus",
+      "frames": [
+        1241,
+        3402
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-airplane",
+      "frames": [
+        789,
+        2783
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-rice-ball",
+      "frames": [
+        670,
+        2033
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-sushi",
+      "frames": [
+        967,
+        2130
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-squid",
+      "frames": [
+        474,
+        1944
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-duck",
+      "frames": [
+        1165,
+        2521
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-dolphin",
+      "frames": [
+        659,
+        1992
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-snake",
+      "frames": [
+        723,
+        2093
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-glasses",
+      "frames": [
+        580,
+        1790
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-mountain",
+      "frames": [
+        716,
+        2310
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-ghost",
+      "frames": [
+        858,
+        1942
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-candy",
+      "frames": [
+        737,
+        2390
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-mole",
+      "frames": [
+        778,
+        3461
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-seal",
+      "frames": [
+        876,
+        2293
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-hedgehog",
+      "frames": [
+        917,
+        2625
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-squirrel",
+      "frames": [
+        825,
+        2986
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-shrimp",
+      "frames": [
+        936,
+        3119
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-peach",
+      "frames": [
+        697,
+        2424
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-cherries",
+      "frames": [
+        725,
+        2560
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-broccoli",
+      "frames": [
+        904,
+        3101
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bell",
+      "frames": [
+        854,
+        2213
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-ladder",
+      "frames": [
+        1054,
+        3419
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-mitten",
+      "frames": [
+        725,
+        2423
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-backpack",
+      "frames": [
+        1177,
+        3700
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-candle",
+      "frames": [
+        976,
+        2857
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-seahorse",
+      "frames": [
+        644,
+        2523
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-starfish",
+      "frames": [
+        899,
+        2587
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-stingray",
+      "frames": [
+        867,
+        2248
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-clam",
+      "frames": [
+        1017,
+        3770
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-walrus",
+      "frames": [
+        1371,
+        3581
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-crocodile",
+      "frames": [
+        754,
+        2443
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-koala",
+      "frames": [
+        577,
+        3018
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-camel",
+      "frames": [
+        862,
+        2881
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-turnip",
+      "frames": [
+        1138,
+        2959
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-donut",
+      "frames": [
+        1019,
+        2766
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-boot",
+      "frames": [
+        990,
+        2926
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-watering-can",
+      "frames": [
+        1140,
+        3018
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-teacup",
+      "frames": [
+        979,
+        2927
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-swan",
+      "frames": [
+        713,
+        3383
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-peacock",
+      "frames": [
+        1559,
+        4435
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-flamingo",
+      "frames": [
+        722,
+        2735
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-ladybug",
+      "frames": [
+        1434,
+        3831
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-ant",
+      "frames": [
+        633,
+        3387
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-beetle",
+      "frames": [
+        1270,
+        3799
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bat",
+      "frames": [
+        1118,
+        3469
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-harmonica",
+      "frames": [
+        1341,
+        3784
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-trumpet",
+      "frames": [
+        1312,
+        3381
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-drum",
+      "frames": [
+        1167,
+        4594
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-eggplant",
+      "frames": [
+        656,
+        2458
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-pineapple",
+      "frames": [
+        988,
+        4653
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-cucumber",
+      "frames": [
+        876,
+        2228
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-otter",
+      "frames": [
+        1203,
+        3722
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-kangaroo",
+      "frames": [
+        1015,
+        3021
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-rhinoceros",
+      "frames": [
+        858,
+        2820
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-hippo",
+      "frames": [
+        779,
+        3343
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-lobster",
+      "frames": [
+        1514,
+        4676
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-pumpkin",
+      "frames": [
+        1026,
+        3749
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-corn",
+      "frames": [
+        843,
+        4222
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-tomato",
+      "frames": [
+        812,
+        2899
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-onion",
+      "frames": [
+        960,
+        3078
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-sock",
+      "frames": [
+        1152,
+        3033
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-shovel",
+      "frames": [
+        691,
+        2338
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bucket",
+      "frames": [
+        1174,
+        3281
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-comb",
+      "frames": [
+        797,
+        3127
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-raccoon",
+      "frames": [
+        1396,
+        3910
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-sloth",
+      "frames": [
+        1852,
+        4566
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-gorilla",
+      "frames": [
+        1740,
+        3972
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-wolf",
+      "frames": [
+        834,
+        2857
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-ostrich",
+      "frames": [
+        642,
+        2765
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-parrot",
+      "frames": [
+        1427,
+        4025
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-grasshopper",
+      "frames": [
+        1126,
+        3180
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-mantis",
+      "frames": [
+        845,
+        4053
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-dragon",
+      "frames": [
+        971,
+        3469
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-robot",
+      "frames": [
+        1214,
+        3988
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-camera",
+      "frames": [
+        1214,
+        3824
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-telescope",
+      "frames": [
+        1038,
+        2907
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-swing",
+      "frames": [
+        2077,
+        4400
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-lime",
+      "frames": [
+        1145,
+        1974
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-orange",
+      "frames": [
+        1151,
+        1944
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-avocado",
+      "frames": [
+        1328,
+        3519
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-blueberry",
+      "frames": [
+        1037,
+        3601
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-kiwi",
+      "frames": [
+        1661,
+        3680
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-coconut",
+      "frames": [
+        1451,
+        4069
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-chestnut",
+      "frames": [
+        1363,
+        2393
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-peanut",
+      "frames": [
+        1406,
+        3719
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-peas",
+      "frames": [
+        1958,
+        3647
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-sweet-potato",
+      "frames": [
+        804,
+        1906
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-potato",
+      "frames": [
+        917,
+        1965
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-cabbage",
+      "frames": [
+        1444,
+        3982
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-lettuce",
+      "frames": [
+        1124,
+        3299
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-chili",
+      "frames": [
+        1171,
+        2086
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-garlic",
+      "frames": [
+        1440,
+        2667
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-cheese",
+      "frames": [
+        2348,
+        3630
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-egg",
+      "frames": [
+        925,
+        1970
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-hot-dog",
+      "frames": [
+        1390,
+        3591
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-burger",
+      "frames": [
+        1540,
+        4617
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-sandwich",
+      "frames": [
+        1547,
+        4678
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-cookie",
+      "frames": [
+        1544,
+        3011
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-chocolate",
+      "frames": [
+        1603,
+        4115
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-popsicle",
+      "frames": [
+        1251,
+        2804
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bed",
+      "frames": [
+        2313,
+        4235
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-sofa",
+      "frames": [
+        754,
+        3523
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-table",
+      "frames": [
+        781,
+        3413
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-stool",
+      "frames": [
+        902,
+        3381
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-door",
+      "frames": [
+        1727,
+        5126
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-window",
+      "frames": [
+        2134,
+        5898
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-mirror",
+      "frames": [
+        1403,
+        3191
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-lamp",
+      "frames": [
+        1176,
+        2366
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-fan",
+      "frames": [
+        1839,
+        5280
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-television",
+      "frames": [
+        1860,
+        4156
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-radio",
+      "frames": [
+        2013,
+        4798
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-telephone",
+      "frames": [
+        1459,
+        3853
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-refrigerator",
+      "frames": [
+        1718,
+        2783
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-washing-machine",
+      "frames": [
+        2234,
+        5079
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bathtub",
+      "frames": [
+        1354,
+        2898
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-toilet",
+      "frames": [
+        1140,
+        3101
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-teapot",
+      "frames": [
+        1257,
+        2784
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-kettle",
+      "frames": [
+        1440,
+        3006
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-pot",
+      "frames": [
+        1048,
+        3132
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bowl",
+      "frames": [
+        1310,
+        3014
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-plate",
+      "frames": [
+        1521,
+        3433
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-spoon",
+      "frames": [
+        912,
+        1835
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-hammer",
+      "frames": [
+        679,
+        2026
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-saw",
+      "frames": [
+        776,
+        2317
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-screwdriver",
+      "frames": [
+        766,
+        2244
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-wrench",
+      "frames": [
+        1125,
+        2373
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-pliers",
+      "frames": [
+        1329,
+        3253
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-screw",
+      "frames": [
+        608,
+        2311
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-nail",
+      "frames": [
+        539,
+        1890
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-needle",
+      "frames": [
+        788,
+        2106
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-paintbrush",
+      "frames": [
+        615,
+        1983
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-hairbrush",
+      "frames": [
+        1055,
+        2559
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-eraser",
+      "frames": [
+        1079,
+        2961
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-ruler",
+      "frames": [
+        895,
+        2080
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-notebook",
+      "frames": [
+        1584,
+        3432
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-envelope",
+      "frames": [
+        1009,
+        3136
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-stamp",
+      "frames": [
+        2300,
+        4843
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-paperclip",
+      "frames": [
+        1156,
+        3132
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-stapler",
+      "frames": [
+        1198,
+        2851
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-tape",
+      "frames": [
+        1436,
+        3277
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-battery",
+      "frames": [
+        1491,
+        2624
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-magnet",
+      "frames": [
+        1582,
+        3033
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-lock",
+      "frames": [
+        1333,
+        3448
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-whistle",
+      "frames": [
+        1308,
+        2632
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-sun",
+      "frames": [
+        584,
+        2468
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-cloud",
+      "frames": [
+        992,
+        2101
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-rainbow",
+      "frames": [
+        1028,
+        4101
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-snowflake",
+      "frames": [
+        1149,
+        3372
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-snowman",
+      "frames": [
+        1674,
+        4205
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-lightning",
+      "frames": [
+        585,
+        2155
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-raindrop",
+      "frames": [
+        916,
+        1854
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-wave",
+      "frames": [
+        886,
+        2762
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-volcano",
+      "frames": [
+        1717,
+        3362
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-island",
+      "frames": [
+        1265,
+        4391
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-waterfall",
+      "frames": [
+        1451,
+        4159
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-cactus",
+      "frames": [
+        2279,
+        3757
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-palm-tree",
+      "frames": [
+        885,
+        4468
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-fir-tree",
+      "frames": [
+        1337,
+        2729
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-tulip",
+      "frames": [
+        1179,
+        2766
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-rose",
+      "frames": [
+        1257,
+        3204
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bamboo",
+      "frames": [
+        1338,
+        3443
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-acorn",
+      "frames": [
+        870,
+        3223
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-pinecone",
+      "frames": [
+        1372,
+        3386
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-shell",
+      "frames": [
+        1105,
+        4365
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-coral",
+      "frames": [
+        1685,
+        3397
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-jellyfish",
+      "frames": [
+        848,
+        2962
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-shark",
+      "frames": [
+        1831,
+        2949
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-t-shirt",
+      "frames": [
+        1216,
+        2777
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-dress",
+      "frames": [
+        1193,
+        2689
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-skirt",
+      "frames": [
+        693,
+        3357
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-shorts",
+      "frames": [
+        1735,
+        3366
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-hat",
+      "frames": [
+        1205,
+        3065
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-cap",
+      "frames": [
+        1177,
+        2483
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-crown",
+      "frames": [
+        2122,
+        3945
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-scarf",
+      "frames": [
+        1079,
+        3206
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-shoe",
+      "frames": [
+        1482,
+        2863
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-sandal",
+      "frames": [
+        1461,
+        3533
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-necktie",
+      "frames": [
+        581,
+        2132
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bow-tie",
+      "frames": [
+        1482,
+        3149
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-ring",
+      "frames": [
+        1251,
+        3763
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-necklace",
+      "frames": [
+        1068,
+        2660
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bracelet",
+      "frames": [
+        1491,
+        4413
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-watch",
+      "frames": [
+        1319,
+        3659
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-ball",
+      "frames": [
+        1804,
+        3816
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-kite",
+      "frames": [
+        1152,
+        2740
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-balloon",
+      "frames": [
+        1232,
+        2074
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-guitar",
+      "frames": [
+        1215,
+        3445
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-violin",
+      "frames": [
+        1106,
+        3925
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-piano",
+      "frames": [
+        1751,
+        4452
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-xylophone",
+      "frames": [
+        3327,
+        5367
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-dice",
+      "frames": [
+        1626,
+        4085
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-cow",
+      "frames": [
+        1683,
+        3835
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-goat",
+      "frames": [
+        671,
+        2971
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-deer",
+      "frames": [
+        788,
+        2822
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-tiger",
+      "frames": [
+        986,
+        3778
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-zebra",
+      "frames": [
+        2239,
+        4188
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-monkey",
+      "frames": [
+        1208,
+        4163
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-donkey",
+      "frames": [
+        1033,
+        3203
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-hamster",
+      "frames": [
+        1381,
+        5124
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-tapir",
+      "frames": [
+        1334,
+        3185
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-armadillo",
+      "frames": [
+        1299,
+        3844
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-anteater",
+      "frames": [
+        1372,
+        2884
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-pelican",
+      "frames": [
+        1379,
+        2951
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-woodpecker",
+      "frames": [
+        1359,
+        3950
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-sparrow",
+      "frames": [
+        1451,
+        2947
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-chick",
+      "frames": [
+        1456,
+        2580
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-mosquito",
+      "frames": [
+        717,
+        3745
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-spider",
+      "frames": [
+        1234,
+        3697
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-worm",
+      "frames": [
+        1160,
+        2860
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-caterpillar",
+      "frames": [
+        2804,
+        3999
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-centipede",
+      "frames": [
+        1518,
+        3529
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-firefly",
+      "frames": [
+        1534,
+        3731
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-bicycle",
+      "frames": [
+        1527,
+        3806
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-motorcycle",
+      "frames": [
+        1786,
+        4927
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-train",
+      "frames": [
+        1715,
+        3921
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-truck",
+      "frames": [
+        1477,
+        3392
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-tractor",
+      "frames": [
+        1405,
+        4987
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-ambulance",
+      "frames": [
+        1726,
+        4607
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-fire-engine",
+      "frames": [
+        1671,
+        5665
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-helicopter",
+      "frames": [
+        980,
+        3366
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-rocket",
+      "frames": [
+        1146,
+        3438
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-submarine",
+      "frames": [
+        1412,
+        3898
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-hot-air-balloon",
+      "frames": [
+        1446,
+        4073
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-sailboat",
+      "frames": [
+        2293,
+        4936
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-anchor",
+      "frames": [
+        453,
+        2744
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-tent",
+      "frames": [
+        1616,
+        4408
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-castle",
+      "frames": [
+        3179,
+        5386
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-lighthouse",
+      "frames": [
+        1345,
+        4074
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-windmill",
+      "frames": [
+        1431,
+        4681
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-ferris-wheel",
+      "frames": [
+        1591,
+        6628
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-slide",
+      "frames": [
+        1294,
+        3127
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-seesaw",
+      "frames": [
+        741,
+        2906
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-traffic-light",
+      "frames": [
+        1716,
+        4081
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-mailbox",
+      "frames": [
+        1516,
+        3746
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-fence",
+      "frames": [
+        2288,
+        4850
+      ]
+    },
+    {
+      "id": "shizuku-style-v01-well",
+      "frames": [
+        1556,
+        5624
+      ]
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "mobileOverflow": false,
+  "scope": "Actual game canvas for all 291 drawings, review gallery DAY/NIGHT, replay and 360px. No human readability or LIVE recognition claim."
+}

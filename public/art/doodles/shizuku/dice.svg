@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#000" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="title"><title id="title">さいころ / dice</title>
+  <path d="M 20 39 L 65 19 L 102 41 L 102 86 L 56 107 L 20 85 L 20 39"/>
+  <path d="M 20 39 L 56 61 L 102 41 M 56 61 L 56 107"/>
+  <path d="M 63 39 Q 63 42 60 42 Q 57 41.88 57 39 Q 57 36 60.09 36 Q 62.94 36 63 39 M 35 57 Q 35 61 32 61 Q 29 60.84 29 57 Q 29 53 32.09 53 Q 34.94 53 35 57 M 47 86 Q 47 90 44 90 Q 41 89.84 41 86 Q 41 82 44.09 82 Q 46.94 82 47 86 M 73 69 Q 73 73 70 73 Q 67 72.84 67 69 Q 67 65 70.09 65 Q 72.94 65 73 69 M 91 58 Q 91 62 88 62 Q 85 61.84 85 58 Q 85 54 88.09 54 Q 90.94 54 91 58 M 74 91 Q 74 95 71 95 Q 68 94.84 68 91 Q 68 87 71.09 87 Q 73.94 87 74 91 M 92 80 Q 92 84 89 84 Q 86 83.84 86 80 Q 86 76 89.09 76 Q 91.94 76 92 80"/>
+</svg>
