@@ -1,8 +1,8 @@
-import { adoptShizukuSketches } from './data/shizuku-doodles/adopted';
 import { GirlOopsReaction } from './components/GirlOopsReaction';
+import { adoptShizukuSketches } from './data/shizuku-doodles/adopted';
 import { japaneseEverydayDoodles } from './data/japaneseEverydayDoodles';
 import { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, ArrowCounterClockwise, Check, Eraser, Info, Moon, SpeakerHigh, SpeakerSlash, Sun, X } from '@phosphor-icons/react';
+import { ArrowLeft, ArrowRight, ArrowCounterClockwise, ArrowClockwise, Check, Eraser, Info, Moon, SpeakerHigh, SpeakerSlash, Sun, X } from '@phosphor-icons/react';
 import { createInitialState, gameReducer, selectCanFinishDrawing, selectPlayerEntries, selectVisibleStrokes } from './core/gameMachine';
 import { calculateScore } from './core/score';
 import { EndingScene } from './components/EndingScene';
@@ -53,12 +53,14 @@ export interface AppProps {
 
 export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
   const appScrollRef = useRef<HTMLElement>(null);
+  const dialogReturnFocusRef = useRef<HTMLElement | null>(null);
+  const lastIntentFocusRef = useRef<HTMLInputElement | null>(null);
   const liveApiConfigured = Boolean(import.meta.env.VITE_RECOGNITION_URL?.trim()) || import.meta.env.VITE_ENABLE_LIVE_API === 'true';
   const [state, dispatch] = useReducer(gameReducer, undefined, () => createInitialState(savedMode(), savedLanguage()));
   const { sound, toggleSound, playSound } = useGameAudio(musicForScene(state.phase, state.mode));
   const [info, setInfo] = useState(false);
   const [leave, setLeave] = useState(false);
-  const [sessionChoice, setSessionChoice] = useState<SessionKind>('demo');
+  const [sessionChoice, setSessionChoice] = useState<SessionKind>(liveApiConfigured && import.meta.env.VITE_DEFAULT_LIVE === 'true' ? 'api' : 'demo');
   const [intentDrafts, setIntentDrafts] = useState<Record<string, string>>({});
   const [runners] = useState(() => ({
     api: createRecognitionRunner(apiRecognizer ?? createApiRecognizer({ endpoint: import.meta.env.VITE_RECOGNITION_URL || '/api/recognize', imageRenderer: renderDrawingDataUrl })),
@@ -67,9 +69,39 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
   const reducedMotion = useReducedMotion();
   const phaseRef = useRef(state.phase);
   const active = !['title', 'review_intents', 'results'].includes(state.phase);
+  const protectLeave = active || state.phase === 'review_intents';
   const players = selectPlayerEntries(state);
   const score = calculateScore(state.entries, state.sessionKind, state.language);
   const t = (en: string, ja: string) => state.language === 'ja' ? ja : en;
+  const openDialog = (kind: 'info' | 'leave') => {
+    dialogReturnFocusRef.current = state.phase === 'review_intents' && lastIntentFocusRef.current?.isConnected
+      ? lastIntentFocusRef.current : document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    if (kind === 'info') setInfo(true);
+    else setLeave(true);
+  };
+  const closeDialog = () => { setInfo(false); setLeave(false); };
+
+  useLayoutEffect(() => {
+    if (info || leave) return;
+    const target = dialogReturnFocusRef.current;
+    dialogReturnFocusRef.current = null;
+    if (target?.isConnected) target.focus();
+  }, [info, leave]);
+
+  useEffect(() => {
+    const handleEditShortcut = (event: KeyboardEvent) => {
+      if (state.phase !== 'player_drawing' || info || leave || event.defaultPrevented || event.isComposing || event.altKey || !(event.ctrlKey || event.metaKey)) return;
+      const target = event.target;
+      if (target instanceof HTMLElement && (target.isContentEditable || target.closest('input, textarea, select, [contenteditable]'))) return;
+      const key = event.key.toLowerCase();
+      const type = key === 'z' ? event.shiftKey ? 'REDO' : 'UNDO' : key === 'y' ? 'REDO' : null;
+      if (!type) return;
+      event.preventDefault();
+      dispatch({ type });
+    };
+    window.addEventListener('keydown', handleEditShortcut);
+    return () => window.removeEventListener('keydown', handleEditShortcut);
+  }, [state.phase, info, leave]);
 
   // Clear a completed developer record before painting the next session.
   useLayoutEffect(() => { onStateChange?.(state); }, [state, onStateChange]);
@@ -144,13 +176,13 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
     }
   }, [state.phase, state.round]);
 
-  return <main ref={appScrollRef} className={`app ${title ? 'is-title' : ''} ${active ? 'is-playing' : ''}`} data-mode={state.mode} data-language={state.language} data-phase={state.phase}>
+  return <main ref={appScrollRef} className={`app ${title ? 'is-title' : ''} ${active ? 'is-playing' : ''}`} data-mode={state.mode} data-language={state.language} data-phase={state.phase} onFocusCapture={event => { if (state.phase === 'review_intents' && event.target instanceof HTMLInputElement) lastIntentFocusRef.current = event.target; }}>
     <header className="topbar">
-      <button className="wordmark" onClick={() => active ? setLeave(true) : dispatch({ type: 'RETURN_TO_TITLE' })} aria-label={t('DRAWINDOW home', '最初の画面へ')}>DRA<span>W</span>INDOW<span className="wordmark-period">.</span></button>
+      <button className="wordmark" onClick={() => protectLeave ? openDialog('leave') : dispatch({ type: 'RETURN_TO_TITLE' })} aria-label={t('DRAWINDOW home', '最初の画面へ')}>DRA<span>W</span>INDOW<span className="wordmark-period">.</span></button>
       <div className="topbar-right">
         {active && <span className="mode-label">{state.mode === 'day' ? <Sun size={15} /> : <Moon size={15} />}{state.language === 'ja' ? state.mode === 'day' ? '昼' : '夜' : state.mode.toUpperCase()}</span>}
         <button className="icon-button" aria-label={sound ? t('Mute sound', '音を消す') : t('Enable sound', '音を出す')} aria-pressed={sound} onClick={toggleSound}>{sound ? <SpeakerHigh size={20} /> : <SpeakerSlash size={20} />}</button>
-        <button className="icon-button" aria-label={t('How to play and credits', '遊び方とクレジット')} onClick={() => setInfo(true)}><Info size={20} /></button>
+        <button className="icon-button" aria-label={t('How to play and credits', '遊び方とクレジット')} onClick={() => openDialog('info')}><Info size={20} /></button>
       </div>
     </header>
 
@@ -173,7 +205,7 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
     {active && <section className="play-layout" aria-label={t('Picture word chain', '絵のしりとり')}>
       <div className="play-heading"><div><p className="eyebrow">{t('ACROSS THE GLASS', 'ガラス越しに')}</p><h1>{state.phase === 'player_drawing' ? t('Your little reply.', 'あなたからのお返事。') : state.phase === 'recognizing' ? t('A moment to wonder.', '少し、考えごと。') : state.phase === 'recognition_error' ? t('A little interruption.', 'ちょっとひと休み。') : t('What do you see?', '何に見える？')}</h1></div><div className="round-label"><span>{t('EXCHANGE', 'おうふく')}</span><strong>{String(state.round).padStart(2, '0')}<small> / 05</small></strong></div></div>
       <div className={`window-surface phase-${state.phase}`}>
-        <WindowCanvas previousStrokes={state.entries.at(-1)?.falseStart?.strokes} mode={state.mode} phase={state.phase} round={state.round} strokes={selectVisibleStrokes(state)} onStrokesChange={strokes => dispatch({ type: 'STROKES_CHANGED', strokes })} onBreathDone={() => dispatch({ type: 'BREATH_DONE' })} onPlaybackDone={() => dispatch({ type: 'PLAYBACK_DONE' })} reducedMotion={reducedMotion} />
+        <WindowCanvas language={state.language} previousStrokes={state.entries.at(-1)?.falseStart?.strokes} mode={state.mode} phase={state.phase} round={state.round} strokes={selectVisibleStrokes(state)} onStrokesChange={strokes => dispatch({ type: 'STROKES_CHANGED', strokes })} onBreathDone={() => dispatch({ type: 'BREATH_DONE' })} onPlaybackDone={() => dispatch({ type: 'PLAYBACK_DONE' })} reducedMotion={reducedMotion} />
         <div className="glass-corner-label">{['player_drawing', 'recognizing', 'recognition_error'].includes(state.phase) ? t('your side', 'こちらがわ') : t('her side', 'むこうがわ')}</div>
         <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : 'LIVE API'}</span>
       </div>
@@ -187,7 +219,7 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
         </div>
         <div className="action-row">
           {state.phase === 'girl_holding' && <button className="primary" onClick={() => dispatch({ type: 'YOUR_TURN' })}>{t('YOUR TURN', 'あなたの番')}<ArrowRight size={20} /></button>}
-          {state.phase === 'player_drawing' && <><button className="secondary tool" disabled={!state.activeStrokes.length} onClick={() => dispatch({ type: 'UNDO' })} aria-label={t('Undo last stroke', 'ひと筆戻す')}><ArrowCounterClockwise size={21} /></button><button className="secondary tool clear-tool" disabled={!state.activeStrokes.length} onClick={() => dispatch({ type: 'CLEAR' })}><Eraser size={20} /><span>{t('CLEAR', '消す')}</span></button><button className="primary" disabled={!selectCanFinishDrawing(state)} onClick={() => dispatch({ type: 'DONE' })}>{t('DONE', 'できた')}<Check size={20} /></button></>}
+          {state.phase === 'player_drawing' && <><button className="secondary tool" disabled={!state.drawingHistory.past.length} onClick={() => dispatch({ type: 'UNDO' })} aria-label={t('Undo last edit', '元に戻す')} title={t('Undo · Ctrl/Cmd+Z', '元に戻す · Ctrl/Cmd+Z')}><ArrowCounterClockwise size={21} /></button><button className="secondary tool" disabled={!state.drawingHistory.future.length} onClick={() => dispatch({ type: 'REDO' })} aria-label={t('Redo last edit', 'やり直す')} title={t('Redo · Ctrl/Cmd+Shift+Z', 'やり直す · Ctrl/Cmd+Shift+Z')}><ArrowClockwise size={21} /></button><button className="secondary tool clear-tool" disabled={!state.activeStrokes.length} onClick={() => dispatch({ type: 'CLEAR' })} aria-label={t('CLEAR', '消す')}><Eraser size={20} /><span>{t('CLEAR', '消す')}</span></button><button className="primary" disabled={!selectCanFinishDrawing(state)} onClick={() => dispatch({ type: 'DONE' })}>{t('DONE', 'できた')}<Check size={20} /></button></>}
           {['girl_breath', 'girl_drawing', 'girl_notice', 'girl_flustered', 'recognizing'].includes(state.phase) && <div className="waiting"><span className="waiting-mark" />{state.phase === 'recognizing' ? t('THINKING', '考え中') : t('HER TURN', 'しずくの番')}</div>}
           {state.phase === 'recognition_error' && <div className="error-actions"><p role="alert">{state.language === 'ja' ? state.error?.code === 'rate_limit' ? '認識回数の制限に達しました。少し時間をおいてください。絵は残っています。' : state.error?.code === 'uncovered_letter' ? '次につながる絵が見つかりません。描き直すか、デモを試してください。' : '認識できませんでした。絵は残っています。' : state.error?.message || 'Connection unavailable. Please try again.'}</p><div>{state.error?.retryable && <button className="primary" onClick={() => dispatch({ type: 'RETRY_RECOGNITION' })}>{t('TRY AGAIN', 'もう一度')}</button>}<button className="secondary" onClick={() => dispatch({ type: 'USE_DEMO' })}>{t('DEMO MODE', 'デモにする')}</button><button className="text-button" onClick={() => dispatch({ type: 'BACK_TO_DRAWING' })}><ArrowLeft size={16} /> {t('BACK', '戻る')}</button></div><small>{t('Demo uses simulated interpretations and no comparable score.', 'デモは認識をシミュレーションするため、正式なスコアにはなりません。')}</small></div>}
         </div>
@@ -204,14 +236,14 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
 
     {state.phase === 'results' && <EndingScene key={state.sessionId} entries={state.entries} score={score} mode={state.mode} language={state.language} sessionKind={state.sessionKind} reducedMotion={reducedMotion} onRestart={start} onTitle={() => dispatch({ type: 'RETURN_TO_TITLE' })} />}
 
-    {(info || leave) && <div className="modal-backdrop" onClick={() => { setInfo(false); setLeave(false); }}><section className="info-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" onClick={e => e.stopPropagation()} onKeyDown={e => {
-      if (e.key === 'Escape') { setInfo(false); setLeave(false); }
+    {(info || leave) && <div className="modal-backdrop" onClick={closeDialog}><section className="info-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" onClick={e => e.stopPropagation()} onKeyDown={e => {
+      if (e.key === 'Escape') closeDialog();
       if (e.key === 'Tab') {
         const items = e.currentTarget.querySelectorAll<HTMLElement>('button:not(:disabled),a[href],input');
         const first = items[0], last = items[items.length - 1];
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
         else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
       }
-    }}><button autoFocus className="icon-button close-dialog" aria-label={t('Close dialog', '閉じる')} onClick={() => { setInfo(false); setLeave(false); }}><X size={22} /></button>{leave ? <><p className="eyebrow">{t('TAKE YOUR TIME', 'まだ大丈夫')}</p><h2 id="dialog-title">{t('Close this window?', '窓を閉じる？')}</h2><p>{t('This unfinished chain will be lost.', '描きかけのしりとりは消えてしまうよ。')}</p><button className="primary" onClick={() => { setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>{t('RETURN TO TITLE', '最初に戻る')}</button><button className="text-button" onClick={() => setLeave(false)}>{t('Keep drawing', '続きを描く')}</button></> : <><p className="eyebrow">DRAWINDOW · v0.5</p><h2 id="dialog-title">{t('A conversation without words.', '言葉を使わない会話。')}</h2><p>{t('Look at her drawing. Think of its English name. Draw something beginning with its last letter.', 'しずくの絵に名前をつけて、最後の音から次の絵を描こう。ご→こ、ぎ→きのように濁点を外してもOK。「ん」で終わったら、新しい絵から再開するよ。')}</p><p>{t('Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.', '途中で答えを言わないでね。５往復したら名前を明かして、９本のつながりを確かめよう。')}</p><p>{t('DAY & NIGHT change only the mood. There is no timer.', '昼と夜では雰囲気が変わるよ。時間制限はありません。')}</p><p>{t('DEMO uses simulated interpretations, not image recognition. Live API sends a neutral drawing image to a configured server; the character is never included.', 'デモは画像認識ではなく、決まった解釈を返します。LIVE APIでは絵だけを認識サーバーに送り、しずくの画像は送りません。')}</p><div className="credits"><p>{t('Character', 'キャラクター')}: OpenAI ImageGen<br />{t('Doodles', '絵')}: Quick, Draw! / Google, CC BY 4.0; DRAWINDOW original. {t('Fonts', 'フォント')}: DM Sans &amp; Cormorant Garamond, OFL.</p><MusicCredits /><a href="https://github.com/googlecreativelab/quickdraw-dataset" target="_blank" rel="noreferrer">Quick, Draw! dataset & attribution</a></div></>}</section></div>}
+    }}><button autoFocus className="icon-button close-dialog" aria-label={t('Close dialog', '閉じる')} onClick={closeDialog}><X size={22} /></button>{leave ? <><p className="eyebrow">{t('TAKE YOUR TIME', 'まだ大丈夫')}</p><h2 id="dialog-title">{t('Close this window?', '窓を閉じる？')}</h2><p>{t('This unfinished chain will be lost.', '途中の絵と名前は消えてしまうよ。')}</p><button className="primary" onClick={() => { dialogReturnFocusRef.current = null; setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>{t('RETURN TO TITLE', '最初に戻る')}</button><button className="text-button" onClick={closeDialog}>{state.phase === 'review_intents' ? t('Keep naming', '名前つけを続ける') : t('Keep drawing', '続きを描く')}</button></> : <><p className="eyebrow">DRAWINDOW · v0.7.1</p><h2 id="dialog-title">{t('A conversation without words.', '言葉を使わない会話。')}</h2><p>{t('Look at her drawing. Think of its English name. Draw something beginning with its last letter.', 'しずくの絵に名前をつけて、最後の音から次の絵を描こう。ご→こ、ぎ→きのように濁点を外してもOK。「ん」で終わったら、新しい絵から再開するよ。')}</p><p>{t('Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.', '途中で答えを言わないでね。５往復したら名前を明かして、９本のつながりを確かめよう。')}</p><p>{t('DAY & NIGHT change only the mood. There is no timer.', '昼と夜では雰囲気が変わるよ。時間制限はありません。')}</p><p>{t('DEMO uses simulated interpretations, not image recognition. Live API sends a neutral drawing image to a configured server; the character is never included.', 'デモは画像認識ではなく、決まった解釈を返します。LIVE APIでは絵だけを認識サーバーに送り、しずくの画像は送りません。')}</p><div className="credits"><p>{t('Character', 'キャラクター')}: OpenAI ImageGen<br />{t('Doodles', '絵')}: Quick, Draw! / Google, CC BY 4.0; DRAWINDOW original. {t('Fonts', 'フォント')}: DM Sans &amp; Cormorant Garamond, OFL.</p><MusicCredits /><a href="https://github.com/googlecreativelab/quickdraw-dataset" target="_blank" rel="noreferrer">Quick, Draw! dataset & attribution</a></div></>}</section></div>}
   </main>;
 }

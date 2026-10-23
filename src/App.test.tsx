@@ -39,6 +39,53 @@ async function finishFive() {
 }
 
 describe('integrated UI journey with controlled presentation callbacks', () => {
+  it('protects all naming entries and raw drafts when Home is cancelled and restores focus', async () => {
+    let current: GameState | undefined;
+    render(<App onStateChange={state => { current = state; }} />);
+    await finishFive();
+    const input = screen.getAllByRole('textbox')[2] as HTMLInputElement;
+    fireEvent.change(input, { target: { value: ' Ice cream  ' } });
+    input.focus();
+    const nativeUndo = new KeyboardEvent('keydown', { key: 'z', ctrlKey: true, bubbles: true, cancelable: true });
+    fireEvent(input, nativeUndo);
+    expect(nativeUndo.defaultPrevented).toBe(false);
+    fireEvent.click(screen.getByRole('button', { name: 'DRAWINDOW home' }));
+    expect(screen.getByRole('dialog')).toBeTruthy();
+    fireEvent.keyDown(document.activeElement!, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(document.activeElement).toBe(input);
+    expect(input.value).toBe(' Ice cream  ');
+    expect(current!.entries).toHaveLength(10);
+    fireEvent.click(screen.getByRole('button', { name: 'DRAWINDOW home' }));
+    fireEvent.click(screen.getByRole('button', { name: 'RETURN TO TITLE' }));
+    expect(document.querySelector('main')?.getAttribute('data-phase')).toBe('title');
+  });
+
+  it('scopes undo/redo shortcuts to drawing outside dialogs and text edits', async () => {
+    let current: GameState | undefined;
+    render(<App onStateChange={state => { current = state; }} />);
+    fireEvent.click(screen.getByRole('button', { name: /PLAY DEMO/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'Test complete breath' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Test complete playback' }));
+    fireEvent.click(screen.getByRole('button', { name: /YOUR TURN/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'Test draw' }));
+    expect((screen.getByRole('button', { name: 'Redo last edit' }) as HTMLButtonElement).disabled).toBe(true);
+    const undo = new KeyboardEvent('keydown', { key: 'z', ctrlKey: true, bubbles: true, cancelable: true });
+    fireEvent(document.body, undo);
+    expect(undo.defaultPrevented).toBe(true);
+    expect(current!.activeStrokes).toHaveLength(0);
+    fireEvent.keyDown(document.body, { key: 'Z', metaKey: true, shiftKey: true });
+    expect(current!.activeStrokes).toHaveLength(1);
+    fireEvent.click(screen.getByRole('button', { name: 'How to play and credits' }));
+    fireEvent.keyDown(document.activeElement!, { key: 'z', ctrlKey: true });
+    expect(current!.activeStrokes).toHaveLength(1);
+    fireEvent.click(screen.getByRole('button', { name: 'Close dialog' }));
+    fireEvent.click(screen.getByRole('button', { name: 'CLEAR' }));
+    fireEvent.keyDown(document.body, { key: 'z', ctrlKey: true });
+    expect(current!.activeStrokes).toHaveLength(1);
+    fireEvent.keyDown(document.body, { key: 'y', ctrlKey: true });
+    expect(current!.activeStrokes).toHaveLength(0);
+  });
   it('runs four distinct API fixture responses, conceals guesses through naming, then reveals with no fifth call', async () => {
     vi.stubEnv('VITE_ENABLE_LIVE_API', 'true');
     const guesses = ['dog', 'house', 'fish', 'cat'];

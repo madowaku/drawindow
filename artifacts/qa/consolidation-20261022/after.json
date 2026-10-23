@@ -1,0 +1,380 @@
+{
+  "scope": "Synthetic browser QA only; no human play, device comfort or real LIVE acceptance. API responses intercepted locally.",
+  "journeys": [
+    {
+      "config": {
+        "language": "en",
+        "mode": "day",
+        "motion": "reduce",
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "canvas": {
+        "width": 312,
+        "height": 312
+      },
+      "controls": [
+        {
+          "label": "Undo last edit",
+          "width": 51,
+          "height": 52
+        },
+        {
+          "label": "Redo last edit",
+          "width": 51,
+          "height": 52
+        },
+        {
+          "label": "CLEAR",
+          "width": 50,
+          "height": 52
+        },
+        {
+          "label": "DONE",
+          "width": 144,
+          "height": 52
+        }
+      ],
+      "textFit": {
+        "buttonFits": true,
+        "roundSingleLine": true,
+        "headingHeight": 31.890625
+      },
+      "localizedHint": "DRAW HERE",
+      "keyboardMoves": true,
+      "clearExactRestore": true,
+      "undoRedoExactRestore": true,
+      "heldPointerSafe": true,
+      "namingProtected": true,
+      "reviewNativeUndoUnaffected": true,
+      "drawings": 10,
+      "links": 9,
+      "souvenirPreview": true,
+      "souvenirRequestCount": 0,
+      "apiCalls": 0,
+      "originalCanvasSha256": "1c97508f749ac41f57146148429154c37b5285601a5fafe6e6ac74bbe0a3f5e8",
+      "resultMetrics": {
+        "scrollTop": 3346,
+        "scrollHeight": 4146,
+        "height": 800,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "config": {
+        "language": "ja",
+        "mode": "night",
+        "motion": "reduce",
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "canvas": {
+        "width": 312,
+        "height": 312
+      },
+      "controls": [
+        {
+          "label": "元に戻す",
+          "width": 51,
+          "height": 52
+        },
+        {
+          "label": "やり直す",
+          "width": 51,
+          "height": 52
+        },
+        {
+          "label": "消す",
+          "width": 50,
+          "height": 52
+        },
+        {
+          "label": "できた",
+          "width": 144,
+          "height": 52
+        }
+      ],
+      "textFit": {
+        "buttonFits": true,
+        "roundSingleLine": true,
+        "headingHeight": 29.953125
+      },
+      "localizedHint": "ここに描こう",
+      "keyboardMoves": true,
+      "clearExactRestore": true,
+      "undoRedoExactRestore": true,
+      "heldPointerSafe": true,
+      "namingProtected": true,
+      "reviewNativeUndoUnaffected": true,
+      "drawings": 10,
+      "links": 9,
+      "souvenirPreview": true,
+      "souvenirRequestCount": 0,
+      "apiCalls": 0,
+      "originalCanvasSha256": "5908d67c57ac291310b287c3b2e006611ad2a57c49f36881a732d5e5de01821d",
+      "resultMetrics": {
+        "scrollTop": 3339,
+        "scrollHeight": 4139,
+        "height": 800,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "config": {
+        "language": "en",
+        "mode": "night",
+        "motion": "no-preference",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        }
+      },
+      "canvas": {
+        "width": 450.90625,
+        "height": 450.90625
+      },
+      "controls": [
+        {
+          "label": "Undo last edit",
+          "width": 55,
+          "height": 52
+        },
+        {
+          "label": "Redo last edit",
+          "width": 55,
+          "height": 52
+        },
+        {
+          "label": "CLEAR",
+          "width": 105.625,
+          "height": 52
+        },
+        {
+          "label": "DONE",
+          "width": 380.375,
+          "height": 52
+        }
+      ],
+      "textFit": {
+        "buttonFits": true,
+        "roundSingleLine": true,
+        "headingHeight": 39.59375
+      },
+      "localizedHint": "DRAW HERE",
+      "keyboardMoves": true,
+      "clearExactRestore": true,
+      "undoRedoExactRestore": true,
+      "heldPointerSafe": true,
+      "namingProtected": true,
+      "reviewNativeUndoUnaffected": true,
+      "drawings": 10,
+      "links": 9,
+      "souvenirPreview": true,
+      "souvenirRequestCount": 0,
+      "apiCalls": 0,
+      "originalCanvasSha256": "c0958eaf0a54d390a7412a1f6e3f4bd4a551bad510c7de8f12509f3d66cab46d",
+      "resultMetrics": {
+        "scrollTop": 4626,
+        "scrollHeight": 5426,
+        "height": 800,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "config": {
+        "language": "ja",
+        "mode": "day",
+        "motion": "no-preference",
+        "viewport": {
+          "width": 320,
+          "height": 480
+        }
+      },
+      "canvas": {
+        "width": 245,
+        "height": 245
+      },
+      "controls": [
+        {
+          "label": "元に戻す",
+          "width": 51,
+          "height": 52
+        },
+        {
+          "label": "やり直す",
+          "width": 51,
+          "height": 52
+        },
+        {
+          "label": "消す",
+          "width": 50,
+          "height": 52
+        },
+        {
+          "label": "できた",
+          "width": 104,
+          "height": 52
+        }
+      ],
+      "textFit": {
+        "buttonFits": true,
+        "roundSingleLine": true,
+        "headingHeight": 27.296875
+      },
+      "localizedHint": "ここに描こう",
+      "keyboardMoves": true,
+      "clearExactRestore": true,
+      "undoRedoExactRestore": true,
+      "heldPointerSafe": true,
+      "namingProtected": true,
+      "reviewNativeUndoUnaffected": true,
+      "drawings": 10,
+      "links": 9,
+      "souvenirPreview": true,
+      "souvenirRequestCount": 0,
+      "apiCalls": 0,
+      "originalCanvasSha256": "e573943ff46fc919fdc5def85cdc8489b53252191b9a10ffc71fac219151c20f",
+      "resultMetrics": {
+        "scrollTop": 3479,
+        "scrollHeight": 3959,
+        "height": 480,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "config": {
+        "language": "en",
+        "mode": "night",
+        "motion": "reduce",
+        "viewport": {
+          "width": 320,
+          "height": 480
+        }
+      },
+      "canvas": {
+        "width": 244.109375,
+        "height": 244.109375
+      },
+      "controls": [
+        {
+          "label": "Undo last edit",
+          "width": 51,
+          "height": 52
+        },
+        {
+          "label": "Redo last edit",
+          "width": 51,
+          "height": 52
+        },
+        {
+          "label": "CLEAR",
+          "width": 50,
+          "height": 52
+        },
+        {
+          "label": "DONE",
+          "width": 104,
+          "height": 52
+        }
+      ],
+      "textFit": {
+        "buttonFits": true,
+        "roundSingleLine": true,
+        "headingHeight": 31.890625
+      },
+      "localizedHint": "DRAW HERE",
+      "keyboardMoves": true,
+      "clearExactRestore": true,
+      "undoRedoExactRestore": true,
+      "heldPointerSafe": true,
+      "namingProtected": true,
+      "reviewNativeUndoUnaffected": true,
+      "drawings": 10,
+      "links": 9,
+      "souvenirPreview": true,
+      "souvenirRequestCount": 0,
+      "apiCalls": 0,
+      "originalCanvasSha256": "12d7f875fbbdc326dbb035a1e384c21ed8a69be9180f01bf525e650a0517836c",
+      "resultMetrics": {
+        "scrollTop": 3523,
+        "scrollHeight": 4003,
+        "height": 480,
+        "horizontalOverflow": false
+      }
+    },
+    {
+      "config": {
+        "language": "ja",
+        "mode": "day",
+        "motion": "reduce",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        }
+      },
+      "canvas": {
+        "width": 450.90625,
+        "height": 450.90625
+      },
+      "controls": [
+        {
+          "label": "元に戻す",
+          "width": 55,
+          "height": 52
+        },
+        {
+          "label": "やり直す",
+          "width": 55,
+          "height": 52
+        },
+        {
+          "label": "消す",
+          "width": 88.09375,
+          "height": 52
+        },
+        {
+          "label": "できた",
+          "width": 397.90625,
+          "height": 52
+        }
+      ],
+      "textFit": {
+        "buttonFits": true,
+        "roundSingleLine": true,
+        "headingHeight": 39.59375
+      },
+      "localizedHint": "ここに描こう",
+      "keyboardMoves": true,
+      "clearExactRestore": true,
+      "undoRedoExactRestore": true,
+      "heldPointerSafe": true,
+      "namingProtected": true,
+      "reviewNativeUndoUnaffected": true,
+      "drawings": 10,
+      "links": 9,
+      "souvenirPreview": true,
+      "souvenirRequestCount": 0,
+      "apiCalls": 0,
+      "originalCanvasSha256": "2318c37fa153951d7dc217c0c24e540b9aa8f631aab73284ed045826ce28f2b8",
+      "resultMetrics": {
+        "scrollTop": 4692,
+        "scrollHeight": 5492,
+        "height": 800,
+        "horizontalOverflow": false
+      }
+    }
+  ],
+  "apiRecovery": {
+    "interceptedCalls": 2,
+    "retainedLiveMode": true,
+    "editableAfterError": true,
+    "exactInferenceRestored": true
+  },
+  "errors": [],
+  "externalRequests": [],
+  "failures": []
+}

@@ -1,11 +1,12 @@
 import type { DrawingEntry, GameError, GameEvent, GameState, GirlSketch, Language, RecognitionErrorCode, RecognitionRequest, RecognitionResult, Stroke, StrokePoint } from './types';
 import { lastLetter, normalizeWord, selectGirlSketch, selectJapaneseFreshSketch, selectJapaneseSlip } from './words';
 import { observeCanonicalName, recordIntention, recordRecognition, recognitionDetails } from './naming';
+import { sameStrokes } from './drawingHistory';
 
 const MAX_ATTEMPTS = 3; // Original request plus two deliberate retries.
 
 export function createInitialState(mode: GameState['mode'] = 'day', language: Language = 'en'): GameState {
-  return { phase: 'title', mode, language, sessionKind: 'demo', sessionId: 0, round: 0, sketches: [], entries: [], activeStrokes: [], recognitionRequest: null, error: null, recognitionAttempt: 0 };
+  return { phase: 'title', mode, language, sessionKind: 'demo', sessionId: 0, round: 0, sketches: [], entries: [], activeStrokes: [], drawingHistory: { past: [], future: [] }, recognitionRequest: null, error: null, recognitionAttempt: 0 };
 }
 export const initialState = createInitialState();
 
@@ -80,10 +81,30 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
       return { ...state, phase: 'girl_breath', girlCorrection: null,
         entries: [...state.entries.slice(0, -1), { ...correction, falseStart }] };
     }
-    case 'YOUR_TURN': return state.phase === 'girl_holding' ? { ...state, phase: 'player_drawing', activeStrokes: [], error: null } : state;
-    case 'STROKES_CHANGED': return state.phase === 'player_drawing' && validStrokes(event.strokes) ? { ...state, activeStrokes: copyStrokes(event.strokes) } : state;
-    case 'CLEAR': return state.phase === 'player_drawing' ? { ...state, activeStrokes: [] } : state;
-    case 'UNDO': return state.phase === 'player_drawing' ? { ...state, activeStrokes: state.activeStrokes.slice(0, -1) } : state;
+    case 'YOUR_TURN': return state.phase === 'girl_holding' ? { ...state, phase: 'player_drawing', activeStrokes: [], drawingHistory: { past: [], future: [] }, error: null } : state;
+    case 'STROKES_CHANGED': {
+      if (state.phase !== 'player_drawing' || !validStrokes(event.strokes) || sameStrokes(state.activeStrokes, event.strokes)) return state;
+      // A gesture publishes repeatedly. Only its new ID creates an undo step.
+      const newStroke = event.strokes.some(stroke => stroke.points.length > 0 && !state.activeStrokes.some(previous => previous.id === stroke.id));
+      return { ...state, activeStrokes: copyStrokes(event.strokes), drawingHistory: {
+        past: newStroke ? [...state.drawingHistory.past, state.activeStrokes].slice(-32) : state.drawingHistory.past,
+        future: [],
+      } };
+    }
+    case 'CLEAR': return state.phase === 'player_drawing' && state.activeStrokes.length > 0
+      ? { ...state, activeStrokes: [], drawingHistory: { past: [...state.drawingHistory.past, state.activeStrokes].slice(-32), future: [] } } : state;
+    case 'UNDO': {
+      const previous = state.drawingHistory.past.at(-1);
+      return state.phase === 'player_drawing' && previous ? { ...state, activeStrokes: previous, drawingHistory: {
+        past: state.drawingHistory.past.slice(0, -1), future: [...state.drawingHistory.future, state.activeStrokes].slice(-32),
+      } } : state;
+    }
+    case 'REDO': {
+      const next = state.drawingHistory.future.at(-1);
+      return state.phase === 'player_drawing' && next ? { ...state, activeStrokes: next, drawingHistory: {
+        past: [...state.drawingHistory.past, state.activeStrokes].slice(-32), future: state.drawingHistory.future.slice(0, -1),
+      } } : state;
+    }
     case 'DONE': {
       if (!selectCanFinishDrawing(state)) return state;
       const entry: DrawingEntry = { id: `${state.sessionId}:player:${state.round}`, actor: 'player', round: state.round, strokes: copyStrokes(state.activeStrokes), intendedWord: null, recognition: null,
@@ -114,7 +135,7 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
         (state.sessionId + round) % 3 === 0 && lastLetter(sketch.word, 'ja') !== 'ん' &&
         (!sketch.readability || sketch.readability === 'safe')
         ? selectJapaneseSlip(state.sketches, tail, usedIds) : null;
-      return { ...state, entries: [...entries, girlEntry(state, slip ?? sketch, round, chainRestart)], girlCorrection: slip ? sketch : null, girlSlipUsed: state.girlSlipUsed || Boolean(slip), round, phase: 'girl_breath', activeStrokes: [], recognitionRequest: null, error: null };
+      return { ...state, entries: [...entries, girlEntry(state, slip ?? sketch, round, chainRestart)], girlCorrection: slip ? sketch : null, girlSlipUsed: state.girlSlipUsed || Boolean(slip), round, phase: 'girl_breath', activeStrokes: [], drawingHistory: { past: [], future: [] }, recognitionRequest: null, error: null };
     }
     case 'RETRY_RECOGNITION': {
       if (state.phase !== 'recognition_error' || !state.error?.retryable || !state.recognitionRequest) return state;

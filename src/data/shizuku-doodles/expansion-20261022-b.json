@@ -1,0 +1,79 @@
+{
+  "version": "2026-10-22-b",
+  "doodles": [
+    {"key":"seahorse","labelJa":"たつのおとしご","labelEn":"seahorse","adoptionBase":"fog-doodle-v02-expansion-b","strokes":[
+      {"name":"頭から丸いおなか","durationMs":950,"path":"M 50 30 Q 55 18 69 24 Q 85 31 76 47 Q 70 56 80 66 Q 91 85 71 94"},
+      {"name":"くるんとした尾","durationMs":900,"path":"M 71 94 Q 45 112 38 91 Q 34 77 48 78 Q 58 80 52 88 Q 48 92 45 87"},
+      {"name":"長い口と首","durationMs":650,"path":"M 50 30 L 33 37 L 36 44 L 53 40 Q 64 47 55 59 Q 45 72 49 77"},
+      {"name":"背びれと目","durationMs":500,"path":"M 78 50 L 90 54 L 83 60 L 92 66 L 84 72 M 64 32 L 64 34 M 57 58 L 73 62 M 53 68 L 79 73"}
+    ]},
+    {"key":"starfish","labelJa":"ひとで","labelEn":"starfish","adoptionBase":"fog-doodle-v02-expansion-b","strokes":[
+      {"name":"五本の腕","durationMs":1200,"path":"M 48 46 Q 51 28 58 13 Q 64 25 68 46 Q 89 43 107 48 Q 95 61 77 67 Q 85 86 83 104 Q 68 95 58 79 Q 45 96 27 99 Q 28 81 40 65 Q 22 61 13 48 Q 31 42 48 46"},
+      {"name":"小さなぽつぽつ","durationMs":450,"path":"M 58 34 L 58 36 M 35 52 L 35 54 M 84 53 L 84 55 M 40 83 L 40 85 M 74 85 L 74 87 M 57 61 L 58 63"}
+    ]},
+    {"key":"stingray","labelJa":"えい","labelEn":"stingray","adoptionBase":"fog-doodle-v02-expansion-b","strokes":[
+      {"name":"ひらたいひれ","durationMs":1100,"path":"M 57 27 Q 43 42 16 47 Q 21 63 42 69 L 58 76 Q 82 69 103 51 Q 78 45 65 27 Q 61 23 57 27"},
+      {"name":"長すぎたしっぽ","durationMs":650,"path":"M 58 76 Q 51 92 68 104 Q 78 111 86 100"},
+      {"name":"ひれの筋","durationMs":400,"path":"M 56 40 Q 43 53 29 53 M 67 40 Q 81 52 91 52"},
+      {"name":"小さい目","durationMs":200,"path":"M 55 34 L 55 36 M 65 34 L 65 36"}
+    ]},
+    {"key":"clam","labelJa":"あさり","labelEn":"clam","adoptionBase":"fog-doodle-v02-expansion-b","strokes":[
+      {"name":"丸い貝の輪郭","durationMs":950,"path":"M 20 75 Q 17 55 34 37 Q 54 21 76 34 Q 97 45 101 72 Q 86 91 58 91 Q 34 91 20 75"},
+      {"name":"閉じた口","durationMs":600,"path":"M 21 74 Q 58 83 100 72 M 29 83 Q 59 94 92 82"},
+      {"name":"貝の筋","durationMs":700,"path":"M 31 69 Q 30 51 40 39 M 44 74 Q 41 50 51 34 M 59 76 Q 56 51 61 32 M 74 74 Q 76 50 71 36 M 88 70 Q 89 53 82 43"}
+    ]},
+    {"key":"walrus","labelJa":"せいうち","labelEn":"walrus","adoptionBase":"fog-doodle-v02-expansion-b","strokes":[
+      {"name":"大きな体","durationMs":950,"path":"M 28 76 Q 16 46 33 29 Q 51 16 69 36 Q 84 53 84 76 L 102 79 L 93 86 L 104 94 Q 86 99 75 90 Q 51 100 28 88 L 28 76"},
+      {"name":"口のふくらみ","durationMs":550,"path":"M 34 52 Q 42 45 48 52 Q 57 45 66 54 Q 69 65 50 65 Q 32 68 34 52"},
+      {"name":"二本のきば","durationMs":500,"path":"M 39 63 Q 36 80 42 88 Q 48 80 46 65 M 55 64 Q 55 85 62 88 Q 66 76 62 63"},
+      {"name":"目とひげとひれ","durationMs":500,"path":"M 36 42 L 36 44 M 59 41 L 59 43 M 34 56 L 23 53 M 34 61 L 22 63 M 66 55 L 76 52 M 67 60 L 79 63 M 70 77 Q 68 89 78 90"}
+    ]},
+    {"key":"crocodile","labelJa":"わに","labelEn":"crocodile","adoptionBase":"fog-doodle-v02-expansion-b","strokes":[
+      {"name":"長い鼻と背中","durationMs":1000,"path":"M 16 57 L 39 54 Q 36 43 45 43 Q 51 43 52 52 L 65 51 L 70 43 L 77 51 L 85 46 L 90 58 L 107 72 L 91 76"},
+      {"name":"おなかと短い足","durationMs":800,"path":"M 91 76 L 85 87 L 77 86 L 78 76 L 49 77 L 44 87 L 35 86 L 37 75 Q 18 74 16 67 L 16 57"},
+      {"name":"口と歯","durationMs":500,"path":"M 17 65 L 57 63 M 24 65 L 28 70 L 31 65 M 38 64 L 42 69 L 45 64"},
+      {"name":"目と模様","durationMs":350,"path":"M 45 49 L 45 51 M 67 59 L 73 65 M 80 60 L 85 67"}
+    ]},
+    {"key":"koala","labelJa":"こあら","labelEn":"koala","adoptionBase":"fog-doodle-v02-expansion-b","strokes":[
+      {"name":"左の大きな耳","durationMs":650,"path":"M 38 40 Q 26 18 15 33 Q 6 52 27 61"},
+      {"name":"右の耳","durationMs":650,"path":"M 80 39 Q 94 20 105 37 Q 113 56 92 61"},
+      {"name":"丸い顔","durationMs":900,"path":"M 39 39 Q 60 28 80 40 Q 99 52 92 77 Q 84 96 59 96 Q 31 96 27 74 Q 21 52 39 39"},
+      {"name":"大きな鼻","durationMs":600,"path":"M 52 55 Q 62 48 69 57 L 70 74 Q 60 83 50 74 L 52 55"},
+      {"name":"目と小さな口","durationMs":350,"path":"M 39 60 L 39 62 M 81 59 L 81 61 M 60 80 Q 57 87 52 84 M 60 80 Q 64 87 68 83"}
+    ]},
+    {"key":"camel","labelJa":"らくだ","labelEn":"camel","adoptionBase":"fog-doodle-v02-expansion-b","strokes":[
+      {"name":"長い首とこぶ","durationMs":1000,"path":"M 20 40 L 13 36 L 15 29 L 30 29 L 34 22 L 38 30 L 36 61 Q 47 63 52 42 Q 59 26 67 48 Q 71 61 81 60 Q 93 60 93 73"},
+      {"name":"足とおなか","durationMs":850,"path":"M 93 73 L 93 96 L 85 96 L 83 78 Q 64 84 48 78 L 45 98 L 37 97 L 38 73 Q 25 68 25 42 L 20 40"},
+      {"name":"尾と後ろの足","durationMs":450,"path":"M 91 65 Q 104 66 101 80 M 75 81 L 76 93 L 82 94 M 49 81 L 51 94"},
+      {"name":"目と口","durationMs":200,"path":"M 26 34 L 26 36 M 15 37 L 22 38"}
+    ]},
+    {"key":"turnip","labelJa":"かぶ","labelEn":"turnip","adoptionBase":"fog-doodle-v02-expansion-b","strokes":[
+      {"name":"丸い根","durationMs":950,"path":"M 58 46 Q 36 38 25 57 Q 13 81 43 91 L 58 104 L 65 91 Q 96 85 93 63 Q 92 43 69 46"},
+      {"name":"左の葉","durationMs":650,"path":"M 59 46 Q 29 37 33 18 Q 54 17 59 46"},
+      {"name":"まん中の葉","durationMs":650,"path":"M 62 45 Q 50 23 64 12 Q 77 28 65 45"},
+      {"name":"右の葉","durationMs":600,"path":"M 68 46 Q 71 22 93 24 Q 94 41 68 46 M 36 68 L 43 66 M 77 78 L 83 75"}
+    ]},
+    {"key":"donut","labelJa":"どーなつ","labelEn":"donut","adoptionBase":"fog-doodle-v02-expansion-b","strokes":[
+      {"name":"いびつな丸","durationMs":1000,"path":"M 58 26 Q 29 22 20 49 Q 9 81 38 94 Q 71 108 93 80 Q 110 53 89 35 Q 76 23 58 26"},
+      {"name":"ずれた穴","durationMs":600,"path":"M 57 49 Q 41 47 40 62 Q 39 76 55 77 Q 73 78 77 63 Q 78 49 57 49"},
+      {"name":"少しだけお砂糖","durationMs":550,"path":"M 32 43 L 36 47 M 52 34 L 57 36 M 77 38 L 79 43 M 88 57 L 92 60 M 77 83 L 73 87 M 48 89 L 44 86 M 25 70 L 29 72"}
+    ]},
+    {"key":"boot","labelJa":"ながぐつ","labelEn":"boot","adoptionBase":"fog-doodle-v02-expansion-b","strokes":[
+      {"name":"長い筒とつま先","durationMs":1050,"path":"M 36 22 Q 56 26 77 21 L 76 72 Q 84 80 97 80 Q 106 85 100 97 Q 62 105 32 96 L 36 22"},
+      {"name":"履き口","durationMs":450,"path":"M 37 23 Q 56 14 77 21 M 36 31 Q 55 36 77 30"},
+      {"name":"靴底と足首","durationMs":500,"path":"M 33 90 Q 63 97 101 91 M 39 73 Q 48 77 56 74"}
+    ]},
+    {"key":"watering-can","labelJa":"じょうろ","labelEn":"watering can","adoptionBase":"fog-doodle-v02-expansion-b","strokes":[
+      {"name":"水を入れる体","durationMs":800,"path":"M 30 51 Q 47 44 66 50 L 70 91 Q 49 99 27 91 L 30 51 M 31 51 Q 46 60 66 50"},
+      {"name":"持ち手","durationMs":600,"path":"M 31 57 Q 9 43 12 74 Q 12 89 28 83 M 30 64 Q 19 57 19 72 Q 20 79 28 77"},
+      {"name":"長い注ぎ口","durationMs":650,"path":"M 68 76 L 91 43 L 98 48 L 70 88 M 88 40 L 97 30 L 108 39 L 101 51 L 88 40"},
+      {"name":"水のしずく","durationMs":350,"path":"M 99 25 L 101 21 M 108 29 L 111 26 M 109 19 L 111 15"}
+    ]},
+    {"key":"teacup","labelJa":"ゆのみ","labelEn":"teacup","adoptionBase":"fog-doodle-v02-expansion-b","strokes":[
+      {"name":"丸い飲み口","durationMs":700,"path":"M 28 46 Q 26 35 59 34 Q 93 34 93 45 Q 90 56 59 55 Q 29 55 28 46"},
+      {"name":"少し傾いた湯のみ","durationMs":800,"path":"M 28 46 L 35 93 Q 58 104 84 93 L 93 45 M 43 98 L 44 103 L 76 103 L 77 97"},
+      {"name":"湯気","durationMs":600,"path":"M 45 27 Q 35 20 43 11 M 65 27 Q 75 21 67 12"},
+      {"name":"横の模様","durationMs":350,"path":"M 32 72 Q 59 80 88 71"}
+    ]}
+  ]
+}

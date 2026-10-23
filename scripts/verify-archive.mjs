@@ -4,8 +4,9 @@ import { resolve, dirname, extname } from 'node:path';
 import { unzipSync } from 'fflate';
 
 const destination = resolve('artifacts/qa/package-extracted');
-const version = JSON.parse(await readFile('package.json', 'utf8')).version.split('.').slice(0, 2).join('.');
-const archive = unzipSync(await readFile(`artifacts/release/DRAWINDOW-v${version}-itch.zip`));
+const receipt = JSON.parse(await readFile('artifacts/release/package-receipt.json', 'utf8'));
+if (!/^DRAWINDOW-v[\d.]+-(?:live-|demo-)?itch\.zip$/.test(receipt.filename)) throw new Error('Invalid archive filename');
+const archive = unzipSync(await readFile(`artifacts/release/${receipt.filename}`));
 for (const [name, bytes] of Object.entries(archive)) {
   const target = resolve(destination, name);
   if (!target.startsWith(destination + '/') && !target.startsWith(destination + '\\')) throw new Error(`Unsafe archive path: ${name}`);

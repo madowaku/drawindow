@@ -4,7 +4,17 @@
   "sourceSha256": "45d49e2f69254bd3f24ee2a5b8c39b2242fbd41df538c9253ec02424c7c60e09",
   "provenance": "Original SVG paths authored for DRAWINDOW. No external art or generative image service used.",
   "referenceStatus": "B labels are user-requested style directions. Reference images are unavailable; these are new proposals, not reproductions.",
-  "adoptionStatus": "Approved by user on 2026-10-18 for Japanese and English production. Existing uncovered vocabulary retained.",
+  "adoptionStatus": "Original 67 approved on 2026-10-18. Five batches of 13 added locally at user request on 2026-10-22; human readability and LIVE recognition unverified. Existing uncovered vocabulary retained.",
+  "expansionSource": "src/data/shizuku-doodles/expansion-20261022.json",
+  "expansionSha256": "01634c7ac93c89d3aee44b7b408ccabc38e4e3ec757f4a78fe6984f9d7ea266f",
+  "expansionBSource": "src/data/shizuku-doodles/expansion-20261022-b.json",
+  "expansionBSha256": "30e647936f506bd97e4222a9e616b29720a6c62da41293422bff2dbca2a234d6",
+  "expansionCSource": "src/data/shizuku-doodles/expansion-20261022-c.json",
+  "expansionCSha256": "d0d131328129520ee86698089a6ff63e1fe7a8104c089fd165901d7dfdb5d895",
+  "expansionDSource": "src/data/shizuku-doodles/expansion-20261022-d.json",
+  "expansionDSha256": "6ddd36166ec69b63f4efbbba05cdd6e8725a7cf8d6b97bfb7fd415391de877e6",
+  "expansionESource": "src/data/shizuku-doodles/expansion-20261022-e.json",
+  "expansionESha256": "3fc4dae5862f372e7507dd4df656f9cce558dc70371d0398173b98d5687cc14c",
   "entries": [
     {
       "key": "apple",
@@ -474,6 +484,461 @@
       "path": "public/art/doodles/shizuku/candy.svg",
       "sha256": "b1801196b31d6206b0ed73e187123b5da7e679c67ffed01e6beaa8807d775177",
       "strokes": 3
+    },
+    {
+      "key": "mole",
+      "adoptionBase": "fog-doodle-v02-expansion",
+      "path": "public/art/doodles/shizuku/mole.svg",
+      "sha256": "04606f3d37cd788b89bd87a03877f70dbc6702c98a8135c07e7a3a5db39a29bc",
+      "strokes": 4
+    },
+    {
+      "key": "seal",
+      "adoptionBase": "fog-doodle-v02-expansion",
+      "path": "public/art/doodles/shizuku/seal.svg",
+      "sha256": "7a916431f8a931da49f88ffee01393c766af1fcff79a4019565503aae6d39501",
+      "strokes": 4
+    },
+    {
+      "key": "hedgehog",
+      "adoptionBase": "fog-doodle-v02-expansion",
+      "path": "public/art/doodles/shizuku/hedgehog.svg",
+      "sha256": "a38ed4217272900a8b97256c582e41c40ef4cc5bb3ebbe0fa782aba51a5c6eff",
+      "strokes": 4
+    },
+    {
+      "key": "squirrel",
+      "adoptionBase": "fog-doodle-v02-expansion",
+      "path": "public/art/doodles/shizuku/squirrel.svg",
+      "sha256": "4e00a918979aa76ca7333e014e22bef3cde3d89c23ff8d076ef0e56360d27909",
+      "strokes": 4
+    },
+    {
+      "key": "shrimp",
+      "adoptionBase": "fog-doodle-v02-expansion",
+      "path": "public/art/doodles/shizuku/shrimp.svg",
+      "sha256": "0d89c754f0ffe1c6ff51bd1a170e24c6f598e85fe918847b477d000ad4bc4e28",
+      "strokes": 5
+    },
+    {
+      "key": "peach",
+      "adoptionBase": "fog-doodle-v02-expansion",
+      "path": "public/art/doodles/shizuku/peach.svg",
+      "sha256": "7e08a65e1e47898abe988cc281ea440912a7d514a61e903d49b7832b4b7825bf",
+      "strokes": 4
+    },
+    {
+      "key": "cherries",
+      "adoptionBase": "fog-doodle-v02-expansion",
+      "path": "public/art/doodles/shizuku/cherries.svg",
+      "sha256": "0ec93663963dc802c9421719b28e470f21bd5cfd11c3941397d59a3102677dd6",
+      "strokes": 4
+    },
+    {
+      "key": "broccoli",
+      "adoptionBase": "fog-doodle-v02-expansion",
+      "path": "public/art/doodles/shizuku/broccoli.svg",
+      "sha256": "2807d5b3cdb8d105c9bad8c8eefcfebeed7724c11261ed6a4380ef11a628ee79",
+      "strokes": 4
+    },
+    {
+      "key": "bell",
+      "adoptionBase": "fog-doodle-v02-expansion",
+      "path": "public/art/doodles/shizuku/bell.svg",
+      "sha256": "97955ffcec6a285d4aad0bb577094588836d843424ab87de2d14f6cbb0e9898e",
+      "strokes": 4
+    },
+    {
+      "key": "ladder",
+      "adoptionBase": "fog-doodle-v02-expansion",
+      "path": "public/art/doodles/shizuku/ladder.svg",
+      "sha256": "8e8660f966accaa9ae5068582710166f5bf538596186a9e9d56fe0cb21231e46",
+      "strokes": 3
+    },
+    {
+      "key": "mitten",
+      "adoptionBase": "fog-doodle-v02-expansion",
+      "path": "public/art/doodles/shizuku/mitten.svg",
+      "sha256": "3c0b5ab71e6bc68d3eae6898dfea4d3c1b60a61fcff37e6d2a9a0473861ddf79",
+      "strokes": 3
+    },
+    {
+      "key": "backpack",
+      "adoptionBase": "fog-doodle-v02-expansion",
+      "path": "public/art/doodles/shizuku/backpack.svg",
+      "sha256": "8b8ffc3bc1a6aac0bcbd93dc3cc937c93a8d7abf69e3b31107571f30099a134d",
+      "strokes": 4
+    },
+    {
+      "key": "candle",
+      "adoptionBase": "fog-doodle-v02-expansion",
+      "path": "public/art/doodles/shizuku/candle.svg",
+      "sha256": "e35cfdc5dd1884765285a59ca03d54e733abb2feee7184ea872d123b7adb8a5f",
+      "strokes": 4
+    },
+    {
+      "key": "seahorse",
+      "adoptionBase": "fog-doodle-v02-expansion-b",
+      "path": "public/art/doodles/shizuku/seahorse.svg",
+      "sha256": "59d4e8a85f228cf8175432cc4e5c04b188367d709a21f6b3b51a90b5d62a87b7",
+      "strokes": 4
+    },
+    {
+      "key": "starfish",
+      "adoptionBase": "fog-doodle-v02-expansion-b",
+      "path": "public/art/doodles/shizuku/starfish.svg",
+      "sha256": "eba88793f301138a76aad4942ec29a436840ce1043cb87f46d86c75e02e9909f",
+      "strokes": 2
+    },
+    {
+      "key": "stingray",
+      "adoptionBase": "fog-doodle-v02-expansion-b",
+      "path": "public/art/doodles/shizuku/stingray.svg",
+      "sha256": "46c4bba659cdccd4239fc44049bfc17dc84827ac47bbe1f04d65496649dadfe9",
+      "strokes": 4
+    },
+    {
+      "key": "clam",
+      "adoptionBase": "fog-doodle-v02-expansion-b",
+      "path": "public/art/doodles/shizuku/clam.svg",
+      "sha256": "147b9f3e9b9a5052533d797fd86846144b153faf160cf14cb41c29ad6d2c0478",
+      "strokes": 3
+    },
+    {
+      "key": "walrus",
+      "adoptionBase": "fog-doodle-v02-expansion-b",
+      "path": "public/art/doodles/shizuku/walrus.svg",
+      "sha256": "617b19acbe0226b722903be86057a68c6e400053390ff9a954268d869daf421d",
+      "strokes": 4
+    },
+    {
+      "key": "crocodile",
+      "adoptionBase": "fog-doodle-v02-expansion-b",
+      "path": "public/art/doodles/shizuku/crocodile.svg",
+      "sha256": "a3132b4ab9f2bad52cc53c307288eceb5726294ae0a09b1bf500e528555d7f89",
+      "strokes": 4
+    },
+    {
+      "key": "koala",
+      "adoptionBase": "fog-doodle-v02-expansion-b",
+      "path": "public/art/doodles/shizuku/koala.svg",
+      "sha256": "930a2e5b5052e64a6e3c9461d018eec69aadfe01fccdb916441a720eeb89b991",
+      "strokes": 5
+    },
+    {
+      "key": "camel",
+      "adoptionBase": "fog-doodle-v02-expansion-b",
+      "path": "public/art/doodles/shizuku/camel.svg",
+      "sha256": "4b4e0959e0475e28e37edbe33c256aa3b7ebbc7eaee23f1e77953b3118d53918",
+      "strokes": 4
+    },
+    {
+      "key": "turnip",
+      "adoptionBase": "fog-doodle-v02-expansion-b",
+      "path": "public/art/doodles/shizuku/turnip.svg",
+      "sha256": "6c9e881e29adf198948d7088e5143182c4d41b30bed61c123ba5a3829daf8cc2",
+      "strokes": 4
+    },
+    {
+      "key": "donut",
+      "adoptionBase": "fog-doodle-v02-expansion-b",
+      "path": "public/art/doodles/shizuku/donut.svg",
+      "sha256": "cd87ca63a0cd472c08f8f0d03150573f01e55b2ec2d4e26f5881d5b14080ab89",
+      "strokes": 3
+    },
+    {
+      "key": "boot",
+      "adoptionBase": "fog-doodle-v02-expansion-b",
+      "path": "public/art/doodles/shizuku/boot.svg",
+      "sha256": "8ea19a853cfb65450b203120dda81fc2ea8e0ea7e3fc595f671fd3b5af3d8d98",
+      "strokes": 3
+    },
+    {
+      "key": "watering-can",
+      "adoptionBase": "fog-doodle-v02-expansion-b",
+      "path": "public/art/doodles/shizuku/watering-can.svg",
+      "sha256": "7a1d584d11767d858364479b5595a7fef0a2d7e522ce9491974d86b0c89021e5",
+      "strokes": 4
+    },
+    {
+      "key": "teacup",
+      "adoptionBase": "fog-doodle-v02-expansion-b",
+      "path": "public/art/doodles/shizuku/teacup.svg",
+      "sha256": "6502b989a2c3ba271b50de5a7c19f6a0680eedb96ffc0a99472d6725ba4bc727",
+      "strokes": 4
+    },
+    {
+      "key": "swan",
+      "adoptionBase": "fog-doodle-v02-expansion-c",
+      "path": "public/art/doodles/shizuku/swan.svg",
+      "sha256": "b66d50908f6e445cc98e0cee6229daa20589e7c2cb3adf2c1fdb50b17a27da73",
+      "strokes": 5
+    },
+    {
+      "key": "peacock",
+      "adoptionBase": "fog-doodle-v02-expansion-c",
+      "path": "public/art/doodles/shizuku/peacock.svg",
+      "sha256": "26d8b56aa0cd0358f5622b50d157889f88c1a64c5c333c1cce4ff5f4d75e5bbc",
+      "strokes": 5
+    },
+    {
+      "key": "flamingo",
+      "adoptionBase": "fog-doodle-v02-expansion-c",
+      "path": "public/art/doodles/shizuku/flamingo.svg",
+      "sha256": "d8aef59758c8ae3d6fa598bc10dca7552ea7e1f8e5797ef353fdbee576d3473d",
+      "strokes": 4
+    },
+    {
+      "key": "ladybug",
+      "adoptionBase": "fog-doodle-v02-expansion-c",
+      "path": "public/art/doodles/shizuku/ladybug.svg",
+      "sha256": "131f4ac52ef85f311d7ef7db7047579bda0374722549b09d57db5a840634ffd6",
+      "strokes": 5
+    },
+    {
+      "key": "ant",
+      "adoptionBase": "fog-doodle-v02-expansion-c",
+      "path": "public/art/doodles/shizuku/ant.svg",
+      "sha256": "0b5d09d99383a1397dda93a1133b2ac5b3a0a116fe5d1ae0671b3a5488710ecb",
+      "strokes": 5
+    },
+    {
+      "key": "beetle",
+      "adoptionBase": "fog-doodle-v02-expansion-c",
+      "path": "public/art/doodles/shizuku/beetle.svg",
+      "sha256": "c344b70c15b1ab1beeb862041a7cca0051af820d36d1130ebd1edff2e132c1de",
+      "strokes": 4
+    },
+    {
+      "key": "bat",
+      "adoptionBase": "fog-doodle-v02-expansion-c",
+      "path": "public/art/doodles/shizuku/bat.svg",
+      "sha256": "63dbdd80acc4417c2015ce537e2743d3356a8c0fae0decab9670a2a0586b283d",
+      "strokes": 4
+    },
+    {
+      "key": "harmonica",
+      "adoptionBase": "fog-doodle-v02-expansion-c",
+      "path": "public/art/doodles/shizuku/harmonica.svg",
+      "sha256": "e37132afed3cce06c34c58281993ab11bef6b8304a462e0bc68808fece037a14",
+      "strokes": 2
+    },
+    {
+      "key": "trumpet",
+      "adoptionBase": "fog-doodle-v02-expansion-c",
+      "path": "public/art/doodles/shizuku/trumpet.svg",
+      "sha256": "212a63d18c4e2ee8e2d0a5a5bfd6ed5c11bdcb262693e25e23bb01ec21dbc2ae",
+      "strokes": 4
+    },
+    {
+      "key": "drum",
+      "adoptionBase": "fog-doodle-v02-expansion-c",
+      "path": "public/art/doodles/shizuku/drum.svg",
+      "sha256": "59868a64f9063750ada45dcdd37134c1e4a86f04d7d9e4cefc991981e3a7e008",
+      "strokes": 4
+    },
+    {
+      "key": "eggplant",
+      "adoptionBase": "fog-doodle-v02-expansion-c",
+      "path": "public/art/doodles/shizuku/eggplant.svg",
+      "sha256": "3ef8075d63bb863bbb4551e4ee54a48523b2409a0b33cfff74a125a8f89381b5",
+      "strokes": 3
+    },
+    {
+      "key": "pineapple",
+      "adoptionBase": "fog-doodle-v02-expansion-c",
+      "path": "public/art/doodles/shizuku/pineapple.svg",
+      "sha256": "543e49bbcd95accda237b7f38f4633e0af24bc6e649d82c79aae3f0b6228e54a",
+      "strokes": 3
+    },
+    {
+      "key": "cucumber",
+      "adoptionBase": "fog-doodle-v02-expansion-c",
+      "path": "public/art/doodles/shizuku/cucumber.svg",
+      "sha256": "c91dc6f1bc466c280d16688c3d52e32ca6573a494fc0a760bd7e9d24150d18f7",
+      "strokes": 3
+    },
+    {
+      "key": "otter",
+      "adoptionBase": "fog-doodle-v02-expansion-d",
+      "path": "public/art/doodles/shizuku/otter.svg",
+      "sha256": "612593893f98956a4dd5fd0f460bf5f48e96b778dce535c981e4fb379fd21f82",
+      "strokes": 5
+    },
+    {
+      "key": "kangaroo",
+      "adoptionBase": "fog-doodle-v02-expansion-d",
+      "path": "public/art/doodles/shizuku/kangaroo.svg",
+      "sha256": "8a374680cdc08b8bbf0ddc5ef4d457b3581a542ffb3d20e8218f5526348eb3f5",
+      "strokes": 5
+    },
+    {
+      "key": "rhinoceros",
+      "adoptionBase": "fog-doodle-v02-expansion-d",
+      "path": "public/art/doodles/shizuku/rhinoceros.svg",
+      "sha256": "481fbdf09b814834bc9207e09870572b83a49ee31809680898df6bff2098e119",
+      "strokes": 4
+    },
+    {
+      "key": "hippo",
+      "adoptionBase": "fog-doodle-v02-expansion-d",
+      "path": "public/art/doodles/shizuku/hippo.svg",
+      "sha256": "22c1c391f9129129005c5a52318131c8bd1a0e2fc3cce743d436275f5e7b0f32",
+      "strokes": 4
+    },
+    {
+      "key": "lobster",
+      "adoptionBase": "fog-doodle-v02-expansion-d",
+      "path": "public/art/doodles/shizuku/lobster.svg",
+      "sha256": "a33da9a68de115a06dcb51948836f28b12873c7a1bdbbe33794a9e593722961c",
+      "strokes": 5
+    },
+    {
+      "key": "pumpkin",
+      "adoptionBase": "fog-doodle-v02-expansion-d",
+      "path": "public/art/doodles/shizuku/pumpkin.svg",
+      "sha256": "c7c68e1ef17d3c872e784dc62e385acc40c46cfad2780f5cf530e393a343f7d7",
+      "strokes": 3
+    },
+    {
+      "key": "corn",
+      "adoptionBase": "fog-doodle-v02-expansion-d",
+      "path": "public/art/doodles/shizuku/corn.svg",
+      "sha256": "1c117404b577170bdf973a906d3b395b93017a399677c2d4d9092295b73c0c6e",
+      "strokes": 4
+    },
+    {
+      "key": "tomato",
+      "adoptionBase": "fog-doodle-v02-expansion-d",
+      "path": "public/art/doodles/shizuku/tomato.svg",
+      "sha256": "f35d9281052cd1bc0b5117b75de31d97be68cb0bd80004217e77012230045e2f",
+      "strokes": 3
+    },
+    {
+      "key": "onion",
+      "adoptionBase": "fog-doodle-v02-expansion-d",
+      "path": "public/art/doodles/shizuku/onion.svg",
+      "sha256": "72c7b9f90a8a0f4a44435a4d3da11fa2665532fa5789359e290c5232efbc3765",
+      "strokes": 4
+    },
+    {
+      "key": "sock",
+      "adoptionBase": "fog-doodle-v02-expansion-d",
+      "path": "public/art/doodles/shizuku/sock.svg",
+      "sha256": "65e3e6bfccb237cf2c0b98a540f9a132f9dbb22f3d1bf9a6d91307a70c567aa2",
+      "strokes": 4
+    },
+    {
+      "key": "shovel",
+      "adoptionBase": "fog-doodle-v02-expansion-d",
+      "path": "public/art/doodles/shizuku/shovel.svg",
+      "sha256": "21b428f83403896acba69bee1108b3ef5b7fd5e6adb0a60cb11d56e98f834da3",
+      "strokes": 3
+    },
+    {
+      "key": "bucket",
+      "adoptionBase": "fog-doodle-v02-expansion-d",
+      "path": "public/art/doodles/shizuku/bucket.svg",
+      "sha256": "48e72c1cd328595a40748c5f467f5839f2d139b94d24c43f638386cba40a3f6e",
+      "strokes": 4
+    },
+    {
+      "key": "comb",
+      "adoptionBase": "fog-doodle-v02-expansion-d",
+      "path": "public/art/doodles/shizuku/comb.svg",
+      "sha256": "511ce2dbccab940687f2f44c4938a570da872ba4b18fbdacf7f7eed098d56698",
+      "strokes": 2
+    },
+    {
+      "key": "raccoon",
+      "adoptionBase": "fog-doodle-v02-expansion-e",
+      "path": "public/art/doodles/shizuku/raccoon.svg",
+      "sha256": "125fea6d912c92000ab5719527d261d694b7a6de1a1d6cee949d6503c632ebde",
+      "strokes": 5
+    },
+    {
+      "key": "sloth",
+      "adoptionBase": "fog-doodle-v02-expansion-e",
+      "path": "public/art/doodles/shizuku/sloth.svg",
+      "sha256": "31060dceb64ab35712af1b0a35111dd48e7d27b553cef2c7673f47977727647b",
+      "strokes": 5
+    },
+    {
+      "key": "gorilla",
+      "adoptionBase": "fog-doodle-v02-expansion-e",
+      "path": "public/art/doodles/shizuku/gorilla.svg",
+      "sha256": "88c424c46fd3830c8ace56a0de6d7b35a642891e67fbcf800fa576c713b3dca5",
+      "strokes": 5
+    },
+    {
+      "key": "wolf",
+      "adoptionBase": "fog-doodle-v02-expansion-e",
+      "path": "public/art/doodles/shizuku/wolf.svg",
+      "sha256": "e1cd55b141fa80d65b99a5093d98bc4f38a96dc3c22fa026d2791fd6b9bdff26",
+      "strokes": 5
+    },
+    {
+      "key": "ostrich",
+      "adoptionBase": "fog-doodle-v02-expansion-e",
+      "path": "public/art/doodles/shizuku/ostrich.svg",
+      "sha256": "ed5bb9b0b77d6eee6fca70824b8f5e7db15766fb7dbfa461034a4e13348855da",
+      "strokes": 4
+    },
+    {
+      "key": "parrot",
+      "adoptionBase": "fog-doodle-v02-expansion-e",
+      "path": "public/art/doodles/shizuku/parrot.svg",
+      "sha256": "e5682d5e8759d1468e0318c426b0534ca37c0671f620dcd4544d3954baf4c83c",
+      "strokes": 6
+    },
+    {
+      "key": "grasshopper",
+      "adoptionBase": "fog-doodle-v02-expansion-e",
+      "path": "public/art/doodles/shizuku/grasshopper.svg",
+      "sha256": "7a292b8710689245f3096d128a0a2b3e9f61e627bcbe79b65f8f171d697d16eb",
+      "strokes": 5
+    },
+    {
+      "key": "mantis",
+      "adoptionBase": "fog-doodle-v02-expansion-e",
+      "path": "public/art/doodles/shizuku/mantis.svg",
+      "sha256": "22583287046d15392f3bf78fb005a91d5d061a31068aa6e56d00d5a33fb41ea6",
+      "strokes": 4
+    },
+    {
+      "key": "dragon",
+      "adoptionBase": "fog-doodle-v02-expansion-e",
+      "path": "public/art/doodles/shizuku/dragon.svg",
+      "sha256": "1eef5bec9bf825b72d608db3fee79cfc7591c515c5331f5874b7df911ef49fd2",
+      "strokes": 5
+    },
+    {
+      "key": "robot",
+      "adoptionBase": "fog-doodle-v02-expansion-e",
+      "path": "public/art/doodles/shizuku/robot.svg",
+      "sha256": "a125d2ab98957b4564fb35558a7e0abb7ef39e6b8efee2cfaa879150b05eaf26",
+      "strokes": 4
+    },
+    {
+      "key": "camera",
+      "adoptionBase": "fog-doodle-v02-expansion-e",
+      "path": "public/art/doodles/shizuku/camera.svg",
+      "sha256": "4e51a6efc119cc12a670282425d12de477269b3946a9a510b39e369453be65d7",
+      "strokes": 3
+    },
+    {
+      "key": "telescope",
+      "adoptionBase": "fog-doodle-v02-expansion-e",
+      "path": "public/art/doodles/shizuku/telescope.svg",
+      "sha256": "1ee464039bab9ab6157956f078da3532c0132e616926680ba15022941cf6639d",
+      "strokes": 3
+    },
+    {
+      "key": "swing",
+      "adoptionBase": "fog-doodle-v02-expansion-e",
+      "path": "public/art/doodles/shizuku/swing.svg",
+      "sha256": "b03f50a06da2ff02e26dc68cad896641c1e81c2eb8c1a73e0bc5eda1f4f69169",
+      "strokes": 4
     }
   ]
 }

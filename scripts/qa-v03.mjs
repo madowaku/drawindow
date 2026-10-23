@@ -73,7 +73,7 @@ try {
         await draw(page,round);
         assert(await page.getByRole('button',{name:'DONE',exact:true}).isEnabled(),'Pointer stroke was not retained');
         if(round===1) {
-          await page.getByRole('button',{name:'Undo last stroke'}).click();
+          await page.getByRole('button',{name:'Undo last edit'}).click();
           assert(!await page.getByRole('button',{name:'DONE',exact:true}).isEnabled(),'Undo did not clear the single stroke');
           const box=await page.getByTestId('window-drawing-canvas').boundingBox();
           if (width<1000) await page.touchscreen.tap(box.x+box.width*.4,box.y+box.height*.4);

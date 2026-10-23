@@ -144,6 +144,48 @@ afterEach(() => {
 });
 
 describe('WindowCanvas input', () => {
+  it.each(['pointer', 'keyboard'] as const)('does not resurrect an externally undone in-progress %s stroke', input => {
+    const onStrokesChange = vi.fn();
+    const base = props({ onStrokesChange });
+    const { rerender } = render(<WindowCanvas {...base} />);
+    const canvas = screen.getByTestId('window-drawing-canvas');
+    if (input === 'pointer') fireEvent(canvas, pointer('pointerdown', { clientX: 80, clientY: 200 }));
+    else { fireEvent.keyDown(canvas, { key: ' ' }); fireEvent.keyDown(canvas, { key: 'ArrowRight' }); }
+    const published = onStrokesChange.mock.lastCall![0] as Stroke[];
+    rerender(<WindowCanvas {...base} strokes={structuredClone(published)} />);
+    rerender(<WindowCanvas {...base} strokes={[]} />);
+    onStrokesChange.mockClear();
+    if (input === 'pointer') { fireEvent(canvas, pointer('pointermove', { clientX: 160, clientY: 300 })); fireEvent(canvas, pointer('pointerup', { clientX: 180, clientY: 310 })); }
+    else { fireEvent.keyDown(canvas, { key: 'ArrowDown' }); fireEvent.keyUp(canvas, { key: ' ' }); }
+    expect(onStrokesChange).not.toHaveBeenCalled();
+    expect(canvas.getAttribute('data-has-strokes')).toBe('false');
+  });
+
+  it('shows the keyboard pen position and contact state, and hides it on blur or turn change', () => {
+    const base = props();
+    const { rerender } = render(<WindowCanvas {...base} />);
+    const canvas = screen.getByTestId('window-drawing-canvas');
+    fireEvent.focus(canvas);
+    fireEvent.keyDown(canvas, { key: 'ArrowRight' });
+    const cursor = screen.getByTestId('keyboard-cursor');
+    expect(parseFloat(cursor.style.left)).toBeCloseTo(168);
+    expect(cursor.getAttribute('data-drawing')).toBe('false');
+    fireEvent.keyDown(canvas, { key: ' ' });
+    expect(cursor.getAttribute('data-drawing')).toBe('true');
+    fireEvent.keyUp(canvas, { key: ' ' });
+    expect(cursor.getAttribute('data-drawing')).toBe('false');
+    fireEvent.blur(canvas);
+    expect(screen.queryByTestId('keyboard-cursor')).toBeNull();
+    fireEvent.focus(canvas);
+    rerender(<WindowCanvas {...base} phase="recognizing" />);
+    expect(screen.queryByTestId('keyboard-cursor')).toBeNull();
+  });
+
+  it('localizes the drawing prompt and keyboard instructions without answer data', () => {
+    render(<WindowCanvas {...props({ language: 'ja' })} />);
+    expect(screen.getByTestId('window-drawing-hint').textContent).toBe('ここに描こう');
+    expect(screen.getByTestId('window-drawing-canvas').getAttribute('aria-label')).toContain('矢印キー');
+  });
   it('captures a pointer, includes coalesced samples, and preserves a single tap', () => {
     const onStrokesChange = vi.fn();
     render(<WindowCanvas {...props({ onStrokesChange })} />);

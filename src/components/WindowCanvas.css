@@ -68,6 +68,10 @@
 }
 
 .window-canvas__finger { position:absolute; z-index:4; width:9px; height:9px; border:1px solid rgba(247,255,255,.8); border-radius:50%; transform:translate(-50%,-50%); box-shadow:0 0 0 2px rgba(52,85,99,.16); pointer-events:none; }
+.window-canvas__keyboard-pen { position:absolute; z-index:5; width:18px; height:18px; border:2px solid #243f49; border-radius:50%; transform:translate(-50%,-50%); background:rgba(247,255,255,.4); box-shadow:0 0 0 2px #f4fcf9; pointer-events:none; }
+.window-canvas__keyboard-pen::after { content:''; position:absolute; inset:5px; border-radius:50%; background:#243f49; }
+.window-canvas__keyboard-pen[data-drawing='true'] { background:#243f49; }
+.window-canvas__keyboard-pen[data-drawing='true']::after { background:#f4fcf9; }
 .window-canvas[data-glass-style='tactile'] .window-canvas__drawing.is-interactive { cursor:cell; }
 
 .window-canvas[data-mode='night'] .window-canvas__drawing.is-interactive {

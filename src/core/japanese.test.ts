@@ -37,7 +37,9 @@ describe('Japanese word boundaries', () => {
     expect(localized[0].strokes).toBe(girlSketches[0].strokes);
     expect(girlSketches[0].word).toBe('apple');
     expect(Object.keys(japaneseLabelByEnglish).length).toBeGreaterThan(50);
-    expect(selectGirlSketch(localized, 'ら', [], 'ja')?.word).toBe('らいおん');
+    // The expanded catalogue now has a nonterminal reply before lion.
+    expect(selectGirlSketch(localized, 'ら', [], 'ja')?.word).toBe('らくだ');
+    expect(localized.find(sketch => sketch.word === 'らいおん')).toBeTruthy();
     expect(localizeGirlSketches(girlSketches, 'en')[0].word).toBe('apple');
   });
   it('scores kana chain and keeps ん restarts marked as broken', () => {
@@ -60,7 +62,9 @@ describe('Japanese word boundaries', () => {
     expect(chainLettersMatch('g', 'k', 'en')).toBe(false);
     expect(chainLettersMatch('g', 'g', 'en')).toBe(true);
     const localized = [...localizeGirlSketches(girlSketches, 'ja'), ...japaneseExtraSketches];
-    expect(firstLetter(selectGirlSketch(localized, 'ご', [], 'ja')?.word, 'ja')).toBe('こ');
+    expect(selectGirlSketch(localized, 'ご', [], 'ja')?.word).toBe('ごりら');
+    const withoutExactGo = localized.filter(sketch => firstLetter(sketch.word, 'ja') !== 'ご');
+    expect(firstLetter(selectGirlSketch(withoutExactGo, 'ご', [], 'ja')?.word, 'ja')).toBe('こ');
     expect(firstLetter(selectGirlSketch(localized, 'ぎ', [], 'ja')?.word, 'ja')).toBe('き');
     expect(japaneseExtraSketches.every(sketch => sketch.readability === 'soft' && sketch.strokes.length > 0)).toBe(true);
   });

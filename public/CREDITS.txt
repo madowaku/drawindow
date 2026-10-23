@@ -1,4 +1,4 @@
-DRAWINDOW v0.3
+DRAWINDOW v0.7.1
 
 Character art and separate room backgrounds:
 OpenAI built-in ImageGen, generated/edited 2026-10-17 from the user-supplied
@@ -55,3 +55,5 @@ hashes are recorded in assets/doodle-library-v01-manifest.json in source.
 Optional breath/glass sounds are synthesized locally. Audio starts muted.
 
 Shizuku doodles (67 adopted originals, 2026-10-18): Original DRAWINDOW SVG paths. Vocabulary inspiration: https://kotoba-moji.com/eshiritori-kotoba/ (no external artwork reused).
+
+Shizuku doodles: 67 originals adopted on 2026-10-18 plus 65 bilingual additions on 2026-10-22. Original DRAWINDOW SVG paths; no external artwork reused. Source and hashes: assets/shizuku-doodles-v01-manifest.json.

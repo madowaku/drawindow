@@ -112,9 +112,9 @@ try {
         const count = await page.evaluate(() => window.qaGestures.length);
         await draw(page); // A second stroke must not restart the watch beat.
         assert(await page.evaluate(() => window.qaGestures.length) === count, 'Every stroke restarts approach');
-        await page.getByRole('button', { name: 'Undo last stroke' }).click();
+        await page.getByRole('button', { name: 'Undo last edit' }).click();
         await pose(page, 'curious');
-        await page.getByRole('button', { name: 'Undo last stroke' }).click();
+        await page.getByRole('button', { name: 'Undo last edit' }).click();
         await pose(page, 'neutral');
         await draw(page);
         await page.getByRole('button', { name: 'CLEAR', exact: true }).click();

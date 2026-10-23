@@ -10,6 +10,62 @@ const done = (s: GameState) => gameReducer(gameReducer(s, { type: 'STROKES_CHANG
 const succeed = (s: GameState, guess = 'cat') => gameReducer(s, { type: 'RECOGNITION_RESOLVED', requestId: s.recognitionRequest!.requestId, result: { guess, source: s.sessionKind === 'demo' ? 'mock' : 'api' } });
 
 describe('five silent exchanges', () => {
+  it('restores CLEAR and redoes edits without checkpointing pointer samples or unchanged publications', () => {
+    let state = toDraw(start());
+    const first: Stroke[] = [{ id: 'a', points: [{ x: .2, y: .3, t: 0 }] }];
+    state = gameReducer(state, { type: 'STROKES_CHANGED', strokes: first });
+    const longer: Stroke[] = [{ id: 'a', points: [...first[0].points, { x: .4, y: .6, t: 10 }] }];
+    state = gameReducer(state, { type: 'STROKES_CHANGED', strokes: longer });
+    expect(gameReducer(state, { type: 'STROKES_CHANGED', strokes: longer })).toBe(state);
+    state = gameReducer(state, { type: 'CLEAR' });
+    expect(state.activeStrokes).toEqual([]);
+    state = gameReducer(state, { type: 'UNDO' });
+    expect(state.activeStrokes).toEqual(longer);
+    state = gameReducer(state, { type: 'UNDO' });
+    expect(state.activeStrokes).toEqual([]);
+    state = gameReducer(state, { type: 'REDO' });
+    expect(state.activeStrokes).toEqual(longer);
+    state = gameReducer(state, { type: 'REDO' });
+    expect(state.activeStrokes).toEqual([]);
+    expect(gameReducer(state, { type: 'REDO' })).toBe(state);
+  });
+
+  it('retains immutable per-stroke undo after recognition error and discards redo when drawing resumes', () => {
+    let state = toDraw(start());
+    const ink: Stroke[] = [{ id: 'a', points: [{ x: .1, y: .2, t: 0 }] }];
+    state = gameReducer(state, { type: 'STROKES_CHANGED', strokes: ink });
+    ink[0].points = [{ x: .9, y: .9, t: 3 }];
+    state = gameReducer(state, { type: 'STROKES_CHANGED', strokes: [...state.activeStrokes, { id: 'b', points: [{ x: .4, y: .5, t: 10 }] }] });
+    state = gameReducer(state, { type: 'DONE' });
+    state = gameReducer(state, { type: 'RECOGNITION_RESOLVED', requestId: state.recognitionRequest!.requestId, result: { guess: null, source: 'api', error: 'timeout' } });
+    expect(gameReducer(state, { type: 'UNDO' })).toBe(state);
+    state = gameReducer(state, { type: 'BACK_TO_DRAWING' });
+    state = gameReducer(state, { type: 'UNDO' });
+    expect(state.activeStrokes).toEqual([{ id: 'a', points: [{ x: .1, y: .2, t: 0 }] }]);
+    state = gameReducer(state, { type: 'REDO' });
+    expect(state.activeStrokes.map(stroke => stroke.id)).toEqual(['a', 'b']);
+    state = gameReducer(state, { type: 'UNDO' });
+    const invalid = gameReducer(state, { type: 'STROKES_CHANGED', strokes: [{ id: 'bad', points: [{ x: 5, y: 0, t: 0 }] }] });
+    expect(invalid).toBe(state);
+    state = gameReducer(state, { type: 'STROKES_CHANGED', strokes: [...state.activeStrokes, { id: 'c', points: [{ x: .3, y: .3, t: 20 }] }] });
+    expect(gameReducer(state, { type: 'REDO' })).toBe(state);
+    expect(state.activeStrokes.map(stroke => stroke.id)).toEqual(['a', 'c']);
+  });
+
+  it('bounds edit history to 32 checkpoints and clears it for the next round and title', () => {
+    let state = toDraw(start());
+    for (let i = 0; i < 40; i++) state = gameReducer(state, { type: 'STROKES_CHANGED', strokes: [...state.activeStrokes, { id: String(i), points: [{ x: .2, y: .2, t: i }] }] });
+    for (let i = 0; i < 40; i++) state = gameReducer(state, { type: 'UNDO' });
+    expect(state.activeStrokes).toHaveLength(8);
+    for (let i = 0; i < 40; i++) state = gameReducer(state, { type: 'REDO' });
+    expect(state.activeStrokes).toHaveLength(40);
+    state = toDraw(succeed(gameReducer(state, { type: 'DONE' })));
+    expect(gameReducer(state, { type: 'UNDO' })).toBe(state);
+    expect(gameReducer(state, { type: 'REDO' })).toBe(state);
+    state = gameReducer(state, { type: 'RETURN_TO_TITLE' });
+    state = toDraw(gameReducer(state, { type: 'START', mode: 'day', sessionKind: 'api', sketches }));
+    expect(gameReducer(state, { type: 'REDO' })).toBe(state);
+  });
   it('explains rate limiting without encouraging repeated immediate retries', () => {
     const state = done(toDraw(start()));
     const failed = gameReducer(state, { type: 'RECOGNITION_RESOLVED', requestId: state.recognitionRequest!.requestId, result: { guess: null, source: 'api', errorCode: 'rate_limit', error: 'unsafe provider detail' } });

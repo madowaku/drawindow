@@ -28,7 +28,7 @@ async (page) => {
       await draw();
       const done = page.getByRole('button', { name: lang === 'ja' ? 'できた' : 'DONE', exact: true });
       if (!round) {
-        await page.getByRole('button', { name: lang === 'ja' ? 'ひと筆戻す' : 'Undo last stroke', exact: true }).click();
+        await page.getByRole('button', { name: lang === 'ja' ? '元に戻す' : 'Undo last edit', exact: true }).click();
         assert(await done.isDisabled(), 'Undo did not remove first ink'); await draw();
         await page.getByRole('button', { name: lang === 'ja' ? '消す' : 'CLEAR', exact: true }).click();
         assert(await done.isDisabled(), 'Clear did not reset ink'); await draw();
