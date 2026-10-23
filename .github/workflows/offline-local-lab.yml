@@ -25,6 +25,12 @@ jobs:
       # The credential/PowerShell suite runs separately on Windows in DRAWINDOW quality.
       - name: Package fully local research build
         run: npm run package:offline
+      - name: Install Chromium for real offline relaunch test
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.0
+          npx playwright install --with-deps chromium
+      - name: Test service worker cold relaunch with network disabled
+        run: node scripts/qa-offline-cold-start.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: DRAWINDOW-local-lab
