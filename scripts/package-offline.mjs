@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { readFile, readdir, writeFile, rm } from 'node:fs/promises';
+import { readFile, readdir, writeFile, rm, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { join, relative } from 'node:path';
 import sharp from 'sharp';
@@ -60,16 +60,19 @@ if(!assetFiles.some(p=>p.startsWith('local-ml/wasm/')&&p.endsWith('.wasm')))
   throw Error('Bundled CPU runtime WASM missing');
 const hashes=await Promise.all(assetFiles.map(async p=>
   createHash('sha256').update(await readFile(join('dist',p))).digest('hex')));
-const fingerprint=createHash('sha256').update(assetFiles.map((p,i)=>p+':'+hashes[i]).join('\n')).digest('hex').slice(0,16);
+const fingerprint=createHash('sha256').update('static-cache-v2\n').update(assetFiles.map((p,i)=>p+':'+hashes[i]).join('\n')).digest('hex').slice(0,16);
 // Self-contained; entire cache populated atomically. Unknown resources fail closed.
+// Only immutable bundled static files enter this cache. Ignore Vary: Origin:
+// precache and module/style requests carry different Origin headers on Vite.
 const worker = [
   "const CACHE='drawindow-offline-"+fingerprint+"';",
   "const FILES="+JSON.stringify(assetFiles.map(p=>'./'+p))+";",
   "self.addEventListener('install',e=>e.waitUntil((async()=>{const c=await caches.open(CACHE);await c.addAll(FILES.map(p=>new URL(p,self.registration.scope).href));await self.skipWaiting();})()));",
   "self.addEventListener('activate',e=>e.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>k.startsWith('drawindow-offline-')&&k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim();})()));",
-  "self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const u=new URL(e.request.url);if(u.origin!==self.location.origin){e.respondWith(Response.error());return;}const s=new URL(self.registration.scope);if(!u.pathname.startsWith(s.pathname))return;e.respondWith((async()=>{const c=await caches.open(CACHE);return e.request.mode==='navigate'?(await c.match(new URL('./index.html',s).href)||Response.error()):(await c.match(e.request,{ignoreSearch:true})||Response.error());})());});"
+  "self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const u=new URL(e.request.url);if(u.origin!==self.location.origin){e.respondWith(Response.error());return;}const s=new URL(self.registration.scope);if(!u.pathname.startsWith(s.pathname))return;e.respondWith((async()=>{const c=await caches.open(CACHE);return e.request.mode==='navigate'?(await c.match(new URL('./index.html',s).href)||Response.error()):(await c.match(e.request,{ignoreSearch:true,ignoreVary:true})||Response.error());})());});"
 ].join('\n');
 await writeFile('dist/sw.js',worker);
+await mkdir('artifacts/release', {recursive:true});
 await writeFile('artifacts/release/offline-assets-receipt.json',JSON.stringify({
   fingerprint,assets:assetFiles,hashes,modelBytes:model.length,
   modelSha256:createHash('sha256').update(model).digest('hex'),

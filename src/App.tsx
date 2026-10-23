@@ -1,4 +1,5 @@
 import { GirlOopsReaction } from './components/GirlOopsReaction';
+import { OfflineStatus } from './components/OfflineStatus';
 import { adoptShizukuSketches } from './data/shizuku-doodles/adopted';
 import { japaneseEverydayDoodles } from './data/japaneseEverydayDoodles';
 import { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react';
@@ -199,6 +200,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange }: AppP
         <p className="tagline">{t('Draw your own conclusions.', '言葉にしない、ふたりのしりとり。')}</p>
         <div className="title-rules"><p>{t('Guess her picture. Draw from its last letter.', '何に見えた？ その名前の最後の音から、次の絵を。')}</p></div>
         <div className="title-start">{languageButtons}{modeButtons}
+          {offlineEdition && <OfflineStatus language={state.language} />}
           <button className="primary start-button" onClick={start}>{sessionChoice === 'demo' ? t('PLAY DEMO', 'デモで遊ぶ') : t('START GAME', 'はじめる')}<ArrowRight size={20} /></button>
           <p className="session-note">{sessionChoice === 'ml'
             ? t('LOCAL AI · Drawings never leave your device. Experimental guesses and unsupported words are possible.', '端末内AI · 絵は送信しません。認識は実験中で、未対応語や誤認識があります。')
