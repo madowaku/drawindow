@@ -2,7 +2,7 @@
 
 **Status: Draft, not merged, released, sold, or deployed.**
 
-Base: codex/shizuku-300-doodles, with 294 authored drawings (132 existing unchanged, 162 candidate additions). This candidate art still requires blind human visual acceptance.
+Base: codex/shizuku-300-doodles, with 291 authored drawings (132 existing unchanged, 159 candidate additions). This candidate art still requires blind human visual acceptance.
 
 ## Product target
 The player draws, she interprets it on device, and the game reaches the existing five exchanges, ten-drawing/nine-link ending and 1200×3000 souvenir. No stroke, name, result or PNG is sent to an API. Day/night, JA/EN, character acting, reversible CLEAR, UNDO/REDO and input protection remain in place. DEMO can be manually chosen as a disclosed simulation; never silently substitute it for failed recognition.

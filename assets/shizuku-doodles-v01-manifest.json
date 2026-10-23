@@ -18,8 +18,8 @@
   "expansion300Sources": [
     {
       "path": "src/data/shizuku-doodles/expansion-20261023-food.json",
-      "sha256": "da5178228b305145be33a8a69262717f43796d0915fa13b6034e19e5f78abeb9",
-      "count": 24
+      "sha256": "79962be7b4dbf08888a0245699e2ba78d5546c3f18b16d2b07c2fdd192bfaa4e",
+      "count": 23
     },
     {
       "path": "src/data/shizuku-doodles/expansion-20261023-home.json",
@@ -28,8 +28,8 @@
     },
     {
       "path": "src/data/shizuku-doodles/expansion-20261023-tools.json",
-      "sha256": "15e96b80839ed4023de9900fcfa1f692307d111bfe3e5e84cf0b9f1d749ab427",
-      "count": 24
+      "sha256": "b2ba8dc04189d35cb5d7c8fef8afb94e6666418fd64ab2cc5a410ccd5cf285d8",
+      "count": 22
     },
     {
       "path": "src/data/shizuku-doodles/expansion-20261023-nature.json",
@@ -48,11 +48,11 @@
     },
     {
       "path": "src/data/shizuku-doodles/expansion-20261023-travel.json",
-      "sha256": "4925240f1f5a17ecf3edc5f315510cfb7cdfdb0219fd4eb904c4cce20ae3b2f2",
+      "sha256": "46e4ea98623b260b0781c3fd9693858b52deff95c724d0ee817777c9d4198c6b",
       "count": 24
     }
   ],
-  "expansion300Status": "162 original stroke drawings retained after user review on 2026-10-23 (six removed, two redrawn, four renamed); human readability and LIVE recognition unverified.",
+  "expansion300Status": "159 original stroke drawings retained after user review on 2026-10-23 (nine removed, two redrawn, four renamed); human readability and LIVE recognition unverified.",
   "entries": [
     {
       "key": "apple",
@@ -1119,13 +1119,6 @@
       "strokes": 4
     },
     {
-      "key": "pretzel",
-      "adoptionBase": "fog-doodle-v03-expansion-300-food",
-      "path": "public/art/doodles/shizuku/pretzel.svg",
-      "sha256": "812c1379f0db3f332ba0413f95e94c913e91088caa0f0b727799476723863d7e",
-      "strokes": 3
-    },
-    {
       "key": "cookie",
       "adoptionBase": "fog-doodle-v03-expansion-300-food",
       "path": "public/art/doodles/shizuku/cookie.svg",
@@ -1304,8 +1297,8 @@
       "key": "hammer",
       "adoptionBase": "fog-doodle-v03-expansion-300-tools",
       "path": "public/art/doodles/shizuku/hammer.svg",
-      "sha256": "181ed9db30eeaa968bff02c67b530d64107afa2f6ababd4ef8edb75a774201af",
-      "strokes": 3
+      "sha256": "fe0b384a84162081fafde12740fbaa466163480fa96db532182efde1fc90de54",
+      "strokes": 2
     },
     {
       "key": "saw",
@@ -1325,7 +1318,7 @@
       "key": "wrench",
       "adoptionBase": "fog-doodle-v03-expansion-300-tools",
       "path": "public/art/doodles/shizuku/wrench.svg",
-      "sha256": "21ba79822f45cf798a453ab913a4415f9f5a6769520627b5d39f70374d95a389",
+      "sha256": "25380e51e542ff82c8b60a72927ea59d9c276ca75a1955b4586bb4b325ffe735",
       "strokes": 2
     },
     {
@@ -1427,13 +1420,6 @@
       "strokes": 4
     },
     {
-      "key": "flashlight",
-      "adoptionBase": "fog-doodle-v03-expansion-300-tools",
-      "path": "public/art/doodles/shizuku/flashlight.svg",
-      "sha256": "46c6636cce8d08022317e0867abb38637f50676c967de0b215e5d89d32772605",
-      "strokes": 4
-    },
-    {
       "key": "battery",
       "adoptionBase": "fog-doodle-v03-expansion-300-tools",
       "path": "public/art/doodles/shizuku/battery.svg",
@@ -1452,13 +1438,6 @@
       "adoptionBase": "fog-doodle-v03-expansion-300-tools",
       "path": "public/art/doodles/shizuku/lock.svg",
       "sha256": "ee0ac43a76be27750386aa02101e17d50bbeaf5fa26899327ae7f5028596a5f7",
-      "strokes": 3
-    },
-    {
-      "key": "clothespin",
-      "adoptionBase": "fog-doodle-v03-expansion-300-tools",
-      "path": "public/art/doodles/shizuku/clothespin.svg",
-      "sha256": "158abdcd346924ddf08aa6ac40ada82f1c24afdc1151c79a3fe70d378b7bf9ba",
       "strokes": 3
     },
     {
@@ -1948,7 +1927,7 @@
       "key": "bicycle",
       "adoptionBase": "fog-doodle-v03-expansion-300-travel",
       "path": "public/art/doodles/shizuku/bicycle.svg",
-      "sha256": "d4a131194c2fb019d284c4cfc2d0d3e982f1b1a0dd4e33ad8d4e6c480227a9a5",
+      "sha256": "8e3b302d1b1b0712a3b99d19c949cc75753d47e194654d9e7f6fedbc8d14a672",
       "strokes": 3
     },
     {
@@ -1962,14 +1941,14 @@
       "key": "train",
       "adoptionBase": "fog-doodle-v03-expansion-300-travel",
       "path": "public/art/doodles/shizuku/train.svg",
-      "sha256": "b36f95f7a33544dca2de9f3ec0c08ffcf06c1cc06c71dd47843125021caee48d",
-      "strokes": 3
+      "sha256": "4760c82e0ac7c97286b6b05b0582844056dcd0f29eba755028747145d3339919",
+      "strokes": 4
     },
     {
       "key": "truck",
       "adoptionBase": "fog-doodle-v03-expansion-300-travel",
       "path": "public/art/doodles/shizuku/truck.svg",
-      "sha256": "0ab59dae4a6e9f6b0a6be2a8822b9949c025d7b23c9823b856734e480203e4bd",
+      "sha256": "470759b9a934e07fb37216aa57ed548bcefa05cfe420c30d6a4ac094a04ce96b",
       "strokes": 3
     },
     {
@@ -1997,7 +1976,7 @@
       "key": "helicopter",
       "adoptionBase": "fog-doodle-v03-expansion-300-travel",
       "path": "public/art/doodles/shizuku/helicopter.svg",
-      "sha256": "603fadc1de5d728d6271002ff50a13aff8795e791cf0e58b940e287dad35128e",
+      "sha256": "a2a5652692ba86b1d495358983c448e05faf93c7deac3bf9738f297393f84a17",
       "strokes": 3
     },
     {

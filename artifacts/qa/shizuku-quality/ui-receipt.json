@@ -1,0 +1,16 @@
+{
+  "scope": "Synthetic UI checks only. No human response data retained.",
+  "views": [
+    1100,
+    360
+  ],
+  "blindNameLeak": false,
+  "initialGuessLocked": true,
+  "resume": true,
+  "export": true,
+  "all291Unique": true,
+  "soft8": true,
+  "storageFailureFallback": true,
+  "errors": [],
+  "externalRequests": []
+}

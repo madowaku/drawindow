@@ -2,7 +2,7 @@
 
 GitHub `main` is the canonical product source. The local `C:\Dev\Projects\drawindow` checkout follows `main`; recovery branches and vocabulary/recognition Draft PRs are archives or experiments, not alternative product defaults.
 
-The working catalogue now contains 294 authored bilingual doodles (132 existing + 162 new; see [the expansion review](docs/SHIZUKU_300_DOODLES_20261023.md)). The consolidated v0.7.1 includes the naming dictionary, reversible CLEAR / UNDO / REDO, protected naming drafts, keyboard position display and narrow Japanese layouts. The seven adopted A character sprites remain unchanged.
+The working catalogue now contains 291 authored bilingual doodles (132 existing + 159 new; see [the expansion review](docs/SHIZUKU_300_DOODLES_20261023.md)). The consolidated v0.7.1 includes the naming dictionary, reversible CLEAR / UNDO / REDO, protected naming drafts, keyboard position display and narrow Japanese layouts. The seven adopted A character sprites remain unchanged.
 
 - `npm test`, `npm run build`, `npm run test:auth`: regression checks.
 - `npm run package:itch`: explicit DEMO ZIP, with type checking and no recognition endpoint.

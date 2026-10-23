@@ -1,6 +1,6 @@
 {
-  "count": 294,
-  "newDrawings": 162,
+  "count": 291,
+  "newDrawings": 159,
   "runtime": [
     {
       "id": "shizuku-style-v01-apple",
@@ -1067,13 +1067,6 @@
       ]
     },
     {
-      "id": "shizuku-style-v01-pretzel",
-      "frames": [
-        3102,
-        4047
-      ]
-    },
-    {
       "id": "shizuku-style-v01-cookie",
       "frames": [
         1544,
@@ -1251,8 +1244,8 @@
     {
       "id": "shizuku-style-v01-hammer",
       "frames": [
-        1043,
-        2171
+        679,
+        2026
       ]
     },
     {
@@ -1272,8 +1265,8 @@
     {
       "id": "shizuku-style-v01-wrench",
       "frames": [
-        1069,
-        2222
+        1125,
+        2373
       ]
     },
     {
@@ -1375,13 +1368,6 @@
       ]
     },
     {
-      "id": "shizuku-style-v01-flashlight",
-      "frames": [
-        1069,
-        2696
-      ]
-    },
-    {
       "id": "shizuku-style-v01-battery",
       "frames": [
         1491,
@@ -1400,13 +1386,6 @@
       "frames": [
         1333,
         3448
-      ]
-    },
-    {
-      "id": "shizuku-style-v01-clothespin",
-      "frames": [
-        2357,
-        3455
       ]
     },
     {
@@ -1895,8 +1874,8 @@
     {
       "id": "shizuku-style-v01-bicycle",
       "frames": [
-        1534,
-        3907
+        1527,
+        3806
       ]
     },
     {
@@ -1909,15 +1888,15 @@
     {
       "id": "shizuku-style-v01-train",
       "frames": [
-        1578,
-        4417
+        1715,
+        3921
       ]
     },
     {
       "id": "shizuku-style-v01-truck",
       "frames": [
-        1489,
-        4299
+        1477,
+        3392
       ]
     },
     {
@@ -1944,8 +1923,8 @@
     {
       "id": "shizuku-style-v01-helicopter",
       "frames": [
-        1045,
-        3788
+        980,
+        3366
       ]
     },
     {
@@ -2064,5 +2043,5 @@
   "errors": [],
   "externalRequests": [],
   "mobileOverflow": false,
-  "scope": "Actual game canvas for all 294 drawings, review gallery DAY/NIGHT, replay and 360px. No human readability or LIVE recognition claim."
+  "scope": "Actual game canvas for all 291 drawings, review gallery DAY/NIGHT, replay and 360px. No human readability or LIVE recognition claim."
 }
