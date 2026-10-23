@@ -23,6 +23,8 @@ try {
   browser=await chromium.launch({headless:true});
   const context=await browser.newContext({serviceWorkers:'allow',locale:'ja-JP'});
   const external=[];
+  const requestFailures=[];
+  context.on('requestfailed', r => requestFailures.push(r.url() + ' ' + r.failure()?.errorText));
   context.on('request',request=>{
     const u=new URL(request.url());
     if(u.origin!==new URL(localhost).origin)external.push(request.url());
@@ -45,8 +47,14 @@ try {
   page=await context.newPage();
   const errors=[];
   page.on('pageerror',err=>errors.push(String(err)));
+  page.on('console',msg=>{ if(msg.type()==='error')errors.push('console: '+msg.text()); });
   await page.goto(localhost,{waitUntil:'load',timeout:30000});
-  await page.locator('.start-button').waitFor({timeout:20000});
+  try {
+    await page.locator('.start-button').waitFor({timeout:20000});
+  } catch (waitError) {
+    const dom=await page.evaluate(()=>({title:document.title,body:document.body?.innerText.slice(0,1000),html:document.body?.innerHTML.slice(0,1400),controlled:Boolean(navigator.serviceWorker.controller),scripts:[...document.scripts].map(s=>s.src)}));
+    throw Error('Offline DOM failed: '+JSON.stringify({dom,requestFailures,errors,waitError:String(waitError)}));
+  }
   if(await page.evaluate(()=>navigator.onLine)!==false)throw Error('Network is not disabled');
   const inferenceAssets=await page.evaluate(async()=>{
     if(!navigator.serviceWorker.controller)throw Error('Offline SW is not controlling document');
