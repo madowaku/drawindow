@@ -1,4 +1,5 @@
 import { spawnSync } from 'node:child_process';
+import { rm } from 'node:fs/promises';
 
 const endpoint = process.env.VITE_RECOGNITION_URL?.trim();
 let url;
@@ -13,4 +14,5 @@ for (const args of [['node_modules/typescript/bin/tsc', '--noEmit'], ['node_modu
 }
 process.env.DRAWINDOW_PACKAGE_MODE = 'live';
 process.env.DRAWINDOW_PACKAGE_ENDPOINT = url.href;
+await rm('dist/local-ml', { recursive: true, force: true });
 await import('./package-itch.mjs');

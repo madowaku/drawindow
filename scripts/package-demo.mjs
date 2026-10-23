@@ -1,4 +1,5 @@
 import { spawnSync } from 'node:child_process';
+import { rm } from 'node:fs/promises';
 
 const checked = spawnSync(process.execPath, ['node_modules/typescript/bin/tsc', '--noEmit'], { stdio: 'inherit' });
 if (checked.error) throw checked.error;
@@ -11,5 +12,6 @@ const result = spawnSync(process.execPath, ['node_modules/vite/bin/vite.js', 'bu
 });
 if (result.error) throw result.error;
 if (result.status !== 0) process.exit(result.status ?? 1);
+await rm('dist/local-ml', { recursive: true, force: true });
 process.env.DRAWINDOW_PACKAGE_MODE = 'demo';
 await import('./package-itch.mjs');

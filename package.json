@@ -1,6 +1,6 @@
 {
   "name": "drawindow",
-  "version": "0.7.1",
+  "version": "0.9.0-local-lab",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,14 +15,17 @@
     "check:gemini": "node scripts/check-gemini-setup.mjs",
     "verify:gemini": "node scripts/verify-gemini.mjs",
     "test:auth": "node --test scripts/gemini-auth.test.mjs",
-    "package:itch:live": "node scripts/package-live.mjs"
+    "package:itch:live": "node scripts/package-live.mjs",
+    "prepare:local-ml": "node scripts/prepare-quickdraw-model.mjs",
+    "package:offline": "node scripts/package-offline.mjs"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",
     "@fontsource/dm-sans": "^5.3.0",
     "@phosphor-icons/react": "^2.1.10",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "@litertjs/core": "2.5.3"
   },
   "devDependencies": {
     "@testing-library/react": "^16.3.3",

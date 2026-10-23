@@ -21,6 +21,7 @@ import { renderDrawingDataUrl } from './lib/strokes';
 import { musicForScene } from './lib/music';
 import { useGameAudio } from './lib/useGameAudio';
 import { createApiRecognizer, createDemoRecognizer, createRecognitionRunner } from './services/recognizer';
+import { createQuickDrawRecognizer, preloadQuickDrawModel } from './services/quickDrawRecognizer';
 
 function savedMode(): Mode {
   try { return localStorage.getItem('drawindow-mode') === 'night' ? 'night' : 'day'; } catch { return 'day'; }
@@ -48,24 +49,30 @@ function useReducedMotion() {
 export interface AppProps {
   /** Optional local acceptance observer; production supplies neither prop. */
   apiRecognizer?: DrawingRecognizer;
+  mlRecognizer?: DrawingRecognizer;
   onStateChange?: (state: GameState) => void;
 }
 
-export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
+export default function App({ apiRecognizer, mlRecognizer, onStateChange }: AppProps = {}) {
   const appScrollRef = useRef<HTMLElement>(null);
   const dialogReturnFocusRef = useRef<HTMLElement | null>(null);
   const lastIntentFocusRef = useRef<HTMLInputElement | null>(null);
-  const liveApiConfigured = Boolean(import.meta.env.VITE_RECOGNITION_URL?.trim()) || import.meta.env.VITE_ENABLE_LIVE_API === 'true';
+  const offlineEdition = import.meta.env.VITE_OFFLINE_EDITION === 'true';
+  const liveApiConfigured = !offlineEdition && (Boolean(import.meta.env.VITE_RECOGNITION_URL?.trim()) || import.meta.env.VITE_ENABLE_LIVE_API === 'true');
   const [state, dispatch] = useReducer(gameReducer, undefined, () => createInitialState(savedMode(), savedLanguage()));
   const { sound, toggleSound, playSound } = useGameAudio(musicForScene(state.phase, state.mode));
   const [info, setInfo] = useState(false);
   const [leave, setLeave] = useState(false);
-  const [sessionChoice, setSessionChoice] = useState<SessionKind>(liveApiConfigured && import.meta.env.VITE_DEFAULT_LIVE === 'true' ? 'api' : 'demo');
+  const [sessionChoice, setSessionChoice] = useState<SessionKind>(offlineEdition ? 'ml' : liveApiConfigured && import.meta.env.VITE_DEFAULT_LIVE === 'true' ? 'api' : 'demo');
   const [intentDrafts, setIntentDrafts] = useState<Record<string, string>>({});
   const [runners] = useState(() => ({
     api: createRecognitionRunner(apiRecognizer ?? createApiRecognizer({ endpoint: import.meta.env.VITE_RECOGNITION_URL || '/api/recognize', imageRenderer: renderDrawingDataUrl })),
     demo: createRecognitionRunner(createDemoRecognizer()),
+    ml: createRecognitionRunner(mlRecognizer ?? createQuickDrawRecognizer(), { timeoutMs: 45000 }),
   }));
+  useEffect(() => {
+    if (offlineEdition) void preloadQuickDrawModel().catch(() => { /* The model reports an explicit error during recognition. */ });
+  }, [offlineEdition]);
   const reducedMotion = useReducedMotion();
   const phaseRef = useRef(state.phase);
   const active = !['title', 'review_intents', 'results'].includes(state.phase);
@@ -120,7 +127,7 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
     const request = state.recognitionRequest;
     if (state.phase !== 'recognizing' || !request) return;
     let current = true;
-    const runner = request.sessionKind === 'demo' ? runners.demo : runners.api;
+    const runner = request.sessionKind === 'demo' ? runners.demo : request.sessionKind === 'ml' ? runners.ml : runners.api;
     void runner.recognize(request).then(result => {
       if (current) dispatch({ type: 'RECOGNITION_RESOLVED', requestId: request.requestId, result });
     });
@@ -194,7 +201,12 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
         <div className="title-rules"><p>{t('Look. Guess. Draw the next word.', '見て、想像して、次の絵を描く。')}<br />{t('Never ask what it was.', '正解は、最後まで聞かない。')}</p><p className="fine-rule">{t('Start with the last letter of what you THINK you saw.', '見えたと思うものの、最後の文字から。')}</p>{state.language === 'ja' && <p className="fine-rule">濁点・半濁点はつけても外してもOK。（ご→こ、ぎ→き）</p>}</div>
         <div className="title-start">{languageButtons}{modeButtons}
           <button className="primary start-button" onClick={start}>{sessionChoice === 'demo' ? t('PLAY DEMO', 'デモで遊ぶ') : t('START GAME', 'はじめる')}<ArrowRight size={20} /></button>
-          <p className="session-note">{sessionChoice === 'demo' ? t('DEMO · Simulated interpretations. No comparable score.', 'デモ · 絵の認識はシミュレーションです。正式なスコアにはなりません。') : t('LIVE API · Drawings are sent to the configured recognizer.', 'LIVE API · あなたの絵が認識用サーバーに送られます。')}</p>
+          <p className="session-note">{sessionChoice === 'ml'
+            ? t('LOCAL AI · Your drawing stays on this device. Recognition is experimental; unknown words and mistakes are possible.', '端末内AI · 絵は送信されません。実験段階のため、未対応語や誤認識があります。')
+            : sessionChoice === 'demo'
+              ? t('DEMO · Simulated interpretations, not recognition.', 'デモ · 実際の画像認識は行いません。')
+              : t('LIVE API · Drawings are sent to the configured recognizer.', 'LIVE API · あなたの絵が認識用サーバーに送られます。')}</p>
+          {offlineEdition && <button className="text-button connection-toggle" onClick={() => setSessionChoice(sessionChoice === 'ml' ? 'demo' : 'ml')}>{sessionChoice === 'ml' ? t('Switch to simulated demo', 'デモに切り替える') : t('Return to on-device recognition', '端末内AIに戻る')}</button>}
           {liveApiConfigured && <button className="text-button connection-toggle" onClick={() => setSessionChoice(sessionChoice === 'demo' ? 'api' : 'demo')}>{sessionChoice === 'demo' ? t('Have a recognizer connected? Use live API', '認識APIに接続して遊ぶ') : t('Return to local demo', 'ローカルデモに戻る')}</button>}
         </div>
         <p className="edition">{t('FIVE EXCHANGES. ONE MISTED WINDOW.', '５往復。ひとつの曇りガラス。')}</p>
@@ -207,7 +219,7 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
       <div className={`window-surface phase-${state.phase}`}>
         <WindowCanvas language={state.language} previousStrokes={state.entries.at(-1)?.falseStart?.strokes} mode={state.mode} phase={state.phase} round={state.round} strokes={selectVisibleStrokes(state)} onStrokesChange={strokes => dispatch({ type: 'STROKES_CHANGED', strokes })} onBreathDone={() => dispatch({ type: 'BREATH_DONE' })} onPlaybackDone={() => dispatch({ type: 'PLAYBACK_DONE' })} reducedMotion={reducedMotion} />
         <div className="glass-corner-label">{['player_drawing', 'recognizing', 'recognition_error'].includes(state.phase) ? t('your side', 'こちらがわ') : t('her side', 'むこうがわ')}</div>
-        <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : 'LIVE API'}</span>
+        <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : state.sessionKind === 'ml' ? 'LOCAL AI' : 'LIVE API'}</span>
       </div>
       <div className="play-footer">
         <div className="turn-status" aria-live="polite">
@@ -244,6 +256,8 @@ export default function App({ apiRecognizer, onStateChange }: AppProps = {}) {
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
         else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
       }
-    }}><button autoFocus className="icon-button close-dialog" aria-label={t('Close dialog', '閉じる')} onClick={closeDialog}><X size={22} /></button>{leave ? <><p className="eyebrow">{t('TAKE YOUR TIME', 'まだ大丈夫')}</p><h2 id="dialog-title">{t('Close this window?', '窓を閉じる？')}</h2><p>{t('This unfinished chain will be lost.', '途中の絵と名前は消えてしまうよ。')}</p><button className="primary" onClick={() => { dialogReturnFocusRef.current = null; setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>{t('RETURN TO TITLE', '最初に戻る')}</button><button className="text-button" onClick={closeDialog}>{state.phase === 'review_intents' ? t('Keep naming', '名前つけを続ける') : t('Keep drawing', '続きを描く')}</button></> : <><p className="eyebrow">DRAWINDOW · v0.7.1</p><h2 id="dialog-title">{t('A conversation without words.', '言葉を使わない会話。')}</h2><p>{t('Look at her drawing. Think of its English name. Draw something beginning with its last letter.', 'しずくの絵に名前をつけて、最後の音から次の絵を描こう。ご→こ、ぎ→きのように濁点を外してもOK。「ん」で終わったら、新しい絵から再開するよ。')}</p><p>{t('Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.', '途中で答えを言わないでね。５往復したら名前を明かして、９本のつながりを確かめよう。')}</p><p>{t('DAY & NIGHT change only the mood. There is no timer.', '昼と夜では雰囲気が変わるよ。時間制限はありません。')}</p><p>{t('DEMO uses simulated interpretations, not image recognition. Live API sends a neutral drawing image to a configured server; the character is never included.', 'デモは画像認識ではなく、決まった解釈を返します。LIVE APIでは絵だけを認識サーバーに送り、しずくの画像は送りません。')}</p><div className="credits"><p>{t('Character', 'キャラクター')}: OpenAI ImageGen<br />{t('Doodles', '絵')}: Quick, Draw! / Google, CC BY 4.0; DRAWINDOW original. {t('Fonts', 'フォント')}: DM Sans &amp; Cormorant Garamond, OFL.</p><MusicCredits /><a href="https://github.com/googlecreativelab/quickdraw-dataset" target="_blank" rel="noreferrer">Quick, Draw! dataset & attribution</a></div></>}</section></div>}
+    }}><button autoFocus className="icon-button close-dialog" aria-label={t('Close dialog', '閉じる')} onClick={closeDialog}><X size={22} /></button>{leave ? <><p className="eyebrow">{t('TAKE YOUR TIME', 'まだ大丈夫')}</p><h2 id="dialog-title">{t('Close this window?', '窓を閉じる？')}</h2><p>{t('This unfinished chain will be lost.', '途中の絵と名前は消えてしまうよ。')}</p><button className="primary" onClick={() => { dialogReturnFocusRef.current = null; setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>{t('RETURN TO TITLE', '最初に戻る')}</button><button className="text-button" onClick={closeDialog}>{state.phase === 'review_intents' ? t('Keep naming', '名前つけを続ける') : t('Keep drawing', '続きを描く')}</button></> : <><p className="eyebrow">DRAWINDOW · v0.7.1</p><h2 id="dialog-title">{t('A conversation without words.', '言葉を使わない会話。')}</h2><p>{t('Look at her drawing. Think of its English name. Draw something beginning with its last letter.', 'しずくの絵に名前をつけて、最後の音から次の絵を描こう。ご→こ、ぎ→きのように濁点を外してもOK。「ん」で終わったら、新しい絵から再開するよ。')}</p><p>{t('Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.', '途中で答えを言わないでね。５往復したら名前を明かして、９本のつながりを確かめよう。')}</p><p>{t('DAY & NIGHT change only the mood. There is no timer.', '昼と夜では雰囲気が変わるよ。時間制限はありません。')}</p><p>{offlineEdition
+              ? t('Local AI runs on this device and never uploads drawings. Its guesses are experimental and are not an official accuracy score. Offline relaunch requires a successfully installed and cached app.', '端末内AIは絵を送信せず、この端末だけで認識します。判定は実験中で、正式な精度評価ではありません。通信なしでの再起動はアプリのインストールとキャッシュ完了後に利用できます。')
+              : t('DEMO uses simulated interpretations, not image recognition. Live API sends a neutral drawing image to a configured server; the character is never included.', 'デモは画像認識ではなく、決まった解釈を返します。LIVE APIでは絵だけを認識サーバーに送り、しずくの画像は送りません。')}</p><div className="credits"><p>{t('Character', 'キャラクター')}: OpenAI ImageGen<br />{t('Doodles', '絵')}: Quick, Draw! / Google, CC BY 4.0; DRAWINDOW original. {t('Fonts', 'フォント')}: DM Sans &amp; Cormorant Garamond, OFL.</p><MusicCredits /><a href="https://github.com/googlecreativelab/quickdraw-dataset" target="_blank" rel="noreferrer">Quick, Draw! dataset & attribution</a></div></>}</section></div>}
   </main>;
 }
