@@ -77,7 +77,7 @@ it('handles empty filters, catalogue changes and the last item', () => {
   fireEvent.click(screen.getByRole('button', { name: '全部' }));
   expect(screen.getAllByRole('img')).toHaveLength(1);
   fireEvent.change(screen.getByRole('combobox'), { target: { value: 'all' } });
-  expect(screen.getByText('1 / 389')).toBeTruthy();
+  expect(screen.getByText('1 / 383')).toBeTruthy();
 });
 
 it('survives malformed and blocked storage with usable in-memory marks', () => {

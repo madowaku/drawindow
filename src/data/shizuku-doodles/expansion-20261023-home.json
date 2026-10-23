@@ -79,7 +79,7 @@
     },
     {
       "key": "stool",
-      "labelJa": "まるいす",
+      "labelJa": "いす",
       "labelEn": "stool",
       "adoptionBase": "fog-doodle-v03-expansion-300-home",
       "strokes": [
@@ -450,35 +450,6 @@
       "readability": "safe"
     },
     {
-      "key": "sink",
-      "labelJa": "ながし",
-      "labelEn": "sink",
-      "adoptionBase": "fog-doodle-v03-expansion-300-home",
-      "strokes": [
-        {
-          "name": "かたち",
-          "durationMs": 700,
-          "path": "M 13 57 L 109 58 L 101 80 Q 63 99 23 80 L 13 57"
-        },
-        {
-          "name": "目印",
-          "durationMs": 700,
-          "path": "M 98 59 Q 98 69 61 69 Q 24 68.6 24 59 Q 24 49 62.11 49 Q 97.26 49 98 59"
-        },
-        {
-          "name": "細部",
-          "durationMs": 700,
-          "path": "M 50 49 L 50 25 Q 58 13 68 24 L 69 38 L 62 38 L 61 27 M 40 45 L 40 52 M 83 45 L 83 53"
-        },
-        {
-          "name": "仕上げ",
-          "durationMs": 700,
-          "path": "M 32 88 L 31 107 M 90 88 L 90 106"
-        }
-      ],
-      "readability": "safe"
-    },
-    {
       "key": "teapot",
       "labelJa": "てぃーぽっと",
       "labelEn": "teapot",
@@ -532,35 +503,6 @@
           "name": "仕上げ",
           "durationMs": 700,
           "path": "M 29 62 L 11 44 L 12 61 L 26 80"
-        }
-      ],
-      "readability": "safe"
-    },
-    {
-      "key": "skillet",
-      "labelJa": "すきれっと",
-      "labelEn": "skillet",
-      "adoptionBase": "fog-doodle-v03-expansion-300-home",
-      "strokes": [
-        {
-          "name": "かたち",
-          "durationMs": 700,
-          "path": "M 90 52 Q 90 76 53 76 Q 16 75.04 16 52 Q 16 28 54.11 28 Q 89.26 28 90 52"
-        },
-        {
-          "name": "目印",
-          "durationMs": 700,
-          "path": "M 82 51 Q 82 68 53 68 Q 24 67.32 24 51 Q 24 34 53.87 34 Q 81.42 34 82 51"
-        },
-        {
-          "name": "細部",
-          "durationMs": 700,
-          "path": "M 17 55 L 22 72 Q 47 90 83 72 L 89 57"
-        },
-        {
-          "name": "仕上げ",
-          "durationMs": 700,
-          "path": "M 83 70 L 106 96 L 113 91 L 89 63"
         }
       ],
       "readability": "safe"
@@ -649,7 +591,7 @@
     },
     {
       "key": "spoon",
-      "labelJa": "さじ",
+      "labelJa": "スプーン",
       "labelEn": "spoon",
       "adoptionBase": "fog-doodle-v03-expansion-300-home",
       "strokes": [

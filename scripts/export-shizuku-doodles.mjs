@@ -45,7 +45,7 @@ await writeFile('assets/shizuku-doodles-v01-manifest.json', JSON.stringify({
   expansionDSource: expansionDPath, expansionDSha256: hash(expansionDRaw),
   expansionESource: expansionEPath, expansionESha256: hash(expansionERaw),
   expansion300Sources: newSources.map(s => ({ path: s.path, sha256: hash(s.raw), count: s.data.doodles.length })),
-  expansion300Status: '168 original stroke drawings added at user request on 2026-10-23; human readability and LIVE recognition unverified.',
+  expansion300Status: '162 original stroke drawings retained after user review on 2026-10-23 (six removed, two redrawn, four renamed); human readability and LIVE recognition unverified.',
   entries,
 }, null, 2) + '\n');
 console.log(`Exported ${entries.length} SVGs and provenance manifest.`);

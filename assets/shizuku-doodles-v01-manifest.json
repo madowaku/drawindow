@@ -18,13 +18,13 @@
   "expansion300Sources": [
     {
       "path": "src/data/shizuku-doodles/expansion-20261023-food.json",
-      "sha256": "5609508759f2802c0d42e52cdc5d5974e837ae107f0fbc1fcb36628676def82d",
+      "sha256": "da5178228b305145be33a8a69262717f43796d0915fa13b6034e19e5f78abeb9",
       "count": 24
     },
     {
       "path": "src/data/shizuku-doodles/expansion-20261023-home.json",
-      "sha256": "ddc4d5b75d47ddf9bc3800de7df02736fa80f27ccd640605ec716770ae91ee73",
-      "count": 24
+      "sha256": "fe1daca22d9bddf3d9f731de3e072b31ffd1da6e86691222a6af371f9c798099",
+      "count": 22
     },
     {
       "path": "src/data/shizuku-doodles/expansion-20261023-tools.json",
@@ -33,18 +33,18 @@
     },
     {
       "path": "src/data/shizuku-doodles/expansion-20261023-nature.json",
-      "sha256": "1083c0f83eb47d40cbed9b49a147c4c7c82a20c63403b3d7ea8b695c40e13bd1",
-      "count": 24
+      "sha256": "f73ab469ef8bb86b88b72c5777c869f8e861f6cf66df5ecb4c4c2c65cf183741",
+      "count": 23
     },
     {
       "path": "src/data/shizuku-doodles/expansion-20261023-clothes.json",
-      "sha256": "4fad0a72e214067abddc75620e7f52b38e02520486082c18dd14588415169c16",
+      "sha256": "54e37ec551df198b745d88602c77bb04cb3ac3464e64b64b7c7aee60f8b29d73",
       "count": 24
     },
     {
       "path": "src/data/shizuku-doodles/expansion-20261023-animals.json",
-      "sha256": "42113cab4e1f9b8eae16d93efc3d370bf6f32ee63496d06c630b744bc84e6c89",
-      "count": 24
+      "sha256": "75d41c39674ff8b0493a405791f6bc10e536d669c2c725842eee0aa1ab8b08d7",
+      "count": 21
     },
     {
       "path": "src/data/shizuku-doodles/expansion-20261023-travel.json",
@@ -52,7 +52,7 @@
       "count": 24
     }
   ],
-  "expansion300Status": "168 original stroke drawings added at user request on 2026-10-23; human readability and LIVE recognition unverified.",
+  "expansion300Status": "162 original stroke drawings retained after user review on 2026-10-23 (six removed, two redrawn, four renamed); human readability and LIVE recognition unverified.",
   "entries": [
     {
       "key": "apple",
@@ -1143,7 +1143,7 @@
       "key": "popsicle",
       "adoptionBase": "fog-doodle-v03-expansion-300-food",
       "path": "public/art/doodles/shizuku/popsicle.svg",
-      "sha256": "b4cc2a4f5d69ced8aa69b01cb648ab06e17f8240a045eefdec17e352f7d52828",
+      "sha256": "2e83a90d9b7873f0f96d4361b7d7b80f5157ba01ee6b87ad6664c3be3a7e6e56",
       "strokes": 3
     },
     {
@@ -1171,7 +1171,7 @@
       "key": "stool",
       "adoptionBase": "fog-doodle-v03-expansion-300-home",
       "path": "public/art/doodles/shizuku/stool.svg",
-      "sha256": "1cb132fd2540fd71d1e9683ead9199d9c4004a5ef0bbe80981570c2dfddb8dc6",
+      "sha256": "24aeb09ab00abc15bb436f4d3138afe25c6065a44e81550da56cfbb26d5dec97",
       "strokes": 3
     },
     {
@@ -1259,13 +1259,6 @@
       "strokes": 4
     },
     {
-      "key": "sink",
-      "adoptionBase": "fog-doodle-v03-expansion-300-home",
-      "path": "public/art/doodles/shizuku/sink.svg",
-      "sha256": "e967b400545b4d9428c4516f47f9429846b63b8f45d55178aef3b3394d043849",
-      "strokes": 4
-    },
-    {
       "key": "teapot",
       "adoptionBase": "fog-doodle-v03-expansion-300-home",
       "path": "public/art/doodles/shizuku/teapot.svg",
@@ -1277,13 +1270,6 @@
       "adoptionBase": "fog-doodle-v03-expansion-300-home",
       "path": "public/art/doodles/shizuku/kettle.svg",
       "sha256": "4d5d7c0eca04f2c3c2dfdc763df96dec35cd98e5373472c432eca710601d88a9",
-      "strokes": 4
-    },
-    {
-      "key": "skillet",
-      "adoptionBase": "fog-doodle-v03-expansion-300-home",
-      "path": "public/art/doodles/shizuku/skillet.svg",
-      "sha256": "94eb7536c66a58e651fd4a431255fac8841cb04c99db9134a946feb6ee907acd",
       "strokes": 4
     },
     {
@@ -1311,7 +1297,7 @@
       "key": "spoon",
       "adoptionBase": "fog-doodle-v03-expansion-300-home",
       "path": "public/art/doodles/shizuku/spoon.svg",
-      "sha256": "22e92fca63972f2a3db9f1d6cb36041d939a3ce46a9421496432547aca8a234b",
+      "sha256": "6dca342e792653cee329f5a384a40f886e7b9925dcdcd6290491f5ce521060a4",
       "strokes": 2
     },
     {
@@ -1595,13 +1581,6 @@
       "strokes": 3
     },
     {
-      "key": "daisy",
-      "adoptionBase": "fog-doodle-v03-expansion-300-nature",
-      "path": "public/art/doodles/shizuku/daisy.svg",
-      "sha256": "613c201ae864e1b849918e12e9e250ea73d3d63c2d28cd7b925659de7d998b00",
-      "strokes": 3
-    },
-    {
       "key": "bamboo",
       "adoptionBase": "fog-doodle-v03-expansion-300-nature",
       "path": "public/art/doodles/shizuku/bamboo.svg",
@@ -1773,7 +1752,7 @@
       "key": "kite",
       "adoptionBase": "fog-doodle-v03-expansion-300-clothes",
       "path": "public/art/doodles/shizuku/kite.svg",
-      "sha256": "4394899c51fbc2be05878c4a1c54a99c48d637b6c536537c72b268931a528f27",
+      "sha256": "e3842cc2380decbf4de62aabec71cd77dacda9c6e6caf82ea539495fb58c24a3",
       "strokes": 3
     },
     {
@@ -1850,7 +1829,7 @@
       "key": "zebra",
       "adoptionBase": "fog-doodle-v03-expansion-300-animals",
       "path": "public/art/doodles/shizuku/zebra.svg",
-      "sha256": "1304982998c4c320806d04970a40f654f1549fea4185f5d415f9134410e311ae",
+      "sha256": "aa070f04cec0ce88cb49fbb09bde9016b826b3afeb450c54cf5ccd12e8822acc",
       "strokes": 4
     },
     {
@@ -1871,15 +1850,8 @@
       "key": "hamster",
       "adoptionBase": "fog-doodle-v03-expansion-300-animals",
       "path": "public/art/doodles/shizuku/hamster.svg",
-      "sha256": "a67aa7f4db3dee1a8609c3de9fe396ed0c705ed9b6270fb588ee3122db9ff634",
+      "sha256": "7231592de4dcf228b867e691c3ce5a57f4b035592dd99761b6979c5656329586",
       "strokes": 5
-    },
-    {
-      "key": "skunk",
-      "adoptionBase": "fog-doodle-v03-expansion-300-animals",
-      "path": "public/art/doodles/shizuku/skunk.svg",
-      "sha256": "9179a335a62a1fbb3b12dba1769d6131e1c48073b71c346f304cfec2aaf9d57d",
-      "strokes": 4
     },
     {
       "key": "tapir",
@@ -1903,13 +1875,6 @@
       "strokes": 2
     },
     {
-      "key": "toucan",
-      "adoptionBase": "fog-doodle-v03-expansion-300-animals",
-      "path": "public/art/doodles/shizuku/toucan.svg",
-      "sha256": "4891a74550532c8bc5ece77e29fb947902889b8459952c79afa360343d8e8c83",
-      "strokes": 4
-    },
-    {
       "key": "pelican",
       "adoptionBase": "fog-doodle-v03-expansion-300-animals",
       "path": "public/art/doodles/shizuku/pelican.svg",
@@ -1922,13 +1887,6 @@
       "path": "public/art/doodles/shizuku/woodpecker.svg",
       "sha256": "f27f3d20c8fc467cce3af9dd982d2dce9dc18acaed61a13a8877df779b8d3500",
       "strokes": 4
-    },
-    {
-      "key": "turkey",
-      "adoptionBase": "fog-doodle-v03-expansion-300-animals",
-      "path": "public/art/doodles/shizuku/turkey.svg",
-      "sha256": "74bfb88c12e8453f1b7b3120f5c2bf75bd64ee1efa246882e537e486e0dccaef",
-      "strokes": 5
     },
     {
       "key": "sparrow",

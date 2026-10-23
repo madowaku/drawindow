@@ -1,6 +1,6 @@
 {
-  "count": 300,
-  "newDrawings": 168,
+  "count": 294,
+  "newDrawings": 162,
   "runtime": [
     {
       "id": "shizuku-style-v01-apple",
@@ -1207,13 +1207,6 @@
       ]
     },
     {
-      "id": "shizuku-style-v01-sink",
-      "frames": [
-        1486,
-        3536
-      ]
-    },
-    {
       "id": "shizuku-style-v01-teapot",
       "frames": [
         1257,
@@ -1225,13 +1218,6 @@
       "frames": [
         1440,
         3006
-      ]
-    },
-    {
-      "id": "shizuku-style-v01-skillet",
-      "frames": [
-        1361,
-        3503
       ]
     },
     {
@@ -1543,13 +1529,6 @@
       ]
     },
     {
-      "id": "shizuku-style-v01-daisy",
-      "frames": [
-        399,
-        3773
-      ]
-    },
-    {
       "id": "shizuku-style-v01-bamboo",
       "frames": [
         1338,
@@ -1797,8 +1776,8 @@
     {
       "id": "shizuku-style-v01-zebra",
       "frames": [
-        728,
-        3471
+        2239,
+        4188
       ]
     },
     {
@@ -1818,15 +1797,8 @@
     {
       "id": "shizuku-style-v01-hamster",
       "frames": [
-        1448,
-        4751
-      ]
-    },
-    {
-      "id": "shizuku-style-v01-skunk",
-      "frames": [
-        1109,
-        3390
+        1381,
+        5124
       ]
     },
     {
@@ -1851,13 +1823,6 @@
       ]
     },
     {
-      "id": "shizuku-style-v01-toucan",
-      "frames": [
-        1358,
-        3540
-      ]
-    },
-    {
       "id": "shizuku-style-v01-pelican",
       "frames": [
         1379,
@@ -1869,13 +1834,6 @@
       "frames": [
         1359,
         3950
-      ]
-    },
-    {
-      "id": "shizuku-style-v01-turkey",
-      "frames": [
-        1870,
-        4454
       ]
     },
     {
@@ -2106,5 +2064,5 @@
   "errors": [],
   "externalRequests": [],
   "mobileOverflow": false,
-  "scope": "Actual game canvas for all 300 drawings, review gallery DAY/NIGHT, replay and 360px. No human readability or LIVE recognition claim."
+  "scope": "Actual game canvas for all 294 drawings, review gallery DAY/NIGHT, replay and 360px. No human readability or LIVE recognition claim."
 }
