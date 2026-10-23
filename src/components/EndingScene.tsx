@@ -48,14 +48,13 @@ export function EndingScene(props: EndingSceneProps) {
   const closing = closingLine(entries, score, language);
   return <section className="results-layout ending" data-act={act} data-reduced-motion={reducedMotion} aria-labelledby="ending-title">
     <div className="section-intro ending-intro">
-      <p className="eyebrow">TEN LITTLE THOUGHTS · {t(mode === 'day' ? 'DAY' : 'NIGHT', mode === 'day' ? '昼' : '夜')}</p>
       <h1 id="ending-title" tabIndex={-1} ref={heading}>{act === 'diary' ? t('Our little picture diary.', 'ふたりの絵日記。') : act === 'reveal' ? t('Between the lines.', 'すれ違いの答え合わせ。') : t('Until another window.', '窓の向こうの、またね。')}</h1>
-      {act !== 'goodbye' && <p>{act === 'diary' ? t('Five exchanges. Your side, her side. Take another look.', 'しずくの絵、あなたの絵。５往復の、ちいさな時間。') : t('A word chain is one thing. Seeing the same picture is another.', '言葉のつながりと、同じものが見えたかは、別のこと。')}</p>}
+      {act === 'reveal' && <p>{t('Connected words may still mean different things.', '言葉がつながっても、同じ絵に見えたとは限らない。')}</p>}
     </div>
     {(!score.comparable || score.knownPairCount < 9) && <p className="result-disclosure">{sessionKind === 'demo' ? t('DEMO — simulated interpretations. This result is not score-comparable.', 'デモ — 解釈はシミュレーションです。成績として比較できません。') : t('INCOMPLETE — unknown or non-comparable links. No official best score.', '参考記録 — 不明、または比較できないつながりがあります。公式スコアではありません。')}</p>}
     <div className="ending-controls">
       {!revealed && <button className="primary" onClick={() => setAct('reveal')}>{t('See what we meant', '答え合わせをする')}</button>}
-      {(!complete || act === 'reveal') && <button className="secondary" onClick={skip}>{t('Skip animation · see results', 'すぐ見る・答えを開く')}</button>}
+      {!complete && <button className="secondary" onClick={skip}>{t('Skip animation · see results', 'すぐ見る・答えを開く')}</button>}
       {complete && act !== 'goodbye' && <button className="secondary" onClick={() => setAct('goodbye')}>{t('A little goodbye', '窓の向こうへ、またね')}</button>}
       {act === 'goodbye' && <button className="secondary" onClick={() => setAct('reveal')}>{t('Look at our drawings again', 'もう一度、10枚を眺める')}</button>}
     </div>
@@ -67,7 +66,7 @@ export function EndingScene(props: EndingSceneProps) {
       </div>
       <blockquote><p lang="en">{closingLine(entries, score, 'en', language)}</p><p lang="ja">{closingLine(entries, score, 'ja', language)}</p></blockquote>
     </div>}
-    {revealed && <div className="score-strip"><div><span>{sessionKind === 'demo' ? t('DEMO LINKS', 'デモのつながり') : t('LINK SCORE', '言葉のつながり')}</span><strong>{score.connectedCount}<small> / {score.knownPairCount}</small></strong><p>{t(`${score.knownPairCount} of 9 possible links known`, `９本中${score.knownPairCount}本が判定できた`)}</p></div><div><span>{t('BEST CHAIN', '最長のつながり')}</span><strong>{score.bestChain}<small>{t(' links', ' 本')}</small></strong><p>{t('Consecutive connected links', '連続してつながった数')}</p></div></div>}
+    {revealed && <div className="score-strip"><div><span>{sessionKind === 'demo' ? t('DEMO LINKS', 'デモのつながり') : t('LINK SCORE', '言葉のつながり')}</span><strong>{score.connectedCount}<small> / {score.knownPairCount}</small></strong><p>{t(`${score.knownPairCount} of 9 possible links known`, `９本中${score.knownPairCount}本が判定できた`)}</p></div><div><span>{t('BEST CHAIN', '最長のつながり')}</span><strong>{score.bestChain}<small>{t(' links', ' 本')}</small></strong></div></div>}
     <ol className="ending-diary" aria-label={t('Our drawings in the order we drew them', '描いた順番の10枚')}>
       {entries.slice(0, pairCount * 2).map((entry, index) => <li key={entry.id}>
         {revealed && (index === 0 || index > linkCount) && <div className="ending-link-space" aria-hidden="true" />}
