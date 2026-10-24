@@ -2,7 +2,7 @@ import {spawn} from 'node:child_process';
 import {mkdir,readFile,writeFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
-import {observeLiveDrawing,replayDrawingProof} from './premonition-drawing-proof.mjs';
+import {observeLiveDrawing,replayDrawingProof,redrawReplayProof} from './premonition-drawing-proof.mjs';
 const origin='http://127.0.0.1:4220/';
 const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4220','--strictPort'],{stdio:'pipe'});
 const receipt={status:'started',scope:'Synthetic pointer circles with actual local ML; evaluations deliberately unanswered. Not human acceptance, accuracy, comfort or enjoyment evidence.',external:[],posts:0,pageErrors:[],plays:[],liveDrawings:[],checks:[]};
@@ -68,6 +68,10 @@ try{
   receipt.plays.push({language,mode,source:'ml',recognitions:4,pictures:10,links:9,dLabel,replayPose:pose,mobile,desktop,souvenir:'1200x3000',evaluations:'unanswered'});await context.close();
  }
  // An isolated context tests the actual persisted edit history without altering completed evidence.
+ {
+  const context=await browser.newContext({viewport:{width:1440,height:900}}),page=await context.newPage();lastPage=page;watch(page);await page.goto(origin+'?shizuku-premonition');await page.getByRole('heading',{name:'窓の向こうを、もう一度。'}).waitFor();
+  receipt.syntheticRedraw={drawings:await redrawReplayProof(page),scope:'Canned recognition through actual reducer; separate from the four actual ML trials'};await context.close();
+ }
  {
   const context=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'}),page=await context.newPage();lastPage=page;watch(page);await page.goto(origin+'?shizuku-premonition');await page.getByRole('heading',{name:'窓の向こうを、もう一度。'}).waitFor();await page.getByRole('button',{name:'English',exact:true}).click();await page.getByRole('button',{name:'START GAME',exact:true}).click();await page.getByRole('button',{name:'YOUR TURN',exact:true}).waitFor({timeout:60000});await page.getByRole('button',{name:'YOUR TURN',exact:true}).click();await draw(page);
   await page.getByRole('button',{name:'CLEAR',exact:true}).click();await page.getByRole('button',{name:'Undo last edit',exact:true}).click();

@@ -32,7 +32,7 @@ export async function observeLiveDrawing(page) {
 }
 
 /** Pixel + fingertip comparison of both read-only canvases at an exact seek. */
-export async function replayDrawingProof(page, language, mode, recording) {
+export async function replayDrawingProof(page, language, mode, recording, minimumDrawings=5, checkReducedMotion=true) {
   const phases = await page.evaluate(async (recording) => {
     const { createReplayTimeline } = await import('/src/dev/premonition/timeline.ts');
     // The fixture is the actual, explicitly exported trace of this playthrough.
@@ -75,7 +75,7 @@ export async function replayDrawingProof(page, language, mode, recording) {
     }
     proof.push({ empty: empty[0], first: contacts[0], moved: contacts.at(-1), complete: complete[0] });
   }
-  assert(proof.length >= 5, 'Not all five girl drawings replayed');
+  assert(proof.length >= minimumDrawings, 'Missing girl drawing phases');
   // Frozen seeks survive real elapsed time: no private per-pane RAF advances them.
   const first = phases.find(f => f.phase === 'girl_drawing');
   const paused = await seek(first.at + first.duration * .45);
@@ -85,11 +85,39 @@ export async function replayDrawingProof(page, language, mode, recording) {
   await page.waitForTimeout(160);
   await page.getByRole('button',{name:'再生を止める',exact:true}).click();
   const advanced=await snapshot();assert.notEqual(advanced[0].hash,paused[0].hash,'Replay did not draw during automatic play');assert.deepEqual(advanced[0],advanced[1]);
-  await page.emulateMedia({reducedMotion:'reduce'});
+  if(checkReducedMotion){await page.emulateMedia({reducedMotion:'reduce'});
   await page.waitForFunction(()=>[...document.querySelectorAll('.premonition-replay button')].some(button=>button.textContent==='記録を再生'&&button.disabled));
   assert(await page.getByRole('button',{name:'記録を再生',exact:true}).isDisabled());
   const reduced=await seek(first.at+first.duration*.45);assert.equal(reduced[0].tip,null);assert.deepEqual(reduced[0],reduced[1]);assert(reduced[0].ink>paused[0].ink);
-  await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.emulateMedia({reducedMotion:'no-preference'});}
   await writeFile(`artifacts/release/offline-premonition-${language}-${mode}-drawing.json`, JSON.stringify(proof, null, 2));
   return proof.length;
+}
+
+/** Separate synthetic reducer fixture: the freehand circle trials do not
+ * necessarily choose a Japanese slip. Never count this as another ML trial.
+ */
+export async function redrawReplayProof(page) {
+  const recording=await page.evaluate(async()=>{
+    const [{createInitialState,gameReducer},{gameSketches},{PremonitionRecorder},{createFogTimeline},{getPlaybackDuration},{selectVisibleStrokes},React,ReactDOMClient,{PremonitionReplay}]=await Promise.all([
+      import('/src/core/gameMachine.ts'),import('/src/data/gameSketches.ts'),import('/src/dev/premonition/recording.ts'),import('/src/lib/fog.ts'),import('/src/lib/playback.ts'),import('/src/core/gameMachine.ts'),import('/node_modules/.vite/deps/react.js'),import('/node_modules/.vite/deps/react-dom_client.js'),import('/src/dev/premonition/Replay.tsx'),
+    ]);
+    let state=createInitialState('day','ja'),now=0;const recorder=new PremonitionRecorder(()=>now);recorder.observeInitial(state);
+    const send=event=>{recorder.record(event);state=gameReducer(state,event);};
+    const finish=type=>{now+=createFogTimeline(state.mode,state.phase,0,{playbackDurationMs:getPlaybackDuration(selectVisibleStrokes(state))}).durationMs;send({type});};
+    const sketches=gameSketches('ja');send({type:'START',mode:'day',sessionKind:'ml',sketches});finish('BREATH_DONE');finish('PLAYBACK_DONE');now+=200;send({type:'YOUR_TURN'});
+    send({type:'STROKES_CHANGED',strokes:[{id:'fixture',points:[{x:.2,y:.2,t:0},{x:.8,y:.8,t:1000}]}]});now+=1000;send({type:'DONE'});
+    const result=sketches.map(s=>({source:'ml',guess:s.word})).find(result=>gameReducer(state,{type:'RECOGNITION_RESOLVED',requestId:state.recognitionRequest.requestId,result}).girlCorrection);
+    if(!result)throw Error('No eligible Japanese slip fixture');
+    now+=100;send({type:'RECOGNITION_RESOLVED',requestId:state.recognitionRequest.requestId,result});finish('BREATH_DONE');finish('PLAYBACK_DONE');
+    if(state.phase!=='girl_notice')throw Error('Fixture did not enter notice');
+    now+=700;send({type:'GIRL_OOPS_BEAT_DONE',phase:state.phase,round:state.round,sessionId:state.sessionId});
+    now+=1150;send({type:'GIRL_OOPS_BEAT_DONE',phase:state.phase,round:state.round,sessionId:state.sessionId});finish('BREATH_DONE');finish('PLAYBACK_DONE');
+    const root=document.getElementById('root');root.style.display='none';const host=document.createElement('main');host.className='app';host.dataset.mode='day';document.body.append(host);
+    (ReactDOMClient.createRoot??ReactDOMClient.default.createRoot)(host).render((React.createElement??React.default.createElement)(PremonitionReplay,{recording:recorder.recording,assignment:{X:'A',Y:'D',order:['X','Y']},label:'X',reducedMotion:false}));
+    return recorder.recording;
+  });
+  await page.getByRole('checkbox',{name:'並べて比較する',exact:true}).check();
+  await page.locator('.premonition-replay-panes').scrollIntoViewIfNeeded();
+  return replayDrawingProof(page,'ja-redraw-fixture','day',recording,3,false);
 }
