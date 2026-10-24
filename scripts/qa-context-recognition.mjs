@@ -5,6 +5,23 @@ import assert from 'node:assert/strict';
 const origin='http://127.0.0.1:4200/';
 const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4200','--strictPort'],{stdio:'pipe'});
 let browser;
+async function wheelToBottom(page) {
+  const lab=page.locator('.context-lab');
+  await lab.evaluate(element=>{ element.scrollTop=0; });
+  const viewport=page.viewportSize();
+  await page.mouse.move(viewport.width-8,Math.min(250,viewport.height-20));
+  for(let step=0;step<14;step++) {
+    await page.mouse.wheel(0,viewport.height);
+    await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+    const reached=await lab.evaluate(element=>element.scrollTop+element.clientHeight>=element.scrollHeight-2);
+    if(reached)break;
+  }
+  const position=await lab.evaluate(element=>({top:element.scrollTop,height:element.clientHeight,content:element.scrollHeight,overflow:getComputedStyle(element).overflowY}));
+  assert(position.top>0,'Normal wheel did not move the comparison scroll container: '+JSON.stringify(position));
+  assert(position.top+position.height>=position.content-2,'Cannot reach comparison bottom: '+JSON.stringify(position));
+  const box=await page.getByRole('button',{name:'CSVを書き出す',exact:true}).boundingBox();
+  assert(box&&box.y>=0&&box.y+box.height<=viewport.height,'Export button not reachable in viewport by normal scrolling');
+}
 const receipt={scope:'Synthetic circle and actual local model; developer UI/export/regression only, no human accuracy or enjoyment evidence',status:'started',external:[],posts:0,pageErrors:[],checks:[]};
 try {
   await mkdir('artifacts/release',{recursive:true});
@@ -15,6 +32,7 @@ try {
   page.on('pageerror',error=>receipt.pageErrors.push(String(error)));
   await page.goto(origin+'?context-recognition');
   await page.getByRole('heading',{name:'線と、ひとつ前のことば。'}).waitFor();
+  await wheelToBottom(page);
   assert.equal(await page.getByTestId('policy-A').count(),0);
   assert.equal(await page.getByLabel('意図したことば',{exact:true}).count(),0);
   await page.getByLabel('直前のしずくの正式名',{exact:true}).fill('とけい');
@@ -49,7 +67,7 @@ try {
   assert(!/"strokes"|"points"|imageDataUrl/.test(JSON.stringify(data)));
   const csvDownload=page.waitForEvent('download');await page.getByRole('button',{name:'CSVを書き出す',exact:true}).click();
   const csv=await readFile(await(await csvDownload).path(),'utf8');assert(csv.includes('drawingId')&&csv.includes('circle'));
-  await page.setViewportSize({width:1440,height:900});await page.getByRole('heading',{name:'ひとつの絵、3つの解釈'}).scrollIntoViewIfNeeded();
+  await page.setViewportSize({width:1440,height:900});await wheelToBottom(page);await page.getByRole('heading',{name:'ひとつの絵、3つの解釈'}).scrollIntoViewIfNeeded();
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   await page.screenshot({path:'artifacts/release/offline-context-desktop.png',fullPage:true});
   await page.getByRole('button',{name:'消して新しく描く',exact:true}).click();
@@ -62,7 +80,7 @@ try {
   await page.mouse.up();await page.getByRole('button',{name:'一度だけ認識する',exact:true}).click();
   await page.getByTestId('policy-A').waitFor({timeout:60000});assert((await page.getByTestId('policy-A').innerText()).includes('circle'));
   assert.deepEqual(receipt.external,[]);assert.equal(receipt.posts,0);assert.deepEqual(receipt.pageErrors,[]);
-  receipt.checks=['no result/gold before inference','canonical context can be hidden','nonblank real pointer canvas','actual local model 345 ranks and Japanese baseline','same sample/ranking across two C settings','expression independent','explicit metadata-only JSON and CSV','unreviewed gold/observations remain unreviewed','new drawing conceals previous result','settings/export and warmed English model inference with HTTP disabled','390x844 and1440x900 no horizontal overflow'];
+  receipt.checks=['no result/gold before inference','canonical context can be hidden','nonblank real pointer canvas','actual local model 345 ranks and Japanese baseline','same sample/ranking across two C settings','expression independent','explicit metadata-only JSON and CSV','unreviewed gold/observations remain unreviewed','new drawing conceals previous result','settings/export and warmed English model inference with HTTP disabled','normal wheel reaches export controls at390x844 and1440x900','390x844 and1440x900 no horizontal overflow'];
   receipt.status='success';receipt.darkDrawingPixels=pixels;receipt.ranks=345;receipt.settings=2;
 } catch(error){receipt.status='failure';receipt.error=String(error);throw error;}
 finally {await browser?.close();server.kill();await writeFile('artifacts/release/offline-context-research.json',JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt));}
