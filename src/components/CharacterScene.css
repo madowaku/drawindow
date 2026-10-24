@@ -60,24 +60,6 @@
   opacity: 1;
 }
 
-.character-scene__blink {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: top left;
-  transform: translate(calc(50% - var(--pose-eye-x)), calc(39.2% - var(--pose-eye-y)));
-  opacity: 0;
-  pointer-events: none;
-  user-select: none;
-}
-
-.character-scene[data-blink-enabled='true'] .character-scene__blink {
-  animation: character-blink 7.4s linear infinite;
-}
-
 .character-scene[data-reduced-motion='true'] .character-scene__sprite {
   transition: none;
 }
@@ -101,7 +83,6 @@
 .character-scene[data-running='false'] .character-scene__breathing {
   animation-play-state: paused;
 }
-.character-scene[data-running='false'] .character-scene__blink { animation-play-state: paused; }
 
 .character-scene[data-reduced-motion='true'] .character-scene__breathing { animation: none; }
 
@@ -110,15 +91,24 @@
   50% { transform: translateY(-1.5px) scaleY(1.004); }
 }
 
-@keyframes character-blink {
-  0%, 98%, 100% { opacity: 0; }
-  98.4%, 99.2% { opacity: 1; }
-}
+
 
 @media (prefers-reduced-motion: reduce) {
   .character-scene__breathing { animation: none; }
   .character-scene__sprite { transition: none; }
-  .character-scene__blink { animation: none; }
 }
 
 .character-scene[data-study-calm=true] .character-scene__breathing{animation:none}.character-scene[data-study-calm=true] .character-scene__sprite{transition-duration:320ms}
+
+/* Hold one registered portrait: whole-pose swaps are not an eyelid animation. */
+.character-scene[data-phase='title'][data-reduced-motion='false'] .character-scene__breathing {
+  animation-name: character-wait;
+  animation-duration: 9s;
+}
+.character-scene[data-phase='title'][data-mode='night'][data-reduced-motion='false'] .character-scene__breathing {
+  animation-duration: 11s;
+}
+@keyframes character-wait {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-.65px); }
+}

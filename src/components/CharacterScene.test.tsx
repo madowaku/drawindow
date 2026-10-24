@@ -60,14 +60,14 @@ describe('character presentation lifecycle', () => {
 
   it('stops idle motion when a hidden document is reported', () => {
     render(<CharacterScene mode="day" phase="title" reducedMotion={false} />);
-    expect(screen.getByTestId('character-scene').getAttribute('data-blink-enabled')).toBe('true');
+    expect(document.querySelector('.character-scene__blink')).toBeNull();
     Object.defineProperty(document, 'hidden', { configurable: true, value: true });
     fireEvent(document, new Event('visibilitychange'));
     expect(screen.getByTestId('character-scene').getAttribute('data-running')).toBe('false');
     Object.defineProperty(document, 'hidden', { configurable: true, value: false });
     fireEvent(document, new Event('visibilitychange'));
     expect(screen.getByTestId('character-scene').getAttribute('data-running')).toBe('true');
-    expect(screen.getByTestId('character-scene').getAttribute('data-blink-enabled')).toBe('true');
+    expect(document.querySelector('.character-scene__blink')).toBeNull();
   });
 
   it('begins drawing motion with ink, keeps nodes through fades and does not react again to stroke/UI renders', () => {
@@ -133,10 +133,10 @@ describe('character presentation lifecycle', () => {
     expect(disconnect).toHaveBeenCalledTimes(1);
   });
 
-  it('disables the title blink with reduced motion', () => {
+  it('keeps one stable title portrait with reduced motion', () => {
     render(<CharacterScene mode="day" phase="title" reducedMotion />);
-    expect(screen.getByTestId('character-scene').getAttribute('data-blink-enabled')).toBe('false');
-    expect(document.querySelector('.character-scene__blink')).toBeTruthy();
+    expect(document.querySelector('.character-scene__blink')).toBeNull();
+    expect(screen.getByTestId('character-scene').getAttribute('data-pose')).toBe('neutral');
   });
 
   it('falls back once to the neutral pose and hides a repeatedly failed image', () => {
@@ -157,7 +157,7 @@ describe('character presentation lifecycle', () => {
     render(<CharacterScene mode="day" phase="title" reducedMotion={false} artSet="candidate" />);
     const active=document.querySelector<HTMLImageElement>('.character-scene__sprite[data-active="true"]')!;
     expect(active.src).toContain('/art/shizuku-v04/neutral.webp');
-    expect(screen.getByTestId('character-scene').getAttribute('data-blink-enabled')).toBe('false');
+    expect(document.querySelector('.character-scene__blink')).toBeNull();
     fireEvent.error(active);
     expect(active.getAttribute('src')).toBe(SHIZUKU_POSES.neutral.src);
     expect(active.hidden).toBe(false);

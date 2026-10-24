@@ -117,12 +117,12 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
     ref={rootRef}
     aria-hidden="true"
     data-mode={mode}
+    data-phase={phase}
     data-study-calm={calm||undefined}
     data-pose={frame}
     data-motion={reaction.motion}
     data-running={running && !paused && !reducedMotion}
     data-reduced-motion={reducedMotion}
-    data-blink-enabled={phase === 'title' && !reducedMotion && artSet === 'current'}
     data-art-set={artSet}
     data-testid="character-scene"
   >
@@ -144,15 +144,7 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
               onError={event => recoverPoseImage(event, pose.fallback)}
             />;
           })}
-          <img
-            className="character-scene__blink"
-            src={characterArt('blink')}
-            style={poseStyles(SHIZUKU_POSES.neutral)}
-            alt=""
-            draggable={false}
-            decoding="async"
-            onError={event => recoverPoseImage(event, 'neutral')}
-          />
+
         </div>
       </div>
     </div>
