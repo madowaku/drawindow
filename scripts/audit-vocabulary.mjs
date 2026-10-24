@@ -97,7 +97,7 @@ try {
   report.namingDictionary=names.namingTerms;
   // Fingerprint all source inputs (includes transitive geometry/catalogue and naming imports).
   async function files(dir){const found=[];for(const entry of await readdir(dir,{withFileTypes:true})){const path=dir+'/'+entry.name;if(entry.isDirectory())found.push(...await files(path));else if(/\.(ts|tsx|json)$/.test(path)&&!path.endsWith('.test.ts'))found.push(path);}return found;}
-  const inputs=unique(['scripts/audit-vocabulary.mjs','src/App.tsx','src/services/quickDrawRecognizer.ts','src/services/quickDrawJapanese.ts',...await files('src/core'),...await files('src/data')]);
+  const inputs=unique(['scripts/audit-vocabulary.mjs','src/App.tsx','src/services/quickDrawRecognizer.ts','src/services/quickDrawScores.ts','src/services/quickDrawJapanese.ts',...await files('src/core'),...await files('src/data')]);
   // Git checks out text with LF on CI; canonicalize local Windows line endings.
   report.sourceSha256=Object.fromEntries(await Promise.all(inputs.map(async file=>[file,hash((await readFile(file,'utf8')).replace(/\r\n/g,'\n'))])));
   await mkdir('docs',{recursive:true});
