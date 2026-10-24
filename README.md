@@ -1,3 +1,11 @@
+# DRAWINDOW v0.10 文脈認識・比較研究
+
+本編はv0.9の画像のみAを維持します。`npm run dev` の `/?context-recognition` で、１回の端末内推論の全345候補を固定し、A/B/C・Cの補正設定を比較できます。正解情報は推論後の評価専用で、読みの一致・意味の正解・文字上の継続・実プレイ・感想を分けています。
+
+[研究設計](docs/CONTEXT_RECOGNITION_v010_DESIGN.md) · [合成比較レポート](docs/CONTEXT_RECOGNITION_v010_SYNTHETIC.md) · [人間テスト手順](docs/CONTEXT_RECOGNITION_v010_HUMAN_TEST.md) · [採用保留と次の実験](docs/CONTEXT_RECOGNITION_v010_STATUS.md)
+
+`npm run research:context:check` で合成結果を再現できます。これは人間精度や楽しさの評価ではありません。Cの本編採用・mainへのマージ・公開・販売ZIP更新はしていません。
+
 # DRAWINDOW v0.9 品質改善・ローカル研究版
 
 進捗の端末内自動保存と「続きから遊ぶ」、端末内AIでの９リンク達成演出、版とキャッシュ内容を照合するオフライン表示を追加しました。採用済み291枚・昼夜・日英・５往復・絵日記・またね・記念PNGを保持しています。認識結果の強制訂正や閾値調整はしていません。

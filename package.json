@@ -19,7 +19,9 @@
     "prepare:local-ml": "node scripts/prepare-quickdraw-model.mjs",
     "package:offline": "node scripts/package-offline.mjs",
     "audit:vocabulary": "node scripts/audit-vocabulary.mjs",
-    "test:offline-integrity": "node --test scripts/offline-integrity.test.mjs"
+    "test:offline-integrity": "node --test scripts/offline-integrity.test.mjs",
+    "research:context:report": "node scripts/report-context-recognition.mjs",
+    "research:context:check": "node scripts/report-context-recognition.mjs --check"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",

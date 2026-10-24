@@ -6,3 +6,6 @@
 *.woff -text
 *.woff2 -text
 *.bin -text
+
+# Reproducible machine-readable policy fixture report
+docs/CONTEXT_RECOGNITION_v010_SYNTHETIC.json linguist-generated=true

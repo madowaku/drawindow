@@ -4,6 +4,7 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { Page } from './Page';
 vi.mock('./App', () => ({ default: () => <p>Normal five-exchange game</p> }));
 vi.mock('./dev/RecognitionBenchmarkPage', () => ({ RecognitionBenchmark: () => <p>Developer benchmark</p> }));
+vi.mock('./dev/ContextRecognitionPage', () => ({ ContextRecognitionPage: () => <p>Isolated context comparison</p> }));
 vi.mock('./dev/LiveAcceptancePage', () => ({ LiveAcceptancePage: () => <p>Local live acceptance</p> }));
 vi.mock('./dev/CataloguePreview', () => ({ CataloguePreview: () => <p>Doodle catalog preview</p> }));
 vi.mock('./dev/ReadabilityStudy', () => ({ ReadabilityStudy: () => <p>Blind readability study</p> }));
@@ -51,4 +52,18 @@ it('opens local acceptance without replacing the actual game in development', as
   vi.stubEnv('DEV', true);
   render(<Page />);
   expect(await screen.findByText('Local live acceptance')).toBeTruthy();
+});
+
+it('keeps context comparison outside the production game even with the query', () => {
+  window.history.replaceState({}, '', '/?context-recognition');
+  vi.stubEnv('DEV', false);
+  render(<Page />);
+  expect(screen.getByText('Normal five-exchange game')).toBeTruthy();
+  expect(screen.queryByText('Isolated context comparison')).toBeNull();
+});
+it('opens context comparison only in development', async () => {
+  window.history.replaceState({}, '', '/?context-recognition');
+  vi.stubEnv('DEV', true);
+  render(<Page />);
+  expect(await screen.findByText('Isolated context comparison')).toBeTruthy();
 });

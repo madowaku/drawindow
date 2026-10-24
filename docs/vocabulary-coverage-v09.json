@@ -6243,7 +6243,7 @@
     }
   ],
   "sourceSha256": {
-    "scripts/audit-vocabulary.mjs": "1e80478a7b7fe84fe8a1b4b5065232fe58f6d58f9d3bfa3e140f20bec39e58de",
+    "scripts/audit-vocabulary.mjs": "2fe481b8c86585b6abfcd726e4dbd22795262f61119df6a03febdeb941cf8bb3",
     "src/App.tsx": "d3f2935cc30ba19b478976c0e8f5060d7c7273ada6d297397fb7ad144069730a",
     "src/core/drawingHistory.ts": "20333d097246ba4f0b8f2df7f3b23ba753ffd57794826af7e6fdf7c96c822521",
     "src/core/gameMachine.ts": "f2811fc95060ff7fa9026d95b932b7f8394448bd02db2459131677ff212a53f8",
@@ -6283,6 +6283,7 @@
     "src/data/sketch-provenance.json": "25499f9602abb548964df75b4c54ff5c5c13dbac4f07c2ae776681c3d3d7d1d3",
     "src/data/sketches.ts": "6ba6eebf54604facc488270753040d9883f93e7c95ddac699aedd1a4df6af015",
     "src/services/quickDrawJapanese.ts": "ed1dc66f5eb52f604eb8f42451c3263716df19bc4a5e23cc699c0d8ae470ebab",
-    "src/services/quickDrawRecognizer.ts": "dfd477f2d18984ab631c51eac9351abce41a01bf972e1bd8f47abee76e9ced51"
+    "src/services/quickDrawRecognizer.ts": "0744448771ca81f06f9ef5dfd3d6b480172559cfc36736bd32ed38df875b073c",
+    "src/services/quickDrawScores.ts": "13a5a79290167d0ff0d35f881941e294219e8ee01a4c499a7a970f45e4c5031b"
   }
 }

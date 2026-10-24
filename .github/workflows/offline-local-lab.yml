@@ -26,9 +26,13 @@ jobs:
         run: |
           node scripts/audit-vocabulary.mjs
           git diff --exit-code -- docs/VOCABULARY_COVERAGE_v09.md docs/vocabulary-coverage-v09.json
+      - name: Reproduce context policy experiment
+        run: node scripts/report-context-recognition.mjs --check
       - name: Offline integrity and distribution scanner regressions
         run: node --test scripts/offline-integrity.test.mjs
       # The credential/PowerShell suite runs separately on Windows in DRAWINDOW quality.
+      - name: Reject a development-module production canary
+        run: node scripts/check-context-build-isolation.mjs
       - name: Package fully local research build
         run: npm run package:offline
       - name: Scan shipped runtime for endpoints, credentials and external dependencies
@@ -45,6 +49,8 @@ jobs:
         run: node scripts/qa-session-resume.mjs
       - name: Smoke test local human-pilot tools without upload
         run: node scripts/qa-local-benchmark-v09.mjs
+      - name: Test isolated context research with one local model output
+        run: node scripts/qa-context-recognition.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: DRAWINDOW-local-lab

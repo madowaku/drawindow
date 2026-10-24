@@ -1,8 +1,7 @@
 import type { DrawingRecognizer, Language, RecognitionResult } from '../core/types';
-import { normalizeWord } from '../core/words';
 import { preprocessQuickDraw } from './quickDrawPreprocess';
 import type { QuickDrawPreprocessOptions } from './quickDrawPreprocess';
-import { quickDrawJapanese } from './quickDrawJapanese';
+import { imageOnlyQuickDrawResult, type ScoredLabel } from './quickDrawScores';
 
 type LiteRuntime = typeof import('@litertjs/core');
 type LiteModel = Awaited<ReturnType<LiteRuntime['loadAndCompile']>>;
@@ -53,6 +52,8 @@ export interface QuickDrawDiagnostic {
   outcome: 'accepted' | 'low_score' | 'unmapped';
 }
 export interface QuickDrawOptions {
+  /** Full, uncalibrated model ranking for the DEV-only comparison. No context input. */
+  onRanking?: (ranked: readonly ScoredLabel[]) => void;
   /** Developer evaluation only. Never changes ranking or production decisions. */
   onDiagnostic?: (value: QuickDrawDiagnostic) => void;
   /** Pretrained model scores, not a calibrated probability of human correctness. */
@@ -87,19 +88,13 @@ export function createQuickDrawRecognizer(options: QuickDrawOptions = {}): Drawi
         if(signal?.aborted)return fail('unavailable');
         if(scores.length!==345||scores.some(v=>!Number.isFinite(v)))return fail('invalid_response');
         const ordered=scores.map((score,index)=>({score,label:labels[index]})).sort((a,b)=>b.score-a.score);
-        const best=ordered[0];
-        if(!best || best.score<(options.minScore??0.05)){options.onDiagnostic?.({top3:ordered.slice(0,3),outcome:'low_score'});return fail('invalid_response');}
         const language: Language=input.language==='ja'?'ja':'en';
-        // The best semantic label is authoritative. Never silently replace it
-        // with a lower-ranked playable noun to make the chain look successful.
-        const mapped=language==='ja'?quickDrawJapanese[best.label]:best.label;
-        const guess=normalizeWord(mapped,language);
-        options.onDiagnostic?.({top3:ordered.slice(0,3),outcome:guess?'accepted':'unmapped'});
-        if(!guess)return fail('invalid_response');
-        return {
-          guess,source:'ml',
-          alternatives:ordered.slice(1,4).map(({label})=>language==='ja'?quickDrawJapanese[label]??label:label),
-        };
+        const result=imageOnlyQuickDrawResult(ordered,language,options.minScore);
+        const outcome=ordered[0].score<(options.minScore??0.05)?'low_score':result.guess?'accepted':'unmapped';
+        options.onDiagnostic?.({top3:ordered.slice(0,3),outcome});
+        // Copy diagnostics so a research consumer cannot mutate the production result.
+        if(import.meta.env.DEV) options.onRanking?.(ordered.map(candidate=>({...candidate})));
+        return result;
       } catch(error) {
         // Developer-only diagnostic; never logs strokes, tensors or images.
         if (import.meta.env.DEV) console.warn('QuickDraw local inference failed:', String(error));
