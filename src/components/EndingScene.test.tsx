@@ -95,3 +95,15 @@ describe('ten little thoughts', () => {
     expect(closingLine(unknown, calculateScore(unknown), 'en')).toContain('unspoken');
   });
 });
+
+it('celebrates local nine-link achievement while retaining local and mismatch disclosures', () => {
+  const local = entries.map(e => ({ ...e, comparable: false, recognition: e.recognition ? { ...e.recognition, guess: 'cat', source: 'ml' as const } : null }));
+  const score = calculateScore(local, 'ml');
+  expect(score.perfect).toBe(true);
+  expect(score.comparable).toBe(false);
+  render(<EndingScene {...props} entries={local} score={score} sessionKind="ml" reducedMotion />);
+  fireEvent.click(screen.getByRole('button', { name: 'See what we meant' }));
+  expect(screen.getByText(/All nine links connected/)).toBeTruthy();
+  expect(screen.getByText(/not independently validated/)).toBeTruthy();
+  expect(closingLine(local, score, 'en')).toContain("didn't see the same things");
+});

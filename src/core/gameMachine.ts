@@ -59,6 +59,7 @@ export function selectCanFinishDrawing(state: GameState): boolean {
 
 export function gameReducer(state: GameState, event: GameEvent): GameState {
   switch (event.type) {
+    case 'RESTORE_SESSION': return state.phase === 'title' ? event.state : state;
     case 'SET_MODE': return state.phase === 'title' ? { ...state, mode: event.mode } : state;
     case 'SET_LANGUAGE': return state.phase === 'title' ? { ...state, language: event.language } : state;
     case 'START': {

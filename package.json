@@ -17,7 +17,9 @@
     "test:auth": "node --test scripts/gemini-auth.test.mjs",
     "package:itch:live": "node scripts/package-live.mjs",
     "prepare:local-ml": "node scripts/prepare-quickdraw-model.mjs",
-    "package:offline": "node scripts/package-offline.mjs"
+    "package:offline": "node scripts/package-offline.mjs",
+    "audit:vocabulary": "node scripts/audit-vocabulary.mjs",
+    "test:offline-integrity": "node --test scripts/offline-integrity.test.mjs"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",

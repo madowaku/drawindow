@@ -21,16 +21,30 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: npm test
+      - run: npm test -- --maxWorkers=2
+      - name: Reproduce vocabulary audit
+        run: |
+          node scripts/audit-vocabulary.mjs
+          git diff --exit-code -- docs/VOCABULARY_COVERAGE_v09.md docs/vocabulary-coverage-v09.json
+      - name: Offline integrity and distribution scanner regressions
+        run: node --test scripts/offline-integrity.test.mjs
       # The credential/PowerShell suite runs separately on Windows in DRAWINDOW quality.
       - name: Package fully local research build
         run: npm run package:offline
+      - name: Scan shipped runtime for endpoints, credentials and external dependencies
+        run: node scripts/scan-offline-dist.mjs dist
       - name: Install Chromium for real offline relaunch test
         run: |
           npm install --no-save --no-package-lock playwright@1.56.0
           npx playwright install --with-deps chromium
+      - name: Test service worker lifecycle and failed update in Chromium
+        run: node scripts/qa-offline-lifecycle.mjs
       - name: Test service worker cold relaunch with network disabled
         run: node scripts/qa-offline-cold-start.mjs
+      - name: Test saved session and browser process restart offline
+        run: node scripts/qa-session-resume.mjs
+      - name: Smoke test local human-pilot tools without upload
+        run: node scripts/qa-local-benchmark-v09.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: DRAWINDOW-local-lab

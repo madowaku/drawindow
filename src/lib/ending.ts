@@ -4,9 +4,9 @@ import { assessMeaning } from '../core/naming';
 
 export function closingLine(entries: readonly DrawingEntry[], score: ScoreResult, language: Language, wordLanguage: Language = language): string {
   const players = entries.filter(e => e.actor === 'player' && e.round < 5);
-  const mismatch = players.some(e => e.intendedWord && e.recognition?.source === 'api' && e.recognition.guess && normalizeWord(e.intendedWord, wordLanguage) !== normalizeWord(e.recognition.guess, wordLanguage));
+  const mismatch = players.some(e => e.intendedWord && (e.recognition?.source === 'api' || e.recognition?.source === 'ml') && e.recognition.guess && normalizeWord(e.intendedWord, wordLanguage) !== normalizeWord(e.recognition.guess, wordLanguage));
   if (mismatch) {
-    const differentNames = players.filter(e => e.intendedWord && e.recognition?.source === 'api' && e.recognition.guess && normalizeWord(e.intendedWord, wordLanguage) !== normalizeWord(e.recognition.guess, wordLanguage));
+    const differentNames = players.filter(e => e.intendedWord && (e.recognition?.source === 'api' || e.recognition?.source === 'ml') && e.recognition.guess && normalizeWord(e.intendedWord, wordLanguage) !== normalizeWord(e.recognition.guess, wordLanguage));
     if (wordLanguage === 'ja' && differentNames.every(e => ['equivalent', 'narrower', 'broader'].includes(assessMeaning(e, 'ja').relation))) {
       return language === 'ja' ? '違う呼び名も、ふたりで描いた時間の一部。' : 'Different names were part of our time together.';
     }

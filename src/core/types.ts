@@ -184,6 +184,7 @@ export interface GameState {
 }
 
 export type GameEvent =
+  | { type: 'RESTORE_SESSION'; state: GameState }
   | { type: 'SET_MODE'; mode: Mode }
   | { type: 'SET_LANGUAGE'; language: Language }
   | { type: 'START'; mode: Mode; sessionKind: SessionKind; sketches: readonly GirlSketch[] }
@@ -227,5 +228,6 @@ export interface ScoreResult {
   /** Number of consecutive connected links, not number of pictures. */
   bestChain: number;
   comparable: boolean;
+  /** Nine-link achievement; independent recognition accuracy is never implied. */
   perfect: boolean;
 }
