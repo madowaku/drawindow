@@ -2,6 +2,9 @@ import type { Mode, Stroke } from '../core/types';
 import { getPlaybackDuration } from './playback';
 
 export type Tempo = 'A' | 'B' | 'C';
+/** Owner-adopted defaults; research controls do not alter these. */
+export const PRODUCT_TEMPO='C' as const;
+export const PRODUCT_TEMPO_CONTROLS=Object.freeze({speed:1});
 export interface TempoControls { speed: number; hesitationMs?: number; }
 export interface TempoPlan {
   tempo: Tempo; strokes: readonly Stroke[]; drawingMs: number; breathMs: number;

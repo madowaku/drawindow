@@ -11,7 +11,7 @@ import type { DrawingRecognizer, GameEvent, GameState, GirlExpression, Language,
 import { withJapaneseStarter } from './data/japaneseSketches';
 import { TempoCanvas } from './components/TempoCanvas';
 import {usePremonition} from './lib/usePremonition';
-import {endingTempo} from './lib/drawingTempo';
+import {endingTempo,PRODUCT_TEMPO,PRODUCT_TEMPO_CONTROLS} from './lib/drawingTempo';
 import { WindowCanvas } from './components/WindowCanvas';
 import { SketchThumbnail } from './components/SketchThumbnail';
 import { CharacterScene, characterArt } from './components/CharacterScene';
@@ -247,7 +247,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
     {active && <section className="play-layout" aria-label={t('Picture word chain', '絵のしりとり')}>
       <div className="play-heading"><div><h1>{state.phase === 'player_drawing' ? t('Your little reply.', 'あなたからのお返事。') : state.phase === 'recognizing' ? t('A moment to wonder.', '少し、考えごと。') : state.phase === 'recognition_error' ? t('A little interruption.', 'ちょっとひと休み。') : t('What do you see?', '何に見える？')}</h1></div><div className="round-label"><span>{t('EXCHANGE', 'おうふく')}</span><strong>{String(state.round).padStart(2, '0')}<small> / 05</small></strong></div></div>
       <div className={`window-surface phase-${state.phase}`}>
-        {studyOptions?.renderCanvas?studyOptions.renderCanvas(canvasProps):studyOptions?<WindowCanvas {...canvasProps}/>:<TempoCanvas {...canvasProps} tempo="C" controls={{speed:1}} skipEpoch={skipEpoch}/>}
+        {studyOptions?.renderCanvas?studyOptions.renderCanvas(canvasProps):studyOptions?<WindowCanvas {...canvasProps}/>:<TempoCanvas {...canvasProps} tempo={PRODUCT_TEMPO} controls={PRODUCT_TEMPO_CONTROLS} skipEpoch={skipEpoch}/>}
         <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : state.sessionKind === 'ml' ? 'LOCAL AI' : 'LIVE API'}</span>
       </div>
       <div className="play-footer">
@@ -276,7 +276,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
       <div className="review-footer"><button className="primary" onClick={() => dispatch({ type: 'SHOW_RESULTS' })}>{t('REVEAL OUR CHAIN', '答えあわせ')}<ArrowRight size={20} /></button></div>
     </section>}
 
-    {state.phase === 'results' && <EndingScene key={state.sessionId} studyOnBeat={studyOptions?.onEndingBeat} studyTiming={studyOptions?.ending} timing={!studyOptions?endingTempo('C',restored):undefined} entries={state.entries} score={score} mode={state.mode} language={state.language} sessionKind={state.sessionKind} reducedMotion={reducedMotion} onRestart={start} onTitle={() => dispatch({ type: 'RETURN_TO_TITLE' })} />}
+    {state.phase === 'results' && <EndingScene key={state.sessionId} studyOnBeat={studyOptions?.onEndingBeat} studyTiming={studyOptions?.ending} timing={!studyOptions?endingTempo(PRODUCT_TEMPO,restored):undefined} entries={state.entries} score={score} mode={state.mode} language={state.language} sessionKind={state.sessionKind} reducedMotion={reducedMotion} onRestart={start} onTitle={() => dispatch({ type: 'RETURN_TO_TITLE' })} />}
 
     {(info || leave) && <div className="modal-backdrop" onClick={closeDialog}><section className="info-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" onClick={e => e.stopPropagation()} onKeyDown={e => {
       if (e.key === 'Escape') closeDialog();
