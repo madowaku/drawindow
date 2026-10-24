@@ -165,6 +165,7 @@ tasks:
     allowed_files: [docs, README.md, scripts/qa-window-time.mjs, scripts/window-time-browser-proof.mjs]
     receipt:
       result: done
+      decision: complete
       summary: Original research deliverable audited; both Judge conditions repaired and verified. Runtime committed/pushed as c003876 and Draft PR32 attached on PR31 base. No product adoption/publication. Human gates remain explicit.
       commands:
         - cmd: git diff --cached --check and selective commit/push
