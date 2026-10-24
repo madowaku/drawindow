@@ -7,7 +7,7 @@ import { PremonitionRecorder } from './recording';
 import { PremonitionReplay } from './Replay';
 import type { BlindAssignment } from './evaluation';
 
-vi.mock('../../components/WindowCanvas', () => ({ WindowCanvas: (p: { expression?: string;strokes:unknown;studyPlayback?:{progress:number};studyCalm?:boolean }) => <div data-testid="face" data-pose={p.expression ?? 'default'} data-strokes={JSON.stringify(p.strokes)} data-progress={p.studyPlayback?.progress} data-calm={String(p.studyCalm)}/> }));
+vi.mock('../../components/WindowCanvas', () => ({ WindowCanvas: (p: { expression?: string;strokes:unknown;studyPlayback?:{progress:number};studyCalm?:boolean;calm?:boolean }) => <div data-testid="face" data-pose={p.expression ?? 'default'} data-strokes={JSON.stringify(p.strokes)} data-progress={p.studyPlayback?.progress} data-calm={String(p.calm||p.studyCalm)}/> }));
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); Object.defineProperty(document, 'hidden', { configurable: true, value: false }); });
 function trace() {
   let now = 0;

@@ -16,6 +16,7 @@ export interface EndingSceneProps {
   reducedMotion: boolean;
   onRestart: () => void;
   onTitle: () => void;
+  timing?:StudyEndingTiming;
   studyTiming?: StudyEndingTiming;
   studyOnBeat?: StudyEndingTiming['onBeat'];
 }
@@ -25,7 +26,7 @@ export interface StudyEndingTiming { pairMs:number; linkMs:number; arrivalMs:num
 /** Presentation only. No recognition, scoring mutation or game progression. */
 export function EndingScene(props: EndingSceneProps) {
   const { entries, score, language, mode, sessionKind, reducedMotion, onRestart, onTitle } = props;
-  const study=import.meta.env.DEV?props.studyTiming:undefined;
+  const study=props.timing??(import.meta.env.DEV?props.studyTiming:undefined);
   const observer=import.meta.env.DEV?props.studyOnBeat:undefined;
   const t = (en: string, ja: string) => language === 'ja' ? ja : en;
   const [act, setAct] = useState<'diary' | 'reveal' | 'goodbye'>(study?.skipIntro?'reveal':'diary');
@@ -71,7 +72,7 @@ export function EndingScene(props: EndingSceneProps) {
     </div>
     {act === 'goodbye' && <div className="ending-goodbye">
       <div className="ending-window" aria-hidden="true">
-        <CharacterScene studyCalm={Boolean(study)} mode={mode} phase="results" round={5} reducedMotion={reducedMotion} />
+        <CharacterScene calm={Boolean(study)} mode={mode} phase="results" round={5} reducedMotion={reducedMotion} />
         <div className="ending-window-pictures">{entries.map((e, i) => <SketchThumbnail key={e.id} strokes={e.strokes} label={String(i + 1)} />)}</div>
         <div className="ending-refog" />
       </div>
@@ -102,7 +103,7 @@ export function EndingScene(props: EndingSceneProps) {
   </section>;
 }
 
-/** Only used by the DEV study; A retains its literal timer behavior. */
+/** Visible presentation time; original A comparisons retain their literal timers. */
 function visibleDelay(duration:number,done:()=>void){
   let remaining=duration,start=0,timer:ReturnType<typeof setTimeout>|undefined;
   const update=()=>{if(timer!==undefined){clearTimeout(timer);remaining-=Math.max(0,performance.now()-start);timer=undefined;}if(!document.hidden){start=performance.now();timer=setTimeout(done,Math.max(0,remaining));}};

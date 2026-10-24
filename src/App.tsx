@@ -9,6 +9,9 @@ import { calculateScore } from './core/score';
 import { EndingScene, type StudyEndingTiming } from './components/EndingScene';
 import type { DrawingRecognizer, GameEvent, GameState, GirlExpression, Language, Mode, SessionKind, WindowCanvasProps } from './core/types';
 import { withJapaneseStarter } from './data/japaneseSketches';
+import { TempoCanvas } from './components/TempoCanvas';
+import {usePremonition} from './lib/usePremonition';
+import {endingTempo} from './lib/drawingTempo';
 import { WindowCanvas } from './components/WindowCanvas';
 import { SketchThumbnail } from './components/SketchThumbnail';
 import { CharacterScene, characterArt } from './components/CharacterScene';
@@ -71,8 +74,11 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
   const offlineEdition = import.meta.env.VITE_OFFLINE_EDITION === 'true';
   const liveApiConfigured = !offlineEdition && !studyOptions?.localOnly && (Boolean(import.meta.env.VITE_RECOGNITION_URL?.trim()) || import.meta.env.VITE_ENABLE_LIVE_API === 'true');
   const [state, rawDispatch] = useReducer(gameReducer, undefined, () => createInitialState(savedMode(), savedLanguage()));
+  const [restored,setRestored]=useState(false),[skipEpoch,setSkipEpoch]=useState(0);
   const dispatch = useCallback((event: GameEvent) => {
     if (import.meta.env.DEV) studyOptions?.onEvent?.(event);
+    if(event.type==='RESTORE_SESSION')setRestored(true);
+    if(event.type==='START')setRestored(false);
     rawDispatch(event);
   }, [studyOptions?.onEvent]);
   const { sound, toggleSound, playSound } = useGameAudio(musicForScene(state.phase, state.mode));
@@ -92,6 +98,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
     if (offlineEdition || studyOptions?.localOnly) void preloadQuickDrawModel().catch(() => { /* Explicit error on recognition. */ });
   }, [offlineEdition, studyOptions?.localOnly]);
   const reducedMotion = useReducedMotion();
+  const premonition=usePremonition(state,!studyOptions,reducedMotion);
   const phaseRef = useRef(state.phase);
   const active = !['title', 'review_intents', 'results'].includes(state.phase);
   const protectLeave = active || state.phase === 'review_intents';
@@ -201,7 +208,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
     }
   }, [state.phase, state.round]);
 
-  const canvasProps:WindowCanvasProps={expression:import.meta.env.DEV?studyOptions?.expression:undefined,language:state.language,previousStrokes:state.entries.at(-1)?.falseStart?.strokes,mode:state.mode,phase:state.phase,round:state.round,strokes:selectVisibleStrokes(state),onStrokesChange:strokes=>dispatch({type:'STROKES_CHANGED',strokes}),onBreathDone:()=>dispatch({type:'BREATH_DONE'}),onPlaybackDone:()=>dispatch({type:'PLAYBACK_DONE'}),reducedMotion};
+  const canvasProps:WindowCanvasProps={expression:studyOptions?studyOptions.expression:premonition.expression,language:state.language,previousStrokes:state.entries.at(-1)?.falseStart?.strokes,mode:state.mode,phase:state.phase,round:state.round,strokes:selectVisibleStrokes(state),onStrokesChange:strokes=>dispatch({type:'STROKES_CHANGED',strokes}),onBreathDone:()=>dispatch({type:'BREATH_DONE'}),onPlaybackDone:()=>dispatch({type:'PLAYBACK_DONE'}),reducedMotion};
   return <main ref={appScrollRef} className={`app ${title ? 'is-title' : ''} ${active ? 'is-playing' : ''}`} data-mode={state.mode} data-language={state.language} data-phase={state.phase} onFocusCapture={event => { if (state.phase === 'review_intents' && event.target instanceof HTMLInputElement) lastIntentFocusRef.current = event.target; }}>
     {import.meta.env.DEV && studyOptions?.header}
     <header className="topbar">
@@ -221,6 +228,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
         <p className="tagline">{t('Draw your own conclusions.', '言葉にしない、ふたりのしりとり。')}</p>
         <div className="title-rules"><p>{t('Guess her picture. Draw from its last letter.', '何に見えた？ その名前の最後の音から、次の絵を。')}</p></div>
         <div className="title-start">{languageButtons}{modeButtons}
+          {reducedMotion&&<p className="session-note">{t('Your device reduces motion. Stroke playback and extra gestures are simplified.','端末の「動きを減らす」が有効です。線の再生と追加の動きを省略します。')}</p>}
           {offlineEdition && <OfflineStatus language={state.language} />}
           {persistence.pending && <div className="resume-session"><p>{t('Your unfinished window is saved on this device.', 'この端末に、前の続きが残っています。')}</p><button className="primary resume-button" onClick={persistence.resume}>{t('CONTINUE DRAWING', '続きから遊ぶ')}</button><p>{t('Starting a new game replaces the saved progress.', '新しくはじめると、前の続きは消えます。')}</p></div>}
           <button className="primary start-button" onClick={start}>{sessionChoice === 'demo' ? t('PLAY DEMO', 'デモで遊ぶ') : t('START GAME', 'はじめる')}<ArrowRight size={20} /></button>
@@ -239,7 +247,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
     {active && <section className="play-layout" aria-label={t('Picture word chain', '絵のしりとり')}>
       <div className="play-heading"><div><h1>{state.phase === 'player_drawing' ? t('Your little reply.', 'あなたからのお返事。') : state.phase === 'recognizing' ? t('A moment to wonder.', '少し、考えごと。') : state.phase === 'recognition_error' ? t('A little interruption.', 'ちょっとひと休み。') : t('What do you see?', '何に見える？')}</h1></div><div className="round-label"><span>{t('EXCHANGE', 'おうふく')}</span><strong>{String(state.round).padStart(2, '0')}<small> / 05</small></strong></div></div>
       <div className={`window-surface phase-${state.phase}`}>
-        {studyOptions?.renderCanvas?studyOptions.renderCanvas(canvasProps):<WindowCanvas {...canvasProps}/>}
+        {studyOptions?.renderCanvas?studyOptions.renderCanvas(canvasProps):studyOptions?<WindowCanvas {...canvasProps}/>:<TempoCanvas {...canvasProps} tempo="C" controls={{speed:1}} skipEpoch={skipEpoch}/>}
         <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : state.sessionKind === 'ml' ? 'LOCAL AI' : 'LIVE API'}</span>
       </div>
       <div className="play-footer">
@@ -251,6 +259,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
           {state.phase === 'player_drawing' && <p>{t('Draw with your finger or mouse.', '指かマウスで描こう。')}</p>}
         </div>
         <div className="action-row">
+          {!studyOptions&&['girl_breath','girl_drawing'].includes(state.phase)&&<button className="text-button" onClick={()=>setSkipEpoch(v=>v+1)}>{t('Continue','先へ進む')}</button>}
           {state.phase === 'girl_holding' && <button className="primary" onClick={() => dispatch({ type: 'YOUR_TURN' })}>{t('YOUR TURN', 'あなたの番')}<ArrowRight size={20} /></button>}
           {state.phase === 'player_drawing' && <><button className="secondary tool" disabled={!state.drawingHistory.past.length} onClick={() => dispatch({ type: 'UNDO' })} aria-label={t('Undo last edit', '元に戻す')} title={t('Undo · Ctrl/Cmd+Z', '元に戻す · Ctrl/Cmd+Z')}><ArrowCounterClockwise size={21} /></button><button className="secondary tool" disabled={!state.drawingHistory.future.length} onClick={() => dispatch({ type: 'REDO' })} aria-label={t('Redo last edit', 'やり直す')} title={t('Redo · Ctrl/Cmd+Shift+Z', 'やり直す · Ctrl/Cmd+Shift+Z')}><ArrowClockwise size={21} /></button><button className="secondary tool clear-tool" disabled={!state.activeStrokes.length} onClick={() => dispatch({ type: 'CLEAR' })} aria-label={t('CLEAR', '消す')}><Eraser size={20} /><span>{t('CLEAR', '消す')}</span></button><button className="primary" disabled={!selectCanFinishDrawing(state)} onClick={() => dispatch({ type: 'DONE' })}>{t('DONE', 'できた')}<Check size={20} /></button></>}
           {['girl_breath', 'girl_drawing', 'girl_notice', 'girl_flustered', 'recognizing'].includes(state.phase) && <div className="waiting"><span className="waiting-mark" />{state.phase === 'recognizing' ? t('THINKING', '考え中') : t('HER TURN', 'しずくの番')}</div>}
@@ -267,7 +276,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
       <div className="review-footer"><button className="primary" onClick={() => dispatch({ type: 'SHOW_RESULTS' })}>{t('REVEAL OUR CHAIN', '答えあわせ')}<ArrowRight size={20} /></button></div>
     </section>}
 
-    {state.phase === 'results' && <EndingScene key={state.sessionId} studyOnBeat={studyOptions?.onEndingBeat} studyTiming={studyOptions?.ending} entries={state.entries} score={score} mode={state.mode} language={state.language} sessionKind={state.sessionKind} reducedMotion={reducedMotion} onRestart={start} onTitle={() => dispatch({ type: 'RETURN_TO_TITLE' })} />}
+    {state.phase === 'results' && <EndingScene key={state.sessionId} studyOnBeat={studyOptions?.onEndingBeat} studyTiming={studyOptions?.ending} timing={!studyOptions?endingTempo('C',restored):undefined} entries={state.entries} score={score} mode={state.mode} language={state.language} sessionKind={state.sessionKind} reducedMotion={reducedMotion} onRestart={start} onTitle={() => dispatch({ type: 'RETURN_TO_TITLE' })} />}
 
     {(info || leave) && <div className="modal-backdrop" onClick={closeDialog}><section className="info-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" onClick={e => e.stopPropagation()} onKeyDown={e => {
       if (e.key === 'Escape') closeDialog();

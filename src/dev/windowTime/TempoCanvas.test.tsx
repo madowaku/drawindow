@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import {cleanup,render} from '@testing-library/react';
 import {afterEach,it,expect,vi} from 'vitest';
-import * as tempoModule from './tempo';
+import * as tempoModule from '../../lib/drawingTempo';
 import {TempoCanvas} from './TempoCanvas';
 vi.mock('../../components/WindowCanvas',()=>({WindowCanvas:()=> <div/>}));
 afterEach(()=>{cleanup();vi.restoreAllMocks();});

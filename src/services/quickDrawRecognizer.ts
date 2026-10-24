@@ -7,6 +7,7 @@ type LiteRuntime = typeof import('@litertjs/core');
 type LiteModel = Awaited<ReturnType<LiteRuntime['loadAndCompile']>>;
 interface Ready { lite: LiteRuntime; model: LiteModel; labels: string[]; }
 let sharedReady: Promise<Ready> | undefined;
+let runtimeReady: Promise<LiteRuntime> | undefined;
 
 /** Resolve with Vite's deployment base so itch.io subpaths never use an external CDN. */
 function bundled(path: string): string {
@@ -22,12 +23,18 @@ export function preloadQuickDrawModel(): Promise<void> {
 }
 
 async function initialize(): Promise<Ready> {
-  const lite = await import('@litertjs/core');
-  await lite.loadLiteRt(bundled('wasm/')); // CPU/WASM works without GPU or JSPI.
-  const [model, labelResponse] = await Promise.all([
-    lite.loadAndCompile(bundled('quickdraw_model_static.tflite'), {accelerator:'wasm'}),
+  // Model/label retries reuse the already loaded runtime. LiteRT rejects a second
+  // loadLiteRt call after an asset fetch failure.
+  if(!runtimeReady)runtimeReady=(async()=>{const lite=await import('@litertjs/core');await lite.loadLiteRt(bundled('wasm/'));return lite;})().catch(error=>{runtimeReady=undefined;throw error;});
+  const lite=await runtimeReady;
+  const [modelResponse, labelResponse] = await Promise.all([
+    // CacheStorage/SW owns offline persistence. Avoid competing browser HTTP
+    // cache writes while the installer downloads this same large model.
+    fetch(bundled('quickdraw_model_static.tflite'), {cache:'no-store'}),
     fetch(bundled('labels.txt'), {cache:'force-cache'}),
   ]);
+  if(!modelResponse.ok)throw new Error('Local model asset is unavailable');
+  const model=await lite.loadAndCompile(new Uint8Array(await modelResponse.arrayBuffer()),{accelerator:'wasm'});
   if (!labelResponse.ok) throw new Error('Local label asset is unavailable');
   const labels = (await labelResponse.text()).trim().split(/\r?\n/);
   if (labels.length !== 345 || !labels.includes('cat') || !labels.includes('bat')) throw new Error('345 labels mismatch');

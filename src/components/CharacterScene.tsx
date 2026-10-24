@@ -18,6 +18,7 @@ interface Props {
   artSet?: 'current' | 'candidate' | 'final';
   studyPaused?: boolean;
   studyCalm?: boolean;
+  calm?:boolean;
 }
 
 function recoverPoseImage(event: SyntheticEvent<HTMLImageElement>, fallbackId: ShizukuPose['fallback']): void {
@@ -41,7 +42,7 @@ function hideFailedRoom(event: SyntheticEvent<HTMLImageElement>): void {
 }
 
 /** Pose sprites + browser-native phase gestures. Glass and ink live outside this component. */
-export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1, hasPlayerMarks = false, artSet = 'current', studyPaused = false, studyCalm = false }: Props) {
+export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1, hasPlayerMarks = false, artSet = 'current', studyPaused = false, studyCalm = false, calm:runtimeCalm = false }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const gestureRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<Animation | null>(null);
@@ -50,7 +51,7 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
   const paused = import.meta.env.DEV && studyPaused;
   runningRef.current = running && !paused;
   const reaction = getShizukuReaction({ phase, mode, round, reducedMotion, progress, hasPlayerMarks });
-  const calm = import.meta.env.DEV && studyCalm;
+  const calm = runtimeCalm || (import.meta.env.DEV && studyCalm);
   if(calm){
     // Keep the drawing portrait through her preparatory pause instead of a
     // fleeting extra THINKING portrait. Ink and fingertip still wait together.

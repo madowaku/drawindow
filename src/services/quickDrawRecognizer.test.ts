@@ -11,7 +11,7 @@ const labels = vocabulary.model.labelsText.trim().split('\n');
 const strokes = [{ id: 'synthetic', points: [{ x: .2, y: .2, t: 0 }, { x: .7, y: .7, t: 10 }] }];
 beforeEach(() => {
   vi.resetModules(); vi.clearAllMocks();
-  vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, text: async () => labels.join('\n') })));
+  vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, text: async () => labels.join('\n'),arrayBuffer:async()=>new ArrayBuffer(16) })));
   runtime.scores = labels.map(label => label === 'cat' ? .7 : label === 'dog' ? .2 : .0001);
 });
 afterEach(() => { vi.unstubAllGlobals(); });
@@ -36,4 +36,12 @@ describe('one complete model run and unchanged production A', () => {
     }
     expect(run).toHaveBeenCalledTimes(2); expect(ranking).not.toHaveBeenCalled();
   });
+});
+
+it('retries model fetching without reloading LiteRT and compiles the same local bytes',async()=>{
+ const lite=await import('@litertjs/core');let attempts=0;
+ vi.stubGlobal('fetch',vi.fn(async(input:string)=>{if(input.endsWith('.tflite')&&attempts++===0)throw Error('net::ERR_CACHE_WRITE_FAILURE');return {ok:true,text:async()=>labels.join('\n'),arrayBuffer:async()=>new ArrayBuffer(16)};}));
+ const {preloadQuickDrawModel,createQuickDrawRecognizer}=await import('./quickDrawRecognizer');await expect(preloadQuickDrawModel()).rejects.toThrow('ERR_CACHE_WRITE_FAILURE');
+ const result=await createQuickDrawRecognizer().recognize({requestId:'retry',strokes,language:'en'});expect(result.guess).toBe('cat');expect(lite.loadLiteRt).toHaveBeenCalledTimes(1);
+ expect(lite.loadAndCompile).toHaveBeenCalledWith(expect.any(Uint8Array),{accelerator:'wasm'});expect(fetch).toHaveBeenCalledWith(expect.stringContaining('quickdraw_model_static.tflite'),{cache:'no-store'});
 });

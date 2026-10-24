@@ -97,6 +97,7 @@
   "human": {
     "developerSelfPlay": null,
     "pilots": 0,
-    "recommendation": "B is a provisional first human-test candidate, not an adopted product default"
+    "ownerFeedback": "C feels right; finger cursor easier; D main integration approved on 2026-10-24",
+    "recommendation": "C tempo with cosmetic D adopted after owner feedback; broader pilot evaluation remains pending"
   }
 }

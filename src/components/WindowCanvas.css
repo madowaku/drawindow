@@ -71,3 +71,6 @@
 .window-canvas__drawing.is-interactive[data-has-strokes='true']:not(:focus-visible) {
   outline: none;
 }
+
+/* Shared presentation host fills the same window in product and research. */
+.tempo-canvas-host { position:absolute; inset:0; pointer-events:none; }

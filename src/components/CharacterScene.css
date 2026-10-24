@@ -120,3 +120,5 @@
   .character-scene__sprite { transition: none; }
   .character-scene__blink { animation: none; }
 }
+
+.character-scene[data-study-calm=true] .character-scene__breathing{animation:none}.character-scene[data-study-calm=true] .character-scene__sprite{transition-duration:320ms}
