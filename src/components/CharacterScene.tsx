@@ -16,6 +16,7 @@ interface Props {
   round?: number;
   hasPlayerMarks?: boolean;
   artSet?: 'current' | 'candidate' | 'final';
+  studyPaused?: boolean;
 }
 
 function recoverPoseImage(event: SyntheticEvent<HTMLImageElement>, fallbackId: ShizukuPose['fallback']): void {
@@ -39,13 +40,14 @@ function hideFailedRoom(event: SyntheticEvent<HTMLImageElement>): void {
 }
 
 /** Pose sprites + browser-native phase gestures. Glass and ink live outside this component. */
-export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1, hasPlayerMarks = false, artSet = 'current' }: Props) {
+export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1, hasPlayerMarks = false, artSet = 'current', studyPaused = false }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const gestureRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<Animation | null>(null);
   const [running, setRunning] = useState(true);
   const runningRef = useRef(running);
-  runningRef.current = running;
+  const paused = import.meta.env.DEV && studyPaused;
+  runningRef.current = running && !paused;
   const reaction = getShizukuReaction({ phase, mode, round, reducedMotion, progress, hasPlayerMarks });
   const frame = frameOverride ?? reaction.pose;
 
@@ -88,9 +90,9 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
     if (!animation) return;
     // Preserve the gesture clock while hidden, instead of replaying on tab return.
     // A finished gesture must also stay finished; play() would restart it.
-    if (!running && animation.playState !== 'finished') animation.pause();
-    else if (running && animation.playState === 'paused') animation.play();
-  }, [running]);
+    if ((!running || paused) && animation.playState !== 'finished') animation.pause();
+    else if (running && !paused && animation.playState === 'paused') animation.play();
+  }, [running, paused]);
 
   const poseStyles = (pose: ShizukuPose): CSSProperties => ({
     '--pose-eye-x': `${pose.anchor.x * 100}%`,
@@ -105,7 +107,7 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
     data-mode={mode}
     data-pose={frame}
     data-motion={reaction.motion}
-    data-running={running && !reducedMotion}
+    data-running={running && !paused && !reducedMotion}
     data-reduced-motion={reducedMotion}
     data-blink-enabled={phase === 'title' && !reducedMotion && artSet === 'current'}
     data-art-set={artSet}

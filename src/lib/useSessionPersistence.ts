@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import type { GameEvent, GameState } from '../core/types';
-import { decodeSession, encodeSession, readSession, writeSession } from './sessionStorage';
+import { decodeSession, encodeSession, readSession, writeSession, type SessionSnapshot } from './sessionStorage';
 import type { RestoredSession } from './sessionStorage';
 
+export interface SessionStore { read: () => Promise<unknown>; write: (snapshot: SessionSnapshot | null) => Promise<void>; }
+const defaultStore: SessionStore = { read: readSession, write: writeSession };
+
 /** At most two structured clones per second; never serialize the catalogue on pointer moves. */
-export function useSessionPersistence(state: GameState, drafts: Record<string, string>, dispatch: (event: GameEvent) => void, setDrafts: (drafts: Record<string, string>) => void, offlineEdition = false) {
+export function useSessionPersistence(state: GameState, drafts: Record<string, string>, dispatch: (event: GameEvent) => void, setDrafts: (drafts: Record<string, string>) => void, offlineEdition = false, store: SessionStore = defaultStore) {
   const [pending, setPending] = useState<RestoredSession | null | undefined>(undefined);
   const [status, setStatus] = useState<'saved' | 'saving' | 'error' | 'invalid' | 'incompatible' | null>(null);
   const latest = useRef({ state, drafts, pending });
@@ -18,14 +21,14 @@ export function useSessionPersistence(state: GameState, drafts: Record<string, s
     if (current.pending !== null) return;
     const sequence = ++writeSequence.current;
     setStatus('saving');
-    void writeSession(current.state.phase === 'title' ? null : encodeSession(current.state, current.drafts))
+    void store.write(current.state.phase === 'title' ? null : encodeSession(current.state, current.drafts))
       .then(() => { if (alive.current && sequence === writeSequence.current) setStatus(current.state.phase === 'title' ? null : 'saved'); })
       .catch(() => { if (alive.current && sequence === writeSequence.current) setStatus('error'); });
   };
   useEffect(() => {
     alive.current = true;
     let current = true;
-    void readSession().then(raw => {
+    void store.read().then(raw => {
       if (!current || loadingCanceled.current) return;
       const restored = decodeSession(raw);
       if (offlineEdition && restored?.state.sessionKind === 'api') {
@@ -44,7 +47,7 @@ export function useSessionPersistence(state: GameState, drafts: Record<string, s
     if (pending !== null || (state.phase === 'title' && state.sessionId === 0) || timer.current) return;
     timer.current = setTimeout(() => { timer.current = null; save(); }, 500);
   }, [state, drafts, pending]);
-  const discard = () => { loadingCanceled.current = true; setPending(null); void writeSession(null).catch(() => { if (alive.current) setStatus('error'); }); };
+  const discard = () => { loadingCanceled.current = true; setPending(null); void store.write(null).catch(() => { if (alive.current) setStatus('error'); }); };
   const resume = () => {
     if (!pending) return;
     setDrafts(pending.intentDrafts);

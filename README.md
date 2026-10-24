@@ -1,3 +1,11 @@
+# DRAWINDOW v0.11 しずくの小さな予感・比較研究
+
+`npm run dev` の `/?shizuku-premonition` で、実際の５往復を匿名表示X/Yで遊び、同じ記録の表情だけを比較できます。Dは画像のみAの認識結果を受け取って短い表情を選びます。認識・次絵・９リンク・本編の演技は変更していません。研究の途中保存は本編と別の端末内領域です。
+
+[D設計](docs/SHIZUKU_PREMONITION_v011_DESIGN.md) · [人間テスト手順](docs/SHIZUKU_PREMONITION_v011_HUMAN_TEST.md) · [検証と採用保留](docs/SHIZUKU_PREMONITION_v011_STATUS.md)
+
+評価JSON/CSVは本人操作で保存します。描画入り再生JSONは別途選択する方式です。人の楽しさ・自然さは未検証で、本編採用・main統合・公開・販売ZIP更新はしていません。
+
 # DRAWINDOW v0.10 文脈認識・比較研究
 
 本編はv0.9の画像のみAを維持します。`npm run dev` の `/?context-recognition` で、１回の端末内推論の全345候補を固定し、A/B/C・Cの補正設定を比較できます。正解情報は推論後の評価専用で、読みの一致・意味の正解・文字上の継続・実プレイ・感想を分けています。
