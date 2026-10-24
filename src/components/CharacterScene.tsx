@@ -17,6 +17,7 @@ interface Props {
   hasPlayerMarks?: boolean;
   artSet?: 'current' | 'candidate' | 'final';
   studyPaused?: boolean;
+  studyCalm?: boolean;
 }
 
 function recoverPoseImage(event: SyntheticEvent<HTMLImageElement>, fallbackId: ShizukuPose['fallback']): void {
@@ -40,7 +41,7 @@ function hideFailedRoom(event: SyntheticEvent<HTMLImageElement>): void {
 }
 
 /** Pose sprites + browser-native phase gestures. Glass and ink live outside this component. */
-export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1, hasPlayerMarks = false, artSet = 'current', studyPaused = false }: Props) {
+export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1, hasPlayerMarks = false, artSet = 'current', studyPaused = false, studyCalm = false }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const gestureRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<Animation | null>(null);
@@ -49,6 +50,16 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
   const paused = import.meta.env.DEV && studyPaused;
   runningRef.current = running && !paused;
   const reaction = getShizukuReaction({ phase, mode, round, reducedMotion, progress, hasPlayerMarks });
+  const calm = import.meta.env.DEV && studyCalm;
+  if(calm){
+    // Keep the drawing portrait through her preparatory pause instead of a
+    // fleeting extra THINKING portrait. Ink and fingertip still wait together.
+    if(phase==='girl_drawing'){reaction.pose='drawing';reaction.motion=progress<.14?'idle':'draw';}
+    if(phase==='girl_holding')reaction.pose='neutral';
+    reaction.leanPx*=mode==='day'?.5:.4;
+    if(!reducedMotion&&phase==='girl_breath')reaction.durationMs=mode==='day'?800:950;
+    if(!reducedMotion&&phase==='girl_drawing')reaction.durationMs=progress<.14?0:1200;
+  }
   const frame = frameOverride ?? reaction.pose;
 
   useEffect(() => {
@@ -105,6 +116,7 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
     ref={rootRef}
     aria-hidden="true"
     data-mode={mode}
+    data-study-calm={calm||undefined}
     data-pose={frame}
     data-motion={reaction.motion}
     data-running={running && !paused && !reducedMotion}

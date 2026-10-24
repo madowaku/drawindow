@@ -32,9 +32,11 @@ it('DEV study uses local A and its isolated save backend while forwarding cosmet
 it('ignores study controls and expression in production', () => {
   vi.stubEnv('DEV',false);
   const onEvent=vi.fn();
-  render(<App study={{localOnly:true,expression:'curious',onEvent,header:<p>Research must not ship</p>}} />);
+  const renderCanvas=vi.fn(()=> <div>Tempo renderer must not ship</div>);
+  render(<App study={{localOnly:true,expression:'curious',onEvent,renderCanvas,header:<p>Research must not ship</p>}} />);
   expect(screen.queryByText('Research must not ship')).toBeNull();
   fireEvent.click(screen.getByRole('button',{name:/PLAY DEMO/}));
   expect(screen.getByTestId('study-canvas').getAttribute('data-expression')).toBeNull();
   expect(onEvent).not.toHaveBeenCalled();
+  expect(renderCanvas).not.toHaveBeenCalled();
 });

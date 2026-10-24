@@ -6,8 +6,8 @@ import { useCallback, useEffect, useLayoutEffect, useReducer, useRef, useState, 
 import { ArrowLeft, ArrowRight, ArrowCounterClockwise, ArrowClockwise, Check, Eraser, Info, Moon, SpeakerHigh, SpeakerSlash, Sun, X } from '@phosphor-icons/react';
 import { createInitialState, gameReducer, selectCanFinishDrawing, selectPlayerEntries, selectVisibleStrokes } from './core/gameMachine';
 import { calculateScore } from './core/score';
-import { EndingScene } from './components/EndingScene';
-import type { DrawingRecognizer, GameEvent, GameState, GirlExpression, Language, Mode, SessionKind } from './core/types';
+import { EndingScene, type StudyEndingTiming } from './components/EndingScene';
+import type { DrawingRecognizer, GameEvent, GameState, GirlExpression, Language, Mode, SessionKind, WindowCanvasProps } from './core/types';
 import { withJapaneseStarter } from './data/japaneseSketches';
 import { WindowCanvas } from './components/WindowCanvas';
 import { SketchThumbnail } from './components/SketchThumbnail';
@@ -50,6 +50,9 @@ export interface StudyOptions {
   onEvent?: (event: GameEvent) => void;
   header?: ReactNode;
   footer?: ReactNode;
+  renderCanvas?: (props:WindowCanvasProps)=>ReactNode;
+  ending?: StudyEndingTiming;
+  onEndingBeat?: StudyEndingTiming['onBeat'];
 }
 export interface AppProps {
   /** DEV-only generic observation/presentation; no study module imported here. */
@@ -198,6 +201,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
     }
   }, [state.phase, state.round]);
 
+  const canvasProps:WindowCanvasProps={expression:import.meta.env.DEV?studyOptions?.expression:undefined,language:state.language,previousStrokes:state.entries.at(-1)?.falseStart?.strokes,mode:state.mode,phase:state.phase,round:state.round,strokes:selectVisibleStrokes(state),onStrokesChange:strokes=>dispatch({type:'STROKES_CHANGED',strokes}),onBreathDone:()=>dispatch({type:'BREATH_DONE'}),onPlaybackDone:()=>dispatch({type:'PLAYBACK_DONE'}),reducedMotion};
   return <main ref={appScrollRef} className={`app ${title ? 'is-title' : ''} ${active ? 'is-playing' : ''}`} data-mode={state.mode} data-language={state.language} data-phase={state.phase} onFocusCapture={event => { if (state.phase === 'review_intents' && event.target instanceof HTMLInputElement) lastIntentFocusRef.current = event.target; }}>
     {import.meta.env.DEV && studyOptions?.header}
     <header className="topbar">
@@ -235,7 +239,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
     {active && <section className="play-layout" aria-label={t('Picture word chain', '絵のしりとり')}>
       <div className="play-heading"><div><h1>{state.phase === 'player_drawing' ? t('Your little reply.', 'あなたからのお返事。') : state.phase === 'recognizing' ? t('A moment to wonder.', '少し、考えごと。') : state.phase === 'recognition_error' ? t('A little interruption.', 'ちょっとひと休み。') : t('What do you see?', '何に見える？')}</h1></div><div className="round-label"><span>{t('EXCHANGE', 'おうふく')}</span><strong>{String(state.round).padStart(2, '0')}<small> / 05</small></strong></div></div>
       <div className={`window-surface phase-${state.phase}`}>
-        <WindowCanvas expression={import.meta.env.DEV ? studyOptions?.expression : undefined} language={state.language} previousStrokes={state.entries.at(-1)?.falseStart?.strokes} mode={state.mode} phase={state.phase} round={state.round} strokes={selectVisibleStrokes(state)} onStrokesChange={strokes => dispatch({ type: 'STROKES_CHANGED', strokes })} onBreathDone={() => dispatch({ type: 'BREATH_DONE' })} onPlaybackDone={() => dispatch({ type: 'PLAYBACK_DONE' })} reducedMotion={reducedMotion} />
+        {studyOptions?.renderCanvas?studyOptions.renderCanvas(canvasProps):<WindowCanvas {...canvasProps}/>}
         <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : state.sessionKind === 'ml' ? 'LOCAL AI' : 'LIVE API'}</span>
       </div>
       <div className="play-footer">
@@ -263,7 +267,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
       <div className="review-footer"><button className="primary" onClick={() => dispatch({ type: 'SHOW_RESULTS' })}>{t('REVEAL OUR CHAIN', '答えあわせ')}<ArrowRight size={20} /></button></div>
     </section>}
 
-    {state.phase === 'results' && <EndingScene key={state.sessionId} entries={state.entries} score={score} mode={state.mode} language={state.language} sessionKind={state.sessionKind} reducedMotion={reducedMotion} onRestart={start} onTitle={() => dispatch({ type: 'RETURN_TO_TITLE' })} />}
+    {state.phase === 'results' && <EndingScene key={state.sessionId} studyOnBeat={studyOptions?.onEndingBeat} studyTiming={studyOptions?.ending} entries={state.entries} score={score} mode={state.mode} language={state.language} sessionKind={state.sessionKind} reducedMotion={reducedMotion} onRestart={start} onTitle={() => dispatch({ type: 'RETURN_TO_TITLE' })} />}
 
     {(info || leave) && <div className="modal-backdrop" onClick={closeDialog}><section className="info-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" onClick={e => e.stopPropagation()} onKeyDown={e => {
       if (e.key === 'Escape') closeDialog();

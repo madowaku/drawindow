@@ -5,11 +5,13 @@ import { Page } from './Page';
 vi.mock('./App', () => ({ default: () => <p>Normal five-exchange game</p> }));
 vi.mock('./dev/RecognitionBenchmarkPage', () => ({ RecognitionBenchmark: () => <p>Developer benchmark</p> }));
 vi.mock('./dev/PremonitionStudyPage', () => ({ PremonitionStudyPage: () => <p>Anonymous five-exchange study</p> }));
+vi.mock('./dev/WindowTimePage',()=>({WindowTimePage:()=> <p>Isolated window time</p>}));
 vi.mock('./dev/ContextRecognitionPage', () => ({ ContextRecognitionPage: () => <p>Isolated context comparison</p> }));
 vi.mock('./dev/LiveAcceptancePage', () => ({ LiveAcceptancePage: () => <p>Local live acceptance</p> }));
 vi.mock('./dev/CataloguePreview', () => ({ CataloguePreview: () => <p>Doodle catalog preview</p> }));
 vi.mock('./dev/ReadabilityStudy', () => ({ ReadabilityStudy: () => <p>Blind readability study</p> }));
 afterEach(() => { cleanup(); vi.unstubAllEnvs(); window.history.replaceState({}, '', '/'); });
+it('opens window time only in DEV',async()=>{window.history.replaceState({},'','/?window-time');vi.stubEnv('DEV',true);const view=render(<Page/>);expect(await screen.findByText('Isolated window time')).toBeTruthy();view.unmount();vi.stubEnv('DEV',false);render(<Page/>);expect(screen.getByText('Normal five-exchange game')).toBeTruthy();expect(screen.queryByText('Isolated window time')).toBeNull();});
 it('never routes a production URL to the benchmark', () => {
   window.history.replaceState({}, '', '/?recognition-benchmark');
   vi.stubEnv('DEV', false);
