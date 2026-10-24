@@ -2,9 +2,10 @@ import {spawn} from 'node:child_process';
 import {mkdir,readFile,writeFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
+import {observeLiveDrawing,replayDrawingProof} from './premonition-drawing-proof.mjs';
 const origin='http://127.0.0.1:4220/';
 const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4220','--strictPort'],{stdio:'pipe'});
-const receipt={status:'started',scope:'Synthetic pointer circles with actual local ML; evaluations deliberately unanswered. Not human acceptance, accuracy, comfort or enjoyment evidence.',external:[],posts:0,pageErrors:[],plays:[],checks:[]};
+const receipt={status:'started',scope:'Synthetic pointer circles with actual local ML; evaluations deliberately unanswered. Not human acceptance, accuracy, comfort or enjoyment evidence.',external:[],posts:0,pageErrors:[],plays:[],liveDrawings:[],checks:[]};
 let browser,lastPage;
 const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function store(page,name,value,write=false){return page.evaluate(({name,value,write})=>new Promise((resolve,reject)=>{const request=indexedDB.open(name,1);request.onupgradeneeded=()=>request.result.createObjectStore('sessions');request.onerror=()=>reject(String(request.error));request.onsuccess=()=>{const db=request.result,tx=db.transaction('sessions',write?'readwrite':'readonly'),s=tx.objectStore('sessions'),r=write?s.put(value,'current'):s.get('current');let result;r.onsuccess=()=>{result=r.result;};tx.oncomplete=()=>{db.close();resolve(result);};tx.onerror=()=>reject(String(tx.error));};}),{name,value,write});}
@@ -26,6 +27,7 @@ try{
   assert.equal(await page.getByRole('button',{name:/PLAY DEMO|デモで遊ぶ/}).count(),0);
   await page.getByRole('button',{name:language==='en'?'START GAME':'はじめる',exact:true}).click();
   for(let round=1;round<=5;round++){
+   const live=await observeLiveDrawing(page);receipt.liveDrawings.push({language,mode,round,live});
    const turn=page.getByRole('button',{name:language==='en'?'YOUR TURN':'あなたの番',exact:true});await turn.waitFor({timeout:60000});console.log('Drawing',language,mode,round);await spoilerCheck(page);await turn.click();await draw(page);
    await spoilerCheck(page);await page.getByRole('button',{name:language==='en'?'DONE':'できた',exact:true}).click();
   }
@@ -58,6 +60,8 @@ try{
   const again=JSON.parse(await download(page,'描画を含む再生JSONを保存'));assert.deepEqual(again.recording.events.filter(e=>e.event.type==='RECOGNITION_RESOLVED'),recognitions);
   const mobile=await bottom(page);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   await page.setViewportSize({width:1440,height:900});const desktop=await bottom(page);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:`artifacts/release/offline-premonition-${language}-${mode}-desktop.png`,fullPage:true});
+  await page.locator('.premonition-replay-panes').scrollIntoViewIfNeeded();
+  const replayDrawings=await replayDrawingProof(page,language,mode,raw.recording);assert(replayDrawings>=5);
   await page.getByRole('button',{name:language==='en'?'SAVE TODAY’S WINDOW':'今日の窓を残す',exact:true}).click();const souvenir=page.locator('.souvenir>img');await souvenir.waitFor({timeout:30000});assert.deepEqual(await souvenir.evaluate(i=>({width:i.naturalWidth,height:i.naturalHeight})),{width:1200,height:3000});const imageDownload=page.waitForEvent('download');await page.getByRole('link',{name:language==='en'?'Download image':'画像をダウンロード',exact:true}).click();await(await imageDownload).saveAs(`artifacts/release/offline-premonition-${language}-${mode}-souvenir.png`);
   assert.deepEqual(await store(page,'drawindow-session'),sentinel);
   await writeFile(`artifacts/release/offline-premonition-${language}-${mode}-raw.json`,JSON.stringify(raw,null,2));await writeFile(`artifacts/release/offline-premonition-${language}-${mode}-metadata.json`,JSON.stringify(meta,null,2));

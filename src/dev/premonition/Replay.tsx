@@ -1,21 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { CharacterScene } from '../../components/CharacterScene';
-import { SketchThumbnail } from '../../components/SketchThumbnail';
+import { WindowCanvas } from '../../components/WindowCanvas';
 import { selectVisibleStrokes } from '../../core/gameMachine';
 import { calculateScore } from '../../core/score';
-import { detectPremonitionTransition } from './logic';
-import { replayRecording, type StudyRecording } from './recording';
+import type { StudyRecording } from './recording';
+import { createReplayTimeline } from './timeline';
 import type { BlindAssignment, BlindLabel } from './evaluation';
 
 export function PremonitionReplay({ recording, assignment, label, reducedMotion, onExposure }: {recording:StudyRecording;assignment:BlindAssignment;label:BlindLabel;reducedMotion:boolean;onExposure?:(labels:readonly BlindLabel[],kind:'single'|'paired')=>void}) {
-  const timeline=useMemo(()=>{
-    const raw=replayRecording(recording);
-    let at=0;
-    return raw.map((frame,index)=>{
-      if(index)at+=Math.min(1000,Math.max(100,frame.atMs-raw[index-1].atMs));
-      return {...frame,playAt:at,beat:detectPremonitionTransition(raw[index-1]?.state??null,frame.state)};
-    }).filter((frame,index,all)=>!['STROKES_CHANGED','SET_INTENT'].includes(frame.event?.type??'')||all[index+1]?.event?.type!==frame.event?.type);
-  },[recording]);
+  const timeline=useMemo(()=>createReplayTimeline(recording),[recording]);
   const [clock,setClock]=useState(0),[playing,setPlaying]=useState(false),[both,setBoth]=useState(false);
   const limit=timeline.at(-1)?.playAt??0;
   const elapsed=useRef<number|null>(null);
@@ -47,14 +39,19 @@ export function PremonitionReplay({ recording, assignment, label, reducedMotion,
   const event=frame.beat;beatRef.current=event?.id;
   const dExpression=visible&&event?.id!==suppressedBeat&&!reducedMotion&&event&&!event.suppressionReason&&clock-frame.playAt<event.candidate.durationMs?event.candidate.expression:undefined;
   const score=calculateScore(frame.state.entries,frame.state.sessionKind,frame.state.language);
+  const progress=frame.durationMs>0?Math.min(1,Math.max(0,(clock-frame.playAt)/frame.durationMs)):1;
   const nextBeat=()=>{setSuppressedBeat(undefined);setPlaying(false);const next=timeline.find(item=>item.playAt>clock&&item.beat);setClock(next?.playAt??limit);};
   return <section className="premonition-replay" aria-label="同じ記録の比較再生">
-    <h2>同じ窓の記録を見返す</h2><p>再推論はしません。絵は記録の静止表示、長い待ち時間を短縮した共通時計で表情を比較します。一時停止・手動位置では表情も静止比較です。実プレイのテンポ評価とは分けてください。</p>
+    <h2>同じ窓の記録を見返す</h2><p>再推論はしません。同じ時計で、息かけ・ためらい・指先と線の動きを再生します。停止や位置の指定で途中の線も確認できます。記録されていないタブ離脱の間は再現できません。</p>
     <div className="premonition-actions"><button onClick={()=>{setSuppressedBeat(undefined);setClock(0);setPlaying(false);}}>最初へ</button><button disabled={reducedMotion||clock>=limit} onClick={()=>setPlaying(value=>!value)}>{playing?'再生を止める':'記録を再生'}</button><button onClick={nextBeat}>次の認識直後</button><label><input type="checkbox" checked={both} onChange={e=>setBoth(e.target.checked)}/> 並べて比較する</label></div>
     <label>再生位置<input aria-label="再生位置" type="range" min="0" max={limit} step="10" value={clock} onChange={e=>{setSuppressedBeat(undefined);setPlaying(false);setClock(Number(e.target.value));}}/></label>
     {reducedMotion&&<p>動きを減らす設定では自動再生と追加の短い表情を止めています。位置を選んで見返せます。</p>}
     <div className={`premonition-replay-panes ${both?'is-paired':''}`}>{(both?(['X','Y'] as const):[label]).map(slot=><article key={slot} data-testid={`replay-${slot}`} data-round={frame.state.round} data-entry-count={frame.state.entries.length} data-connected={score.connectedCount}>
-      <h3>表示 {slot}</h3><div className="premonition-replay-window"><CharacterScene mode={frame.state.mode} phase={frame.state.phase} reducedMotion={reducedMotion} round={frame.state.round} frameOverride={assignment[slot]==='D'?dExpression:undefined}/><div className="premonition-replay-glass"/><SketchThumbnail strokes={selectVisibleStrokes(frame.state)} label="記録した絵"/></div>
+      <h3>表示 {slot}</h3><div className="premonition-replay-window" data-phase={frame.state.phase} data-progress={progress}>
+        <WindowCanvas language={frame.state.language} mode={frame.state.mode} phase={frame.state.phase} round={frame.state.round} strokes={selectVisibleStrokes(frame.state)} previousStrokes={frame.state.entries.at(-1)?.falseStart?.strokes} expression={assignment[slot]==='D'?dExpression:undefined} reducedMotion={reducedMotion} studyPlayback={{progress,paused:!playing||!visible}} onStrokesChange={()=>undefined} onBreathDone={()=>undefined} onPlaybackDone={()=>undefined}/>
+        <div className="premonition-replay-input-shield" aria-hidden="true"/>
+      </div>
+      {(frame.state.phase==='girl_notice'||frame.state.phase==='girl_flustered')&&<p className="girl-oops">{frame.state.phase==='girl_notice'?'あっ。':'……もう一回。'}</p>}
       <p>{frame.state.mode==='day'?'DAY':'NIGHT'} · {frame.state.round}/5 · 記録 {frame.state.entries.length}/10枚</p>
     </article>)}</div>
   </section>;

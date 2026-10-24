@@ -362,3 +362,33 @@ it('replays breath and drawing in the same round after a slip, including a NIGHT
   rerender(<WindowCanvas {...base} phase="girl_drawing"/>);
   clock.at(2600);expect(base.onPlaybackDone).toHaveBeenCalledTimes(2);
 });
+
+it('uses a read-only shared DEV clock for hesitation, ink and fingertip, including backwards seeks', () => {
+  const clock = installFrameClock();
+  const strokes: Stroke[] = [{id:'line',points:[{x:.1,y:.2,t:0},{x:.9,y:.8,t:1000}]}];
+  const base=props({phase:'girl_drawing',strokes});
+  const {rerender}=render(<WindowCanvas {...base} studyPlayback={{progress:.05,paused:true}}/>);
+  expect(screen.queryByTestId('stroke-tip-overlay')).toBeNull();
+  rerender(<WindowCanvas {...base} studyPlayback={{progress:.35,paused:true}}/>);
+  const first=screen.getByTestId('stroke-tip-overlay').style.left;
+  clock.at(10000);
+  expect(screen.getByTestId('stroke-tip-overlay').style.left).toBe(first);
+  rerender(<WindowCanvas {...base} studyPlayback={{progress:.65,paused:false}}/>);
+  expect(screen.getByTestId('stroke-tip-overlay').style.left).not.toBe(first);
+  rerender(<WindowCanvas {...base} studyPlayback={{progress:1,paused:true}}/>);
+  expect(screen.queryByTestId('stroke-tip-overlay')).toBeNull();
+  rerender(<WindowCanvas {...base} studyPlayback={{progress:.35,paused:true}}/>);
+  expect(screen.getByTestId('stroke-tip-overlay').style.left).toBe(first);
+  expect(base.onPlaybackDone).not.toHaveBeenCalled();
+  expect(base.onBreathDone).not.toHaveBeenCalled();
+  expect(base.onStrokesChange).not.toHaveBeenCalled();
+});
+
+it('ignores the study clock in production and retains the original completion callback', () => {
+  vi.stubEnv('DEV',false);
+  try {
+    const clock=installFrameClock(),base=props({phase:'girl_drawing',strokes:[{id:'line',points:[{x:.1,y:.2,t:0},{x:.9,y:.8,t:1000}]}]});
+    render(<WindowCanvas {...base} studyPlayback={{progress:0,paused:true}}/>);
+    clock.at(1000);expect(base.onPlaybackDone).toHaveBeenCalledTimes(1);
+  } finally { vi.unstubAllEnvs(); }
+});

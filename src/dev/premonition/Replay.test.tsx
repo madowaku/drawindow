@@ -7,8 +7,7 @@ import { PremonitionRecorder } from './recording';
 import { PremonitionReplay } from './Replay';
 import type { BlindAssignment } from './evaluation';
 
-vi.mock('../../components/CharacterScene', () => ({ CharacterScene: (p: { frameOverride?: string }) => <div data-testid="face" data-pose={p.frameOverride ?? 'default'}/> }));
-vi.mock('../../components/SketchThumbnail', () => ({ SketchThumbnail: () => null }));
+vi.mock('../../components/WindowCanvas', () => ({ WindowCanvas: (p: { expression?: string }) => <div data-testid="face" data-pose={p.expression ?? 'default'}/> }));
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); Object.defineProperty(document, 'hidden', { configurable: true, value: false }); });
 function trace() {
   let now = 0;
