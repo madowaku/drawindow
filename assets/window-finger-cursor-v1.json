@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "created": "2026-10-24",
+  "purpose": "Original generated finger cursor for drawing on a misted window; not a replacement character pose",
+  "generator": "Built-in image_gen; model identifier not exposed",
+  "references": [
+    {
+      "role": "Pose silhouette only",
+      "path": "C:/Dev/AssetsShared/Kenney/kenney_cursor-pack/PNG/Basic/Double/hand_point.png",
+      "creator": "Kenney",
+      "license": "CC0 (local pack License.txt verified)"
+    },
+    {
+      "role": "Palette/style only",
+      "path": "public/art/shizuku/neutral.webp",
+      "preservation": "Existing adopted art is unchanged"
+    }
+  ],
+  "promptSummary": "Single isolated warm ivory pointing hand, extended index toward upper-left, relaxed curled fingers, soft gray-brown outline and off-white keyline; restrained anime storybook shading; transparent background; no sleeve, text, objects or drop shadow",
+  "source": {
+    "path": "assets/source/cursors/window-finger-v1.png",
+    "width": 1254,
+    "height": 1254,
+    "sha256": "f6761bc4afbb97ed06c62a2c918c5127ffc219c0b583f936697b4105fdda6d10"
+  },
+  "runtime": {
+    "path": "src/assets/cursors/window-finger.png",
+    "width": 40,
+    "height": 40,
+    "hotspot": [
+      8,
+      4
+    ],
+    "sha256": "b95cb73a3236373f48aa79c4a58ba8f710cd03c3d64861c01021a3469a908efd"
+  },
+  "processing": "Deterministic 40x40 Lanczos3 downsample with Sharp; RGBA transparency preserved. No background synthesis or silhouette edits.",
+  "constraints": "Player cursor only; adopted 291 drawings and 7 expressions remain unchanged",
+  "prompt": "Create ONE production mouse cursor sprite for DRAWINDOW, a quiet anime game drawing with a finger on a misted window. Image 1 is a POSE/SILHOUETTE reference only: a pointing hand seen from its back, index extended toward upper-left, other fingers gently curled, thumb visible. Image 2 is PALETTE/ILLUSTRATION STYLE reference only; do not reproduce the character, face or clothing. Make an original simple stylized human pointing hand: pale warm ivory skin, very subtle muted peach shading, soft gray-brown clean outline, a narrow off-white outer keyline to remain legible over both daylight and night glass. Relaxed, friendly, delicate, rounded fingertip, cozy storybook anime feeling, no shiny manicure. Entire hand only, cropped neatly at wrist, NO sleeve or accessory. Compact silhouette with exactly one extended index finger diagonally up-left, three curled fingers and thumb naturally simplified, no extra fingers. Fingertip is the upper-left-most part, hand/palm extends down-right, similar orientation and readable contour to pose reference. Intended display 40px: prioritize broad silhouette and restrained 2-tone shading, avoid fine anatomy details or noisy textures. Center one hand alone, occupy 85% of square with generous transparent safety margins, true transparent alpha background. No text, no drop shadow, no UI, no background, no other objects, no border around canvas. Deliver a single isolated cursor sprite."
+}

@@ -43,8 +43,8 @@
 .window-canvas__drawing.is-interactive {
   pointer-events: auto;
   touch-action: none;
-  /* The SVG nib and cursor hotspot share (4, 28), including on NIGHT glass. */
-  cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M4%2028%207%2018%2022%203Q24%201%2026%203L29%206Q31%208%2029%2010L14%2025Z%22%20fill%3D%22%23f2dfbe%22%20stroke%3D%22%23fffdf5%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M4%2028%207%2018%2022%203Q24%201%2026%203L29%206Q31%208%2029%2010L14%2025Z%22%20fill%3D%22%23e8c995%22%20stroke%3D%22%2328464d%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22m7%2018%207%207M20%205l7%207M4%2028l2-6%204%204Z%22%20fill%3D%22%2328464d%22%20stroke%3D%22%2328464d%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22m10%2019%2012-12%22%20stroke%3D%22%23fff7e5%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E") 4 28, pointer;
+  /* Hotspot sits on the extended fingertip; the pale keyline also reads at NIGHT. */
+  cursor: url("../assets/cursors/window-finger.png") 8 4, pointer;
   outline: 1px dashed rgba(28, 67, 75, 0.48);
   outline-offset: -8px;
 }

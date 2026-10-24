@@ -57,3 +57,8 @@ Optional breath/glass sounds are synthesized locally. Audio starts muted.
 Shizuku doodles (67 adopted originals, 2026-10-18): Original DRAWINDOW SVG paths. Vocabulary inspiration: https://kotoba-moji.com/eshiritori-kotoba/ (no external artwork reused).
 
 Shizuku doodles: 67 originals adopted on 2026-10-18 plus 65 bilingual additions on 2026-10-22. Original DRAWINDOW SVG paths; no external artwork reused. Source and hashes: assets/shizuku-doodles-v01-manifest.json.
+
+Player finger cursor (2026-10-24):
+Original transparent artwork generated with OpenAI built-in ImageGen for
+DRAWINDOW; reduced to 40x40. Pose reference: Kenney Cursor Pack, CC0
+(https://kenney.nl/assets/cursor-pack). Original references remain unchanged.
