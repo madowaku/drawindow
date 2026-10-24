@@ -44,10 +44,11 @@ function csvCell(value: string | number | null): string {
   if (/^[\s\u0000-\u001f]*[=+@-]/u.test(text) || /^[\t\r\n]/u.test(text)) text = `'${text}`;
   return `"${text.replaceAll('"', '""')}"`;
 }
-export interface StudyProvenance { participant: string; completeness: string; finished: boolean; liveLabels: readonly BlindLabel[]; exposureLog: readonly {atMs:number;labels:readonly BlindLabel[];kind:string;phase:string}[]; }
+export interface StudyProvenance { tempo?:'C'; participant: string; completeness: string; finished: boolean; liveLabels: readonly BlindLabel[]; exposureLog: readonly {atMs:number;labels:readonly BlindLabel[];kind:string;phase:string}[]; }
 export function evaluationCsv(evaluation: Record<BlindLabel, Evaluation>, assignment: BlindAssignment, provenance?: StudyProvenance): string {
   const prefix=provenance?['participant','completeness','finished','liveLabels','plannedOrder','renderedExposureLog']:[];
   const values=provenance?[provenance.participant,provenance.completeness,String(provenance.finished),provenance.liveLabels.join('|'),assignment.order.join('|'),JSON.stringify(provenance.exposureLog)]:[];
+  if(provenance?.tempo==='C'){prefix.unshift('tempo','speed','expressionDayMs','expressionNightMs');values.unshift('C','1','240','160');}
   const columns = [...prefix,'label', 'presentation', 'order', ...evaluationFields, 'freeText'];
   return [columns.map(csvCell).join(','), ...(['X', 'Y'] as const).map(label => [
     ...values,label, assignment[label], assignment.order.indexOf(label) + 1,

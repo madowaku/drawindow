@@ -53,6 +53,10 @@ jobs:
         run: node scripts/qa-context-recognition.mjs
       - name: Test anonymous A/D five-exchange study and isolated recovery
         run: node scripts/qa-premonition-study.mjs
+      - name: Test C-fixed anonymous expression comparison
+        env:
+          PREMONITION_C_TEMPO: '1'
+        run: node scripts/qa-premonition-study.mjs
       - name: Reproduce Window Time timing report
         run: node scripts/report-window-time.mjs --check
       - name: Test Window Time in Chromium

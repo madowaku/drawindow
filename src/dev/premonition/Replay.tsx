@@ -5,9 +5,13 @@ import { calculateScore } from '../../core/score';
 import type { StudyRecording } from './recording';
 import { createReplayTimeline } from './timeline';
 import type { BlindAssignment, BlindLabel } from './evaluation';
+import { TempoCanvas } from '../windowTime/TempoCanvas';
+import { tempoReplay } from '../windowTime/replay';
+import { planTempo } from '../windowTime/tempo';
+import { detectPremonitionTransition } from './logic';
 
-export function PremonitionReplay({ recording, assignment, label, reducedMotion, onExposure }: {recording:StudyRecording;assignment:BlindAssignment;label:BlindLabel;reducedMotion:boolean;onExposure?:(labels:readonly BlindLabel[],kind:'single'|'paired')=>void}) {
-  const timeline=useMemo(()=>createReplayTimeline(recording),[recording]);
+export function PremonitionReplay({ recording, assignment, label, reducedMotion, onExposure, tempoC=false }: {recording:StudyRecording;assignment:BlindAssignment;label:BlindLabel;reducedMotion:boolean;tempoC?:boolean;onExposure?:(labels:readonly BlindLabel[],kind:'single'|'paired')=>void}) {
+  const timeline=useMemo(()=>tempoC?tempoReplay(recording,'C',{speed:1}).map((frame,index,frames)=>{const plan=planTempo(selectVisibleStrokes(frame.state),frame.state.mode,'C',{speed:1});return {...frame,durationMs:frame.state.phase==='girl_breath'?plan.breathMs:plan.drawingMs,beat:detectPremonitionTransition(frames[index-1]?.state??null,frame.state)};}):createReplayTimeline(recording),[recording,tempoC]);
   const [clock,setClock]=useState(0),[playing,setPlaying]=useState(false),[both,setBoth]=useState(false);
   const limit=timeline.at(-1)?.playAt??0;
   const elapsed=useRef<number|null>(null);
@@ -48,7 +52,7 @@ export function PremonitionReplay({ recording, assignment, label, reducedMotion,
     {reducedMotion&&<p>動きを減らす設定では自動再生と追加の短い表情を止めています。位置を選んで見返せます。</p>}
     <div className={`premonition-replay-panes ${both?'is-paired':''}`}>{(both?(['X','Y'] as const):[label]).map(slot=><article key={slot} data-testid={`replay-${slot}`} data-round={frame.state.round} data-entry-count={frame.state.entries.length} data-connected={score.connectedCount}>
       <h3>表示 {slot}</h3><div className="premonition-replay-window" data-phase={frame.state.phase} data-progress={progress}>
-        <WindowCanvas language={frame.state.language} mode={frame.state.mode} phase={frame.state.phase} round={frame.state.round} strokes={selectVisibleStrokes(frame.state)} previousStrokes={frame.state.entries.at(-1)?.falseStart?.strokes} expression={assignment[slot]==='D'?dExpression:undefined} reducedMotion={reducedMotion} studyPlayback={{progress,paused:!playing||!visible}} onStrokesChange={()=>undefined} onBreathDone={()=>undefined} onPlaybackDone={()=>undefined}/>
+        {tempoC?<TempoCanvas tempo="C" controls={{speed:1}} atMs={clock-frame.playAt} paused={!playing||!visible} language={frame.state.language} mode={frame.state.mode} phase={reducedMotion&&['girl_breath','girl_drawing'].includes(frame.state.phase)?'girl_holding':frame.state.phase} round={frame.state.round} strokes={selectVisibleStrokes(frame.state)} previousStrokes={frame.state.entries.at(-1)?.falseStart?.strokes} expression={assignment[slot]==='D'?dExpression:undefined} reducedMotion={reducedMotion} onStrokesChange={()=>undefined} onBreathDone={()=>undefined} onPlaybackDone={()=>undefined}/>:<WindowCanvas language={frame.state.language} mode={frame.state.mode} phase={frame.state.phase} round={frame.state.round} strokes={selectVisibleStrokes(frame.state)} previousStrokes={frame.state.entries.at(-1)?.falseStart?.strokes} expression={assignment[slot]==='D'?dExpression:undefined} reducedMotion={reducedMotion} studyPlayback={{progress,paused:!playing||!visible}} onStrokesChange={()=>undefined} onBreathDone={()=>undefined} onPlaybackDone={()=>undefined}/>}
         <div className="premonition-replay-input-shield" aria-hidden="true"/>
       </div>
       {(frame.state.phase==='girl_notice'||frame.state.phase==='girl_flustered')&&<p className="girl-oops">{frame.state.phase==='girl_notice'?'あっ。':'……もう一回。'}</p>}

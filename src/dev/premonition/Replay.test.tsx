@@ -7,7 +7,7 @@ import { PremonitionRecorder } from './recording';
 import { PremonitionReplay } from './Replay';
 import type { BlindAssignment } from './evaluation';
 
-vi.mock('../../components/WindowCanvas', () => ({ WindowCanvas: (p: { expression?: string }) => <div data-testid="face" data-pose={p.expression ?? 'default'}/> }));
+vi.mock('../../components/WindowCanvas', () => ({ WindowCanvas: (p: { expression?: string;strokes:unknown;studyPlayback?:{progress:number};studyCalm?:boolean }) => <div data-testid="face" data-pose={p.expression ?? 'default'} data-strokes={JSON.stringify(p.strokes)} data-progress={p.studyPlayback?.progress} data-calm={String(p.studyCalm)}/> }));
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); Object.defineProperty(document, 'hidden', { configurable: true, value: false }); });
 function trace() {
   let now = 0;
@@ -50,4 +50,20 @@ it('suppresses a hidden beat on return until an explicit manual comparison', () 
   fireEvent.click(screen.getByRole('button', { name: '最初へ' }));
   fireEvent.click(screen.getByRole('button', { name: '次の認識直後' }));
   expect(screen.getByTestId('face').getAttribute('data-pose')).toBe('smile');
+});
+
+it('holds C geometry and timing identical across X/Y and keeps the original short D expression',()=>{
+ render(<PremonitionReplay recording={trace()} assignment={assignment} label="X" reducedMotion={false} tempoC/>);
+ fireEvent.click(screen.getByRole('checkbox',{name:'並べて比較する'}));
+ fireEvent.click(screen.getByRole('button',{name:'次の認識直後'}));
+ let faces=screen.getAllByTestId('face');
+ expect(faces.map(f=>f.dataset.pose)).toEqual(['smile','default']);
+ expect(faces[0].dataset.progress).toBe(faces[1].dataset.progress);
+ expect(faces[0].dataset.strokes).toBe(faces[1].dataset.strokes);
+ expect(faces.every(f=>f.dataset.calm==='true')).toBe(true);
+ const slider=screen.getByRole('slider') as HTMLInputElement;
+ fireEvent.change(slider,{target:{value:Number(slider.value)+250}});
+ faces=screen.getAllByTestId('face');expect(faces.map(f=>f.dataset.pose)).toEqual(['default','default']);
+ expect(faces[0].dataset.progress).toBe(faces[1].dataset.progress);
+ expect(faces[0].dataset.strokes).toBe(faces[1].dataset.strokes);
 });

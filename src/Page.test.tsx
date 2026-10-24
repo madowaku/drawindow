@@ -4,7 +4,7 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { Page } from './Page';
 vi.mock('./App', () => ({ default: () => <p>Normal five-exchange game</p> }));
 vi.mock('./dev/RecognitionBenchmarkPage', () => ({ RecognitionBenchmark: () => <p>Developer benchmark</p> }));
-vi.mock('./dev/PremonitionStudyPage', () => ({ PremonitionStudyPage: () => <p>Anonymous five-exchange study</p> }));
+vi.mock('./dev/PremonitionStudyPage', () => ({ PremonitionStudyPage: ({tempoC}:{tempoC?:boolean}) => <p>{tempoC?'C-fixed expression study':'Anonymous five-exchange study'}</p> }));
 vi.mock('./dev/WindowTimePage',()=>({WindowTimePage:()=> <p>Isolated window time</p>}));
 vi.mock('./dev/ContextRecognitionPage', () => ({ ContextRecognitionPage: () => <p>Isolated context comparison</p> }));
 vi.mock('./dev/LiveAcceptancePage', () => ({ LiveAcceptancePage: () => <p>Local live acceptance</p> }));
@@ -79,4 +79,10 @@ it('keeps the five-exchange D study outside production routing', () => {
 it('opens the isolated five-exchange study in development', async () => {
   window.history.replaceState({},'', '/?shizuku-premonition');vi.stubEnv('DEV',true);render(<Page/>);
   expect(await screen.findByText('Anonymous five-exchange study')).toBeTruthy();
+});
+
+it('opens C-fixed expression study only in development',async()=>{
+ window.history.replaceState({},'', '/?window-time-premonition');vi.stubEnv('DEV',true);const view=render(<Page/>);
+ expect(await screen.findByText('C-fixed expression study')).toBeTruthy();view.unmount();vi.stubEnv('DEV',false);render(<Page/>);
+ expect(screen.getByText('Normal five-exchange game')).toBeTruthy();expect(screen.queryByText('C-fixed expression study')).toBeNull();
 });

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
 
 /** Observe actual live animation, without changing its clock or reducer. */
-export async function observeLiveDrawing(page) {
+export async function observeLiveDrawing(page, calm=false) {
   await page.locator('.play-layout .window-canvas').scrollIntoViewIfNeeded();
   const samples = await page.evaluate(() => new Promise((resolve, reject) => {
     const started = performance.now(), samples = [];
@@ -23,7 +23,7 @@ export async function observeLiveDrawing(page) {
   }));
   const drawing = samples.filter(s => s.phase === 'girl_drawing');
   const moving = drawing.filter(s => s.tip && s.ink > 0);
-  assert(drawing.some(s => s.ink === 0 && !s.tip && s.pose === 'thinking'), 'Missing original hesitation');
+  assert(drawing.some(s => s.ink === 0 && !s.tip && s.pose === (calm?'drawing':'thinking')), 'Missing original hesitation');
   assert(moving.length >= 2, 'Live picture appeared completed without finger traversal');
   assert(new Set(moving.map(s => s.tip.join(','))).size > 1, 'Live finger did not move');
   assert(moving[0].ink < samples.at(-1).ink, 'Live ink was already complete at first contact');
@@ -32,12 +32,13 @@ export async function observeLiveDrawing(page) {
 }
 
 /** Pixel + fingertip comparison of both read-only canvases at an exact seek. */
-export async function replayDrawingProof(page, language, mode, recording, minimumDrawings=5, checkReducedMotion=true) {
-  const phases = await page.evaluate(async (recording) => {
+export async function replayDrawingProof(page, language, mode, recording, minimumDrawings=5, checkReducedMotion=true,tempoC=false) {
+  const phases = await page.evaluate(async ({recording,tempoC}) => {
+    if(tempoC){const [{tempoReplay},{planTempo},{selectVisibleStrokes}]=await Promise.all([import('/src/dev/windowTime/replay.ts'),import('/src/dev/windowTime/tempo.ts'),import('/src/core/gameMachine.ts')]);return tempoReplay(recording,'C',{speed:1}).map(f=>({at:f.playAt,duration:planTempo(selectVisibleStrokes(f.state),f.state.mode,'C',{speed:1}).drawingMs,phase:f.state.phase}));}
     const { createReplayTimeline } = await import('/src/dev/premonition/timeline.ts');
     // The fixture is the actual, explicitly exported trace of this playthrough.
     return createReplayTimeline(recording).map(f => ({ at: f.playAt, duration: f.durationMs, phase: f.state.phase }));
-  }, recording);
+  }, {recording,tempoC});
   const slider = page.getByRole('slider', { name: '再生位置' });
   const snapshot = () => page.locator('.premonition-replay-window').evaluateAll(roots => roots.map(root => {
       const canvas = root.querySelector('.window-canvas__drawing');

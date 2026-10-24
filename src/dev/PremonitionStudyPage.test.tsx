@@ -15,6 +15,7 @@ vi.mock('../components/CharacterScene',()=>({CharacterScene:(p:{frameOverride?:s
 vi.mock('../components/SketchThumbnail',()=>({SketchThumbnail:()=> <div>Recorded drawing</div>}));
 vi.mock('../services/quickDrawRecognizer',()=>({preloadQuickDrawModel:vi.fn(async()=>{}),createQuickDrawRecognizer:()=>({recognize:async()=>({guess:null,source:'ml'})})}));
 vi.mock('./premonition/storage',()=>({studySessionStore:{read:stored.read,write:async()=>{}}}));
+vi.mock('./windowTime/cPremonitionStorage',()=>({cPremonitionStore:{read:async()=>undefined,write:async()=>{}}}));
 beforeEach(()=>{stored.read.mockResolvedValue(undefined);localStorage.clear();localStorage.setItem('drawindow-language','en');window.scrollTo=vi.fn();Object.defineProperty(window,'matchMedia',{writable:true,value:()=>({matches:false,addEventListener:vi.fn(),removeEventListener:vi.fn()})});});
 afterEach(cleanup);
 async function finish(resumed=false){
@@ -58,4 +59,15 @@ it('records only post-restore live exposure and preserves the partial-trial disc
  await finish(true);
  expect(screen.getByText(/途中復元以後の部分記録/)).toBeTruthy();
  expect(screen.getByText(/実プレイした表示: X。/)).toBeTruthy();
+});
+
+it('runs C-fixed anonymous five-exchange comparison without extra inference or longer expressions',async()=>{
+ const recognize=vi.fn(async()=>({guess:'circle',source:'ml' as const}));
+ render(<PremonitionStudyPage recognizer={{recognize}} initialAssignment={{X:'D',Y:'A',order:['X','Y']}} tempoC/>);
+ expect(screen.getByText(/Cの初期テンポに固定/)).toBeTruthy();
+ await finish();expect(recognize).toHaveBeenCalledTimes(4);
+ fireEvent.click(screen.getByRole('checkbox',{name:'並べて比較する'}));
+ const x=screen.getByTestId('replay-X'),y=screen.getByTestId('replay-Y');
+ for(const attribute of ['data-round','data-entry-count','data-connected'])expect(x.getAttribute(attribute)).toBe(y.getAttribute(attribute));
+ expect(screen.getAllByText(/昼240ms・夜160ms/).length).toBeGreaterThan(0);
 });

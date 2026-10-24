@@ -42,3 +42,9 @@ describe('blind optional evaluation and deliberate local exports', () => {
     expect(csv).not.toContain('null');
   });
 });
+
+it('records C conditions without inserting columns into quoted multiline feedback',()=>{
+ const evaluation={X:createEvaluation(),Y:createEvaluation()};evaluation.X.freeText='first\r\nsecond';
+ const csv=evaluationCsv(evaluation,{X:'A',Y:'D',order:['X','Y']},{tempo:'C',participant:'P01',completeness:'complete',finished:true,liveLabels:['X'],exposureLog:[]});
+ expect(csv).toContain('"first\r\nsecond"');expect(csv.match(/"C","1","240","160"/g)).toHaveLength(2);
+});
