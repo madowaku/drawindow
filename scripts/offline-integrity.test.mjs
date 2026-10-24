@@ -75,4 +75,3 @@ test('license and model provenance URLs are not runtime dependencies',()=>{
   assert.deepEqual(inspectRuntime('bundle.js','/* https://react.dev/license */ const info="https://example.test/license";'),[]);
   assert.deepEqual(inspectRuntime('asset-receipt.json','{"source":"https://huggingface.co/model"}'),[]);
 });
-

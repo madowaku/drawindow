@@ -113,6 +113,3 @@ try {
   await writeFile('docs/VOCABULARY_COVERAGE_v09.md',md);
   console.log(JSON.stringify({labelsSha256:report.model.labelsSha256,languages:Object.fromEntries(Object.entries(report.languages).map(([lang,d])=>[lang,{mapped:d.mappedModelClasses,recognizer:d.recognizer.distinctNormalizedWords,templates:d.drawable.templates,drawable:d.drawable.distinctNormalizedWords,unsupported:d.unsupportedModelReplies,missing:d.missingLetters,sparse:d.sparseLetters,simulation:Object.fromEntries(Object.entries(d.simulation.modes).map(([mode,{examples,...counts}])=>[mode,counts]))}]))},null,2));
 } finally {await server.close();}
-
-
-
