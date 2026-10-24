@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import type { DrawingEntry, Language, Mode, ScoreResult, SessionKind } from '../core/types';
 import { closingLine, entryNote, interpretation, linkLabel } from '../lib/ending';
 import { SketchThumbnail } from './SketchThumbnail';
@@ -16,15 +16,23 @@ export interface EndingSceneProps {
   reducedMotion: boolean;
   onRestart: () => void;
   onTitle: () => void;
+  timing?:StudyEndingTiming;
+  studyTiming?: StudyEndingTiming;
+  studyOnBeat?: StudyEndingTiming['onBeat'];
 }
+
+export interface StudyEndingTiming { pairMs:number; linkMs:number; arrivalMs:number; goodbyeMs:number; skipIntro?:boolean; onBeat?:(beat:{act:string;pairs:number;links:number;skipped:boolean})=>void; }
 
 /** Presentation only. No recognition, scoring mutation or game progression. */
 export function EndingScene(props: EndingSceneProps) {
   const { entries, score, language, mode, sessionKind, reducedMotion, onRestart, onTitle } = props;
+  const study=props.timing??(import.meta.env.DEV?props.studyTiming:undefined);
+  const observer=import.meta.env.DEV?props.studyOnBeat:undefined;
   const t = (en: string, ja: string) => language === 'ja' ? ja : en;
-  const [act, setAct] = useState<'diary' | 'reveal' | 'goodbye'>('diary');
-  const [pairs, setPairs] = useState(reducedMotion ? 5 : 1);
-  const [links, setLinks] = useState(reducedMotion ? 9 : 1);
+  const [act, setAct] = useState<'diary' | 'reveal' | 'goodbye'>(study?.skipIntro?'reveal':'diary');
+  const [pairs, setPairs] = useState(reducedMotion||study?.skipIntro ? 5 : 1);
+  const [links, setLinks] = useState(reducedMotion||study?.skipIntro ? 9 : 1);
+  const [skipped,setSkipped]=useState(false),[shown,setShown]=useState(()=>!document.hidden);
   const heading = useRef<HTMLHeadingElement>(null);
   const revealed = act !== 'diary';
   const pairCount = reducedMotion || revealed ? 5 : pairs;
@@ -32,26 +40,30 @@ export function EndingScene(props: EndingSceneProps) {
   const complete = revealed && linkCount === 9;
 
   useLayoutEffect(() => { heading.current?.focus({ preventScroll: true }); }, [act]);
+  useEffect(()=>{if(!study)return;const changed=()=>setShown(!document.hidden);document.addEventListener('visibilitychange',changed);return()=>document.removeEventListener('visibilitychange',changed);},[Boolean(study)]);
+  useEffect(()=>{(study?.onBeat??observer)?.({act,pairs,links,skipped});},[act,pairs,links,skipped,study?.onBeat,observer]);
   useEffect(() => {
     if (reducedMotion) { setPairs(5); setLinks(9); return; }
     if (act === 'diary' && pairs < 5) {
+      if(study)return visibleDelay(study.pairMs,()=>setPairs(n=>n+1));
       const timer = window.setTimeout(() => setPairs(n => n + 1), 1000);
       return () => window.clearTimeout(timer);
     }
     if (act === 'reveal' && links < 9) {
+      if(study)return visibleDelay(study.linkMs,()=>setLinks(n=>n+1));
       const timer = window.setTimeout(() => setLinks(n => n + 1), 650);
       return () => window.clearTimeout(timer);
     }
-  }, [act, pairs, links, reducedMotion]);
+  }, [act, pairs, links, reducedMotion,study?.pairMs,study?.linkMs]);
 
-  const skip = () => { setPairs(5); setLinks(9); setAct('reveal'); heading.current?.focus({ preventScroll: true }); };
+  const skip = () => { setSkipped(true);setPairs(5); setLinks(9); setAct('reveal'); heading.current?.focus({ preventScroll: true }); };
   const closing = closingLine(entries, score, language);
-  return <section className="results-layout ending" data-act={act} data-reduced-motion={reducedMotion} aria-labelledby="ending-title">
+  return <section className="results-layout ending" data-act={act} data-study-tempo={Boolean(study)||undefined} data-study-shown={shown} style={study?{'--time-arrival':`${skipped?0:study.arrivalMs}ms`,'--time-goodbye':`${study.goodbyeMs}ms`} as CSSProperties:undefined} data-reduced-motion={reducedMotion} aria-labelledby="ending-title">
     <div className="section-intro ending-intro">
       <h1 id="ending-title" tabIndex={-1} ref={heading}>{act === 'diary' ? t('Our little picture diary.', 'ふたりの絵日記。') : act === 'reveal' ? t('Between the lines.', 'すれ違いの答え合わせ。') : t('Until another window.', '窓の向こうの、またね。')}</h1>
       {act === 'reveal' && <p>{t('Connected words may still mean different things.', '言葉がつながっても、同じ絵に見えたとは限らない。')}</p>}
     </div>
-    {(!score.comparable || score.knownPairCount < 9) && <p className="result-disclosure">{sessionKind === 'demo' ? t('DEMO — simulated interpretations. This result is not score-comparable.', 'デモ — 解釈はシミュレーションです。成績として比較できません。') : t('INCOMPLETE — unknown or non-comparable links. No official best score.', '参考記録 — 不明、または比較できないつながりがあります。公式スコアではありません。')}</p>}
+    {(!score.comparable || score.knownPairCount < 9) && <p className="result-disclosure">{sessionKind === 'ml' ? t('LOCAL AI · Experimental interpretations, not independently validated recognition accuracy.', '端末内AI · 解釈は実験中です。独立検証済みの認識精度ではありません。') : sessionKind === 'demo' ? t('DEMO — simulated interpretations. This result is not score-comparable.', 'デモ — 解釈はシミュレーションです。成績として比較できません。') : t('INCOMPLETE — unknown or non-comparable links. No official best score.', '参考記録 — 不明、または比較できないつながりがあります。公式スコアではありません。')}</p>}
     <div className="ending-controls">
       {!revealed && <button className="primary" onClick={() => setAct('reveal')}>{t('See what we meant', '答え合わせをする')}</button>}
       {!complete && <button className="secondary" onClick={skip}>{t('Skip animation · see results', 'すぐ見る・答えを開く')}</button>}
@@ -60,13 +72,14 @@ export function EndingScene(props: EndingSceneProps) {
     </div>
     {act === 'goodbye' && <div className="ending-goodbye">
       <div className="ending-window" aria-hidden="true">
-        <CharacterScene mode={mode} phase="results" round={5} reducedMotion={reducedMotion} />
+        <CharacterScene calm={Boolean(study)} mode={mode} phase="results" round={5} reducedMotion={reducedMotion} />
         <div className="ending-window-pictures">{entries.map((e, i) => <SketchThumbnail key={e.id} strokes={e.strokes} label={String(i + 1)} />)}</div>
         <div className="ending-refog" />
       </div>
       <blockquote><p lang="en">{closingLine(entries, score, 'en', language)}</p><p lang="ja">{closingLine(entries, score, 'ja', language)}</p></blockquote>
     </div>}
     {revealed && <div className="score-strip"><div><span>{sessionKind === 'demo' ? t('DEMO LINKS', 'デモのつながり') : t('LINK SCORE', '言葉のつながり')}</span><strong>{score.connectedCount}<small> / {score.knownPairCount}</small></strong><p>{t(`${score.knownPairCount} of 9 possible links known`, `９本中${score.knownPairCount}本が判定できた`)}</p></div><div><span>{t('BEST CHAIN', '最長のつながり')}</span><strong>{score.bestChain}<small>{t(' links', ' 本')}</small></strong></div></div>}
+    {complete && score.perfect && <p className="achievement" role="status">{t('All nine links connected. A whole window of replies!', '９本ぜんぶ、つながったね。ふたりのお返事が一つの輪に。')}</p>}
     <ol className="ending-diary" aria-label={t('Our drawings in the order we drew them', '描いた順番の10枚')}>
       {entries.slice(0, pairCount * 2).map((entry, index) => <li key={entry.id}>
         {revealed && (index === 0 || index > linkCount) && <div className="ending-link-space" aria-hidden="true" />}
@@ -88,4 +101,12 @@ export function EndingScene(props: EndingSceneProps) {
       <button className="text-button" onClick={onTitle}>{t('Back to the beginning', '最初に戻る')}</button>
     </div>}
   </section>;
+}
+
+/** Visible presentation time; original A comparisons retain their literal timers. */
+function visibleDelay(duration:number,done:()=>void){
+  let remaining=duration,start=0,timer:ReturnType<typeof setTimeout>|undefined;
+  const update=()=>{if(timer!==undefined){clearTimeout(timer);remaining-=Math.max(0,performance.now()-start);timer=undefined;}if(!document.hidden){start=performance.now();timer=setTimeout(done,Math.max(0,remaining));}};
+  document.addEventListener('visibilitychange',update);update();
+  return()=>{clearTimeout(timer);document.removeEventListener('visibilitychange',update);};
 }

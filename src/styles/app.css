@@ -231,3 +231,9 @@ html[lang="ja"] .title-rules, html[lang="ja"] .turn-status { line-height:1.85; }
   .title-start { margin-top:22px; }
   .title-copy .tagline { margin-bottom:12px; }
 }
+
+/* Quiet, local-only save feedback; no layout overlay on the drawing surface. */
+.session-save-note { margin: .35rem auto; max-width: 48rem; padding: 0 1rem; font-size: .8rem; text-align: center; opacity: .8; }
+.resume-session { padding: .75rem 0; }
+.resume-session p { font-size: .8rem; line-height: 1.5; }
+.achievement { text-align: center; font-size: 1.1rem; }

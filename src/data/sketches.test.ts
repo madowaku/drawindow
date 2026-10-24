@@ -18,12 +18,9 @@ describe('girl sketch catalogue', () => {
       expect(sketch.durationMs).toBeLessThanOrEqual(1500);
       for (const stroke of sketch.strokes) {
         expect(stroke.points.length).toBeGreaterThan(0);
-        for (const point of stroke.points) {
-          expect(point.x).toBeGreaterThanOrEqual(0);
-          expect(point.x).toBeLessThanOrEqual(1);
-          expect(point.y).toBeGreaterThanOrEqual(0);
-          expect(point.y).toBeLessThanOrEqual(1);
-        }
+        // Check every point without allocating four assertion objects per sample.
+        // The catalogue is large enough for that overhead to exceed CI's 5s limit.
+        expect(stroke.points.every(({x,y}) => x >= 0 && x <= 1 && y >= 0 && y <= 1), `${sketch.id}/${stroke.id}`).toBe(true);
       }
     }
   });

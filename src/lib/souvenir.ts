@@ -32,7 +32,7 @@ export async function createSouvenir({ entries, score, language, mode, sessionKi
   };
   text('DRAWINDOW · TEN LITTLE THOUGHTS', 60, 70, 36);
   text(`${mode.toUpperCase()} · ${t('Five exchanges. One window.', '５往復、ひとつの窓。')}`, 60, 118);
-  text(sessionKind === 'demo' ? t('DEMO · simulated interpretations · not score-comparable', 'デモ・解釈はシミュレーション・成績の比較はできません') : !score.comparable || score.knownPairCount < 9 ? t('INCOMPLETE · no official score', '参考記録・公式スコアではありません') : t('Word-chain links; not a measure of shared understanding.', '言葉のつながりは、理解し合えたかの採点ではありません。'), 60, 160, 22);
+  text(sessionKind === 'ml' ? t('LOCAL AI · experimental interpretations · not independently validated', '端末内AI・解釈は実験中・独立検証済みの精度ではありません') : sessionKind === 'demo' ? t('DEMO · simulated interpretations · not score-comparable', 'デモ・解釈はシミュレーション・成績の比較はできません') : !score.comparable || score.knownPairCount < 9 ? t('INCOMPLETE · no official score', '参考記録・公式スコアではありません') : t('Word-chain links; not a measure of shared understanding.', '言葉のつながりは、理解し合えたかの採点ではありません。'), 60, 160, 22);
   entries.slice(0, 10).forEach((entry, i) => {
     const x = 60 + (i % 2) * 560, y = 240 + Math.floor(i / 2) * 460;
     ctx.fillStyle = ink;

@@ -1,0 +1,6289 @@
+{
+  "schemaVersion": 1,
+  "method": "Static vocabulary and deterministic real-selector/reducer audit; no recognition accuracy or human play evidence.",
+  "model": {
+    "classes": 345,
+    "labelsSha256": "2ed0dac4ba018854a3e3166f9862e5529bc5f58a80d157d57eee22ca731895d5",
+    "labelsText": "The Eiffel Tower\nThe Great Wall of China\nThe Mona Lisa\naircraft carrier\nairplane\nalarm clock\nambulance\nangel\nanimal migration\nant\nanvil\napple\narm\nasparagus\naxe\nbackpack\nbanana\nbandage\nbarn\nbaseball\nbaseball bat\nbasket\nbasketball\nbat\nbathtub\nbeach\nbear\nbeard\nbed\nbee\nbelt\nbench\nbicycle\nbinoculars\nbird\nbirthday cake\nblackberry\nblueberry\nbook\nboomerang\nbottlecap\nbowtie\nbracelet\nbrain\nbread\nbridge\nbroccoli\nbroom\nbucket\nbulldozer\nbus\nbush\nbutterfly\ncactus\ncake\ncalculator\ncalendar\ncamel\ncamera\ncamouflage\ncampfire\ncandle\ncannon\ncanoe\ncar\ncarrot\ncastle\ncat\nceiling fan\ncell phone\ncello\nchair\nchandelier\nchurch\ncircle\nclarinet\nclock\ncloud\ncoffee cup\ncompass\ncomputer\ncookie\ncooler\ncouch\ncow\ncrab\ncrayon\ncrocodile\ncrown\ncruise ship\ncup\ndiamond\ndishwasher\ndiving board\ndog\ndolphin\ndonut\ndoor\ndragon\ndresser\ndrill\ndrums\nduck\ndumbbell\near\nelbow\nelephant\nenvelope\neraser\neye\neyeglasses\nface\nfan\nfeather\nfence\nfinger\nfire hydrant\nfireplace\nfiretruck\nfish\nflamingo\nflashlight\nflip flops\nfloor lamp\nflower\nflying saucer\nfoot\nfork\nfrog\nfrying pan\ngarden\ngarden hose\ngiraffe\ngoatee\ngolf club\ngrapes\ngrass\nguitar\nhamburger\nhammer\nhand\nharp\nhat\nheadphones\nhedgehog\nhelicopter\nhelmet\nhexagon\nhockey puck\nhockey stick\nhorse\nhospital\nhot air balloon\nhot dog\nhot tub\nhourglass\nhouse\nhouse plant\nhurricane\nice cream\njacket\njail\nkangaroo\nkey\nkeyboard\nknee\nknife\nladder\nlantern\nlaptop\nleaf\nleg\nlight bulb\nlighter\nlighthouse\nlightning\nline\nlion\nlipstick\nlobster\nlollipop\nmailbox\nmap\nmarker\nmatches\nmegaphone\nmermaid\nmicrophone\nmicrowave\nmonkey\nmoon\nmosquito\nmotorbike\nmountain\nmouse\nmoustache\nmouth\nmug\nmushroom\nnail\nnecklace\nnose\nocean\noctagon\noctopus\nonion\noven\nowl\npaint can\npaintbrush\npalm tree\npanda\npants\npaper clip\nparachute\nparrot\npassport\npeanut\npear\npeas\npencil\npenguin\npiano\npickup truck\npicture frame\npig\npillow\npineapple\npizza\npliers\npolice car\npond\npool\npopsicle\npostcard\npotato\npower outlet\npurse\nrabbit\nraccoon\nradio\nrain\nrainbow\nrake\nremote control\nrhinoceros\nrifle\nriver\nroller coaster\nrollerskates\nsailboat\nsandwich\nsaw\nsaxophone\nschool bus\nscissors\nscorpion\nscrewdriver\nsea turtle\nsee saw\nshark\nsheep\nshoe\nshorts\nshovel\nsink\nskateboard\nskull\nskyscraper\nsleeping bag\nsmiley face\nsnail\nsnake\nsnorkel\nsnowflake\nsnowman\nsoccer ball\nsock\nspeedboat\nspider\nspoon\nspreadsheet\nsquare\nsquiggle\nsquirrel\nstairs\nstar\nsteak\nstereo\nstethoscope\nstitches\nstop sign\nstove\nstrawberry\nstreetlight\nstring bean\nsubmarine\nsuitcase\nsun\nswan\nsweater\nswing set\nsword\nsyringe\nt-shirt\ntable\nteapot\nteddy-bear\ntelephone\ntelevision\ntennis racquet\ntent\ntiger\ntoaster\ntoe\ntoilet\ntooth\ntoothbrush\ntoothpaste\ntornado\ntractor\ntraffic light\ntrain\ntree\ntriangle\ntrombone\ntruck\ntrumpet\numbrella\nunderwear\nvan\nvase\nviolin\nwashing machine\nwatermelon\nwaterslide\nwhale\nwheel\nwindmill\nwine bottle\nwine glass\nwristwatch\nyoga\nzebra\nzigzag\n",
+    "labelSource": "prepared local-ml labels; exact snapshot embedded for offline audit",
+    "sourceRevision": "b02fde8d8732aed32bc9d8176c3dc4efda0333fb"
+  },
+  "languages": {
+    "en": {
+      "mappedModelClasses": 345,
+      "unmappedModelClasses": [],
+      "mapping": [
+        {
+          "label": "The Eiffel Tower",
+          "word": "the eiffel tower"
+        },
+        {
+          "label": "The Great Wall of China",
+          "word": "the great wall of china"
+        },
+        {
+          "label": "The Mona Lisa",
+          "word": "the mona lisa"
+        },
+        {
+          "label": "aircraft carrier",
+          "word": "aircraft carrier"
+        },
+        {
+          "label": "airplane",
+          "word": "airplane"
+        },
+        {
+          "label": "alarm clock",
+          "word": "alarm clock"
+        },
+        {
+          "label": "ambulance",
+          "word": "ambulance"
+        },
+        {
+          "label": "angel",
+          "word": "angel"
+        },
+        {
+          "label": "animal migration",
+          "word": "animal migration"
+        },
+        {
+          "label": "ant",
+          "word": "ant"
+        },
+        {
+          "label": "anvil",
+          "word": "anvil"
+        },
+        {
+          "label": "apple",
+          "word": "apple"
+        },
+        {
+          "label": "arm",
+          "word": "arm"
+        },
+        {
+          "label": "asparagus",
+          "word": "asparagus"
+        },
+        {
+          "label": "axe",
+          "word": "axe"
+        },
+        {
+          "label": "backpack",
+          "word": "backpack"
+        },
+        {
+          "label": "banana",
+          "word": "banana"
+        },
+        {
+          "label": "bandage",
+          "word": "bandage"
+        },
+        {
+          "label": "barn",
+          "word": "barn"
+        },
+        {
+          "label": "baseball",
+          "word": "baseball"
+        },
+        {
+          "label": "baseball bat",
+          "word": "baseball bat"
+        },
+        {
+          "label": "basket",
+          "word": "basket"
+        },
+        {
+          "label": "basketball",
+          "word": "basketball"
+        },
+        {
+          "label": "bat",
+          "word": "bat"
+        },
+        {
+          "label": "bathtub",
+          "word": "bathtub"
+        },
+        {
+          "label": "beach",
+          "word": "beach"
+        },
+        {
+          "label": "bear",
+          "word": "bear"
+        },
+        {
+          "label": "beard",
+          "word": "beard"
+        },
+        {
+          "label": "bed",
+          "word": "bed"
+        },
+        {
+          "label": "bee",
+          "word": "bee"
+        },
+        {
+          "label": "belt",
+          "word": "belt"
+        },
+        {
+          "label": "bench",
+          "word": "bench"
+        },
+        {
+          "label": "bicycle",
+          "word": "bicycle"
+        },
+        {
+          "label": "binoculars",
+          "word": "binoculars"
+        },
+        {
+          "label": "bird",
+          "word": "bird"
+        },
+        {
+          "label": "birthday cake",
+          "word": "birthday cake"
+        },
+        {
+          "label": "blackberry",
+          "word": "blackberry"
+        },
+        {
+          "label": "blueberry",
+          "word": "blueberry"
+        },
+        {
+          "label": "book",
+          "word": "book"
+        },
+        {
+          "label": "boomerang",
+          "word": "boomerang"
+        },
+        {
+          "label": "bottlecap",
+          "word": "bottlecap"
+        },
+        {
+          "label": "bowtie",
+          "word": "bowtie"
+        },
+        {
+          "label": "bracelet",
+          "word": "bracelet"
+        },
+        {
+          "label": "brain",
+          "word": "brain"
+        },
+        {
+          "label": "bread",
+          "word": "bread"
+        },
+        {
+          "label": "bridge",
+          "word": "bridge"
+        },
+        {
+          "label": "broccoli",
+          "word": "broccoli"
+        },
+        {
+          "label": "broom",
+          "word": "broom"
+        },
+        {
+          "label": "bucket",
+          "word": "bucket"
+        },
+        {
+          "label": "bulldozer",
+          "word": "bulldozer"
+        },
+        {
+          "label": "bus",
+          "word": "bus"
+        },
+        {
+          "label": "bush",
+          "word": "bush"
+        },
+        {
+          "label": "butterfly",
+          "word": "butterfly"
+        },
+        {
+          "label": "cactus",
+          "word": "cactus"
+        },
+        {
+          "label": "cake",
+          "word": "cake"
+        },
+        {
+          "label": "calculator",
+          "word": "calculator"
+        },
+        {
+          "label": "calendar",
+          "word": "calendar"
+        },
+        {
+          "label": "camel",
+          "word": "camel"
+        },
+        {
+          "label": "camera",
+          "word": "camera"
+        },
+        {
+          "label": "camouflage",
+          "word": "camouflage"
+        },
+        {
+          "label": "campfire",
+          "word": "campfire"
+        },
+        {
+          "label": "candle",
+          "word": "candle"
+        },
+        {
+          "label": "cannon",
+          "word": "cannon"
+        },
+        {
+          "label": "canoe",
+          "word": "canoe"
+        },
+        {
+          "label": "car",
+          "word": "car"
+        },
+        {
+          "label": "carrot",
+          "word": "carrot"
+        },
+        {
+          "label": "castle",
+          "word": "castle"
+        },
+        {
+          "label": "cat",
+          "word": "cat"
+        },
+        {
+          "label": "ceiling fan",
+          "word": "ceiling fan"
+        },
+        {
+          "label": "cell phone",
+          "word": "cell phone"
+        },
+        {
+          "label": "cello",
+          "word": "cello"
+        },
+        {
+          "label": "chair",
+          "word": "chair"
+        },
+        {
+          "label": "chandelier",
+          "word": "chandelier"
+        },
+        {
+          "label": "church",
+          "word": "church"
+        },
+        {
+          "label": "circle",
+          "word": "circle"
+        },
+        {
+          "label": "clarinet",
+          "word": "clarinet"
+        },
+        {
+          "label": "clock",
+          "word": "clock"
+        },
+        {
+          "label": "cloud",
+          "word": "cloud"
+        },
+        {
+          "label": "coffee cup",
+          "word": "coffee cup"
+        },
+        {
+          "label": "compass",
+          "word": "compass"
+        },
+        {
+          "label": "computer",
+          "word": "computer"
+        },
+        {
+          "label": "cookie",
+          "word": "cookie"
+        },
+        {
+          "label": "cooler",
+          "word": "cooler"
+        },
+        {
+          "label": "couch",
+          "word": "couch"
+        },
+        {
+          "label": "cow",
+          "word": "cow"
+        },
+        {
+          "label": "crab",
+          "word": "crab"
+        },
+        {
+          "label": "crayon",
+          "word": "crayon"
+        },
+        {
+          "label": "crocodile",
+          "word": "crocodile"
+        },
+        {
+          "label": "crown",
+          "word": "crown"
+        },
+        {
+          "label": "cruise ship",
+          "word": "cruise ship"
+        },
+        {
+          "label": "cup",
+          "word": "cup"
+        },
+        {
+          "label": "diamond",
+          "word": "diamond"
+        },
+        {
+          "label": "dishwasher",
+          "word": "dishwasher"
+        },
+        {
+          "label": "diving board",
+          "word": "diving board"
+        },
+        {
+          "label": "dog",
+          "word": "dog"
+        },
+        {
+          "label": "dolphin",
+          "word": "dolphin"
+        },
+        {
+          "label": "donut",
+          "word": "donut"
+        },
+        {
+          "label": "door",
+          "word": "door"
+        },
+        {
+          "label": "dragon",
+          "word": "dragon"
+        },
+        {
+          "label": "dresser",
+          "word": "dresser"
+        },
+        {
+          "label": "drill",
+          "word": "drill"
+        },
+        {
+          "label": "drums",
+          "word": "drums"
+        },
+        {
+          "label": "duck",
+          "word": "duck"
+        },
+        {
+          "label": "dumbbell",
+          "word": "dumbbell"
+        },
+        {
+          "label": "ear",
+          "word": "ear"
+        },
+        {
+          "label": "elbow",
+          "word": "elbow"
+        },
+        {
+          "label": "elephant",
+          "word": "elephant"
+        },
+        {
+          "label": "envelope",
+          "word": "envelope"
+        },
+        {
+          "label": "eraser",
+          "word": "eraser"
+        },
+        {
+          "label": "eye",
+          "word": "eye"
+        },
+        {
+          "label": "eyeglasses",
+          "word": "eyeglasses"
+        },
+        {
+          "label": "face",
+          "word": "face"
+        },
+        {
+          "label": "fan",
+          "word": "fan"
+        },
+        {
+          "label": "feather",
+          "word": "feather"
+        },
+        {
+          "label": "fence",
+          "word": "fence"
+        },
+        {
+          "label": "finger",
+          "word": "finger"
+        },
+        {
+          "label": "fire hydrant",
+          "word": "fire hydrant"
+        },
+        {
+          "label": "fireplace",
+          "word": "fireplace"
+        },
+        {
+          "label": "firetruck",
+          "word": "firetruck"
+        },
+        {
+          "label": "fish",
+          "word": "fish"
+        },
+        {
+          "label": "flamingo",
+          "word": "flamingo"
+        },
+        {
+          "label": "flashlight",
+          "word": "flashlight"
+        },
+        {
+          "label": "flip flops",
+          "word": "flip flops"
+        },
+        {
+          "label": "floor lamp",
+          "word": "floor lamp"
+        },
+        {
+          "label": "flower",
+          "word": "flower"
+        },
+        {
+          "label": "flying saucer",
+          "word": "flying saucer"
+        },
+        {
+          "label": "foot",
+          "word": "foot"
+        },
+        {
+          "label": "fork",
+          "word": "fork"
+        },
+        {
+          "label": "frog",
+          "word": "frog"
+        },
+        {
+          "label": "frying pan",
+          "word": "frying pan"
+        },
+        {
+          "label": "garden",
+          "word": "garden"
+        },
+        {
+          "label": "garden hose",
+          "word": "garden hose"
+        },
+        {
+          "label": "giraffe",
+          "word": "giraffe"
+        },
+        {
+          "label": "goatee",
+          "word": "goatee"
+        },
+        {
+          "label": "golf club",
+          "word": "golf club"
+        },
+        {
+          "label": "grapes",
+          "word": "grapes"
+        },
+        {
+          "label": "grass",
+          "word": "grass"
+        },
+        {
+          "label": "guitar",
+          "word": "guitar"
+        },
+        {
+          "label": "hamburger",
+          "word": "hamburger"
+        },
+        {
+          "label": "hammer",
+          "word": "hammer"
+        },
+        {
+          "label": "hand",
+          "word": "hand"
+        },
+        {
+          "label": "harp",
+          "word": "harp"
+        },
+        {
+          "label": "hat",
+          "word": "hat"
+        },
+        {
+          "label": "headphones",
+          "word": "headphones"
+        },
+        {
+          "label": "hedgehog",
+          "word": "hedgehog"
+        },
+        {
+          "label": "helicopter",
+          "word": "helicopter"
+        },
+        {
+          "label": "helmet",
+          "word": "helmet"
+        },
+        {
+          "label": "hexagon",
+          "word": "hexagon"
+        },
+        {
+          "label": "hockey puck",
+          "word": "hockey puck"
+        },
+        {
+          "label": "hockey stick",
+          "word": "hockey stick"
+        },
+        {
+          "label": "horse",
+          "word": "horse"
+        },
+        {
+          "label": "hospital",
+          "word": "hospital"
+        },
+        {
+          "label": "hot air balloon",
+          "word": "hot air balloon"
+        },
+        {
+          "label": "hot dog",
+          "word": "hot dog"
+        },
+        {
+          "label": "hot tub",
+          "word": "hot tub"
+        },
+        {
+          "label": "hourglass",
+          "word": "hourglass"
+        },
+        {
+          "label": "house",
+          "word": "house"
+        },
+        {
+          "label": "house plant",
+          "word": "house plant"
+        },
+        {
+          "label": "hurricane",
+          "word": "hurricane"
+        },
+        {
+          "label": "ice cream",
+          "word": "ice cream"
+        },
+        {
+          "label": "jacket",
+          "word": "jacket"
+        },
+        {
+          "label": "jail",
+          "word": "jail"
+        },
+        {
+          "label": "kangaroo",
+          "word": "kangaroo"
+        },
+        {
+          "label": "key",
+          "word": "key"
+        },
+        {
+          "label": "keyboard",
+          "word": "keyboard"
+        },
+        {
+          "label": "knee",
+          "word": "knee"
+        },
+        {
+          "label": "knife",
+          "word": "knife"
+        },
+        {
+          "label": "ladder",
+          "word": "ladder"
+        },
+        {
+          "label": "lantern",
+          "word": "lantern"
+        },
+        {
+          "label": "laptop",
+          "word": "laptop"
+        },
+        {
+          "label": "leaf",
+          "word": "leaf"
+        },
+        {
+          "label": "leg",
+          "word": "leg"
+        },
+        {
+          "label": "light bulb",
+          "word": "light bulb"
+        },
+        {
+          "label": "lighter",
+          "word": "lighter"
+        },
+        {
+          "label": "lighthouse",
+          "word": "lighthouse"
+        },
+        {
+          "label": "lightning",
+          "word": "lightning"
+        },
+        {
+          "label": "line",
+          "word": "line"
+        },
+        {
+          "label": "lion",
+          "word": "lion"
+        },
+        {
+          "label": "lipstick",
+          "word": "lipstick"
+        },
+        {
+          "label": "lobster",
+          "word": "lobster"
+        },
+        {
+          "label": "lollipop",
+          "word": "lollipop"
+        },
+        {
+          "label": "mailbox",
+          "word": "mailbox"
+        },
+        {
+          "label": "map",
+          "word": "map"
+        },
+        {
+          "label": "marker",
+          "word": "marker"
+        },
+        {
+          "label": "matches",
+          "word": "matches"
+        },
+        {
+          "label": "megaphone",
+          "word": "megaphone"
+        },
+        {
+          "label": "mermaid",
+          "word": "mermaid"
+        },
+        {
+          "label": "microphone",
+          "word": "microphone"
+        },
+        {
+          "label": "microwave",
+          "word": "microwave"
+        },
+        {
+          "label": "monkey",
+          "word": "monkey"
+        },
+        {
+          "label": "moon",
+          "word": "moon"
+        },
+        {
+          "label": "mosquito",
+          "word": "mosquito"
+        },
+        {
+          "label": "motorbike",
+          "word": "motorbike"
+        },
+        {
+          "label": "mountain",
+          "word": "mountain"
+        },
+        {
+          "label": "mouse",
+          "word": "mouse"
+        },
+        {
+          "label": "moustache",
+          "word": "moustache"
+        },
+        {
+          "label": "mouth",
+          "word": "mouth"
+        },
+        {
+          "label": "mug",
+          "word": "mug"
+        },
+        {
+          "label": "mushroom",
+          "word": "mushroom"
+        },
+        {
+          "label": "nail",
+          "word": "nail"
+        },
+        {
+          "label": "necklace",
+          "word": "necklace"
+        },
+        {
+          "label": "nose",
+          "word": "nose"
+        },
+        {
+          "label": "ocean",
+          "word": "ocean"
+        },
+        {
+          "label": "octagon",
+          "word": "octagon"
+        },
+        {
+          "label": "octopus",
+          "word": "octopus"
+        },
+        {
+          "label": "onion",
+          "word": "onion"
+        },
+        {
+          "label": "oven",
+          "word": "oven"
+        },
+        {
+          "label": "owl",
+          "word": "owl"
+        },
+        {
+          "label": "paint can",
+          "word": "paint can"
+        },
+        {
+          "label": "paintbrush",
+          "word": "paintbrush"
+        },
+        {
+          "label": "palm tree",
+          "word": "palm tree"
+        },
+        {
+          "label": "panda",
+          "word": "panda"
+        },
+        {
+          "label": "pants",
+          "word": "pants"
+        },
+        {
+          "label": "paper clip",
+          "word": "paper clip"
+        },
+        {
+          "label": "parachute",
+          "word": "parachute"
+        },
+        {
+          "label": "parrot",
+          "word": "parrot"
+        },
+        {
+          "label": "passport",
+          "word": "passport"
+        },
+        {
+          "label": "peanut",
+          "word": "peanut"
+        },
+        {
+          "label": "pear",
+          "word": "pear"
+        },
+        {
+          "label": "peas",
+          "word": "peas"
+        },
+        {
+          "label": "pencil",
+          "word": "pencil"
+        },
+        {
+          "label": "penguin",
+          "word": "penguin"
+        },
+        {
+          "label": "piano",
+          "word": "piano"
+        },
+        {
+          "label": "pickup truck",
+          "word": "pickup truck"
+        },
+        {
+          "label": "picture frame",
+          "word": "picture frame"
+        },
+        {
+          "label": "pig",
+          "word": "pig"
+        },
+        {
+          "label": "pillow",
+          "word": "pillow"
+        },
+        {
+          "label": "pineapple",
+          "word": "pineapple"
+        },
+        {
+          "label": "pizza",
+          "word": "pizza"
+        },
+        {
+          "label": "pliers",
+          "word": "pliers"
+        },
+        {
+          "label": "police car",
+          "word": "police car"
+        },
+        {
+          "label": "pond",
+          "word": "pond"
+        },
+        {
+          "label": "pool",
+          "word": "pool"
+        },
+        {
+          "label": "popsicle",
+          "word": "popsicle"
+        },
+        {
+          "label": "postcard",
+          "word": "postcard"
+        },
+        {
+          "label": "potato",
+          "word": "potato"
+        },
+        {
+          "label": "power outlet",
+          "word": "power outlet"
+        },
+        {
+          "label": "purse",
+          "word": "purse"
+        },
+        {
+          "label": "rabbit",
+          "word": "rabbit"
+        },
+        {
+          "label": "raccoon",
+          "word": "raccoon"
+        },
+        {
+          "label": "radio",
+          "word": "radio"
+        },
+        {
+          "label": "rain",
+          "word": "rain"
+        },
+        {
+          "label": "rainbow",
+          "word": "rainbow"
+        },
+        {
+          "label": "rake",
+          "word": "rake"
+        },
+        {
+          "label": "remote control",
+          "word": "remote control"
+        },
+        {
+          "label": "rhinoceros",
+          "word": "rhinoceros"
+        },
+        {
+          "label": "rifle",
+          "word": "rifle"
+        },
+        {
+          "label": "river",
+          "word": "river"
+        },
+        {
+          "label": "roller coaster",
+          "word": "roller coaster"
+        },
+        {
+          "label": "rollerskates",
+          "word": "rollerskates"
+        },
+        {
+          "label": "sailboat",
+          "word": "sailboat"
+        },
+        {
+          "label": "sandwich",
+          "word": "sandwich"
+        },
+        {
+          "label": "saw",
+          "word": "saw"
+        },
+        {
+          "label": "saxophone",
+          "word": "saxophone"
+        },
+        {
+          "label": "school bus",
+          "word": "school bus"
+        },
+        {
+          "label": "scissors",
+          "word": "scissors"
+        },
+        {
+          "label": "scorpion",
+          "word": "scorpion"
+        },
+        {
+          "label": "screwdriver",
+          "word": "screwdriver"
+        },
+        {
+          "label": "sea turtle",
+          "word": "sea turtle"
+        },
+        {
+          "label": "see saw",
+          "word": "see saw"
+        },
+        {
+          "label": "shark",
+          "word": "shark"
+        },
+        {
+          "label": "sheep",
+          "word": "sheep"
+        },
+        {
+          "label": "shoe",
+          "word": "shoe"
+        },
+        {
+          "label": "shorts",
+          "word": "shorts"
+        },
+        {
+          "label": "shovel",
+          "word": "shovel"
+        },
+        {
+          "label": "sink",
+          "word": "sink"
+        },
+        {
+          "label": "skateboard",
+          "word": "skateboard"
+        },
+        {
+          "label": "skull",
+          "word": "skull"
+        },
+        {
+          "label": "skyscraper",
+          "word": "skyscraper"
+        },
+        {
+          "label": "sleeping bag",
+          "word": "sleeping bag"
+        },
+        {
+          "label": "smiley face",
+          "word": "smiley face"
+        },
+        {
+          "label": "snail",
+          "word": "snail"
+        },
+        {
+          "label": "snake",
+          "word": "snake"
+        },
+        {
+          "label": "snorkel",
+          "word": "snorkel"
+        },
+        {
+          "label": "snowflake",
+          "word": "snowflake"
+        },
+        {
+          "label": "snowman",
+          "word": "snowman"
+        },
+        {
+          "label": "soccer ball",
+          "word": "soccer ball"
+        },
+        {
+          "label": "sock",
+          "word": "sock"
+        },
+        {
+          "label": "speedboat",
+          "word": "speedboat"
+        },
+        {
+          "label": "spider",
+          "word": "spider"
+        },
+        {
+          "label": "spoon",
+          "word": "spoon"
+        },
+        {
+          "label": "spreadsheet",
+          "word": "spreadsheet"
+        },
+        {
+          "label": "square",
+          "word": "square"
+        },
+        {
+          "label": "squiggle",
+          "word": "squiggle"
+        },
+        {
+          "label": "squirrel",
+          "word": "squirrel"
+        },
+        {
+          "label": "stairs",
+          "word": "stairs"
+        },
+        {
+          "label": "star",
+          "word": "star"
+        },
+        {
+          "label": "steak",
+          "word": "steak"
+        },
+        {
+          "label": "stereo",
+          "word": "stereo"
+        },
+        {
+          "label": "stethoscope",
+          "word": "stethoscope"
+        },
+        {
+          "label": "stitches",
+          "word": "stitches"
+        },
+        {
+          "label": "stop sign",
+          "word": "stop sign"
+        },
+        {
+          "label": "stove",
+          "word": "stove"
+        },
+        {
+          "label": "strawberry",
+          "word": "strawberry"
+        },
+        {
+          "label": "streetlight",
+          "word": "streetlight"
+        },
+        {
+          "label": "string bean",
+          "word": "string bean"
+        },
+        {
+          "label": "submarine",
+          "word": "submarine"
+        },
+        {
+          "label": "suitcase",
+          "word": "suitcase"
+        },
+        {
+          "label": "sun",
+          "word": "sun"
+        },
+        {
+          "label": "swan",
+          "word": "swan"
+        },
+        {
+          "label": "sweater",
+          "word": "sweater"
+        },
+        {
+          "label": "swing set",
+          "word": "swing set"
+        },
+        {
+          "label": "sword",
+          "word": "sword"
+        },
+        {
+          "label": "syringe",
+          "word": "syringe"
+        },
+        {
+          "label": "t-shirt",
+          "word": "t-shirt"
+        },
+        {
+          "label": "table",
+          "word": "table"
+        },
+        {
+          "label": "teapot",
+          "word": "teapot"
+        },
+        {
+          "label": "teddy-bear",
+          "word": "teddy-bear"
+        },
+        {
+          "label": "telephone",
+          "word": "telephone"
+        },
+        {
+          "label": "television",
+          "word": "television"
+        },
+        {
+          "label": "tennis racquet",
+          "word": "tennis racquet"
+        },
+        {
+          "label": "tent",
+          "word": "tent"
+        },
+        {
+          "label": "tiger",
+          "word": "tiger"
+        },
+        {
+          "label": "toaster",
+          "word": "toaster"
+        },
+        {
+          "label": "toe",
+          "word": "toe"
+        },
+        {
+          "label": "toilet",
+          "word": "toilet"
+        },
+        {
+          "label": "tooth",
+          "word": "tooth"
+        },
+        {
+          "label": "toothbrush",
+          "word": "toothbrush"
+        },
+        {
+          "label": "toothpaste",
+          "word": "toothpaste"
+        },
+        {
+          "label": "tornado",
+          "word": "tornado"
+        },
+        {
+          "label": "tractor",
+          "word": "tractor"
+        },
+        {
+          "label": "traffic light",
+          "word": "traffic light"
+        },
+        {
+          "label": "train",
+          "word": "train"
+        },
+        {
+          "label": "tree",
+          "word": "tree"
+        },
+        {
+          "label": "triangle",
+          "word": "triangle"
+        },
+        {
+          "label": "trombone",
+          "word": "trombone"
+        },
+        {
+          "label": "truck",
+          "word": "truck"
+        },
+        {
+          "label": "trumpet",
+          "word": "trumpet"
+        },
+        {
+          "label": "umbrella",
+          "word": "umbrella"
+        },
+        {
+          "label": "underwear",
+          "word": "underwear"
+        },
+        {
+          "label": "van",
+          "word": "van"
+        },
+        {
+          "label": "vase",
+          "word": "vase"
+        },
+        {
+          "label": "violin",
+          "word": "violin"
+        },
+        {
+          "label": "washing machine",
+          "word": "washing machine"
+        },
+        {
+          "label": "watermelon",
+          "word": "watermelon"
+        },
+        {
+          "label": "waterslide",
+          "word": "waterslide"
+        },
+        {
+          "label": "whale",
+          "word": "whale"
+        },
+        {
+          "label": "wheel",
+          "word": "wheel"
+        },
+        {
+          "label": "windmill",
+          "word": "windmill"
+        },
+        {
+          "label": "wine bottle",
+          "word": "wine bottle"
+        },
+        {
+          "label": "wine glass",
+          "word": "wine glass"
+        },
+        {
+          "label": "wristwatch",
+          "word": "wristwatch"
+        },
+        {
+          "label": "yoga",
+          "word": "yoga"
+        },
+        {
+          "label": "zebra",
+          "word": "zebra"
+        },
+        {
+          "label": "zigzag",
+          "word": "zigzag"
+        }
+      ],
+      "recognizer": {
+        "rawCount": 345,
+        "distinctNormalizedWords": 345,
+        "first": {
+          "a": 12,
+          "b": 38,
+          "c": 38,
+          "d": 13,
+          "e": 7,
+          "f": 19,
+          "g": 8,
+          "h": 21,
+          "i": 1,
+          "j": 2,
+          "k": 5,
+          "l": 14,
+          "m": 18,
+          "n": 3,
+          "o": 6,
+          "p": 30,
+          "r": 12,
+          "s": 54,
+          "t": 27,
+          "u": 2,
+          "v": 3,
+          "w": 9,
+          "y": 1,
+          "z": 2
+        },
+        "last": {
+          "a": 9,
+          "b": 5,
+          "d": 14,
+          "e": 76,
+          "f": 1,
+          "g": 11,
+          "h": 12,
+          "i": 1,
+          "k": 16,
+          "l": 22,
+          "m": 4,
+          "n": 38,
+          "o": 9,
+          "p": 11,
+          "r": 42,
+          "s": 25,
+          "t": 36,
+          "w": 6,
+          "x": 1,
+          "y": 6
+        },
+        "words": [
+          "aircraft carrier",
+          "airplane",
+          "alarm clock",
+          "ambulance",
+          "angel",
+          "animal migration",
+          "ant",
+          "anvil",
+          "apple",
+          "arm",
+          "asparagus",
+          "axe",
+          "backpack",
+          "banana",
+          "bandage",
+          "barn",
+          "baseball",
+          "baseball bat",
+          "basket",
+          "basketball",
+          "bat",
+          "bathtub",
+          "beach",
+          "bear",
+          "beard",
+          "bed",
+          "bee",
+          "belt",
+          "bench",
+          "bicycle",
+          "binoculars",
+          "bird",
+          "birthday cake",
+          "blackberry",
+          "blueberry",
+          "book",
+          "boomerang",
+          "bottlecap",
+          "bowtie",
+          "bracelet",
+          "brain",
+          "bread",
+          "bridge",
+          "broccoli",
+          "broom",
+          "bucket",
+          "bulldozer",
+          "bus",
+          "bush",
+          "butterfly",
+          "cactus",
+          "cake",
+          "calculator",
+          "calendar",
+          "camel",
+          "camera",
+          "camouflage",
+          "campfire",
+          "candle",
+          "cannon",
+          "canoe",
+          "car",
+          "carrot",
+          "castle",
+          "cat",
+          "ceiling fan",
+          "cell phone",
+          "cello",
+          "chair",
+          "chandelier",
+          "church",
+          "circle",
+          "clarinet",
+          "clock",
+          "cloud",
+          "coffee cup",
+          "compass",
+          "computer",
+          "cookie",
+          "cooler",
+          "couch",
+          "cow",
+          "crab",
+          "crayon",
+          "crocodile",
+          "crown",
+          "cruise ship",
+          "cup",
+          "diamond",
+          "dishwasher",
+          "diving board",
+          "dog",
+          "dolphin",
+          "donut",
+          "door",
+          "dragon",
+          "dresser",
+          "drill",
+          "drums",
+          "duck",
+          "dumbbell",
+          "ear",
+          "elbow",
+          "elephant",
+          "envelope",
+          "eraser",
+          "eye",
+          "eyeglasses",
+          "face",
+          "fan",
+          "feather",
+          "fence",
+          "finger",
+          "fire hydrant",
+          "fireplace",
+          "firetruck",
+          "fish",
+          "flamingo",
+          "flashlight",
+          "flip flops",
+          "floor lamp",
+          "flower",
+          "flying saucer",
+          "foot",
+          "fork",
+          "frog",
+          "frying pan",
+          "garden",
+          "garden hose",
+          "giraffe",
+          "goatee",
+          "golf club",
+          "grapes",
+          "grass",
+          "guitar",
+          "hamburger",
+          "hammer",
+          "hand",
+          "harp",
+          "hat",
+          "headphones",
+          "hedgehog",
+          "helicopter",
+          "helmet",
+          "hexagon",
+          "hockey puck",
+          "hockey stick",
+          "horse",
+          "hospital",
+          "hot air balloon",
+          "hot dog",
+          "hot tub",
+          "hourglass",
+          "house",
+          "house plant",
+          "hurricane",
+          "ice cream",
+          "jacket",
+          "jail",
+          "kangaroo",
+          "key",
+          "keyboard",
+          "knee",
+          "knife",
+          "ladder",
+          "lantern",
+          "laptop",
+          "leaf",
+          "leg",
+          "light bulb",
+          "lighter",
+          "lighthouse",
+          "lightning",
+          "line",
+          "lion",
+          "lipstick",
+          "lobster",
+          "lollipop",
+          "mailbox",
+          "map",
+          "marker",
+          "matches",
+          "megaphone",
+          "mermaid",
+          "microphone",
+          "microwave",
+          "monkey",
+          "moon",
+          "mosquito",
+          "motorbike",
+          "mountain",
+          "mouse",
+          "moustache",
+          "mouth",
+          "mug",
+          "mushroom",
+          "nail",
+          "necklace",
+          "nose",
+          "ocean",
+          "octagon",
+          "octopus",
+          "onion",
+          "oven",
+          "owl",
+          "paint can",
+          "paintbrush",
+          "palm tree",
+          "panda",
+          "pants",
+          "paper clip",
+          "parachute",
+          "parrot",
+          "passport",
+          "peanut",
+          "pear",
+          "peas",
+          "pencil",
+          "penguin",
+          "piano",
+          "pickup truck",
+          "picture frame",
+          "pig",
+          "pillow",
+          "pineapple",
+          "pizza",
+          "pliers",
+          "police car",
+          "pond",
+          "pool",
+          "popsicle",
+          "postcard",
+          "potato",
+          "power outlet",
+          "purse",
+          "rabbit",
+          "raccoon",
+          "radio",
+          "rain",
+          "rainbow",
+          "rake",
+          "remote control",
+          "rhinoceros",
+          "rifle",
+          "river",
+          "roller coaster",
+          "rollerskates",
+          "sailboat",
+          "sandwich",
+          "saw",
+          "saxophone",
+          "school bus",
+          "scissors",
+          "scorpion",
+          "screwdriver",
+          "sea turtle",
+          "see saw",
+          "shark",
+          "sheep",
+          "shoe",
+          "shorts",
+          "shovel",
+          "sink",
+          "skateboard",
+          "skull",
+          "skyscraper",
+          "sleeping bag",
+          "smiley face",
+          "snail",
+          "snake",
+          "snorkel",
+          "snowflake",
+          "snowman",
+          "soccer ball",
+          "sock",
+          "speedboat",
+          "spider",
+          "spoon",
+          "spreadsheet",
+          "square",
+          "squiggle",
+          "squirrel",
+          "stairs",
+          "star",
+          "steak",
+          "stereo",
+          "stethoscope",
+          "stitches",
+          "stop sign",
+          "stove",
+          "strawberry",
+          "streetlight",
+          "string bean",
+          "submarine",
+          "suitcase",
+          "sun",
+          "swan",
+          "sweater",
+          "swing set",
+          "sword",
+          "syringe",
+          "t-shirt",
+          "table",
+          "teapot",
+          "teddy-bear",
+          "telephone",
+          "television",
+          "tennis racquet",
+          "tent",
+          "the eiffel tower",
+          "the great wall of china",
+          "the mona lisa",
+          "tiger",
+          "toaster",
+          "toe",
+          "toilet",
+          "tooth",
+          "toothbrush",
+          "toothpaste",
+          "tornado",
+          "tractor",
+          "traffic light",
+          "train",
+          "tree",
+          "triangle",
+          "trombone",
+          "truck",
+          "trumpet",
+          "umbrella",
+          "underwear",
+          "van",
+          "vase",
+          "violin",
+          "washing machine",
+          "watermelon",
+          "waterslide",
+          "whale",
+          "wheel",
+          "windmill",
+          "wine bottle",
+          "wine glass",
+          "wristwatch",
+          "yoga",
+          "zebra",
+          "zigzag"
+        ]
+      },
+      "drawable": {
+        "rawCount": 305,
+        "distinctNormalizedWords": 305,
+        "first": {
+          "a": 9,
+          "b": 27,
+          "c": 36,
+          "d": 12,
+          "e": 5,
+          "f": 11,
+          "g": 10,
+          "h": 13,
+          "i": 3,
+          "j": 2,
+          "k": 6,
+          "l": 11,
+          "m": 13,
+          "n": 6,
+          "o": 6,
+          "p": 24,
+          "q": 2,
+          "r": 13,
+          "s": 46,
+          "t": 22,
+          "u": 3,
+          "v": 4,
+          "w": 16,
+          "x": 1,
+          "y": 2,
+          "z": 2
+        },
+        "last": {
+          "a": 10,
+          "b": 3,
+          "c": 1,
+          "d": 6,
+          "e": 60,
+          "f": 3,
+          "g": 10,
+          "h": 11,
+          "i": 4,
+          "k": 10,
+          "l": 20,
+          "m": 5,
+          "n": 31,
+          "o": 15,
+          "p": 11,
+          "r": 34,
+          "s": 14,
+          "t": 37,
+          "w": 7,
+          "x": 2,
+          "y": 11
+        },
+        "words": [
+          "acorn",
+          "airplane",
+          "ambulance",
+          "anchor",
+          "ant",
+          "anteater",
+          "apple",
+          "armadillo",
+          "avocado",
+          "backpack",
+          "ball",
+          "balloon",
+          "bamboo",
+          "banana",
+          "bat",
+          "bathtub",
+          "battery",
+          "bear",
+          "bed",
+          "bee",
+          "beetle",
+          "bell",
+          "bicycle",
+          "bird",
+          "blueberry",
+          "boat",
+          "boot",
+          "bow tie",
+          "bowl",
+          "bracelet",
+          "bread",
+          "broccoli",
+          "bucket",
+          "burger",
+          "bus",
+          "butterfly",
+          "cabbage",
+          "cactus",
+          "cake",
+          "camel",
+          "camera",
+          "candle",
+          "candy",
+          "cap",
+          "car",
+          "carrot",
+          "castle",
+          "cat",
+          "caterpillar",
+          "centipede",
+          "chair",
+          "cheese",
+          "cherries",
+          "chestnut",
+          "chick",
+          "chicken",
+          "chili",
+          "chocolate",
+          "clam",
+          "clock",
+          "cloud",
+          "coconut",
+          "comb",
+          "cookie",
+          "coral",
+          "corn",
+          "cow",
+          "crab",
+          "crocodile",
+          "crown",
+          "cucumber",
+          "cup",
+          "deer",
+          "dice",
+          "dog",
+          "dolphin",
+          "donkey",
+          "donut",
+          "door",
+          "dragon",
+          "dragonfly",
+          "dress",
+          "drum",
+          "duck",
+          "egg",
+          "eggplant",
+          "elephant",
+          "envelope",
+          "eraser",
+          "fan",
+          "fence",
+          "ferris wheel",
+          "fir tree",
+          "fire engine",
+          "firefly",
+          "fish",
+          "flamingo",
+          "flower",
+          "fox",
+          "frog",
+          "garlic",
+          "ghost",
+          "gift",
+          "giraffe",
+          "glasses",
+          "goat",
+          "gorilla",
+          "grapes",
+          "grasshopper",
+          "guitar",
+          "hairbrush",
+          "hammer",
+          "hamster",
+          "harmonica",
+          "hat",
+          "heart",
+          "hedgehog",
+          "helicopter",
+          "hippo",
+          "horse",
+          "hot air balloon",
+          "hot dog",
+          "house",
+          "ice cream",
+          "igloo",
+          "island",
+          "jacket",
+          "jellyfish",
+          "kangaroo",
+          "kettle",
+          "key",
+          "kite",
+          "kiwi",
+          "koala",
+          "ladder",
+          "ladybug",
+          "lamp",
+          "leaf",
+          "lettuce",
+          "lighthouse",
+          "lightning",
+          "lime",
+          "lion",
+          "lobster",
+          "lock",
+          "magnet",
+          "mailbox",
+          "mantis",
+          "mirror",
+          "mitten",
+          "mole",
+          "monkey",
+          "moon",
+          "mosquito",
+          "motorcycle",
+          "mountain",
+          "mouse",
+          "mushroom",
+          "nail",
+          "necklace",
+          "necktie",
+          "needle",
+          "nest",
+          "notebook",
+          "octopus",
+          "onion",
+          "orange",
+          "ostrich",
+          "otter",
+          "owl",
+          "paintbrush",
+          "palm tree",
+          "panda",
+          "paperclip",
+          "parrot",
+          "peach",
+          "peacock",
+          "peanut",
+          "pear",
+          "peas",
+          "pelican",
+          "pencil",
+          "penguin",
+          "piano",
+          "pig",
+          "pineapple",
+          "pinecone",
+          "pizza",
+          "plate",
+          "pliers",
+          "popsicle",
+          "pot",
+          "potato",
+          "pumpkin",
+          "queen",
+          "quilt",
+          "rabbit",
+          "raccoon",
+          "radio",
+          "rainbow",
+          "raindrop",
+          "refrigerator",
+          "rhinoceros",
+          "rice ball",
+          "ring",
+          "robot",
+          "rocket",
+          "rose",
+          "ruler",
+          "sailboat",
+          "sandal",
+          "sandwich",
+          "saw",
+          "scarf",
+          "scissors",
+          "screw",
+          "screwdriver",
+          "seahorse",
+          "seal",
+          "seesaw",
+          "shark",
+          "sheep",
+          "shell",
+          "shoe",
+          "shorts",
+          "shovel",
+          "shrimp",
+          "skirt",
+          "slide",
+          "sloth",
+          "snail",
+          "snake",
+          "snowflake",
+          "snowman",
+          "sock",
+          "sofa",
+          "sparrow",
+          "spider",
+          "spoon",
+          "squid",
+          "squirrel",
+          "stamp",
+          "stapler",
+          "star",
+          "starfish",
+          "stingray",
+          "stool",
+          "strawberry",
+          "submarine",
+          "sun",
+          "sunflower",
+          "sushi",
+          "swan",
+          "sweet potato",
+          "swing",
+          "t-shirt",
+          "table",
+          "tape",
+          "tapir",
+          "teacup",
+          "teapot",
+          "telephone",
+          "telescope",
+          "television",
+          "tent",
+          "tiger",
+          "toilet",
+          "tomato",
+          "tractor",
+          "traffic light",
+          "train",
+          "tree",
+          "truck",
+          "trumpet",
+          "tulip",
+          "turnip",
+          "turtle",
+          "ufo",
+          "umbrella",
+          "unicorn",
+          "van",
+          "vase",
+          "violin",
+          "volcano",
+          "walrus",
+          "washing machine",
+          "watch",
+          "waterfall",
+          "watering can",
+          "watermelon",
+          "wave",
+          "well",
+          "whale",
+          "whistle",
+          "windmill",
+          "window",
+          "wolf",
+          "woodpecker",
+          "worm",
+          "wrench",
+          "xylophone",
+          "yacht",
+          "yarn",
+          "zebra",
+          "zipper"
+        ],
+        "templates": 309,
+        "readability": {
+          "safe": 288,
+          "soft": 17,
+          "spicy": 4
+        },
+        "adoptedTemplates": 291,
+        "normalizedCollisions": [
+          {
+            "word": "yarn",
+            "ids": [
+              "girl-yarn-original",
+              "shizuku-yarn-loose-thread-v01"
+            ]
+          }
+        ]
+      },
+      "startCoverage": [
+        {
+          "letter": "a",
+          "distinctWords": 9,
+          "selected": "apple"
+        },
+        {
+          "letter": "b",
+          "distinctWords": 27,
+          "selected": "banana"
+        },
+        {
+          "letter": "c",
+          "distinctWords": 36,
+          "selected": "cat"
+        },
+        {
+          "letter": "d",
+          "distinctWords": 12,
+          "selected": "dog"
+        },
+        {
+          "letter": "e",
+          "distinctWords": 5,
+          "selected": "elephant"
+        },
+        {
+          "letter": "f",
+          "distinctWords": 11,
+          "selected": "fish"
+        },
+        {
+          "letter": "g",
+          "distinctWords": 10,
+          "selected": "grapes"
+        },
+        {
+          "letter": "h",
+          "distinctWords": 13,
+          "selected": "house"
+        },
+        {
+          "letter": "i",
+          "distinctWords": 3,
+          "selected": "ice cream"
+        },
+        {
+          "letter": "j",
+          "distinctWords": 2,
+          "selected": "jellyfish"
+        },
+        {
+          "letter": "k",
+          "distinctWords": 6,
+          "selected": "key"
+        },
+        {
+          "letter": "l",
+          "distinctWords": 11,
+          "selected": "lion"
+        },
+        {
+          "letter": "m",
+          "distinctWords": 13,
+          "selected": "moon"
+        },
+        {
+          "letter": "n",
+          "distinctWords": 6,
+          "selected": "nail"
+        },
+        {
+          "letter": "o",
+          "distinctWords": 6,
+          "selected": "octopus"
+        },
+        {
+          "letter": "p",
+          "distinctWords": 24,
+          "selected": "penguin"
+        },
+        {
+          "letter": "q",
+          "distinctWords": 2,
+          "selected": "queen"
+        },
+        {
+          "letter": "r",
+          "distinctWords": 13,
+          "selected": "rabbit"
+        },
+        {
+          "letter": "s",
+          "distinctWords": 46,
+          "selected": "star"
+        },
+        {
+          "letter": "t",
+          "distinctWords": 22,
+          "selected": "turtle"
+        },
+        {
+          "letter": "u",
+          "distinctWords": 3,
+          "selected": "umbrella"
+        },
+        {
+          "letter": "v",
+          "distinctWords": 4,
+          "selected": "volcano"
+        },
+        {
+          "letter": "w",
+          "distinctWords": 16,
+          "selected": "whale"
+        },
+        {
+          "letter": "x",
+          "distinctWords": 1,
+          "selected": "xylophone"
+        },
+        {
+          "letter": "y",
+          "distinctWords": 2,
+          "selected": "yacht"
+        },
+        {
+          "letter": "z",
+          "distinctWords": 2,
+          "selected": "zebra"
+        }
+      ],
+      "missingLetters": [],
+      "sparseLetters": [
+        {
+          "letter": "j",
+          "distinctWords": 2,
+          "selected": "jellyfish"
+        },
+        {
+          "letter": "q",
+          "distinctWords": 2,
+          "selected": "queen"
+        },
+        {
+          "letter": "x",
+          "distinctWords": 1,
+          "selected": "xylophone"
+        },
+        {
+          "letter": "y",
+          "distinctWords": 2,
+          "selected": "yacht"
+        },
+        {
+          "letter": "z",
+          "distinctWords": 2,
+          "selected": "zebra"
+        }
+      ],
+      "recognizerWordsWithoutSameNamedDrawing": [
+        "aircraft carrier",
+        "alarm clock",
+        "angel",
+        "animal migration",
+        "anvil",
+        "arm",
+        "asparagus",
+        "axe",
+        "bandage",
+        "barn",
+        "baseball",
+        "baseball bat",
+        "basket",
+        "basketball",
+        "beach",
+        "beard",
+        "belt",
+        "bench",
+        "binoculars",
+        "birthday cake",
+        "blackberry",
+        "book",
+        "boomerang",
+        "bottlecap",
+        "bowtie",
+        "brain",
+        "bridge",
+        "broom",
+        "bulldozer",
+        "bush",
+        "calculator",
+        "calendar",
+        "camouflage",
+        "campfire",
+        "cannon",
+        "canoe",
+        "ceiling fan",
+        "cell phone",
+        "cello",
+        "chandelier",
+        "church",
+        "circle",
+        "clarinet",
+        "coffee cup",
+        "compass",
+        "computer",
+        "cooler",
+        "couch",
+        "crayon",
+        "cruise ship",
+        "diamond",
+        "dishwasher",
+        "diving board",
+        "dresser",
+        "drill",
+        "drums",
+        "dumbbell",
+        "ear",
+        "elbow",
+        "eye",
+        "eyeglasses",
+        "face",
+        "feather",
+        "finger",
+        "fire hydrant",
+        "fireplace",
+        "firetruck",
+        "flashlight",
+        "flip flops",
+        "floor lamp",
+        "flying saucer",
+        "foot",
+        "fork",
+        "frying pan",
+        "garden",
+        "garden hose",
+        "goatee",
+        "golf club",
+        "grass",
+        "hamburger",
+        "hand",
+        "harp",
+        "headphones",
+        "helmet",
+        "hexagon",
+        "hockey puck",
+        "hockey stick",
+        "hospital",
+        "hot tub",
+        "hourglass",
+        "house plant",
+        "hurricane",
+        "jail",
+        "keyboard",
+        "knee",
+        "knife",
+        "lantern",
+        "laptop",
+        "leg",
+        "light bulb",
+        "lighter",
+        "line",
+        "lipstick",
+        "lollipop",
+        "map",
+        "marker",
+        "matches",
+        "megaphone",
+        "mermaid",
+        "microphone",
+        "microwave",
+        "motorbike",
+        "moustache",
+        "mouth",
+        "mug",
+        "nose",
+        "ocean",
+        "octagon",
+        "oven",
+        "paint can",
+        "pants",
+        "paper clip",
+        "parachute",
+        "passport",
+        "pickup truck",
+        "picture frame",
+        "pillow",
+        "police car",
+        "pond",
+        "pool",
+        "postcard",
+        "power outlet",
+        "purse",
+        "rain",
+        "rake",
+        "remote control",
+        "rifle",
+        "river",
+        "roller coaster",
+        "rollerskates",
+        "saxophone",
+        "school bus",
+        "scorpion",
+        "sea turtle",
+        "see saw",
+        "sink",
+        "skateboard",
+        "skull",
+        "skyscraper",
+        "sleeping bag",
+        "smiley face",
+        "snorkel",
+        "soccer ball",
+        "speedboat",
+        "spreadsheet",
+        "square",
+        "squiggle",
+        "stairs",
+        "steak",
+        "stereo",
+        "stethoscope",
+        "stitches",
+        "stop sign",
+        "stove",
+        "streetlight",
+        "string bean",
+        "suitcase",
+        "sweater",
+        "swing set",
+        "sword",
+        "syringe",
+        "teddy-bear",
+        "tennis racquet",
+        "the eiffel tower",
+        "the great wall of china",
+        "the mona lisa",
+        "toaster",
+        "toe",
+        "tooth",
+        "toothbrush",
+        "toothpaste",
+        "tornado",
+        "triangle",
+        "trombone",
+        "underwear",
+        "waterslide",
+        "wheel",
+        "wine bottle",
+        "wine glass",
+        "wristwatch",
+        "yoga",
+        "zigzag"
+      ],
+      "drawableWordsOutsideRecognizer": [
+        "acorn",
+        "anchor",
+        "anteater",
+        "armadillo",
+        "avocado",
+        "ball",
+        "balloon",
+        "bamboo",
+        "battery",
+        "beetle",
+        "bell",
+        "boat",
+        "boot",
+        "bow tie",
+        "bowl",
+        "burger",
+        "cabbage",
+        "candy",
+        "cap",
+        "caterpillar",
+        "centipede",
+        "cheese",
+        "cherries",
+        "chestnut",
+        "chick",
+        "chicken",
+        "chili",
+        "chocolate",
+        "clam",
+        "coconut",
+        "comb",
+        "coral",
+        "corn",
+        "cucumber",
+        "deer",
+        "dice",
+        "donkey",
+        "dragonfly",
+        "dress",
+        "drum",
+        "egg",
+        "eggplant",
+        "ferris wheel",
+        "fir tree",
+        "fire engine",
+        "firefly",
+        "fox",
+        "garlic",
+        "ghost",
+        "gift",
+        "glasses",
+        "goat",
+        "gorilla",
+        "grasshopper",
+        "hairbrush",
+        "hamster",
+        "harmonica",
+        "heart",
+        "hippo",
+        "igloo",
+        "island",
+        "jellyfish",
+        "kettle",
+        "kite",
+        "kiwi",
+        "koala",
+        "ladybug",
+        "lamp",
+        "lettuce",
+        "lime",
+        "lock",
+        "magnet",
+        "mantis",
+        "mirror",
+        "mitten",
+        "mole",
+        "motorcycle",
+        "necktie",
+        "needle",
+        "nest",
+        "notebook",
+        "orange",
+        "ostrich",
+        "otter",
+        "paperclip",
+        "peach",
+        "peacock",
+        "pelican",
+        "pinecone",
+        "plate",
+        "pot",
+        "pumpkin",
+        "queen",
+        "quilt",
+        "raindrop",
+        "refrigerator",
+        "rice ball",
+        "ring",
+        "robot",
+        "rocket",
+        "rose",
+        "ruler",
+        "sandal",
+        "scarf",
+        "screw",
+        "seahorse",
+        "seal",
+        "seesaw",
+        "shell",
+        "shrimp",
+        "skirt",
+        "slide",
+        "sloth",
+        "sofa",
+        "sparrow",
+        "squid",
+        "stamp",
+        "stapler",
+        "starfish",
+        "stingray",
+        "stool",
+        "sunflower",
+        "sushi",
+        "sweet potato",
+        "swing",
+        "tape",
+        "tapir",
+        "teacup",
+        "telescope",
+        "tomato",
+        "tulip",
+        "turnip",
+        "turtle",
+        "ufo",
+        "unicorn",
+        "volcano",
+        "walrus",
+        "watch",
+        "waterfall",
+        "watering can",
+        "wave",
+        "well",
+        "whistle",
+        "window",
+        "wolf",
+        "woodpecker",
+        "worm",
+        "wrench",
+        "xylophone",
+        "yacht",
+        "yarn",
+        "zipper"
+      ],
+      "unsupportedModelReplies": [],
+      "terminalModelClasses": [],
+      "normalizedModelCollisions": [],
+      "exhaustiveReducer": {
+        "cases": 345,
+        "uncovered": [],
+        "terminalRestarts": 0
+      },
+      "uncoveredReproduction": {
+        "guess": "iraq",
+        "phase": "recognition_error",
+        "error": "uncovered_letter",
+        "chainRestart": false,
+        "fixture": "EN production pool with q templates removed to exercise otherwise unreachable guard"
+      },
+      "simulation": {
+        "seedRange": [
+          1,
+          256
+        ],
+        "modes": {
+          "day": {
+            "sessions": 256,
+            "complete": 256,
+            "noModelReply": 0,
+            "uncoveredLetter": 0,
+            "restarts": 0,
+            "slips": 0,
+            "examples": [
+              {
+                "seed": 1,
+                "status": "complete",
+                "trace": [
+                  {
+                    "from": "apple",
+                    "guess": "elbow",
+                    "reply": "whale",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "whale",
+                    "guess": "elephant",
+                    "reply": "turtle",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "turtle",
+                    "guess": "envelope",
+                    "reply": "elephant",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "elephant",
+                    "guess": "tractor",
+                    "reply": "rabbit",
+                    "restart": false,
+                    "slip": null
+                  }
+                ]
+              },
+              {
+                "seed": 2,
+                "status": "complete",
+                "trace": [
+                  {
+                    "from": "apple",
+                    "guess": "elbow",
+                    "reply": "whale",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "whale",
+                    "guess": "envelope",
+                    "reply": "elephant",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "elephant",
+                    "guess": "television",
+                    "reply": "nail",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "nail",
+                    "guess": "lion",
+                    "reply": "needle",
+                    "restart": false,
+                    "slip": null
+                  }
+                ]
+              },
+              {
+                "seed": 3,
+                "status": "complete",
+                "trace": [
+                  {
+                    "from": "apple",
+                    "guess": "elbow",
+                    "reply": "whale",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "whale",
+                    "guess": "envelope",
+                    "reply": "elephant",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "elephant",
+                    "guess": "triangle",
+                    "reply": "eggplant",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "eggplant",
+                    "guess": "train",
+                    "reply": "nail",
+                    "restart": false,
+                    "slip": null
+                  }
+                ]
+              }
+            ]
+          },
+          "night": {
+            "sessions": 256,
+            "complete": 256,
+            "noModelReply": 0,
+            "uncoveredLetter": 0,
+            "restarts": 0,
+            "slips": 0,
+            "examples": [
+              {
+                "seed": 1,
+                "status": "complete",
+                "trace": [
+                  {
+                    "from": "apple",
+                    "guess": "elbow",
+                    "reply": "whale",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "whale",
+                    "guess": "elephant",
+                    "reply": "turtle",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "turtle",
+                    "guess": "envelope",
+                    "reply": "elephant",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "elephant",
+                    "guess": "tractor",
+                    "reply": "rabbit",
+                    "restart": false,
+                    "slip": null
+                  }
+                ]
+              },
+              {
+                "seed": 2,
+                "status": "complete",
+                "trace": [
+                  {
+                    "from": "apple",
+                    "guess": "elbow",
+                    "reply": "whale",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "whale",
+                    "guess": "envelope",
+                    "reply": "elephant",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "elephant",
+                    "guess": "television",
+                    "reply": "nail",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "nail",
+                    "guess": "lion",
+                    "reply": "needle",
+                    "restart": false,
+                    "slip": null
+                  }
+                ]
+              },
+              {
+                "seed": 3,
+                "status": "complete",
+                "trace": [
+                  {
+                    "from": "apple",
+                    "guess": "elbow",
+                    "reply": "whale",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "whale",
+                    "guess": "envelope",
+                    "reply": "elephant",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "elephant",
+                    "guess": "triangle",
+                    "reply": "eggplant",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "eggplant",
+                    "guess": "train",
+                    "reply": "nail",
+                    "restart": false,
+                    "slip": null
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "ja": {
+      "mappedModelClasses": 177,
+      "unmappedModelClasses": [
+        "The Eiffel Tower",
+        "The Great Wall of China",
+        "The Mona Lisa",
+        "aircraft carrier",
+        "animal migration",
+        "anvil",
+        "asparagus",
+        "bandage",
+        "baseball",
+        "baseball bat",
+        "basketball",
+        "beach",
+        "beard",
+        "bench",
+        "binoculars",
+        "birthday cake",
+        "blackberry",
+        "blueberry",
+        "boomerang",
+        "bulldozer",
+        "calculator",
+        "camouflage",
+        "campfire",
+        "cannon",
+        "castle",
+        "ceiling fan",
+        "cell phone",
+        "cello",
+        "chandelier",
+        "church",
+        "clarinet",
+        "compass",
+        "cooler",
+        "crayon",
+        "cruise ship",
+        "dishwasher",
+        "diving board",
+        "dresser",
+        "drill",
+        "drums",
+        "dumbbell",
+        "elbow",
+        "eyeglasses",
+        "fence",
+        "fire hydrant",
+        "fireplace",
+        "firetruck",
+        "flamingo",
+        "flashlight",
+        "flip flops",
+        "floor lamp",
+        "flying saucer",
+        "frying pan",
+        "garden",
+        "garden hose",
+        "goatee",
+        "golf club",
+        "harp",
+        "headphones",
+        "helmet",
+        "hexagon",
+        "hockey puck",
+        "hockey stick",
+        "hospital",
+        "hot air balloon",
+        "hot dog",
+        "hot tub",
+        "hourglass",
+        "house plant",
+        "hurricane",
+        "jail",
+        "keyboard",
+        "knee",
+        "lantern",
+        "leg",
+        "lighter",
+        "lighthouse",
+        "lightning",
+        "line",
+        "lipstick",
+        "lobster",
+        "mailbox",
+        "marker",
+        "matches",
+        "megaphone",
+        "mermaid",
+        "microphone",
+        "microwave",
+        "mosquito",
+        "motorbike",
+        "moustache",
+        "nail",
+        "ocean",
+        "octagon",
+        "oven",
+        "paint can",
+        "paintbrush",
+        "palm tree",
+        "paper clip",
+        "parachute",
+        "passport",
+        "peanut",
+        "peas",
+        "pickup truck",
+        "picture frame",
+        "pliers",
+        "police car",
+        "pond",
+        "pool",
+        "popsicle",
+        "postcard",
+        "power outlet",
+        "purse",
+        "radio",
+        "rake",
+        "remote control",
+        "rifle",
+        "roller coaster",
+        "rollerskates",
+        "sandwich",
+        "saw",
+        "saxophone",
+        "school bus",
+        "scorpion",
+        "screwdriver",
+        "sea turtle",
+        "see saw",
+        "shorts",
+        "shovel",
+        "sink",
+        "skateboard",
+        "skyscraper",
+        "sleeping bag",
+        "smiley face",
+        "snorkel",
+        "soccer ball",
+        "speedboat",
+        "spreadsheet",
+        "square",
+        "squiggle",
+        "steak",
+        "stereo",
+        "stethoscope",
+        "stitches",
+        "stop sign",
+        "stove",
+        "streetlight",
+        "string bean",
+        "submarine",
+        "suitcase",
+        "swing set",
+        "syringe",
+        "teddy-bear",
+        "tennis racquet",
+        "toe",
+        "toothpaste",
+        "tornado",
+        "tractor",
+        "traffic light",
+        "trombone",
+        "trumpet",
+        "underwear",
+        "washing machine",
+        "waterslide",
+        "wine bottle",
+        "wine glass",
+        "wristwatch",
+        "zigzag"
+      ],
+      "mapping": [
+        {
+          "label": "The Eiffel Tower",
+          "word": null
+        },
+        {
+          "label": "The Great Wall of China",
+          "word": null
+        },
+        {
+          "label": "The Mona Lisa",
+          "word": null
+        },
+        {
+          "label": "aircraft carrier",
+          "word": null
+        },
+        {
+          "label": "airplane",
+          "word": "ひこうき"
+        },
+        {
+          "label": "alarm clock",
+          "word": "めざましどけい"
+        },
+        {
+          "label": "ambulance",
+          "word": "きゅうきゅうしゃ"
+        },
+        {
+          "label": "angel",
+          "word": "てんし"
+        },
+        {
+          "label": "animal migration",
+          "word": null
+        },
+        {
+          "label": "ant",
+          "word": "あり"
+        },
+        {
+          "label": "anvil",
+          "word": null
+        },
+        {
+          "label": "apple",
+          "word": "りんご"
+        },
+        {
+          "label": "arm",
+          "word": "うで"
+        },
+        {
+          "label": "asparagus",
+          "word": null
+        },
+        {
+          "label": "axe",
+          "word": "おの"
+        },
+        {
+          "label": "backpack",
+          "word": "りゅっく"
+        },
+        {
+          "label": "banana",
+          "word": "ばなな"
+        },
+        {
+          "label": "bandage",
+          "word": null
+        },
+        {
+          "label": "barn",
+          "word": "こや"
+        },
+        {
+          "label": "baseball",
+          "word": null
+        },
+        {
+          "label": "baseball bat",
+          "word": null
+        },
+        {
+          "label": "basket",
+          "word": "かご"
+        },
+        {
+          "label": "basketball",
+          "word": null
+        },
+        {
+          "label": "bat",
+          "word": "こうもり"
+        },
+        {
+          "label": "bathtub",
+          "word": "おふろ"
+        },
+        {
+          "label": "beach",
+          "word": null
+        },
+        {
+          "label": "bear",
+          "word": "くま"
+        },
+        {
+          "label": "beard",
+          "word": null
+        },
+        {
+          "label": "bed",
+          "word": "べっど"
+        },
+        {
+          "label": "bee",
+          "word": "はち"
+        },
+        {
+          "label": "belt",
+          "word": "べると"
+        },
+        {
+          "label": "bench",
+          "word": null
+        },
+        {
+          "label": "bicycle",
+          "word": "じてんしゃ"
+        },
+        {
+          "label": "binoculars",
+          "word": null
+        },
+        {
+          "label": "bird",
+          "word": "とり"
+        },
+        {
+          "label": "birthday cake",
+          "word": null
+        },
+        {
+          "label": "blackberry",
+          "word": null
+        },
+        {
+          "label": "blueberry",
+          "word": null
+        },
+        {
+          "label": "book",
+          "word": "ほん"
+        },
+        {
+          "label": "boomerang",
+          "word": null
+        },
+        {
+          "label": "bottlecap",
+          "word": "ふた"
+        },
+        {
+          "label": "bowtie",
+          "word": "ちょうねくたい"
+        },
+        {
+          "label": "bracelet",
+          "word": "うでわ"
+        },
+        {
+          "label": "brain",
+          "word": "のう"
+        },
+        {
+          "label": "bread",
+          "word": "ぱん"
+        },
+        {
+          "label": "bridge",
+          "word": "はし"
+        },
+        {
+          "label": "broccoli",
+          "word": "ぶろっこりー"
+        },
+        {
+          "label": "broom",
+          "word": "ほうき"
+        },
+        {
+          "label": "bucket",
+          "word": "ばけつ"
+        },
+        {
+          "label": "bulldozer",
+          "word": null
+        },
+        {
+          "label": "bus",
+          "word": "ばす"
+        },
+        {
+          "label": "bush",
+          "word": "やぶ"
+        },
+        {
+          "label": "butterfly",
+          "word": "ちょうちょ"
+        },
+        {
+          "label": "cactus",
+          "word": "さぼてん"
+        },
+        {
+          "label": "cake",
+          "word": "けーき"
+        },
+        {
+          "label": "calculator",
+          "word": null
+        },
+        {
+          "label": "calendar",
+          "word": "かれんだー"
+        },
+        {
+          "label": "camel",
+          "word": "らくだ"
+        },
+        {
+          "label": "camera",
+          "word": "かめら"
+        },
+        {
+          "label": "camouflage",
+          "word": null
+        },
+        {
+          "label": "campfire",
+          "word": null
+        },
+        {
+          "label": "candle",
+          "word": "ろうそく"
+        },
+        {
+          "label": "cannon",
+          "word": null
+        },
+        {
+          "label": "canoe",
+          "word": "かぬー"
+        },
+        {
+          "label": "car",
+          "word": "くるま"
+        },
+        {
+          "label": "carrot",
+          "word": "にんじん"
+        },
+        {
+          "label": "castle",
+          "word": null
+        },
+        {
+          "label": "cat",
+          "word": "ねこ"
+        },
+        {
+          "label": "ceiling fan",
+          "word": null
+        },
+        {
+          "label": "cell phone",
+          "word": null
+        },
+        {
+          "label": "cello",
+          "word": null
+        },
+        {
+          "label": "chair",
+          "word": "いす"
+        },
+        {
+          "label": "chandelier",
+          "word": null
+        },
+        {
+          "label": "church",
+          "word": null
+        },
+        {
+          "label": "circle",
+          "word": "まる"
+        },
+        {
+          "label": "clarinet",
+          "word": null
+        },
+        {
+          "label": "clock",
+          "word": "とけい"
+        },
+        {
+          "label": "cloud",
+          "word": "くも"
+        },
+        {
+          "label": "coffee cup",
+          "word": "こーひーかっぷ"
+        },
+        {
+          "label": "compass",
+          "word": null
+        },
+        {
+          "label": "computer",
+          "word": "ぱそこん"
+        },
+        {
+          "label": "cookie",
+          "word": "くっきー"
+        },
+        {
+          "label": "cooler",
+          "word": null
+        },
+        {
+          "label": "couch",
+          "word": "そふぁ"
+        },
+        {
+          "label": "cow",
+          "word": "うし"
+        },
+        {
+          "label": "crab",
+          "word": "かに"
+        },
+        {
+          "label": "crayon",
+          "word": null
+        },
+        {
+          "label": "crocodile",
+          "word": "わに"
+        },
+        {
+          "label": "crown",
+          "word": "かんむり"
+        },
+        {
+          "label": "cruise ship",
+          "word": null
+        },
+        {
+          "label": "cup",
+          "word": "こっぷ"
+        },
+        {
+          "label": "diamond",
+          "word": "だいや"
+        },
+        {
+          "label": "dishwasher",
+          "word": null
+        },
+        {
+          "label": "diving board",
+          "word": null
+        },
+        {
+          "label": "dog",
+          "word": "いぬ"
+        },
+        {
+          "label": "dolphin",
+          "word": "いるか"
+        },
+        {
+          "label": "donut",
+          "word": "どーなつ"
+        },
+        {
+          "label": "door",
+          "word": "どあ"
+        },
+        {
+          "label": "dragon",
+          "word": "どらごん"
+        },
+        {
+          "label": "dresser",
+          "word": null
+        },
+        {
+          "label": "drill",
+          "word": null
+        },
+        {
+          "label": "drums",
+          "word": null
+        },
+        {
+          "label": "duck",
+          "word": "あひる"
+        },
+        {
+          "label": "dumbbell",
+          "word": null
+        },
+        {
+          "label": "ear",
+          "word": "みみ"
+        },
+        {
+          "label": "elbow",
+          "word": null
+        },
+        {
+          "label": "elephant",
+          "word": "ぞう"
+        },
+        {
+          "label": "envelope",
+          "word": "ふうとう"
+        },
+        {
+          "label": "eraser",
+          "word": "けしごむ"
+        },
+        {
+          "label": "eye",
+          "word": "め"
+        },
+        {
+          "label": "eyeglasses",
+          "word": null
+        },
+        {
+          "label": "face",
+          "word": "かお"
+        },
+        {
+          "label": "fan",
+          "word": "せんぷうき"
+        },
+        {
+          "label": "feather",
+          "word": "はね"
+        },
+        {
+          "label": "fence",
+          "word": null
+        },
+        {
+          "label": "finger",
+          "word": "ゆび"
+        },
+        {
+          "label": "fire hydrant",
+          "word": null
+        },
+        {
+          "label": "fireplace",
+          "word": null
+        },
+        {
+          "label": "firetruck",
+          "word": null
+        },
+        {
+          "label": "fish",
+          "word": "さかな"
+        },
+        {
+          "label": "flamingo",
+          "word": null
+        },
+        {
+          "label": "flashlight",
+          "word": null
+        },
+        {
+          "label": "flip flops",
+          "word": null
+        },
+        {
+          "label": "floor lamp",
+          "word": null
+        },
+        {
+          "label": "flower",
+          "word": "はな"
+        },
+        {
+          "label": "flying saucer",
+          "word": null
+        },
+        {
+          "label": "foot",
+          "word": "あし"
+        },
+        {
+          "label": "fork",
+          "word": "ふぉーく"
+        },
+        {
+          "label": "frog",
+          "word": "かえる"
+        },
+        {
+          "label": "frying pan",
+          "word": null
+        },
+        {
+          "label": "garden",
+          "word": null
+        },
+        {
+          "label": "garden hose",
+          "word": null
+        },
+        {
+          "label": "giraffe",
+          "word": "きりん"
+        },
+        {
+          "label": "goatee",
+          "word": null
+        },
+        {
+          "label": "golf club",
+          "word": null
+        },
+        {
+          "label": "grapes",
+          "word": "ぶどう"
+        },
+        {
+          "label": "grass",
+          "word": "くさ"
+        },
+        {
+          "label": "guitar",
+          "word": "ぎたー"
+        },
+        {
+          "label": "hamburger",
+          "word": "はんばーがー"
+        },
+        {
+          "label": "hammer",
+          "word": "かなづち"
+        },
+        {
+          "label": "hand",
+          "word": "て"
+        },
+        {
+          "label": "harp",
+          "word": null
+        },
+        {
+          "label": "hat",
+          "word": "ぼうし"
+        },
+        {
+          "label": "headphones",
+          "word": null
+        },
+        {
+          "label": "hedgehog",
+          "word": "はりねずみ"
+        },
+        {
+          "label": "helicopter",
+          "word": "へりこぷたー"
+        },
+        {
+          "label": "helmet",
+          "word": null
+        },
+        {
+          "label": "hexagon",
+          "word": null
+        },
+        {
+          "label": "hockey puck",
+          "word": null
+        },
+        {
+          "label": "hockey stick",
+          "word": null
+        },
+        {
+          "label": "horse",
+          "word": "うま"
+        },
+        {
+          "label": "hospital",
+          "word": null
+        },
+        {
+          "label": "hot air balloon",
+          "word": null
+        },
+        {
+          "label": "hot dog",
+          "word": null
+        },
+        {
+          "label": "hot tub",
+          "word": null
+        },
+        {
+          "label": "hourglass",
+          "word": null
+        },
+        {
+          "label": "house",
+          "word": "いえ"
+        },
+        {
+          "label": "house plant",
+          "word": null
+        },
+        {
+          "label": "hurricane",
+          "word": null
+        },
+        {
+          "label": "ice cream",
+          "word": "あいすくりーむ"
+        },
+        {
+          "label": "jacket",
+          "word": "じゃけっと"
+        },
+        {
+          "label": "jail",
+          "word": null
+        },
+        {
+          "label": "kangaroo",
+          "word": "かんがるー"
+        },
+        {
+          "label": "key",
+          "word": "かぎ"
+        },
+        {
+          "label": "keyboard",
+          "word": null
+        },
+        {
+          "label": "knee",
+          "word": null
+        },
+        {
+          "label": "knife",
+          "word": "ないふ"
+        },
+        {
+          "label": "ladder",
+          "word": "はしご"
+        },
+        {
+          "label": "lantern",
+          "word": null
+        },
+        {
+          "label": "laptop",
+          "word": "のーとぱそこん"
+        },
+        {
+          "label": "leaf",
+          "word": "はっぱ"
+        },
+        {
+          "label": "leg",
+          "word": null
+        },
+        {
+          "label": "light bulb",
+          "word": "でんきゅう"
+        },
+        {
+          "label": "lighter",
+          "word": null
+        },
+        {
+          "label": "lighthouse",
+          "word": null
+        },
+        {
+          "label": "lightning",
+          "word": null
+        },
+        {
+          "label": "line",
+          "word": null
+        },
+        {
+          "label": "lion",
+          "word": "らいおん"
+        },
+        {
+          "label": "lipstick",
+          "word": null
+        },
+        {
+          "label": "lobster",
+          "word": null
+        },
+        {
+          "label": "lollipop",
+          "word": "ぺろぺろきゃんでぃ"
+        },
+        {
+          "label": "mailbox",
+          "word": null
+        },
+        {
+          "label": "map",
+          "word": "ちず"
+        },
+        {
+          "label": "marker",
+          "word": null
+        },
+        {
+          "label": "matches",
+          "word": null
+        },
+        {
+          "label": "megaphone",
+          "word": null
+        },
+        {
+          "label": "mermaid",
+          "word": null
+        },
+        {
+          "label": "microphone",
+          "word": null
+        },
+        {
+          "label": "microwave",
+          "word": null
+        },
+        {
+          "label": "monkey",
+          "word": "さる"
+        },
+        {
+          "label": "moon",
+          "word": "つき"
+        },
+        {
+          "label": "mosquito",
+          "word": null
+        },
+        {
+          "label": "motorbike",
+          "word": null
+        },
+        {
+          "label": "mountain",
+          "word": "やま"
+        },
+        {
+          "label": "mouse",
+          "word": "ねずみ"
+        },
+        {
+          "label": "moustache",
+          "word": null
+        },
+        {
+          "label": "mouth",
+          "word": "くち"
+        },
+        {
+          "label": "mug",
+          "word": "まぐかっぷ"
+        },
+        {
+          "label": "mushroom",
+          "word": "きのこ"
+        },
+        {
+          "label": "nail",
+          "word": null
+        },
+        {
+          "label": "necklace",
+          "word": "ねっくれす"
+        },
+        {
+          "label": "nose",
+          "word": "はな"
+        },
+        {
+          "label": "ocean",
+          "word": null
+        },
+        {
+          "label": "octagon",
+          "word": null
+        },
+        {
+          "label": "octopus",
+          "word": "たこ"
+        },
+        {
+          "label": "onion",
+          "word": "たまねぎ"
+        },
+        {
+          "label": "oven",
+          "word": null
+        },
+        {
+          "label": "owl",
+          "word": "ふくろう"
+        },
+        {
+          "label": "paint can",
+          "word": null
+        },
+        {
+          "label": "paintbrush",
+          "word": null
+        },
+        {
+          "label": "palm tree",
+          "word": null
+        },
+        {
+          "label": "panda",
+          "word": "ぱんだ"
+        },
+        {
+          "label": "pants",
+          "word": "ずぼん"
+        },
+        {
+          "label": "paper clip",
+          "word": null
+        },
+        {
+          "label": "parachute",
+          "word": null
+        },
+        {
+          "label": "parrot",
+          "word": "おうむ"
+        },
+        {
+          "label": "passport",
+          "word": null
+        },
+        {
+          "label": "peanut",
+          "word": null
+        },
+        {
+          "label": "pear",
+          "word": "なし"
+        },
+        {
+          "label": "peas",
+          "word": null
+        },
+        {
+          "label": "pencil",
+          "word": "えんぴつ"
+        },
+        {
+          "label": "penguin",
+          "word": "ぺんぎん"
+        },
+        {
+          "label": "piano",
+          "word": "ぴあの"
+        },
+        {
+          "label": "pickup truck",
+          "word": null
+        },
+        {
+          "label": "picture frame",
+          "word": null
+        },
+        {
+          "label": "pig",
+          "word": "ぶた"
+        },
+        {
+          "label": "pillow",
+          "word": "まくら"
+        },
+        {
+          "label": "pineapple",
+          "word": "ぱいなっぷる"
+        },
+        {
+          "label": "pizza",
+          "word": "ぴざ"
+        },
+        {
+          "label": "pliers",
+          "word": null
+        },
+        {
+          "label": "police car",
+          "word": null
+        },
+        {
+          "label": "pond",
+          "word": null
+        },
+        {
+          "label": "pool",
+          "word": null
+        },
+        {
+          "label": "popsicle",
+          "word": null
+        },
+        {
+          "label": "postcard",
+          "word": null
+        },
+        {
+          "label": "potato",
+          "word": "じゃがいも"
+        },
+        {
+          "label": "power outlet",
+          "word": null
+        },
+        {
+          "label": "purse",
+          "word": null
+        },
+        {
+          "label": "rabbit",
+          "word": "うさぎ"
+        },
+        {
+          "label": "raccoon",
+          "word": "あらいぐま"
+        },
+        {
+          "label": "radio",
+          "word": null
+        },
+        {
+          "label": "rain",
+          "word": "あめ"
+        },
+        {
+          "label": "rainbow",
+          "word": "にじ"
+        },
+        {
+          "label": "rake",
+          "word": null
+        },
+        {
+          "label": "remote control",
+          "word": null
+        },
+        {
+          "label": "rhinoceros",
+          "word": "さい"
+        },
+        {
+          "label": "rifle",
+          "word": null
+        },
+        {
+          "label": "river",
+          "word": "かわ"
+        },
+        {
+          "label": "roller coaster",
+          "word": null
+        },
+        {
+          "label": "rollerskates",
+          "word": null
+        },
+        {
+          "label": "sailboat",
+          "word": "よっと"
+        },
+        {
+          "label": "sandwich",
+          "word": null
+        },
+        {
+          "label": "saw",
+          "word": null
+        },
+        {
+          "label": "saxophone",
+          "word": null
+        },
+        {
+          "label": "school bus",
+          "word": null
+        },
+        {
+          "label": "scissors",
+          "word": "はさみ"
+        },
+        {
+          "label": "scorpion",
+          "word": null
+        },
+        {
+          "label": "screwdriver",
+          "word": null
+        },
+        {
+          "label": "sea turtle",
+          "word": null
+        },
+        {
+          "label": "see saw",
+          "word": null
+        },
+        {
+          "label": "shark",
+          "word": "さめ"
+        },
+        {
+          "label": "sheep",
+          "word": "ひつじ"
+        },
+        {
+          "label": "shoe",
+          "word": "くつ"
+        },
+        {
+          "label": "shorts",
+          "word": null
+        },
+        {
+          "label": "shovel",
+          "word": null
+        },
+        {
+          "label": "sink",
+          "word": null
+        },
+        {
+          "label": "skateboard",
+          "word": null
+        },
+        {
+          "label": "skull",
+          "word": "がいこつ"
+        },
+        {
+          "label": "skyscraper",
+          "word": null
+        },
+        {
+          "label": "sleeping bag",
+          "word": null
+        },
+        {
+          "label": "smiley face",
+          "word": null
+        },
+        {
+          "label": "snail",
+          "word": "かたつむり"
+        },
+        {
+          "label": "snake",
+          "word": "へび"
+        },
+        {
+          "label": "snorkel",
+          "word": null
+        },
+        {
+          "label": "snowflake",
+          "word": "ゆき"
+        },
+        {
+          "label": "snowman",
+          "word": "ゆきだるま"
+        },
+        {
+          "label": "soccer ball",
+          "word": null
+        },
+        {
+          "label": "sock",
+          "word": "くつした"
+        },
+        {
+          "label": "speedboat",
+          "word": null
+        },
+        {
+          "label": "spider",
+          "word": "くも"
+        },
+        {
+          "label": "spoon",
+          "word": "すぷーん"
+        },
+        {
+          "label": "spreadsheet",
+          "word": null
+        },
+        {
+          "label": "square",
+          "word": null
+        },
+        {
+          "label": "squiggle",
+          "word": null
+        },
+        {
+          "label": "squirrel",
+          "word": "りす"
+        },
+        {
+          "label": "stairs",
+          "word": "かいだん"
+        },
+        {
+          "label": "star",
+          "word": "ほし"
+        },
+        {
+          "label": "steak",
+          "word": null
+        },
+        {
+          "label": "stereo",
+          "word": null
+        },
+        {
+          "label": "stethoscope",
+          "word": null
+        },
+        {
+          "label": "stitches",
+          "word": null
+        },
+        {
+          "label": "stop sign",
+          "word": null
+        },
+        {
+          "label": "stove",
+          "word": null
+        },
+        {
+          "label": "strawberry",
+          "word": "いちご"
+        },
+        {
+          "label": "streetlight",
+          "word": null
+        },
+        {
+          "label": "string bean",
+          "word": null
+        },
+        {
+          "label": "submarine",
+          "word": null
+        },
+        {
+          "label": "suitcase",
+          "word": null
+        },
+        {
+          "label": "sun",
+          "word": "たいよう"
+        },
+        {
+          "label": "swan",
+          "word": "はくちょう"
+        },
+        {
+          "label": "sweater",
+          "word": "せーたー"
+        },
+        {
+          "label": "swing set",
+          "word": null
+        },
+        {
+          "label": "sword",
+          "word": "けん"
+        },
+        {
+          "label": "syringe",
+          "word": null
+        },
+        {
+          "label": "t-shirt",
+          "word": "しゃつ"
+        },
+        {
+          "label": "table",
+          "word": "つくえ"
+        },
+        {
+          "label": "teapot",
+          "word": "きゅうす"
+        },
+        {
+          "label": "teddy-bear",
+          "word": null
+        },
+        {
+          "label": "telephone",
+          "word": "でんわ"
+        },
+        {
+          "label": "television",
+          "word": "てれび"
+        },
+        {
+          "label": "tennis racquet",
+          "word": null
+        },
+        {
+          "label": "tent",
+          "word": "てんと"
+        },
+        {
+          "label": "tiger",
+          "word": "とら"
+        },
+        {
+          "label": "toaster",
+          "word": "とーすたー"
+        },
+        {
+          "label": "toe",
+          "word": null
+        },
+        {
+          "label": "toilet",
+          "word": "といれ"
+        },
+        {
+          "label": "tooth",
+          "word": "は"
+        },
+        {
+          "label": "toothbrush",
+          "word": "はぶらし"
+        },
+        {
+          "label": "toothpaste",
+          "word": null
+        },
+        {
+          "label": "tornado",
+          "word": null
+        },
+        {
+          "label": "tractor",
+          "word": null
+        },
+        {
+          "label": "traffic light",
+          "word": null
+        },
+        {
+          "label": "train",
+          "word": "でんしゃ"
+        },
+        {
+          "label": "tree",
+          "word": "き"
+        },
+        {
+          "label": "triangle",
+          "word": "さんかく"
+        },
+        {
+          "label": "trombone",
+          "word": null
+        },
+        {
+          "label": "truck",
+          "word": "とらっく"
+        },
+        {
+          "label": "trumpet",
+          "word": null
+        },
+        {
+          "label": "umbrella",
+          "word": "かさ"
+        },
+        {
+          "label": "underwear",
+          "word": null
+        },
+        {
+          "label": "van",
+          "word": "くるま"
+        },
+        {
+          "label": "vase",
+          "word": "かびん"
+        },
+        {
+          "label": "violin",
+          "word": "ばいおりん"
+        },
+        {
+          "label": "washing machine",
+          "word": null
+        },
+        {
+          "label": "watermelon",
+          "word": "すいか"
+        },
+        {
+          "label": "waterslide",
+          "word": null
+        },
+        {
+          "label": "whale",
+          "word": "くじら"
+        },
+        {
+          "label": "wheel",
+          "word": "しゃりん"
+        },
+        {
+          "label": "windmill",
+          "word": "ふうしゃ"
+        },
+        {
+          "label": "wine bottle",
+          "word": null
+        },
+        {
+          "label": "wine glass",
+          "word": null
+        },
+        {
+          "label": "wristwatch",
+          "word": null
+        },
+        {
+          "label": "yoga",
+          "word": "よが"
+        },
+        {
+          "label": "zebra",
+          "word": "しまうま"
+        },
+        {
+          "label": "zigzag",
+          "word": null
+        }
+      ],
+      "recognizer": {
+        "rawCount": 177,
+        "distinctNormalizedWords": 174,
+        "first": {
+          "あ": 6,
+          "い": 5,
+          "う": 5,
+          "え": 1,
+          "お": 3,
+          "か": 16,
+          "が": 1,
+          "き": 5,
+          "ぎ": 1,
+          "く": 9,
+          "け": 3,
+          "こ": 4,
+          "さ": 6,
+          "し": 3,
+          "じ": 3,
+          "す": 2,
+          "ず": 1,
+          "せ": 2,
+          "そ": 1,
+          "ぞ": 1,
+          "た": 3,
+          "だ": 1,
+          "ち": 3,
+          "つ": 2,
+          "て": 4,
+          "で": 3,
+          "と": 6,
+          "ど": 3,
+          "な": 2,
+          "に": 2,
+          "ね": 3,
+          "の": 2,
+          "は": 12,
+          "ば": 4,
+          "ぱ": 4,
+          "ひ": 2,
+          "ぴ": 2,
+          "ふ": 5,
+          "ぶ": 3,
+          "へ": 2,
+          "べ": 2,
+          "ぺ": 2,
+          "ほ": 3,
+          "ぼ": 1,
+          "ま": 3,
+          "み": 1,
+          "め": 2,
+          "や": 2,
+          "ゆ": 3,
+          "よ": 2,
+          "ら": 2,
+          "り": 3,
+          "ろ": 1,
+          "わ": 1
+        },
+        "last": {
+          "あ": 8,
+          "い": 7,
+          "う": 10,
+          "え": 2,
+          "お": 1,
+          "か": 2,
+          "が": 1,
+          "き": 7,
+          "ぎ": 3,
+          "く": 5,
+          "こ": 3,
+          "ご": 4,
+          "さ": 2,
+          "ざ": 1,
+          "し": 8,
+          "じ": 2,
+          "す": 5,
+          "ず": 1,
+          "た": 3,
+          "だ": 2,
+          "ち": 3,
+          "つ": 6,
+          "て": 1,
+          "で": 1,
+          "と": 4,
+          "ど": 1,
+          "な": 3,
+          "に": 2,
+          "ぬ": 1,
+          "ね": 1,
+          "の": 2,
+          "は": 1,
+          "ぱ": 1,
+          "び": 3,
+          "ふ": 1,
+          "ぶ": 1,
+          "ぷ": 3,
+          "ま": 7,
+          "み": 4,
+          "む": 3,
+          "め": 3,
+          "も": 2,
+          "や": 6,
+          "よ": 1,
+          "ら": 4,
+          "り": 5,
+          "る": 5,
+          "れ": 1,
+          "ろ": 1,
+          "わ": 3,
+          "ん": 17
+        },
+        "words": [
+          "あいすくりーむ",
+          "あし",
+          "あひる",
+          "あめ",
+          "あらいぐま",
+          "あり",
+          "いえ",
+          "いす",
+          "いちご",
+          "いぬ",
+          "いるか",
+          "うさぎ",
+          "うし",
+          "うで",
+          "うでわ",
+          "うま",
+          "えんぴつ",
+          "おうむ",
+          "おの",
+          "おふろ",
+          "かいだん",
+          "かえる",
+          "かお",
+          "かぎ",
+          "かご",
+          "かさ",
+          "かたつむり",
+          "かなづち",
+          "かに",
+          "かぬー",
+          "かびん",
+          "かめら",
+          "かれんだー",
+          "かわ",
+          "かんがるー",
+          "かんむり",
+          "がいこつ",
+          "き",
+          "きのこ",
+          "きゅうきゅうしゃ",
+          "きゅうす",
+          "きりん",
+          "ぎたー",
+          "くさ",
+          "くじら",
+          "くち",
+          "くっきー",
+          "くつ",
+          "くつした",
+          "くま",
+          "くも",
+          "くるま",
+          "けしごむ",
+          "けん",
+          "けーき",
+          "こうもり",
+          "こっぷ",
+          "こや",
+          "こーひーかっぷ",
+          "さい",
+          "さかな",
+          "さぼてん",
+          "さめ",
+          "さる",
+          "さんかく",
+          "しまうま",
+          "しゃつ",
+          "しゃりん",
+          "じてんしゃ",
+          "じゃがいも",
+          "じゃけっと",
+          "すいか",
+          "すぷーん",
+          "ずぼん",
+          "せんぷうき",
+          "せーたー",
+          "そふぁ",
+          "ぞう",
+          "たいよう",
+          "たこ",
+          "たまねぎ",
+          "だいや",
+          "ちず",
+          "ちょうちょ",
+          "ちょうねくたい",
+          "つき",
+          "つくえ",
+          "て",
+          "てれび",
+          "てんし",
+          "てんと",
+          "でんきゅう",
+          "でんしゃ",
+          "でんわ",
+          "といれ",
+          "とけい",
+          "とら",
+          "とらっく",
+          "とり",
+          "とーすたー",
+          "どあ",
+          "どらごん",
+          "どーなつ",
+          "ないふ",
+          "なし",
+          "にじ",
+          "にんじん",
+          "ねこ",
+          "ねずみ",
+          "ねっくれす",
+          "のう",
+          "のーとぱそこん",
+          "は",
+          "はくちょう",
+          "はさみ",
+          "はし",
+          "はしご",
+          "はち",
+          "はっぱ",
+          "はな",
+          "はね",
+          "はぶらし",
+          "はりねずみ",
+          "はんばーがー",
+          "ばいおりん",
+          "ばけつ",
+          "ばす",
+          "ばなな",
+          "ぱいなっぷる",
+          "ぱそこん",
+          "ぱん",
+          "ぱんだ",
+          "ひこうき",
+          "ひつじ",
+          "ぴあの",
+          "ぴざ",
+          "ふうしゃ",
+          "ふうとう",
+          "ふぉーく",
+          "ふくろう",
+          "ふた",
+          "ぶた",
+          "ぶどう",
+          "ぶろっこりー",
+          "へび",
+          "へりこぷたー",
+          "べっど",
+          "べると",
+          "ぺろぺろきゃんでぃ",
+          "ぺんぎん",
+          "ほうき",
+          "ほし",
+          "ほん",
+          "ぼうし",
+          "まくら",
+          "まぐかっぷ",
+          "まる",
+          "みみ",
+          "め",
+          "めざましどけい",
+          "やぶ",
+          "やま",
+          "ゆき",
+          "ゆきだるま",
+          "ゆび",
+          "よが",
+          "よっと",
+          "らいおん",
+          "らくだ",
+          "りす",
+          "りゅっく",
+          "りんご",
+          "ろうそく",
+          "わに"
+        ]
+      },
+      "drawable": {
+        "rawCount": 329,
+        "distinctNormalizedWords": 327,
+        "first": {
+          "あ": 14,
+          "い": 10,
+          "う": 7,
+          "え": 4,
+          "お": 6,
+          "か": 23,
+          "き": 13,
+          "ぎ": 1,
+          "く": 14,
+          "け": 4,
+          "こ": 5,
+          "ご": 2,
+          "さ": 14,
+          "し": 9,
+          "じ": 7,
+          "す": 10,
+          "せ": 6,
+          "そ": 2,
+          "ぞ": 1,
+          "た": 9,
+          "だ": 2,
+          "ち": 7,
+          "つ": 2,
+          "て": 8,
+          "で": 3,
+          "と": 12,
+          "ど": 3,
+          "な": 5,
+          "に": 4,
+          "ぬ": 1,
+          "ね": 7,
+          "の": 2,
+          "は": 13,
+          "ば": 7,
+          "ぱ": 3,
+          "ひ": 5,
+          "ぴ": 3,
+          "ふ": 10,
+          "ぶ": 5,
+          "ぷ": 1,
+          "へ": 3,
+          "べ": 1,
+          "ぺ": 3,
+          "ほ": 5,
+          "ぼ": 3,
+          "ぽ": 1,
+          "ま": 4,
+          "み": 2,
+          "む": 3,
+          "め": 1,
+          "も": 5,
+          "や": 3,
+          "ゆ": 6,
+          "よ": 2,
+          "ら": 7,
+          "り": 4,
+          "る": 1,
+          "れ": 3,
+          "ろ": 4,
+          "わ": 2
+        },
+        "last": {
+          "あ": 9,
+          "い": 13,
+          "う": 17,
+          "え": 4,
+          "お": 4,
+          "か": 6,
+          "き": 12,
+          "ぎ": 7,
+          "く": 9,
+          "ぐ": 1,
+          "け": 2,
+          "げ": 1,
+          "こ": 9,
+          "ご": 7,
+          "さ": 1,
+          "ざ": 1,
+          "し": 16,
+          "じ": 4,
+          "す": 11,
+          "ず": 3,
+          "た": 4,
+          "だ": 2,
+          "ち": 8,
+          "つ": 10,
+          "て": 1,
+          "で": 3,
+          "と": 16,
+          "ど": 4,
+          "な": 3,
+          "に": 2,
+          "ぬ": 1,
+          "ね": 5,
+          "の": 2,
+          "ば": 2,
+          "ぱ": 2,
+          "び": 4,
+          "ぶ": 1,
+          "ぷ": 8,
+          "べ": 1,
+          "ぼ": 2,
+          "ま": 10,
+          "み": 10,
+          "む": 4,
+          "め": 5,
+          "も": 5,
+          "や": 7,
+          "よ": 1,
+          "ら": 10,
+          "り": 21,
+          "る": 8,
+          "れ": 1,
+          "ろ": 6,
+          "わ": 6,
+          "ん": 15
+        },
+        "words": [
+          "あいす",
+          "あいすくりーむ",
+          "あおむし",
+          "あさがお",
+          "あさり",
+          "あざらし",
+          "あひる",
+          "あぼかど",
+          "あまぐも",
+          "あめ",
+          "あらいぐま",
+          "あり",
+          "ありくい",
+          "あるまじろ",
+          "いえ",
+          "いか",
+          "いかり",
+          "いぐるー",
+          "いす",
+          "いせえび",
+          "いちご",
+          "いど",
+          "いぬ",
+          "いるか",
+          "うさぎ",
+          "うし",
+          "うちわ",
+          "うつわ",
+          "うでどけい",
+          "うでわ",
+          "うま",
+          "えい",
+          "えび",
+          "えんどうまめ",
+          "えんぴつ",
+          "おうむ",
+          "おおかみ",
+          "おにぎり",
+          "おばけ",
+          "おれんじ",
+          "おーとばい",
+          "か",
+          "かいがら",
+          "かえる",
+          "かがみ",
+          "かぎ",
+          "かさ",
+          "かざん",
+          "かたつむり",
+          "かっぷ",
+          "かに",
+          "かね",
+          "かば",
+          "かびん",
+          "かぶ",
+          "かぶとむし",
+          "かぼちゃ",
+          "かまきり",
+          "かみなり",
+          "かめ",
+          "かめら",
+          "かんがるー",
+          "かんむり",
+          "かんらんしゃ",
+          "き",
+          "きうい",
+          "ききゅう",
+          "きって",
+          "きつつき",
+          "きつね",
+          "きのこ",
+          "きゃっぷ",
+          "きゃべつ",
+          "きゅうきゅうしゃ",
+          "きゅうり",
+          "きりん",
+          "きると",
+          "ぎたー",
+          "くぎ",
+          "くし",
+          "くじゃく",
+          "くじら",
+          "くっきー",
+          "くつ",
+          "くつした",
+          "くま",
+          "くも",
+          "くらげ",
+          "くり",
+          "くりっぷ",
+          "くるま",
+          "くわがた",
+          "けいと",
+          "けしごむ",
+          "けとる",
+          "けーき",
+          "こあら",
+          "こうもり",
+          "ここなつ",
+          "こっぷ",
+          "こま",
+          "ごぼう",
+          "ごりら",
+          "さい",
+          "さいころ",
+          "さかな",
+          "さく",
+          "さくらんぼ",
+          "さそり",
+          "さつまいも",
+          "さぼてん",
+          "さめ",
+          "さら",
+          "さる",
+          "さんご",
+          "さんだる",
+          "さんどいっち",
+          "しか",
+          "しずく",
+          "しま",
+          "しまうま",
+          "しょうぼうしゃ",
+          "しろ",
+          "しんごう",
+          "しんごうき",
+          "しーそー",
+          "じしゃく",
+          "じてんしゃ",
+          "じゃがいも",
+          "じゃけっと",
+          "じょうまえ",
+          "じょうろ",
+          "じょおう",
+          "す",
+          "すいか",
+          "すいとう",
+          "すかーと",
+          "すこっぷ",
+          "すし",
+          "すず",
+          "すずめ",
+          "すぷーん",
+          "すべりだい",
+          "せいうち",
+          "せみ",
+          "せんす",
+          "せんすいかん",
+          "せんたくき",
+          "せんぷうき",
+          "そふぁ",
+          "そり",
+          "ぞう",
+          "たいこ",
+          "たいよう",
+          "たき",
+          "たけ",
+          "たけのこ",
+          "たこ",
+          "たつのおとしご",
+          "たまご",
+          "たまねぎ",
+          "だちょう",
+          "だるま",
+          "ちくわ",
+          "ちゅーりっぷ",
+          "ちょう",
+          "ちょうちょ",
+          "ちょうねくたい",
+          "ちょこれーと",
+          "ちーず",
+          "つき",
+          "つくえ",
+          "てぃーしゃつ",
+          "てぃーぽっと",
+          "てがみ",
+          "てぶくろ",
+          "てれび",
+          "てんと",
+          "てんとうむし",
+          "てーぷ",
+          "でんしゃ",
+          "でんち",
+          "でんわ",
+          "といれ",
+          "とうがらし",
+          "とうだい",
+          "とうもろこし",
+          "とけい",
+          "とまと",
+          "とら",
+          "とらくたー",
+          "とらっく",
+          "とり",
+          "とんかち",
+          "とんぼ",
+          "どあ",
+          "どんぐり",
+          "どーなつ",
+          "ながぐつ",
+          "なす",
+          "なべ",
+          "なまけもの",
+          "なみ",
+          "にじ",
+          "にわとり",
+          "にんじん",
+          "にんにく",
+          "ぬいぐるみ",
+          "ねぎ",
+          "ねくたい",
+          "ねこ",
+          "ねじ",
+          "ねじまわし",
+          "ねずみ",
+          "ねっくれす",
+          "のこぎり",
+          "のーと",
+          "はくちょう",
+          "はさみ",
+          "はしご",
+          "はち",
+          "はっぱ",
+          "はな",
+          "はむすたー",
+          "はり",
+          "はりねずみ",
+          "はんばーがー",
+          "はーと",
+          "はーふぱんつ",
+          "はーもにか",
+          "ばいおりん",
+          "ばく",
+          "ばけつ",
+          "ばす",
+          "ばった",
+          "ばなな",
+          "ばら",
+          "ぱいなっぷる",
+          "ぱん",
+          "ぱんだ",
+          "ひこうき",
+          "ひつじ",
+          "ひとで",
+          "ひまわり",
+          "ひよこ",
+          "ぴあの",
+          "ぴざ",
+          "ぴーなっつ",
+          "ふぁすなー",
+          "ふうしゃ",
+          "ふうせん",
+          "ふうとう",
+          "ふえ",
+          "ふくろう",
+          "ふで",
+          "ふね",
+          "ふらみんご",
+          "ふろ",
+          "ぶた",
+          "ぶどう",
+          "ぶらんこ",
+          "ぶるーべりー",
+          "ぶろっこり",
+          "ぷれぜんと",
+          "へあぶらし",
+          "へび",
+          "へりこぷたー",
+          "べっど",
+          "ぺりかん",
+          "ぺんぎん",
+          "ぺんち",
+          "ほうき",
+          "ほし",
+          "ほたる",
+          "ほちきす",
+          "ほっとどっぐ",
+          "ぼうえんきょう",
+          "ぼうし",
+          "ぼーる",
+          "ぽすと",
+          "まくら",
+          "まつぼっくり",
+          "まど",
+          "まふらー",
+          "みつばち",
+          "みみず",
+          "むかで",
+          "むぎ",
+          "むしめがね",
+          "めがね",
+          "もぐら",
+          "もっきん",
+          "ものさし",
+          "もみのき",
+          "もも",
+          "やぎ",
+          "やし",
+          "やま",
+          "ゆき",
+          "ゆきだるま",
+          "ゆにこーん",
+          "ゆのみ",
+          "ゆびわ",
+          "ゆーふぉー",
+          "ようなし",
+          "よっと",
+          "らいおん",
+          "らいむ",
+          "らくだ",
+          "らじお",
+          "らっこ",
+          "らっぱ",
+          "らんぷ",
+          "りす",
+          "りゅう",
+          "りゅっく",
+          "りんご",
+          "るーれっと",
+          "れいぞうこ",
+          "れたす",
+          "れんち",
+          "ろうそく",
+          "ろけっと",
+          "ろば",
+          "ろぼっと",
+          "わに",
+          "わんぴーす"
+        ],
+        "templates": 332,
+        "readability": {
+          "safe": 302,
+          "soft": 27,
+          "spicy": 3
+        },
+        "adoptedTemplates": 291,
+        "normalizedCollisions": [
+          {
+            "word": "いす",
+            "ids": [
+              "shizuku-style-v01-chair",
+              "shizuku-style-v01-stool"
+            ]
+          },
+          {
+            "word": "けいと",
+            "ids": [
+              "girl-yarn-original",
+              "shizuku-yarn-loose-thread-v01"
+            ]
+          },
+          {
+            "word": "たこ",
+            "ids": [
+              "shizuku-style-v01-octopus",
+              "shizuku-style-v01-kite"
+            ]
+          }
+        ]
+      },
+      "startCoverage": [
+        {
+          "letter": "あ",
+          "distinctWords": 14,
+          "selected": "あざらし"
+        },
+        {
+          "letter": "い",
+          "distinctWords": 10,
+          "selected": "いえ"
+        },
+        {
+          "letter": "う",
+          "distinctWords": 7,
+          "selected": "うさぎ"
+        },
+        {
+          "letter": "え",
+          "distinctWords": 4,
+          "selected": "えび"
+        },
+        {
+          "letter": "お",
+          "distinctWords": 6,
+          "selected": "おにぎり"
+        },
+        {
+          "letter": "か",
+          "distinctWords": 23,
+          "selected": "かさ"
+        },
+        {
+          "letter": "き",
+          "distinctWords": 14,
+          "selected": "き"
+        },
+        {
+          "letter": "く",
+          "distinctWords": 14,
+          "selected": "くるま"
+        },
+        {
+          "letter": "け",
+          "distinctWords": 4,
+          "selected": "けーき"
+        },
+        {
+          "letter": "こ",
+          "distinctWords": 7,
+          "selected": "こあら"
+        },
+        {
+          "letter": "さ",
+          "distinctWords": 14,
+          "selected": "さかな"
+        },
+        {
+          "letter": "し",
+          "distinctWords": 16,
+          "selected": "しずく"
+        },
+        {
+          "letter": "す",
+          "distinctWords": 10,
+          "selected": "すいか"
+        },
+        {
+          "letter": "せ",
+          "distinctWords": 6,
+          "selected": "せいうち"
+        },
+        {
+          "letter": "そ",
+          "distinctWords": 3,
+          "selected": "そふぁ"
+        },
+        {
+          "letter": "た",
+          "distinctWords": 11,
+          "selected": "たこ"
+        },
+        {
+          "letter": "ち",
+          "distinctWords": 7,
+          "selected": "ちょう"
+        },
+        {
+          "letter": "つ",
+          "distinctWords": 2,
+          "selected": "つき"
+        },
+        {
+          "letter": "て",
+          "distinctWords": 11,
+          "selected": "てぶくろ"
+        },
+        {
+          "letter": "と",
+          "distinctWords": 15,
+          "selected": "とり"
+        },
+        {
+          "letter": "な",
+          "distinctWords": 5,
+          "selected": "なす"
+        },
+        {
+          "letter": "に",
+          "distinctWords": 4,
+          "selected": "にわとり"
+        },
+        {
+          "letter": "ぬ",
+          "distinctWords": 1,
+          "selected": "ぬいぐるみ"
+        },
+        {
+          "letter": "ね",
+          "distinctWords": 7,
+          "selected": "ねこ"
+        },
+        {
+          "letter": "の",
+          "distinctWords": 2,
+          "selected": "のこぎり"
+        },
+        {
+          "letter": "は",
+          "distinctWords": 23,
+          "selected": "はな"
+        },
+        {
+          "letter": "ひ",
+          "distinctWords": 8,
+          "selected": "ひつじ"
+        },
+        {
+          "letter": "ふ",
+          "distinctWords": 16,
+          "selected": "ふね"
+        },
+        {
+          "letter": "へ",
+          "distinctWords": 7,
+          "selected": "へび"
+        },
+        {
+          "letter": "ほ",
+          "distinctWords": 9,
+          "selected": "ほし"
+        },
+        {
+          "letter": "ま",
+          "distinctWords": 4,
+          "selected": "まど"
+        },
+        {
+          "letter": "み",
+          "distinctWords": 2,
+          "selected": "みみず"
+        },
+        {
+          "letter": "む",
+          "distinctWords": 3,
+          "selected": "むかで"
+        },
+        {
+          "letter": "め",
+          "distinctWords": 1,
+          "selected": "めがね"
+        },
+        {
+          "letter": "も",
+          "distinctWords": 5,
+          "selected": "もぐら"
+        },
+        {
+          "letter": "や",
+          "distinctWords": 3,
+          "selected": "やま"
+        },
+        {
+          "letter": "ゆ",
+          "distinctWords": 6,
+          "selected": "ゆき"
+        },
+        {
+          "letter": "よ",
+          "distinctWords": 2,
+          "selected": "ようなし"
+        },
+        {
+          "letter": "ら",
+          "distinctWords": 7,
+          "selected": "らくだ"
+        },
+        {
+          "letter": "り",
+          "distinctWords": 4,
+          "selected": "りんご"
+        },
+        {
+          "letter": "る",
+          "distinctWords": 1,
+          "selected": "るーれっと"
+        },
+        {
+          "letter": "れ",
+          "distinctWords": 3,
+          "selected": "れいぞうこ"
+        },
+        {
+          "letter": "ろ",
+          "distinctWords": 4,
+          "selected": "ろうそく"
+        },
+        {
+          "letter": "わ",
+          "distinctWords": 2,
+          "selected": "わに"
+        },
+        {
+          "letter": "を",
+          "distinctWords": 0,
+          "selected": null
+        },
+        {
+          "letter": "ん",
+          "distinctWords": 0,
+          "selected": null
+        }
+      ],
+      "missingLetters": [
+        {
+          "letter": "を",
+          "distinctWords": 0,
+          "selected": null
+        },
+        {
+          "letter": "ん",
+          "distinctWords": 0,
+          "selected": null
+        }
+      ],
+      "sparseLetters": [
+        {
+          "letter": "つ",
+          "distinctWords": 2,
+          "selected": "つき"
+        },
+        {
+          "letter": "ぬ",
+          "distinctWords": 1,
+          "selected": "ぬいぐるみ"
+        },
+        {
+          "letter": "の",
+          "distinctWords": 2,
+          "selected": "のこぎり"
+        },
+        {
+          "letter": "み",
+          "distinctWords": 2,
+          "selected": "みみず"
+        },
+        {
+          "letter": "め",
+          "distinctWords": 1,
+          "selected": "めがね"
+        },
+        {
+          "letter": "よ",
+          "distinctWords": 2,
+          "selected": "ようなし"
+        },
+        {
+          "letter": "る",
+          "distinctWords": 1,
+          "selected": "るーれっと"
+        },
+        {
+          "letter": "わ",
+          "distinctWords": 2,
+          "selected": "わに"
+        }
+      ],
+      "recognizerWordsWithoutSameNamedDrawing": [
+        "あし",
+        "うで",
+        "おの",
+        "おふろ",
+        "かいだん",
+        "かお",
+        "かご",
+        "かなづち",
+        "かぬー",
+        "かれんだー",
+        "かわ",
+        "がいこつ",
+        "きゅうす",
+        "くさ",
+        "くち",
+        "けん",
+        "こや",
+        "こーひーかっぷ",
+        "さんかく",
+        "しゃつ",
+        "しゃりん",
+        "ずぼん",
+        "せーたー",
+        "だいや",
+        "ちず",
+        "て",
+        "てんし",
+        "でんきゅう",
+        "とーすたー",
+        "どらごん",
+        "ないふ",
+        "なし",
+        "のう",
+        "のーとぱそこん",
+        "は",
+        "はし",
+        "はね",
+        "はぶらし",
+        "ぱそこん",
+        "ふぉーく",
+        "ふた",
+        "ぶろっこりー",
+        "べると",
+        "ぺろぺろきゃんでぃ",
+        "ほん",
+        "まぐかっぷ",
+        "まる",
+        "みみ",
+        "め",
+        "めざましどけい",
+        "やぶ",
+        "ゆび",
+        "よが"
+      ],
+      "drawableWordsOutsideRecognizer": [
+        "あいす",
+        "あおむし",
+        "あさがお",
+        "あさり",
+        "あざらし",
+        "あぼかど",
+        "あまぐも",
+        "ありくい",
+        "あるまじろ",
+        "いか",
+        "いかり",
+        "いぐるー",
+        "いせえび",
+        "いど",
+        "うちわ",
+        "うつわ",
+        "うでどけい",
+        "えい",
+        "えび",
+        "えんどうまめ",
+        "おおかみ",
+        "おにぎり",
+        "おばけ",
+        "おれんじ",
+        "おーとばい",
+        "か",
+        "かいがら",
+        "かがみ",
+        "かざん",
+        "かっぷ",
+        "かね",
+        "かば",
+        "かぶ",
+        "かぶとむし",
+        "かぼちゃ",
+        "かまきり",
+        "かみなり",
+        "かめ",
+        "かんらんしゃ",
+        "きうい",
+        "ききゅう",
+        "きって",
+        "きつつき",
+        "きつね",
+        "きゃっぷ",
+        "きゃべつ",
+        "きゅうり",
+        "きると",
+        "くぎ",
+        "くし",
+        "くじゃく",
+        "くらげ",
+        "くり",
+        "くりっぷ",
+        "くわがた",
+        "けいと",
+        "けとる",
+        "こあら",
+        "ここなつ",
+        "こま",
+        "ごぼう",
+        "ごりら",
+        "さいころ",
+        "さく",
+        "さくらんぼ",
+        "さそり",
+        "さつまいも",
+        "さら",
+        "さんご",
+        "さんだる",
+        "さんどいっち",
+        "しか",
+        "しずく",
+        "しま",
+        "しょうぼうしゃ",
+        "しろ",
+        "しんごう",
+        "しんごうき",
+        "しーそー",
+        "じしゃく",
+        "じょうまえ",
+        "じょうろ",
+        "じょおう",
+        "す",
+        "すいとう",
+        "すかーと",
+        "すこっぷ",
+        "すし",
+        "すず",
+        "すずめ",
+        "すべりだい",
+        "せいうち",
+        "せみ",
+        "せんす",
+        "せんすいかん",
+        "せんたくき",
+        "そり",
+        "たいこ",
+        "たき",
+        "たけ",
+        "たけのこ",
+        "たつのおとしご",
+        "たまご",
+        "だちょう",
+        "だるま",
+        "ちくわ",
+        "ちゅーりっぷ",
+        "ちょう",
+        "ちょこれーと",
+        "ちーず",
+        "てぃーしゃつ",
+        "てぃーぽっと",
+        "てがみ",
+        "てぶくろ",
+        "てんとうむし",
+        "てーぷ",
+        "でんち",
+        "とうがらし",
+        "とうだい",
+        "とうもろこし",
+        "とまと",
+        "とらくたー",
+        "とんかち",
+        "とんぼ",
+        "どんぐり",
+        "ながぐつ",
+        "なす",
+        "なべ",
+        "なまけもの",
+        "なみ",
+        "にわとり",
+        "にんにく",
+        "ぬいぐるみ",
+        "ねぎ",
+        "ねくたい",
+        "ねじ",
+        "ねじまわし",
+        "のこぎり",
+        "のーと",
+        "はむすたー",
+        "はり",
+        "はーと",
+        "はーふぱんつ",
+        "はーもにか",
+        "ばく",
+        "ばった",
+        "ばら",
+        "ひとで",
+        "ひまわり",
+        "ひよこ",
+        "ぴーなっつ",
+        "ふぁすなー",
+        "ふうせん",
+        "ふえ",
+        "ふで",
+        "ふね",
+        "ふらみんご",
+        "ふろ",
+        "ぶらんこ",
+        "ぶるーべりー",
+        "ぶろっこり",
+        "ぷれぜんと",
+        "へあぶらし",
+        "ぺりかん",
+        "ぺんち",
+        "ほたる",
+        "ほちきす",
+        "ほっとどっぐ",
+        "ぼうえんきょう",
+        "ぼーる",
+        "ぽすと",
+        "まつぼっくり",
+        "まど",
+        "まふらー",
+        "みつばち",
+        "みみず",
+        "むかで",
+        "むぎ",
+        "むしめがね",
+        "めがね",
+        "もぐら",
+        "もっきん",
+        "ものさし",
+        "もみのき",
+        "もも",
+        "やぎ",
+        "やし",
+        "ゆにこーん",
+        "ゆのみ",
+        "ゆびわ",
+        "ゆーふぉー",
+        "ようなし",
+        "らいむ",
+        "らじお",
+        "らっこ",
+        "らっぱ",
+        "らんぷ",
+        "りゅう",
+        "るーれっと",
+        "れいぞうこ",
+        "れたす",
+        "れんち",
+        "ろけっと",
+        "ろば",
+        "ろぼっと",
+        "わんぴーす"
+      ],
+      "unsupportedModelReplies": [],
+      "terminalModelClasses": [
+        {
+          "label": "book",
+          "word": "ほん"
+        },
+        {
+          "label": "bread",
+          "word": "ぱん"
+        },
+        {
+          "label": "cactus",
+          "word": "さぼてん"
+        },
+        {
+          "label": "carrot",
+          "word": "にんじん"
+        },
+        {
+          "label": "computer",
+          "word": "ぱそこん"
+        },
+        {
+          "label": "dragon",
+          "word": "どらごん"
+        },
+        {
+          "label": "giraffe",
+          "word": "きりん"
+        },
+        {
+          "label": "laptop",
+          "word": "のーとぱそこん"
+        },
+        {
+          "label": "lion",
+          "word": "らいおん"
+        },
+        {
+          "label": "pants",
+          "word": "ずぼん"
+        },
+        {
+          "label": "penguin",
+          "word": "ぺんぎん"
+        },
+        {
+          "label": "spoon",
+          "word": "すぷーん"
+        },
+        {
+          "label": "stairs",
+          "word": "かいだん"
+        },
+        {
+          "label": "sword",
+          "word": "けん"
+        },
+        {
+          "label": "vase",
+          "word": "かびん"
+        },
+        {
+          "label": "violin",
+          "word": "ばいおりん"
+        },
+        {
+          "label": "wheel",
+          "word": "しゃりん"
+        }
+      ],
+      "normalizedModelCollisions": [
+        {
+          "word": "くも",
+          "labels": [
+            "cloud",
+            "spider"
+          ]
+        },
+        {
+          "word": "くるま",
+          "labels": [
+            "car",
+            "van"
+          ]
+        },
+        {
+          "word": "はな",
+          "labels": [
+            "flower",
+            "nose"
+          ]
+        }
+      ],
+      "exhaustiveReducer": {
+        "cases": 177,
+        "uncovered": [],
+        "terminalRestarts": 17
+      },
+      "uncoveredReproduction": {
+        "guess": "ゐ",
+        "phase": "recognition_error",
+        "error": "uncovered_letter",
+        "chainRestart": false,
+        "fixture": "full production pool"
+      },
+      "simulation": {
+        "seedRange": [
+          1,
+          256
+        ],
+        "modes": {
+          "day": {
+            "sessions": 256,
+            "complete": 256,
+            "noModelReply": 0,
+            "uncoveredLetter": 0,
+            "restarts": 130,
+            "slips": 85,
+            "examples": [
+              {
+                "seed": 1,
+                "status": "complete",
+                "trace": [
+                  {
+                    "from": "すいか",
+                    "guess": "かご",
+                    "reply": "ごりら",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "ごりら",
+                    "guess": "らいおん",
+                    "reply": "ねこ",
+                    "restart": true,
+                    "slip": null
+                  },
+                  {
+                    "from": "ねこ",
+                    "guess": "こや",
+                    "reply": "やま",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "やま",
+                    "guess": "まる",
+                    "reply": "るーれっと",
+                    "restart": false,
+                    "slip": null
+                  }
+                ]
+              },
+              {
+                "seed": 2,
+                "status": "complete",
+                "trace": [
+                  {
+                    "from": "かさ",
+                    "guess": "さかな",
+                    "reply": "なす",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "なす",
+                    "guess": "すぷーん",
+                    "reply": "ねこ",
+                    "restart": true,
+                    "slip": null
+                  },
+                  {
+                    "from": "ねこ",
+                    "guess": "こうもり",
+                    "reply": "りんご",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "りんご",
+                    "guess": "こや",
+                    "reply": "やま",
+                    "restart": false,
+                    "slip": null
+                  }
+                ]
+              },
+              {
+                "seed": 3,
+                "status": "complete",
+                "trace": [
+                  {
+                    "from": "つき",
+                    "guess": "きのこ",
+                    "reply": "こあら",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "こあら",
+                    "guess": "らくだ",
+                    "reply": "だちょう",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "だちょう",
+                    "guess": "うま",
+                    "reply": "まど",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "まど",
+                    "guess": "どらごん",
+                    "reply": "ねこ",
+                    "restart": true,
+                    "slip": null
+                  }
+                ]
+              }
+            ]
+          },
+          "night": {
+            "sessions": 256,
+            "complete": 256,
+            "noModelReply": 0,
+            "uncoveredLetter": 0,
+            "restarts": 100,
+            "slips": 61,
+            "examples": [
+              {
+                "seed": 1,
+                "status": "complete",
+                "trace": [
+                  {
+                    "from": "つき",
+                    "guess": "きのこ",
+                    "reply": "こうもり",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "こうもり",
+                    "guess": "りゅっく",
+                    "reply": "くるま",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "くるま",
+                    "guess": "まぐかっぷ",
+                    "reply": "ぷれぜんと",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "ぷれぜんと",
+                    "guess": "どあ",
+                    "reply": "あざらし",
+                    "restart": false,
+                    "slip": null
+                  }
+                ]
+              },
+              {
+                "seed": 2,
+                "status": "complete",
+                "trace": [
+                  {
+                    "from": "ほし",
+                    "guess": "しゃつ",
+                    "reply": "つき",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "つき",
+                    "guess": "きゅうきゅうしゃ",
+                    "reply": "やま",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "やま",
+                    "guess": "まくら",
+                    "reply": "らくだ",
+                    "restart": false,
+                    "slip": "らいおん"
+                  },
+                  {
+                    "from": "らくだ",
+                    "guess": "たまねぎ",
+                    "reply": "ぎたー",
+                    "restart": false,
+                    "slip": null
+                  }
+                ]
+              },
+              {
+                "seed": 3,
+                "status": "complete",
+                "trace": [
+                  {
+                    "from": "とけい",
+                    "guess": "いす",
+                    "reply": "すいか",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "すいか",
+                    "guess": "かぬー",
+                    "reply": "うさぎ",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "うさぎ",
+                    "guess": "ぎたー",
+                    "reply": "あざらし",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "あざらし",
+                    "guess": "じゃがいも",
+                    "reply": "もぐら",
+                    "restart": false,
+                    "slip": null
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "namingDictionary": [
+    {
+      "id": "pear",
+      "concept": "pear",
+      "reading": "なし",
+      "forms": [
+        "なし",
+        "梨"
+      ]
+    },
+    {
+      "id": "european-pear",
+      "concept": "european-pear",
+      "reading": "ようなし",
+      "forms": [
+        "ようなし",
+        "洋梨",
+        "洋なし"
+      ]
+    },
+    {
+      "id": "la-france",
+      "concept": "la-france",
+      "reading": "らふらんす",
+      "forms": [
+        "らふらんす",
+        "ラ・フランス",
+        "ら・ふらんす"
+      ]
+    },
+    {
+      "id": "dog",
+      "concept": "dog",
+      "reading": "いぬ",
+      "forms": [
+        "いぬ",
+        "犬"
+      ]
+    },
+    {
+      "id": "wanko",
+      "concept": "dog",
+      "reading": "わんこ",
+      "forms": [
+        "わんこ"
+      ]
+    },
+    {
+      "id": "shiba-inu",
+      "concept": "shiba-inu",
+      "reading": "しばいぬ",
+      "forms": [
+        "しばいぬ",
+        "柴犬"
+      ]
+    },
+    {
+      "id": "bird",
+      "concept": "bird",
+      "reading": "とり",
+      "forms": [
+        "とり",
+        "鳥"
+      ]
+    },
+    {
+      "id": "sparrow",
+      "concept": "sparrow",
+      "reading": "すずめ",
+      "forms": [
+        "すずめ",
+        "雀"
+      ]
+    },
+    {
+      "id": "flower",
+      "concept": "flower",
+      "reading": "はな",
+      "forms": [
+        "はな",
+        "花"
+      ]
+    },
+    {
+      "id": "nose",
+      "concept": "nose",
+      "reading": "はな",
+      "forms": [
+        "はな",
+        "鼻"
+      ]
+    },
+    {
+      "id": "sunflower",
+      "concept": "sunflower",
+      "reading": "ひまわり",
+      "forms": [
+        "ひまわり",
+        "向日葵"
+      ]
+    }
+  ],
+  "sourceSha256": {
+    "scripts/audit-vocabulary.mjs": "2fe481b8c86585b6abfcd726e4dbd22795262f61119df6a03febdeb941cf8bb3",
+    "src/App.tsx": "ecd628e5d56ded1e943deca0399149febdaa044059014a34ffc57e9f0525e17f",
+    "src/core/drawingHistory.ts": "20333d097246ba4f0b8f2df7f3b23ba753ffd57794826af7e6fdf7c96c822521",
+    "src/core/gameMachine.ts": "f2811fc95060ff7fa9026d95b932b7f8394448bd02db2459131677ff212a53f8",
+    "src/core/naming.ts": "9d84d2ae55d589760aacece6e7391657d888164a280ed1230008ade839843ba0",
+    "src/core/score.ts": "c377a8358374056f40fe17c46a6db140c5dfe560bdcda4f76678e81d8d99b962",
+    "src/core/types.ts": "c113b3a890aaf44671ec6312617b4361b5df5239ddcea1124d03fd29fee9756e",
+    "src/core/words.ts": "adba8a44daca27236e1ddf2695fcf4e280975e9bc44d9bc825fd6444a74b9363",
+    "src/data/doodleLibrary.ts": "95aa0e2e327180ddc142dacd945486b73b194027dd7e7179fbf409a28a415552",
+    "src/data/gameSketches.ts": "66980dfb681eedf9fb403d2554747631cff4b3b5ffd9004052e3d98a7de49498",
+    "src/data/japaneseClassicDoodles.ts": "fddae26b7d461002036b32d951740477f47902e69870b6d637e62e6303de225c",
+    "src/data/japaneseDoodlePack.ts": "979fdd5202e48cbaff49f6e0ff76bbe591c37eb557246e30fb9cfdc40e853c8d",
+    "src/data/japaneseEverydayDoodles.ts": "924628b64245b0ffcd05990be1eeeac8f0d6bcd093a55d672123480a2349b9f5",
+    "src/data/japaneseExtraSketches.ts": "90e7ec524087d92f0478065590f37aae3ab906d66aef0d5c171a4bf0357bfdbb",
+    "src/data/japaneseSketches.ts": "02fdaa0c9622ef0bf2e5fb9a41317f0394d16e03916e7ecb3ba8c0ddf447e9e4",
+    "src/data/legacySketches.ts": "7906e077d44f887927464c2ecd0ffc85fd789ae9ce7f29c7befd1f39d8691f90",
+    "src/data/namingDictionary.ts": "a832155ee4a130384a3f2dcc9ef4dbb41792673c063897947a82fd94a7ebaeb2",
+    "src/data/originalDoodles.ts": "608426d4339724f8ff2d3e08c7d924ec7f005693303b947afa85c9c26b5222b5",
+    "src/data/owlReview.ts": "15deca83056c5e5c7cae589e0ece7985a580d2edcfb685d78807220db558a27c",
+    "src/data/quick-draw-sketches.json": "31933b5b0ca47936be866e4d762e3d270c5770b1f245e39b189b362c90dfbbe0",
+    "src/data/shizuku-doodles/adopted.ts": "dd22b991470e85d2d6df7a8dbb6872cce6ed23d72aa41f87d0d8455da36cdfac",
+    "src/data/shizuku-doodles/doodles.json": "23f47dbfcfd9409edd11a671db0f99279333d825e4e414262d23e28eae292a5b",
+    "src/data/shizuku-doodles/expansion-20261022-b.json": "30e647936f506bd97e4222a9e616b29720a6c62da41293422bff2dbca2a234d6",
+    "src/data/shizuku-doodles/expansion-20261022-c.json": "d0d131328129520ee86698089a6ff63e1fe7a8104c089fd165901d7dfdb5d895",
+    "src/data/shizuku-doodles/expansion-20261022-d.json": "6ddd36166ec69b63f4efbbba05cdd6e8725a7cf8d6b97bfb7fd415391de877e6",
+    "src/data/shizuku-doodles/expansion-20261022-e.json": "3fc4dae5862f372e7507dd4df656f9cce558dc70371d0398173b98d5687cc14c",
+    "src/data/shizuku-doodles/expansion-20261022.json": "01634c7ac93c89d3aee44b7b408ccabc38e4e3ec757f4a78fe6984f9d7ea266f",
+    "src/data/shizuku-doodles/expansion-20261023-animals.json": "1e2bc3133985629c01c666b66006137b8180189eaf581af3c356234d39361479",
+    "src/data/shizuku-doodles/expansion-20261023-clothes.json": "2de0b03bf3152824a71d4f7e58949fea2b0d5723d654b7a7b151ad8f5de94ff0",
+    "src/data/shizuku-doodles/expansion-20261023-food.json": "9362fcad105bff9fbc112dac4616257b7360b0a65074d75cc889a7dc6a17a61c",
+    "src/data/shizuku-doodles/expansion-20261023-home.json": "88477d1b9c9510401dac46da4afe3246237a2f93ecca8024b1034288354a8924",
+    "src/data/shizuku-doodles/expansion-20261023-nature.json": "20e0f3b77942b485abf0d2ba4f762f338b9dd656d912c7c0cd0021f4f531cd55",
+    "src/data/shizuku-doodles/expansion-20261023-tools.json": "4dfa55de11e9de4db3a03714c4b42770024b46d9514fdcc0827f80b6fe769858",
+    "src/data/shizuku-doodles/expansion-20261023-travel.json": "682d7ae76ee8820e21e1d438b9e03fa922e1e81004779e1d9f23f22fd9920523",
+    "src/data/shizuku-doodles/expansion300.ts": "4e934795190b687707b874e5836e195cd989751163c28231963cda8cb1046421",
+    "src/data/shizukuCandidates.ts": "a5ef46b1ac8da90fe49a44295a8a79dce2d4e711839407a1818ead7793e410d8",
+    "src/data/shizukuPoses.ts": "6ae34e0b9135f5407a1e55e8b361943908a42d90094e6017e1b63f8abb855d43",
+    "src/data/sketch-provenance.json": "25499f9602abb548964df75b4c54ff5c5c13dbac4f07c2ae776681c3d3d7d1d3",
+    "src/data/sketches.ts": "6ba6eebf54604facc488270753040d9883f93e7c95ddac699aedd1a4df6af015",
+    "src/services/quickDrawJapanese.ts": "ed1dc66f5eb52f604eb8f42451c3263716df19bc4a5e23cc699c0d8ae470ebab",
+    "src/services/quickDrawRecognizer.ts": "109538be73f20f26ba3f4ddd0c08098bc474073b5b0a8f78ab9fa5d7a4d750ab",
+    "src/services/quickDrawScores.ts": "13a5a79290167d0ff0d35f881941e294219e8ee01a4c499a7a970f45e4c5031b"
+  }
+}

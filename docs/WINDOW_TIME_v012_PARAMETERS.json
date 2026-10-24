@@ -1,0 +1,103 @@
+{
+  "method": "Deterministic presentation timing of 291 adopted drawings; not inference, human ratings or observed play duration. Five-beat budgets exclude player time, recognition, correction, ending and visibility pauses.",
+  "presets": {
+    "A": "Original timestamps, 500–1500ms, 14% hold and original easing",
+    "B": "DAY1800–3000ms including lead; NIGHT adds 80ms lead and up to 220ms pen-up allowance",
+    "C": "DAY2500–4000ms including lead; NIGHT adds 80ms lead and up to 220ms pen-up allowance; no forced post-drawing wait"
+  },
+  "modes": {
+    "day": {
+      "A": {
+        "drawings": 291,
+        "breathMs": 650,
+        "minDrawingMs": 1200,
+        "medianDrawingMs": 1200,
+        "maxDrawingMs": 1200,
+        "meanDrawingMs": 1200,
+        "leadMs": "14% of drawing",
+        "meanFiveGirlBeatsMs": 9250,
+        "geometryUnchanged": true
+      },
+      "B": {
+        "drawings": 291,
+        "breathMs": 800,
+        "minDrawingMs": 1976,
+        "medianDrawingMs": 2412,
+        "maxDrawingMs": 3000,
+        "meanDrawingMs": 2435,
+        "leadMs": 240,
+        "meanFiveGirlBeatsMs": 16175,
+        "geometryUnchanged": true
+      },
+      "C": {
+        "drawings": 291,
+        "breathMs": 950,
+        "minDrawingMs": 2742,
+        "medianDrawingMs": 3261,
+        "maxDrawingMs": 4000,
+        "meanDrawingMs": 3288,
+        "leadMs": 340,
+        "meanFiveGirlBeatsMs": 21190,
+        "geometryUnchanged": true
+      }
+    },
+    "night": {
+      "A": {
+        "drawings": 291,
+        "breathMs": 280,
+        "minDrawingMs": 1200,
+        "medianDrawingMs": 1200,
+        "maxDrawingMs": 1200,
+        "meanDrawingMs": 1200,
+        "leadMs": "14% of drawing",
+        "meanFiveGirlBeatsMs": 7400,
+        "geometryUnchanged": true
+      },
+      "B": {
+        "drawings": 291,
+        "breathMs": 950,
+        "minDrawingMs": 2081,
+        "medianDrawingMs": 2636,
+        "maxDrawingMs": 3300,
+        "meanDrawingMs": 2658,
+        "leadMs": 320,
+        "meanFiveGirlBeatsMs": 18040,
+        "geometryUnchanged": true
+      },
+      "C": {
+        "drawings": 291,
+        "breathMs": 1100,
+        "minDrawingMs": 2847,
+        "medianDrawingMs": 3482,
+        "maxDrawingMs": 4300,
+        "meanDrawingMs": 3512,
+        "leadMs": 420,
+        "meanFiveGirlBeatsMs": 23060,
+        "geometryUnchanged": true
+      }
+    }
+  },
+  "ending": {
+    "A": {
+      "pairMs": 1000,
+      "linkMs": 650,
+      "goodbyeMs": 4000
+    },
+    "B": {
+      "pairMs": 1250,
+      "linkMs": 850,
+      "goodbyeMs": 5000
+    },
+    "C": {
+      "pairMs": 1500,
+      "linkMs": 1000,
+      "goodbyeMs": 6000
+    }
+  },
+  "human": {
+    "developerSelfPlay": null,
+    "pilots": 0,
+    "ownerFeedback": "C feels right; finger cursor easier; D main integration approved on 2026-10-24",
+    "recommendation": "C tempo with cosmetic D adopted after owner feedback; broader pilot evaluation remains pending"
+  }
+}

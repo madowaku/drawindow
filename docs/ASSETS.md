@@ -1,5 +1,28 @@
 # Asset provenance
 
+## v0.12 generated player finger cursor
+
+The user requested a finger cursor that feels like drawing on a window. The
+built-in ImageGen generated a new transparent hand on 2026-10-24. The supplied
+Kenney Cursor Pack `hand_point.png` (CC0, local License.txt verified) was used
+only as a pose/silhouette reference; the adopted neutral portrait was a palette
+and illustration-style reference. Neither original was modified or shipped as
+the new cursor. The 291 adopted drawings and seven portraits remain unchanged.
+
+The generated RGBA master is `assets/source/cursors/window-finger-v1.png`.
+`src/assets/cursors/window-finger.png` is a deterministic 40x40 Lanczos3
+reduction. Its hotspot (8,4) sits on the extended index fingertip. The soft
+outline and narrow ivory keyline provide DAY/NIGHT contrast. Only an interactive
+player canvas uses it; the browser's pointing hand is the fallback. No pointer
+coordinates, touch, keyboard, drawing geometry or Shizuku playback are changed.
+
+[Manifest and SHA-256 hashes](../assets/window-finger-cursor-v1.json) retain
+provenance and processing. Vite embeds the small PNG in local CSS, so it is
+available offline without an external request. Browser QA confirmed native
+40x40 cursor decoding and hotspot, DAY mouse/1440px and NIGHT touch/390px
+input/UNDO; the canvas's 26 tests pass. Human comfort on other OS cursor scales
+and Android hardware remains untested.
+
 ## v0.6 final art decision
 
 The user adopted A for all seven poses in DAY/NIGHT. `public/art/shizuku/`

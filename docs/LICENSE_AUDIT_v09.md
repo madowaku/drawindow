@@ -1,0 +1,30 @@
+# v0.9 asset and dependency provenance audit
+
+2026-10-24. This is an evidence inventory, not a blanket commercial-rights certificate. Production files were preserved. No asset replacement, license reassignment or publication was authorized by this audit.
+
+| Component | Evidence | Current conclusion / unresolved item |
+|---|---|---|
+| Four BGM tracks | `assets/bgm-manifest.json`, `public/CREDITS.txt`; all 4 distributed container hashes match manifest in `license-inventory-v09.json` | Provenance/hash chain present. General commercial background-game usage is permitted subject to license/composer conditions; final packaging compliance remains a product-owner review |
+| Breath/glass SFX | `src/lib/audio.ts`: locally synthesized noise/oscillator, no sampled audio source | Code-generated sound; no external sample license identified |
+| Shizuku/room art | `assets/shizuku-manifest.json`, `character-manifest.json`; generated/edited by built-in ImageGen using user-supplied references | Creation/processing recorded; reference ownership/permission is not independently established by these files. **Commercial clearance unknown** until owner confirms supplied-reference rights and applicable generation terms |
+| Expression review art | `shizuku-v04-manifest.json`, `shizuku-expression-final-v05-manifest.json` | Candidate/unapproved status must be retained; provenance is not promotion approval |
+| Authored doodles | `assets/shizuku-doodles-v01-manifest.json`, `doodle-library-v01-manifest.json` | Original project paths recorded; no imported external artwork claimed. Vocabulary inspiration alone is not artwork ownership proof; retain manifest and hashes |
+| QuickDraw-derived templates | `src/data/sketch-provenance.json`, `public/licenses/Quick-Draw-CC-BY-4.0.txt`, credits | Dataset license confirmed from primary source, permits commercial use with attribution/license/change notices; retain per-item source IDs and modifications |
+| Trained model | Pinned source/model SHA in `scripts/prepare-quickdraw-model.mjs`, `public/local-ml/asset-receipt.json` | Current publisher card declares Apache-2.0 weights and CC BY 4.0 dataset. Pinned card fetch was unavailable in browser, so do not present live card alone as a signed historical license grant. Bundle license/author notice and describe static-batch modification before external redistribution |
+| LiteRT runtime + wasm-utils | Installed @litertjs/core 2.5.3 and @litertjs/wasm-utils package declarations | Apache-2.0 declarations found. Audit actual shipped WASM notices/license payload, not only npm metadata |
+| React/react-dom/scheduler, Phosphor | Installed production packages declare MIT; Phosphor notice already in public/licenses | Retain copyright and permission notices for all bundled packages; existing Phosphor-only notice is not full runtime coverage |
+| DM Sans / Cormorant Garamond | Installed font packages declare OFL-1.1, full notices in public/licenses | Preserve font notices; don't sell font files alone or assume renamed derivatives are covered without checking OFL conditions |
+
+## BGM source and current conditions
+
+[物語の幕を](https://opentracks.com/bgm/detail/15353) and [優花](https://opentracks.com/bgm/detail/20352) by [のる](https://opentracks.com/creator/detail/432); [Coral Ambience](https://opentracks.com/bgm/detail/20419) by [ハヤシユウ](https://opentracks.com/creator/detail/59); [おやすみの時間](https://opentracks.com/bgm/detail/22683) by [蒲鉾さちこ](https://opentracks.com/creator/detail/418). Three track pages and all three creator profiles were fetched today. Coral Ambience track page was unavailable to the browser tool; identity remains backed by the local manifest rather than a refreshed page. Creator profiles confirm site terms; Sachiko additionally states no AI learning/AI changes, no redistribution and no major alteration.
+
+The current [OpenTracks license](https://opentracks.com/help/articles/license/) allows commercial game background use, with composer conditions and [site terms](https://opentracks.com/help/articles/terms/). It prohibits standalone distribution and easily accessible unconverted audio, AI training and music fingerprint registration. Current containers hold full-length converted audio with a header/XOR; this is not a claim of effective protection or a legal clearance test. Do not publish raw MP3 originals as assets. Local manifest says no trimming/rearrangement/AI processing; audio hashes establish file identity, not legal permission. Site terms were linked but not independently reviewed in this pass.
+
+## Model, dataset and OSS sources
+
+[Publisher model card](https://huggingface.co/zarqankhn/quickdraw-345-tflite), [upstream repository](https://github.com/KashifKhn/quickdraw-345-classifier), [official QuickDraw dataset](https://github.com/googlecreativelab/quickdraw-dataset), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0). Primary pages checked today. Apache redistribution requires retaining license and relevant notices and identifying modifications; include applicable upstream NOTICE text if any. A metadata declaration alone does not prove all third-party contents were cleared.
+
+Run `node scripts/license-inventory-v09.mjs` for a read-only installed-production inventory and BGM hash check. Snapshot: 8 package entries, MIT / OFL-1.1 / Apache-2.0, no missing declared license among these entries, four matching music hashes. This excludes development-only tooling from the shipped-runtime list and does not inspect every embedded third-party notice inside WASM or prove final bundle contents. Regenerate after dependency/package changes.
+
+Before commercial distribution: resolve reference-art rights, retain model and runtime licenses/notices in the actual archive, reconcile older credits wording/version with the final included assets, inspect final audio accessibility and complete the human quality gate. Do not call the entire product commercially cleared while these items remain unresolved.

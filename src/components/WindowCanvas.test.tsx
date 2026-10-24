@@ -3,6 +3,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen, act } from '@testing-library/react';
 import type { Stroke, WindowCanvasProps } from '../core/types';
 import { WindowCanvas } from './WindowCanvas';
+import { TempoCanvas } from '../dev/windowTime/TempoCanvas';
+import { planTempo } from '../dev/windowTime/tempo';
 
 const context = new Proxy({} as Record<string, any>, {
   get(target, property) {
@@ -144,6 +146,21 @@ afterEach(() => {
 });
 
 describe('WindowCanvas input', () => {
+  it.each(['B','C'] as const)('keeps player pointer and keyboard input immediate under tempo %s',tempo=>{
+    installFrameClock();const change=vi.fn();render(<TempoCanvas {...props({onStrokesChange:change})} tempo={tempo} controls={{speed:1}}/>);
+    const canvas=screen.getByTestId('window-drawing-canvas');
+    fireEvent(canvas,pointer('pointerdown',{clientX:90,clientY:220}));expect(change).toHaveBeenCalledTimes(1);
+    fireEvent(canvas,pointer('pointerup',{clientX:130,clientY:260}));expect(change.mock.calls.at(-1)![0][0].points.length).toBeGreaterThan(1);
+    fireEvent.keyDown(canvas,{key:'Enter'});expect(change.mock.calls.at(-1)![0].length).toBe(2);
+  });
+  it('lets the B clock finish the same ink once, without the legacy 1500ms cap or duplicate callbacks',()=>{
+    const clock=installFrameClock(),strokes=[{id:'ink',points:[{x:.1,y:.2,t:0},{x:.8,y:.7,t:1200}]}],base=props({phase:'girl_drawing',strokes});
+    const plan=planTempo(strokes,'day','B');render(<TempoCanvas {...base} tempo="B" controls={{speed:1}}/>);
+    clock.at(0);clock.at(100);expect(screen.queryByTestId('stroke-tip-overlay')).toBeNull();
+    for(let at=200;at<=1500;at+=100)clock.at(at);expect(base.onPlaybackDone).not.toHaveBeenCalled();expect(screen.getByTestId('stroke-tip-overlay')).toBeTruthy();
+    for(let at=1600;at<=plan.drawingMs+200;at+=100)clock.at(at);
+    expect(base.onPlaybackDone).toHaveBeenCalledTimes(1);expect(screen.queryByTestId('stroke-tip-overlay')).toBeNull();
+  });
   it.each(['pointer', 'keyboard'] as const)('does not resurrect an externally undone in-progress %s stroke', input => {
     const onStrokesChange = vi.fn();
     const base = props({ onStrokesChange });
@@ -181,9 +198,9 @@ describe('WindowCanvas input', () => {
     expect(screen.queryByTestId('keyboard-cursor')).toBeNull();
   });
 
-  it('localizes the drawing prompt and keyboard instructions without answer data', () => {
+  it('keeps Japanese keyboard instructions without overlaying a drawing prompt', () => {
     render(<WindowCanvas {...props({ language: 'ja' })} />);
-    expect(screen.getByTestId('window-drawing-hint').textContent).toBe('ここに描こう');
+    expect(screen.queryByTestId('window-drawing-hint')).toBeNull();
     expect(screen.getByTestId('window-drawing-canvas').getAttribute('aria-label')).toContain('矢印キー');
   });
   it('captures a pointer, includes coalesced samples, and preserves a single tap', () => {
@@ -226,14 +243,12 @@ describe('WindowCanvas input', () => {
     expect((onStrokesChange.mock.lastCall?.[0] as readonly Stroke[])).toHaveLength(2);
   });
 
-  it('marks the square input area and hides its non-spoiler hint after the first stroke', () => {
+  it('keeps the input area interactive without text over the character', () => {
     const emptyProps = props();
     const { rerender } = render(<WindowCanvas {...emptyProps} />);
     const canvas = screen.getByTestId('window-drawing-canvas');
     expect(canvas.className).toContain('is-interactive');
-    const hint = screen.getByTestId('window-drawing-hint');
-    expect(hint.textContent).toBe('DRAW HERE');
-    expect(hint.getAttribute('aria-hidden')).toBe('true');
+    expect(screen.queryByTestId('window-drawing-hint')).toBeNull();
 
     rerender(<WindowCanvas {...props({ strokes: [{ id: 'first', points: [{ x: 0.5, y: 0.5, t: 0 }] }] })} />);
     expect(canvas.className).toContain('is-interactive');
@@ -361,4 +376,34 @@ it('replays breath and drawing in the same round after a slip, including a NIGHT
   clock.at(1600);expect(base.onBreathDone).toHaveBeenCalledTimes(2);
   rerender(<WindowCanvas {...base} phase="girl_drawing"/>);
   clock.at(2600);expect(base.onPlaybackDone).toHaveBeenCalledTimes(2);
+});
+
+it('uses a read-only shared DEV clock for hesitation, ink and fingertip, including backwards seeks', () => {
+  const clock = installFrameClock();
+  const strokes: Stroke[] = [{id:'line',points:[{x:.1,y:.2,t:0},{x:.9,y:.8,t:1000}]}];
+  const base=props({phase:'girl_drawing',strokes});
+  const {rerender}=render(<WindowCanvas {...base} studyPlayback={{progress:.05,paused:true}}/>);
+  expect(screen.queryByTestId('stroke-tip-overlay')).toBeNull();
+  rerender(<WindowCanvas {...base} studyPlayback={{progress:.35,paused:true}}/>);
+  const first=screen.getByTestId('stroke-tip-overlay').style.left;
+  clock.at(10000);
+  expect(screen.getByTestId('stroke-tip-overlay').style.left).toBe(first);
+  rerender(<WindowCanvas {...base} studyPlayback={{progress:.65,paused:false}}/>);
+  expect(screen.getByTestId('stroke-tip-overlay').style.left).not.toBe(first);
+  rerender(<WindowCanvas {...base} studyPlayback={{progress:1,paused:true}}/>);
+  expect(screen.queryByTestId('stroke-tip-overlay')).toBeNull();
+  rerender(<WindowCanvas {...base} studyPlayback={{progress:.35,paused:true}}/>);
+  expect(screen.getByTestId('stroke-tip-overlay').style.left).toBe(first);
+  expect(base.onPlaybackDone).not.toHaveBeenCalled();
+  expect(base.onBreathDone).not.toHaveBeenCalled();
+  expect(base.onStrokesChange).not.toHaveBeenCalled();
+});
+
+it('ignores the study clock in production and retains the original completion callback', () => {
+  vi.stubEnv('DEV',false);
+  try {
+    const clock=installFrameClock(),base=props({phase:'girl_drawing',strokes:[{id:'line',points:[{x:.1,y:.2,t:0},{x:.9,y:.8,t:1000}]}]});
+    render(<WindowCanvas {...base} studyPlayback={{progress:0,paused:true}}/>);
+    clock.at(1000);expect(base.onPlaybackDone).toHaveBeenCalledTimes(1);
+  } finally { vi.unstubAllEnvs(); }
 });

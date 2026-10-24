@@ -41,3 +41,5 @@
 @media(max-width:520px) { .ending-diary { gap:20px 12px; } .ending .result-drawing { padding:10px; } .ending .ending-meaning h2 { font-size:23px; } .ending .chain-link { min-height:78px; } .ending-link-space { min-height:90px; } .ending-controls { flex-direction:column; } .ending-controls button { width:100%; } .ending-window { height:250px; } }
 @media(prefers-reduced-motion:reduce) { .ending *, .ending *::before, .ending *::after { animation:none !important; transition:none !important; } }
 .ending[data-reduced-motion=true] * { animation:none; transition:none; }
+
+.ending[data-study-tempo=true] .ending-diary>li,.ending[data-study-tempo=true] .chain-link{animation-duration:var(--time-arrival);animation-name:time-quiet-arrive}.ending[data-study-tempo=true] .ending-window-pictures,.ending[data-study-tempo=true] .ending-refog{animation-duration:var(--time-goodbye)}.ending[data-study-tempo=true][data-study-shown=false] *{animation-play-state:paused!important}@keyframes time-quiet-arrive{from{opacity:0}to{opacity:1}}

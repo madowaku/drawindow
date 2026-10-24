@@ -16,6 +16,9 @@ interface Props {
   round?: number;
   hasPlayerMarks?: boolean;
   artSet?: 'current' | 'candidate' | 'final';
+  studyPaused?: boolean;
+  studyCalm?: boolean;
+  calm?:boolean;
 }
 
 function recoverPoseImage(event: SyntheticEvent<HTMLImageElement>, fallbackId: ShizukuPose['fallback']): void {
@@ -39,14 +42,25 @@ function hideFailedRoom(event: SyntheticEvent<HTMLImageElement>): void {
 }
 
 /** Pose sprites + browser-native phase gestures. Glass and ink live outside this component. */
-export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1, hasPlayerMarks = false, artSet = 'current' }: Props) {
+export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frameOverride, round = 1, hasPlayerMarks = false, artSet = 'current', studyPaused = false, studyCalm = false, calm:runtimeCalm = false }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const gestureRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<Animation | null>(null);
   const [running, setRunning] = useState(true);
   const runningRef = useRef(running);
-  runningRef.current = running;
+  const paused = import.meta.env.DEV && studyPaused;
+  runningRef.current = running && !paused;
   const reaction = getShizukuReaction({ phase, mode, round, reducedMotion, progress, hasPlayerMarks });
+  const calm = runtimeCalm || (import.meta.env.DEV && studyCalm);
+  if(calm){
+    // Keep the drawing portrait through her preparatory pause instead of a
+    // fleeting extra THINKING portrait. Ink and fingertip still wait together.
+    if(phase==='girl_drawing'){reaction.pose='drawing';reaction.motion=progress<.14?'idle':'draw';}
+    if(phase==='girl_holding')reaction.pose='neutral';
+    reaction.leanPx*=mode==='day'?.5:.4;
+    if(!reducedMotion&&phase==='girl_breath')reaction.durationMs=mode==='day'?800:950;
+    if(!reducedMotion&&phase==='girl_drawing')reaction.durationMs=progress<.14?0:1200;
+  }
   const frame = frameOverride ?? reaction.pose;
 
   useEffect(() => {
@@ -88,9 +102,9 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
     if (!animation) return;
     // Preserve the gesture clock while hidden, instead of replaying on tab return.
     // A finished gesture must also stay finished; play() would restart it.
-    if (!running && animation.playState !== 'finished') animation.pause();
-    else if (running && animation.playState === 'paused') animation.play();
-  }, [running]);
+    if ((!running || paused) && animation.playState !== 'finished') animation.pause();
+    else if (running && !paused && animation.playState === 'paused') animation.play();
+  }, [running, paused]);
 
   const poseStyles = (pose: ShizukuPose): CSSProperties => ({
     '--pose-eye-x': `${pose.anchor.x * 100}%`,
@@ -103,11 +117,12 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
     ref={rootRef}
     aria-hidden="true"
     data-mode={mode}
+    data-phase={phase}
+    data-study-calm={calm||undefined}
     data-pose={frame}
     data-motion={reaction.motion}
-    data-running={running && !reducedMotion}
+    data-running={running && !paused && !reducedMotion}
     data-reduced-motion={reducedMotion}
-    data-blink-enabled={phase === 'title' && !reducedMotion && artSet === 'current'}
     data-art-set={artSet}
     data-testid="character-scene"
   >
@@ -129,15 +144,7 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
               onError={event => recoverPoseImage(event, pose.fallback)}
             />;
           })}
-          <img
-            className="character-scene__blink"
-            src={characterArt('blink')}
-            style={poseStyles(SHIZUKU_POSES.neutral)}
-            alt=""
-            draggable={false}
-            decoding="async"
-            onError={event => recoverPoseImage(event, 'neutral')}
-          />
+
         </div>
       </div>
     </div>

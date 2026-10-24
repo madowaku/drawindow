@@ -59,6 +59,7 @@ export function selectCanFinishDrawing(state: GameState): boolean {
 
 export function gameReducer(state: GameState, event: GameEvent): GameState {
   switch (event.type) {
+    case 'RESTORE_SESSION': return state.phase === 'title' ? event.state : state;
     case 'SET_MODE': return state.phase === 'title' ? { ...state, mode: event.mode } : state;
     case 'SET_LANGUAGE': return state.phase === 'title' ? { ...state, language: event.language } : state;
     case 'START': {
@@ -114,7 +115,7 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
     }
     case 'RECOGNITION_RESOLVED': {
       if (state.phase !== 'recognizing' || state.recognitionRequest?.requestId !== event.requestId) return state;
-      if (event.result.source !== (state.sessionKind === 'api' ? 'api' : 'mock')) return errorState(state, 'invalid_response');
+      if (event.result.source !== (state.sessionKind === 'api' ? 'api' : state.sessionKind === 'ml' ? 'ml' : 'mock')) return errorState(state, 'invalid_response');
       const guess = normalizeWord(event.result.guess, state.language);
       if (event.result.error || !guess) return errorState(state, event.result.errorCode ?? 'invalid_response', { ...event.result, guess: null });
       const result: RecognitionResult = recognitionDetails(event.result, state.language);

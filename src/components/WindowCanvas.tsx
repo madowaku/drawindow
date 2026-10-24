@@ -127,6 +127,7 @@ function configureCanvas(canvas: HTMLCanvasElement, width: number, height: numbe
 
 export function WindowCanvas({
   language = 'en',
+  expression,
   mode,
   phase,
   round = 1,
@@ -139,7 +140,14 @@ export function WindowCanvas({
   variant = 'glass',
   glassStyle = 'tactile',
   onInputTypeChange,
-}: WindowCanvasProps) {
+  studyPlayback,
+  studyCalm,
+  calm,
+  presentationPlayback,
+}: WindowCanvasProps & { studyPlayback?: { progress: number; paused: boolean }; studyCalm?: boolean;calm?:boolean;presentationPlayback?:{progress:number;paused:boolean} }) {
+  // Product tempo and DEV replay can supply a synchronized presentation clock.
+  // original timeline and completion callbacks; a seek must never dispatch them.
+  const externalPlayback = presentationPlayback ?? (import.meta.env.DEV ? studyPlayback : undefined);
   const rootRef = useRef<HTMLDivElement>(null);
   const fogCanvasRef = useRef<HTMLCanvasElement>(null);
   const drawingCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -162,7 +170,10 @@ export function WindowCanvas({
   const drawingStartedAtRef = useRef(0);
   const timestampOffsetRef = useRef(0);
   const [layout, setLayout] = useState<CanvasLayout>(layoutRef.current);
-  const [animationProgress, setAnimationProgress] = useState(1);
+  const [localProgress, setAnimationProgress] = useState(1);
+  const animationProgress = externalPlayback
+    ? reducedMotion ? 1 : Math.min(1, Math.max(0, externalPlayback.progress))
+    : localProgress;
   const [canvasVisible, setCanvasVisible] = useState(true);
   const [pointerTip, setPointerTip] = useState<StrokePoint | null>(null);
   const [keyboardPen, setKeyboardPen] = useState<{ x: number; y: number; drawing: boolean } | null>(null);
@@ -220,7 +231,7 @@ export function WindowCanvas({
   };
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLCanvasElement>) => {
-    if (phase !== 'player_drawing' || event.button !== 0 || event.isPrimary === false || activePointerRef.current !== null) return;
+    if (externalPlayback || phase !== 'player_drawing' || event.button !== 0 || event.isPrimary === false || activePointerRef.current !== null) return;
     event.preventDefault();
     if (keyboardStrokeRef.current) keyboardStrokeRef.current = null;
     setKeyboardPen(null);
@@ -275,7 +286,7 @@ export function WindowCanvas({
   };
 
   const handleKeyDown = (event: ReactKeyboardEvent<HTMLCanvasElement>) => {
-    if (phase !== 'player_drawing') return;
+    if (externalPlayback || phase !== 'player_drawing') return;
     const step = event.shiftKey ? 0.05 : 0.025;
     const cursor = keyboardCursorRef.current;
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'ArrowUp' || event.key === 'ArrowDown') {
@@ -399,6 +410,7 @@ export function WindowCanvas({
   };
 
   useLayoutEffect(() => {
+    if (externalPlayback) return;
     const now = nowMs();
     let timeline = createFogTimeline(mode, phase, now, { reducedMotion, playbackDurationMs: playbackDuration });
     if (completedTransitionRef.current === `${mode}:${phase}:${round}`) {
@@ -413,7 +425,7 @@ export function WindowCanvas({
       frameRef.current = null;
       if (timelineRef.current?.phase === phase) timelineRef.current = null;
     };
-  }, [mode, phase, round, reducedMotion, playbackDuration]);
+  }, [mode, phase, round, reducedMotion, playbackDuration, Boolean(externalPlayback)]);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -505,7 +517,7 @@ export function WindowCanvas({
 
   return (
     <div className="window-canvas" ref={rootRef} data-testid="window-canvas" data-mode={mode} data-variant={variant} data-glass-style={glassStyle} data-running={canvasVisible && !reducedMotion}>
-      {variant === 'glass' && <CharacterScene frameOverride={phase === 'girl_breath' && previousStrokes?.length ? 'breath' : undefined} mode={mode} phase={phase} round={round} progress={animationProgress} reducedMotion={reducedMotion} hasPlayerMarks={phase === 'player_drawing' && strokes.some(stroke => stroke.points.length > 0)} />}
+      {variant === 'glass' && <CharacterScene calm={calm || (import.meta.env.DEV && studyCalm)} studyPaused={externalPlayback?.paused} frameOverride={phase === 'girl_breath' && previousStrokes?.length ? 'breath' : phase === 'girl_breath' ? expression : undefined} mode={mode} phase={phase} round={round} progress={animationProgress} reducedMotion={reducedMotion} hasPlayerMarks={phase === 'player_drawing' && strokes.some(stroke => stroke.points.length > 0)} />}
       <svg className="window-canvas__spiral" viewBox="0 0 40 40" aria-hidden="true"><path d="M 29 27 C 7 38 1 7 22 8 C 39 8 39 29 24 29 C 12 29 12 15 23 16 C 30 17 29 23 24 23" /></svg>
       <canvas className="window-canvas__fog" ref={fogCanvasRef} aria-hidden="true" />
       <canvas
@@ -514,9 +526,9 @@ export function WindowCanvas({
         data-has-strokes={strokes.length > 0}
         ref={drawingCanvasRef}
         style={drawingStyle}
-        aria-label={language === 'ja' ? '絵を描くところ。矢印キーで移動。スペースキーを押しながら描くか、Enterキーで点を置けます。' : 'Drawing area. Use arrow keys to move. Hold Space to draw, or press Enter to place a dot.'}
-        role="application"
-        tabIndex={phase === 'player_drawing' ? 0 : -1}
+        aria-label={externalPlayback ? language === 'ja' ? '記録した絵の再生' : 'Recorded drawing playback' : language === 'ja' ? '絵を描くところ。矢印キーで移動。スペースキーを押しながら描くか、Enterキーで点を置けます。' : 'Drawing area. Use arrow keys to move. Hold Space to draw, or press Enter to place a dot.'}
+        role={externalPlayback ? 'img' : 'application'}
+        tabIndex={!externalPlayback && phase === 'player_drawing' ? 0 : -1}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={finishPointerStroke}
@@ -536,11 +548,7 @@ export function WindowCanvas({
       <StrokeTipOverlay tip={playbackTip} layout={layout} reducedMotion={reducedMotion} visible={canvasVisible && phase === 'girl_drawing'} />
       {variant === 'glass' && glassStyle === 'tactile' && activeTip && <span className="window-canvas__finger" aria-hidden="true" style={{ left: layout.left + activeTip.x * layout.size, top: layout.top + activeTip.y * layout.size }} />}
       {phase === 'player_drawing' && keyboardPen && <span className="window-canvas__keyboard-pen" data-testid="keyboard-cursor" data-drawing={keyboardPen.drawing} aria-hidden="true" style={{ left: layout.left + keyboardPen.x * layout.size, top: layout.top + keyboardPen.y * layout.size }} />}
-      {phase === 'player_drawing' && strokes.length === 0 && drawingStyle && (
-        <div className="window-canvas__prompt" style={drawingStyle} aria-hidden="true" data-testid="window-drawing-hint">
-          <span>{language === 'ja' ? 'ここに描こう' : 'DRAW HERE'}</span>
-        </div>
-      )}
+
     </div>
   );
 }

@@ -1,7 +1,7 @@
 /** Shared contract. Core state is deterministic; presentation must not reveal words in play. */
 export type Mode = 'day' | 'night';
 export type Language = 'en' | 'ja';
-export type SessionKind = 'api' | 'demo';
+export type SessionKind = 'api' | 'demo' | 'ml';
 export type GirlExpression = 'neutral' | 'thinking' | 'smile' | 'shy' | 'breath' | 'curious';
 
 export type GamePhase =
@@ -77,7 +77,7 @@ export interface WindowCanvasProps {
   onInputTypeChange?: (type: 'mouse' | 'touch' | 'pen' | 'keyboard') => void;
 }
 
-export type RecognitionSource = 'api' | 'mock';
+export type RecognitionSource = 'api' | 'mock' | 'ml';
 export type RecognitionErrorCode =
   | 'unavailable'
   | 'timeout'
@@ -184,6 +184,7 @@ export interface GameState {
 }
 
 export type GameEvent =
+  | { type: 'RESTORE_SESSION'; state: GameState }
   | { type: 'SET_MODE'; mode: Mode }
   | { type: 'SET_LANGUAGE'; language: Language }
   | { type: 'START'; mode: Mode; sessionKind: SessionKind; sketches: readonly GirlSketch[] }
@@ -227,5 +228,6 @@ export interface ScoreResult {
   /** Number of consecutive connected links, not number of pictures. */
   bestChain: number;
   comparable: boolean;
+  /** Nine-link achievement; independent recognition accuracy is never implied. */
   perfect: boolean;
 }
