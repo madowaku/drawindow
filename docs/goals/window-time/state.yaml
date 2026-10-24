@@ -4,7 +4,7 @@ goal:
   slug: window-time
   kind: specific
   tranche: Audit, implement the complete isolated tempo study, verify, and deliver a Draft PR.
-  status: active
+  status: done
 rules:
   pm_owns_state: true
   one_active_task: true
@@ -17,7 +17,7 @@ agents:
   scout: installed
   worker: installed
   judge: installed
-active_task: T999
+active_task: null
 tasks:
   - id: T001
     type: scout
@@ -160,12 +160,21 @@ tasks:
   - id: T999
     type: pm
     assignee: PM
-    status: active
+    status: done
     objective: Audit all requested outcomes, commit/push and attach a Draft PR; confirm latest CI.
     allowed_files: [docs, README.md, scripts/qa-window-time.mjs, scripts/window-time-browser-proof.mjs]
-    receipt: null
+    receipt:
+      result: done
+      summary: Original research deliverable audited; both Judge conditions repaired and verified. Runtime committed/pushed as c003876 and Draft PR32 attached on PR31 base. No product adoption/publication. Human gates remain explicit.
+      commands:
+        - cmd: git diff --cached --check and selective commit/push
+          status: pass
+        - cmd: https://github.com/madowaku/drawindow/pull/32
+          status: pass
+        - cmd: inspect new branch CI
+          status: in_progress at delivery; final response verifies latest status
 checks:
-  dirty_fingerprint: v012 verified working tree based on 590cd1b; protected core/data/services/public unchanged; original packaging edits preserved
+  dirty_fingerprint: runtime committed as c003876; only reporting board finalization follows; protected core/data/services/public unchanged
   last_verification:
     result: pass
     task: T008
