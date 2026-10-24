@@ -3,6 +3,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen, act } from '@testing-library/react';
 import type { Stroke, WindowCanvasProps } from '../core/types';
 import { WindowCanvas } from './WindowCanvas';
+import { TempoCanvas } from '../dev/windowTime/TempoCanvas';
+import { planTempo } from '../dev/windowTime/tempo';
 
 const context = new Proxy({} as Record<string, any>, {
   get(target, property) {
@@ -144,6 +146,21 @@ afterEach(() => {
 });
 
 describe('WindowCanvas input', () => {
+  it.each(['B','C'] as const)('keeps player pointer and keyboard input immediate under tempo %s',tempo=>{
+    installFrameClock();const change=vi.fn();render(<TempoCanvas {...props({onStrokesChange:change})} tempo={tempo} controls={{speed:1}}/>);
+    const canvas=screen.getByTestId('window-drawing-canvas');
+    fireEvent(canvas,pointer('pointerdown',{clientX:90,clientY:220}));expect(change).toHaveBeenCalledTimes(1);
+    fireEvent(canvas,pointer('pointerup',{clientX:130,clientY:260}));expect(change.mock.calls.at(-1)![0][0].points.length).toBeGreaterThan(1);
+    fireEvent.keyDown(canvas,{key:'Enter'});expect(change.mock.calls.at(-1)![0].length).toBe(2);
+  });
+  it('lets the B clock finish the same ink once, without the legacy 1500ms cap or duplicate callbacks',()=>{
+    const clock=installFrameClock(),strokes=[{id:'ink',points:[{x:.1,y:.2,t:0},{x:.8,y:.7,t:1200}]}],base=props({phase:'girl_drawing',strokes});
+    const plan=planTempo(strokes,'day','B');render(<TempoCanvas {...base} tempo="B" controls={{speed:1}}/>);
+    clock.at(0);clock.at(100);expect(screen.queryByTestId('stroke-tip-overlay')).toBeNull();
+    for(let at=200;at<=1500;at+=100)clock.at(at);expect(base.onPlaybackDone).not.toHaveBeenCalled();expect(screen.getByTestId('stroke-tip-overlay')).toBeTruthy();
+    for(let at=1600;at<=plan.drawingMs+200;at+=100)clock.at(at);
+    expect(base.onPlaybackDone).toHaveBeenCalledTimes(1);expect(screen.queryByTestId('stroke-tip-overlay')).toBeNull();
+  });
   it.each(['pointer', 'keyboard'] as const)('does not resurrect an externally undone in-progress %s stroke', input => {
     const onStrokesChange = vi.fn();
     const base = props({ onStrokesChange });

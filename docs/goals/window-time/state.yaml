@@ -1,0 +1,182 @@
+version: 2
+goal:
+  title: DRAWINDOW v0.12 window time
+  slug: window-time
+  kind: specific
+  tranche: Audit, implement the complete isolated tempo study, verify, and deliver a Draft PR.
+  status: done
+rules:
+  pm_owns_state: true
+  one_active_task: true
+  max_write_workers: 1
+  no_implementation_without_worker_or_pm_task: true
+  no_completion_without_judge_or_pm_audit: true
+  planning_is_not_completion: true
+  queued_required_worker_blocks_completion: true
+agents:
+  scout: installed
+  worker: installed
+  judge: installed
+active_task: null
+tasks:
+  - id: T001
+    type: scout
+    assignee: Scout
+    status: done
+    objective: Audit end-to-end timing, choreography and verification seams.
+    constraints: [Read-only]
+    expected_output: [Source evidence, timing map, risks and implementation seams]
+    receipt:
+      result: done
+      summary: Source audit complete; retain A and use DEV canvas/ending hooks.
+      evidence: [src/lib/playback.ts, src/lib/character.ts, src/components/EndingScene.tsx, src/lib/audio.ts]
+  - id: T002
+    type: pm
+    assignee: PM
+    status: done
+    objective: Implement isolated tempo engine, comparison, actual play and protocol without changing product defaults.
+    allowed_files: [src, scripts, docs, README.md, .github/workflows/offline-local-lab.yml]
+    verify: [Vitest, TypeScript, browser drawing proof, product isolation]
+    stop_if: [Need to change recognition or scoring, Need publication]
+    receipt:
+      result: done
+      summary: Implemented shared tempo plans, same-clock comparison, actual play with locked/saved condition, ending timing and human protocol.
+      commands:
+        - cmd: targeted Vitest suites
+          status: pass
+        - cmd: tsc --noEmit
+          status: pass
+  - id: T003
+    type: worker
+    assignee: Worker
+    status: done
+    objective: Run browser and preservation checks, repair failures, and document limits.
+    allowed_files:
+      - scripts/qa-window-time.mjs
+      - scripts/window-time-browser-proof.mjs
+      - docs/WINDOW_TIME_v012_BROWSER.md
+      - artifacts/release
+      - .github/workflows/offline-local-lab.yml
+    verify:
+      - node scripts/qa-window-time.mjs
+    stop_if:
+      - Application source bug needs parent repair
+      - Need files outside allowed_files
+    receipt:
+      result: done
+      summary: Primary browser proof passed six actual ML plays, four lab conditions, ending timing, locked conditions, B/C restore/history/isolation/reduced motion and explicit skip. Supplemental redraw fixture delegated to T006.
+      changed_files:
+        - scripts/qa-window-time.mjs
+        - scripts/window-time-browser-proof.mjs
+        - .github/workflows/offline-local-lab.yml
+        - docs/WINDOW_TIME_v012_BROWSER.md
+      commands:
+        - cmd: node scripts/qa-window-time.mjs
+          status: pass
+  - id: T004
+    type: pm
+    assignee: PM
+    status: done
+    objective: Harden recorder remount, stale clock epochs and visible diary layout before final browser QA.
+    allowed_files: [src/dev, docs, src/components/WindowCanvas.test.tsx]
+    receipt:
+      result: done
+      summary: Fresh recorder on play remount, render-epoch RAF guard, compact stable-height play/results header, separate replay controls and run-condition metadata.
+      commands:
+        - cmd: tsc --noEmit
+          status: pass
+        - cmd: WindowTimePage and useStudyClock tests
+          status: pass
+  - id: T005
+    type: pm
+    assignee: PM
+    status: done
+    objective: Avoid unused retiming on player input and give explicit window-time replay provenance before delivery.
+    allowed_files: [src/dev, scripts/window-time-browser-proof.mjs, docs, README.md, .github/workflows/offline-local-lab.yml, artifacts, dist, public/local-ml]
+    receipt:
+      result: done
+      summary: No tempo scan on pointer samples; raw replay has independent format and saved run/comparison conditions; duplicate synthetic fixture root removed.
+      commands:
+        - cmd: full Vitest 406 tests and tsc
+          status: pass
+        - cmd: offline package, 49-asset scanner, development canary, 14 integrity regressions
+          status: pass
+        - cmd: report-window-time --check
+          status: pass
+  - id: T006
+    type: worker
+    assignee: Worker
+    status: done
+    objective: Finish the separately labelled Japanese redraw fixture and final browser report after the primary six plays passed.
+    allowed_files:
+      - scripts/qa-window-time.mjs
+      - scripts/window-time-browser-proof.mjs
+      - docs/WINDOW_TIME_v012_BROWSER.md
+      - artifacts/release
+    verify:
+      - Run supplemental browser proof with exact raster and redraw fixture
+    stop_if:
+      - Need source code changes
+      - Fixture verification fails twice
+    receipt:
+      result: done
+      summary: Four exact-raster labs, all-profile synthetic progressive redraw, meaningful B/C audio, restored-condition/edit history/isolation, explicit skip and final-source C JA NIGHT all passed. No human ratings generated.
+      changed_files:
+        - scripts/qa-window-time.mjs
+        - scripts/window-time-browser-proof.mjs
+        - docs/WINDOW_TIME_v012_BROWSER.md
+      commands:
+        - cmd: supplemental browser proof
+          status: pass
+        - cmd: final C JA NIGHT with sound and new raw provenance
+          status: pass
+  - id: T007
+    type: judge
+    assignee: Judge
+    status: done
+    objective: Read-only final audit of timing/recognition separation, MDE preservation, experimental evidence and remaining human gates.
+    constraints: [Read-only, Do not replace human experience with browser proof]
+    expected_output: [complete or not_complete, concrete blockers, evidence limits]
+    receipt:
+      result: done
+      decision: Source separation and evidence are sound; gate comparison clock offscreen and refresh ignored package evidence before completion.
+      next_allowed_task: T008
+  - id: T008
+    type: pm
+    assignee: PM
+    status: done
+    objective: Gate common comparison clock when panes are offscreen, add unit/browser proof, and refresh separately named verification package receipt.
+    allowed_files: [src/dev/windowTime, scripts/qa-window-time.mjs, scripts/window-time-browser-proof.mjs, docs, artifacts, dist, public/local-ml]
+    receipt:
+      result: done
+      summary: Shared panes visibility gates the clock; real offscreen freeze/resume passed; fresh separately named verification receipt matches ZIP hash and byte count.
+      commands:
+        - cmd: full Vitest 407 tests, affected tests and tsc
+          status: pass
+        - cmd: real browser offscreen regression
+          status: pass
+        - cmd: offline package and separate receipt hash parity
+          status: pass
+  - id: T999
+    type: pm
+    assignee: PM
+    status: done
+    objective: Audit all requested outcomes, commit/push and attach a Draft PR; confirm latest CI.
+    allowed_files: [docs, README.md, scripts/qa-window-time.mjs, scripts/window-time-browser-proof.mjs]
+    receipt:
+      result: done
+      decision: complete
+      summary: Original research deliverable audited; both Judge conditions repaired and verified. Runtime committed/pushed as c003876 and Draft PR32 attached on PR31 base. No product adoption/publication. Human gates remain explicit.
+      commands:
+        - cmd: git diff --cached --check and selective commit/push
+          status: pass
+        - cmd: https://github.com/madowaku/drawindow/pull/32
+          status: pass
+        - cmd: inspect new branch CI
+          status: in_progress at delivery; final response verifies latest status
+checks:
+  dirty_fingerprint: runtime committed as c003876; only reporting board finalization follows; protected core/data/services/public unchanged
+  last_verification:
+    result: pass
+    task: T008
+    commands: [Vitest407pass, tscpass, sixMLplayspass, exactrasterpass, syntheticredrawpass, offscreenpass, offline49scanpass, freshZIPreceiptpass]

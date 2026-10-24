@@ -10,9 +10,29 @@ vi.mock('./SketchThumbnail', () => ({ SketchThumbnail: ({ label }: { label: stri
 vi.mock('./CharacterScene', () => ({ CharacterScene: ({ mode, frameOverride }: { mode: string; frameOverride?: string }) => <div data-testid="ending-character" data-mode={mode} data-override={frameOverride ?? 'none'} /> }));
 const entries: DrawingEntry[] = Array.from({ length: 10 }, (_, i) => ({ id: `entry-${i}`, actor: i % 2 ? 'player' : 'girl', round: Math.floor(i / 2) + 1, strokes: [{ id: 's', points: [{ x: .2, y: .3, t: 0 }] }], intendedWord: ['apple', 'egg', 'goat', 'tree', 'ear', 'rat', 'tiger', 'rain', 'nest', 'tea'][i], recognition: i % 2 && i < 9 ? { guess: ['egg', 'tree', 'rat', 'rain'][Math.floor(i / 2)], source: 'api' } : null, comparable: true }));
 const props = { entries, score: calculateScore(entries), mode: 'day' as const, language: 'en' as const, sessionKind: 'api' as const, reducedMotion: false, onRestart: vi.fn(), onTitle: vi.fn() };
-afterEach(() => { cleanup(); vi.useRealTimers(); });
+afterEach(() => { cleanup(); vi.useRealTimers();vi.unstubAllEnvs();Object.defineProperty(document,'hidden',{configurable:true,value:false}); });
 
 describe('ten little thoughts', () => {
+  it('DEV relaxed timing pauses hidden time, skips immediately and observes goodbye without changing results',()=>{
+    vi.useFakeTimers();const onBeat=vi.fn();
+    render(<EndingScene {...props} studyTiming={{pairMs:1250,linkMs:850,arrivalMs:600,goodbyeMs:5000}} studyOnBeat={onBeat}/>);
+    act(()=>vi.advanceTimersByTime(500));
+    act(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));});
+    act(()=>vi.advanceTimersByTime(10000));expect(document.querySelectorAll('.result-drawing')).toHaveLength(2);
+    act(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:false});document.dispatchEvent(new Event('visibilitychange'));});
+    act(()=>vi.advanceTimersByTime(749));expect(document.querySelectorAll('.result-drawing')).toHaveLength(2);
+    act(()=>vi.advanceTimersByTime(1));expect(document.querySelectorAll('.result-drawing')).toHaveLength(4);
+    fireEvent.click(screen.getByRole('button',{name:'Skip animation · see results'}));
+    expect(document.querySelectorAll('.result-drawing')).toHaveLength(10);expect(document.querySelectorAll('.chain-link')).toHaveLength(9);
+    expect((document.querySelector('.ending') as HTMLElement).style.getPropertyValue('--time-arrival')).toBe('0ms');
+    fireEvent.click(screen.getByRole('button',{name:'A little goodbye'}));expect(onBeat.mock.calls.at(-1)![0].act).toBe('goodbye');
+  });
+  it('DEV restoration settles the ending while production ignores every study timing parameter',()=>{
+    const view=render(<EndingScene {...props} studyTiming={{pairMs:1500,linkMs:1000,arrivalMs:700,goodbyeMs:6000,skipIntro:true}}/>);
+    expect(document.querySelectorAll('.chain-link')).toHaveLength(9);expect(screen.getByRole('button',{name:'A little goodbye'})).toBeTruthy();view.unmount();
+    vi.stubEnv('DEV',false);const observer=vi.fn();render(<EndingScene {...props} studyTiming={{pairMs:1,linkMs:1,arrivalMs:1,goodbyeMs:1,skipIntro:true}} studyOnBeat={observer}/>);
+    expect(document.querySelectorAll('.result-drawing')).toHaveLength(2);expect(document.querySelectorAll('.chain-link')).toHaveLength(0);expect(observer).not.toHaveBeenCalled();
+  });
   it('keeps every answer and score out of the diary until deliberate reveal, including accessible names', () => {
     render(<EndingScene {...props} reducedMotion />);
     expect(screen.getAllByRole('img')).toHaveLength(10);

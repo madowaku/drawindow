@@ -1,3 +1,13 @@
+# DRAWINDOW v0.12 窓辺の時間・テンポ比較研究
+
+`npm run dev` の `/?window-time` で、同じ絵を現行A／ゆったりB／とてもゆったりCの共通時計で比較できます。「５往復を試す」は同じApp・端末内画像認識Aを使い、息・線・絵日記・またねまでの時間を研究します。本編の標準テンポはA、D案は保留のままです。
+
+[時間監査と設計](docs/WINDOW_TIME_v012_AUDIT.md) · [291枚の時間集計](docs/WINDOW_TIME_v012_PARAMETERS.json) · [本人試遊・人間パイロット手順](docs/WINDOW_TIME_v012_HUMAN_TEST.md)
+
+[結果・採用保留・未確認事項](docs/WINDOW_TIME_v012_STATUS.md) · [ブラウザー観測の範囲](docs/WINDOW_TIME_v012_BROWSER.md)
+
+速度設定とOSの動き軽減は別です。動き軽減を勝手に解除しません。本人の感想は未入力で、ブラウザーの自動観測を人の試遊として数えていません。main・既存PR・公開版・販売ZIPは変更していません。
+
 # DRAWINDOW v0.11 しずくの小さな予感・比較研究
 
 `npm run dev` の `/?shizuku-premonition` で、実際の５往復を匿名表示X/Yで遊び、同じ記録の表情だけを比較できます。Dは画像のみAの認識結果を受け取って短い表情を選びます。認識・次絵・９リンク・本編の演技は変更していません。研究の途中保存は本編と別の端末内領域です。
