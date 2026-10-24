@@ -17,8 +17,13 @@ export function OfflineStatus({ language }: { language: Language }) {
       if (!disposed && container.controller) setStatus('ready');
     };
     const changed = () => {
-      update();
-      if (!disposed && !container.controller && [...workers].some(w => w.state === 'redundant')) setStatus('failed');
+      if (disposed) return;
+      // A previous edition may still control the page when the new install fails.
+      if ([...workers].some(w => w.state === 'redundant')) {
+        setStatus('failed');
+      } else {
+        update();
+      }
     };
     const watch = (worker: ServiceWorker | null) => {
       if (worker && !workers.has(worker)) {
