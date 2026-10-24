@@ -51,6 +51,8 @@ jobs:
         run: node scripts/qa-local-benchmark-v09.mjs
       - name: Test isolated context research with one local model output
         run: node scripts/qa-context-recognition.mjs
+      - name: Test anonymous A/D five-exchange study and isolated recovery
+        run: node scripts/qa-premonition-study.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: DRAWINDOW-local-lab

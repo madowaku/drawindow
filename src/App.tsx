@@ -1,13 +1,13 @@
 import { GirlOopsReaction } from './components/GirlOopsReaction';
 import { OfflineStatus } from './components/OfflineStatus';
 import { gameSketches } from './data/gameSketches';
-import { useSessionPersistence } from './lib/useSessionPersistence';
-import { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react';
+import { useSessionPersistence, type SessionStore } from './lib/useSessionPersistence';
+import { useCallback, useEffect, useLayoutEffect, useReducer, useRef, useState, type ReactNode } from 'react';
 import { ArrowLeft, ArrowRight, ArrowCounterClockwise, ArrowClockwise, Check, Eraser, Info, Moon, SpeakerHigh, SpeakerSlash, Sun, X } from '@phosphor-icons/react';
 import { createInitialState, gameReducer, selectCanFinishDrawing, selectPlayerEntries, selectVisibleStrokes } from './core/gameMachine';
 import { calculateScore } from './core/score';
 import { EndingScene } from './components/EndingScene';
-import type { DrawingRecognizer, GameState, Language, Mode, SessionKind } from './core/types';
+import type { DrawingRecognizer, GameEvent, GameState, GirlExpression, Language, Mode, SessionKind } from './core/types';
 import { withJapaneseStarter } from './data/japaneseSketches';
 import { WindowCanvas } from './components/WindowCanvas';
 import { SketchThumbnail } from './components/SketchThumbnail';
@@ -43,26 +43,41 @@ function useReducedMotion() {
   return reduced;
 }
 
+export interface StudyOptions {
+  localOnly: true;
+  expression?: GirlExpression;
+  storage?: SessionStore;
+  onEvent?: (event: GameEvent) => void;
+  header?: ReactNode;
+  footer?: ReactNode;
+}
 export interface AppProps {
+  /** DEV-only generic observation/presentation; no study module imported here. */
+  study?: StudyOptions;
   /** Optional local acceptance observer; production supplies neither prop. */
   apiRecognizer?: DrawingRecognizer;
   mlRecognizer?: DrawingRecognizer;
   onStateChange?: (state: GameState) => void;
 }
 
-export default function App({ apiRecognizer, mlRecognizer, onStateChange }: AppProps = {}) {
+export default function App({ apiRecognizer, mlRecognizer, onStateChange, study }: AppProps = {}) {
   const appScrollRef = useRef<HTMLElement>(null);
   const dialogReturnFocusRef = useRef<HTMLElement | null>(null);
   const lastIntentFocusRef = useRef<HTMLInputElement | null>(null);
+  const studyOptions = import.meta.env.DEV ? study : undefined;
   const offlineEdition = import.meta.env.VITE_OFFLINE_EDITION === 'true';
-  const liveApiConfigured = !offlineEdition && (Boolean(import.meta.env.VITE_RECOGNITION_URL?.trim()) || import.meta.env.VITE_ENABLE_LIVE_API === 'true');
-  const [state, dispatch] = useReducer(gameReducer, undefined, () => createInitialState(savedMode(), savedLanguage()));
+  const liveApiConfigured = !offlineEdition && !studyOptions?.localOnly && (Boolean(import.meta.env.VITE_RECOGNITION_URL?.trim()) || import.meta.env.VITE_ENABLE_LIVE_API === 'true');
+  const [state, rawDispatch] = useReducer(gameReducer, undefined, () => createInitialState(savedMode(), savedLanguage()));
+  const dispatch = useCallback((event: GameEvent) => {
+    if (import.meta.env.DEV) studyOptions?.onEvent?.(event);
+    rawDispatch(event);
+  }, [studyOptions?.onEvent]);
   const { sound, toggleSound, playSound } = useGameAudio(musicForScene(state.phase, state.mode));
   const [info, setInfo] = useState(false);
   const [leave, setLeave] = useState(false);
-  const [sessionChoice, setSessionChoice] = useState<SessionKind>(offlineEdition ? 'ml' : liveApiConfigured && import.meta.env.VITE_DEFAULT_LIVE === 'true' ? 'api' : 'demo');
+  const [sessionChoice, setSessionChoice] = useState<SessionKind>((offlineEdition || studyOptions?.localOnly) ? 'ml' : liveApiConfigured && import.meta.env.VITE_DEFAULT_LIVE === 'true' ? 'api' : 'demo');
   const [intentDrafts, setIntentDrafts] = useState<Record<string, string>>({});
-  const persistence = useSessionPersistence(state, intentDrafts, dispatch, setIntentDrafts, offlineEdition);
+  const persistence = useSessionPersistence(state, intentDrafts, dispatch, setIntentDrafts, offlineEdition, studyOptions?.storage);
   const [runners] = useState(() => ({
     api: import.meta.env.VITE_OFFLINE_EDITION === 'true'
       ? createRecognitionRunner({ recognize: async () => ({ guess: null, source: 'api', errorCode: 'unavailable' }) })
@@ -71,8 +86,8 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange }: AppP
     ml: createRecognitionRunner(mlRecognizer ?? createQuickDrawRecognizer(), { timeoutMs: 45000 }),
   }));
   useEffect(() => {
-    if (offlineEdition) void preloadQuickDrawModel().catch(() => { /* Explicit error on recognition. */ });
-  }, [offlineEdition]);
+    if (offlineEdition || studyOptions?.localOnly) void preloadQuickDrawModel().catch(() => { /* Explicit error on recognition. */ });
+  }, [offlineEdition, studyOptions?.localOnly]);
   const reducedMotion = useReducedMotion();
   const phaseRef = useRef(state.phase);
   const active = !['title', 'review_intents', 'results'].includes(state.phase);
@@ -184,6 +199,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange }: AppP
   }, [state.phase, state.round]);
 
   return <main ref={appScrollRef} className={`app ${title ? 'is-title' : ''} ${active ? 'is-playing' : ''}`} data-mode={state.mode} data-language={state.language} data-phase={state.phase} onFocusCapture={event => { if (state.phase === 'review_intents' && event.target instanceof HTMLInputElement) lastIntentFocusRef.current = event.target; }}>
+    {import.meta.env.DEV && studyOptions?.header}
     <header className="topbar">
       <button className="wordmark" onClick={() => protectLeave ? openDialog('leave') : dispatch({ type: 'RETURN_TO_TITLE' })} aria-label={t('DRAWINDOW home', '最初の画面へ')}>DRA<span>W</span>INDOW<span className="wordmark-period">.</span></button>
       <div className="topbar-right">
@@ -219,7 +235,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange }: AppP
     {active && <section className="play-layout" aria-label={t('Picture word chain', '絵のしりとり')}>
       <div className="play-heading"><div><h1>{state.phase === 'player_drawing' ? t('Your little reply.', 'あなたからのお返事。') : state.phase === 'recognizing' ? t('A moment to wonder.', '少し、考えごと。') : state.phase === 'recognition_error' ? t('A little interruption.', 'ちょっとひと休み。') : t('What do you see?', '何に見える？')}</h1></div><div className="round-label"><span>{t('EXCHANGE', 'おうふく')}</span><strong>{String(state.round).padStart(2, '0')}<small> / 05</small></strong></div></div>
       <div className={`window-surface phase-${state.phase}`}>
-        <WindowCanvas language={state.language} previousStrokes={state.entries.at(-1)?.falseStart?.strokes} mode={state.mode} phase={state.phase} round={state.round} strokes={selectVisibleStrokes(state)} onStrokesChange={strokes => dispatch({ type: 'STROKES_CHANGED', strokes })} onBreathDone={() => dispatch({ type: 'BREATH_DONE' })} onPlaybackDone={() => dispatch({ type: 'PLAYBACK_DONE' })} reducedMotion={reducedMotion} />
+        <WindowCanvas expression={import.meta.env.DEV ? studyOptions?.expression : undefined} language={state.language} previousStrokes={state.entries.at(-1)?.falseStart?.strokes} mode={state.mode} phase={state.phase} round={state.round} strokes={selectVisibleStrokes(state)} onStrokesChange={strokes => dispatch({ type: 'STROKES_CHANGED', strokes })} onBreathDone={() => dispatch({ type: 'BREATH_DONE' })} onPlaybackDone={() => dispatch({ type: 'PLAYBACK_DONE' })} reducedMotion={reducedMotion} />
         <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : state.sessionKind === 'ml' ? 'LOCAL AI' : 'LIVE API'}</span>
       </div>
       <div className="play-footer">
@@ -234,7 +250,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange }: AppP
           {state.phase === 'girl_holding' && <button className="primary" onClick={() => dispatch({ type: 'YOUR_TURN' })}>{t('YOUR TURN', 'あなたの番')}<ArrowRight size={20} /></button>}
           {state.phase === 'player_drawing' && <><button className="secondary tool" disabled={!state.drawingHistory.past.length} onClick={() => dispatch({ type: 'UNDO' })} aria-label={t('Undo last edit', '元に戻す')} title={t('Undo · Ctrl/Cmd+Z', '元に戻す · Ctrl/Cmd+Z')}><ArrowCounterClockwise size={21} /></button><button className="secondary tool" disabled={!state.drawingHistory.future.length} onClick={() => dispatch({ type: 'REDO' })} aria-label={t('Redo last edit', 'やり直す')} title={t('Redo · Ctrl/Cmd+Shift+Z', 'やり直す · Ctrl/Cmd+Shift+Z')}><ArrowClockwise size={21} /></button><button className="secondary tool clear-tool" disabled={!state.activeStrokes.length} onClick={() => dispatch({ type: 'CLEAR' })} aria-label={t('CLEAR', '消す')}><Eraser size={20} /><span>{t('CLEAR', '消す')}</span></button><button className="primary" disabled={!selectCanFinishDrawing(state)} onClick={() => dispatch({ type: 'DONE' })}>{t('DONE', 'できた')}<Check size={20} /></button></>}
           {['girl_breath', 'girl_drawing', 'girl_notice', 'girl_flustered', 'recognizing'].includes(state.phase) && <div className="waiting"><span className="waiting-mark" />{state.phase === 'recognizing' ? t('THINKING', '考え中') : t('HER TURN', 'しずくの番')}</div>}
-          {state.phase === 'recognition_error' && <div className="error-actions"><p role="alert">{state.language === 'ja' ? state.error?.code === 'rate_limit' ? '認識回数の制限に達しました。少し時間をおいてください。絵は残っています。' : state.error?.code === 'uncovered_letter' ? '次につながる絵が見つかりません。描き直すか、デモを試してください。' : '認識できませんでした。絵は残っています。' : state.error?.message || 'Connection unavailable. Please try again.'}</p><div>{state.error?.retryable && <button className="primary" onClick={() => dispatch({ type: 'RETRY_RECOGNITION' })}>{t('TRY AGAIN', 'もう一度')}</button>}<button className="secondary" onClick={() => dispatch({ type: 'USE_DEMO' })}>{t('DEMO MODE', 'デモにする')}</button><button className="text-button" onClick={() => dispatch({ type: 'BACK_TO_DRAWING' })}><ArrowLeft size={16} /> {t('BACK', '戻る')}</button></div><small>{t('Demo uses simulated interpretations and no comparable score.', 'デモは認識をシミュレーションするため、正式なスコアにはなりません。')}</small></div>}
+          {state.phase === 'recognition_error' && <div className="error-actions"><p role="alert">{state.language === 'ja' ? state.error?.code === 'rate_limit' ? '認識回数の制限に達しました。少し時間をおいてください。絵は残っています。' : state.error?.code === 'uncovered_letter' ? studyOptions?.localOnly ? '次につながる絵が見つかりません。絵は残っています。戻って描き直せます。' : '次につながる絵が見つかりません。描き直すか、デモを試してください。' : '認識できませんでした。絵は残っています。' : state.error?.message || 'Connection unavailable. Please try again.'}</p><div>{state.error?.retryable && <button className="primary" onClick={() => dispatch({ type: 'RETRY_RECOGNITION' })}>{t('TRY AGAIN', 'もう一度')}</button>}{!studyOptions?.localOnly && <button className="secondary" onClick={() => dispatch({ type: 'USE_DEMO' })}>{t('DEMO MODE', 'デモにする')}</button>}<button className="text-button" onClick={() => dispatch({ type: 'BACK_TO_DRAWING' })}><ArrowLeft size={16} /> {t('BACK', '戻る')}</button></div>{!studyOptions?.localOnly && <small>{t('Demo uses simulated interpretations and no comparable score.', 'デモは認識をシミュレーションするため、正式なスコアにはなりません。')}</small>}</div>}
         </div>
       </div>
       <div className="progress-track" aria-label={t(`${state.round} of 5 exchanges`, `全５回中${state.round}回目`)}>{Array.from({ length: 5 }, (_, i) => <span key={i} className={i < state.round - 1 ? 'complete' : i === state.round - 1 ? 'current' : ''} />)}</div>
@@ -257,8 +273,9 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange }: AppP
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
         else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
       }
-    }}><button autoFocus className="icon-button close-dialog" aria-label={t('Close dialog', '閉じる')} onClick={closeDialog}><X size={22} /></button>{leave ? <><h2 id="dialog-title">{t('Close this window?', '窓を閉じる？')}</h2><p>{t('This unfinished chain will be lost.', '途中の絵と名前は消えてしまうよ。')}</p><button className="primary" onClick={() => { dialogReturnFocusRef.current = null; setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>{t('RETURN TO TITLE', '最初に戻る')}</button><button className="text-button" onClick={closeDialog}>{state.phase === 'review_intents' ? t('Keep naming', '名前つけを続ける') : t('Keep drawing', '続きを描く')}</button></> : <><p className="eyebrow">DRAWINDOW · v0.7.1</p><h2 id="dialog-title">{t('A conversation without words.', '言葉を使わない会話。')}</h2><p>{t('Look at her drawing. Think of its English name. Draw something beginning with its last letter.', 'しずくの絵に名前をつけて、最後の音から次の絵を描こう。ご→こ、ぎ→きのように濁点を外してもOK。「ん」で終わったら、新しい絵から再開するよ。')}</p><p>{t('Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.', '途中で答えを言わないでね。５往復したら名前を明かして、９本のつながりを確かめよう。')}</p><p>{t('DAY & NIGHT change only the mood. There is no timer.', '昼と夜では雰囲気が変わるよ。時間制限はありません。')}</p><p>{offlineEdition
+    }}><button autoFocus className="icon-button close-dialog" aria-label={t('Close dialog', '閉じる')} onClick={closeDialog}><X size={22} /></button>{leave ? <><h2 id="dialog-title">{t('Close this window?', '窓を閉じる？')}</h2><p>{t('This unfinished chain will be lost.', '途中の絵と名前は消えてしまうよ。')}</p><button className="primary" onClick={() => { dialogReturnFocusRef.current = null; setLeave(false); dispatch({ type: 'RETURN_TO_TITLE' }); }}>{t('RETURN TO TITLE', '最初に戻る')}</button><button className="text-button" onClick={closeDialog}>{state.phase === 'review_intents' ? t('Keep naming', '名前つけを続ける') : t('Keep drawing', '続きを描く')}</button></> : <><p className="eyebrow">DRAWINDOW · v0.7.1</p><h2 id="dialog-title">{t('A conversation without words.', '言葉を使わない会話。')}</h2><p>{t('Look at her drawing. Think of its English name. Draw something beginning with its last letter.', 'しずくの絵に名前をつけて、最後の音から次の絵を描こう。ご→こ、ぎ→きのように濁点を外してもOK。「ん」で終わったら、新しい絵から再開するよ。')}</p><p>{t('Keep your interpretation to yourself. After five exchanges, name your own pictures and discover which of the nine links connected.', '途中で答えを言わないでね。５往復したら名前を明かして、９本のつながりを確かめよう。')}</p><p>{t('DAY & NIGHT change only the mood. There is no timer.', '昼と夜では雰囲気が変わるよ。時間制限はありません。')}</p><p>{(offlineEdition || studyOptions?.localOnly)
               ? t('Local AI runs on your device without uploading drawings. Guesses are experimental. Offline relaunch needs completed installation and caching.', '端末内AIは絵を送信しません。判定は実験中です。通信なしでの再起動にはインストールとキャッシュの完了が必要です。')
               : t('DEMO uses simulated interpretations, not image recognition. Live API sends a neutral drawing image to a configured server; the character is never included.', 'デモは画像認識ではなく、決まった解釈を返します。LIVE APIでは絵だけを認識サーバーに送り、しずくの画像は送りません。')}</p><div className="credits"><p>{t('Character', 'キャラクター')}: OpenAI ImageGen<br />{t('Doodles', '絵')}: Quick, Draw! / Google, CC BY 4.0; DRAWINDOW original. {t('Fonts', 'フォント')}: DM Sans &amp; Cormorant Garamond, OFL.</p><MusicCredits /><a href="https://github.com/googlecreativelab/quickdraw-dataset" target="_blank" rel="noreferrer">Quick, Draw! dataset & attribution</a></div></>}</section></div>}
+    {import.meta.env.DEV && studyOptions?.footer}
   </main>;
 }
