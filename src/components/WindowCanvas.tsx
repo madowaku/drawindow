@@ -546,11 +546,7 @@ export function WindowCanvas({
       <StrokeTipOverlay tip={playbackTip} layout={layout} reducedMotion={reducedMotion} visible={canvasVisible && phase === 'girl_drawing'} />
       {variant === 'glass' && glassStyle === 'tactile' && activeTip && <span className="window-canvas__finger" aria-hidden="true" style={{ left: layout.left + activeTip.x * layout.size, top: layout.top + activeTip.y * layout.size }} />}
       {phase === 'player_drawing' && keyboardPen && <span className="window-canvas__keyboard-pen" data-testid="keyboard-cursor" data-drawing={keyboardPen.drawing} aria-hidden="true" style={{ left: layout.left + keyboardPen.x * layout.size, top: layout.top + keyboardPen.y * layout.size }} />}
-      {phase === 'player_drawing' && strokes.length === 0 && drawingStyle && (
-        <div className="window-canvas__prompt" style={drawingStyle} aria-hidden="true" data-testid="window-drawing-hint">
-          <span>{language === 'ja' ? 'ここに描こう' : 'DRAW HERE'}</span>
-        </div>
-      )}
+
     </div>
   );
 }

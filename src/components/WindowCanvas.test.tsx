@@ -198,9 +198,9 @@ describe('WindowCanvas input', () => {
     expect(screen.queryByTestId('keyboard-cursor')).toBeNull();
   });
 
-  it('localizes the drawing prompt and keyboard instructions without answer data', () => {
+  it('keeps Japanese keyboard instructions without overlaying a drawing prompt', () => {
     render(<WindowCanvas {...props({ language: 'ja' })} />);
-    expect(screen.getByTestId('window-drawing-hint').textContent).toBe('ここに描こう');
+    expect(screen.queryByTestId('window-drawing-hint')).toBeNull();
     expect(screen.getByTestId('window-drawing-canvas').getAttribute('aria-label')).toContain('矢印キー');
   });
   it('captures a pointer, includes coalesced samples, and preserves a single tap', () => {
@@ -243,14 +243,12 @@ describe('WindowCanvas input', () => {
     expect((onStrokesChange.mock.lastCall?.[0] as readonly Stroke[])).toHaveLength(2);
   });
 
-  it('marks the square input area and hides its non-spoiler hint after the first stroke', () => {
+  it('keeps the input area interactive without text over the character', () => {
     const emptyProps = props();
     const { rerender } = render(<WindowCanvas {...emptyProps} />);
     const canvas = screen.getByTestId('window-drawing-canvas');
     expect(canvas.className).toContain('is-interactive');
-    const hint = screen.getByTestId('window-drawing-hint');
-    expect(hint.textContent).toBe('DRAW HERE');
-    expect(hint.getAttribute('aria-hidden')).toBe('true');
+    expect(screen.queryByTestId('window-drawing-hint')).toBeNull();
 
     rerender(<WindowCanvas {...props({ strokes: [{ id: 'first', points: [{ x: 0.5, y: 0.5, t: 0 }] }] })} />);
     expect(canvas.className).toContain('is-interactive');
