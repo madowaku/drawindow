@@ -1,8 +1,8 @@
 import type { DrawingRecognizer, RecognitionErrorCode, RecognitionSource, Stroke } from '../core/types';
-import { lastLetter, selectGirlSketch } from '../core/words';
+import { lastLetter, normalizeWord, selectGirlSketch } from '../core/words';
 import { girlSketches } from '../data/sketches';
 import { renderDrawingDataUrl } from '../lib/strokes';
-import { createApiRecognizer } from '../services/recognizer';
+import { createQuickDrawRecognizer, type QuickDrawDiagnostic } from '../services/quickDrawRecognizer';
 
 export const BENCHMARK_PROMPTS = [
   { intent: 'apple', ja: 'りんご', category: 'simple', ambiguity: 'low' },
@@ -38,6 +38,10 @@ export interface BenchmarkAttempt extends DrawerIdentity {
   imageHeight: 512;
   imageBytes: number;
   guess: string | null;
+  top3: { label: string; score: number }[] | null;
+  modelOutcome: QuickDrawDiagnostic['outcome'] | null;
+  top3MatchesIntent: boolean | null;
+  chainContinued: boolean | null;
   errorCode: RecognitionErrorCode | null;
   source: RecognitionSource;
   httpStatus: number | null;
@@ -67,6 +71,7 @@ export function validDrawing(strokes: readonly Stroke[]): boolean {
 export class BenchmarkSession {
   readonly sessionId = `${Date.now()}${crypto.getRandomValues(new Uint32Array(1))[0]}`;
   readonly attempts: BenchmarkAttempt[] = [];
+  feedback = { completedGame: null as boolean | null, fun: null as number | null, replay: null as boolean | null, confusion: '' };
   sending = false;
   cooldownUntil = 0;
   validationError: 'invalid_input' | null = null;
@@ -97,7 +102,8 @@ export class BenchmarkSession {
     const requestId = `${this.sessionId}:${sampleIndex + 1}:${previous.length + 1}`;
     let httpStatus: number | null = null;
     let retryAfterMs: number | null = null;
-    const recognizer = this.options.recognizer ?? createApiRecognizer({ endpoint: '/api/recognize', onResponse: metadata => { httpStatus = metadata.httpStatus; retryAfterMs = metadata.retryAfterMs; } });
+    let diagnostic: QuickDrawDiagnostic | null = null;
+    const recognizer = this.options.recognizer ?? createQuickDrawRecognizer({ onDiagnostic: value => { diagnostic = value; } });
     const timestamp = new Date().toISOString();
     const started = performance.now();
     // One explicit invocation, no runner, retry loop, effects or DEMO adapter.
@@ -105,7 +111,7 @@ export class BenchmarkSession {
     try { result = await recognizer.recognize({ requestId, strokes, imageDataUrl }); }
     catch { result = { guess: null, source: 'api' as const, errorCode: 'network' as const }; }
     const elapsedMs = Math.max(0, Math.round(performance.now() - started));
-    const validGuess = result.source === 'api' && !result.error && !result.errorCode && typeof result.guess === 'string' && /^[a-z]{1,32}$/.test(result.guess);
+    const validGuess = (result.source === 'api' || result.source === 'ml') && !result.error && !result.errorCode && typeof result.guess === 'string' && result.guess === normalizeWord(result.guess);
     const guess = validGuess ? result.guess : null;
     const errorCode = validGuess ? null : result.source === 'mock' ? 'invalid_response' : result.errorCode && errorCodes.has(result.errorCode) ? result.errorCode : 'invalid_response';
     const nextInitial = lastLetter(guess);
@@ -116,13 +122,18 @@ export class BenchmarkSession {
       drawerId: identity.drawerId, device: identity.device, inputTypes: [...new Set(identity.inputTypes)],
       attempt: previous.length + 1, requestId, rawPointCount: strokes.reduce((count, stroke) => count + stroke.points.length, 0),
       imageWidth: 512, imageHeight: 512, imageBytes: Math.floor(base64.length * 3 / 4) - (base64.match(/=+$/)?.[0].length ?? 0),
-      guess, errorCode, source: result.source === 'mock' ? 'mock' : 'api', httpStatus, elapsedMs, timestamp,
+      guess, top3: diagnostic ? (diagnostic as QuickDrawDiagnostic).top3 : null, modelOutcome: diagnostic ? (diagnostic as QuickDrawDiagnostic).outcome : null, top3MatchesIntent: null, chainContinued: null, errorCode, source: result.source === 'mock' ? 'mock' : result.source === 'ml' ? 'ml' : 'api', httpStatus, elapsedMs, timestamp,
       judgement: null, rationale: '', nextInitial, nextTemplateCovered: nextInitial ? !!nextTemplate : null, nextTemplateId: nextTemplate?.id ?? null,
     };
     this.attempts.push(record);
     this.cooldownUntil = this.now() + Math.max(6000, errorCode === 'rate_limit' ? Math.max(60000, retryAfterMs ?? 0) : 0);
     this.sending = false;
     return record;
+  }
+
+  observe(requestId: string, key: 'top3MatchesIntent' | 'chainContinued', value: boolean | null) {
+    const record = this.attempts.find(item => item.requestId === requestId);
+    if (record) record[key] = value;
   }
 
   judge(requestId: string, judgement: Judgement, rationale: string) {
@@ -145,9 +156,15 @@ export function summarize(attempts: readonly BenchmarkAttempt[]) {
     firstAttempts: first.length, retries: attempts.length - first.length,
     judged: first.filter(item => item.judgement && item.rationale.trim()).length,
     denominator: 11,
+    top3Reviewed: recognizable.filter(item => item.top3MatchesIntent !== null).length,
+    top3Matches: recognizable.filter(item => item.top3MatchesIntent === true).length,
+    chainObserved: first.filter(item => item.chainContinued !== null).length,
+    chainContinued: first.filter(item => item.chainContinued === true).length,
+    unknown: first.filter(item => item.guess === null).length,
+    unmapped: first.filter(item => item.modelOutcome === 'unmapped').length,
     exact: recognizable.filter(item => item.judgement === 'exact').length,
     plausibleOrExact: recognizable.filter(item => item.judgement === 'exact' || item.judgement === 'plausible_alternative').length,
-    errorCount: first.filter(item => item.errorCode || item.source !== 'api').length,
+    errorCount: first.filter(item => item.errorCode || item.source === 'mock').length,
     latency: count ? { min: latencies[0], median: count % 2 ? latencies[Math.floor(count / 2)] : (latencies[count / 2 - 1] + latencies[count / 2]) / 2, p90: latencies[Math.ceil(count * .9) - 1], max: latencies[count - 1] } : null,
     nextInitials, coveredNextInitials: [...new Set(first.filter(item => item.nextTemplateCovered).map(item => item.nextInitial!))].sort(),
     complete: first.length === 12 && first.every(item => item.judgement && item.rationale.trim()),
@@ -165,18 +182,18 @@ function safeAttempt(item: BenchmarkAttempt): BenchmarkAttempt {
     sampleId: item.sampleId, intent: item.intent, category: item.category, ambiguity: item.ambiguity,
     drawerId: cleanText(item.drawerId), device: item.device, inputTypes: [...item.inputTypes], attempt: item.attempt,
     requestId: item.requestId, rawPointCount: item.rawPointCount, imageWidth: item.imageWidth, imageHeight: item.imageHeight, imageBytes: item.imageBytes,
-    guess: item.guess, errorCode: item.errorCode, source: item.source, httpStatus: item.httpStatus, elapsedMs: item.elapsedMs, timestamp: item.timestamp,
+    guess: item.guess, top3: item.top3?.map(({label, score}) => ({label: cleanText(label), score})) ?? null, modelOutcome: item.modelOutcome, top3MatchesIntent: item.top3MatchesIntent, chainContinued: item.chainContinued, errorCode: item.errorCode, source: item.source, httpStatus: item.httpStatus, elapsedMs: item.elapsedMs, timestamp: item.timestamp,
     judgement: item.judgement, rationale: cleanText(item.rationale), nextInitial: item.nextInitial, nextTemplateCovered: item.nextTemplateCovered, nextTemplateId: item.nextTemplateId,
   };
 }
 export function exportJson(session: BenchmarkSession): string {
-  return JSON.stringify({ schema: 'DRAWINDOW-freehand-v0.1', scope: 'Exploratory human pilot; not population accuracy, LIVE or device acceptance.', sessionId: session.sessionId, exportedAt: new Date().toISOString(), model: null, zeroStrokeCheck: session.zeroStrokeCheck, summary: summarize(session.attempts), attempts: session.attempts.map(safeAttempt) }, null, 2);
+  return JSON.stringify({ schema: 'DRAWINDOW-freehand-v0.9', scope: 'Exploratory human pilot; not population accuracy, LIVE or device acceptance.', sessionId: session.sessionId, exportedAt: new Date().toISOString(), model: session.attempts.some(item => item.source === 'ml') ? 'quickdraw-345-tflite@b02fde8d8732aed32bc9d8176c3dc4efda0333fb' : null, feedback: { completedGame: session.feedback.completedGame, fun: session.feedback.fun, replay: session.feedback.replay, confusion: cleanText(session.feedback.confusion) }, zeroStrokeCheck: session.zeroStrokeCheck, summary: summarize(session.attempts), attempts: session.attempts.map(safeAttempt) }, null, 2);
 }
 export function exportCsv(session: BenchmarkSession): string {
   const rows = session.attempts.map(safeAttempt);
-  const columns: (keyof BenchmarkAttempt)[] = ['sampleId', 'drawerId', 'device', 'inputTypes', 'intent', 'category', 'ambiguity', 'attempt', 'rawPointCount', 'requestId', 'guess', 'errorCode', 'source', 'httpStatus', 'elapsedMs', 'timestamp', 'judgement', 'rationale', 'imageWidth', 'imageHeight', 'imageBytes', 'nextInitial', 'nextTemplateCovered', 'nextTemplateId'];
+  const columns: (keyof BenchmarkAttempt)[] = ['sampleId', 'drawerId', 'device', 'inputTypes', 'intent', 'category', 'ambiguity', 'attempt', 'rawPointCount', 'requestId', 'guess', 'top3', 'modelOutcome', 'top3MatchesIntent', 'chainContinued', 'errorCode', 'source', 'httpStatus', 'elapsedMs', 'timestamp', 'judgement', 'rationale', 'imageWidth', 'imageHeight', 'imageBytes', 'nextInitial', 'nextTemplateCovered', 'nextTemplateId'];
   const cell = (value: unknown) => {
-    const text = Array.isArray(value) ? value.join('|') : value == null ? '' : String(value);
+    const text = Array.isArray(value) ? value.map(entry => typeof entry === 'object' ? JSON.stringify(entry) : entry).join('|') : value == null ? '' : String(value);
     const safe = /^\s*[=+\-@\t\r]/.test(text) ? `'${text}` : text;
     return `"${safe.replace(/"/g, '""')}"`;
   };

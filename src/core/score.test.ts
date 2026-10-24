@@ -54,3 +54,22 @@ describe('English chain boundaries', () => {
     expect(selectGirlSketch(sketches, 'x')).toBeNull();
   });
 });
+
+
+describe('local achievement is separate from evaluation comparability', () => {
+  it('celebrates nine local links without making ML results comparable', () => {
+    const local = entries(['cat', 'tree', 'egg', 'goat', 'tent', 'tiger', 'rose', 'ear', 'rain', 'nest']).map(e => ({ ...e, comparable: false }));
+    for (const e of local.filter(e => e.actor === 'player' && e.round < 5)) e.recognition = { guess: 'dog', source: 'ml' };
+    expect(calculateScore(local, 'ml')).toMatchObject({ perfect: true, comparable: false, connectedCount: 9 });
+    local[1].recognition = { guess: 'tree', source: 'mock' };
+    expect(calculateScore(local, 'ml').perfect).toBe(false);
+  });
+  it('does not celebrate incomplete or restarted local chains', () => {
+    const local = entries(['cat', 'tree', 'egg', 'goat', 'tent', 'tiger', 'rose', 'ear', 'rain', 'nest']);
+    local[4].chainRestart = true;
+    expect(calculateScore(local, 'ml').perfect).toBe(false);
+    expect(calculateScore(local.slice(0, 8), 'ml').perfect).toBe(false);
+    local[2].intendedWord = null;
+    expect(calculateScore(local, 'ml').perfect).toBe(false);
+  });
+});

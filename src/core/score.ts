@@ -25,6 +25,7 @@ export function calculateScore(entries: readonly DrawingEntry[], sessionKind: Se
   return {
     links, connectedCount, knownPairCount, possiblePairCount: 9,
     linkScore: knownPairCount ? connectedCount / knownPairCount : null, bestChain, comparable,
-    perfect: comparable && knownPairCount === 9 && connectedCount === 9,
+    // Achievement is about the nine links. It is not independent ML evaluation.
+    perfect: validSession && (comparable || (sessionKind === 'ml' && entries.every(entry => entry.recognition?.source !== 'mock' && !entry.nonComparableReason))) && knownPairCount === 9 && connectedCount === 9,
   };
 }

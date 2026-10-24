@@ -1,0 +1,124 @@
+{
+  "schema": "DRAWINDOW-license-inventory-v0.9",
+  "scope": "Installed production packages from lockfile flags; package declarations are not proof of rights or complete redistribution notices.",
+  "packages": [
+    {
+      "path": "node_modules/@fontsource/cormorant-garamond",
+      "name": "@fontsource/cormorant-garamond",
+      "version": "5.3.0",
+      "declaredLicense": "OFL-1.1",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fontsource/font-files.git",
+        "directory": "fonts/google/cormorant-garamond"
+      }
+    },
+    {
+      "path": "node_modules/@fontsource/dm-sans",
+      "name": "@fontsource/dm-sans",
+      "version": "5.3.0",
+      "declaredLicense": "OFL-1.1",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fontsource/font-files.git",
+        "directory": "fonts/google/dm-sans"
+      }
+    },
+    {
+      "path": "node_modules/@phosphor-icons/react",
+      "name": "@phosphor-icons/react",
+      "version": "2.1.10",
+      "declaredLicense": "MIT",
+      "repository": "phosphor-icons/react"
+    },
+    {
+      "path": "node_modules/react",
+      "name": "react",
+      "version": "19.3.1",
+      "declaredLicense": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/react/react.git",
+        "directory": "packages/react"
+      }
+    },
+    {
+      "path": "node_modules/react-dom",
+      "name": "react-dom",
+      "version": "19.3.1",
+      "declaredLicense": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/react/react.git",
+        "directory": "packages/react-dom"
+      }
+    },
+    {
+      "path": "node_modules/scheduler",
+      "name": "scheduler",
+      "version": "0.28.0",
+      "declaredLicense": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/react/react.git",
+        "directory": "packages/scheduler"
+      }
+    },
+    {
+      "path": "node_modules/@litertjs/core",
+      "name": "@litertjs/core",
+      "version": "2.5.3",
+      "declaredLicense": "Apache-2.0",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/google-ai-edge/LiteRT.git",
+        "directory": "litert/js/packages/core"
+      }
+    },
+    {
+      "path": "node_modules/@litertjs/wasm-utils",
+      "name": "@litertjs/wasm-utils",
+      "version": "2.6.0",
+      "declaredLicense": "Apache-2.0",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/google-ai-edge/LiteRT.git",
+        "directory": "litert/js/packages/wasm_utils"
+      }
+    }
+  ],
+  "music": [
+    {
+      "id": "title",
+      "path": "src/assets/music/title.bin",
+      "source": "https://opentracks.com/bgm/detail/15353",
+      "expectedSha256": "7483559e4889f24f9931a0baedd0ec69e53a8569d1f55d5bd82eda9e8f57415e",
+      "actualSha256": "7483559e4889f24f9931a0baedd0ec69e53a8569d1f55d5bd82eda9e8f57415e",
+      "matches": true
+    },
+    {
+      "id": "day",
+      "path": "src/assets/music/day.bin",
+      "source": "https://opentracks.com/bgm/detail/20419",
+      "expectedSha256": "c6669da429e8da4ed8ca648b6ee70c5ba09bea206450b3e070af37bb3e475119",
+      "actualSha256": "c6669da429e8da4ed8ca648b6ee70c5ba09bea206450b3e070af37bb3e475119",
+      "matches": true
+    },
+    {
+      "id": "night",
+      "path": "src/assets/music/night.bin",
+      "source": "https://opentracks.com/bgm/detail/22683",
+      "expectedSha256": "9ea45345c3cb7c9ee548d32d1981a34de216e2f3f2da5783b1e92e8dfbd01624",
+      "actualSha256": "9ea45345c3cb7c9ee548d32d1981a34de216e2f3f2da5783b1e92e8dfbd01624",
+      "matches": true
+    },
+    {
+      "id": "ending",
+      "path": "src/assets/music/ending.bin",
+      "source": "https://opentracks.com/bgm/detail/20352",
+      "expectedSha256": "18b8b304ad7713be92aa8c2f8c59d73b86508ec3d06820ffd9215866b8f765f8",
+      "actualSha256": "18b8b304ad7713be92aa8c2f8c59d73b86508ec3d06820ffd9215866b8f765f8",
+      "matches": true
+    }
+  ]
+}

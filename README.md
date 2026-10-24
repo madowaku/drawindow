@@ -1,3 +1,18 @@
+# DRAWINDOW v0.9 品質改善・ローカル研究版
+
+進捗の端末内自動保存と「続きから遊ぶ」、端末内AIでの９リンク達成演出、版とキャッシュ内容を照合するオフライン表示を追加しました。採用済み291枚・昼夜・日英・５往復・絵日記・またね・記念PNGを保持しています。認識結果の強制訂正や閾値調整はしていません。
+
+- [今回の統合報告・残る受入](docs/PRODUCT_QUALITY_v09.md)
+- [語彙集計](docs/VOCABULARY_COVERAGE_v09.md) / `npm run audit:vocabulary`
+- [途中保存と復元](docs/SESSION_RECOVERY_v09.md)
+- [認識評価の根拠と限界](docs/RECOGNITION_EVALUATION_v09.md)
+- [人間パイロットの記録方法](docs/HUMAN_PILOT_v09.md)
+- [オフライン更新と検証](docs/OFFLINE_RELIABILITY_v09.md)
+- [ライセンス監査](docs/LICENSE_AUDIT_v09.md)
+- [誤認識UXの比較案](docs/MISRECOGNITION_UX_v09.md) / [配布方式の比較](docs/DISTRIBUTION_OPTIONS_v09.md)
+
+人の手描き精度・楽しさとAndroid実機受入は未確認です。mainへの統合・公開・販売用パッケージ更新は保留です。以下は既存機能の記録で、古い版番号・API向け手順は当時の説明です。現行ローカル試験では上のv0.9資料を優先してください。
+
 # DRAWINDOW — local edition (PR #27)
 
 This branch adds on-device drawing recognition. Build with `npm ci` and

@@ -1,18 +1,14 @@
 import { GirlOopsReaction } from './components/GirlOopsReaction';
 import { OfflineStatus } from './components/OfflineStatus';
-import { adoptShizukuSketches } from './data/shizuku-doodles/adopted';
-import { japaneseEverydayDoodles } from './data/japaneseEverydayDoodles';
+import { gameSketches } from './data/gameSketches';
+import { useSessionPersistence } from './lib/useSessionPersistence';
 import { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, ArrowCounterClockwise, ArrowClockwise, Check, Eraser, Info, Moon, SpeakerHigh, SpeakerSlash, Sun, X } from '@phosphor-icons/react';
 import { createInitialState, gameReducer, selectCanFinishDrawing, selectPlayerEntries, selectVisibleStrokes } from './core/gameMachine';
 import { calculateScore } from './core/score';
 import { EndingScene } from './components/EndingScene';
 import type { DrawingRecognizer, GameState, Language, Mode, SessionKind } from './core/types';
-import { girlSketches } from './data/sketches';
-import { localizeGirlSketches, withJapaneseStarter } from './data/japaneseSketches';
-import { japaneseExtraSketches } from './data/japaneseExtraSketches';
-import { japaneseDoodlePack } from './data/japaneseDoodlePack';
-import { japaneseClassicDoodles } from './data/japaneseClassicDoodles';
+import { withJapaneseStarter } from './data/japaneseSketches';
 import { WindowCanvas } from './components/WindowCanvas';
 import { SketchThumbnail } from './components/SketchThumbnail';
 import { CharacterScene, characterArt } from './components/CharacterScene';
@@ -66,8 +62,11 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange }: AppP
   const [leave, setLeave] = useState(false);
   const [sessionChoice, setSessionChoice] = useState<SessionKind>(offlineEdition ? 'ml' : liveApiConfigured && import.meta.env.VITE_DEFAULT_LIVE === 'true' ? 'api' : 'demo');
   const [intentDrafts, setIntentDrafts] = useState<Record<string, string>>({});
+  const persistence = useSessionPersistence(state, intentDrafts, dispatch, setIntentDrafts, offlineEdition);
   const [runners] = useState(() => ({
-    api: createRecognitionRunner(apiRecognizer ?? createApiRecognizer({ endpoint: import.meta.env.VITE_RECOGNITION_URL || '/api/recognize', imageRenderer: renderDrawingDataUrl })),
+    api: import.meta.env.VITE_OFFLINE_EDITION === 'true'
+      ? createRecognitionRunner({ recognize: async () => ({ guess: null, source: 'api', errorCode: 'unavailable' }) })
+      : createRecognitionRunner(apiRecognizer ?? createApiRecognizer({ endpoint: import.meta.env.VITE_RECOGNITION_URL || '/api/recognize', imageRenderer: renderDrawingDataUrl })),
     demo: createRecognitionRunner(createDemoRecognizer()),
     ml: createRecognitionRunner(mlRecognizer ?? createQuickDrawRecognizer(), { timeoutMs: 45000 }),
   }));
@@ -151,10 +150,10 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange }: AppP
   }, []);
 
   const start = () => {
+    persistence.discard();
     setIntentDrafts({});
-    let sketches = localizeGirlSketches(girlSketches, state.language);
+    let sketches = gameSketches(state.language);
     if (state.language === 'ja') {
-      sketches = adoptShizukuSketches([...sketches, ...japaneseExtraSketches, ...japaneseDoodlePack, ...japaneseClassicDoodles, ...japaneseEverydayDoodles], 'ja');
       // Advance only on an actual Japanese START, never on render or language toggle.
       // Persisted index means a page reload does not go back to the same drawing.
       let startIndex = state.sessionId;
@@ -194,6 +193,8 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange }: AppP
       </div>
     </header>
 
+    {(persistence.status === 'error' || persistence.status === 'invalid' || persistence.status === 'incompatible') && <p className="session-save-note" role="alert">{persistence.status === 'incompatible' ? t('This saved online game cannot resume in the offline edition. Starting a new game will replace it.', 'オンライン版の保存データは、このオフライン版では再開できません。新しくはじめると置き換わります。') : persistence.status === 'invalid' ? t('The saved game could not be read. You can start a new game safely.', '保存したゲームを読み込めませんでした。新しくはじめられます。') : t('Local saving is unavailable. Keep this tab open to keep your drawings.', '端末への保存ができません。このタブを閉じると続きが失われることがあります。')}</p>}
+    {!title && (persistence.status === 'saved' || persistence.status === 'saving') && <p className="session-save-note">{t('Progress is saved automatically on this device.', '続きはこの端末に自動保存します。')}</p>}
     {title && <section className="title-layout">
       <div className="title-copy">
         <h1>Dra<span className="shared-w">w</span>indow<span className="title-period">.</span></h1>
@@ -201,6 +202,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange }: AppP
         <div className="title-rules"><p>{t('Guess her picture. Draw from its last letter.', '何に見えた？ その名前の最後の音から、次の絵を。')}</p></div>
         <div className="title-start">{languageButtons}{modeButtons}
           {offlineEdition && <OfflineStatus language={state.language} />}
+          {persistence.pending && <div className="resume-session"><p>{t('Your unfinished window is saved on this device.', 'この端末に、前の続きが残っています。')}</p><button className="primary resume-button" onClick={persistence.resume}>{t('CONTINUE DRAWING', '続きから遊ぶ')}</button><p>{t('Starting a new game replaces the saved progress.', '新しくはじめると、前の続きは消えます。')}</p></div>}
           <button className="primary start-button" onClick={start}>{sessionChoice === 'demo' ? t('PLAY DEMO', 'デモで遊ぶ') : t('START GAME', 'はじめる')}<ArrowRight size={20} /></button>
           <p className="session-note">{sessionChoice === 'ml'
             ? t('LOCAL AI · Drawings never leave your device. Experimental guesses and unsupported words are possible.', '端末内AI · 絵は送信しません。認識は実験中で、未対応語や誤認識があります。')

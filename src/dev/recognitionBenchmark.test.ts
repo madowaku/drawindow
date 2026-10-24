@@ -53,6 +53,14 @@ describe('human freehand benchmark protocol (fixtures are not benchmark evidence
     expect(exportJson(other)).not.toContain('secret-provider-body');
     expect(recognize).toHaveBeenCalledTimes(2);
   });
+  it('accepts normalized multiword local labels and preserves unknown as failure', async () => {
+    const { value } = session({ guess: 'alarm clock', source: 'ml' } as any);
+    expect(await value.send(0, strokes, identity)).toMatchObject({ guess: 'alarm clock', source: 'ml', errorCode: null });
+    expect(summarize(value.attempts)).toMatchObject({ errorCount: 0, unknown: 0, chainObserved: 0 });
+    const missing = session({ guess: null, source: 'ml', errorCode: 'invalid_response' } as any).value;
+    expect(await missing.send(0, strokes, identity)).toMatchObject({ guess: null, source: 'ml', errorCode: 'invalid_response', top3MatchesIntent: null });
+    expect(summarize(missing.attempts)).toMatchObject({ errorCount: 1, unknown: 1 });
+  });
   it('holds rate limits for at least sixty seconds and never automatically retries', async () => {
     const { value, recognize, advance } = session({ guess: null, source: 'api', errorCode: 'rate_limit' } as any);
     await value.send(0, strokes, identity);
