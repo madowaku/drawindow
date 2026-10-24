@@ -41,3 +41,13 @@ it('reports registration rejection without claiming offline support', async () =
   render(<OfflineStatus language="ja" />);
   await waitFor(() => expect(screen.getByRole('status').textContent).toContain('保存ができませんでした'));
 });
+
+it('reports a failed update even when the previous offline edition still controls the page', async () => {
+  const { worker, container } = setup();
+  container.controller = {};
+  render(<OfflineStatus language="en" />);
+  await waitFor(() => expect(container.register).toHaveBeenCalled());
+  worker.state = 'redundant';
+  act(() => { worker.dispatchEvent(new Event('statechange')); });
+  expect(screen.getByRole('status').textContent).toContain('Could not save');
+});
