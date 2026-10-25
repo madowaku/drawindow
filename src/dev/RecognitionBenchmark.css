@@ -1,4 +1,5 @@
-.benchmark { --accent:#416c62; min-height:100dvh; padding:0 max(20px,calc((100vw - 1200px)/2)) 60px; background:#f0f3ee; color:#223d38; font-size:14px; line-height:1.65; }
+/* The game locks body scrolling; the diagnostic page must own its scroll area. */
+.benchmark { --accent:#416c62; height:100vh; height:100dvh; overflow-x:hidden; overflow-y:auto; -webkit-overflow-scrolling:touch; scroll-padding-block:16px 60px; padding:0 max(20px,calc((100vw - 1200px)/2)) 60px; background:#f0f3ee; color:#223d38; font-size:14px; line-height:1.65; }
 .benchmark-header { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:24px 0; border-bottom:1px solid #c8d4cd; }
 .benchmark-header a { color:inherit; text-decoration:none; font-weight:600; letter-spacing:.15em; }
 .benchmark-header span,.benchmark-prompt>span,.benchmark-result-heading { font-size:11px; letter-spacing:.08em; }
