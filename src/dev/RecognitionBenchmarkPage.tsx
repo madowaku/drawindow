@@ -38,6 +38,7 @@ function AttemptEvaluation({ item, session, update }: { item: BenchmarkAttempt; 
 
 export function RecognitionBenchmark({ session: supplied }: { session?: BenchmarkSession }) {
   const [freehand, setFreehand] = useState(false);
+  const [freehandStarted, setFreehandStarted] = useState(false);
   const [session] = useState(() => supplied ?? new BenchmarkSession());
   const [, setRevision] = useState(0);
   const update = () => setRevision(value => value + 1);
@@ -88,8 +89,8 @@ export function RecognitionBenchmark({ session: supplied }: { session?: Benchmar
       <p className="benchmark-fine">端末内QuickDraw 345分類 · 逐次実行 · 自動リトライなし · 氏名・メールは入力しないでください</p>
     </div>
 
-    <nav className="benchmark-controls" aria-label="診断モード"><button aria-pressed={!freehand} onClick={() => setFreehand(false)}>固定12問</button><button aria-pressed={freehand} onClick={() => setFreehand(true)}>自由描画・前処理比較</button></nav>
-    <div hidden={!freehand}><FreehandRecognition /></div>
+    <nav className="benchmark-controls" aria-label="診断モード"><button aria-pressed={!freehand} onClick={() => setFreehand(false)}>固定12問</button><button aria-pressed={freehand} onClick={() => { setFreehandStarted(true); setFreehand(true); }}>自由描画・前処理比較</button></nav>
+    <div hidden={!freehand}>{freehandStarted && <FreehandRecognition />}</div>
     <div hidden={freehand}>
     <section className="benchmark-setup" aria-label="描き手の設定">
       <label>匿名の描き手ID<input aria-label="匿名の描き手ID" value={drawerId} maxLength={24} pattern="[a-zA-Z0-9_-]{1,24}" disabled={session.attempts.length > 0 || session.sending} onChange={event => setDrawerId(event.target.value)} /></label>

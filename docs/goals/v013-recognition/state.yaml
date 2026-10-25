@@ -61,6 +61,7 @@ tasks:
       result: done
       summary: All requested implementation and reporting delivered; human evaluation is explicitly pending rather than fabricated. Judge review passed after consent-race, stale-feedback and production-isolation fixes.
       decision: complete
+      ci_recovery: Refreshed source hashes and synthetic context report; preserved fixed-pilot canvas selection and updated the old BACK browser locator. Local reproduction checks pass.
       evidence:
         - docs/RECOGNITION_v013.md
         - docs/QUICKDRAW_JAPANESE_AUDIT_v013.md

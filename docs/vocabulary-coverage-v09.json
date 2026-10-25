@@ -6280,9 +6280,9 @@
   ],
   "sourceSha256": {
     "scripts/audit-vocabulary.mjs": "2fe481b8c86585b6abfcd726e4dbd22795262f61119df6a03febdeb941cf8bb3",
-    "src/App.tsx": "977780254153546e4d027c4ecc59556dc222b35ecdabafd7b0c34d1e7e802896",
+    "src/App.tsx": "da38a5bf7ccd679660eef15895d1d4cfe96350f8348bc90ecad010c175b3d75c",
     "src/core/drawingHistory.ts": "20333d097246ba4f0b8f2df7f3b23ba753ffd57794826af7e6fdf7c96c822521",
-    "src/core/gameMachine.ts": "4357c317ce2490b5bb070f60618277883d0d7c36e64968fa652e313102cf96f5",
+    "src/core/gameMachine.ts": "44e964e6693266b22d2767df051074ec0f26ea37ac28ffb0d15eb76423a52393",
     "src/core/naming.ts": "9d84d2ae55d589760aacece6e7391657d888164a280ed1230008ade839843ba0",
     "src/core/score.ts": "3d39e8bc2e4cc83e66fe4428cb2748a40a4544c66909796bd7974ca53a6aef87",
     "src/core/types.ts": "791d3c46ebfec05c76ea7738af92f72adbfe529b50b034393eee5ac305a0ca0d",
@@ -6319,7 +6319,7 @@
     "src/data/sketch-provenance.json": "25499f9602abb548964df75b4c54ff5c5c13dbac4f07c2ae776681c3d3d7d1d3",
     "src/data/sketches.ts": "6ba6eebf54604facc488270753040d9883f93e7c95ddac699aedd1a4df6af015",
     "src/services/quickDrawJapanese.ts": "682f9dfa6a19d82386518b5d5dfc06905611a224665cec1ad734942589f56308",
-    "src/services/quickDrawRecognizer.ts": "d7fa76cea6dddbc2800acac2418f54d5be48be3c32e3f2e19659cc23da0215fb",
+    "src/services/quickDrawRecognizer.ts": "6fe8adccfdd120beee50abf02089600764b498f47d534634b7381b9036b73a55",
     "src/services/quickDrawScores.ts": "f6bde299658e020af696ad4abb0236b6d9fedb3c98e83ff69da195593d58eacf"
   }
 }
