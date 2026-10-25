@@ -4,7 +4,7 @@ goal:
   slug: v013-recognition
   kind: specific
   tranche: Implement and verify the requested research release and Draft PR
-  status: active
+  status: done
 rules:
   pm_owns_state: true
   one_active_task: true
@@ -17,7 +17,7 @@ agents:
   scout: installed
   worker: installed
   judge: installed
-active_task: T999
+active_task: null
 tasks:
   - id: T001
     type: scout
@@ -55,11 +55,30 @@ tasks:
   - id: T999
     type: pm
     assignee: PM
-    status: active
+    status: done
     objective: Audit requested deliverables and create the committed pushed Draft PR
-    receipt: null
+    receipt:
+      result: done
+      summary: All requested implementation and reporting delivered; human evaluation is explicitly pending rather than fabricated. Judge review passed after consent-race, stale-feedback and production-isolation fixes.
+      decision: complete
+      evidence:
+        - docs/RECOGNITION_v013.md
+        - docs/QUICKDRAW_JAPANESE_AUDIT_v013.md
+        - docs/RECOGNITION_v013_VERIFICATION.md
+        - docs/RECOGNITION_v013_HUMAN_TEST.md
+        - src/dev/FreehandRecognition.test.tsx
+        - src/dev/RecognitionRecoveryPage.test.tsx
+      delivery:
+        pull_request: https://github.com/madowaku/drawindow/pull/33
+        draft: true
+        implementation_commit: f29e86f79b3538ef9b36e55f06e8ba2566679c45
+      deferred:
+        - Human 20-30 freehand drawings and two independent 12-drawing pilots
+        - Human A/B continuation preference and Android device evaluation
+        - Adopting preprocessing or continuation B into product
+      boundaries: No main merge, deployment, publication or sale archive replacement
 checks:
-  dirty_fingerprint: unknown
+  dirty_fingerprint: implementation-f29e86f-verified
   last_verification:
     result: pass
     task: T999
