@@ -42,6 +42,7 @@ export function RecognitionRecoveryPage() {
   const score = state ? calculateScore(state.entries, state.sessionKind, state.language) : null;
   const exportStudy = () => {
     const record = { schema: 'DRAWINDOW-recovery-v013', origin: 'human-unverified', variant,
+      redrawDefinition: 'Explicit returns to editing; does not assert that the strokes changed.',
       completed: state?.entries.length === 10 && ['review_intents', 'results'].includes(state.phase), redraws,
       recoveries: state?.entries.filter(e => e.nonComparableReason === 'recognition_recovery').length ?? 0,
       feedback: { fun, replay, burden, natural, shizuku, misreading },

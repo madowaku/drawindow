@@ -84,7 +84,7 @@ checks:
     result: pass
     task: T999
     commands:
-      - npm test - 425 passed
+      - npm test - 427 passed
       - npm run test:auth - 6 passed
       - npm run test:offline-integrity - 14 passed
       - node scripts/package-offline.mjs --build-only - passed

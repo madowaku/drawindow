@@ -211,7 +211,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
     }
   }, [state.phase, state.round]);
 
-  const canvasProps:WindowCanvasProps={expression:studyOptions?studyOptions.expression:premonition.expression,language:state.language,previousStrokes:state.entries.at(-1)?.falseStart?.strokes,mode:state.mode,phase:state.phase,round:state.round,strokes:selectVisibleStrokes(state),onStrokesChange:strokes=>dispatch({type:'STROKES_CHANGED',strokes}),onBreathDone:()=>dispatch({type:'BREATH_DONE'}),onPlaybackDone:()=>dispatch({type:'PLAYBACK_DONE'}),reducedMotion};
+  const canvasProps:WindowCanvasProps={expression:studyOptions&&!studyOptions.preserveProductPresentation?studyOptions.expression:premonition.expression,language:state.language,previousStrokes:state.entries.at(-1)?.falseStart?.strokes,mode:state.mode,phase:state.phase,round:state.round,strokes:selectVisibleStrokes(state),onStrokesChange:strokes=>dispatch({type:'STROKES_CHANGED',strokes}),onBreathDone:()=>dispatch({type:'BREATH_DONE'}),onPlaybackDone:()=>dispatch({type:'PLAYBACK_DONE'}),reducedMotion};
   return <main ref={appScrollRef} className={`app ${title ? 'is-title' : ''} ${active ? 'is-playing' : ''}`} data-mode={state.mode} data-language={state.language} data-phase={state.phase} onFocusCapture={event => { if (state.phase === 'review_intents' && event.target instanceof HTMLInputElement) lastIntentFocusRef.current = event.target; }}>
     {import.meta.env.DEV && studyOptions?.header}
     <header className="topbar">
