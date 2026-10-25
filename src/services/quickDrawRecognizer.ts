@@ -49,14 +49,14 @@ async function initialize(): Promise<Ready> {
 
 function fail(errorCode: 'invalid_input' | 'unavailable' | 'invalid_response'): RecognitionResult {
   return {
-    guess:null, source:'ml', errorCode,
+    guess:null, source:'ml', errorCode, failureReason: errorCode === 'invalid_input' ? 'invalid_input' : errorCode === 'invalid_response' ? 'invalid_output' : 'model_unavailable',
     error:'The on-device sketch model could not recognize this drawing. No image was uploaded.',
   };
 }
 
 export interface QuickDrawDiagnostic {
   top3: { label: string; score: number }[];
-  outcome: 'accepted' | 'low_score' | 'unmapped';
+  outcome: 'accepted' | NonNullable<RecognitionResult['failureReason']>;
 }
 export interface QuickDrawOptions {
   /** Full, uncalibrated model ranking for the DEV-only comparison. No context input. */
@@ -73,9 +73,9 @@ export function createQuickDrawRecognizer(options: QuickDrawOptions = {}): Drawi
   return {
     async recognize(input, {signal}={}) {
       if(signal?.aborted)return fail('unavailable');
-      const pixels=preprocessQuickDraw(input.strokes, options.preprocess);
-      if(!pixels)return fail('invalid_input');
       try {
+        const pixels=preprocessQuickDraw(input.strokes, options.preprocess);
+        if(!pixels)return fail('invalid_input');
         if(!sharedReady) sharedReady=initialize().catch(error=>{sharedReady=undefined;throw error;});
         const {lite,model,labels}=await sharedReady;
         if(signal?.aborted)return fail('unavailable');
@@ -88,16 +88,17 @@ export function createQuickDrawRecognizer(options: QuickDrawOptions = {}): Drawi
         try {
           const outputs=await model.run([tensor]);
           try {
+            if (!outputs?.length || !outputs[0]?.data) return fail('invalid_response');
             const values=await outputs[0].data();
             scores=Array.from(values as Float32Array);
-          } finally {for(const out of outputs)out.delete();}
+          } finally {for(const out of outputs ?? [])out?.delete?.();}
         } finally {tensor.delete();}
         if(signal?.aborted)return fail('unavailable');
         if(scores.length!==345||scores.some(v=>!Number.isFinite(v)))return fail('invalid_response');
         const ordered=scores.map((score,index)=>({score,label:labels[index]})).sort((a,b)=>b.score-a.score);
         const language: Language=input.language==='ja'?'ja':'en';
         const result=imageOnlyQuickDrawResult(ordered,language,options.minScore);
-        const outcome=ordered[0].score<(options.minScore??0.05)?'low_score':result.guess?'accepted':'unmapped';
+        const outcome=result.failureReason ?? 'accepted';
         options.onDiagnostic?.({top3:ordered.slice(0,3),outcome});
         // Copy diagnostics so a research consumer cannot mutate the production result.
         if(import.meta.env.DEV) options.onRanking?.(ordered.map(candidate=>({...candidate})));

@@ -1,0 +1,73 @@
+version: 2
+goal:
+  title: DRAWINDOW v0.13 recognition and continuity
+  slug: v013-recognition
+  kind: specific
+  tranche: Implement and verify the requested research release and Draft PR
+  status: active
+rules:
+  pm_owns_state: true
+  one_active_task: true
+  max_write_workers: 1
+  no_implementation_without_worker_or_pm_task: true
+  no_completion_without_judge_or_pm_audit: true
+  planning_is_not_completion: true
+  queued_required_worker_blocks_completion: true
+agents:
+  scout: installed
+  worker: installed
+  judge: installed
+active_task: T999
+tasks:
+  - id: T001
+    type: scout
+    assignee: Scout
+    status: done
+    objective: Map precise recognition, save, score, research isolation and verification seams
+    inputs: [src, scripts, docs]
+    constraints: [Read-only]
+    expected_output: [Evidence and bounded implementation scope]
+    receipt:
+      result: done
+      summary: Scout mapped additive diagnosis, rescue outgoing-link override, schema-1 persistence, DEV isolation and real reducer audits.
+      evidence: [src/lib/sessionStorage.ts, src/core/score.ts, vite.config.ts, src/dev/recognitionBenchmark.ts]
+  - id: T002
+    type: pm
+    assignee: PM
+    status: done
+    objective: Implement v0.13 and regressions from the mapped evidence
+    allowed_files: [src, scripts, docs, README.md]
+    verify: [npm test, npm run build, npm run audit:vocabulary, browser QA]
+    stop_if: [Human evaluation required for adopting preprocessing or rescue]
+    receipt:
+      result: done
+      summary: Implemented additive diagnosis, 32 mapped classes, 168-class audit, six-condition freehand diagnostics, retry UX and DEV-only B with honest scores and isolated saves.
+      changed_files: [src, scripts, docs]
+      commands:
+        - cmd: npm test
+          status: pass
+        - cmd: node scripts/qa-recognition-v013.mjs
+          status: pass
+        - cmd: node scripts/qa-offline-cold-start.mjs
+          status: pass
+        - cmd: node scripts/qa-recognition-v013-performance.mjs
+          status: pass
+  - id: T999
+    type: pm
+    assignee: PM
+    status: active
+    objective: Audit requested deliverables and create the committed pushed Draft PR
+    receipt: null
+checks:
+  dirty_fingerprint: unknown
+  last_verification:
+    result: pass
+    task: T999
+    commands:
+      - npm test - 425 passed
+      - npm run test:auth - 6 passed
+      - npm run test:offline-integrity - 14 passed
+      - node scripts/package-offline.mjs --build-only - passed
+      - node scripts/qa-recognition-v013.mjs - passed four journeys
+      - node scripts/qa-offline-cold-start.mjs - passed four offline journeys
+      - node scripts/qa-recognition-v013-performance.mjs - passed

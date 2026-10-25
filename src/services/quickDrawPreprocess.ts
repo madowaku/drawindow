@@ -15,6 +15,8 @@ export interface QuickDrawPreprocessOptions {
   strokeRadiusHiRes?: number;
   /** Padding in 28x28 output pixels. */
   paddingPx?: number;
+  /** Research comparison: retain position and absolute input scale. */
+  normalization?: 'bounds' | 'canvas';
 }
 
 const SIDE = 28, HI = 4, LARGE = SIDE * HI;
@@ -35,7 +37,7 @@ export function preprocessQuickDraw(
   for (const stroke of strokes) {
     if (!Array.isArray(stroke?.points)) return null;
     for (const point of stroke.points) {
-      if (++count > MAX_POINTS || !Number.isFinite(point.x) || !Number.isFinite(point.y) ||
+      if (!point || ++count > MAX_POINTS || !Number.isFinite(point.x) || !Number.isFinite(point.y) ||
           point.x < 0 || point.x > 1 || point.y < 0 || point.y > 1) return null;
       minX = Math.min(minX, point.x); maxX = Math.max(maxX, point.x);
       minY = Math.min(minY, point.y); maxY = Math.max(maxY, point.y);
@@ -44,7 +46,9 @@ export function preprocessQuickDraw(
   if (count < 2) return null;
   const span = Math.max(maxX - minX, maxY - minY);
   if (span < .015) return null;
-  const scale = (SIDE - 2 * padding) * HI / span;
+  const preserveCanvas = import.meta.env.DEV && options.normalization === 'canvas';
+  if (preserveCanvas) { minX = 0; minY = 0; maxX = 1; maxY = 1; }
+  const scale = (SIDE - 2 * padding) * HI / (preserveCanvas ? 1 : span);
   const originX = (LARGE - (maxX - minX) * scale) / 2;
   const originY = (LARGE - (maxY - minY) * scale) / 2;
   const bits = new Uint8Array(LARGE * LARGE);
