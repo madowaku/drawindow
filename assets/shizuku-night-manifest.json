@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "provider": "OpenAI built-in image_gen",
+  "processing": "Native generated PNG retained; uniform resize to 384x512, WebP quality94 alphaQuality100. Eye midpoints estimated manually and registered by existing CharacterScene transform.",
+  "files": [
+    {
+      "pose": "neutral",
+      "filename": "public/art/shizuku-night/neutral.webp",
+      "sha256": "b6ed1c21a7eb322cbd21c39f9d2aec230b114795d5bb05dbd800b2d18f01d63e",
+      "width": 384,
+      "height": 512,
+      "bytes": 83282,
+      "transparent": 48911,
+      "soft": 147282,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.397
+      }
+    },
+    {
+      "pose": "thinking",
+      "filename": "public/art/shizuku-night/thinking.webp",
+      "sha256": "768f95f136c06922e312bf73606c5c14406c979c782036de110afbd714dd4360",
+      "width": 384,
+      "height": 512,
+      "bytes": 74982,
+      "transparent": 51885,
+      "soft": 144223,
+      "anchor": {
+        "x": 0.521,
+        "y": 0.35
+      }
+    },
+    {
+      "pose": "smile",
+      "filename": "public/art/shizuku-night/smile.webp",
+      "sha256": "6203d0d1cab4ab7826b0b89fac5048deb893ebad1b05dd51ac169e6dbb2fade3",
+      "width": 384,
+      "height": 512,
+      "bytes": 73256,
+      "transparent": 47635,
+      "soft": 148185,
+      "anchor": {
+        "x": 0.505,
+        "y": 0.381
+      }
+    },
+    {
+      "pose": "shy",
+      "filename": "public/art/shizuku-night/shy.webp",
+      "sha256": "8115d97d5b887ec0bc7b5c02476898941b675e636bc76e23282b7817c04a450e",
+      "width": 384,
+      "height": 512,
+      "bytes": 77230,
+      "transparent": 50000,
+      "soft": 145814,
+      "anchor": {
+        "x": 0.479,
+        "y": 0.43
+      }
+    },
+    {
+      "pose": "breath",
+      "filename": "public/art/shizuku-night/breath.webp",
+      "sha256": "89bdc69007ddffd3f93f98b8883f571055512fca6f39b1927675681dc6f31ae2",
+      "width": 384,
+      "height": 512,
+      "bytes": 83460,
+      "transparent": 37004,
+      "soft": 159035,
+      "anchor": {
+        "x": 0.531,
+        "y": 0.393
+      }
+    },
+    {
+      "pose": "curious",
+      "filename": "public/art/shizuku-night/curious.webp",
+      "sha256": "77c30466c6d37dbb5af04e926f437d46a6765db8f5b12eda6a1f016831883620",
+      "width": 384,
+      "height": 512,
+      "bytes": 81874,
+      "transparent": 42391,
+      "soft": 153748,
+      "anchor": {
+        "x": 0.505,
+        "y": 0.381
+      }
+    },
+    {
+      "pose": "drawing",
+      "filename": "public/art/shizuku-night/drawing.webp",
+      "sha256": "5751246796be23ef3d345082f1d6ffc933582c57c8e0c2a98fd8ddb554403822",
+      "width": 384,
+      "height": 512,
+      "bytes": 81326,
+      "transparent": 42338,
+      "soft": 153922,
+      "anchor": {
+        "x": 0.549,
+        "y": 0.371
+      }
+    }
+  ]
+}

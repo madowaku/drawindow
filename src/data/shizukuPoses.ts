@@ -55,3 +55,22 @@ export const SHIZUKU_POSES: Record<ShizukuPoseId, ShizukuPose> = {
     handTipAnchor: { x: 0.333, y: 0.5 }, fallback: 'neutral',
   },
 };
+
+/** NIGHT owns a complete pajama set; DAY's adopted sources stay intact.
+ * Anchors are measured for the generated portraits in the night manifest.
+ */
+const NIGHT_EYE_ANCHORS: Record<ShizukuPoseId, PoseAnchor> = {
+  neutral: { x: .5, y: .397 }, thinking: { x: .521, y: .350 },
+  smile: { x: .505, y: .381 }, shy: { x: .479, y: .430 },
+  breath: { x: .531, y: .393 }, curious: { x: .505, y: .381 },
+  drawing: { x: .549, y: .371 },
+};
+
+export const SHIZUKU_NIGHT_POSES: Record<ShizukuPoseId, ShizukuPose> = Object.fromEntries(
+  Object.entries(SHIZUKU_POSES).map(([id, pose]) => [id, {
+    ...pose,
+    anchor: NIGHT_EYE_ANCHORS[id as ShizukuPoseId],
+    ...(id === 'drawing' ? { handTipAnchor: { x: .375, y: .5 } } : {}),
+    src: `${import.meta.env.BASE_URL}art/shizuku-night/${id}.webp`,
+  }]),
+) as Record<ShizukuPoseId, ShizukuPose>;

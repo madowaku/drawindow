@@ -73,8 +73,9 @@ export function drawFrost(
   const breathProgress = phase === 'girl_breath' ? eased(progress) : 1;
   const base = mode === 'day'
     ? { red: 220, green: 237, blue: 239, alpha: tactile ? 0.59 : 0.42 }
-    : { red: 156, green: 181, blue: 211, alpha: tactile ? 0.57 : 0.49 };
-  const baseAlpha = phase === 'girl_breath' ? base.alpha * (0.18 + breathProgress * 0.82) : base.alpha;
+    : { red: 156, green: 181, blue: 211, alpha: 1 };
+  // NIGHT stays opaque throughout refog; only stroke erasure reveals her.
+  const baseAlpha = mode === 'night' ? 1 : phase === 'girl_breath' ? base.alpha * (0.18 + breathProgress * 0.82) : base.alpha;
   ctx.save();
   ctx.globalCompositeOperation = 'source-over';
   ctx.fillStyle = `rgba(${base.red}, ${base.green}, ${base.blue}, ${baseAlpha})`;

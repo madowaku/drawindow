@@ -9,7 +9,7 @@ import { CharacterScene } from './CharacterScene';
 afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); Reflect.deleteProperty(document, 'hidden'); Reflect.deleteProperty(HTMLElement.prototype, 'animate'); });
 
 describe('character presentation lifecycle', () => {
-  it('uses the seven alpha sprites across day/night and keeps the character name out of play', () => {
+  it('uses seven day sprites and seven pajama night sprites across day/night and keeps the character name out of play', () => {
     const { rerender } = render(<CharacterScene mode="day" phase="player_drawing" reducedMotion={false} />);
     const sprites = [...document.querySelectorAll<HTMLImageElement>('.character-scene__sprite')];
     const sources = sprites.map(img => img.getAttribute('src'));
@@ -19,7 +19,7 @@ describe('character presentation lifecycle', () => {
     rerender(<CharacterScene mode="day" phase="player_drawing" hasPlayerMarks reducedMotion={false} />);
     expect(screen.getByTestId('character-scene').getAttribute('data-pose')).toBe('curious');
     rerender(<CharacterScene mode="night" phase="player_drawing" reducedMotion={false} />);
-    expect([...document.querySelectorAll('.character-scene__sprite')].map(img => img.getAttribute('src'))).toEqual(sources);
+    expect([...document.querySelectorAll('.character-scene__sprite')].every(img => img.getAttribute('src')?.includes('/art/shizuku-night/'))).toBe(true);
     expect(document.body.textContent).not.toMatch(/Shizuku|しずく/);
   });
 
@@ -172,4 +172,15 @@ describe('character presentation lifecycle', () => {
     }
     expect(SHIZUKU_EYE_TARGET).toEqual({ x: 0.5, y: 0.392 });
   });
+});
+
+it('recovers a failed night pose to pajama neutral, including after changing mode', () => {
+  const { rerender } = render(<CharacterScene mode="night" phase="girl_breath" reducedMotion />);
+  const active = document.querySelector<HTMLImageElement>('.character-scene__sprite[data-active="true"]')!;
+  fireEvent.error(active);
+  expect(active.src).toContain('/art/shizuku-night/neutral.webp');
+  fireEvent.error(active);
+  expect(active.hidden).toBe(true);
+  rerender(<CharacterScene mode="day" phase="girl_breath" reducedMotion />);
+  expect(document.querySelector<HTMLImageElement>('.character-scene__sprite[data-active="true"]')!.hidden).toBe(false);
 });

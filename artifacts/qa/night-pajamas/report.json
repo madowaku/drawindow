@@ -1,0 +1,26 @@
+{
+  "scope": "Native canvas production-function pixel tests and asset checks; composition is not browser or physical-device evidence.",
+  "checks": [
+    {
+      "size": 360,
+      "tactile": false,
+      "concealRevealClearDayTitle": "passed"
+    },
+    {
+      "size": 360,
+      "tactile": true,
+      "concealRevealClearDayTitle": "passed"
+    },
+    {
+      "size": 720,
+      "tactile": false,
+      "concealRevealClearDayTitle": "passed"
+    },
+    {
+      "size": 720,
+      "tactile": true,
+      "concealRevealClearDayTitle": "passed"
+    }
+  ],
+  "poses": 7
+}

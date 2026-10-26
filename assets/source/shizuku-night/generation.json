@@ -1,0 +1,15 @@
+{
+  "provider": "OpenAI built-in image_gen",
+  "prompt": "Use case: identity-preserve. Edit target: the supplied existing original game sprite of Shizuku. Create her NIGHT pajama sprite. Change ONLY clothing: replace school shirt, neck bow and cardigan with cute modest loose long-sleeved pale lavender-blue cotton button-front pajamas, rounded notched collar, ivory piping, small ivory buttons, one tiny cream crescent-moon embroidery on chest pocket. No cardigan, no neck bow. Keep EXACT character identity, face, expression, blue eyes, brown hairstyle, hair ribbon and crossed hairpins, body/hand pose and fingertip, framing and eye position, watercolor pencil anime rendering and soft edges. Sleeves cover wrists loosely. Upper-body portrait cropped at same waist, same 3:4 composition with transparent background, no room, no text, no fog. Preserve hands in exactly their original positions. Actual transparent alpha background.",
+  "poseInstruction": "Image 1: original corresponding pose edit target, preserve expression, head tilt, eye position and hands. Image 2: generated pajama neutral as clothing-only reference.",
+  "sources": {
+    "neutral": "assets/source/shizuku-night/neutral.png",
+    "thinking": "assets/source/shizuku-night/thinking.png",
+    "smile": "assets/source/shizuku-night/smile.png",
+    "shy": "assets/source/shizuku-night/shy.png",
+    "breath": "assets/source/shizuku-night/breath.png",
+    "curious": "assets/source/shizuku-night/curious.png",
+    "drawing": "assets/source/shizuku-night/drawing.png"
+  },
+  "references": "Each corresponding public/art/shizuku/{pose}.webp; non-neutral edits also use assets/source/shizuku-night/neutral.png as clothing-only reference."
+}
