@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
-import { SHIZUKU_POSES, SHIZUKU_EYE_TARGET, type ShizukuPoseId } from './shizukuPoses';
+import { SHIZUKU_POSES, SHIZUKU_NIGHT_POSES, SHIZUKU_EYE_TARGET, type ShizukuPoseId } from './shizukuPoses';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import adoption from '../../assets/shizuku-adoption-v06.json';
@@ -51,4 +51,19 @@ describe('Shizuku pose manifest', () => {
       expect(softAlpha).toBeGreaterThan(0);
     }
   });
+});
+
+it('ships all seven night poses with transparent alpha and hashes matching the manifest', async () => {
+  const manifest = JSON.parse(await readFile('assets/shizuku-night-manifest.json', 'utf8'));
+  expect(manifest.files).toHaveLength(7);
+  expect(Object.keys(SHIZUKU_NIGHT_POSES).sort()).toEqual(Object.keys(SHIZUKU_POSES).sort());
+  for (const file of manifest.files) {
+    const pose = SHIZUKU_NIGHT_POSES[file.pose as ShizukuPoseId];
+    const bytes = await readFile(file.filename);
+    expect(createHash('sha256').update(bytes).digest('hex')).toBe(file.sha256);
+    expect(pose.src).toBe(`${import.meta.env.BASE_URL}art/shizuku-night/${file.pose}.webp`);
+    expect(pose.anchor).toEqual(file.anchor);
+    const meta = await sharp(bytes).metadata();
+    expect([meta.width, meta.height, meta.hasAlpha]).toEqual([384, 512, true]);
+  }
 });

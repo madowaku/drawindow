@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties, type SyntheticEvent } from 'react';
 import type { GamePhase, Mode } from '../core/types';
-import { SHIZUKU_POSES, characterArt, type ShizukuPose } from '../data/shizukuPoses';
+import { SHIZUKU_POSES, SHIZUKU_NIGHT_POSES, characterArt, type ShizukuPose } from '../data/shizukuPoses';
 import { reviewPose } from '../data/shizukuCandidates';
 import { CHARACTER_FRAMES, getShizukuReaction, type CharacterFrame } from '../lib/character';
 import './CharacterScene.css';
@@ -21,14 +21,14 @@ interface Props {
   calm?:boolean;
 }
 
-function recoverPoseImage(event: SyntheticEvent<HTMLImageElement>, fallbackId: ShizukuPose['fallback']): void {
+function recoverPoseImage(event: SyntheticEvent<HTMLImageElement>, fallbackId: ShizukuPose['fallback'], mode: Mode): void {
   const image = event.currentTarget;
   if (image.dataset.fallbackApplied === 'true' || fallbackId === 'hide') {
     image.hidden = true;
     return;
   }
 
-  const fallback = SHIZUKU_POSES[fallbackId];
+  const fallback = (mode === 'night' ? SHIZUKU_NIGHT_POSES : SHIZUKU_POSES)[fallbackId];
   image.dataset.fallbackApplied = 'true';
   image.style.setProperty('--pose-eye-x', `${fallback.anchor.x * 100}%`);
   image.style.setProperty('--pose-eye-y', `${fallback.anchor.y * 100}%`);
@@ -131,9 +131,9 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
       <div className="character-scene__gesture" ref={gestureRef}>
         <div className="character-scene__breathing">
           {CHARACTER_FRAMES.filter(name => name !== 'blink').map(name => {
-            const pose = artSet !== 'current' ? reviewPose(name, artSet === 'final') : SHIZUKU_POSES[name];
+            const pose = artSet !== 'current' ? reviewPose(name, artSet === 'final') : (mode === 'night' ? SHIZUKU_NIGHT_POSES : SHIZUKU_POSES)[name];
             return <img
-              key={name}
+              key={`${mode}-${artSet}-${name}`}
               className="character-scene__sprite"
               src={pose.src}
               style={poseStyles(pose)}
@@ -141,7 +141,7 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
               alt=""
               draggable={false}
               decoding="async"
-              onError={event => recoverPoseImage(event, pose.fallback)}
+              onError={event => recoverPoseImage(event, pose.fallback, mode)}
             />;
           })}
 
