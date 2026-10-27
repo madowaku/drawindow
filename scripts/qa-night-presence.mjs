@@ -4,10 +4,12 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 
 const stage = process.argv.includes('--before') ? 'before' : 'after';
-const folder = 'artifacts/qa/night-presence';
+const folder = process.env.DRAWINDOW_QA_OUTPUT || 'artifacts/qa/night-presence';
+const base = process.env.DRAWINDOW_QA_URL || 'http://127.0.0.1:5175/';
+assert(['127.0.0.1', 'localhost'].includes(new URL(base).hostname), 'Synthetic QA is local only');
 await mkdir(folder, { recursive: true });
-const browser = await chromium.launch({ headless: true, executablePath: 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' });
-const report = { scope: 'Synthetic DEMO browser input; no human play or device claim.', journeys: [], errors: [] };
+const browser = await chromium.launch({ headless: true, ...(process.env.DRAWINDOW_BROWSER_EXECUTABLE ? { executablePath: process.env.DRAWINDOW_BROWSER_EXECUTABLE } : {}) });
+const report = { scope: 'Synthetic DEMO browser input; no human play or device claim.', journeys: [], errors: [], externalRequests: [] };
 try {
   for (const [mode, lang, width, height, motion] of stage === 'before' ? [['night','en',1280,800,'reduce']] : [
     ['night','en',1280,800,'reduce'], ['night','ja',390,844,'no-preference'],
@@ -16,7 +18,8 @@ try {
     const context = await browser.newContext({ viewport: { width, height }, reducedMotion: motion });
     const page = await context.newPage();
     page.on('pageerror', error => report.errors.push(error.message));
-    await page.goto('http://127.0.0.1:5175/');
+    page.on('request', request => { if (/^https?:/.test(request.url()) && new URL(request.url()).origin !== new URL(base).origin) report.externalRequests.push(request.url()); });
+    await page.goto(base);
     await page.getByRole('button',{name:lang === 'ja'?'日本語':'English',exact:true}).click();
     await page.getByRole('button',{name:lang === 'ja'?(mode==='night'?'夜':'昼'):mode.toUpperCase(),exact:true}).click();
     const prefix = `${folder}/${stage}-${mode}-${lang}-${width}`;
@@ -48,24 +51,37 @@ try {
     await page.getByRole('button',{name:lang==='ja'?'元に戻す':'Undo last edit',exact:true}).click();assert.equal(await image(),drawn);
     await page.getByRole('button',{name:lang==='ja'?'やり直す':'Redo last edit',exact:true}).click();assert.equal(await image(),blank);
     await page.getByRole('button',{name:lang==='ja'?'元に戻す':'Undo last edit',exact:true}).click();
+    // Flush a real checkpoint and reload before continuing the same five turns.
+    await page.waitForTimeout(650);
+    await page.reload();
+    await page.locator('.resume-button').click();
+    assert.equal(await page.locator('main').getAttribute('data-phase'), 'player_drawing');
+    assert.equal(await canvas.getAttribute('data-has-strokes'), 'true');
     await done().click();
     for(let i=1;i<5;i++){await turn().click();await draw();await done().click();}
     const fields=page.locator('.review-field input');await fields.first().waitFor();assert.equal(await fields.count(),5);
     for(let i=0;i<5;i++)await fields.nth(i).fill(lang==='ja'?'ねこ':'cat');
     await page.getByRole('button',{name:lang==='ja'?'答えあわせ':'REVEAL OUR CHAIN',exact:true}).click();
-    await page.getByRole('button',{name:lang==='ja'?'答え合わせをする':'See what we meant',exact:true}).click();
+    await page.locator('.ending').waitFor();
+    const reveal = page.getByRole('button',{name:lang==='ja'?'答え合わせをする':'See what we meant',exact:true});
+    // Existing resumed-session tempo opens the reveal directly.
+    if (await reveal.count()) await reveal.click();
     const skip=page.getByRole('button',{name:lang==='ja'?'すぐ見る・答えを開く':'Skip animation · see results',exact:true});
     if(await skip.count())await skip.click();
     assert.equal(await page.locator('.result-drawing').count(),10);assert.equal(await page.locator('.chain-link').count(),9);
     await page.getByRole('button',{name:lang==='ja'?'今日の窓を残す':'SAVE TODAY’S WINDOW',exact:true}).click();
     const souvenir=page.locator('.souvenir img');await souvenir.waitFor();await souvenir.evaluate(i=>i.decode());
     assert.deepEqual(await souvenir.evaluate(i=>[i.naturalWidth,i.naturalHeight]),[1200,3000]);
+    const download = page.waitForEvent('download');
+    await page.getByRole('link',{name:lang==='ja'?'画像をダウンロード':'Download image',exact:true}).click();
+    await (await download).saveAs(prefix+'-souvenir.png');
     await page.screenshot({path:prefix+'-results.png'});
     assert.equal(await page.locator('img').evaluateAll(imgs=>imgs.filter(i=>!i.complete||!i.naturalWidth).length),0);
-    report.journeys.push({mode,lang,width,height,motion,rounds:5,drawings:10,links:9,png:[1200,3000],fogClearUndoRedo:'pixel-identical'});
+    report.journeys.push({mode,lang,width,height,motion,rounds:5,drawings:10,links:9,png:[1200,3000],fogClearUndoRedo:'pixel-identical',savedDrawingResumed:true,pngDownloaded:true});
     await context.close();
   }
   assert.equal(report.errors.length,0);
+  assert.deepEqual(report.externalRequests, []);
 } finally {await browser.close();await writeFile(`${folder}/${stage}.json`,JSON.stringify(report,null,2));}
 console.log(JSON.stringify(report));
 

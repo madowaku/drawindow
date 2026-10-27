@@ -2,16 +2,18 @@ import { spawn } from 'node:child_process';
 import { readFile, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const localhost='http://127.0.0.1:4173/';
+const port=Number(process.env.DRAWINDOW_OFFLINE_QA_PORT || 4173);
+if(!Number.isInteger(port)||port<1024||port>65535)throw Error('Invalid local QA port');
+const localhost=`http://127.0.0.1:${port}/`;
 const receipt=JSON.parse(await readFile('artifacts/release/offline-assets-receipt.json','utf8'));
-const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4173','--strictPort'],{stdio:'pipe'});
+const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port',String(port),'--strictPort'],{stdio:'pipe'});
 let logs='';
 server.stderr.on('data', data=>logs+=String(data).slice(-3000));
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function readyServer(){
   for(let i=0;i<100;i++){
     if(server.exitCode!==null)throw Error('Preview stopped: '+logs);
-    try{const r=await fetch(localhost);if(r.ok)return;}catch{}
+    try{const r=await fetch(localhost);if(r.ok&&(await r.text()).includes(receipt.fingerprint))return;}catch{}
     await sleep(200);
   }
   throw Error('Preview never became ready');

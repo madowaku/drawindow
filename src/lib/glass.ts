@@ -18,10 +18,10 @@ export function drawWetEdges(ctx: CanvasRenderingContext2D, strokes: readonly St
   ctx.save();
   // A thin cool lower rim supports pale sleeves; the opposite highlight supports
   // dark hair. Match the cleared center to the presentation-only wipe width.
-  drawStrokes(ctx, strokes, size, size, { color: mode === 'day' ? 'rgba(34,66,79,.46)' : 'rgba(34,66,79,.26)', widthScale: mode === 'night' ? 2.72 : 2.32 });
+  drawStrokes(ctx, strokes, size, size, { color: mode === 'day' ? 'rgba(34,66,79,.46)' : 'rgba(34,66,79,.19)', widthScale: mode === 'night' ? 2.55 : 2.32 });
   ctx.save();
   ctx.translate(-0.4, -0.55);
-  drawStrokes(ctx, strokes, size, size, { color: mode === 'day' ? 'rgba(250,255,253,.64)' : 'rgba(234,247,255,.64)', widthScale: mode === 'night' ? 2.5 : 2.14 });
+  drawStrokes(ctx, strokes, size, size, { color: mode === 'day' ? 'rgba(250,255,253,.64)' : 'rgba(234,247,255,.48)', widthScale: mode === 'night' ? 2.4 : 2.14 });
   ctx.restore();
   ctx.globalCompositeOperation = 'destination-out';
   drawStrokes(ctx, strokes, size, size, { color: '#000', widthScale: mode === 'night' ? 2.1 : 1.8 });

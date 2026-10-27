@@ -1,0 +1,112 @@
+{
+  "scope": "Same live game scene and synthetic pointer strokes, A from 02c56c0 versus production B. Not human play.",
+  "baselineCommit": "02c56c0",
+  "baselineSourceSha256": "e93a59de59f2a69c02163e6d56e569ae5d435ef4d7daac3c235588e65fbe5655",
+  "cases": [
+    {
+      "width": 1280,
+      "name": "blank",
+      "strokes": 0,
+      "aRimAlphaMass": 0,
+      "bRimAlphaMass": 0,
+      "dayExact": true,
+      "openingExact": true,
+      "exportExact": true,
+      "rimAlphaReduction": 0,
+      "fogUnchanged": true,
+      "clearUndoRedo": true
+    },
+    {
+      "width": 1280,
+      "name": "face-line",
+      "strokes": 1,
+      "aRimAlphaMass": 136751,
+      "bRimAlphaMass": 78363,
+      "dayExact": true,
+      "openingExact": true,
+      "exportExact": true,
+      "rimAlphaReduction": 0.4269657991532054,
+      "fogUnchanged": true,
+      "clearUndoRedo": true
+    },
+    {
+      "width": 1280,
+      "name": "crescent",
+      "strokes": 1,
+      "aRimAlphaMass": 254257,
+      "bRimAlphaMass": 149584,
+      "dayExact": true,
+      "openingExact": true,
+      "exportExact": true,
+      "rimAlphaReduction": 0.4116818809314985,
+      "fogUnchanged": true,
+      "clearUndoRedo": true
+    },
+    {
+      "width": 1280,
+      "name": "multiple",
+      "strokes": 3,
+      "aRimAlphaMass": 488515,
+      "bRimAlphaMass": 287979,
+      "dayExact": true,
+      "openingExact": true,
+      "exportExact": true,
+      "rimAlphaReduction": 0.4105012128593799,
+      "fogUnchanged": true,
+      "clearUndoRedo": true
+    },
+    {
+      "width": 390,
+      "name": "blank",
+      "strokes": 0,
+      "aRimAlphaMass": 0,
+      "bRimAlphaMass": 0,
+      "dayExact": true,
+      "openingExact": true,
+      "exportExact": true,
+      "rimAlphaReduction": 0,
+      "fogUnchanged": true,
+      "clearUndoRedo": true
+    },
+    {
+      "width": 390,
+      "name": "face-line",
+      "strokes": 1,
+      "aRimAlphaMass": 69467,
+      "bRimAlphaMass": 42823,
+      "dayExact": true,
+      "openingExact": true,
+      "exportExact": true,
+      "rimAlphaReduction": 0.3835490232772395,
+      "fogUnchanged": true,
+      "clearUndoRedo": true
+    },
+    {
+      "width": 390,
+      "name": "crescent",
+      "strokes": 1,
+      "aRimAlphaMass": 127587,
+      "bRimAlphaMass": 77639,
+      "dayExact": true,
+      "openingExact": true,
+      "exportExact": true,
+      "rimAlphaReduction": 0.39148189078824647,
+      "fogUnchanged": true,
+      "clearUndoRedo": true
+    },
+    {
+      "width": 390,
+      "name": "multiple",
+      "strokes": 3,
+      "aRimAlphaMass": 233331,
+      "bRimAlphaMass": 147121,
+      "dayExact": true,
+      "openingExact": true,
+      "exportExact": true,
+      "rimAlphaReduction": 0.36947512332266175,
+      "fogUnchanged": true,
+      "clearUndoRedo": true
+    }
+  ],
+  "errors": []
+}

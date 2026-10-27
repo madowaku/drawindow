@@ -1,0 +1,155 @@
+{
+  "status": "success",
+  "offline": true,
+  "assetsCached": 55,
+  "modelBytes": 8851924,
+  "externalRequests": [],
+  "postCount": 0,
+  "runtimeDiagnostics": [
+    "INFO: [environment.cc:36] Creating LiteRT environment with options",
+    "WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xc5f98, name=GPU WebGPU",
+    "INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xc6160, name=CpuAccelerator",
+    "INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.",
+    "INFO: [environment.cc:36] Creating LiteRT environment with options",
+    "WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x9374e0, name=GPU WebGPU",
+    "INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x9376a8, name=CpuAccelerator",
+    "INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.",
+    "INFO: [compiled_model.cc:812] Flatbuffer model initialized directly from incoming litert model.",
+    "INFO: Created TensorFlow Lite XNNPACK delegate for CPU.",
+    "INFO: [environment.cc:36] Creating LiteRT environment with options",
+    "WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xc5f98, name=GPU WebGPU",
+    "INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xc6160, name=CpuAccelerator",
+    "INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.",
+    "INFO: [environment.cc:36] Creating LiteRT environment with options",
+    "WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x9374e0, name=GPU WebGPU",
+    "INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x9376a8, name=CpuAccelerator",
+    "INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.",
+    "INFO: [compiled_model.cc:812] Flatbuffer model initialized directly from incoming litert model.",
+    "INFO: Created TensorFlow Lite XNNPACK delegate for CPU.",
+    "INFO: [environment.cc:36] Creating LiteRT environment with options",
+    "WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xc5f98, name=GPU WebGPU",
+    "INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xc6160, name=CpuAccelerator",
+    "INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.",
+    "INFO: [environment.cc:36] Creating LiteRT environment with options",
+    "WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x9374e0, name=GPU WebGPU",
+    "INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x9376a8, name=CpuAccelerator",
+    "INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.",
+    "INFO: [compiled_model.cc:812] Flatbuffer model initialized directly from incoming litert model.",
+    "INFO: Created TensorFlow Lite XNNPACK delegate for CPU.",
+    "INFO: [environment.cc:36] Creating LiteRT environment with options",
+    "WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xc5f98, name=GPU WebGPU",
+    "INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xc6160, name=CpuAccelerator",
+    "INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.",
+    "INFO: [environment.cc:36] Creating LiteRT environment with options",
+    "WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x9374e0, name=GPU WebGPU",
+    "INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x9376a8, name=CpuAccelerator",
+    "INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.",
+    "INFO: [compiled_model.cc:812] Flatbuffer model initialized directly from incoming litert model.",
+    "INFO: Created TensorFlow Lite XNNPACK delegate for CPU.",
+    "INFO: [environment.cc:36] Creating LiteRT environment with options",
+    "WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xc5f98, name=GPU WebGPU",
+    "INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xc6160, name=CpuAccelerator",
+    "INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.",
+    "INFO: [environment.cc:36] Creating LiteRT environment with options",
+    "WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x9374e0, name=GPU WebGPU",
+    "INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.",
+    "INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x9376a8, name=CpuAccelerator",
+    "INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.",
+    "INFO: [compiled_model.cc:812] Flatbuffer model initialized directly from incoming litert model.",
+    "INFO: Created TensorFlow Lite XNNPACK delegate for CPU."
+  ],
+  "journeys": [
+    {
+      "language": "en",
+      "mode": "day",
+      "rounds": 5,
+      "pictures": 10,
+      "links": 9,
+      "interpretations": [
+        "She thought: circle",
+        "She thought: circle",
+        "She thought: circle",
+        "She thought: circle",
+        "Final drawing · not sent for recognition"
+      ],
+      "png": [
+        1200,
+        3000
+      ]
+    },
+    {
+      "language": "en",
+      "mode": "night",
+      "rounds": 5,
+      "pictures": 10,
+      "links": 9,
+      "interpretations": [
+        "She thought: circle",
+        "She thought: circle",
+        "She thought: circle",
+        "She thought: circle",
+        "Final drawing · not sent for recognition"
+      ],
+      "png": [
+        1200,
+        3000
+      ]
+    },
+    {
+      "language": "ja",
+      "mode": "day",
+      "rounds": 5,
+      "pictures": 10,
+      "links": 9,
+      "interpretations": [
+        "しずくには: まる",
+        "しずくには: まる",
+        "しずくには: まる",
+        "しずくには: まる",
+        "最後の絵は認識していません"
+      ],
+      "png": [
+        1200,
+        3000
+      ]
+    },
+    {
+      "language": "ja",
+      "mode": "night",
+      "rounds": 5,
+      "pictures": 10,
+      "links": 9,
+      "interpretations": [
+        "しずくには: まる",
+        "しずくには: まる",
+        "しずくには: まる",
+        "しずくには: まる",
+        "最後の絵は認識していません"
+      ],
+      "png": [
+        1200,
+        3000
+      ]
+    }
+  ],
+  "audioDecoded": 4
+}

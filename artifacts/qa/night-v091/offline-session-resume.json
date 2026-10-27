@@ -1,0 +1,13 @@
+{
+  "scope": "Synthetic Chromium persistence and graceful browser-process restart, not Android/crash/human acceptance",
+  "status": "success",
+  "external": [],
+  "posts": 0,
+  "errors": [],
+  "checks": [
+    "browser process restart offline: night/en, active drawing, CLEAR undo/redo",
+    "interrupted inference waits for explicit retry/back; drawing retained",
+    "raw naming draft, all five inputs, full 10-picture record survive offline reload",
+    "unknown schema rejected safely at title"
+  ]
+}
