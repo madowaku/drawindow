@@ -1,0 +1,75 @@
+{
+  "scope": "Synthetic DEMO browser input; no human play or device claim.",
+  "journeys": [
+    {
+      "mode": "night",
+      "lang": "en",
+      "width": 1280,
+      "height": 800,
+      "motion": "reduce",
+      "rounds": 5,
+      "drawings": 10,
+      "links": 9,
+      "png": [
+        1200,
+        3000
+      ],
+      "fogClearUndoRedo": "pixel-identical",
+      "savedDrawingResumed": true,
+      "pngDownloaded": true
+    },
+    {
+      "mode": "night",
+      "lang": "ja",
+      "width": 390,
+      "height": 844,
+      "motion": "no-preference",
+      "rounds": 5,
+      "drawings": 10,
+      "links": 9,
+      "png": [
+        1200,
+        3000
+      ],
+      "fogClearUndoRedo": "pixel-identical",
+      "savedDrawingResumed": true,
+      "pngDownloaded": true
+    },
+    {
+      "mode": "day",
+      "lang": "en",
+      "width": 390,
+      "height": 844,
+      "motion": "reduce",
+      "rounds": 5,
+      "drawings": 10,
+      "links": 9,
+      "png": [
+        1200,
+        3000
+      ],
+      "fogClearUndoRedo": "pixel-identical",
+      "savedDrawingResumed": true,
+      "pngDownloaded": true
+    },
+    {
+      "mode": "day",
+      "lang": "ja",
+      "width": 1280,
+      "height": 800,
+      "motion": "reduce",
+      "rounds": 5,
+      "drawings": 10,
+      "links": 9,
+      "png": [
+        1200,
+        3000
+      ],
+      "fogClearUndoRedo": "pixel-identical",
+      "savedDrawingResumed": true,
+      "pngDownloaded": true
+    }
+  ],
+  "errors": [],
+  "externalRequests": []
+}

@@ -20,20 +20,20 @@ try {
     for (const phase of ['girl_breath','girl_drawing','girl_holding','player_drawing','recognizing']) {
       for(const progress of [0,.5,1]) {
         drawFrost(ctx,size,size,'night',phase,progress,tactile);
-        assert.equal(alpha(size/2,size/2),255,`${phase} ${progress}: concealed`);
+        assert(alpha(size/2,size/2)>130 && alpha(size/2,size/2)<230,`${phase} ${progress}: translucent presence`);
       }
     }
     drawFrost(ctx,size,size,'night','player_drawing',1,tactile);
-    wipeCondensation(ctx,line,size);
+    wipeCondensation(ctx,line,size,'night');
     assert.equal(alpha(size/2,size/2),0,'stroke center reveals portrait');
-    assert.equal(alpha(size/2,size*.25),255,'outside stroke stays concealed');
+    assert(alpha(size/2,size*.25)>130 && alpha(size/2,size*.25)<230,'outside stroke keeps mist');
     drawFrost(ctx,size,size,'night','player_drawing',1,tactile);
-    assert.equal(alpha(size/2,size/2),255,'CLEAR/UNDO repaint restores fog');
+    assert(alpha(size/2,size/2)>130 && alpha(size/2,size/2)<230,'CLEAR/UNDO restores translucent fog');
     drawFrost(ctx,size,size,'day','player_drawing',1,tactile);
     assert(alpha(size/2,size/2)<255,'DAY remains translucent');
     drawFrost(ctx,size,size,'night','title',1,tactile);
     assert.equal(alpha(size/2,size/2),0,'title shows outfit');
-    checks.push({size,tactile,concealRevealClearDayTitle:'passed'});
+    checks.push({size,tactile,presenceRevealClearDayTitle:'passed'});
   }
   // A reproducible native-canvas composition, NOT a browser screenshot.
   const width=384,height=512, sheet=createCanvas(width*3,height), out=sheet.getContext('2d');
@@ -45,7 +45,7 @@ try {
     if(i) {
       const fog=createCanvas(width,height),ctx=fog.getContext('2d');
       drawFrost(ctx,width,height,'night','player_drawing',1,true);
-      if(i===2) {ctx.save();ctx.translate(0,height-width);wipeCondensation(ctx,example,width);ctx.restore();}
+      if(i===2) {ctx.save();ctx.translate(0,height-width);wipeCondensation(ctx,example,width,'night');ctx.restore();}
       out.drawImage(fog,i*width,0);
       if(i===2) {const wet=createCanvas(width,width),wetCtx=wet.getContext('2d');drawWetEdges(wetCtx,example,width,'night');out.drawImage(wet,i*width,height-width);}
     }

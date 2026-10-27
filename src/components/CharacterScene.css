@@ -68,6 +68,16 @@
   filter: brightness(.76) saturate(.78);
 }
 
+/* Standalone waiting portraits use lighter mist than the playable glass. */
+.character-scene[data-mode='night'][data-phase='title']::after,
+.character-scene[data-mode='night'][data-phase='review_intents']::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(156, 181, 211, .22);
+  backdrop-filter: blur(1.2px);
+}
+
 .character-scene__light {
   position: absolute;
   inset: 0;
