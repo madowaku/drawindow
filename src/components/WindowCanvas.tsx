@@ -73,9 +73,9 @@ export function drawFrost(
   const breathProgress = phase === 'girl_breath' ? eased(progress) : 1;
   const base = mode === 'day'
     ? { red: 220, green: 237, blue: 239, alpha: tactile ? 0.59 : 0.42 }
-    : { red: 156, green: 181, blue: 211, alpha: 1 };
-  // NIGHT stays opaque throughout refog; only stroke erasure reveals her.
-  const baseAlpha = mode === 'night' ? 1 : phase === 'girl_breath' ? base.alpha * (0.18 + breathProgress * 0.82) : base.alpha;
+    : { red: 156, green: 181, blue: 211, alpha: 0.75 };
+  // NIGHT keeps a quiet silhouette through refog; strokes open a clearer view.
+  const baseAlpha = mode === 'night' ? base.alpha : phase === 'girl_breath' ? base.alpha * (0.18 + breathProgress * 0.82) : base.alpha;
   ctx.save();
   ctx.globalCompositeOperation = 'source-over';
   ctx.fillStyle = `rgba(${base.red}, ${base.green}, ${base.blue}, ${baseAlpha})`;
@@ -90,7 +90,7 @@ export function drawFrost(
     const y = height * cy;
     const r = Math.max(width, height) * radius;
     const gradient = ctx.createRadialGradient(x, y, 0, x, y, r);
-    const haze = mode === 'day' ? 0.12 : 0.16;
+    const haze = mode === 'day' ? 0.12 : 0.1;
     gradient.addColorStop(0, `rgba(250, 253, 248, ${haze})`);
     gradient.addColorStop(1, 'rgba(250, 253, 248, 0)');
     ctx.fillStyle = gradient;
@@ -476,7 +476,7 @@ export function WindowCanvas({
     if (phase !== 'girl_breath' && visibleStrokes.length > 0) {
       fogContext.save();
       fogContext.translate(layout.left, layout.top);
-      if (tactile) wipeCondensation(fogContext, visibleStrokes, layout.size);
+      if (tactile) wipeCondensation(fogContext, visibleStrokes, layout.size, mode);
       else {
         fogContext.globalCompositeOperation = 'destination-out';
         drawStrokes(fogContext, visibleStrokes, layout.size, layout.size, { color: '#000000', widthScale: 1.8 });
