@@ -43,6 +43,8 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Test adopted C tempo and D reactions in compiled production
         run: node scripts/qa-adopted-premonition.mjs
+      - name: Test production image recovery and actual local model retry
+        run: node scripts/qa-production-asset-recovery.mjs
       - name: Test service worker lifecycle and failed update in Chromium
         run: node scripts/qa-offline-lifecycle.mjs
       - name: Test service worker cold relaunch with network disabled
@@ -64,9 +66,11 @@ jobs:
       - name: Test Window Time in Chromium
         run: node scripts/qa-window-time.mjs
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: DRAWINDOW-local-lab
           path: |
             artifacts/release/*offline*
             artifacts/release/package-receipt.json
+            output/playwright/v012/
           retention-days: 7
