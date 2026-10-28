@@ -66,6 +66,8 @@ try {
     assert.equal(title.sprites.length, 7);
     assert(title.sprites.every(src => src.includes(`/art/${mode === 'night' ? 'shizuku-night' : 'shizuku'}/`)));
     if (mode === 'night') assert.equal(title.mist, 'rgba(156, 181, 211, 0.22)');
+    // Capture the selected theme after its existing 400ms color transition.
+    await page.locator('.app').evaluate(element => Promise.all(element.getAnimations().map(animation => animation.finished.catch(() => {}))));
     await page.screenshot({ path: `${prefix}-title.png`, fullPage: true });
     await observePoses(page); await page.locator('.start-button').click();
     const drawings = [], reactions = []; let glass, recovery;

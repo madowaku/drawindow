@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
+import { stripVTControlCharacters } from 'node:util';
 
 export const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -16,7 +17,7 @@ export async function productionServer(port) {
     for (let i = 0; i < 150; i++) {
       if (spawnError) throw spawnError;
       if (server.exitCode !== null) throw Error('Preview stopped: ' + logs);
-      if (logs.includes(origin.slice(0, -1))) {
+      if (stripVTControlCharacters(logs).includes(origin.slice(0, -1))) {
         const response = await fetch(origin);
         assert((await response.text()).includes(receipt.fingerprint), 'Wrong production fingerprint');
         return { origin, receipt, close: () => server.kill() };
