@@ -163,6 +163,18 @@ describe('character presentation lifecycle', () => {
     expect(active.hidden).toBe(false);
   });
 
+  it.each(['day', 'night'] as const)('recovers a failed %s room when changing mode and returning', mode => {
+    const { rerender } = render(<CharacterScene mode={mode} phase="title" reducedMotion />);
+    const room = () => document.querySelector<HTMLImageElement>('.character-scene__room')!;
+    fireEvent.error(room());
+    expect(room().hidden).toBe(true);
+    rerender(<CharacterScene mode={mode === 'day' ? 'night' : 'day'} phase="title" reducedMotion />);
+    expect(room().hidden).toBe(false);
+    rerender(<CharacterScene mode={mode} phase="title" reducedMotion />);
+    expect(room().hidden).toBe(false);
+    expect(room().src).toContain(`room-${mode}.webp`);
+  });
+
   it('registers source eye anchors against one common eye target at rendered CSS scale', () => {
     render(<CharacterScene mode="day" phase="title" reducedMotion />);
     for (const sprite of document.querySelectorAll<HTMLImageElement>('.character-scene__sprite')) {

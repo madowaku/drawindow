@@ -126,7 +126,7 @@ export function CharacterScene({ mode, phase, progress = 1, reducedMotion, frame
     data-art-set={artSet}
     data-testid="character-scene"
   >
-    <img className="character-scene__room" src={characterArt(`room-${mode}`)} alt="" draggable={false} onError={hideFailedRoom} />
+    <img key={`room-${mode}`} className="character-scene__room" src={characterArt(`room-${mode}`)} alt="" draggable={false} onError={hideFailedRoom} />
     <div className="character-scene__portrait">
       <div className="character-scene__gesture" ref={gestureRef}>
         <div className="character-scene__breathing">
