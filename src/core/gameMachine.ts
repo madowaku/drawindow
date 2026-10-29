@@ -37,8 +37,10 @@ function withRequest(state: GameState, entry: DrawingEntry, attempt = 1): GameSt
 }
 
 function errorState(state: GameState, code: RecognitionErrorCode, result?: RecognitionResult): GameState {
-  const retryable = code !== 'invalid_input' && (state.recognitionRequest?.attempt ?? MAX_ATTEMPTS) < MAX_ATTEMPTS;
-  const error: GameError = { code, retryable, message: code === 'uncovered_letter' ? "She can't think of the next drawing. Try again, redraw, or continue as a demo." : code === 'rate_limit' ? 'Recognition limit or quota reached. Please wait at least a minute before trying again. Your drawing is safe.' : "She couldn't read the drawing this time. Your drawing is safe." };
+  // The same ink gives the same local scores and the same catalogue gap; only
+  // failures that can change on a second attempt offer one.
+  const retryable = code !== 'invalid_input' && code !== 'uncovered_letter' && !['invalid_input', 'low_score', 'unmapped'].includes(result?.failureReason ?? '') && (state.recognitionRequest?.attempt ?? MAX_ATTEMPTS) < MAX_ATTEMPTS;
+  const error: GameError = { code, retryable, ...(result?.failureReason ? { failureReason: result.failureReason } : {}), message: code === 'uncovered_letter' ? "She can't think of the next drawing. Your picture is safe; you can change a few lines." : code === 'rate_limit' ? 'Recognition limit or quota reached. Please wait at least a minute before trying again. Your drawing is safe.' : "She couldn't read the drawing this time. Your drawing is safe." };
   const entries = result ? state.entries.map(entry => entry.id === state.recognitionRequest?.playerEntryId ? { ...recordRecognition(entry, result, state.language), ...(code === 'uncovered_letter' ? { comparable: false, nonComparableReason: 'uncovered_letter' as const } : {}) } : entry) : state.entries;
   return { ...state, phase: 'recognition_error', error, entries };
 }
