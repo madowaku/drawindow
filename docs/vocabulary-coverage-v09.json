@@ -2928,76 +2928,50 @@
       }
     },
     "ja": {
-      "mappedModelClasses": 177,
+      "mappedModelClasses": 209,
       "unmappedModelClasses": [
         "The Eiffel Tower",
         "The Great Wall of China",
         "The Mona Lisa",
         "aircraft carrier",
         "animal migration",
-        "anvil",
-        "asparagus",
         "bandage",
         "baseball",
-        "baseball bat",
         "basketball",
         "beach",
         "beard",
-        "bench",
-        "binoculars",
         "birthday cake",
         "blackberry",
-        "blueberry",
-        "boomerang",
-        "bulldozer",
-        "calculator",
         "camouflage",
         "campfire",
         "cannon",
-        "castle",
         "ceiling fan",
-        "cell phone",
-        "cello",
         "chandelier",
         "church",
         "clarinet",
         "compass",
         "cooler",
-        "crayon",
         "cruise ship",
         "dishwasher",
         "diving board",
         "dresser",
         "drill",
         "drums",
-        "dumbbell",
-        "elbow",
-        "eyeglasses",
-        "fence",
         "fire hydrant",
         "fireplace",
-        "firetruck",
-        "flamingo",
-        "flashlight",
         "flip flops",
         "floor lamp",
         "flying saucer",
-        "frying pan",
         "garden",
         "garden hose",
         "goatee",
-        "golf club",
         "harp",
-        "headphones",
-        "helmet",
         "hexagon",
         "hockey puck",
         "hockey stick",
-        "hospital",
         "hot air balloon",
         "hot dog",
         "hot tub",
-        "hourglass",
         "house plant",
         "hurricane",
         "jail",
@@ -3016,10 +2990,7 @@
         "matches",
         "megaphone",
         "mermaid",
-        "microphone",
         "microwave",
-        "mosquito",
-        "motorbike",
         "moustache",
         "nail",
         "ocean",
@@ -3028,8 +2999,6 @@
         "paint can",
         "paintbrush",
         "palm tree",
-        "paper clip",
-        "parachute",
         "passport",
         "peanut",
         "peas",
@@ -3043,7 +3012,6 @@
         "postcard",
         "power outlet",
         "purse",
-        "radio",
         "rake",
         "remote control",
         "rifle",
@@ -3142,7 +3110,7 @@
         },
         {
           "label": "anvil",
-          "word": null
+          "word": "かなとこ"
         },
         {
           "label": "apple",
@@ -3154,7 +3122,7 @@
         },
         {
           "label": "asparagus",
-          "word": null
+          "word": "あすぱらがす"
         },
         {
           "label": "axe",
@@ -3182,7 +3150,7 @@
         },
         {
           "label": "baseball bat",
-          "word": null
+          "word": "やきゅうばっと"
         },
         {
           "label": "basket",
@@ -3226,7 +3194,7 @@
         },
         {
           "label": "bench",
-          "word": null
+          "word": "べんち"
         },
         {
           "label": "bicycle",
@@ -3234,7 +3202,7 @@
         },
         {
           "label": "binoculars",
-          "word": null
+          "word": "そうがんきょう"
         },
         {
           "label": "bird",
@@ -3250,7 +3218,7 @@
         },
         {
           "label": "blueberry",
-          "word": null
+          "word": "ぶるーべりー"
         },
         {
           "label": "book",
@@ -3258,7 +3226,7 @@
         },
         {
           "label": "boomerang",
-          "word": null
+          "word": "ぶーめらん"
         },
         {
           "label": "bottlecap",
@@ -3298,7 +3266,7 @@
         },
         {
           "label": "bulldozer",
-          "word": null
+          "word": "ぶるどーざー"
         },
         {
           "label": "bus",
@@ -3322,7 +3290,7 @@
         },
         {
           "label": "calculator",
-          "word": null
+          "word": "でんたく"
         },
         {
           "label": "calendar",
@@ -3366,7 +3334,7 @@
         },
         {
           "label": "castle",
-          "word": null
+          "word": "しろ"
         },
         {
           "label": "cat",
@@ -3378,11 +3346,11 @@
         },
         {
           "label": "cell phone",
-          "word": null
+          "word": "けいたいでんわ"
         },
         {
           "label": "cello",
-          "word": null
+          "word": "ちぇろ"
         },
         {
           "label": "chair",
@@ -3446,7 +3414,7 @@
         },
         {
           "label": "crayon",
-          "word": null
+          "word": "くれよん"
         },
         {
           "label": "crocodile",
@@ -3514,7 +3482,7 @@
         },
         {
           "label": "dumbbell",
-          "word": null
+          "word": "だんべる"
         },
         {
           "label": "ear",
@@ -3522,7 +3490,7 @@
         },
         {
           "label": "elbow",
-          "word": null
+          "word": "ひじ"
         },
         {
           "label": "elephant",
@@ -3542,7 +3510,7 @@
         },
         {
           "label": "eyeglasses",
-          "word": null
+          "word": "めがね"
         },
         {
           "label": "face",
@@ -3558,7 +3526,7 @@
         },
         {
           "label": "fence",
-          "word": null
+          "word": "ふぇんす"
         },
         {
           "label": "finger",
@@ -3574,7 +3542,7 @@
         },
         {
           "label": "firetruck",
-          "word": null
+          "word": "しょうぼうしゃ"
         },
         {
           "label": "fish",
@@ -3582,11 +3550,11 @@
         },
         {
           "label": "flamingo",
-          "word": null
+          "word": "ふらみんご"
         },
         {
           "label": "flashlight",
-          "word": null
+          "word": "かいちゅうでんとう"
         },
         {
           "label": "flip flops",
@@ -3618,7 +3586,7 @@
         },
         {
           "label": "frying pan",
-          "word": null
+          "word": "ふらいぱん"
         },
         {
           "label": "garden",
@@ -3638,7 +3606,7 @@
         },
         {
           "label": "golf club",
-          "word": null
+          "word": "ごるふくらぶ"
         },
         {
           "label": "grapes",
@@ -3674,7 +3642,7 @@
         },
         {
           "label": "headphones",
-          "word": null
+          "word": "へっどほん"
         },
         {
           "label": "hedgehog",
@@ -3686,7 +3654,7 @@
         },
         {
           "label": "helmet",
-          "word": null
+          "word": "へるめっと"
         },
         {
           "label": "hexagon",
@@ -3706,7 +3674,7 @@
         },
         {
           "label": "hospital",
-          "word": null
+          "word": "びょういん"
         },
         {
           "label": "hot air balloon",
@@ -3722,7 +3690,7 @@
         },
         {
           "label": "hourglass",
-          "word": null
+          "word": "すなどけい"
         },
         {
           "label": "house",
@@ -3850,7 +3818,7 @@
         },
         {
           "label": "microphone",
-          "word": null
+          "word": "まいく"
         },
         {
           "label": "microwave",
@@ -3866,11 +3834,11 @@
         },
         {
           "label": "mosquito",
-          "word": null
+          "word": "か"
         },
         {
           "label": "motorbike",
-          "word": null
+          "word": "おーとばい"
         },
         {
           "label": "mountain",
@@ -3954,11 +3922,11 @@
         },
         {
           "label": "paper clip",
-          "word": null
+          "word": "くりっぷ"
         },
         {
           "label": "parachute",
-          "word": null
+          "word": "ぱらしゅーと"
         },
         {
           "label": "parrot",
@@ -4062,7 +4030,7 @@
         },
         {
           "label": "radio",
-          "word": null
+          "word": "らじお"
         },
         {
           "label": "rain",
@@ -4482,35 +4450,36 @@
         }
       ],
       "recognizer": {
-        "rawCount": 177,
-        "distinctNormalizedWords": 174,
+        "rawCount": 209,
+        "distinctNormalizedWords": 206,
         "first": {
-          "あ": 6,
+          "あ": 7,
           "い": 5,
           "う": 5,
           "え": 1,
-          "お": 3,
-          "か": 16,
+          "お": 4,
+          "か": 19,
           "が": 1,
           "き": 5,
           "ぎ": 1,
-          "く": 9,
-          "け": 3,
+          "く": 11,
+          "け": 4,
           "こ": 4,
+          "ご": 1,
           "さ": 6,
-          "し": 3,
+          "し": 5,
           "じ": 3,
-          "す": 2,
+          "す": 3,
           "ず": 1,
           "せ": 2,
-          "そ": 1,
+          "そ": 2,
           "ぞ": 1,
           "た": 3,
-          "だ": 1,
-          "ち": 3,
+          "だ": 2,
+          "ち": 4,
           "つ": 2,
           "て": 4,
-          "で": 3,
+          "で": 4,
           "と": 6,
           "ど": 3,
           "な": 2,
@@ -4519,83 +4488,85 @@
           "の": 2,
           "は": 12,
           "ば": 4,
-          "ぱ": 4,
-          "ひ": 2,
+          "ぱ": 5,
+          "ひ": 3,
+          "び": 1,
           "ぴ": 2,
-          "ふ": 5,
-          "ぶ": 3,
-          "へ": 2,
-          "べ": 2,
+          "ふ": 8,
+          "ぶ": 6,
+          "へ": 4,
+          "べ": 3,
           "ぺ": 2,
           "ほ": 3,
           "ぼ": 1,
-          "ま": 3,
+          "ま": 4,
           "み": 1,
-          "め": 2,
-          "や": 2,
+          "め": 3,
+          "や": 3,
           "ゆ": 3,
           "よ": 2,
-          "ら": 2,
+          "ら": 3,
           "り": 3,
           "ろ": 1,
           "わ": 1
         },
         "last": {
-          "あ": 8,
-          "い": 7,
-          "う": 10,
+          "あ": 9,
+          "い": 10,
+          "う": 12,
           "え": 2,
-          "お": 1,
-          "か": 2,
+          "お": 2,
+          "か": 3,
           "が": 1,
           "き": 7,
           "ぎ": 3,
-          "く": 5,
-          "こ": 3,
-          "ご": 4,
+          "く": 7,
+          "こ": 4,
+          "ご": 5,
           "さ": 2,
           "ざ": 1,
           "し": 8,
-          "じ": 2,
-          "す": 5,
+          "じ": 3,
+          "す": 7,
           "ず": 1,
           "た": 3,
           "だ": 2,
-          "ち": 3,
+          "ち": 4,
           "つ": 6,
           "て": 1,
           "で": 1,
-          "と": 4,
+          "と": 7,
           "ど": 1,
           "な": 3,
           "に": 2,
           "ぬ": 1,
-          "ね": 1,
+          "ね": 2,
           "の": 2,
           "は": 1,
           "ぱ": 1,
           "び": 3,
           "ふ": 1,
-          "ぶ": 1,
-          "ぷ": 3,
+          "ぶ": 2,
+          "ぷ": 4,
           "ま": 7,
           "み": 4,
           "む": 3,
           "め": 3,
           "も": 2,
-          "や": 6,
+          "や": 7,
           "よ": 1,
           "ら": 4,
           "り": 5,
-          "る": 5,
+          "る": 6,
           "れ": 1,
-          "ろ": 1,
-          "わ": 3,
-          "ん": 17
+          "ろ": 3,
+          "わ": 4,
+          "ん": 22
         },
         "words": [
           "あいすくりーむ",
           "あし",
+          "あすぱらがす",
           "あひる",
           "あめ",
           "あらいぐま",
@@ -4614,7 +4585,10 @@
           "おうむ",
           "おの",
           "おふろ",
+          "おーとばい",
+          "か",
           "かいだん",
+          "かいちゅうでんとう",
           "かえる",
           "かお",
           "かぎ",
@@ -4622,6 +4596,7 @@
           "かさ",
           "かたつむり",
           "かなづち",
+          "かなとこ",
           "かに",
           "かぬー",
           "かびん",
@@ -4645,7 +4620,10 @@
           "くつした",
           "くま",
           "くも",
+          "くりっぷ",
           "くるま",
+          "くれよん",
+          "けいたいでんわ",
           "けしごむ",
           "けん",
           "けーき",
@@ -4653,6 +4631,7 @@
           "こっぷ",
           "こや",
           "こーひーかっぷ",
+          "ごるふくらぶ",
           "さい",
           "さかな",
           "さぼてん",
@@ -4662,20 +4641,26 @@
           "しまうま",
           "しゃつ",
           "しゃりん",
+          "しょうぼうしゃ",
+          "しろ",
           "じてんしゃ",
           "じゃがいも",
           "じゃけっと",
           "すいか",
+          "すなどけい",
           "すぷーん",
           "ずぼん",
           "せんぷうき",
           "せーたー",
+          "そうがんきょう",
           "そふぁ",
           "ぞう",
           "たいよう",
           "たこ",
           "たまねぎ",
           "だいや",
+          "だんべる",
+          "ちぇろ",
           "ちず",
           "ちょうちょ",
           "ちょうねくたい",
@@ -4687,6 +4672,7 @@
           "てんと",
           "でんきゅう",
           "でんしゃ",
+          "でんたく",
           "でんわ",
           "といれ",
           "とけい",
@@ -4724,36 +4710,51 @@
           "ばなな",
           "ぱいなっぷる",
           "ぱそこん",
+          "ぱらしゅーと",
           "ぱん",
           "ぱんだ",
           "ひこうき",
+          "ひじ",
           "ひつじ",
+          "びょういん",
           "ぴあの",
           "ぴざ",
           "ふうしゃ",
           "ふうとう",
+          "ふぇんす",
           "ふぉーく",
           "ふくろう",
           "ふた",
+          "ふらいぱん",
+          "ふらみんご",
           "ぶた",
           "ぶどう",
+          "ぶるどーざー",
+          "ぶるーべりー",
           "ぶろっこりー",
+          "ぶーめらん",
+          "へっどほん",
           "へび",
           "へりこぷたー",
+          "へるめっと",
           "べっど",
           "べると",
+          "べんち",
           "ぺろぺろきゃんでぃ",
           "ぺんぎん",
           "ほうき",
           "ほし",
           "ほん",
           "ぼうし",
+          "まいく",
           "まくら",
           "まぐかっぷ",
           "まる",
           "みみ",
           "め",
+          "めがね",
           "めざましどけい",
+          "やきゅうばっと",
           "やぶ",
           "やま",
           "ゆき",
@@ -4763,6 +4764,7 @@
           "よっと",
           "らいおん",
           "らくだ",
+          "らじお",
           "りす",
           "りゅっく",
           "りんご",
@@ -5539,13 +5541,16 @@
       ],
       "recognizerWordsWithoutSameNamedDrawing": [
         "あし",
+        "あすぱらがす",
         "うで",
         "おの",
         "おふろ",
         "かいだん",
+        "かいちゅうでんとう",
         "かお",
         "かご",
         "かなづち",
+        "かなとこ",
         "かぬー",
         "かれんだー",
         "かわ",
@@ -5553,19 +5558,27 @@
         "きゅうす",
         "くさ",
         "くち",
+        "くれよん",
+        "けいたいでんわ",
         "けん",
         "こや",
         "こーひーかっぷ",
+        "ごるふくらぶ",
         "さんかく",
         "しゃつ",
         "しゃりん",
+        "すなどけい",
         "ずぼん",
         "せーたー",
+        "そうがんきょう",
         "だいや",
+        "だんべる",
+        "ちぇろ",
         "ちず",
         "て",
         "てんし",
         "でんきゅう",
+        "でんたく",
         "とーすたー",
         "どらごん",
         "ないふ",
@@ -5577,17 +5590,29 @@
         "はね",
         "はぶらし",
         "ぱそこん",
+        "ぱらしゅーと",
+        "ひじ",
+        "びょういん",
+        "ふぇんす",
         "ふぉーく",
         "ふた",
+        "ふらいぱん",
+        "ぶるどーざー",
         "ぶろっこりー",
+        "ぶーめらん",
+        "へっどほん",
+        "へるめっと",
         "べると",
+        "べんち",
         "ぺろぺろきゃんでぃ",
         "ほん",
+        "まいく",
         "まぐかっぷ",
         "まる",
         "みみ",
         "め",
         "めざましどけい",
+        "やきゅうばっと",
         "やぶ",
         "ゆび",
         "よが"
@@ -5617,8 +5642,6 @@
         "おにぎり",
         "おばけ",
         "おれんじ",
-        "おーとばい",
-        "か",
         "かいがら",
         "かがみ",
         "かざん",
@@ -5646,7 +5669,6 @@
         "くじゃく",
         "くらげ",
         "くり",
-        "くりっぷ",
         "くわがた",
         "けいと",
         "けとる",
@@ -5667,8 +5689,6 @@
         "しか",
         "しずく",
         "しま",
-        "しょうぼうしゃ",
-        "しろ",
         "しんごう",
         "しんごうき",
         "しーそー",
@@ -5749,10 +5769,8 @@
         "ふえ",
         "ふで",
         "ふね",
-        "ふらみんご",
         "ふろ",
         "ぶらんこ",
-        "ぶるーべりー",
         "ぶろっこり",
         "ぷれぜんと",
         "へあぶらし",
@@ -5772,7 +5790,6 @@
         "むかで",
         "むぎ",
         "むしめがね",
-        "めがね",
         "もぐら",
         "もっきん",
         "ものさし",
@@ -5786,7 +5803,6 @@
         "ゆーふぉー",
         "ようなし",
         "らいむ",
-        "らじお",
         "らっこ",
         "らっぱ",
         "らんぷ",
@@ -5807,6 +5823,10 @@
           "word": "ほん"
         },
         {
+          "label": "boomerang",
+          "word": "ぶーめらん"
+        },
+        {
           "label": "bread",
           "word": "ぱん"
         },
@@ -5823,12 +5843,28 @@
           "word": "ぱそこん"
         },
         {
+          "label": "crayon",
+          "word": "くれよん"
+        },
+        {
           "label": "dragon",
           "word": "どらごん"
         },
         {
+          "label": "frying pan",
+          "word": "ふらいぱん"
+        },
+        {
           "label": "giraffe",
           "word": "きりん"
+        },
+        {
+          "label": "headphones",
+          "word": "へっどほん"
+        },
+        {
+          "label": "hospital",
+          "word": "びょういん"
         },
         {
           "label": "laptop",
@@ -5895,9 +5931,9 @@
         }
       ],
       "exhaustiveReducer": {
-        "cases": 177,
+        "cases": 209,
         "uncovered": [],
-        "terminalRestarts": 17
+        "terminalRestarts": 22
       },
       "uncoveredReproduction": {
         "guess": "ゐ",
@@ -5917,8 +5953,8 @@
             "complete": 256,
             "noModelReply": 0,
             "uncoveredLetter": 0,
-            "restarts": 130,
-            "slips": 85,
+            "restarts": 138,
+            "slips": 78,
             "examples": [
               {
                 "seed": 1,
@@ -5926,29 +5962,29 @@
                 "trace": [
                   {
                     "from": "すいか",
-                    "guess": "かご",
-                    "reply": "ごりら",
+                    "guess": "かお",
+                    "reply": "おにぎり",
                     "restart": false,
                     "slip": null
                   },
                   {
-                    "from": "ごりら",
-                    "guess": "らいおん",
-                    "reply": "ねこ",
-                    "restart": true,
-                    "slip": null
-                  },
-                  {
-                    "from": "ねこ",
-                    "guess": "こや",
-                    "reply": "やま",
+                    "from": "おにぎり",
+                    "guess": "りゅっく",
+                    "reply": "くるま",
                     "restart": false,
                     "slip": null
                   },
                   {
-                    "from": "やま",
-                    "guess": "まる",
-                    "reply": "るーれっと",
+                    "from": "くるま",
+                    "guess": "まぐかっぷ",
+                    "reply": "ぷれぜんと",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "ぷれぜんと",
+                    "guess": "どあ",
+                    "reply": "あざらし",
                     "restart": false,
                     "slip": null
                   }
@@ -5967,23 +6003,23 @@
                   },
                   {
                     "from": "なす",
-                    "guess": "すぷーん",
+                    "guess": "すなどけい",
+                    "reply": "いえ",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "いえ",
+                    "guess": "えんぴつ",
+                    "reply": "つき",
+                    "restart": false,
+                    "slip": null
+                  },
+                  {
+                    "from": "つき",
+                    "guess": "きりん",
                     "reply": "ねこ",
                     "restart": true,
-                    "slip": null
-                  },
-                  {
-                    "from": "ねこ",
-                    "guess": "こうもり",
-                    "reply": "りんご",
-                    "restart": false,
-                    "slip": null
-                  },
-                  {
-                    "from": "りんご",
-                    "guess": "こや",
-                    "reply": "やま",
-                    "restart": false,
                     "slip": null
                   }
                 ]
@@ -6029,8 +6065,8 @@
             "complete": 256,
             "noModelReply": 0,
             "uncoveredLetter": 0,
-            "restarts": 100,
-            "slips": 61,
+            "restarts": 117,
+            "slips": 50,
             "examples": [
               {
                 "seed": 1,
@@ -6086,15 +6122,15 @@
                   },
                   {
                     "from": "やま",
-                    "guess": "まくら",
-                    "reply": "らくだ",
+                    "guess": "まいく",
+                    "reply": "くるま",
                     "restart": false,
-                    "slip": "らいおん"
+                    "slip": null
                   },
                   {
-                    "from": "らくだ",
-                    "guess": "たまねぎ",
-                    "reply": "ぎたー",
+                    "from": "くるま",
+                    "guess": "まぐかっぷ",
+                    "reply": "ぷれぜんと",
                     "restart": false,
                     "slip": null
                   }
@@ -6113,22 +6149,22 @@
                   },
                   {
                     "from": "すいか",
-                    "guess": "かぬー",
-                    "reply": "うさぎ",
+                    "guess": "かに",
+                    "reply": "にわとり",
+                    "restart": false,
+                    "slip": "にんじん"
+                  },
+                  {
+                    "from": "にわとり",
+                    "guess": "りんご",
+                    "reply": "ごりら",
                     "restart": false,
                     "slip": null
                   },
                   {
-                    "from": "うさぎ",
-                    "guess": "ぎたー",
-                    "reply": "あざらし",
-                    "restart": false,
-                    "slip": null
-                  },
-                  {
-                    "from": "あざらし",
-                    "guess": "じゃがいも",
-                    "reply": "もぐら",
+                    "from": "ごりら",
+                    "guess": "らじお",
+                    "reply": "おにぎり",
                     "restart": false,
                     "slip": null
                   }
@@ -6244,12 +6280,12 @@
   ],
   "sourceSha256": {
     "scripts/audit-vocabulary.mjs": "2fe481b8c86585b6abfcd726e4dbd22795262f61119df6a03febdeb941cf8bb3",
-    "src/App.tsx": "ecd628e5d56ded1e943deca0399149febdaa044059014a34ffc57e9f0525e17f",
+    "src/App.tsx": "e8179f2e03aa77a3e2b878a09a5305b9ad2655c30e9e57e32727c5f5712d5c3f",
     "src/core/drawingHistory.ts": "20333d097246ba4f0b8f2df7f3b23ba753ffd57794826af7e6fdf7c96c822521",
-    "src/core/gameMachine.ts": "f2811fc95060ff7fa9026d95b932b7f8394448bd02db2459131677ff212a53f8",
+    "src/core/gameMachine.ts": "44e964e6693266b22d2767df051074ec0f26ea37ac28ffb0d15eb76423a52393",
     "src/core/naming.ts": "9d84d2ae55d589760aacece6e7391657d888164a280ed1230008ade839843ba0",
-    "src/core/score.ts": "c377a8358374056f40fe17c46a6db140c5dfe560bdcda4f76678e81d8d99b962",
-    "src/core/types.ts": "c113b3a890aaf44671ec6312617b4361b5df5239ddcea1124d03fd29fee9756e",
+    "src/core/score.ts": "3d39e8bc2e4cc83e66fe4428cb2748a40a4544c66909796bd7974ca53a6aef87",
+    "src/core/types.ts": "791d3c46ebfec05c76ea7738af92f72adbfe529b50b034393eee5ac305a0ca0d",
     "src/core/words.ts": "adba8a44daca27236e1ddf2695fcf4e280975e9bc44d9bc825fd6444a74b9363",
     "src/data/doodleLibrary.ts": "95aa0e2e327180ddc142dacd945486b73b194027dd7e7179fbf409a28a415552",
     "src/data/gameSketches.ts": "66980dfb681eedf9fb403d2554747631cff4b3b5ffd9004052e3d98a7de49498",
@@ -6282,8 +6318,8 @@
     "src/data/shizukuPoses.ts": "98df788e6a6c2279aa9dd84d36b834a6244def843d6fbce14ba51c4d1636e544",
     "src/data/sketch-provenance.json": "25499f9602abb548964df75b4c54ff5c5c13dbac4f07c2ae776681c3d3d7d1d3",
     "src/data/sketches.ts": "6ba6eebf54604facc488270753040d9883f93e7c95ddac699aedd1a4df6af015",
-    "src/services/quickDrawJapanese.ts": "ed1dc66f5eb52f604eb8f42451c3263716df19bc4a5e23cc699c0d8ae470ebab",
-    "src/services/quickDrawRecognizer.ts": "109538be73f20f26ba3f4ddd0c08098bc474073b5b0a8f78ab9fa5d7a4d750ab",
-    "src/services/quickDrawScores.ts": "13a5a79290167d0ff0d35f881941e294219e8ee01a4c499a7a970f45e4c5031b"
+    "src/services/quickDrawJapanese.ts": "682f9dfa6a19d82386518b5d5dfc06905611a224665cec1ad734942589f56308",
+    "src/services/quickDrawRecognizer.ts": "6fe8adccfdd120beee50abf02089600764b498f47d534634b7381b9036b73a55",
+    "src/services/quickDrawScores.ts": "f6bde299658e020af696ad4abb0236b6d9fedb3c98e83ff69da195593d58eacf"
   }
 }

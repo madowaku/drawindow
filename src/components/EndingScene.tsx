@@ -85,7 +85,7 @@ export function EndingScene(props: EndingSceneProps) {
         {revealed && (index === 0 || index > linkCount) && <div className="ending-link-space" aria-hidden="true" />}
         {revealed && index > 0 && index <= linkCount && <div className={`chain-link ${score.links[index - 1].status}`}>
           <span>{String(index).padStart(2, '0')} → {String(index + 1).padStart(2, '0')} · {linkLabel(score.links[index - 1], language)}</span>
-          <span>{score.links[index - 1].status === 'unknown' ? t('An intention was left unnamed', '名前のない絵がある') : `${score.links[index - 1].fromLetter?.toUpperCase()} → ${score.links[index - 1].toLetter?.toUpperCase()}`}</span>
+          <span>{score.links[index - 1].status === 'unknown' ? entries[index - 1]?.nonComparableReason === 'recognition_recovery' ? t('A fresh start after an unknown picture', 'わからない絵から、新しい一枚へ') : t('An intention was left unnamed', '名前のない絵がある') : `${score.links[index - 1].fromLetter?.toUpperCase()} → ${score.links[index - 1].toLetter?.toUpperCase()}`}</span>
         </div>}
         <div className={`result-drawing actor-${entry.actor}`}>
           <p className="eyebrow">{String(index + 1).padStart(2, '0')} · {entry.actor === 'girl' ? t('SHIZUKU', 'しずく') : t('YOU', 'あなた')}</p>
