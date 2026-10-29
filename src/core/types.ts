@@ -78,6 +78,8 @@ export interface WindowCanvasProps {
 }
 
 export type RecognitionSource = 'api' | 'mock' | 'ml';
+/** Additive diagnosis; legacy errorCode remains compatible with v1 saves. */
+export type RecognitionFailureReason = 'invalid_input' | 'low_score' | 'unmapped' | 'model_unavailable' | 'invalid_output' | 'uncovered_letter';
 export type RecognitionErrorCode =
   | 'unavailable'
   | 'timeout'
@@ -88,6 +90,7 @@ export type RecognitionErrorCode =
   | 'uncovered_letter';
 
 export interface RecognitionResult {
+  failureReason?: RecognitionFailureReason;
   guess: string | null;
   /** Validated noun spelling only; never a provider body or canonical replacement. */
   label?: string;
@@ -122,6 +125,7 @@ export interface RecognitionRequest extends RecognitionInput {
 }
 
 export interface GameError {
+  failureReason?: RecognitionFailureReason;
   code: RecognitionErrorCode;
   /** Safe non-spoiler copy, not raw provider output. */
   message: string;
