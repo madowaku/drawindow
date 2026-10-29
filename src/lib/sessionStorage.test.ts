@@ -93,6 +93,17 @@ it('preserves asymmetric Japanese intent spelling and meaning across resume', ()
   expect(restored.entries[1].naming?.meaning).toEqual(state.entries[1].naming?.meaning);
 });
 
+it('keeps a deterministic local failure non-retryable and rejects unknown reasons on reload', () => {
+  let state = gameReducer(drawing(), { type: 'DONE' });
+  state = gameReducer(state, { type: 'RECOGNITION_RESOLVED', requestId: state.recognitionRequest!.requestId, result: { guess: null, source: 'ml', errorCode: 'invalid_response', failureReason: 'low_score', error: 'low' } });
+  const restored = decodeSession(encodeSession(state, {}))!.state;
+  expect(restored.error).toMatchObject({ code: 'invalid_response', failureReason: 'low_score', retryable: false });
+  const forged = { ...state, error: { ...state.error!, retryable: true } };
+  expect(decodeSession(encodeSession(forged, {}))!.state.error?.retryable).toBe(false);
+  const unknown = { ...state, error: { ...state.error!, failureReason: 'guess' as never } };
+  expect(decodeSession(encodeSession(unknown, {}))).toBeNull();
+});
+
 it('does not revive exhausted retries or erase an invalid-input error on reload', () => {
   let state = gameReducer(drawing(), { type: 'DONE' });
   for (let i = 1; i <= 3; i++) {
