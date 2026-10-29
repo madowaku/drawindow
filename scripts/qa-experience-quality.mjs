@@ -133,7 +133,7 @@ try {
  });
  await page.getByRole('button',{name:/Use live API/}).click();await page.getByRole('button',{name:'START GAME',exact:true}).click();
  await page.getByRole('button',{name:'YOUR TURN',exact:true}).click();await draw(page);await page.getByRole('button',{name:'DONE',exact:true}).click();
- await page.getByRole('button',{name:'BACK',exact:true}).click();const undo=page.getByRole('button',{name:'Undo last edit',exact:true});assert(await undo.isEnabled(),'Recovered drawing is not editable');
+ await page.getByRole('button',{name:'ADD OR CHANGE LINES',exact:true}).click();const undo=page.getByRole('button',{name:'Undo last edit',exact:true});assert(await undo.isEnabled(),'Recovered drawing is not editable');
  await undo.click();assert(!await page.getByRole('button',{name:'DONE',exact:true}).isEnabled());await page.getByRole('button',{name:'Redo last edit',exact:true}).click();
  await page.getByRole('button',{name:'DONE',exact:true}).click();await page.getByRole('button',{name:'YOUR TURN',exact:true}).waitFor();
  assert.equal(requests.length,2);assert.notEqual(requests[0].requestId,requests[1].requestId);assert.equal(requests[0].imageSha256,requests[1].imageSha256,'API error editing changed restored inference');
