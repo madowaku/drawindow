@@ -173,7 +173,7 @@ try {
     await page.waitForTimeout(220);
     assert(await page.getByTestId('window-drawing-canvas').evaluate(c => c.toDataURL()) === ink, 'Error changed retained ink');
     await page.screenshot({ path: `${folder}/360-${mode}-error-fixture.png` });
-    await page.getByRole('button', { name: 'BACK', exact: true }).click(); await pose(page, 'curious');
+    await page.getByRole('button', { name: 'ADD OR CHANGE LINES', exact: true }).click(); await pose(page, 'curious');
     assert(await page.getByRole('button', { name: 'DONE', exact: true }).isEnabled(), 'Error/back lost drawing');
     await page.getByRole('button', { name: 'DONE', exact: true }).click();
     await page.waitForFunction(() => document.querySelector('main')?.dataset.phase === 'girl_breath');

@@ -98,7 +98,7 @@ try {
   await page.reload();
   await page.locator('.resume-button').click();
   assert.equal(await page.locator('main').getAttribute('data-phase'), 'recognition_error');
-  await page.getByRole('button', { name: 'BACK', exact: true }).click();
+  await page.getByRole('button', { name: 'ADD OR CHANGE LINES', exact: true }).click();
   assert.equal(await page.locator('main').getAttribute('data-phase'), 'player_drawing');
   result.checks.push('interrupted inference waits for explicit retry/back; drawing retained');
 

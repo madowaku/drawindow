@@ -119,14 +119,14 @@ try {
       const failedImageHash = requests.at(-1).imageSha256;
       assert(await page.getByTestId('window-drawing-canvas').evaluate(canvas => canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data.some((byte, i) => i % 4 === 3 && byte > 0)), 'Ink disappeared in error state');
       await page.screenshot({ path: `${folder}/${prefix}-error-503.png`, fullPage: true });
-      for (const name of ['TRY AGAIN', 'DEMO MODE', 'BACK']) {
+      for (const name of ['TRY AGAIN', 'DEMO MODE', 'ADD OR CHANGE LINES']) {
         const bounds = await page.getByRole('button', { name, exact: true }).boundingBox();
         assert(bounds && bounds.y >= 0 && bounds.y + bounds.height <= viewport.height, `${prefix}: ${name} outside viewport`);
       }
-      await page.getByRole('button', { name: 'BACK', exact: true }).click();
+      await page.getByRole('button', { name: 'ADD OR CHANGE LINES', exact: true }).click();
       await page.getByRole('button', { name: 'DONE', exact: true }).click();
       await page.getByRole('button', { name: 'YOUR TURN' }).waitFor();
-      assert.equal(requests.at(-1).imageSha256, failedImageHash, 'Restored neutral drawing differs after BACK');
+      assert.equal(requests.at(-1).imageSha256, failedImageHash, 'Restored neutral drawing differs after ADD OR CHANGE LINES');
       assert.equal(errors.length, 0, errors.join('\n'));
       report.journeys.push({ viewport, mode, reducedMotion: true, fourInterceptedCalls: true, fifthSkipped: true, selectionMatches: true, independentScoreMatches: true, noSpoilers: true, errorControlsReachable: true, errorInkRetained: true, errors });
       console.log(JSON.stringify({ passed: prefix, fixtureCalls: 4, scoreMatches: true }));
@@ -160,7 +160,7 @@ try {
     await noSpoilers(page);
     if (failure.status === 429) assert.match(await page.getByRole('alert').textContent(), /limit|quota/i);
     if (failure.status !== 200) await page.screenshot({ path: `${folder}/360-day-error-${failure.status}.png`, fullPage: true });
-    await page.getByRole('button', { name: 'BACK', exact: true }).click();
+    await page.getByRole('button', { name: 'ADD OR CHANGE LINES', exact: true }).click();
     assert(await page.getByTestId('window-drawing-canvas').evaluate(canvas => canvas.toDataURL()) === ink, 'Ink changed after BACK at fixed mobile width');
     responseCase = { status: 200, body: { guess: 'dog', source: 'api' } };
     await page.getByRole('button', { name: 'DONE', exact: true }).click();
