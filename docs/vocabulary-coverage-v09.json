@@ -6244,7 +6244,7 @@
   ],
   "sourceSha256": {
     "scripts/audit-vocabulary.mjs": "2fe481b8c86585b6abfcd726e4dbd22795262f61119df6a03febdeb941cf8bb3",
-    "src/App.tsx": "66a3a636db37c788f5467ed6abf0259d986ec257dd98bf2aec31ec40753da8b2",
+    "src/App.tsx": "8ac6f08e8efcd3d44b5b21c70aa4fb802a80ff2e92fa3914ec85fb3f747827b0",
     "src/core/drawingHistory.ts": "20333d097246ba4f0b8f2df7f3b23ba753ffd57794826af7e6fdf7c96c822521",
     "src/core/gameMachine.ts": "48451115d6ced3bb17f0d393c1548fd6b5ab8cc7a7c75c13fe3de95075449fbc",
     "src/core/naming.ts": "9d84d2ae55d589760aacece6e7391657d888164a280ed1230008ade839843ba0",
