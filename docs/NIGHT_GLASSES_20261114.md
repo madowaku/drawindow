@@ -40,6 +40,7 @@
 - Vitest：66ファイル415テスト成功。関連する画像manifestとシーンの16テストも成功。
 - TypeScript型検査・Vite本番ビルド成功。既存の500kB超チャンク警告は残る。
 - オフライン整合性：14テスト成功。
+- CIの語彙監査で画像参照ファイルの記録ハッシュ更新漏れを検出し、`audit-vocabulary.mjs` を再実行。`docs/vocabulary-coverage-v09.json` の `sourceSha256["src/data/shizukuPoses.ts"]` だけが更新され、語彙・集計結果は不変。文脈ポリシーレポートの `--check` も成功。
 - [表示検証](../artifacts/qa/night-glasses/report.json)：1280/390px × 日本語/英語の4条件で、タイトル・NIGHTプレビュー7ポーズ・本編待機・合成ストロークを確認。エラー0。眼鏡なし/ありの切り替えで霧と描画のcanvas画素が一致。
 - [本編ポーズ撮影](../artifacts/qa/night-glasses/acting/report.json)：通常モーションで1280/390pxの吐息・描画・待機を実フェーズで撮影。`scripts/qa-night-glasses-acting.mjs` で再現。
 - [既存本編通し検証](../artifacts/qa/night-glasses/journey/after.json)：日英×DAY/NIGHTの4条件、各5往復・10枚・9リンク。CLEAR/UNDO/REDOの霧の一致、保存描画の再開、1200×3000記念PNGダウンロード成功。NIGHT日本語390pxは通常モーション、他は動き軽減。ページエラー・外部通信0。
