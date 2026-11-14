@@ -6244,12 +6244,12 @@
   ],
   "sourceSha256": {
     "scripts/audit-vocabulary.mjs": "2fe481b8c86585b6abfcd726e4dbd22795262f61119df6a03febdeb941cf8bb3",
-    "src/App.tsx": "ecd628e5d56ded1e943deca0399149febdaa044059014a34ffc57e9f0525e17f",
+    "src/App.tsx": "66a3a636db37c788f5467ed6abf0259d986ec257dd98bf2aec31ec40753da8b2",
     "src/core/drawingHistory.ts": "20333d097246ba4f0b8f2df7f3b23ba753ffd57794826af7e6fdf7c96c822521",
-    "src/core/gameMachine.ts": "f2811fc95060ff7fa9026d95b932b7f8394448bd02db2459131677ff212a53f8",
+    "src/core/gameMachine.ts": "48451115d6ced3bb17f0d393c1548fd6b5ab8cc7a7c75c13fe3de95075449fbc",
     "src/core/naming.ts": "9d84d2ae55d589760aacece6e7391657d888164a280ed1230008ade839843ba0",
     "src/core/score.ts": "c377a8358374056f40fe17c46a6db140c5dfe560bdcda4f76678e81d8d99b962",
-    "src/core/types.ts": "c113b3a890aaf44671ec6312617b4361b5df5239ddcea1124d03fd29fee9756e",
+    "src/core/types.ts": "6425e0aa007d7eed2482e13de70f5c8b37a8200b5673a2284d8a7cd64d087c32",
     "src/core/words.ts": "adba8a44daca27236e1ddf2695fcf4e280975e9bc44d9bc825fd6444a74b9363",
     "src/data/doodleLibrary.ts": "95aa0e2e327180ddc142dacd945486b73b194027dd7e7179fbf409a28a415552",
     "src/data/gameSketches.ts": "66980dfb681eedf9fb403d2554747631cff4b3b5ffd9004052e3d98a7de49498",
@@ -6283,7 +6283,7 @@
     "src/data/sketch-provenance.json": "25499f9602abb548964df75b4c54ff5c5c13dbac4f07c2ae776681c3d3d7d1d3",
     "src/data/sketches.ts": "6ba6eebf54604facc488270753040d9883f93e7c95ddac699aedd1a4df6af015",
     "src/services/quickDrawJapanese.ts": "ed1dc66f5eb52f604eb8f42451c3263716df19bc4a5e23cc699c0d8ae470ebab",
-    "src/services/quickDrawRecognizer.ts": "109538be73f20f26ba3f4ddd0c08098bc474073b5b0a8f78ab9fa5d7a4d750ab",
-    "src/services/quickDrawScores.ts": "13a5a79290167d0ff0d35f881941e294219e8ee01a4c499a7a970f45e4c5031b"
+    "src/services/quickDrawRecognizer.ts": "75f85d7e43dc529147786072602a9430916ab9268ceaceeb3769b745a3bed31e",
+    "src/services/quickDrawScores.ts": "ef7e611d960cab7e261354dafb0c5f99762924b56dc3dd16b36255d5d2469ed0"
   }
 }

@@ -195,6 +195,22 @@ describe('five silent exchanges', () => {
     expect(restored.activeStrokes).toEqual(strokes);
     expect(gameReducer(state, { type: 'USE_DEMO' })).toMatchObject({ phase: 'recognizing', sessionKind: 'demo' });
   });
+  it('does not offer a futile retry when the same local ink must give the same answer', () => {
+    const local = () => done(toDraw(gameReducer(createInitialState(), { type: 'START', mode: 'day', sessionKind: 'ml', sketches })));
+    const fail = (state: GameState, failureReason: 'low_score' | 'unmapped' | 'model_unavailable') => gameReducer(state, { type: 'RECOGNITION_RESOLVED', requestId: state.recognitionRequest!.requestId,
+      result: { guess: null, source: 'ml', errorCode: failureReason === 'model_unavailable' ? 'unavailable' : 'invalid_response', failureReason, error: 'detail' } });
+    for (const reason of ['low_score', 'unmapped'] as const) {
+      const state = fail(local(), reason);
+      expect(state.error).toMatchObject({ code: 'invalid_response', failureReason: reason, retryable: false });
+      expect(gameReducer(state, { type: 'RETRY_RECOGNITION' })).toBe(state);
+      expect(gameReducer(state, { type: 'BACK_TO_DRAWING' }).activeStrokes).toEqual(strokes);
+    }
+    // A model that failed to load may succeed on a second attempt.
+    expect(fail(local(), 'model_unavailable').error).toMatchObject({ failureReason: 'model_unavailable', retryable: true });
+    const pending = local();
+    const uncovered = gameReducer(pending, { type: 'RECOGNITION_RESOLVED', requestId: pending.recognitionRequest!.requestId, result: { guess: 'zzz', source: 'ml' } });
+    expect(uncovered.error).toMatchObject({ code: 'uncovered_letter', retryable: false });
+  });
   it('does not accept invalid coordinates and supports clear and undo without advancing', () => {
     let state = toDraw(start());
     expect(gameReducer(state, { type: 'STROKES_CHANGED', strokes: [{ id: 'bad', points: [{ x: 2, y: 0, t: 0 }] }] })).toBe(state);

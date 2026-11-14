@@ -49,7 +49,7 @@ async function initialize(): Promise<Ready> {
 
 function fail(errorCode: 'invalid_input' | 'unavailable' | 'invalid_response'): RecognitionResult {
   return {
-    guess:null, source:'ml', errorCode,
+    guess:null, source:'ml', errorCode, failureReason: errorCode === 'invalid_input' ? 'invalid_input' : errorCode === 'invalid_response' ? 'invalid_output' : 'model_unavailable',
     error:'The on-device sketch model could not recognize this drawing. No image was uploaded.',
   };
 }
