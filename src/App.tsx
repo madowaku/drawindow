@@ -11,7 +11,7 @@ import type { DrawingRecognizer, GameEvent, GameState, GirlExpression, Language,
 import { withJapaneseStarter } from './data/japaneseSketches';
 import { TempoCanvas } from './components/TempoCanvas';
 import {usePremonition} from './lib/usePremonition';
-import {endingTempo,PRODUCT_TEMPO,PRODUCT_TEMPO_CONTROLS} from './lib/drawingTempo';
+import {endingTempo,PRODUCT_TEMPO,PRODUCT_TEMPO_CONTROLS,RECEIVE_MS} from './lib/drawingTempo';
 import { WindowCanvas } from './components/WindowCanvas';
 import { SketchThumbnail } from './components/SketchThumbnail';
 import { CharacterScene, characterArt } from './components/CharacterScene';
@@ -98,6 +98,14 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
     if (offlineEdition || studyOptions?.localOnly) void preloadQuickDrawModel().catch(() => { /* Explicit error on recognition. */ });
   }, [offlineEdition, studyOptions?.localOnly]);
   const reducedMotion = useReducedMotion();
+  // Production only: research pages keep their measured timings, and reduced
+  // motion already skips the gestures this pause gives room for.
+  const receiveMs = studyOptions || reducedMotion ? 0 : RECEIVE_MS[state.mode];
+  const receiveRef = useRef(receiveMs);
+  receiveRef.current = receiveMs;
+  // The fifth picture is never recognized. She still looks before asking about it.
+  const [finalLook, setFinalLook] = useState<number | null>(null);
+  const looking = finalLook !== null;
   const premonition=usePremonition(state,!studyOptions,reducedMotion);
   const phaseRef = useRef(state.phase);
   const active = !['title', 'review_intents', 'results'].includes(state.phase);
@@ -122,7 +130,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
 
   useEffect(() => {
     const handleEditShortcut = (event: KeyboardEvent) => {
-      if (state.phase !== 'player_drawing' || info || leave || event.defaultPrevented || event.isComposing || event.altKey || !(event.ctrlKey || event.metaKey)) return;
+      if (state.phase !== 'player_drawing' || looking || info || leave || event.defaultPrevented || event.isComposing || event.altKey || !(event.ctrlKey || event.metaKey)) return;
       const target = event.target;
       if (target instanceof HTMLElement && (target.isContentEditable || target.closest('input, textarea, select, [contenteditable]'))) return;
       const key = event.key.toLowerCase();
@@ -133,7 +141,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
     };
     window.addEventListener('keydown', handleEditShortcut);
     return () => window.removeEventListener('keydown', handleEditShortcut);
-  }, [state.phase, info, leave]);
+  }, [state.phase, looking, info, leave]);
 
   // Clear a completed developer record before painting the next session.
   useLayoutEffect(() => { onStateChange?.(state); }, [state, onStateChange]);
@@ -152,12 +160,32 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
     const request = state.recognitionRequest;
     if (state.phase !== 'recognizing' || !request) return;
     let current = true;
+    let hold: ReturnType<typeof setTimeout> | undefined;
+    const startedAt = performance.now();
     const runner = request.sessionKind === 'demo' ? runners.demo : request.sessionKind === 'ml' ? runners.ml : runners.api;
     void runner.recognize(request).then(result => {
-      if (current) dispatch({ type: 'RECOGNITION_RESOLVED', requestId: request.requestId, result });
+      if (!current) return;
+      const resolve = () => { if (current) dispatch({ type: 'RECOGNITION_RESOLVED', requestId: request.requestId, result }); };
+      // Keep the player's picture in front of her for a moment, even when the
+      // answer is already known. Slow recognizers are not delayed further.
+      const remaining = receiveRef.current - (performance.now() - startedAt);
+      if (remaining > 0) hold = setTimeout(resolve, remaining);
+      else resolve();
     });
-    return () => { current = false; };
+    return () => { current = false; clearTimeout(hold); };
   }, [state.recognitionRequest, state.phase, runners]);
+
+  useEffect(() => {
+    if (finalLook === null) return;
+    // Leaving or restarting during the look cancels it; nothing is submitted.
+    if (state.phase !== 'player_drawing' || state.sessionId !== finalLook) { setFinalLook(null); return; }
+    const timer = setTimeout(() => { setFinalLook(null); dispatch({ type: 'DONE' }); }, receiveRef.current);
+    return () => clearTimeout(timer);
+  }, [finalLook, state.phase, state.sessionId, dispatch]);
+  const finishDrawing = () => {
+    if (state.round === 5 && receiveRef.current > 0) setFinalLook(state.sessionId);
+    else dispatch({ type: 'DONE' });
+  };
 
   useEffect(() => {
     if (sound && phaseRef.current !== state.phase) {
@@ -208,7 +236,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
     }
   }, [state.phase, state.round]);
 
-  const canvasProps:WindowCanvasProps={expression:studyOptions?studyOptions.expression:premonition.expression,language:state.language,previousStrokes:state.entries.at(-1)?.falseStart?.strokes,mode:state.mode,phase:state.phase,round:state.round,strokes:selectVisibleStrokes(state),onStrokesChange:strokes=>dispatch({type:'STROKES_CHANGED',strokes}),onBreathDone:()=>dispatch({type:'BREATH_DONE'}),onPlaybackDone:()=>dispatch({type:'PLAYBACK_DONE'}),reducedMotion};
+  const canvasProps:WindowCanvasProps={expression:studyOptions?studyOptions.expression:premonition.expression,language:state.language,previousStrokes:state.entries.at(-1)?.falseStart?.strokes,mode:state.mode,phase:looking?'recognizing':state.phase,round:state.round,strokes:selectVisibleStrokes(state),onStrokesChange:strokes=>dispatch({type:'STROKES_CHANGED',strokes}),onBreathDone:()=>dispatch({type:'BREATH_DONE'}),onPlaybackDone:()=>dispatch({type:'PLAYBACK_DONE'}),reducedMotion};
   return <main ref={appScrollRef} className={`app ${title ? 'is-title' : ''} ${active ? 'is-playing' : ''}`} data-mode={state.mode} data-language={state.language} data-phase={state.phase} onFocusCapture={event => { if (state.phase === 'review_intents' && event.target instanceof HTMLInputElement) lastIntentFocusRef.current = event.target; }}>
     {import.meta.env.DEV && studyOptions?.header}
     <header className="topbar">
@@ -245,7 +273,7 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
     </section>}
 
     {active && <section className="play-layout" aria-label={t('Picture word chain', '絵のしりとり')}>
-      <div className="play-heading"><div><h1>{state.phase === 'player_drawing' ? t('Your little reply.', 'あなたからのお返事。') : state.phase === 'recognizing' ? t('A moment to wonder.', '少し、考えごと。') : state.phase === 'recognition_error' ? t('A little interruption.', 'ちょっとひと休み。') : t('What do you see?', '何に見える？')}</h1></div><div className="round-label"><span>{t('EXCHANGE', 'おうふく')}</span><strong>{String(state.round).padStart(2, '0')}<small> / 05</small></strong></div></div>
+      <div className="play-heading"><div><h1>{looking ? t('Your last reply.', '最後のお返事。') : state.phase === 'player_drawing' ? t('Your little reply.', 'あなたからのお返事。') : state.phase === 'recognizing' ? t('A moment to wonder.', '少し、考えごと。') : state.phase === 'recognition_error' ? t('A little interruption.', 'ちょっとひと休み。') : t('What do you see?', '何に見える？')}</h1></div><div className="round-label"><span>{t('EXCHANGE', 'おうふく')}</span><strong>{String(state.round).padStart(2, '0')}<small> / 05</small></strong></div></div>
       <div className={`window-surface phase-${state.phase}`}>
         {studyOptions?.renderCanvas?studyOptions.renderCanvas(canvasProps):studyOptions?<WindowCanvas {...canvasProps}/>:<TempoCanvas {...canvasProps} tempo={PRODUCT_TEMPO} controls={PRODUCT_TEMPO_CONTROLS} skipEpoch={skipEpoch}/>}
         <span className="demo-badge">{state.sessionKind === 'demo' ? 'DEMO' : state.sessionKind === 'ml' ? 'LOCAL AI' : 'LIVE API'}</span>
@@ -256,12 +284,13 @@ export default function App({ apiRecognizer, mlRecognizer, onStateChange, study 
             key={`${state.sessionId}:${state.round}`} phase={state.phase}
             onDone={() => dispatch({ type: 'GIRL_OOPS_BEAT_DONE', sessionId: state.sessionId, round: state.round, phase: state.phase as 'girl_notice' | 'girl_flustered' })} />}
           {state.phase === 'girl_holding' && <p>{t('Think of its English name. Use its last letter.', '見えたものの、最後の音から。')}</p>}
-          {state.phase === 'player_drawing' && <p>{t('Draw with your finger or mouse.', '指かマウスで描こう。')}</p>}
+          {state.phase === 'player_drawing' && !looking && <p>{t('Draw with your finger or mouse.', '指かマウスで描こう。')}</p>}
         </div>
         <div className="action-row">
           {!studyOptions&&['girl_breath','girl_drawing'].includes(state.phase)&&<button className="text-button" onClick={()=>setSkipEpoch(v=>v+1)}>{t('Continue','先へ進む')}</button>}
           {state.phase === 'girl_holding' && <button className="primary" onClick={() => dispatch({ type: 'YOUR_TURN' })}>{t('YOUR TURN', 'あなたの番')}<ArrowRight size={20} /></button>}
-          {state.phase === 'player_drawing' && <><button className="secondary tool" disabled={!state.drawingHistory.past.length} onClick={() => dispatch({ type: 'UNDO' })} aria-label={t('Undo last edit', '元に戻す')} title={t('Undo · Ctrl/Cmd+Z', '元に戻す · Ctrl/Cmd+Z')}><ArrowCounterClockwise size={21} /></button><button className="secondary tool" disabled={!state.drawingHistory.future.length} onClick={() => dispatch({ type: 'REDO' })} aria-label={t('Redo last edit', 'やり直す')} title={t('Redo · Ctrl/Cmd+Shift+Z', 'やり直す · Ctrl/Cmd+Shift+Z')}><ArrowClockwise size={21} /></button><button className="secondary tool clear-tool" disabled={!state.activeStrokes.length} onClick={() => dispatch({ type: 'CLEAR' })} aria-label={t('CLEAR', '消す')}><Eraser size={20} /><span>{t('CLEAR', '消す')}</span></button><button className="primary" disabled={!selectCanFinishDrawing(state)} onClick={() => dispatch({ type: 'DONE' })}>{t('DONE', 'できた')}<Check size={20} /></button></>}
+          {looking && <div className="waiting"><span className="waiting-mark" />{t('SHE IS LOOKING', 'しずくが見ています')}</div>}
+          {state.phase === 'player_drawing' && !looking && <><button className="secondary tool" disabled={!state.drawingHistory.past.length} onClick={() => dispatch({ type: 'UNDO' })} aria-label={t('Undo last edit', '元に戻す')} title={t('Undo · Ctrl/Cmd+Z', '元に戻す · Ctrl/Cmd+Z')}><ArrowCounterClockwise size={21} /></button><button className="secondary tool" disabled={!state.drawingHistory.future.length} onClick={() => dispatch({ type: 'REDO' })} aria-label={t('Redo last edit', 'やり直す')} title={t('Redo · Ctrl/Cmd+Shift+Z', 'やり直す · Ctrl/Cmd+Shift+Z')}><ArrowClockwise size={21} /></button><button className="secondary tool clear-tool" disabled={!state.activeStrokes.length} onClick={() => dispatch({ type: 'CLEAR' })} aria-label={t('CLEAR', '消す')}><Eraser size={20} /><span>{t('CLEAR', '消す')}</span></button><button className="primary" disabled={!selectCanFinishDrawing(state)} onClick={finishDrawing}>{t('DONE', 'できた')}<Check size={20} /></button></>}
           {['girl_breath', 'girl_drawing', 'girl_notice', 'girl_flustered', 'recognizing'].includes(state.phase) && <div className="waiting"><span className="waiting-mark" />{state.phase === 'recognizing' ? t('THINKING', '考え中') : t('HER TURN', 'しずくの番')}</div>}
           {state.phase === 'recognition_error' && <div className="error-actions"><p role="alert">{state.language === 'ja' ? state.error?.code === 'rate_limit' ? '認識回数の制限に達しました。少し時間をおいてください。絵は残っています。' : state.error?.code === 'uncovered_letter' ? studyOptions?.localOnly ? '次につながる絵が見つかりません。絵は残っています。戻って描き直せます。' : '次につながる絵が見つかりません。描き直すか、デモを試してください。' : '認識できませんでした。絵は残っています。' : state.error?.message || 'Connection unavailable. Please try again.'}</p><div>{state.error?.retryable && <button className="primary" onClick={() => dispatch({ type: 'RETRY_RECOGNITION' })}>{t('TRY AGAIN', 'もう一度')}</button>}{!studyOptions?.localOnly && <button className="secondary" onClick={() => dispatch({ type: 'USE_DEMO' })}>{t('DEMO MODE', 'デモにする')}</button>}<button className="text-button" onClick={() => dispatch({ type: 'BACK_TO_DRAWING' })}><ArrowLeft size={16} /> {t('BACK', '戻る')}</button></div>{!studyOptions?.localOnly && <small>{t('Demo uses simulated interpretations and no comparable score.', 'デモは認識をシミュレーションするため、正式なスコアにはなりません。')}</small>}</div>}
         </div>

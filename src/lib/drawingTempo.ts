@@ -5,6 +5,11 @@ export type Tempo = 'A' | 'B' | 'C';
 /** Owner-adopted defaults; research controls do not alter these. */
 export const PRODUCT_TEMPO='C' as const;
 export const PRODUCT_TEMPO_CONTROLS=Object.freeze({speed:1});
+/** Minimum still beat while she looks at the player's finished picture.
+ * Local inference answers in ~20ms, which removed this beat entirely. It only
+ * pads presentation time: never the recognizer's input, result or timeout.
+ */
+export const RECEIVE_MS:Readonly<Record<Mode,number>>=Object.freeze({day:800,night:950});
 export interface TempoControls { speed: number; hesitationMs?: number; }
 export interface TempoPlan {
   tempo: Tempo; strokes: readonly Stroke[]; drawingMs: number; breathMs: number;
