@@ -18,7 +18,7 @@ for (const item of original.files) {
     width: meta.width, height: meta.height, bytes: bytes.length, anchor: item.anchor });
 }
 await writeFile('assets/shizuku-night-glasses-manifest.json', JSON.stringify({
-  status: 'Formal candidate; human adoption review pending',
+  status: 'User adopted all seven poses on 2026-11-14, including shy; preserve current images without regeneration',
   provider: 'OpenAI built-in image_gen',
   processing: 'Uniform fit to 384x512 transparent canvas; WebP quality94 alphaQuality100. Original pajama assets retained.',
   files,

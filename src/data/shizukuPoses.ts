@@ -56,7 +56,7 @@ export const SHIZUKU_POSES: Record<ShizukuPoseId, ShizukuPose> = {
   },
 };
 
-/** NIGHT glasses candidate; original pajamas and DAY sources stay intact.
+/** User-adopted NIGHT glasses; original pajamas and DAY sources stay intact.
  * Anchors are recorded in the night-glasses manifest.
  */
 const NIGHT_EYE_ANCHORS: Record<ShizukuPoseId, PoseAnchor> = {
