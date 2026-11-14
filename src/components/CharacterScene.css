@@ -60,6 +60,11 @@
   opacity: 1;
 }
 
+/* The sprite's display:block must not override a failed image's hidden state. */
+.character-scene__sprite[hidden] {
+  display: none;
+}
+
 .character-scene[data-reduced-motion='true'] .character-scene__sprite {
   transition: none;
 }

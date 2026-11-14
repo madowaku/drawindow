@@ -1,0 +1,352 @@
+{
+  "date": "2026-10-28",
+  "timezone": "Asia/Tokyo",
+  "base": "0f38b0490eb0fc48d89dcb87e85e58c1b00dbc32",
+  "environment": {
+    "os": "Windows",
+    "node": "v24.14.1",
+    "playwright": "1.56.0",
+    "chromium": "141.0.7390.37"
+  },
+  "scope": "Compiled C + cosmetic D, synthetic strokes and actual on-device ML; graceful Chromium restart, not physical-device or human acceptance",
+  "fingerprint": "dec77cdcbbbca221",
+  "beforeFix": {
+    "fingerprint": "691569a973987dbe",
+    "failures": [
+      {
+        "name": "day-room-recovery",
+        "error": "AssertionError [ERR_ASSERTION]: Recovered room retains hidden=true after mode change\n\ntrue !== false\n"
+      },
+      {
+        "name": "day-failed-neutral-hidden",
+        "error": "AssertionError [ERR_ASSERTION]: Failed sprite overrides the HTML hidden attribute\n\n'block' !== 'none'\n"
+      },
+      {
+        "name": "night-room-recovery",
+        "error": "AssertionError [ERR_ASSERTION]: Recovered room retains hidden=true after mode change\n\ntrue !== false\n"
+      },
+      {
+        "name": "night-failed-neutral-hidden",
+        "error": "AssertionError [ERR_ASSERTION]: Failed sprite overrides the HTML hidden attribute\n\n'block' !== 'none'\n"
+      }
+    ],
+    "successfulChecks": [
+      "day-pose-fallback",
+      "night-pose-fallback",
+      "retry-quickdraw_model_static-tflite",
+      "retry-labels-txt"
+    ]
+  },
+  "afterFix": {
+    "assetRecovery": [
+      "day-room-recovery",
+      "day-failed-neutral-hidden",
+      "day-pose-fallback",
+      "night-room-recovery",
+      "night-failed-neutral-hidden",
+      "night-pose-fallback",
+      "retry-quickdraw_model_static-tflite",
+      "retry-labels-txt"
+    ],
+    "assetErrors": [],
+    "assetExternal": [],
+    "assetPosts": 0
+  },
+  "journeys": [
+    {
+      "language": "en",
+      "mode": "day",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "drawings": 5,
+      "recognitions": [
+        {
+          "guess": "circle",
+          "source": "ml",
+          "alternatives": [
+            "moon",
+            "potato",
+            "blueberry"
+          ]
+        },
+        {
+          "guess": "circle",
+          "source": "ml",
+          "alternatives": [
+            "moon",
+            "potato",
+            "blueberry"
+          ]
+        },
+        {
+          "guess": "circle",
+          "source": "ml",
+          "alternatives": [
+            "moon",
+            "potato",
+            "blueberry"
+          ]
+        },
+        {
+          "guess": "circle",
+          "source": "ml",
+          "alternatives": [
+            "moon",
+            "potato",
+            "blueberry"
+          ]
+        }
+      ],
+      "pictures": 10,
+      "links": 9,
+      "glass": {
+        "centerFogAlpha": 0,
+        "centerWetAlpha": 0,
+        "outsideFogAlpha": 152,
+        "clearUndoRedoExact": true
+      },
+      "recovery": {
+        "offlineBeforeClose": true,
+        "newBrowserProcess": true,
+        "drawingExact": true,
+        "historyExact": true,
+        "fogExact": true
+      },
+      "namingRestored": true,
+      "restoredIntroSkipped": true,
+      "souvenir": [
+        1200,
+        3000
+      ],
+      "downloadedBytes": 268424
+    },
+    {
+      "language": "en",
+      "mode": "night",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "drawings": 5,
+      "recognitions": [
+        {
+          "guess": "circle",
+          "source": "ml",
+          "alternatives": [
+            "moon",
+            "potato",
+            "blueberry"
+          ]
+        },
+        {
+          "guess": "circle",
+          "source": "ml",
+          "alternatives": [
+            "moon",
+            "potato",
+            "blueberry"
+          ]
+        },
+        {
+          "guess": "circle",
+          "source": "ml",
+          "alternatives": [
+            "moon",
+            "potato",
+            "blueberry"
+          ]
+        },
+        {
+          "guess": "circle",
+          "source": "ml",
+          "alternatives": [
+            "moon",
+            "potato",
+            "blueberry"
+          ]
+        }
+      ],
+      "pictures": 10,
+      "links": 9,
+      "glass": {
+        "centerFogAlpha": 0,
+        "centerWetAlpha": 0,
+        "outsideFogAlpha": 192,
+        "clearUndoRedoExact": true
+      },
+      "recovery": {
+        "offlineBeforeClose": true,
+        "newBrowserProcess": true,
+        "drawingExact": true,
+        "historyExact": true,
+        "fogExact": true
+      },
+      "namingRestored": true,
+      "restoredIntroSkipped": true,
+      "souvenir": [
+        1200,
+        3000
+      ],
+      "downloadedBytes": 268852
+    },
+    {
+      "language": "ja",
+      "mode": "day",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "drawings": 5,
+      "recognitions": [
+        {
+          "guess": "まる",
+          "source": "ml",
+          "alternatives": [
+            "つき",
+            "じゃがいも"
+          ]
+        },
+        {
+          "guess": "まる",
+          "source": "ml",
+          "alternatives": [
+            "つき",
+            "じゃがいも"
+          ]
+        },
+        {
+          "guess": "まる",
+          "source": "ml",
+          "alternatives": [
+            "つき",
+            "じゃがいも"
+          ]
+        },
+        {
+          "guess": "まる",
+          "source": "ml",
+          "alternatives": [
+            "つき",
+            "じゃがいも"
+          ]
+        }
+      ],
+      "pictures": 10,
+      "links": 9,
+      "glass": {
+        "centerFogAlpha": 0,
+        "centerWetAlpha": 0,
+        "outsideFogAlpha": 155,
+        "clearUndoRedoExact": true
+      },
+      "recovery": {
+        "offlineBeforeClose": true,
+        "newBrowserProcess": true,
+        "drawingExact": true,
+        "historyExact": true,
+        "fogExact": true
+      },
+      "namingRestored": true,
+      "restoredIntroSkipped": true,
+      "souvenir": [
+        1200,
+        3000
+      ],
+      "downloadedBytes": 271183
+    },
+    {
+      "language": "ja",
+      "mode": "night",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "drawings": 5,
+      "recognitions": [
+        {
+          "guess": "まる",
+          "source": "ml",
+          "alternatives": [
+            "つき",
+            "じゃがいも"
+          ]
+        },
+        {
+          "guess": "まる",
+          "source": "ml",
+          "alternatives": [
+            "つき",
+            "じゃがいも"
+          ]
+        },
+        {
+          "guess": "まる",
+          "source": "ml",
+          "alternatives": [
+            "つき",
+            "じゃがいも"
+          ]
+        },
+        {
+          "guess": "まる",
+          "source": "ml",
+          "alternatives": [
+            "つき",
+            "じゃがいも"
+          ]
+        }
+      ],
+      "pictures": 10,
+      "links": 9,
+      "glass": {
+        "centerFogAlpha": 0,
+        "centerWetAlpha": 0,
+        "outsideFogAlpha": 193,
+        "clearUndoRedoExact": true
+      },
+      "recovery": {
+        "offlineBeforeClose": true,
+        "newBrowserProcess": true,
+        "drawingExact": true,
+        "historyExact": true,
+        "fogExact": true
+      },
+      "namingRestored": true,
+      "restoredIntroSkipped": true,
+      "souvenir": [
+        1200,
+        3000
+      ],
+      "downloadedBytes": 269152
+    }
+  ],
+  "external": [],
+  "posts": 0,
+  "errors": [],
+  "checks": {
+    "vitest": {
+      "files": 66,
+      "passed": 417
+    },
+    "offlineIntegrity": 14,
+    "auth": 6,
+    "offlineLifecycle": "passed",
+    "savedSession": "passed",
+    "coldStart": "passed; four reduced-motion journeys; 55 cached assets; 4 music decodes"
+  },
+  "localPackage": {
+    "sha256": "550c7cc5d59de2fb31e79363b7fcd65eed0d1e668741d6c8cd7ad60a71f544e7",
+    "entries": 56,
+    "bytes": 34185654,
+    "extractedByteParity": true
+  },
+  "humanAcceptance": "Not performed: physical drawing feel, enjoyment, recognition accuracy, Android/iframe/audio listening acceptance",
+  "evidence": [
+    "output/playwright/v012/journeys/",
+    "output/playwright/v012/asset-recovery/",
+    "artifacts/release/offline-browser-cold-start.json",
+    "artifacts/release/offline-session-resume.json"
+  ]
+}
