@@ -19,7 +19,7 @@ describe('character presentation lifecycle', () => {
     rerender(<CharacterScene mode="day" phase="player_drawing" hasPlayerMarks reducedMotion={false} />);
     expect(screen.getByTestId('character-scene').getAttribute('data-pose')).toBe('curious');
     rerender(<CharacterScene mode="night" phase="player_drawing" reducedMotion={false} />);
-    expect([...document.querySelectorAll('.character-scene__sprite')].every(img => img.getAttribute('src')?.includes('/art/shizuku-night/'))).toBe(true);
+    expect([...document.querySelectorAll('.character-scene__sprite')].every(img => img.getAttribute('src')?.includes('/art/shizuku-night-glasses/'))).toBe(true);
     expect(document.body.textContent).not.toMatch(/Shizuku|しずく/);
   });
 
@@ -178,7 +178,7 @@ it('recovers a failed night pose to pajama neutral, including after changing mod
   const { rerender } = render(<CharacterScene mode="night" phase="girl_breath" reducedMotion />);
   const active = document.querySelector<HTMLImageElement>('.character-scene__sprite[data-active="true"]')!;
   fireEvent.error(active);
-  expect(active.src).toContain('/art/shizuku-night/neutral.webp');
+  expect(active.src).toContain('/art/shizuku-night-glasses/neutral.webp');
   fireEvent.error(active);
   expect(active.hidden).toBe(true);
   rerender(<CharacterScene mode="day" phase="girl_breath" reducedMotion />);

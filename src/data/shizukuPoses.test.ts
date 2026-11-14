@@ -54,14 +54,14 @@ describe('Shizuku pose manifest', () => {
 });
 
 it('ships all seven night poses with transparent alpha and hashes matching the manifest', async () => {
-  const manifest = JSON.parse(await readFile('assets/shizuku-night-manifest.json', 'utf8'));
+  const manifest = JSON.parse(await readFile('assets/shizuku-night-glasses-manifest.json', 'utf8'));
   expect(manifest.files).toHaveLength(7);
   expect(Object.keys(SHIZUKU_NIGHT_POSES).sort()).toEqual(Object.keys(SHIZUKU_POSES).sort());
   for (const file of manifest.files) {
     const pose = SHIZUKU_NIGHT_POSES[file.pose as ShizukuPoseId];
     const bytes = await readFile(file.filename);
     expect(createHash('sha256').update(bytes).digest('hex')).toBe(file.sha256);
-    expect(pose.src).toBe(`${import.meta.env.BASE_URL}art/shizuku-night/${file.pose}.webp`);
+    expect(pose.src).toBe(`${import.meta.env.BASE_URL}art/shizuku-night-glasses/${file.pose}.webp`);
     expect(pose.anchor).toEqual(file.anchor);
     const meta = await sharp(bytes).metadata();
     expect([meta.width, meta.height, meta.hasAlpha]).toEqual([384, 512, true]);

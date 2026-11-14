@@ -1,0 +1,36 @@
+{
+  "scope": "Actual NIGHT game phases, automated Chromium, normal motion.",
+  "captures": [
+    {
+      "width": 1280,
+      "phase": "girl_breath",
+      "pose": "neutral"
+    },
+    {
+      "width": 1280,
+      "phase": "girl_drawing",
+      "pose": "drawing"
+    },
+    {
+      "width": 1280,
+      "phase": "girl_holding",
+      "pose": "neutral"
+    },
+    {
+      "width": 390,
+      "phase": "girl_breath",
+      "pose": "neutral"
+    },
+    {
+      "width": 390,
+      "phase": "girl_drawing",
+      "pose": "drawing"
+    },
+    {
+      "width": 390,
+      "phase": "girl_holding",
+      "pose": "neutral"
+    }
+  ],
+  "errors": []
+}

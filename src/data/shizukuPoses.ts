@@ -56,8 +56,8 @@ export const SHIZUKU_POSES: Record<ShizukuPoseId, ShizukuPose> = {
   },
 };
 
-/** NIGHT owns a complete pajama set; DAY's adopted sources stay intact.
- * Anchors are measured for the generated portraits in the night manifest.
+/** NIGHT glasses candidate; original pajamas and DAY sources stay intact.
+ * Anchors are recorded in the night-glasses manifest.
  */
 const NIGHT_EYE_ANCHORS: Record<ShizukuPoseId, PoseAnchor> = {
   neutral: { x: .5, y: .397 }, thinking: { x: .521, y: .350 },
@@ -71,6 +71,6 @@ export const SHIZUKU_NIGHT_POSES: Record<ShizukuPoseId, ShizukuPose> = Object.fr
     ...pose,
     anchor: NIGHT_EYE_ANCHORS[id as ShizukuPoseId],
     ...(id === 'drawing' ? { handTipAnchor: { x: .375, y: .5 } } : {}),
-    src: `${import.meta.env.BASE_URL}art/shizuku-night/${id}.webp`,
+    src: `${import.meta.env.BASE_URL}art/shizuku-night-glasses/${id}.webp`,
   }]),
 ) as Record<ShizukuPoseId, ShizukuPose>;
