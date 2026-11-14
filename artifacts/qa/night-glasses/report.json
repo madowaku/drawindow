@@ -1,0 +1,38 @@
+{
+  "scope": "Automated Chromium, synthetic input. Not human or real-phone acceptance.",
+  "cases": [
+    {
+      "width": 1280,
+      "language": "ja",
+      "previewPoses": 7,
+      "title": true,
+      "gameSyntheticStroke": true,
+      "fogAndDrawingIdentical": true
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "previewPoses": 7,
+      "title": true,
+      "gameSyntheticStroke": true,
+      "fogAndDrawingIdentical": true
+    },
+    {
+      "width": 390,
+      "language": "ja",
+      "previewPoses": 7,
+      "title": true,
+      "gameSyntheticStroke": true,
+      "fogAndDrawingIdentical": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "previewPoses": 7,
+      "title": true,
+      "gameSyntheticStroke": true,
+      "fogAndDrawingIdentical": true
+    }
+  ],
+  "errors": []
+}

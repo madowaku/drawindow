@@ -1,0 +1,98 @@
+{
+  "status": "User adopted all seven poses on 2026-11-14, including shy; preserve current images without regeneration",
+  "provider": "OpenAI built-in image_gen",
+  "processing": "Uniform fit to 384x512 transparent canvas; WebP quality94 alphaQuality100. Original pajama assets retained.",
+  "files": [
+    {
+      "pose": "neutral",
+      "filename": "public/art/shizuku-night-glasses/neutral.webp",
+      "source": "assets/source/shizuku-night-glasses/neutral.png",
+      "sha256": "1fec65f9543e1d5da05aa04210a1c462d369f77c4a453686c39c64d80ea10d97",
+      "width": 384,
+      "height": 512,
+      "bytes": 76620,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.397
+      }
+    },
+    {
+      "pose": "thinking",
+      "filename": "public/art/shizuku-night-glasses/thinking.webp",
+      "source": "assets/source/shizuku-night-glasses/thinking.png",
+      "sha256": "953ba0bb2ae58345629147afe6d9eed6ece9271dc54094c71ad7448e54d9f826",
+      "width": 384,
+      "height": 512,
+      "bytes": 73258,
+      "anchor": {
+        "x": 0.521,
+        "y": 0.35
+      }
+    },
+    {
+      "pose": "smile",
+      "filename": "public/art/shizuku-night-glasses/smile.webp",
+      "source": "assets/source/shizuku-night-glasses/smile.png",
+      "sha256": "bd1af867b12133d792f67a6a16326cea37e461bfa8233dc330a885ef77a8ef1f",
+      "width": 384,
+      "height": 512,
+      "bytes": 69422,
+      "anchor": {
+        "x": 0.505,
+        "y": 0.381
+      }
+    },
+    {
+      "pose": "shy",
+      "filename": "public/art/shizuku-night-glasses/shy.webp",
+      "source": "assets/source/shizuku-night-glasses/shy.png",
+      "sha256": "a03a2637b69d6f44cae3e7d1d4b892abdb3efed441bff6189b6d511cee26e35d",
+      "width": 384,
+      "height": 512,
+      "bytes": 74080,
+      "anchor": {
+        "x": 0.479,
+        "y": 0.43
+      }
+    },
+    {
+      "pose": "breath",
+      "filename": "public/art/shizuku-night-glasses/breath.webp",
+      "source": "assets/source/shizuku-night-glasses/breath.png",
+      "sha256": "e635f46a10583e70861d1ee5dd3ec01194835cab9228886a92c97fadc96bb4cd",
+      "width": 384,
+      "height": 512,
+      "bytes": 81706,
+      "anchor": {
+        "x": 0.531,
+        "y": 0.393
+      }
+    },
+    {
+      "pose": "curious",
+      "filename": "public/art/shizuku-night-glasses/curious.webp",
+      "source": "assets/source/shizuku-night-glasses/curious.png",
+      "sha256": "2f317c0da8c55c936eb652e556f2d23532afdb6c49bb6f40f99f9b7183c76362",
+      "width": 384,
+      "height": 512,
+      "bytes": 75650,
+      "anchor": {
+        "x": 0.505,
+        "y": 0.381
+      }
+    },
+    {
+      "pose": "drawing",
+      "filename": "public/art/shizuku-night-glasses/drawing.webp",
+      "source": "assets/source/shizuku-night-glasses/drawing.png",
+      "sha256": "bb5cb76ddfdb3179bd51f1b22f1c11643560dc7e81a7573ff5f0a6cd5da7d822",
+      "width": 384,
+      "height": 512,
+      "bytes": 72188,
+      "anchor": {
+        "x": 0.549,
+        "y": 0.371
+      }
+    }
+  ]
+}
