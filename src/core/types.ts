@@ -78,6 +78,8 @@ export interface WindowCanvasProps {
 }
 
 export type RecognitionSource = 'api' | 'mock' | 'ml';
+/** Additive diagnosis; legacy errorCode remains compatible with v1 saves. */
+export type RecognitionFailureReason = 'invalid_input' | 'low_score' | 'unmapped' | 'model_unavailable' | 'invalid_output' | 'uncovered_letter';
 export type RecognitionErrorCode =
   | 'unavailable'
   | 'timeout'
@@ -88,6 +90,7 @@ export type RecognitionErrorCode =
   | 'uncovered_letter';
 
 export interface RecognitionResult {
+  failureReason?: RecognitionFailureReason;
   guess: string | null;
   /** Validated noun spelling only; never a provider body or canonical replacement. */
   label?: string;
@@ -122,13 +125,14 @@ export interface RecognitionRequest extends RecognitionInput {
 }
 
 export interface GameError {
+  failureReason?: RecognitionFailureReason;
   code: RecognitionErrorCode;
   /** Safe non-spoiler copy, not raw provider output. */
   message: string;
   retryable: boolean;
 }
 
-export type NonComparableReason = 'demo' | 'mock' | 'uncovered_letter';
+export type NonComparableReason = 'demo' | 'mock' | 'uncovered_letter' | 'recognition_recovery';
 
 export interface NameObservation {
   label: string | null;
@@ -164,6 +168,8 @@ export interface DrawingEntry {
 }
 
 export interface GameState {
+  /** Reuses an explicitly failed local result when BACK → DONE submits identical ink. */
+  lastLocalFailure?: { strokes: readonly Stroke[]; result: RecognitionResult };
   language: Language;
   phase: GamePhase;
   mode: Mode;
@@ -198,6 +204,7 @@ export type GameEvent =
   | { type: 'REDO' }
   | { type: 'DONE' }
   | { type: 'RECOGNITION_RESOLVED'; requestId: string; result: RecognitionResult }
+  | { type: 'CONTINUE_UNRECOGNIZED' } // DEV reducer only; production ignores this event.
   | { type: 'RETRY_RECOGNITION' }
   | { type: 'USE_DEMO' }
   | { type: 'BACK_TO_DRAWING' }

@@ -1,0 +1,1184 @@
+{
+  "baseline": "main@3dad268",
+  "baselineMapped": 177,
+  "baselineUnmapped": 168,
+  "scope": "Semantic/category audit, not human recognition accuracy. A candidates are not automatically adopted.",
+  "classes": [
+    {
+      "label": "The Eiffel Tower",
+      "category": "A",
+      "candidate": "えっふぇるとう",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "The Great Wall of China",
+      "category": "A",
+      "candidate": "ばんりのちょうじょう",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "The Mona Lisa",
+      "category": "C",
+      "candidate": "もなりざ",
+      "adopted": false,
+      "reason": "Action, abstract mark or named work; weak ordinary picture-shiritori noun."
+    },
+    {
+      "label": "aircraft carrier",
+      "category": "A",
+      "candidate": "こうくうぼかん",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "animal migration",
+      "category": "C",
+      "candidate": "どうぶつのいどう",
+      "adopted": false,
+      "reason": "Action, abstract mark or named work; weak ordinary picture-shiritori noun."
+    },
+    {
+      "label": "anvil",
+      "category": "A",
+      "candidate": "かなとこ",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "asparagus",
+      "category": "A",
+      "candidate": "あすぱらがす",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "bandage",
+      "category": "B",
+      "candidate": "ばんそうこう",
+      "adopted": false,
+      "reason": "Adhesive dressing versus wrapped bandage; ばんそうこう would narrow the class without evidence."
+    },
+    {
+      "label": "baseball",
+      "category": "B",
+      "candidate": "やきゅう",
+      "adopted": false,
+      "reason": "Sport versus baseball ball; やきゅう is an activity, ぼーる loses sport specificity."
+    },
+    {
+      "label": "baseball bat",
+      "category": "A",
+      "candidate": "やきゅうばっと",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "basketball",
+      "category": "B",
+      "candidate": "ばすけっとぼーる",
+      "adopted": false,
+      "reason": "Sport versus ball; preserve which object the category represents."
+    },
+    {
+      "label": "beach",
+      "category": "A",
+      "candidate": "はまべ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "beard",
+      "category": "A",
+      "candidate": "あごひげ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "bench",
+      "category": "A",
+      "candidate": "べんち",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "binoculars",
+      "category": "A",
+      "candidate": "そうがんきょう",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "birthday cake",
+      "category": "A",
+      "candidate": "ばーすでーけーき",
+      "adopted": false,
+      "reason": "Distinct subtype noun retained in candidate wording; do not collapse it into the existing broader category."
+    },
+    {
+      "label": "blackberry",
+      "category": "A",
+      "candidate": "ぶらっくべりー",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "blueberry",
+      "category": "A",
+      "candidate": "ぶるーべりー",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "boomerang",
+      "category": "A",
+      "candidate": "ぶーめらん",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "bulldozer",
+      "category": "A",
+      "candidate": "ぶるどーざー",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "calculator",
+      "category": "A",
+      "candidate": "でんたく",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "camouflage",
+      "category": "B",
+      "candidate": "めいさい",
+      "adopted": false,
+      "reason": "Pattern, clothing or concealment action; めいさい alone is not a concrete object."
+    },
+    {
+      "label": "campfire",
+      "category": "A",
+      "candidate": "たきび",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "cannon",
+      "category": "A",
+      "candidate": "たいほう",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "castle",
+      "category": "A",
+      "candidate": "しろ",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "ceiling fan",
+      "category": "A",
+      "candidate": "てんじょうせんぷうき",
+      "adopted": false,
+      "reason": "Distinct subtype noun retained in candidate wording; do not collapse it into the existing broader category."
+    },
+    {
+      "label": "cell phone",
+      "category": "A",
+      "candidate": "けいたいでんわ",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "cello",
+      "category": "A",
+      "candidate": "ちぇろ",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "chandelier",
+      "category": "A",
+      "candidate": "しゃんでりあ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "church",
+      "category": "A",
+      "candidate": "きょうかい",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "clarinet",
+      "category": "A",
+      "candidate": "くらりねっと",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "compass",
+      "category": "B",
+      "candidate": "こんぱす",
+      "adopted": false,
+      "reason": "Drawing compass versus magnetic direction finder; Japanese nouns differ."
+    },
+    {
+      "label": "cooler",
+      "category": "B",
+      "candidate": "くーらーぼっくす",
+      "adopted": false,
+      "reason": "Cool box versus cooling appliance; くーらー alone changes the object."
+    },
+    {
+      "label": "crayon",
+      "category": "A",
+      "candidate": "くれよん",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "cruise ship",
+      "category": "A",
+      "candidate": "くるーずせん",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "dishwasher",
+      "category": "A",
+      "candidate": "しょっきあらいき",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "diving board",
+      "category": "A",
+      "candidate": "とびこみだい",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "dresser",
+      "category": "B",
+      "candidate": "たんす",
+      "adopted": false,
+      "reason": "Chest of drawers versus dressing table; Japanese nouns differ."
+    },
+    {
+      "label": "drill",
+      "category": "A",
+      "candidate": "どりる",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "drums",
+      "category": "B",
+      "candidate": "どらむ",
+      "adopted": false,
+      "reason": "Drum kit versus individual drum; no silent narrowing to a specific drum."
+    },
+    {
+      "label": "dumbbell",
+      "category": "A",
+      "candidate": "だんべる",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "elbow",
+      "category": "A",
+      "candidate": "ひじ",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "eyeglasses",
+      "category": "A",
+      "candidate": "めがね",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "fence",
+      "category": "A",
+      "candidate": "ふぇんす",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "fire hydrant",
+      "category": "A",
+      "candidate": "しょうかせん",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "fireplace",
+      "category": "A",
+      "candidate": "だんろ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "firetruck",
+      "category": "A",
+      "candidate": "しょうぼうしゃ",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "flamingo",
+      "category": "A",
+      "candidate": "ふらみんご",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "flashlight",
+      "category": "A",
+      "candidate": "かいちゅうでんとう",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "flip flops",
+      "category": "A",
+      "candidate": "びーちさんだる",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "floor lamp",
+      "category": "A",
+      "candidate": "ふろあらんぷ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "flying saucer",
+      "category": "A",
+      "candidate": "そらとぶえんばん",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "frying pan",
+      "category": "A",
+      "candidate": "ふらいぱん",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "garden",
+      "category": "A",
+      "candidate": "にわ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "garden hose",
+      "category": "A",
+      "candidate": "みずまきほーす",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "goatee",
+      "category": "A",
+      "candidate": "やぎひげ",
+      "adopted": false,
+      "reason": "Distinct subtype noun retained in candidate wording; do not collapse it into the existing broader category."
+    },
+    {
+      "label": "golf club",
+      "category": "A",
+      "candidate": "ごるふくらぶ",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "harp",
+      "category": "A",
+      "candidate": "はーぷ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "headphones",
+      "category": "A",
+      "candidate": "へっどほん",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "helmet",
+      "category": "A",
+      "candidate": "へるめっと",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "hexagon",
+      "category": "A",
+      "candidate": "ろっかくけい",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "hockey puck",
+      "category": "A",
+      "candidate": "ほっけーぱっく",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "hockey stick",
+      "category": "A",
+      "candidate": "ほっけーすてぃっく",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "hospital",
+      "category": "A",
+      "candidate": "びょういん",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "hot air balloon",
+      "category": "A",
+      "candidate": "ねつききゅう",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "hot dog",
+      "category": "A",
+      "candidate": "ほっとどっぐ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "hot tub",
+      "category": "D",
+      "candidate": "おふろ",
+      "adopted": false,
+      "reason": "おふろ collides with mapped bathtub; preserve the category distinction before adoption."
+    },
+    {
+      "label": "hourglass",
+      "category": "A",
+      "candidate": "すなどけい",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "house plant",
+      "category": "A",
+      "candidate": "かんようしょくぶつ",
+      "adopted": false,
+      "reason": "Distinct subtype noun retained in candidate wording; do not collapse it into the existing broader category."
+    },
+    {
+      "label": "hurricane",
+      "category": "B",
+      "candidate": "はりけーん",
+      "adopted": false,
+      "reason": "Storm type and geographic naming; avoid translating as an arbitrary cyclone drawing."
+    },
+    {
+      "label": "jail",
+      "category": "A",
+      "candidate": "ろうや",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "keyboard",
+      "category": "B",
+      "candidate": "きーぼーど",
+      "adopted": false,
+      "reason": "Computer versus musical keyboard; preserve instrument distinction."
+    },
+    {
+      "label": "knee",
+      "category": "A",
+      "candidate": "ひざ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "lantern",
+      "category": "A",
+      "candidate": "らんたん",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "leg",
+      "category": "D",
+      "candidate": "あし",
+      "adopted": false,
+      "reason": "あし collides with mapped foot and dictionary body-part meanings; do not treat leg and foot as equivalent."
+    },
+    {
+      "label": "lighter",
+      "category": "A",
+      "candidate": "らいたー",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "lighthouse",
+      "category": "A",
+      "candidate": "とうだい",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "lightning",
+      "category": "A",
+      "candidate": "かみなり",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "line",
+      "category": "C",
+      "candidate": "せん",
+      "adopted": false,
+      "reason": "Action, abstract mark or named work; weak ordinary picture-shiritori noun."
+    },
+    {
+      "label": "lipstick",
+      "category": "A",
+      "candidate": "くちべに",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "lobster",
+      "category": "A",
+      "candidate": "ろぶすたー",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "mailbox",
+      "category": "A",
+      "candidate": "ゆうびんうけ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "marker",
+      "category": "B",
+      "candidate": "まーかー",
+      "adopted": false,
+      "reason": "Felt-tip pen versus a position marker; inspect category conventions."
+    },
+    {
+      "label": "matches",
+      "category": "A",
+      "candidate": "まっち",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "megaphone",
+      "category": "A",
+      "candidate": "めがほん",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "mermaid",
+      "category": "A",
+      "candidate": "にんぎょ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "microphone",
+      "category": "A",
+      "candidate": "まいく",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "microwave",
+      "category": "A",
+      "candidate": "でんしれんじ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "mosquito",
+      "category": "A",
+      "candidate": "か",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "motorbike",
+      "category": "A",
+      "candidate": "おーとばい",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "moustache",
+      "category": "A",
+      "candidate": "くちひげ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "nail",
+      "category": "B",
+      "candidate": "くぎ",
+      "adopted": false,
+      "reason": "Metal nail versus fingernail; くぎ requires category evidence."
+    },
+    {
+      "label": "ocean",
+      "category": "A",
+      "candidate": "うみ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "octagon",
+      "category": "A",
+      "candidate": "はっかくけい",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "oven",
+      "category": "A",
+      "candidate": "おーぶん",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "paint can",
+      "category": "A",
+      "candidate": "ぺんきかん",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "paintbrush",
+      "category": "A",
+      "candidate": "えふで",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "palm tree",
+      "category": "A",
+      "candidate": "やしのき",
+      "adopted": false,
+      "reason": "Distinct subtype noun retained in candidate wording; do not collapse it into the existing broader category."
+    },
+    {
+      "label": "paper clip",
+      "category": "A",
+      "candidate": "くりっぷ",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "parachute",
+      "category": "A",
+      "candidate": "ぱらしゅーと",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "passport",
+      "category": "A",
+      "candidate": "ぱすぽーと",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "peanut",
+      "category": "A",
+      "candidate": "ぴーなっつ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "peas",
+      "category": "A",
+      "candidate": "えんどうまめ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "pickup truck",
+      "category": "A",
+      "candidate": "ぴっくあっぷとらっく",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "picture frame",
+      "category": "A",
+      "candidate": "がくぶち",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "pliers",
+      "category": "A",
+      "candidate": "ぺんち",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "police car",
+      "category": "A",
+      "candidate": "ぱとかー",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "pond",
+      "category": "A",
+      "candidate": "いけ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "pool",
+      "category": "B",
+      "candidate": "ぷーる",
+      "adopted": false,
+      "reason": "Swimming pool versus other senses; inspect category drawings."
+    },
+    {
+      "label": "popsicle",
+      "category": "A",
+      "candidate": "あいすきゃんでぃー",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "postcard",
+      "category": "A",
+      "candidate": "はがき",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "power outlet",
+      "category": "A",
+      "candidate": "こんせんと",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "purse",
+      "category": "B",
+      "candidate": "はんどばっぐ",
+      "adopted": false,
+      "reason": "Handbag versus coin purse; はんどばっぐ can narrow the category."
+    },
+    {
+      "label": "radio",
+      "category": "A",
+      "candidate": "らじお",
+      "adopted": true,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "rake",
+      "category": "A",
+      "candidate": "くまで",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "remote control",
+      "category": "A",
+      "candidate": "りもこん",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "rifle",
+      "category": "A",
+      "candidate": "らいふる",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "roller coaster",
+      "category": "A",
+      "candidate": "じぇっとこーすたー",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "rollerskates",
+      "category": "A",
+      "candidate": "ろーらーすけーと",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "sandwich",
+      "category": "A",
+      "candidate": "さんどいっち",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "saw",
+      "category": "A",
+      "candidate": "のこぎり",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "saxophone",
+      "category": "A",
+      "candidate": "さっくす",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "school bus",
+      "category": "A",
+      "candidate": "すくーるばす",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "scorpion",
+      "category": "A",
+      "candidate": "さそり",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "screwdriver",
+      "category": "A",
+      "candidate": "どらいばー",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "sea turtle",
+      "category": "A",
+      "candidate": "うみがめ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "see saw",
+      "category": "A",
+      "candidate": "しーそー",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "shorts",
+      "category": "A",
+      "candidate": "はんずぼん",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "shovel",
+      "category": "A",
+      "candidate": "しゃべる",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "sink",
+      "category": "A",
+      "candidate": "ながしだい",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "skateboard",
+      "category": "A",
+      "candidate": "すけーとぼーど",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "skyscraper",
+      "category": "A",
+      "candidate": "まてんろう",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "sleeping bag",
+      "category": "A",
+      "candidate": "ねぶくろ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "smiley face",
+      "category": "B",
+      "candidate": "えがお",
+      "adopted": false,
+      "reason": "Symbol versus a smiling face; えがお may change category specificity."
+    },
+    {
+      "label": "snorkel",
+      "category": "A",
+      "candidate": "しゅのーける",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "soccer ball",
+      "category": "A",
+      "candidate": "さっかーぼーる",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "speedboat",
+      "category": "A",
+      "candidate": "すぴーどぼーと",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "spreadsheet",
+      "category": "C",
+      "candidate": "ひょうけいさんしーと",
+      "adopted": false,
+      "reason": "Action, abstract mark or named work; weak ordinary picture-shiritori noun."
+    },
+    {
+      "label": "square",
+      "category": "A",
+      "candidate": "しかく",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "squiggle",
+      "category": "C",
+      "candidate": "ぐにゃぐにゃのせん",
+      "adopted": false,
+      "reason": "Action, abstract mark or named work; weak ordinary picture-shiritori noun."
+    },
+    {
+      "label": "steak",
+      "category": "A",
+      "candidate": "すてーき",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "stereo",
+      "category": "A",
+      "candidate": "すてれお",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "stethoscope",
+      "category": "A",
+      "candidate": "ちょうしんき",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "stitches",
+      "category": "B",
+      "candidate": "ぬいめ",
+      "adopted": false,
+      "reason": "Sewing stitches versus sutures; keep interpretation open."
+    },
+    {
+      "label": "stop sign",
+      "category": "A",
+      "candidate": "いちじていしひょうしき",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "stove",
+      "category": "B",
+      "candidate": "こんろ",
+      "adopted": false,
+      "reason": "Cooking stove versus heating stove; こんろ and すとーぶ differ."
+    },
+    {
+      "label": "streetlight",
+      "category": "A",
+      "candidate": "がいとう",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "string bean",
+      "category": "A",
+      "candidate": "いんげんまめ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "submarine",
+      "category": "A",
+      "candidate": "せんすいかん",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "suitcase",
+      "category": "A",
+      "candidate": "すーつけーす",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "swing set",
+      "category": "A",
+      "candidate": "ぶらんこ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "syringe",
+      "category": "A",
+      "candidate": "ちゅうしゃき",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "teddy-bear",
+      "category": "A",
+      "candidate": "てでぃべあ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "tennis racquet",
+      "category": "A",
+      "candidate": "てにすらけっと",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "toe",
+      "category": "A",
+      "candidate": "あしのゆび",
+      "adopted": false,
+      "reason": "Distinct subtype noun retained in candidate wording; do not collapse it into the existing broader category."
+    },
+    {
+      "label": "toothpaste",
+      "category": "A",
+      "candidate": "はみがきこ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "tornado",
+      "category": "A",
+      "candidate": "たつまき",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "tractor",
+      "category": "A",
+      "candidate": "とらくたー",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "traffic light",
+      "category": "A",
+      "candidate": "しんごうき",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "trombone",
+      "category": "A",
+      "candidate": "とろんぼーん",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "trumpet",
+      "category": "A",
+      "candidate": "とらんぺっと",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "underwear",
+      "category": "A",
+      "candidate": "したぎ",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "washing machine",
+      "category": "A",
+      "candidate": "せんたくき",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "waterslide",
+      "category": "A",
+      "candidate": "うぉーたーすらいだー",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "wine bottle",
+      "category": "A",
+      "candidate": "わいんぼとる",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "wine glass",
+      "category": "A",
+      "candidate": "わいんぐらす",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "wristwatch",
+      "category": "A",
+      "candidate": "うでどけい",
+      "adopted": false,
+      "reason": "Direct category noun; candidate pending continuity and naming checks."
+    },
+    {
+      "label": "zigzag",
+      "category": "C",
+      "candidate": "じぐざぐ",
+      "adopted": false,
+      "reason": "Action, abstract mark or named work; weak ordinary picture-shiritori noun."
+    }
+  ]
+}

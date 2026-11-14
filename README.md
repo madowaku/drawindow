@@ -1,3 +1,17 @@
+# DRAWINDOW v0.13 research — しずくは何を見た？
+
+This Draft PR starts from main's adopted C tempo and D reactions. It adds explicit local-recognition failure reasons, 32 conservative Japanese category names, meaningful retry handling, and DEV-only freehand preprocessing and continuation studies. Image-only A recognition and production preprocessing remain the defaults.
+
+- `/?recognition-benchmark` → 自由描画・前処理比較: same-stroke six-condition diagnostics, human ratings, JSON/CSV; stroke export requires explicit consent.
+- `/?recognition-recovery`: A/B continuation study; B retains unknown drawings and never awards a rescued link or a perfect score.
+- [Analysis and decisions](docs/RECOGNITION_v013.md), [168-class audit](docs/QUICKDRAW_JAPANESE_AUDIT_v013.md), [verification](docs/RECOGNITION_v013_VERIFICATION.md), [human protocol](docs/RECOGNITION_v013_HUMAN_TEST.md).
+- `node scripts/audit-recognition-v013.mjs`, `node scripts/qa-recognition-v013.mjs`, and `node scripts/qa-recognition-v013-performance.mjs` reproduce the developer checks. Browser scripts need Playwright available in the local development environment.
+- `node scripts/package-offline.mjs --build-only` assembles and scans the offline site without creating or replacing a ZIP.
+
+No merge, publication, deployment, or sales-archive replacement. Human drawing accuracy, enjoyment, and physical Android acceptance remain pending.
+
+---
+
 # DRAWINDOW v0.12 窓辺の時間・小さな予感
 
 `npm run dev` の `/?window-time` で、同じ絵を現行A／ゆったりB／とてもゆったりCの共通時計で比較できます。「５往復を試す」は同じApp・端末内画像認識Aを使い、息・線・絵日記・またねまでの時間を研究します。本人の試遊後、本編はCのテンポとDの小さな表情を採用しました。画像認識はA（画像のみ）を維持します。

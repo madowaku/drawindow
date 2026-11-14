@@ -12,6 +12,7 @@ export interface ApiRecognizerOptions {
 }
 
 export interface RecognitionRunnerOptions {
+  failureSource?: RecognitionResult['source'];
   timeoutMs?: number;
   maxEntries?: number;
 }
@@ -102,6 +103,7 @@ export function createDemoRecognizer(): DrawingRecognizer {
 
 /** Own one runner per app instance. Abort of an observer must not cancel a shared request. */
 export function createRecognitionRunner(recognizer: DrawingRecognizer, options: RecognitionRunnerOptions = {}): DrawingRecognizer {
+  const runnerFailure = (code: RecognitionErrorCode): RecognitionResult => ({ ...failure(code), source: options.failureSource ?? 'api', ...(options.failureSource === 'ml' ? { failureReason: 'model_unavailable' as const } : {}) });
   const requests = new Map<string, Promise<RecognitionResult>>();
   const maxEntries = Math.max(10, Math.min(100, options.maxEntries ?? 50));
   return { recognize(input) {
@@ -110,8 +112,8 @@ export function createRecognitionRunner(recognizer: DrawingRecognizer, options: 
     const controller = new AbortController();
     let timer: ReturnType<typeof setTimeout>;
     const request = Promise.race([
-      Promise.resolve().then(() => recognizer.recognize(input, { signal: controller.signal })).catch(() => failure('network')),
-      new Promise<RecognitionResult>(resolve => { timer = setTimeout(() => { controller.abort(); resolve(failure('timeout')); }, Math.min(25000, Math.max(1, options.timeoutMs ?? 15000))); }),
+      Promise.resolve().then(() => recognizer.recognize(input, { signal: controller.signal })).catch(() => runnerFailure('network')),
+      new Promise<RecognitionResult>(resolve => { timer = setTimeout(() => { controller.abort(); resolve(runnerFailure('timeout')); }, Math.min(25000, Math.max(1, options.timeoutMs ?? 15000))); }),
     ]).finally(() => clearTimeout(timer));
     requests.set(input.requestId, request);
     while (requests.size > maxEntries) requests.delete(requests.keys().next().value!);

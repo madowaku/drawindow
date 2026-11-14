@@ -1,3 +1,5 @@
+import { createRequire } from 'node:module';
+import { dirname } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { readFile, readdir, writeFile, rm, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -6,7 +8,12 @@ import sharp from 'sharp';
 import { offlineWorker } from './offline-worker.mjs';
 import { scanOfflineDistribution } from './scan-offline-dist.mjs';
 
+const require = createRequire(import.meta.url);
 function run(file,args=[],env=process.env) {
+  if (file.startsWith('node_modules/')) {
+    const [name, ...parts] = file.slice('node_modules/'.length).split('/');
+    file = join(dirname(require.resolve(name + '/package.json')), ...parts);
+  }
   const proc=spawnSync(process.execPath,[file,...args],{stdio:'inherit',env});
   if(proc.error)throw proc.error;
   if(proc.status!==0)process.exit(proc.status??1);
@@ -77,4 +84,5 @@ await writeFile('artifacts/release/offline-assets-receipt.json',JSON.stringify({
   caveat:'Runtime offline acceptance on real Android/browser pending'
 },null,2));
 process.env.DRAWINDOW_PACKAGE_MODE='offline';
-await import('./package-itch.mjs');
+// Verification can assemble the offline site without touching any distributable ZIP.
+if (!process.argv.includes('--build-only')) await import('./package-itch.mjs');

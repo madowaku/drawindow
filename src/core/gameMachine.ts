@@ -37,8 +37,8 @@ function withRequest(state: GameState, entry: DrawingEntry, attempt = 1): GameSt
 }
 
 function errorState(state: GameState, code: RecognitionErrorCode, result?: RecognitionResult): GameState {
-  const retryable = code !== 'invalid_input' && (state.recognitionRequest?.attempt ?? MAX_ATTEMPTS) < MAX_ATTEMPTS;
-  const error: GameError = { code, retryable, message: code === 'uncovered_letter' ? "She can't think of the next drawing. Try again, redraw, or continue as a demo." : code === 'rate_limit' ? 'Recognition limit or quota reached. Please wait at least a minute before trying again. Your drawing is safe.' : "She couldn't read the drawing this time. Your drawing is safe." };
+  const retryable = code !== 'invalid_input' && code !== 'uncovered_letter' && !['invalid_input', 'low_score', 'unmapped'].includes(result?.failureReason ?? '') && (state.recognitionRequest?.attempt ?? MAX_ATTEMPTS) < MAX_ATTEMPTS;
+  const error: GameError = { code, retryable, ...(result?.failureReason ? { failureReason: result.failureReason } : {}), message: code === 'uncovered_letter' ? "She can't think of the next drawing. Your picture is safe; you can change a few lines." : code === 'rate_limit' ? 'Recognition limit or quota reached. Please wait at least a minute before trying again. Your drawing is safe.' : "She couldn't read the drawing this time. Your drawing is safe." };
   const entries = result ? state.entries.map(entry => entry.id === state.recognitionRequest?.playerEntryId ? { ...recordRecognition(entry, result, state.language), ...(code === 'uncovered_letter' ? { comparable: false, nonComparableReason: 'uncovered_letter' as const } : {}) } : entry) : state.entries;
   return { ...state, phase: 'recognition_error', error, entries };
 }
@@ -82,7 +82,7 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
       return { ...state, phase: 'girl_breath', girlCorrection: null,
         entries: [...state.entries.slice(0, -1), { ...correction, falseStart }] };
     }
-    case 'YOUR_TURN': return state.phase === 'girl_holding' ? { ...state, phase: 'player_drawing', activeStrokes: [], drawingHistory: { past: [], future: [] }, error: null } : state;
+    case 'YOUR_TURN': return state.phase === 'girl_holding' ? { ...state, phase: 'player_drawing', activeStrokes: [], lastLocalFailure: undefined, drawingHistory: { past: [], future: [] }, error: null } : state;
     case 'STROKES_CHANGED': {
       if (state.phase !== 'player_drawing' || !validStrokes(event.strokes) || sameStrokes(state.activeStrokes, event.strokes)) return state;
       // A gesture publishes repeatedly. Only its new ID creates an undo step.
@@ -111,7 +111,12 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
       const entry: DrawingEntry = { id: `${state.sessionId}:player:${state.round}`, actor: 'player', round: state.round, strokes: copyStrokes(state.activeStrokes), intendedWord: null, recognition: null,
         comparable: state.sessionKind === 'api', ...(state.sessionKind === 'demo' ? { nonComparableReason: 'demo' } : {}) };
       const next = { ...state, entries: [...state.entries, entry] };
-      return state.round === 5 ? { ...next, phase: 'review_intents', recognitionRequest: null, error: null } : withRequest(next, entry);
+      if (state.round === 5) return { ...next, phase: 'review_intents', recognitionRequest: null, error: null };
+      const requested = withRequest({ ...next, lastLocalFailure: undefined }, entry);
+      if (state.sessionKind === 'ml' && state.lastLocalFailure && sameStrokes(state.lastLocalFailure.strokes, entry.strokes)) {
+        return errorState(requested, state.lastLocalFailure.result.errorCode ?? 'invalid_response', state.lastLocalFailure.result);
+      }
+      return requested;
     }
     case 'RECOGNITION_RESOLVED': {
       if (state.phase !== 'recognizing' || state.recognitionRequest?.requestId !== event.requestId) return state;
@@ -127,7 +132,7 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
       const sketch = chainRestart
         ? selectJapaneseFreshSketch(state.sketches, usedIds)
         : selectGirlSketch(state.language === 'ja' ? state.sketches.filter(candidate => lastLetter(candidate.word, 'ja') !== 'ん') : state.sketches, tail, usedIds, state.language, state.mode);
-      if (!sketch) return errorState(state, 'uncovered_letter', result);
+      if (!sketch) return errorState(state, 'uncovered_letter', { ...result, failureReason: 'uncovered_letter' });
       const entries = state.entries.map(entry => entry.id === state.recognitionRequest?.playerEntryId ? recordRecognition(entry, result, state.language) : entry);
       const round = state.round + 1;
       // One eligible slip in a rotating three-round slot; never the starter or
@@ -150,7 +155,10 @@ export function gameReducer(state: GameState, event: GameEvent): GameState {
     }
     case 'BACK_TO_DRAWING': {
       if (state.phase !== 'recognition_error') return state;
-      return { ...state, phase: 'player_drawing', entries: state.entries.slice(0, -1), activeStrokes: copyStrokes(state.entries.at(-1)!.strokes), recognitionRequest: null, error: null };
+      const result = state.entries.at(-1)?.recognition;
+      const lastLocalFailure = state.sessionKind === 'ml' && result?.failureReason && ['invalid_input', 'low_score', 'unmapped'].includes(result.failureReason)
+        ? { strokes: copyStrokes(state.activeStrokes), result } : undefined;
+      return { ...state, lastLocalFailure, phase: 'player_drawing', entries: state.entries.slice(0, -1), activeStrokes: copyStrokes(state.entries.at(-1)!.strokes), recognitionRequest: null, error: null };
     }
     case 'SET_INTENT': {
       if (state.phase !== 'review_intents' || !state.entries.some(e => e.id === event.entryId && e.actor === 'player')) return state;

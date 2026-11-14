@@ -1,4 +1,4 @@
-import type { DrawingRecognizer, RecognitionErrorCode, RecognitionSource, Stroke } from '../core/types';
+import type { DrawingRecognizer, RecognitionResult, RecognitionErrorCode, RecognitionSource, Stroke } from '../core/types';
 import { lastLetter, normalizeWord, selectGirlSketch } from '../core/words';
 import { girlSketches } from '../data/sketches';
 import { renderDrawingDataUrl } from '../lib/strokes';
@@ -39,6 +39,7 @@ export interface BenchmarkAttempt extends DrawerIdentity {
   imageBytes: number;
   guess: string | null;
   top3: { label: string; score: number }[] | null;
+  failureReason: RecognitionResult['failureReason'] | null;
   modelOutcome: QuickDrawDiagnostic['outcome'] | null;
   top3MatchesIntent: boolean | null;
   chainContinued: boolean | null;
@@ -109,7 +110,7 @@ export class BenchmarkSession {
     // One explicit invocation, no runner, retry loop, effects or DEMO adapter.
     let result;
     try { result = await recognizer.recognize({ requestId, strokes, imageDataUrl }); }
-    catch { result = { guess: null, source: 'api' as const, errorCode: 'network' as const }; }
+    catch { result = { guess: null, source: 'api' as const, errorCode: 'network' as const, failureReason: undefined }; }
     const elapsedMs = Math.max(0, Math.round(performance.now() - started));
     const validGuess = (result.source === 'api' || result.source === 'ml') && !result.error && !result.errorCode && typeof result.guess === 'string' && result.guess === normalizeWord(result.guess);
     const guess = validGuess ? result.guess : null;
@@ -122,7 +123,7 @@ export class BenchmarkSession {
       drawerId: identity.drawerId, device: identity.device, inputTypes: [...new Set(identity.inputTypes)],
       attempt: previous.length + 1, requestId, rawPointCount: strokes.reduce((count, stroke) => count + stroke.points.length, 0),
       imageWidth: 512, imageHeight: 512, imageBytes: Math.floor(base64.length * 3 / 4) - (base64.match(/=+$/)?.[0].length ?? 0),
-      guess, top3: diagnostic ? (diagnostic as QuickDrawDiagnostic).top3 : null, modelOutcome: diagnostic ? (diagnostic as QuickDrawDiagnostic).outcome : null, top3MatchesIntent: null, chainContinued: null, errorCode, source: result.source === 'mock' ? 'mock' : result.source === 'ml' ? 'ml' : 'api', httpStatus, elapsedMs, timestamp,
+      failureReason: result.failureReason ?? null, guess, top3: diagnostic ? (diagnostic as QuickDrawDiagnostic).top3 : null, modelOutcome: diagnostic ? (diagnostic as QuickDrawDiagnostic).outcome : null, top3MatchesIntent: null, chainContinued: null, errorCode, source: result.source === 'mock' ? 'mock' : result.source === 'ml' ? 'ml' : 'api', httpStatus, elapsedMs, timestamp,
       judgement: null, rationale: '', nextInitial, nextTemplateCovered: nextInitial ? !!nextTemplate : null, nextTemplateId: nextTemplate?.id ?? null,
     };
     this.attempts.push(record);
@@ -182,7 +183,7 @@ function safeAttempt(item: BenchmarkAttempt): BenchmarkAttempt {
     sampleId: item.sampleId, intent: item.intent, category: item.category, ambiguity: item.ambiguity,
     drawerId: cleanText(item.drawerId), device: item.device, inputTypes: [...item.inputTypes], attempt: item.attempt,
     requestId: item.requestId, rawPointCount: item.rawPointCount, imageWidth: item.imageWidth, imageHeight: item.imageHeight, imageBytes: item.imageBytes,
-    guess: item.guess, top3: item.top3?.map(({label, score}) => ({label: cleanText(label), score})) ?? null, modelOutcome: item.modelOutcome, top3MatchesIntent: item.top3MatchesIntent, chainContinued: item.chainContinued, errorCode: item.errorCode, source: item.source, httpStatus: item.httpStatus, elapsedMs: item.elapsedMs, timestamp: item.timestamp,
+    failureReason: item.failureReason, guess: item.guess, top3: item.top3?.map(({label, score}) => ({label: cleanText(label), score})) ?? null, modelOutcome: item.modelOutcome, top3MatchesIntent: item.top3MatchesIntent, chainContinued: item.chainContinued, errorCode: item.errorCode, source: item.source, httpStatus: item.httpStatus, elapsedMs: item.elapsedMs, timestamp: item.timestamp,
     judgement: item.judgement, rationale: cleanText(item.rationale), nextInitial: item.nextInitial, nextTemplateCovered: item.nextTemplateCovered, nextTemplateId: item.nextTemplateId,
   };
 }
@@ -191,7 +192,7 @@ export function exportJson(session: BenchmarkSession): string {
 }
 export function exportCsv(session: BenchmarkSession): string {
   const rows = session.attempts.map(safeAttempt);
-  const columns: (keyof BenchmarkAttempt)[] = ['sampleId', 'drawerId', 'device', 'inputTypes', 'intent', 'category', 'ambiguity', 'attempt', 'rawPointCount', 'requestId', 'guess', 'top3', 'modelOutcome', 'top3MatchesIntent', 'chainContinued', 'errorCode', 'source', 'httpStatus', 'elapsedMs', 'timestamp', 'judgement', 'rationale', 'imageWidth', 'imageHeight', 'imageBytes', 'nextInitial', 'nextTemplateCovered', 'nextTemplateId'];
+  const columns: (keyof BenchmarkAttempt)[] = ['sampleId', 'drawerId', 'device', 'inputTypes', 'intent', 'category', 'ambiguity', 'attempt', 'rawPointCount', 'requestId', 'guess', 'failureReason', 'top3', 'modelOutcome', 'top3MatchesIntent', 'chainContinued', 'errorCode', 'source', 'httpStatus', 'elapsedMs', 'timestamp', 'judgement', 'rationale', 'imageWidth', 'imageHeight', 'imageBytes', 'nextInitial', 'nextTemplateCovered', 'nextTemplateId'];
   const cell = (value: unknown) => {
     const text = Array.isArray(value) ? value.map(entry => typeof entry === 'object' ? JSON.stringify(entry) : entry).join('|') : value == null ? '' : String(value);
     const safe = /^\s*[=+\-@\t\r]/.test(text) ? `'${text}` : text;

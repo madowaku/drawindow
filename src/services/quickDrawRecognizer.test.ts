@@ -1,16 +1,16 @@
 // @vitest-environment jsdom
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import vocabulary from '../../docs/vocabulary-coverage-v09.json';
-const { run, tensorDelete, outputDelete, runtime } = vi.hoisted(() => ({ run: vi.fn(), tensorDelete: vi.fn(), outputDelete: vi.fn(), runtime: { scores: [] as number[] } }));
+const { run, tensorDelete, outputDelete, runtime } = vi.hoisted(() => ({ run: vi.fn(), tensorDelete: vi.fn(), outputDelete: vi.fn(), runtime: { scores: [] as number[], noOutputs: false } }));
 vi.mock('@litertjs/core', () => ({
   loadLiteRt: vi.fn(async () => {}),
-  loadAndCompile: vi.fn(async () => ({ getInputDetails: () => [{ shape: [1,28,28,1] }], getOutputDetails: () => [{ shape: [1,345] }], run: async () => { run(); return [{ data: async () => new Float32Array(runtime.scores), delete: outputDelete }]; } })),
+  loadAndCompile: vi.fn(async () => ({ getInputDetails: () => [{ shape: [1,28,28,1] }], getOutputDetails: () => [{ shape: [1,345] }], run: async () => { run(); if (runtime.noOutputs) return []; return [{ data: async () => new Float32Array(runtime.scores), delete: outputDelete }]; } })),
   Tensor: class { delete = tensorDelete; },
 }));
 const labels = vocabulary.model.labelsText.trim().split('\n');
 const strokes = [{ id: 'synthetic', points: [{ x: .2, y: .2, t: 0 }, { x: .7, y: .7, t: 10 }] }];
 beforeEach(() => {
-  vi.resetModules(); vi.clearAllMocks();
+  vi.resetModules(); vi.clearAllMocks(); runtime.noOutputs = false;
   vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, text: async () => labels.join('\n'),arrayBuffer:async()=>new ArrayBuffer(16) })));
   runtime.scores = labels.map(label => label === 'cat' ? .7 : label === 'dog' ? .2 : .0001);
 });
@@ -44,4 +44,13 @@ it('retries model fetching without reloading LiteRT and compiles the same local 
  const {preloadQuickDrawModel,createQuickDrawRecognizer}=await import('./quickDrawRecognizer');await expect(preloadQuickDrawModel()).rejects.toThrow('ERR_CACHE_WRITE_FAILURE');
  const result=await createQuickDrawRecognizer().recognize({requestId:'retry',strokes,language:'en'});expect(result.guess).toBe('cat');expect(lite.loadLiteRt).toHaveBeenCalledTimes(1);
  expect(lite.loadAndCompile).toHaveBeenCalledWith(expect.any(Uint8Array),{accelerator:'wasm'});expect(fetch).toHaveBeenCalledWith(expect.stringContaining('quickdraw_model_static.tflite'),{cache:'no-store'});
+});
+
+it('classifies missing output as invalid_output and model execution errors as model_unavailable', async () => {
+  const { createQuickDrawRecognizer } = await import('./quickDrawRecognizer');
+  runtime.noOutputs = true;
+  expect(await createQuickDrawRecognizer().recognize({ requestId: 'missing', strokes })).toMatchObject({ errorCode: 'invalid_response', failureReason: 'invalid_output' });
+  runtime.noOutputs = false;
+  run.mockImplementationOnce(() => { throw Error('synthetic runtime failure'); });
+  expect(await createQuickDrawRecognizer().recognize({ requestId: 'execution', strokes })).toMatchObject({ errorCode: 'unavailable', failureReason: 'model_unavailable' });
 });

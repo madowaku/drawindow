@@ -25,6 +25,7 @@ export function linkLabel(link: ScoreLink, language: Language): string {
 
 export function entryNote(entry: DrawingEntry, language: Language): string | null {
   const t = (en: string, ja: string) => language === 'ja' ? ja : en;
+  if (entry.nonComparableReason === 'recognition_recovery') return t('She could not understand this picture; you chose a fresh start. The next link is unknown.', 'この絵はわからないまま、あなたが次の一枚へ進みました。次のつながりは不明です。');
   if (entry.chainRestart) return t('The chain ended in ん; a new drawing began.', '「ん」で途切れて、新しい絵から再開しました。');
   if (entry.nonComparableReason === 'uncovered_letter') return t('The catalogue had no next drawing. This is not a recognition mistake.', '次の音の絵が用意されていませんでした。認識の誤りではありません。');
   return null;

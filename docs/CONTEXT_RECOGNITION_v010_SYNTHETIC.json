@@ -12709,6 +12709,7 @@
           {
             "rank": 13,
             "label": "anvil",
+            "word": "かなとこ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -12729,6 +12730,7 @@
           {
             "rank": 16,
             "label": "asparagus",
+            "word": "あすぱらがす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -12775,6 +12777,7 @@
           {
             "rank": 23,
             "label": "baseball bat",
+            "word": "やきゅうばっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -12841,6 +12844,7 @@
           {
             "rank": 33,
             "label": "bench",
+            "word": "べんち",
             "score": 0.001,
             "contextMatch": false
           },
@@ -12854,6 +12858,7 @@
           {
             "rank": 35,
             "label": "binoculars",
+            "word": "そうがんきょう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -12879,6 +12884,7 @@
           {
             "rank": 39,
             "label": "blueberry",
+            "word": "ぶるーべりー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -12892,6 +12898,7 @@
           {
             "rank": 41,
             "label": "boomerang",
+            "word": "ぶーめらん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -12961,6 +12968,7 @@
           {
             "rank": 51,
             "label": "bulldozer",
+            "word": "ぶるどーざー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13002,6 +13010,7 @@
           {
             "rank": 57,
             "label": "calculator",
+            "word": "でんたく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13075,6 +13084,7 @@
           {
             "rank": 68,
             "label": "castle",
+            "word": "しろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13094,12 +13104,14 @@
           {
             "rank": 71,
             "label": "cell phone",
+            "word": "けいたいでんわ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 72,
             "label": "cello",
+            "word": "ちぇろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13206,6 +13218,7 @@
           {
             "rank": 88,
             "label": "crayon",
+            "word": "くれよん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13311,6 +13324,7 @@
           {
             "rank": 104,
             "label": "dumbbell",
+            "word": "だんべる",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13324,6 +13338,7 @@
           {
             "rank": 106,
             "label": "elbow",
+            "word": "ひじ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13358,6 +13373,7 @@
           {
             "rank": 111,
             "label": "eyeglasses",
+            "word": "めがね",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13385,6 +13401,7 @@
           {
             "rank": 115,
             "label": "fence",
+            "word": "ふぇんす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13410,6 +13427,7 @@
           {
             "rank": 119,
             "label": "firetruck",
+            "word": "しょうぼうしゃ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13423,12 +13441,14 @@
           {
             "rank": 121,
             "label": "flamingo",
+            "word": "ふらみんご",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 122,
             "label": "flashlight",
+            "word": "かいちゅうでんとう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13481,6 +13501,7 @@
           {
             "rank": 130,
             "label": "frying pan",
+            "word": "ふらいぱん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13512,6 +13533,7 @@
           {
             "rank": 135,
             "label": "golf club",
+            "word": "ごるふくらぶ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13573,6 +13595,7 @@
           {
             "rank": 144,
             "label": "headphones",
+            "word": "へっどほん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13593,6 +13616,7 @@
           {
             "rank": 147,
             "label": "helmet",
+            "word": "へるめっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13624,6 +13648,7 @@
           {
             "rank": 152,
             "label": "hospital",
+            "word": "びょういん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13648,6 +13673,7 @@
           {
             "rank": 156,
             "label": "hourglass",
+            "word": "すなどけい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13853,6 +13879,7 @@
           {
             "rank": 188,
             "label": "microphone",
+            "word": "まいく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -13879,12 +13906,14 @@
           {
             "rank": 192,
             "label": "mosquito",
+            "word": "か",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 193,
             "label": "motorbike",
+            "word": "おーとばい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -14023,12 +14052,14 @@
           {
             "rank": 214,
             "label": "paper clip",
+            "word": "くりっぷ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 215,
             "label": "parachute",
+            "word": "ぱらしゅーと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -14197,6 +14228,7 @@
           {
             "rank": 241,
             "label": "radio",
+            "word": "らじお",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15063,6 +15095,7 @@
           {
             "rank": 13,
             "label": "anvil",
+            "word": "かなとこ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15083,6 +15116,7 @@
           {
             "rank": 16,
             "label": "asparagus",
+            "word": "あすぱらがす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15129,6 +15163,7 @@
           {
             "rank": 23,
             "label": "baseball bat",
+            "word": "やきゅうばっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15202,6 +15237,7 @@
           {
             "rank": 34,
             "label": "bench",
+            "word": "べんち",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15215,6 +15251,7 @@
           {
             "rank": 36,
             "label": "binoculars",
+            "word": "そうがんきょう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15240,6 +15277,7 @@
           {
             "rank": 40,
             "label": "blueberry",
+            "word": "ぶるーべりー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15253,6 +15291,7 @@
           {
             "rank": 42,
             "label": "boomerang",
+            "word": "ぶーめらん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15322,6 +15361,7 @@
           {
             "rank": 52,
             "label": "bulldozer",
+            "word": "ぶるどーざー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15363,6 +15403,7 @@
           {
             "rank": 58,
             "label": "calculator",
+            "word": "でんたく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15436,6 +15477,7 @@
           {
             "rank": 69,
             "label": "castle",
+            "word": "しろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15455,12 +15497,14 @@
           {
             "rank": 72,
             "label": "cell phone",
+            "word": "けいたいでんわ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 73,
             "label": "cello",
+            "word": "ちぇろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15567,6 +15611,7 @@
           {
             "rank": 89,
             "label": "crayon",
+            "word": "くれよん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15672,6 +15717,7 @@
           {
             "rank": 105,
             "label": "dumbbell",
+            "word": "だんべる",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15685,6 +15731,7 @@
           {
             "rank": 107,
             "label": "elbow",
+            "word": "ひじ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15719,6 +15766,7 @@
           {
             "rank": 112,
             "label": "eyeglasses",
+            "word": "めがね",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15746,6 +15794,7 @@
           {
             "rank": 116,
             "label": "fence",
+            "word": "ふぇんす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15771,6 +15820,7 @@
           {
             "rank": 120,
             "label": "firetruck",
+            "word": "しょうぼうしゃ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15784,12 +15834,14 @@
           {
             "rank": 122,
             "label": "flamingo",
+            "word": "ふらみんご",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 123,
             "label": "flashlight",
+            "word": "かいちゅうでんとう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15842,6 +15894,7 @@
           {
             "rank": 131,
             "label": "frying pan",
+            "word": "ふらいぱん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15873,6 +15926,7 @@
           {
             "rank": 136,
             "label": "golf club",
+            "word": "ごるふくらぶ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15934,6 +15988,7 @@
           {
             "rank": 145,
             "label": "headphones",
+            "word": "へっどほん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15954,6 +16009,7 @@
           {
             "rank": 148,
             "label": "helmet",
+            "word": "へるめっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -15985,6 +16041,7 @@
           {
             "rank": 153,
             "label": "hospital",
+            "word": "びょういん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -16009,6 +16066,7 @@
           {
             "rank": 157,
             "label": "hourglass",
+            "word": "すなどけい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -16214,6 +16272,7 @@
           {
             "rank": 189,
             "label": "microphone",
+            "word": "まいく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -16240,12 +16299,14 @@
           {
             "rank": 193,
             "label": "mosquito",
+            "word": "か",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 194,
             "label": "motorbike",
+            "word": "おーとばい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -16384,12 +16445,14 @@
           {
             "rank": 215,
             "label": "paper clip",
+            "word": "くりっぷ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 216,
             "label": "parachute",
+            "word": "ぱらしゅーと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -16551,6 +16614,7 @@
           {
             "rank": 241,
             "label": "radio",
+            "word": "らじお",
             "score": 0.001,
             "contextMatch": false
           },
@@ -17418,6 +17482,7 @@
           {
             "rank": 13,
             "label": "anvil",
+            "word": "かなとこ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -17438,6 +17503,7 @@
           {
             "rank": 16,
             "label": "asparagus",
+            "word": "あすぱらがす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -17484,6 +17550,7 @@
           {
             "rank": 23,
             "label": "baseball bat",
+            "word": "やきゅうばっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -17557,6 +17624,7 @@
           {
             "rank": 34,
             "label": "bench",
+            "word": "べんち",
             "score": 0.001,
             "contextMatch": false
           },
@@ -17570,6 +17638,7 @@
           {
             "rank": 36,
             "label": "binoculars",
+            "word": "そうがんきょう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -17595,6 +17664,7 @@
           {
             "rank": 40,
             "label": "blueberry",
+            "word": "ぶるーべりー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -17608,6 +17678,7 @@
           {
             "rank": 42,
             "label": "boomerang",
+            "word": "ぶーめらん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -17677,6 +17748,7 @@
           {
             "rank": 52,
             "label": "bulldozer",
+            "word": "ぶるどーざー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -17718,6 +17790,7 @@
           {
             "rank": 58,
             "label": "calculator",
+            "word": "でんたく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -17791,6 +17864,7 @@
           {
             "rank": 69,
             "label": "castle",
+            "word": "しろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -17803,12 +17877,14 @@
           {
             "rank": 71,
             "label": "cell phone",
+            "word": "けいたいでんわ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 72,
             "label": "cello",
+            "word": "ちぇろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -17915,6 +17991,7 @@
           {
             "rank": 88,
             "label": "crayon",
+            "word": "くれよん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18020,6 +18097,7 @@
           {
             "rank": 104,
             "label": "dumbbell",
+            "word": "だんべる",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18033,6 +18111,7 @@
           {
             "rank": 106,
             "label": "elbow",
+            "word": "ひじ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18067,6 +18146,7 @@
           {
             "rank": 111,
             "label": "eyeglasses",
+            "word": "めがね",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18094,6 +18174,7 @@
           {
             "rank": 115,
             "label": "fence",
+            "word": "ふぇんす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18119,6 +18200,7 @@
           {
             "rank": 119,
             "label": "firetruck",
+            "word": "しょうぼうしゃ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18132,12 +18214,14 @@
           {
             "rank": 121,
             "label": "flamingo",
+            "word": "ふらみんご",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 122,
             "label": "flashlight",
+            "word": "かいちゅうでんとう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18190,6 +18274,7 @@
           {
             "rank": 130,
             "label": "frying pan",
+            "word": "ふらいぱん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18221,6 +18306,7 @@
           {
             "rank": 135,
             "label": "golf club",
+            "word": "ごるふくらぶ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18282,6 +18368,7 @@
           {
             "rank": 144,
             "label": "headphones",
+            "word": "へっどほん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18302,6 +18389,7 @@
           {
             "rank": 147,
             "label": "helmet",
+            "word": "へるめっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18333,6 +18421,7 @@
           {
             "rank": 152,
             "label": "hospital",
+            "word": "びょういん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18357,6 +18446,7 @@
           {
             "rank": 156,
             "label": "hourglass",
+            "word": "すなどけい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18562,6 +18652,7 @@
           {
             "rank": 188,
             "label": "microphone",
+            "word": "まいく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18588,12 +18679,14 @@
           {
             "rank": 192,
             "label": "mosquito",
+            "word": "か",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 193,
             "label": "motorbike",
+            "word": "おーとばい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18732,12 +18825,14 @@
           {
             "rank": 214,
             "label": "paper clip",
+            "word": "くりっぷ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 215,
             "label": "parachute",
+            "word": "ぱらしゅーと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -18906,6 +19001,7 @@
           {
             "rank": 241,
             "label": "radio",
+            "word": "らじお",
             "score": 0.001,
             "contextMatch": false
           },
@@ -19772,6 +19868,7 @@
           {
             "rank": 13,
             "label": "anvil",
+            "word": "かなとこ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -19792,6 +19889,7 @@
           {
             "rank": 16,
             "label": "asparagus",
+            "word": "あすぱらがす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -19838,6 +19936,7 @@
           {
             "rank": 23,
             "label": "baseball bat",
+            "word": "やきゅうばっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -19911,6 +20010,7 @@
           {
             "rank": 34,
             "label": "bench",
+            "word": "べんち",
             "score": 0.001,
             "contextMatch": false
           },
@@ -19924,6 +20024,7 @@
           {
             "rank": 36,
             "label": "binoculars",
+            "word": "そうがんきょう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -19949,6 +20050,7 @@
           {
             "rank": 40,
             "label": "blueberry",
+            "word": "ぶるーべりー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -19962,6 +20064,7 @@
           {
             "rank": 42,
             "label": "boomerang",
+            "word": "ぶーめらん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20031,6 +20134,7 @@
           {
             "rank": 52,
             "label": "bulldozer",
+            "word": "ぶるどーざー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20072,6 +20176,7 @@
           {
             "rank": 58,
             "label": "calculator",
+            "word": "でんたく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20145,6 +20250,7 @@
           {
             "rank": 69,
             "label": "castle",
+            "word": "しろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20157,12 +20263,14 @@
           {
             "rank": 71,
             "label": "cell phone",
+            "word": "けいたいでんわ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 72,
             "label": "cello",
+            "word": "ちぇろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20269,6 +20377,7 @@
           {
             "rank": 88,
             "label": "crayon",
+            "word": "くれよん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20374,6 +20483,7 @@
           {
             "rank": 104,
             "label": "dumbbell",
+            "word": "だんべる",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20387,6 +20497,7 @@
           {
             "rank": 106,
             "label": "elbow",
+            "word": "ひじ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20421,6 +20532,7 @@
           {
             "rank": 111,
             "label": "eyeglasses",
+            "word": "めがね",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20448,6 +20560,7 @@
           {
             "rank": 115,
             "label": "fence",
+            "word": "ふぇんす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20473,6 +20586,7 @@
           {
             "rank": 119,
             "label": "firetruck",
+            "word": "しょうぼうしゃ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20486,12 +20600,14 @@
           {
             "rank": 121,
             "label": "flamingo",
+            "word": "ふらみんご",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 122,
             "label": "flashlight",
+            "word": "かいちゅうでんとう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20544,6 +20660,7 @@
           {
             "rank": 130,
             "label": "frying pan",
+            "word": "ふらいぱん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20575,6 +20692,7 @@
           {
             "rank": 135,
             "label": "golf club",
+            "word": "ごるふくらぶ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20636,6 +20754,7 @@
           {
             "rank": 144,
             "label": "headphones",
+            "word": "へっどほん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20656,6 +20775,7 @@
           {
             "rank": 147,
             "label": "helmet",
+            "word": "へるめっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20687,6 +20807,7 @@
           {
             "rank": 152,
             "label": "hospital",
+            "word": "びょういん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20711,6 +20832,7 @@
           {
             "rank": 156,
             "label": "hourglass",
+            "word": "すなどけい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20916,6 +21038,7 @@
           {
             "rank": 188,
             "label": "microphone",
+            "word": "まいく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -20942,12 +21065,14 @@
           {
             "rank": 192,
             "label": "mosquito",
+            "word": "か",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 193,
             "label": "motorbike",
+            "word": "おーとばい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -21086,12 +21211,14 @@
           {
             "rank": 214,
             "label": "paper clip",
+            "word": "くりっぷ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 215,
             "label": "parachute",
+            "word": "ぱらしゅーと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -21260,6 +21387,7 @@
           {
             "rank": 241,
             "label": "radio",
+            "word": "らじお",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22126,6 +22254,7 @@
           {
             "rank": 13,
             "label": "anvil",
+            "word": "かなとこ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22146,6 +22275,7 @@
           {
             "rank": 16,
             "label": "asparagus",
+            "word": "あすぱらがす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22192,6 +22322,7 @@
           {
             "rank": 23,
             "label": "baseball bat",
+            "word": "やきゅうばっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22265,6 +22396,7 @@
           {
             "rank": 34,
             "label": "bench",
+            "word": "べんち",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22278,6 +22410,7 @@
           {
             "rank": 36,
             "label": "binoculars",
+            "word": "そうがんきょう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22303,6 +22436,7 @@
           {
             "rank": 40,
             "label": "blueberry",
+            "word": "ぶるーべりー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22316,6 +22450,7 @@
           {
             "rank": 42,
             "label": "boomerang",
+            "word": "ぶーめらん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22385,6 +22520,7 @@
           {
             "rank": 52,
             "label": "bulldozer",
+            "word": "ぶるどーざー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22426,6 +22562,7 @@
           {
             "rank": 58,
             "label": "calculator",
+            "word": "でんたく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22499,6 +22636,7 @@
           {
             "rank": 69,
             "label": "castle",
+            "word": "しろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22511,12 +22649,14 @@
           {
             "rank": 71,
             "label": "cell phone",
+            "word": "けいたいでんわ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 72,
             "label": "cello",
+            "word": "ちぇろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22623,6 +22763,7 @@
           {
             "rank": 88,
             "label": "crayon",
+            "word": "くれよん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22728,6 +22869,7 @@
           {
             "rank": 104,
             "label": "dumbbell",
+            "word": "だんべる",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22741,6 +22883,7 @@
           {
             "rank": 106,
             "label": "elbow",
+            "word": "ひじ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22775,6 +22918,7 @@
           {
             "rank": 111,
             "label": "eyeglasses",
+            "word": "めがね",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22802,6 +22946,7 @@
           {
             "rank": 115,
             "label": "fence",
+            "word": "ふぇんす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22827,6 +22972,7 @@
           {
             "rank": 119,
             "label": "firetruck",
+            "word": "しょうぼうしゃ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22840,12 +22986,14 @@
           {
             "rank": 121,
             "label": "flamingo",
+            "word": "ふらみんご",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 122,
             "label": "flashlight",
+            "word": "かいちゅうでんとう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22898,6 +23046,7 @@
           {
             "rank": 130,
             "label": "frying pan",
+            "word": "ふらいぱん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22929,6 +23078,7 @@
           {
             "rank": 135,
             "label": "golf club",
+            "word": "ごるふくらぶ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -22990,6 +23140,7 @@
           {
             "rank": 144,
             "label": "headphones",
+            "word": "へっどほん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -23010,6 +23161,7 @@
           {
             "rank": 147,
             "label": "helmet",
+            "word": "へるめっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -23041,6 +23193,7 @@
           {
             "rank": 152,
             "label": "hospital",
+            "word": "びょういん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -23065,6 +23218,7 @@
           {
             "rank": 156,
             "label": "hourglass",
+            "word": "すなどけい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -23270,6 +23424,7 @@
           {
             "rank": 188,
             "label": "microphone",
+            "word": "まいく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -23296,12 +23451,14 @@
           {
             "rank": 192,
             "label": "mosquito",
+            "word": "か",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 193,
             "label": "motorbike",
+            "word": "おーとばい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -23440,12 +23597,14 @@
           {
             "rank": 214,
             "label": "paper clip",
+            "word": "くりっぷ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 215,
             "label": "parachute",
+            "word": "ぱらしゅーと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -23614,6 +23773,7 @@
           {
             "rank": 241,
             "label": "radio",
+            "word": "らじお",
             "score": 0.001,
             "contextMatch": false
           },
@@ -24473,6 +24633,7 @@
           {
             "rank": 12,
             "label": "anvil",
+            "word": "かなとこ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -24493,6 +24654,7 @@
           {
             "rank": 15,
             "label": "asparagus",
+            "word": "あすぱらがす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -24539,6 +24701,7 @@
           {
             "rank": 22,
             "label": "baseball bat",
+            "word": "やきゅうばっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -24612,6 +24775,7 @@
           {
             "rank": 33,
             "label": "bench",
+            "word": "べんち",
             "score": 0.001,
             "contextMatch": false
           },
@@ -24625,6 +24789,7 @@
           {
             "rank": 35,
             "label": "binoculars",
+            "word": "そうがんきょう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -24650,6 +24815,7 @@
           {
             "rank": 39,
             "label": "blueberry",
+            "word": "ぶるーべりー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -24663,6 +24829,7 @@
           {
             "rank": 41,
             "label": "boomerang",
+            "word": "ぶーめらん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -24732,6 +24899,7 @@
           {
             "rank": 51,
             "label": "bulldozer",
+            "word": "ぶるどーざー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -24773,6 +24941,7 @@
           {
             "rank": 57,
             "label": "calculator",
+            "word": "でんたく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -24846,6 +25015,7 @@
           {
             "rank": 68,
             "label": "castle",
+            "word": "しろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -24865,12 +25035,14 @@
           {
             "rank": 71,
             "label": "cell phone",
+            "word": "けいたいでんわ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 72,
             "label": "cello",
+            "word": "ちぇろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -24977,6 +25149,7 @@
           {
             "rank": 88,
             "label": "crayon",
+            "word": "くれよん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25089,6 +25262,7 @@
           {
             "rank": 105,
             "label": "dumbbell",
+            "word": "だんべる",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25102,6 +25276,7 @@
           {
             "rank": 107,
             "label": "elbow",
+            "word": "ひじ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25136,6 +25311,7 @@
           {
             "rank": 112,
             "label": "eyeglasses",
+            "word": "めがね",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25163,6 +25339,7 @@
           {
             "rank": 116,
             "label": "fence",
+            "word": "ふぇんす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25188,6 +25365,7 @@
           {
             "rank": 120,
             "label": "firetruck",
+            "word": "しょうぼうしゃ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25201,12 +25379,14 @@
           {
             "rank": 122,
             "label": "flamingo",
+            "word": "ふらみんご",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 123,
             "label": "flashlight",
+            "word": "かいちゅうでんとう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25252,6 +25432,7 @@
           {
             "rank": 130,
             "label": "frying pan",
+            "word": "ふらいぱん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25283,6 +25464,7 @@
           {
             "rank": 135,
             "label": "golf club",
+            "word": "ごるふくらぶ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25344,6 +25526,7 @@
           {
             "rank": 144,
             "label": "headphones",
+            "word": "へっどほん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25364,6 +25547,7 @@
           {
             "rank": 147,
             "label": "helmet",
+            "word": "へるめっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25395,6 +25579,7 @@
           {
             "rank": 152,
             "label": "hospital",
+            "word": "びょういん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25419,6 +25604,7 @@
           {
             "rank": 156,
             "label": "hourglass",
+            "word": "すなどけい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25624,6 +25810,7 @@
           {
             "rank": 188,
             "label": "microphone",
+            "word": "まいく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25650,12 +25837,14 @@
           {
             "rank": 192,
             "label": "mosquito",
+            "word": "か",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 193,
             "label": "motorbike",
+            "word": "おーとばい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -25794,14 +25983,16 @@
           {
             "rank": 214,
             "label": "paper clip",
+            "word": "くりっぷ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 215,
             "label": "parachute",
+            "word": "ぱらしゅーと",
             "score": 0.001,
-            "contextMatch": false
+            "contextMatch": true
           },
           {
             "rank": 216,
@@ -25968,6 +26159,7 @@
           {
             "rank": 241,
             "label": "radio",
+            "word": "らじお",
             "score": 0.001,
             "contextMatch": false
           },
@@ -26817,6 +27009,7 @@
           {
             "rank": 13,
             "label": "anvil",
+            "word": "かなとこ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -26837,6 +27030,7 @@
           {
             "rank": 16,
             "label": "asparagus",
+            "word": "あすぱらがす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -26883,6 +27077,7 @@
           {
             "rank": 23,
             "label": "baseball bat",
+            "word": "やきゅうばっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -26956,6 +27151,7 @@
           {
             "rank": 34,
             "label": "bench",
+            "word": "べんち",
             "score": 0.001,
             "contextMatch": false
           },
@@ -26969,6 +27165,7 @@
           {
             "rank": 36,
             "label": "binoculars",
+            "word": "そうがんきょう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -26994,6 +27191,7 @@
           {
             "rank": 40,
             "label": "blueberry",
+            "word": "ぶるーべりー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27007,6 +27205,7 @@
           {
             "rank": 42,
             "label": "boomerang",
+            "word": "ぶーめらん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27076,6 +27275,7 @@
           {
             "rank": 52,
             "label": "bulldozer",
+            "word": "ぶるどーざー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27117,6 +27317,7 @@
           {
             "rank": 58,
             "label": "calculator",
+            "word": "でんたく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27190,6 +27391,7 @@
           {
             "rank": 69,
             "label": "castle",
+            "word": "しろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27202,12 +27404,14 @@
           {
             "rank": 71,
             "label": "cell phone",
+            "word": "けいたいでんわ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 72,
             "label": "cello",
+            "word": "ちぇろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27314,6 +27518,7 @@
           {
             "rank": 88,
             "label": "crayon",
+            "word": "くれよん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27426,6 +27631,7 @@
           {
             "rank": 105,
             "label": "dumbbell",
+            "word": "だんべる",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27439,6 +27645,7 @@
           {
             "rank": 107,
             "label": "elbow",
+            "word": "ひじ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27473,6 +27680,7 @@
           {
             "rank": 112,
             "label": "eyeglasses",
+            "word": "めがね",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27500,6 +27708,7 @@
           {
             "rank": 116,
             "label": "fence",
+            "word": "ふぇんす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27525,6 +27734,7 @@
           {
             "rank": 120,
             "label": "firetruck",
+            "word": "しょうぼうしゃ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27538,12 +27748,14 @@
           {
             "rank": 122,
             "label": "flamingo",
+            "word": "ふらみんご",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 123,
             "label": "flashlight",
+            "word": "かいちゅうでんとう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27589,6 +27801,7 @@
           {
             "rank": 130,
             "label": "frying pan",
+            "word": "ふらいぱん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27620,6 +27833,7 @@
           {
             "rank": 135,
             "label": "golf club",
+            "word": "ごるふくらぶ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27681,6 +27895,7 @@
           {
             "rank": 144,
             "label": "headphones",
+            "word": "へっどほん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27701,6 +27916,7 @@
           {
             "rank": 147,
             "label": "helmet",
+            "word": "へるめっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27732,6 +27948,7 @@
           {
             "rank": 152,
             "label": "hospital",
+            "word": "びょういん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27756,6 +27973,7 @@
           {
             "rank": 156,
             "label": "hourglass",
+            "word": "すなどけい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27961,6 +28179,7 @@
           {
             "rank": 188,
             "label": "microphone",
+            "word": "まいく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -27987,12 +28206,14 @@
           {
             "rank": 192,
             "label": "mosquito",
+            "word": "か",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 193,
             "label": "motorbike",
+            "word": "おーとばい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -28131,12 +28352,14 @@
           {
             "rank": 214,
             "label": "paper clip",
+            "word": "くりっぷ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 215,
             "label": "parachute",
+            "word": "ぱらしゅーと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -28305,6 +28528,7 @@
           {
             "rank": 241,
             "label": "radio",
+            "word": "らじお",
             "score": 0.001,
             "contextMatch": false
           },
@@ -41920,6 +42144,7 @@
           {
             "rank": 13,
             "label": "anvil",
+            "word": "かなとこ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -41940,6 +42165,7 @@
           {
             "rank": 16,
             "label": "asparagus",
+            "word": "あすぱらがす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -41986,6 +42212,7 @@
           {
             "rank": 23,
             "label": "baseball bat",
+            "word": "やきゅうばっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42059,6 +42286,7 @@
           {
             "rank": 34,
             "label": "bench",
+            "word": "べんち",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42072,6 +42300,7 @@
           {
             "rank": 36,
             "label": "binoculars",
+            "word": "そうがんきょう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42097,6 +42326,7 @@
           {
             "rank": 40,
             "label": "blueberry",
+            "word": "ぶるーべりー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42110,6 +42340,7 @@
           {
             "rank": 42,
             "label": "boomerang",
+            "word": "ぶーめらん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42179,6 +42410,7 @@
           {
             "rank": 52,
             "label": "bulldozer",
+            "word": "ぶるどーざー",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42220,6 +42452,7 @@
           {
             "rank": 58,
             "label": "calculator",
+            "word": "でんたく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42293,6 +42526,7 @@
           {
             "rank": 69,
             "label": "castle",
+            "word": "しろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42312,12 +42546,14 @@
           {
             "rank": 72,
             "label": "cell phone",
+            "word": "けいたいでんわ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 73,
             "label": "cello",
+            "word": "ちぇろ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42424,6 +42660,7 @@
           {
             "rank": 89,
             "label": "crayon",
+            "word": "くれよん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42536,6 +42773,7 @@
           {
             "rank": 106,
             "label": "dumbbell",
+            "word": "だんべる",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42549,6 +42787,7 @@
           {
             "rank": 108,
             "label": "elbow",
+            "word": "ひじ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42583,6 +42822,7 @@
           {
             "rank": 113,
             "label": "eyeglasses",
+            "word": "めがね",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42610,6 +42850,7 @@
           {
             "rank": 117,
             "label": "fence",
+            "word": "ふぇんす",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42635,6 +42876,7 @@
           {
             "rank": 121,
             "label": "firetruck",
+            "word": "しょうぼうしゃ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42648,12 +42890,14 @@
           {
             "rank": 123,
             "label": "flamingo",
+            "word": "ふらみんご",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 124,
             "label": "flashlight",
+            "word": "かいちゅうでんとう",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42699,6 +42943,7 @@
           {
             "rank": 131,
             "label": "frying pan",
+            "word": "ふらいぱん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42730,6 +42975,7 @@
           {
             "rank": 136,
             "label": "golf club",
+            "word": "ごるふくらぶ",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42791,6 +43037,7 @@
           {
             "rank": 145,
             "label": "headphones",
+            "word": "へっどほん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42811,6 +43058,7 @@
           {
             "rank": 148,
             "label": "helmet",
+            "word": "へるめっと",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42842,6 +43090,7 @@
           {
             "rank": 153,
             "label": "hospital",
+            "word": "びょういん",
             "score": 0.001,
             "contextMatch": false
           },
@@ -42866,6 +43115,7 @@
           {
             "rank": 157,
             "label": "hourglass",
+            "word": "すなどけい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -43071,6 +43321,7 @@
           {
             "rank": 189,
             "label": "microphone",
+            "word": "まいく",
             "score": 0.001,
             "contextMatch": false
           },
@@ -43097,12 +43348,14 @@
           {
             "rank": 193,
             "label": "mosquito",
+            "word": "か",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 194,
             "label": "motorbike",
+            "word": "おーとばい",
             "score": 0.001,
             "contextMatch": false
           },
@@ -43234,14 +43487,16 @@
           {
             "rank": 214,
             "label": "paper clip",
+            "word": "くりっぷ",
             "score": 0.001,
             "contextMatch": false
           },
           {
             "rank": 215,
             "label": "parachute",
+            "word": "ぱらしゅーと",
             "score": 0.001,
-            "contextMatch": false
+            "contextMatch": true
           },
           {
             "rank": 216,
@@ -43408,6 +43663,7 @@
           {
             "rank": 241,
             "label": "radio",
+            "word": "らじお",
             "score": 0.001,
             "contextMatch": false
           },

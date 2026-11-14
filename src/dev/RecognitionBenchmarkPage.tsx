@@ -1,3 +1,4 @@
+import { FreehandRecognition } from './FreehandRecognition';
 import { useEffect, useRef, useState } from 'react';
 import type { Stroke } from '../core/types';
 import { WindowCanvas } from '../components/WindowCanvas';
@@ -22,7 +23,7 @@ function AttemptEvaluation({ item, session, update }: { item: BenchmarkAttempt; 
     <strong className="benchmark-guess" data-testid={`guess-${item.attempt}`}>{item.guess ?? item.errorCode}</strong>
     <p className="benchmark-fine">source: {item.source} · HTTP: {item.httpStatus ?? '未計測'} · {item.imageWidth}×{item.imageHeight} PNG / {item.imageBytes} bytes<br />{item.nextInitial ? `次のお題の頭文字: ${item.nextInitial.toUpperCase()} · テンプレート ${item.nextTemplateCovered ? 'あり' : 'なし'}` : '次のお題の頭文字: —'}</p>
     {item.errorCode && <p role="alert">{item.errorCode === 'rate_limit' ? '429 / rate_limit: 待機後、手動で再試行できます。' : item.errorCode === 'invalid_response' ? 'invalid_response: 有効な認識語がありません。低スコア・未対応ラベルも推測で置き換えず記録します。' : `${item.errorCode}: 今回の失敗を記録しました。`} 自動再試行はしません。</p>}
-    {item.top3 && <p className="benchmark-fine">Top 3: {item.top3.map(value => `${value.label} (${value.score.toFixed(4)})`).join(' / ')}<br />モデルの順位スコアです。正しさの確率ではありません。分類: {item.modelOutcome}</p>}
+    {item.top3 && <p className="benchmark-fine">Top 3: {item.top3.map(value => `${value.label} (${value.score.toFixed(4)})`).join(' / ')}<br />モデルの順位スコアです。正しさの確率ではありません。分類: {item.failureReason ?? item.modelOutcome}</p>}
     {item.top3 && <label>Top 3に意図した物が含まれる（人間が確認）<select aria-label={`Top 3 · attempt ${item.attempt}`} value={item.top3MatchesIntent === null ? '' : String(item.top3MatchesIntent)} onChange={event => { session.observe(item.requestId, 'top3MatchesIntent', event.target.value === '' ? null : event.target.value === 'true'); update(); }}><option value="">未確認</option><option value="true">はい</option><option value="false">いいえ</option></select></label>}
     <label>実際のゲームで次へ進めた（別途試遊した場合のみ）<select aria-label={`続行 · attempt ${item.attempt}`} value={item.chainContinued === null ? '' : String(item.chainContinued)} onChange={event => { session.observe(item.requestId, 'chainContinued', event.target.value === '' ? null : event.target.value === 'true'); update(); }}><option value="">未観察</option><option value="true">はい</option><option value="false">いいえ</option></select></label>
     <label htmlFor={`judgement-${item.requestId}`}>納得度 · attempt {item.attempt}</label>
@@ -36,6 +37,8 @@ function AttemptEvaluation({ item, session, update }: { item: BenchmarkAttempt; 
 }
 
 export function RecognitionBenchmark({ session: supplied }: { session?: BenchmarkSession }) {
+  const [freehand, setFreehand] = useState(false);
+  const [freehandStarted, setFreehandStarted] = useState(false);
   const [session] = useState(() => supplied ?? new BenchmarkSession());
   const [, setRevision] = useState(0);
   const update = () => setRevision(value => value + 1);
@@ -86,6 +89,9 @@ export function RecognitionBenchmark({ session: supplied }: { session?: Benchmar
       <p className="benchmark-fine">端末内QuickDraw 345分類 · 逐次実行 · 自動リトライなし · 氏名・メールは入力しないでください</p>
     </div>
 
+    <nav className="benchmark-controls" aria-label="診断モード"><button aria-pressed={!freehand} onClick={() => setFreehand(false)}>固定12問</button><button aria-pressed={freehand} onClick={() => { setFreehandStarted(true); setFreehand(true); }}>自由描画・前処理比較</button></nav>
+    <div hidden={!freehand}>{freehandStarted && <FreehandRecognition />}</div>
+    <div hidden={freehand}>
     <section className="benchmark-setup" aria-label="描き手の設定">
       <label>匿名の描き手ID<input aria-label="匿名の描き手ID" value={drawerId} maxLength={24} pattern="[a-zA-Z0-9_-]{1,24}" disabled={session.attempts.length > 0 || session.sending} onChange={event => setDrawerId(event.target.value)} /></label>
       <label>端末<select aria-label="端末" value={device} disabled={session.attempts.length > 0 || session.sending} onChange={event => setDevice(event.target.value as DrawerIdentity['device'])}><option value="desktop">PC / desktop</option><option value="phone">スマートフォン</option><option value="tablet">タブレット</option><option value="other">その他</option></select></label>
@@ -129,5 +135,6 @@ export function RecognitionBenchmark({ session: supplied }: { session?: Benchmar
       <div className="benchmark-export"><button disabled={session.sending} onClick={() => download(exportJson(session), 'json', session.sessionId)}>Export sanitized JSON</button><button disabled={session.sending} onClick={() => download(exportCsv(session), 'csv', session.sessionId)}>Export sanitized CSV</button></div>
       <p className="benchmark-fine">記録はメモリ内だけです。再読み込み・終了で消えます。途中でも書き出せます。出力に画像・筆跡・キー・生の応答は含みません。JSONに集計、CSVに全試行を保存します。JSONにモデルの固定版・任意の試遊感想を保存します。APIを注入したテストではモデル名はnullです。</p>
     </section>
+    </div>
   </main>;
 }

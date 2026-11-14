@@ -30,9 +30,11 @@ function strokes(v: unknown): v is readonly Stroke[] {
   }));
 }
 const phases: GamePhase[] = ['girl_breath', 'girl_drawing', 'girl_holding', 'girl_notice', 'girl_flustered', 'player_drawing', 'recognizing', 'recognition_error', 'review_intents', 'results'];
+const failureReasons = ['invalid_input', 'low_score', 'unmapped', 'model_unavailable', 'invalid_output', 'uncovered_letter'];
 const codes = ['unavailable', 'timeout', 'rate_limit', 'invalid_response', 'invalid_input', 'network', 'uncovered_letter'];
 function recognition(v: unknown): v is RecognitionResult | null {
   return v === null || object(v) && ['ml', 'api', 'mock'].includes(v.source as string) && (v.guess === null || text(v.guess, 64)) &&
+    (v.failureReason === undefined || failureReasons.includes(v.failureReason as string)) &&
     (v.label === undefined || text(v.label, 64)) && (v.uncertain === undefined || typeof v.uncertain === 'boolean') &&
     (v.alternatives === undefined || Array.isArray(v.alternatives) && v.alternatives.length <= 10 && v.alternatives.every(a => text(a, 64))) &&
     (v.error === undefined || text(v.error, 1024)) && (v.errorCode === undefined || codes.includes(v.errorCode as string));
@@ -42,6 +44,7 @@ export function decodeSession(value: unknown): RestoredSession | null {
   try {
     if (!object(value) || value.version !== SESSION_SCHEMA || !object(value.state)) return null;
     const raw = value.state;
+    if (raw.lastLocalFailure !== undefined && (!object(raw.lastLocalFailure) || !strokes(raw.lastLocalFailure.strokes) || !recognition(raw.lastLocalFailure.result) || !raw.lastLocalFailure.result || raw.lastLocalFailure.result.source !== 'ml' || !['invalid_input', 'low_score', 'unmapped'].includes(raw.lastLocalFailure.result.failureReason ?? ''))) return null;
     if (!['en', 'ja'].includes(raw.language as string) || !['day', 'night'].includes(raw.mode as string) || !['api', 'demo', 'ml'].includes(raw.sessionKind as string) ||
       !phases.includes(raw.phase as GamePhase) || !Number.isSafeInteger(raw.round) || Number(raw.round) < 1 || Number(raw.round) > 5 ||
       !Number.isSafeInteger(raw.sessionId) || Number(raw.sessionId) < 0 || !Number.isSafeInteger(raw.recognitionAttempt) || Number(raw.recognitionAttempt) < 0 || !strokes(raw.activeStrokes) ||
@@ -63,7 +66,7 @@ export function decodeSession(value: unknown): RestoredSession | null {
       if (!object(e) || e.actor !== actor || e.round !== round || !text(e.id) || idMap.has(e.id) || !strokes(e.strokes) || !recognition(e.recognition) ||
         !(e.intendedWord === null || text(e.intendedWord, 64)) || typeof e.comparable !== 'boolean' ||
         (e.chainRestart !== undefined && typeof e.chainRestart !== 'boolean') ||
-        (e.nonComparableReason !== undefined && !['demo', 'mock', 'uncovered_letter'].includes(e.nonComparableReason as string))) return null;
+        (e.nonComparableReason !== undefined && !['demo', 'mock', 'uncovered_letter', 'recognition_recovery'].includes(e.nonComparableReason as string))) return null;
       const template = actor === 'girl' ? byId.get(e.templateId as string) : undefined;
       if (actor === 'girl' && (!template || !value.sketchIds.includes(e.templateId as string))) return null;
       const id = `${sessionId}:${actor}:${round}`;
@@ -94,7 +97,7 @@ export function decodeSession(value: unknown): RestoredSession | null {
       if (!text(word, 48) || !idMap.has(key) || !entries.some(e => e.id === idMap.get(key) && e.actor === 'player')) return null;
       intentDrafts[idMap.get(key)!] = word;
     }
-    let state: GameState = { ...createInitialState(raw.mode as GameState['mode'], language), phase, sessionId, round, sessionKind: raw.sessionKind as GameState['sessionKind'],
+    let state: GameState = { ...(raw.lastLocalFailure ? { lastLocalFailure: raw.lastLocalFailure as GameState['lastLocalFailure'] } : {}), ...createInitialState(raw.mode as GameState['mode'], language), phase, sessionId, round, sessionKind: raw.sessionKind as GameState['sessionKind'],
       sketches: sketches as GirlSketch[], entries, activeStrokes: raw.activeStrokes, drawingHistory: raw.drawingHistory as unknown as GameState['drawingHistory'],
       recognitionAttempt: Number(raw.recognitionAttempt) + 1, girlSlipUsed: raw.girlSlipUsed === true, girlCorrection: value.correctionId ? byId.get(value.correctionId as string)! : null };
     if (['recognizing', 'recognition_error'].includes(phase)) {
@@ -102,8 +105,8 @@ export function decodeSession(value: unknown): RestoredSession | null {
       if (!Number.isSafeInteger(value.requestAttempt) || Number(value.requestAttempt) < 1 || Number(value.requestAttempt) > 3) return null;
       const attempt = Number(value.requestAttempt);
       const entry = entries.at(-1)!;
-      if (phase === 'recognition_error' && (!object(raw.error) || !codes.includes(raw.error.code as string) || typeof raw.error.retryable !== 'boolean' || !text(raw.error.message, 1024))) return null;
-      const error = phase === 'recognition_error' ? { ...(raw.error as unknown as GameState['error'])!, retryable: (raw.error as Record<string, unknown>).retryable === true && attempt < 3 && (raw.error as Record<string, unknown>).code !== 'invalid_input' }
+      if (phase === 'recognition_error' && (!object(raw.error) || !codes.includes(raw.error.code as string) || typeof raw.error.retryable !== 'boolean' || !text(raw.error.message, 1024) || (raw.error.failureReason !== undefined && !failureReasons.includes(raw.error.failureReason as string)))) return null;
+      const error = phase === 'recognition_error' ? { ...(raw.error as unknown as GameState['error'])!, retryable: (raw.error as Record<string, unknown>).retryable === true && attempt < 3 && (raw.error as Record<string, unknown>).code !== 'invalid_input' && (raw.error as Record<string, unknown>).code !== 'uncovered_letter' && !['invalid_input', 'low_score', 'unmapped'].includes(String((raw.error as Record<string, unknown>).failureReason ?? '')) }
         : { code: 'unavailable' as const, message: 'The interrupted interpretation was not repeated. Your drawing is safe; try again or return to drawing.', retryable: attempt < 3 };
       state = { ...state, phase: 'recognition_error', activeStrokes: entry.strokes, error,
         recognitionRequest: { requestId: `${sessionId}:${round}:${state.recognitionAttempt}`, playerEntryId: entry.id, round, attempt, sessionKind: state.sessionKind, language, strokes: entry.strokes } };
